@@ -49,9 +49,7 @@
       </div>
     </div>
     <div class="body">
-      <transition-group
-        v-if="link"
-        name="row">
+      <v-virtual-list :size="rowHeight" :remain="visibleRowCount" v-if="link" class="v-virtual-list">
         <div
           v-for="row in items"
           :key="row[primaryKeyField]"
@@ -94,10 +92,13 @@
             <template v-else>{{ row[field] }}</template>
           </div>
         </div>
-      </transition-group>
+      </v-virtual-list>
 
-      <transition-group
+      <v-virtual-list
         v-else
+        class="v-virtual-list"
+        :size="rowHeight"
+        :remain="visibleRowCount"
         name="row">
         <div
           v-for="row in items"
@@ -124,13 +125,14 @@
             }"
             class="cell">{{ row[field] }}</div>
         </div>
-      </transition-group>
-
+      </v-virtual-list>
     </div>
   </div>
 </template>
 
 <script>
+import VVirtualList from "vue-virtual-scroll-list";
+
 export default {
   name: "v-table",
   props: {
@@ -141,6 +143,10 @@ export default {
     items: {
       type: Array,
       required: true
+    },
+    height: {
+      type: Number,
+      default: null
     },
     columns: {
       type: Array,
@@ -175,13 +181,46 @@ export default {
       default: false
     }
   },
+  components: {
+    VVirtualList
+  },
   data() {
     return {
       widths: {},
-      lastDragXPosition: null
+      lastDragXPosition: null,
+      windowHeight: 0
     };
   },
+  mounted() {
+    if (this.height === null) {
+      this.getWindowHeight();
+
+      this.windowResizeHandler = this.$lodash.debounce(
+        this.getWindowHeight,
+        200
+      );
+
+      window.addEventListener("resize", this.windowResizeHandler);
+    }
+  },
+  beforeDestroy() {
+    if (this.height === null) {
+      window.removeEventListener("resize", this.windowResizeHandler);
+    }
+  },
   computed: {
+    visibleRowCount() {
+      const height = this.height ? this.height : this.fullHeight;
+      return Math.ceil(height / this.rowHeight);
+    },
+    fullHeight() {
+      let headerHeight = getComputedStyle(document.body)
+        .getPropertyValue("--header-height")
+        .trim();
+      headerHeight = headerHeight.substring(0, headerHeight.length - 2); // remove 'px'
+
+      return this.windowHeight - headerHeight * 2;
+    },
     allSelected() {
       const primaryKeyFields = this.items
         .map(item => item[this.primaryKeyField])
@@ -286,6 +325,9 @@ export default {
         ...widths,
         ...this.columnWidths
       };
+    },
+    getWindowHeight() {
+      this.windowHeight = window.innerHeight;
     }
   }
 };
@@ -294,10 +336,16 @@ export default {
 <style scoped>
 .v-table {
   width: 100%;
+  max-height: calc(100vh - var(--header-height));
+  overflow: hidden;
 }
 
 .body {
   position: relative;
+}
+
+.v-virtual-list {
+  max-height: calc(100vh - var(--header-height) - var(--header-height));
 }
 
 .toolbar,
@@ -350,6 +398,7 @@ export default {
 .row {
   opacity: 1;
   background-color: var(--white);
+  box-sizing: border-box;
 }
 
 .row.link:hover {
