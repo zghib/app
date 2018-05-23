@@ -11,7 +11,7 @@
     class="listing-options-extension"
     @query="$emit('query', $event)"
     @select="$emit('select', $event)"
-    @input="$emit('input', $event)" />
+    @options="$emit('options', $event)" />
 </template>
 
 <script>
