@@ -361,8 +361,6 @@ export default {
     const { collection } = to.params;
     const collectionInfo = getCollectionInfo(collection);
 
-    Object.assign(this, defaultState);
-
     if (collectionInfo === null) {
       this.notFound = true;
       return next();
@@ -374,6 +372,7 @@ export default {
 
     return hydrate(collection)
       .then(({ fields, preferences, items, meta }) => {
+        Object.assign(this, defaultState);
         this.fields = fields;
         this.preferences = preferences;
         this.items = items;
