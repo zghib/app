@@ -32,7 +32,7 @@
       <i
         v-if="!loading"
         class="material-icons">{{ icon }}</i>
-      <spinner
+      <v-spinner
         v-else
         :size="24"
         line-fg-color="white"

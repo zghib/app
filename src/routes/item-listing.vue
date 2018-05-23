@@ -100,13 +100,15 @@
       :fields="fields"
       :items="items"
       :loading="loading"
+      :lazy-loading="lazyLoading"
       :selection="selection"
       :options="viewOptions"
       :type="viewType"
       :query="viewQuery"
       @options="setViewOptions"
       @select="selection = $event"
-      @query="setViewQuery" />
+      @query="setViewQuery"
+      @next-page="fetchNextPage" />
   </div>
 </template>
 
@@ -194,7 +196,7 @@ function getParams(preferences, primaryKeyField) {
   let params = {
     fields: "*.*",
     meta: "total_count",
-    limit: 40
+    limit: 50
   };
 
   Object.assign(
@@ -240,6 +242,9 @@ const defaultState = {
   items: [],
   meta: {},
   loading: false,
+
+  currentPage: 1,
+  lazyLoading: false,
 
   selection: []
 };
@@ -386,6 +391,32 @@ export default {
       });
   },
   methods: {
+    fetchNextPage() {
+      if (this.lazyLoading) return;
+
+      this.lazyLoading = true;
+      const params = getParams(this.preferences, this.primaryKeyField);
+
+      params.offset = params.limit * this.currentPage;
+
+      this.$api
+        .getItems(this.collection, params)
+        .then(res => res.data)
+        .then(items =>
+          items.map(item => ({
+            ...item,
+            __link__: `/collections/${this.collection}/${
+              item[this.primaryKeyField]
+            }`
+          }))
+        )
+        .then(newItems => {
+          this.lazyLoading = false;
+          this.currentPage = this.currentPage + 1;
+          this.items = [...this.items, ...newItems];
+        })
+        .catch(console.error);
+    },
     remove() {
       console.warn("Wait till the modals have been re-implemented #320");
     },

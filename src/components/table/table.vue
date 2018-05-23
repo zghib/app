@@ -2,7 +2,7 @@
   <div
     :style="{ minWidth: totalWidth + 'px' }"
     class="v-table">
-    <div class="toolbar">
+    <div class="toolbar" :class="{ shadow: scrolled }">
       <div
         v-if="selectable"
         class="select cell">
@@ -49,7 +49,7 @@
       </div>
     </div>
     <div class="body">
-      <v-virtual-list :size="rowHeight" :remain="visibleRowCount" v-if="link" class="v-virtual-list">
+      <v-virtual-list :size="rowHeight" :remain="visibleRowCount" v-if="link" class="v-virtual-list" :onscroll="onScroll">
         <div
           v-for="row in items"
           :key="row[primaryKeyField]"
@@ -84,7 +84,7 @@
               class="empty">--</div>
             <v-readonly
               v-else-if="useInterfaces && !$lodash.isNil(row[field])"
-              :interface="fieldInfo.interface"
+              :interfaceType="fieldInfo.interface"
               :name="field"
               :type="fieldInfo.type"
               :options="fieldInfo.options"
@@ -126,6 +126,11 @@
             class="cell">{{ row[field] }}</div>
         </div>
       </v-virtual-list>
+      <transition name="fade">
+        <div v-if="lazyLoading" class="lazy-loader">
+          <v-spinner />
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -137,6 +142,10 @@ export default {
   name: "v-table",
   props: {
     loading: {
+      type: Boolean,
+      default: false
+    },
+    lazyLoading: {
       type: Boolean,
       default: false
     },
@@ -188,7 +197,8 @@ export default {
     return {
       widths: {},
       lastDragXPosition: null,
-      windowHeight: 0
+      windowHeight: 0,
+      scrolled: false
     };
   },
   mounted() {
@@ -328,12 +338,16 @@ export default {
     },
     getWindowHeight() {
       this.windowHeight = window.innerHeight;
+    },
+    onScroll(event, data) {
+      if (data.offsetAll - data.offset < 500) this.$emit("scrollEnd");
+      this.scrolled = data.offset > 0;
     }
   }
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .v-table {
   width: 100%;
   max-height: calc(100vh - var(--header-height));
@@ -364,6 +378,12 @@ export default {
   top: 0;
   z-index: +1;
   background-color: var(--white);
+  transition: box-shadow var(--fast) var(--transition-out);
+
+  &.shadow {
+    box-shadow: var(--box-shadow);
+    transition: box-shadow var(--medium) var(--transition-in);
+  }
 }
 
 .drag-handle {
@@ -464,23 +484,34 @@ export default {
   margin-right: 8px;
 }
 
-.row-move {
-  transition: var(--slow) var(--transition);
+.lazy-loader {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  max-width: calc(100vw - var(--nav-sidebar-width));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 1;
 }
 
-.row-enter-active {
+.fade-enter-active {
   transition: var(--slow) var(--transition-in);
 }
 
-.row-leave-active {
+.fade-leave-active {
   transition: var(--slow) var(--transition-out);
-  position: absolute;
-  width: 100%;
-  z-index: 0;
 }
 
-.row-enter,
-.row-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 </style>

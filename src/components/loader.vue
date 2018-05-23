@@ -9,7 +9,7 @@
         :class="{ transparent }"
         class="overlay" />
       <transition name="fade">
-        <spinner
+        <v-spinner
           v-show="spinnerActive"
           class="spinner" />
       </transition>

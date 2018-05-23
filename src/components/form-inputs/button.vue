@@ -8,7 +8,7 @@
     <i
       v-if="icon && !loading"
       class="material-icons">{{ icon }}</i>
-    <spinner
+    <v-spinner
       v-if="loading"
       :line-size="2"
       size="13"

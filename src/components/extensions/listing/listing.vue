@@ -6,13 +6,15 @@
     :items="items"
     :options="options"
     :loading="loading"
+    :lazy-loading="lazyLoading"
     :query="query"
     :selection="selection"
     :link="link"
     class="v-listing"
     @query="$emit('query', $event)"
     @select="$emit('select', $event)"
-    @options="$emit('options', $event)" />
+    @options="$emit('options', $event)"
+    @next-page="$emit('next-page', $event)" />
 </template>
 
 <script>
@@ -42,6 +44,10 @@ export default {
       default: () => ({})
     },
     loading: {
+      type: Boolean,
+      default: false
+    },
+    lazyLoading: {
       type: Boolean,
       default: false
     },
