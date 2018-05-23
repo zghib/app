@@ -1,5 +1,17 @@
 <template>
+  <v-readonly-fallback
+    v-if="interfaceType === null"
+    :name="name"
+    :value="value"
+    :type="type"
+    :length="length"
+    :readonly="readonly"
+    :required="required"
+    :loading="loading"
+    :options="optionsWithDefaults"
+    class="v-readonly" />
   <component
+    v-else
     :is="componentName"
     :name="name"
     :value="value"
@@ -22,9 +34,9 @@ import VReadonlyLoading from "./readonly-loading.vue";
 export default {
   name: "v-readonly",
   props: {
-    interface: {
+    interfaceType: {
       type: String,
-      required: true
+      default: null
     },
     name: {
       type: String,
@@ -59,15 +71,18 @@ export default {
       default: () => ({})
     }
   },
+  components: {
+    VReadonlyFallback
+  },
   computed: {
     interfaces() {
       return this.$store.state.extensions.interfaces;
     },
     interfaceInfo() {
-      return this.interfaces && this.interfaces[this.interface];
+      return this.interfaces && this.interfaces[this.interfaceType];
     },
     componentName() {
-      return `readonly-${this.interface}`;
+      return `readonly-${this.interfaceType}`;
     },
     optionsWithDefaults() {
       if (!this.interfaceInfo) return {};

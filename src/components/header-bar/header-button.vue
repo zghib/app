@@ -22,11 +22,13 @@
       </select>
       <i class="material-icons">more_horiz</i>
     </div>
-    <button
+    <component
+      :is="to ? 'router-link' : 'button'"
       :style="{ backgroundColor: (noBackground || disabled) ? null : `var(--${color})`, color: `var(--${color})` }"
       :class="{ 'attention': alert, 'no-bg': noBackground }"
       :disabled="disabled"
-      @click="$emit('click', $event)">
+      :to="to || null"
+      @click="!to ? $emit('click', $event) : null">
       <i
         v-if="!loading"
         class="material-icons">{{ icon }}</i>
@@ -36,7 +38,7 @@
         line-fg-color="white"
         line-bg-color="transparent"/>
       <span class="style-btn" v-if="label">{{ label }}</span>
-    </button>
+    </component>
   </div>
 </template>
 
@@ -79,6 +81,10 @@ export default {
     noBackground: {
       type: Boolean,
       default: false
+    },
+    to: {
+      type: String,
+      default: null
     }
   },
   data() {
@@ -103,7 +109,8 @@ export default {
   display: inline-block;
 }
 
-button {
+button,
+a {
   position: relative;
   background-color: transparent;
   appearance: none;

@@ -32,11 +32,6 @@ export const SET_FIELDS = "📌 Set Fields";
 export const STORE_HYDRATED = "🏪 Store Hydrated";
 export const HYDRATING_FAILED = "🏪❌ Store Hydration Failed";
 
-// Listing Preferences
-export const SET_PREFERENCES = "👀 Set Listing Preferences";
-export const SET_PREFERENCE = "👀 Set Listing Preference";
-export const UPDATE_PREFERENCE = "👀 Update Listing Preference";
-
 // Me
 export const SET_CURRENT_USER = "👨🏻‍💻✅ Set Current User";
 export const UPDATE_CURRENT_USER = "👨🏻‍💻 Current User Updated";

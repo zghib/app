@@ -9,10 +9,10 @@
     :query="query"
     :selection="selection"
     :link="link"
-    class="v-interface-extension"
+    class="v-listing"
     @query="$emit('query', $event)"
     @select="$emit('select', $event)"
-    @input="$emit('input', $event)" />
+    @options="$emit('options', $event)" />
 </template>
 
 <script>
@@ -23,13 +23,9 @@ import VListingFallback from "./listing-fallback.vue";
 import VListingLoading from "./listing-loading.vue";
 
 export default {
-  name: "v-interface-extension",
+  name: "v-listing",
   props: {
-    id: {
-      type: String,
-      required: true
-    },
-    primaryKeyField: {
+    type: {
       type: String,
       required: true
     },
@@ -67,14 +63,22 @@ export default {
       return this.$store.state.extensions.listings;
     },
     listing() {
-      return this.listings && this.listings[this.id];
+      return this.listings && this.listings[this.type];
     },
     componentName() {
-      return `listing-${this.id}`;
+      return `listing-${this.type}`;
+    },
+    primaryKeyField() {
+      const fieldInfo = this.$lodash.filter(
+        this.fields,
+        info => info.interface === "primary-key"
+      )[0];
+
+      return fieldInfo && fieldInfo.field;
     }
   },
   watch: {
-    id() {
+    type() {
       this.registerListing();
     }
   },

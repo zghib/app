@@ -7,7 +7,6 @@ export default function hydrateStore() {
   return Promise.all([
     store.dispatch("latency"),
     store.dispatch("getCurrentUser"),
-    store.dispatch("getAllUserListingPreferences"),
     store.dispatch("getCollections"),
     store.dispatch("getSettings"),
     store.dispatch("getAllExtensions"),

@@ -140,6 +140,9 @@ export default {
   server_error: "Server Error",
   server_error_copy:
     "Something is wrong with this instance’s server or database.",
+  server_trouble: "Server Trouble",
+  server_trouble_copy:
+    "Try again later or contact your system administrator help.",
   something_went_wrong: "Something went wrong..",
   something_went_wrong_body:
     "We're having some trouble processing your request.. Please try again by refreshing this page. If the problem persist, please contact your system administrator.",

@@ -24,7 +24,7 @@ import ListingOptionsLoading from "./listing-options-loading.vue";
 export default {
   name: "listing-options-extension",
   props: {
-    id: {
+    type: {
       type: String,
       required: true
     },
@@ -62,14 +62,14 @@ export default {
       return this.$store.state.extensions.listings;
     },
     listing() {
-      return this.listings && this.listings[this.id];
+      return this.listings && this.listings[this.type];
     },
     componentName() {
-      return `listing-options-${this.id}`;
+      return `listing-options-${this.type}`;
     }
   },
   watch: {
-    id() {
+    type() {
       this.registerListingOptions();
     }
   },

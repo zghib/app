@@ -213,8 +213,6 @@ export default {
     }
   },
   created() {
-    this.drag = this.$lodash.throttle(this.drag, 20);
-
     this.initWidths();
   },
   watch: {

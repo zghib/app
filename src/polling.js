@@ -7,7 +7,7 @@ export function startPolling() {
   fastInterval = setInterval(() => {
     store.dispatch("latency");
     store.dispatch("track", { page: router.currentRoute.path });
-  }, 5000);
+  }, 10000);
 }
 
 export function stopPolling() {

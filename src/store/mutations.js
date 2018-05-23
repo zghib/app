@@ -12,9 +12,6 @@ import {
   SET_BOOKMARKS,
   ADD_BOOKMARK,
   DELETE_BOOKMARK,
-  UPDATE_PREFERENCE,
-  SET_PREFERENCES,
-  SET_PREFERENCE,
   TOGGLE_NAV,
   TOGGLE_INFO
 } from "./mutation-types";
@@ -77,25 +74,6 @@ const mutations = {
 
   [DELETE_BOOKMARK](state, id) {
     state.bookmarks = state.bookmarks.filter(bookmark => bookmark.id !== id);
-  },
-
-  [UPDATE_PREFERENCE](state, { preference, collection }) {
-    Vue.set(state.listingPreferences, collection, {
-      ...(state.listingPreferences[collection] || {}),
-      ...preference
-    });
-  },
-
-  [SET_PREFERENCES](state, preferences) {
-    state.listingPreferences = keyBy(preferences, "collection");
-  },
-
-  [SET_PREFERENCE](state, { collection, preference }) {
-    if (isEmpty(state[collection])) {
-      Vue.set(state, collection, {});
-    }
-
-    Vue.set(state, collection, preference);
   },
 
   [TOGGLE_NAV](state, active = !state.sidebars.nav) {

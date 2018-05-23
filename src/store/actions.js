@@ -11,10 +11,7 @@ import {
   SET_COLLECTIONS,
   SET_BOOKMARKS,
   ADD_BOOKMARK,
-  DELETE_BOOKMARK,
-  UPDATE_PREFERENCE,
-  SET_PREFERENCES,
-  SET_PREFERENCE
+  DELETE_BOOKMARK
 } from "./mutation-types";
 
 export function latency({ commit }) {
@@ -140,76 +137,4 @@ export function saveBookmark({ commit }, bookmark) {
 export function deleteBookmark({ commit }, bookmarkID) {
   commit(DELETE_BOOKMARK, bookmarkID);
   return api.deleteCollectionPreset(bookmarkID).catch(console.error);
-}
-
-export function getAllUserListingPreferences({ commit, getters }) {
-  return api
-    .getItems("directus_collection_presets", {
-      "filter[title][null]": 1,
-      "filter[user][eq]": getters.tokenPayload.id
-    })
-    .then(res => res.data)
-    .then(preferences => {
-      commit(SET_PREFERENCES, preferences);
-    });
-}
-
-export function getListingPreferences({ commit }, collection) {
-  return api.getMyListingPreferences(collection).then(preference => {
-    commit(SET_PREFERENCE, { preference, collection });
-  });
-}
-
-export function setListingPreferences(
-  { commit, state },
-  { collection, updates }
-) {
-  const preferences = state.listingPreferences[collection];
-
-  const userPreferencesExist =
-    preferences && Boolean(preferences.id) && Boolean(preferences.user);
-
-  // Call setter without waiting for the api to respond with local data, so the view updates
-  //   right away
-  commit(UPDATE_PREFERENCE, {
-    collection,
-    preference: updates
-  });
-
-  if (userPreferencesExist) {
-    return api.updateCollectionPreset(preferences.id, updates);
-  }
-
-  return (
-    api
-      .createCollectionPreset({
-        ...preferences,
-        ...updates,
-        collection,
-        group: state.currentUser.group,
-        user: state.currentUser.id
-      })
-      .then(res => res.data)
-      // Commit the view options to add the missing fields to the local version
-      .then(savedPreferences =>
-        commit(UPDATE_PREFERENCE, {
-          collection,
-          preference: savedPreferences
-        })
-      )
-  );
-}
-
-export function resetPreferences({ dispatch, state }, { collection }) {
-  const preference = state[collection];
-
-  if (!preference) return Promise.reject();
-
-  const isUserPreference = preference.user != null;
-
-  if (isUserPreference === false) return Promise.reject();
-
-  return api
-    .deleteCollectionPreset(preference.id)
-    .then(() => dispatch("getListingPreferences", collection));
 }
