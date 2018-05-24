@@ -1,51 +1,54 @@
 <template>
-  <div class="edit">
-    <loader
-      v-if="hydrating"
-      area="content" />
+  <v-not-found v-if="notFound" />
 
+  <div v-else-if="error">
+    <v-header-bar />
+    <v-error
+      v-if="error"
+      icon="error_outline"
+      color="warning"
+      :title="$t('server_trouble')"
+      :body="$t('server_trouble_copy')" />
+  </div>
+
+  <div v-else-if="fields === null">
+    <v-header-bar />
+    <v-loader area="content" />
+  </div>
+
+  <div v-else class="edit">
     <v-header-bar :breadcrumb="breadcrumb" info-toggle>
       <template slot="buttons">
         <v-header-button
           v-if="!newItem"
           icon="close"
           color="danger"
-          :label="$t('delete')"
-          @click="removeModalActive = true" />
+          :label="$t('delete')" /><!-- TODO: add confirm modal #320 -->
         <v-header-button
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
           :options="{
-            saveAndStay: $t('save_and_stay'),
-            saveAndAdd: $t('save_and_add'),
-            saveAsCopy: $t('save_as_copy'),
+            stay: $t('save_and_stay'),
+            add: $t('save_and_add'),
+            copy: $t('save_as_copy'),
           }"
           icon="check"
           color="action"
-          @click="saveAndLeave"
-          @input="saveSpecial" />
+          @click="save('leave')"
+          @input="save" />
       </template>
     </v-header-bar>
 
     <v-info-sidebar wide>
       <v-activity-overview
-        v-if="fields && collection && primaryKey"
         :collection="collection"
         :primary-key="primaryKey"
         :fields="fields"
         @reload="hydrate" />
     </v-info-sidebar>
 
-    <v-confirm
-      v-if="removeModalActive"
-      :message="$t('delete_are_you_sure')"
-      :confirm-text="$t('delete')"
-      @confirm="remove"
-      @cancel="removeModalActive = false" />
-
-    <edit-form
-      v-if="!hydrating"
+    <v-edit-form
       :fields="fields"
       :values="values"
       :collection="collection"
@@ -54,13 +57,63 @@
 </template>
 
 <script>
-import EditForm from "../components/edit-form/edit-form.vue";
+import NProgress from "nprogress";
+import { keyBy, mapValues } from "lodash";
+import VLoader from "../components/loader.vue";
+import VError from "../components/error.vue";
+import VEditForm from "../components/edit-form/edit-form.vue";
 import VActivityOverview from "../components/activity-overview/activity-overview.vue";
+import formatTitle from "@directus/format-title";
+import VNotFound from "./not-found.vue";
+import store from "../store/";
+import api from "../api";
+
+function getCollectionInfo(collection) {
+  if (
+    collection === "directus_files" ||
+    collection === "directus_users" ||
+    collection === "directus_activity"
+  ) {
+    return true;
+  }
+
+  const { collections } = store.state;
+  const collectionNames = Object.keys(collections);
+
+  return collectionNames.includes(collection) ? collections[collection] : null;
+}
+
+function hydrate(collection, primaryKey) {
+  NProgress.inc();
+
+  return Promise.all([
+    api.getFields(collection),
+    primaryKey !== "+" ? api.getItem(collection, primaryKey) : null
+  ]).then(([fieldsRes, savedValues]) => {
+    NProgress.inc();
+
+    store.dispatch("startEditing", {
+      collection: collection,
+      primaryKey: primaryKey,
+      savedValues: (savedValues && savedValues.data) || {}
+    });
+
+    return {
+      fields: mapValues(keyBy(fieldsRes.data, "field"), field => ({
+        ...field,
+        name: formatTitle(field.field) // TODO: Map translation key to name field to support translatable field names #421 & #422
+      }))
+    };
+  });
+}
 
 export default {
   name: "edit",
   components: {
-    EditForm,
+    VEditForm,
+    VLoader,
+    VNotFound,
+    VError,
     VActivityOverview
   },
   props: {
@@ -75,11 +128,12 @@ export default {
   },
   data() {
     return {
-      hydrating: false,
       saving: false,
-      deleting: false,
-      removeModalActive: false,
-      toPath: null
+
+      fields: null,
+
+      notFound: false,
+      error: false
     };
   },
   computed: {
@@ -91,7 +145,9 @@ export default {
             path: `/${this.collection.substring(9)}`
           },
           {
-            name: this.$t("editing_item"),
+            name: this.newItem
+              ? this.$t("creating_item")
+              : this.$t("editing_item"),
             path: this.$route.path
           }
         ];
@@ -107,34 +163,12 @@ export default {
           path: `/collections/${this.collection}`
         },
         {
-          name: this.$t("editing_item"),
+          name: this.newItem
+            ? this.$t("creating_item")
+            : this.$t("editing_item"),
           path: this.$route.path
         }
       ];
-    },
-    fields() {
-      const stateFields =
-        (this.$store.state.fields &&
-          this.$store.state.fields[this.collection]) ||
-        {};
-
-      return this.$lodash.keyBy(
-        Object.values(stateFields)
-          .filter(field => {
-            if (field.interface === "primary-key") return true;
-
-            if (field.hidden_list === true || field.hidden_list === 1) {
-              return false;
-            }
-
-            return true;
-          })
-          .map(field => ({
-            ...field,
-            name: this.$t(`fields-${this.collection}-${field.field}`)
-          })),
-        "field"
-      );
     },
     values() {
       const edits = this.$store.state.edits.values;
@@ -156,130 +190,119 @@ export default {
       return this.$lodash.find(this.fields, { interface: "primary-key" }).field;
     }
   },
-  watch: {
-    $route() {
-      this.hydrate();
-    }
-  },
-  created() {
-    this.hydrate();
-  },
   methods: {
-    hydrate() {
-      this.hydrating = true;
-
-      Promise.all([
-        this.$store.dispatch("getFields", this.collection),
-        this.newItem
-          ? null
-          : this.$api.getItem(this.collection, this.primaryKey)
-      ])
-        .then(values => {
-          const savedValues = this.newItem ? {} : values[1];
-
-          this.hydrating = false;
-
-          this.$store.dispatch("startEditing", {
-            collection: this.collection,
-            primaryKey: this.primaryKey,
-            savedValues: savedValues.data || {}
-          });
-        })
-        .catch(console.error); // eslint-disable-line no-console
-    },
     stageValue({ field, value }) {
       this.$store.dispatch("stageValue", { field, value });
     },
-    remove() {
-      this.deleting = true;
-      this.$api
-        .deleteItem(this.collection, this.primaryKey)
-        .then(() => {
-          this.deleting = false;
-          this.$router.push(`/collections/${this.collection}`);
-        })
-        .catch(console.error); // eslint-disable-line no-console
-    },
-    saveSpecial(method) {
-      this[method]();
-    },
-    saveAndStay() {
+    save(method) {
       this.saving = true;
-      this.$store
+
+      if (method === "copy") {
+        return this.$store
+          .dispatch("save", {
+            primaryKey: "+",
+            values: this.values
+          })
+          .then(res => {
+            this.saving = false;
+            return res.data[this.primaryKeyField];
+          })
+          .then(pk => {
+            if (this.collection.startsWith("directus_")) {
+              return this.$router.push(
+                `/${this.collection.substring(9)}/${pk}`
+              );
+            }
+
+            return this.$router.push(`/collections/${this.collection}/${pk}`);
+          })
+          .catch(console.error); // eslint-disable-line no-console
+      }
+
+      return this.$store
         .dispatch("save")
-        .then(res => {
+        .then(res => res.data)
+        .then(savedValues => {
           this.saving = false;
+          return savedValues;
+        })
+        .then(savedValues => {
+          if (method === "leave") {
+            if (this.collection.startsWith("directus_")) {
+              return this.$router.push(`/${this.collection.substring(9)}`);
+            }
 
-          if (this.newItem) {
-            const primaryKey = res.data[this.primaryKeyField];
-            return this.$router.push(
-              `/collections/${this.collection}/${primaryKey}`
-            );
+            return this.$router.push(`/collections/${this.collection}`);
           }
 
-          this.hydrate();
-        })
-        .catch(console.error); // eslint-disable-line no-console
-    },
-    saveAndLeave() {
-      this.saving = true;
-      this.$store
-        .dispatch("save")
-        .then(() => {
-          this.saving = false;
-        })
-        .then(() => {
-          if (this.collection.startsWith("directus_")) {
-            return this.$router.push(`/${this.collection.substring(9)}`);
+          if (method === "stay") {
+            if (this.newItem) {
+              const primaryKey = savedValues[this.primaryKeyField];
+              return this.$router.push(
+                `/collections/${this.collection}/${primaryKey}`
+              );
+            }
+            this.$store.dispatch("startEditing", {
+              collection: this.collection,
+              primaryKey: this.primaryKey,
+              savedValues: savedValues
+            });
           }
 
-          return this.$router.push(`/collections/${this.collection}`);
-        })
-        .catch(console.error); // eslint-disable-line no-console
-    },
-    saveAndAdd() {
-      this.saving = true;
-      this.$store
-        .dispatch("save")
-        .then(() => {
-          this.saving = false;
-        })
-        .then(() => {
-          if (this.collection.startsWith("directus_")) {
-            return this.$router.push(`/${this.collection.substring(9)}/+`);
-          }
+          if (method === "add") {
+            if (this.collection.startsWith("directus_")) {
+              return this.$router.push(`/${this.collection.substring(9)}/+`);
+            }
 
-          return this.$router.push(`/collections/${this.collection}/+`);
-        })
-        .catch(console.error); // eslint-disable-line no-console
-    },
-    saveAsCopy() {
-      this.saving = true;
-      this.$store
-        .dispatch("save", {
-          primaryKey: "+",
-          values: this.values
-        })
-        .then(res => {
-          this.saving = false;
-          return res.data[this.primaryKeyField];
-        })
-        .then(pk => {
-          if (this.collection.startsWith("directus_")) {
-            return this.$router.push(`/${this.collection.substring(9)}/${pk}`);
+            return this.$router.push(`/collections/${this.collection}/+`);
           }
-
-          return this.$router.push(`/collections/${this.collection}/${pk}`);
         })
-        .catch(console.error); // eslint-disable-line no-console
-    },
-    discardChanges() {
-      this.confirmNavigation = false;
-      this.$store.dispatch("discardChanges");
-      this.$router.push({
-        path: this.toPath
-      });
+        .catch(error => {
+          this.saving = false;
+          console.error(error); // eslint-disable-line no-console
+        });
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    const { collection, primaryKey } = to.params;
+
+    const collectionInfo = getCollectionInfo(collection);
+
+    if (collectionInfo === null) {
+      return next(vm => (vm.$data.notFound = true));
+    }
+
+    return hydrate(collection, primaryKey)
+      .then(data => {
+        next(vm => {
+          Object.assign(vm.$data, data);
+        });
+      })
+      .catch(error => {
+        console.error(error); // eslint-disable-line no-console
+        return next(vm => (vm.$data.error = true));
+      });
+  },
+  beforeRouteUpdate(to, from, next) {
+    const { collection, primaryKey } = to.params;
+
+    const collectionInfo = getCollectionInfo(collection);
+
+    if (collectionInfo === null) {
+      this.notFound = true;
+      return next();
+    }
+
+    return hydrate(collection, primaryKey)
+      .then(data => {
+        this.fields = data.fields;
+        next();
+      })
+      .catch(error => {
+        console.error(error); // eslint-disable-line no-console
+        this.error = true;
+        next();
+      });
   }
 };
 </script>
@@ -288,7 +311,5 @@ export default {
 .edit {
   padding: var(--page-padding);
   padding-bottom: var(--page-padding-bottom);
-  position: relative;
-  width: 100%;
 }
 </style>

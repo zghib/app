@@ -44,6 +44,7 @@ export default {
   "collections-directus_activity": "Activity",
   comments: "Comments",
   contains: "Contains",
+  creating_item: "Creating Item",
   delete: "Delete",
   delete_are_you_sure:
     "Are you sure to delete this item? This action cannot be undone.",

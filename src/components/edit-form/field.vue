@@ -2,7 +2,7 @@
   <div class="v-field">
     <fieldset v-if="fieldset">
       <div>
-        <legend>{{ $t(`fields-${field.collection}-${field.field}`) }}</legend>
+        <legend>{{ field.name }}</legend>
         <small v-if="!readonly && field.comment">{{ field.comment }}</small>
         <v-interface
           :id="field.interface"
@@ -23,7 +23,7 @@
       </div>
     </fieldset>
     <p v-else>
-      <label :for="field.field">{{ $t(`fields-${field.collection}-${field.field}`) }}</label>
+      <label :for="field.field">{{ field.name }}</label>
       <small v-if="!readonly && field.comment">{{ field.comment }}</small>
       <v-interface
         :id="field.interface"

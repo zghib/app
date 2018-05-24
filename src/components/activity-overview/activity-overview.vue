@@ -278,7 +278,7 @@ export default {
           type: "message",
           id: (this.data && this.data[0] && this.data[0].id + 1) || 1
         },
-        ...this.data
+        ...(this.data || [])
       ];
       this.$api
         .post("/activity/message", {

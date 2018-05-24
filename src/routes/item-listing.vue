@@ -345,8 +345,6 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    // NOTE: to.params.collection only exists on /collections/:collection. The fallback of matched
-    //   is used for /files, /users, and other router-defined system collections.
     const collection = to.params.collection;
 
     const collectionInfo = getCollectionInfo(collection);

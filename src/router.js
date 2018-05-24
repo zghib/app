@@ -6,7 +6,6 @@ import hydrateStore from "./hydrate";
 import Collections from "./routes/collections.vue";
 import ItemListing from "./routes/item-listing.vue";
 import Edit from "./routes/edit.vue";
-import EditGuard from "./routes/edit-guard.vue";
 import Login from "./routes/login.vue";
 import NotFound from "./routes/not-found.vue";
 import Interfaces from "./routes/interfaces.vue";
@@ -44,19 +43,7 @@ const router = new Router({
     {
       path: "/collections/:collection/:primaryKey",
       props: true,
-      component: EditGuard,
-      meta: {
-        /* NOTE:
-         * Hi there! I'm not too pleased with this solution of 'hacking' the infoSidebar
-         *   to be wide on certain pages, but I didn't want to add a third sidebar either..
-         *
-         * This'll do fine for the time being, but if you can think of a better way;
-         *   please let me know!
-         *
-         * ~ Rijk
-         */
-        infoSidebarWidth: "wide"
-      }
+      component: Edit
     },
     {
       path: "/collections/directus_files",
@@ -64,17 +51,9 @@ const router = new Router({
       alias: "/files"
     },
     {
-      path: "/files/:primaryKey",
-      props(route) {
-        return {
-          collection: "directus_files",
-          primaryKey: route.params.primaryKey
-        };
-      },
+      path: "/collections/directus_files/:primaryKey",
       component: Edit,
-      meta: {
-        infoSidebarWidth: "wide"
-      }
+      alias: "/files/:primaryKey"
     },
     {
       path: "/collections/directus_users",
@@ -82,17 +61,9 @@ const router = new Router({
       alias: "/users"
     },
     {
-      path: "/users/:primaryKey",
-      props(route) {
-        return {
-          collection: "directus_users",
-          primaryKey: route.params.primaryKey
-        };
-      },
+      path: "/collections/directus_users/:primaryKey",
       component: Edit,
-      meta: {
-        infoSidebarWidth: "wide"
-      }
+      alias: "/users/:primaryKey"
     },
     {
       path: "/collections/directus_activity",

@@ -16,7 +16,7 @@ export const SET_COLLECTIONS = "🗄 Set Collections";
 
 // Edits
 export const DISCARD_CHANGES = "📝 Discard Changes";
-export const ITEM_CREATED = "📝 Item Created";
+export const ITEM_CREATED = "📝 Item Saved";
 export const START_EDITING = "📝 Start Editing";
 export const UNSTAGE_VALUE = "📝 Unstage Value";
 export const STAGE_VALUE = "📝 Stage Value";
