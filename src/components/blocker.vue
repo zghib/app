@@ -27,7 +27,7 @@ export default {
   height: 100%;
   left: 0;
   top: 0;
-  background-color: var(--black);
+  background-color: var(--darkest-gray);
   opacity: 0.8;
   cursor: pointer;
 }
