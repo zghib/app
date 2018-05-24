@@ -138,37 +138,12 @@ router.beforeEach((to, from, next) => {
     });
   }
 
+  // NOTE: This is first load
   if (store.state.hydrated === false) {
     return hydrateStore().then(() => {
-      /**
-       * TODO: Clean this up.
-       *
-       * I'm not too happy about the way it checks for the editing state now..
-       *
-       * Maybe it should just be a confirm that fires from the main app.vue instead. Lets wait for #320
-       */
-      const editing = store.getters.editing;
-
-      if (editing && publicRoute === false) {
+      if (store.getters.editing) {
         const { collection, primaryKey } = store.state.edits;
-        const path = `/collections/${collection}/${primaryKey}`;
-
-        if (path !== to.fullPath) {
-          if (
-            to.query.collection !== collection ||
-            to.query.primaryKey !== primaryKey ||
-            to.query.editing !== true
-          ) {
-            return next({
-              path: to.path,
-              query: {
-                collection,
-                primaryKey,
-                editing: true
-              }
-            });
-          }
-        }
+        return next(`/collections/${collection}/${primaryKey}`);
       }
       return next();
     });

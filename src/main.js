@@ -4,6 +4,7 @@ import VueDraggable from "vuedraggable";
 import VTooltip from "v-tooltip";
 import NProgress from "nprogress";
 import VueTimeago from "vue-timeago";
+import PortalVue from "portal-vue";
 import en from "date-fns/locale/en/";
 import nl from "date-fns/locale/nl/";
 
@@ -54,6 +55,7 @@ Vue.use(VTooltip, {
   defaultDelay: 500,
   defaultOffset: 2
 });
+Vue.use(PortalVue);
 Vue.use(VueTimeago, {
   name: "v-timeago",
   locale: "en-US",

@@ -17,14 +17,7 @@ Vue.use(Vuex);
 
 const debug = process.env.NODE_ENV !== "production"; // eslint-disable-line no-undef
 
-const persistedPaths = [
-  "auth.token",
-  "auth.url",
-  "auth.projectName",
-  "edits.collection",
-  "edits.primaryKey",
-  "edits.values"
-];
+const persistedPaths = ["auth.token", "auth.url", "auth.projectName", "edits"];
 
 const store = new Vuex.Store({
   state,

@@ -2,7 +2,10 @@
   <v-modal-base :message="message" @cancel="$emit('cancel')">
     <div class="buttons" @keydown.esc="$emit('cancel')">
       <button class="cancel" @click="$emit('cancel')">{{ cancelText || $t('cancel') }}</button>
-      <v-button class="confirm" @click="$emit('confirm')">{{ confirmText || $t('ok') }}</v-button>
+      <v-button class="confirm" @click="$emit('confirm')">
+        <template v-if="busy"><v-spinner :size="20" :line-size="2" /></template>
+        <template v-else>{{ confirmText || $t('ok') }}</template>
+      </v-button>
     </div>
   </v-modal-base>
 </template>
@@ -24,6 +27,10 @@ export default {
     cancelText: {
       type: String,
       default: null
+    },
+    busy: {
+      type: Boolean,
+      default: false
     }
   },
   components: {

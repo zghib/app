@@ -105,9 +105,5 @@ aside {
 .slide-enter,
 .slide-leave-to {
   opacity: 0;
-
-  aside {
-    transform: translateY(50px);
-  }
 }
 </style>

@@ -42,7 +42,7 @@
           icon="close"
           color="danger"
           :label="$t('delete')"
-          @click="remove" />
+          @click="confirmRemove = true" />
         <v-header-button
           icon="add"
           key="add"
@@ -109,6 +109,13 @@
       @select="selection = $event"
       @query="setViewQuery"
       @next-page="fetchNextPage" />
+
+    <portal to="modal" v-if="confirmRemove">
+      <v-confirm
+        :message="$tc('batch_delete_confirm', selection.length, { count: selection.length })"
+        @cancel="confirmRemove = false"
+        @confirm="remove" />
+    </portal>
   </div>
 </template>
 
@@ -262,7 +269,8 @@ const defaultState = {
   currentPage: 1,
   lazyLoading: false,
 
-  selection: []
+  selection: [],
+  confirmRemove: false
 };
 
 export default {
@@ -432,7 +440,15 @@ export default {
         .catch(console.error); // eslint-disable-line no-console
     },
     remove() {
-      console.warn("Wait till the modals have been re-implemented #320"); // eslint-disable-line no-console
+      this.items = this.items.filter(
+        item => !this.selection.includes(item[this.primaryKeyField])
+      );
+
+      this.$api
+        .deleteItems(this.collection, this.selection)
+        .catch(console.error); // eslint-disable-line no-console
+
+      this.confirmRemove = false;
     },
     clearFilters() {
       this.updatePreferences("filters", null);

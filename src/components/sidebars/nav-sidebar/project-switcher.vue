@@ -1,11 +1,12 @@
 <template>
   <div class="project-switcher">
-    <v-modal
-      v-if="active"
-      :title="$t('change_project')"
-      @close="active = false">
-      <login-form />
-    </v-modal>
+    <portal to="modal" v-if="active">
+      <v-modal
+        :title="$t('change_project')"
+        @close="active = false">
+        <login-form />
+      </v-modal>
+    </portal>
     <button
       @click="active = true">
       <v-signal class="icon" />

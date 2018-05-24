@@ -23,7 +23,8 @@
           v-if="!newItem"
           icon="close"
           color="danger"
-          :label="$t('delete')" /><!-- TODO: add confirm modal #320 -->
+          :label="$t('delete')"
+          @click="confirmRemove = true" />
         <v-header-button
           :disabled="!editing"
           :loading="saving"
@@ -53,6 +54,23 @@
       :values="values"
       :collection="collection"
       @stageValue="stageValue" />
+
+    <portal to="modal" v-if="confirmRemove">
+      <v-confirm
+        :message="$t('delete_are_you_sure')"
+        :busy="confirmRemoveLoading"
+        @cancel="confirmRemove = false"
+        @confirm="remove" />
+    </portal>
+
+    <portal to="modal" v-if="confirmNavigation">
+      <v-confirm
+        :message="$t('unsaved_changes_copy')"
+        :confirm-text="$t('keep_editing')"
+        :cancel-text="$t('discard_changes')"
+        @confirm="confirmNavigation = false"
+        @cancel="$router.push(leavingTo)" />
+    </portal>
   </div>
 </template>
 
@@ -92,11 +110,13 @@ function hydrate(collection, primaryKey) {
   ]).then(([fieldsRes, savedValues]) => {
     NProgress.inc();
 
-    store.dispatch("startEditing", {
-      collection: collection,
-      primaryKey: primaryKey,
-      savedValues: (savedValues && savedValues.data) || {}
-    });
+    if (store.getters.editing === false) {
+      store.dispatch("startEditing", {
+        collection: collection,
+        primaryKey: primaryKey,
+        savedValues: (savedValues && savedValues.data) || {}
+      });
+    }
 
     return {
       fields: mapValues(keyBy(fieldsRes.data, "field"), field => ({
@@ -133,7 +153,13 @@ export default {
       fields: null,
 
       notFound: false,
-      error: false
+      error: false,
+
+      confirmRemove: false,
+      confirmRemoveLoading: false,
+
+      confirmNavigation: false,
+      leavingTo: ""
     };
   },
   computed: {
@@ -194,6 +220,19 @@ export default {
     stageValue({ field, value }) {
       this.$store.dispatch("stageValue", { field, value });
     },
+    remove() {
+      this.confirmRemoveLoading = true;
+
+      this.$api
+        .deleteItem(this.collection, this.primaryKey)
+        .then(() => {
+          this.confirmRemoveLoading = false;
+          this.confirmRemove = false;
+          this.$router.push(`/collections/${this.collection}`);
+        })
+        .catch(console.error); // eslint-disable-line no-console
+    },
+    discard() {},
     save(method) {
       this.saving = true;
 
@@ -303,6 +342,21 @@ export default {
         this.error = true;
         next();
       });
+  },
+  beforeRouteLeave(to, from, next) {
+    // If there aren't any edits, there is no reason to stop the user from navigating
+    if (this.$store.getters.editing === false) return next();
+
+    // If the modal is already open, the second navigation attempt has to be the discard changes button
+    if (this.confirmNavigation === true) {
+      this.$store.dispatch("discardChanges");
+      return next();
+    }
+
+    this.confirmNavigation = true;
+    this.leavingTo = to.fullPath;
+
+    return next(false);
   }
 };
 </script>

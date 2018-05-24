@@ -22,15 +22,9 @@
     <div v-else>
       <v-nav-sidebar />
       <router-view class="page-root" />
-
-      <v-confirm
-        v-if="unsavedChanges"
-        :message="$t('unsaved_changes_copy')"
-        :confirm-text="$t('keep_editing')"
-        :cancel-text="$t('discard_changes')"
-        @confirm="keepEditing"
-        @cancel="discardChanges" />
     </div>
+
+    <portal-target name="modal" />
   </div>
 </template>
 
@@ -56,9 +50,6 @@ export default {
     },
     hydratingError() {
       return this.$store.state.hydratingError;
-    },
-    unsavedChanges() {
-      return this.$route.query.editing === true;
     }
   },
   watch: {
@@ -99,14 +90,13 @@ export default {
     },
     keepEditing() {
       this.$router.push(
-        `/collections/${this.$route.query.collection}/${
-          this.$route.query.primaryKey
+        `/collections/${this.$store.state.edits.collection}/${
+          this.$store.state.edits.primaryKey
         }`
       );
     },
     discardChanges() {
       this.$store.dispatch("discardChanges");
-      this.$router.push(this.$route.path);
     }
   }
 };

@@ -30,11 +30,20 @@
 
       <button
         class="sign-out"
-        @click="signOutActive = true">
+        @click="confirmSignOut = true">
         <i class="material-icons icon">exit_to_app</i>
         {{ $t('sign_out') }}
       </button>
     </div>
+
+    <portal to="modal" v-if="confirmSignOut">
+      <v-confirm
+      :busy="confirmSignOutLoading"
+      :message="$t('sign_out_confirm')"
+      :confirm-text="$t('sign_out')"
+      @cancel="confirmSignOut = false"
+      @confirm="signOut" />
+    </portal>
   </div>
 </template>
 
@@ -45,6 +54,12 @@ export default {
   name: "user-menu",
   components: {
     NavMenu
+  },
+  data() {
+    return {
+      confirmSignOut: false,
+      confirmSignOutLoading: false
+    };
   },
   computed: {
     avatarURL() {
@@ -75,6 +90,12 @@ export default {
         this.$store.state.currentUser.last_name;
 
       return `${firstName} ${lastName}`;
+    }
+  },
+  methods: {
+    signOut() {
+      this.confirmSignOutLoading = true;
+      this.$store.dispatch("logout");
     }
   }
 };
