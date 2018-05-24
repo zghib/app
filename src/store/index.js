@@ -15,7 +15,7 @@ import mutations from "./mutations";
 
 Vue.use(Vuex);
 
-const debug = process.env.NODE_ENV !== "production";
+const debug = process.env.NODE_ENV !== "production"; // eslint-disable-line no-undef
 
 const persistedPaths = [
   "auth.token",

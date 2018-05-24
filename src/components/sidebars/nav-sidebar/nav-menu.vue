@@ -12,6 +12,8 @@
             :is="path.startsWith('http') ? 'a' : 'router-link'"
             :to="path"
             :href="path"
+            target="__blank"
+            rel="noopener noreferrer"
             :class="color || null">
             <i
               v-if="icon"

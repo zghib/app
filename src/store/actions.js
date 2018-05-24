@@ -136,5 +136,5 @@ export function saveBookmark({ commit }, bookmark) {
 
 export function deleteBookmark({ commit }, bookmarkID) {
   commit(DELETE_BOOKMARK, bookmarkID);
-  return api.deleteCollectionPreset(bookmarkID).catch(console.error);
+  return api.deleteCollectionPreset(bookmarkID).catch(console.error); // eslint-disable-line no-console
 }

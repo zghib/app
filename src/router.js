@@ -59,11 +59,9 @@ const router = new Router({
       }
     },
     {
-      path: "/files",
-      props: {
-        collection: "directus_files"
-      },
-      component: ItemListing
+      path: "/collections/directus_files",
+      component: ItemListing,
+      alias: "/files"
     },
     {
       path: "/files/:primaryKey",
@@ -79,11 +77,9 @@ const router = new Router({
       }
     },
     {
-      path: "/users",
-      props: {
-        collection: "directus_users"
-      },
-      component: ItemListing
+      path: "/collections/directus_users",
+      component: ItemListing,
+      alias: "/users"
     },
     {
       path: "/users/:primaryKey",
@@ -99,12 +95,9 @@ const router = new Router({
       }
     },
     {
-      path: "/activity",
-      props: {
-        collection: "directus_activity",
-        readonly: true
-      },
-      component: ItemListing
+      path: "/collections/directus_activity",
+      component: ItemListing,
+      alias: "/activity"
     },
     {
       path: "/debug",

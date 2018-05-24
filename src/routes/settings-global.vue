@@ -66,7 +66,7 @@ export default {
         .then(() => {
           this.hydrating = false;
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     }
   },
   beforeRouteLeave(to, from, next) {

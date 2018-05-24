@@ -202,7 +202,7 @@ export default {
         .catch(err => {
           this.error = err;
           this.loading = false;
-          console.error(err);
+          console.error(err); // eslint-disable-line no-console
         });
 
       this.$api
@@ -212,7 +212,7 @@ export default {
           this.revisionsLoading = false;
           this.revisions = this.$lodash.keyBy(revisions, "activity");
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     formatItem(item) {
       const date = new Date(item.datetime);
@@ -263,7 +263,7 @@ export default {
           this.$emit("reload");
           this.hydrate();
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     addComment() {
       this.data = [
@@ -286,7 +286,7 @@ export default {
           item: this.primaryKey,
           message: this.message
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
       this.message = "";
     }
   }
@@ -477,7 +477,7 @@ export default {
   .textarea {
     height: 100%;
     resize: none;
-    box-shadow: 0px 5px 0px 0px rgba(255,255,255,1);
+    box-shadow: 0px 5px 0px 0px rgba(255, 255, 255, 1);
   }
 
   button {

@@ -43,7 +43,7 @@ export default {
         .getItem("directus_files", logoID)
         .then(res => res.data.storage.full_url)
         .then(url => (this.customLogoPath = url))
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     }
   }
 };

@@ -232,7 +232,7 @@ export default {
         .then(thirdPartyAuthProviders => {
           this.thirdPartyAuthProviders = thirdPartyAuthProviders;
         })
-        .catch(console.error)
+        .catch(console.error) // eslint-disable-line no-console
         .finally(() => {
           this.gettingThirdPartyAuthProviders = false;
         });
@@ -281,7 +281,7 @@ export default {
         this.$store
           .dispatch("loginSSO", this.$route.query.request_token)
           .then(() => this.enterApp())
-          .catch(console.error);
+          .catch(console.error); // eslint-disable-line no-console
       }
     }
   }

@@ -185,7 +185,7 @@ export default {
             savedValues: savedValues.data || {}
           });
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     stageValue({ field, value }) {
       this.$store.dispatch("stageValue", { field, value });
@@ -198,7 +198,7 @@ export default {
           this.deleting = false;
           this.$router.push(`/collections/${this.collection}`);
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     saveSpecial(method) {
       this[method]();
@@ -219,7 +219,7 @@ export default {
 
           this.hydrate();
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     saveAndLeave() {
       this.saving = true;
@@ -235,7 +235,7 @@ export default {
 
           return this.$router.push(`/collections/${this.collection}`);
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     saveAndAdd() {
       this.saving = true;
@@ -251,7 +251,7 @@ export default {
 
           return this.$router.push(`/collections/${this.collection}/+`);
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     saveAsCopy() {
       this.saving = true;
@@ -271,7 +271,7 @@ export default {
 
           return this.$router.push(`/collections/${this.collection}/${pk}`);
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     discardChanges() {
       this.confirmNavigation = false;

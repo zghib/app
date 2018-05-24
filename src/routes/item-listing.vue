@@ -134,6 +134,14 @@ import api from "../api";
  */
 
 function getCollectionInfo(collection) {
+  if (
+    collection === "directus_files" ||
+    collection === "directus_users" ||
+    collection === "directus_activity"
+  ) {
+    return true;
+  }
+
   const { collections } = store.state;
   const collectionNames = Object.keys(collections);
 
@@ -337,7 +345,10 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    const { collection } = to.params;
+    // NOTE: to.params.collection only exists on /collections/:collection. The fallback of matched
+    //   is used for /files, /users, and other router-defined system collections.
+    const collection = to.params.collection;
+
     const collectionInfo = getCollectionInfo(collection);
 
     if (collectionInfo === null) {
@@ -351,19 +362,17 @@ export default {
     return hydrate(collection)
       .then(({ fields, preferences, items, meta }) => {
         return next(vm => {
-          vm.$data.fields = fields;
-          vm.$data.preferences = preferences;
-          vm.$data.items = items;
-          vm.$data.meta = meta;
+          Object.assign(vm.$data, { fields, preferences, items, meta });
         });
       })
       .catch(error => {
-        console.error(error);
+        console.error(error); // eslint-disable-line no-console
         return next(vm => (vm.$data.error = true));
       });
   },
   beforeRouteUpdate(to, from, next) {
-    const { collection } = to.params;
+    const collection = to.params.collection;
+
     const collectionInfo = getCollectionInfo(collection);
 
     if (collectionInfo === null) {
@@ -377,15 +386,16 @@ export default {
 
     return hydrate(collection)
       .then(({ fields, preferences, items, meta }) => {
-        Object.assign(this, defaultState);
+        // Object.assign(this, defaultState);
         this.fields = fields;
         this.preferences = preferences;
         this.items = items;
         this.meta = meta;
+
         return next();
       })
       .catch(error => {
-        console.error(error);
+        console.error(error); // eslint-disable-line no-console
         this.error = true;
         return next();
       });
@@ -415,10 +425,10 @@ export default {
           this.currentPage = this.currentPage + 1;
           this.items = [...this.items, ...newItems];
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     remove() {
-      console.warn("Wait till the modals have been re-implemented #320");
+      console.warn("Wait till the modals have been re-implemented #320"); // eslint-disable-line no-console
     },
     clearFilters() {
       this.updatePreferences("filters", null);
@@ -436,7 +446,7 @@ export default {
         .catch(error => {
           this.error = true;
           this.loading = false;
-          console.error(error);
+          console.error(error); // eslint-disable-line no-console
         });
     },
     createCollectionPreset() {
@@ -449,7 +459,7 @@ export default {
         .then(({ data }) => {
           this.$set(this.preferences, "id", data.id);
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     },
     setViewQuery(query) {
       const newViewQuery = {
@@ -496,7 +506,7 @@ export default {
         .updateCollectionPreset(this.preferences.id, {
           [key]: value
         })
-        .catch(console.error);
+        .catch(console.error); // eslint-disable-line no-console
     }
   }
 };
