@@ -184,6 +184,14 @@ function hydrate(collection) {
   });
 }
 
+function getLink(collection, primaryKey) {
+  if (collection.startsWith("directus")) {
+    return `/${collection.substring(9, collection.length)}/${primaryKey}`;
+  }
+
+  return `/collections/${collection}/${primaryKey}`;
+}
+
 function getItems(collection, preferences, fields) {
   const primaryKeyField = find(fields, {
     interface: "primary-key"
@@ -194,7 +202,7 @@ function getItems(collection, preferences, fields) {
     .then(({ data, meta }) => ({
       items: data.map(item => ({
         ...item,
-        __link__: `/collections/${collection}/${item[primaryKeyField]}`
+        __link__: getLink(collection, item[primaryKeyField])
       })),
       meta
     }));
@@ -413,9 +421,7 @@ export default {
         .then(items =>
           items.map(item => ({
             ...item,
-            __link__: `/collections/${this.collection}/${
-              item[this.primaryKeyField]
-            }`
+            __link__: getLink(this.collection, item[this.primaryKeyField])
           }))
         )
         .then(newItems => {
