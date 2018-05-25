@@ -49,6 +49,8 @@ export default {
   delete_are_you_sure:
     "Are you sure to delete this item? This action cannot be undone.",
   delete_bookmark: "Delete Bookmark",
+  delete_bookmark_body:
+    "Are you sure you want to delete this bookmark? This action cannot be undone.",
   delete_confirmation: "Delete Confirmation",
   dialog_beginning: "Beginning of dialog window.",
   discard_changes: "Discard Changes",

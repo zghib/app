@@ -1,6 +1,4 @@
 export function editing(state) {
-  if (!state) return false;
-
   // eslint-disable-line
   const collectionExists = state.collection && state.collection.length > 0;
   const primaryKeyExists = state.primaryKey && state.primaryKey.length > 0;

@@ -4,20 +4,21 @@
       :disabled="navActive"
       class="nav-toggle"
       @click="activateNav"><i class="material-icons">menu</i></button>
-    <h1
-      v-if="title"
-      class="title">{{ title }}</h1>
-    <ol
-      v-else
-      class="breadcrumb title">
-      <li
-        v-for="({ name, path }, index) in (breadcrumb || defaultBreadcrumb)"
-        :key="path">
-        <template v-if="index !== (breadcrumb || defaultBreadcrumb).length - 1">
-        <router-link :to="path">{{ name }}</router-link></template>
-        <h1 v-else>{{ name }}</h1>
-      </li>
-    </ol>
+    <div class="title">
+      <h1 v-if="title">{{ title }}</h1>
+      <ol
+        v-else
+        class="breadcrumb">
+        <li
+          v-for="({ name, path }, index) in (breadcrumb || defaultBreadcrumb)"
+          :key="path">
+          <template v-if="index !== (breadcrumb || defaultBreadcrumb).length - 1">
+          <router-link :to="path">{{ name }}</router-link></template>
+          <h1 v-else>{{ name }}</h1>
+        </li>
+      </ol>
+      <slot name="title" />
+    </div>
     <slot />
     <v-header-button v-if="infoToggle" :label="$t('info')" icon="info" no-background @click="toggleInfo" />
     <slot name="buttons" />
@@ -116,6 +117,11 @@ export default {
     font-weight: 400;
     height: 20px;
     flex-grow: 1;
+
+    > * {
+      display: inline-block;
+      vertical-align: baseline;
+    }
   }
 
   .breadcrumb {

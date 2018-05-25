@@ -46,6 +46,56 @@ const router = new Router({
       component: Edit
     },
     {
+      path: "/bookmarks/:collection/:bookmarkID",
+      beforeEnter(to, from, next) {
+        const { collection, bookmarkID } = to.params;
+
+        const bookmark = store.state.bookmarks.filter(
+          bookmark => bookmark.id == bookmarkID
+        )[0];
+
+        const {
+          search_query,
+          filters,
+          view_query,
+          view_options,
+          view_type
+        } = bookmark;
+
+        api
+          .getItems("directus_collection_presets", {
+            "filter[user][eq]": store.state.currentUser.id,
+            "filter[title][null]": 1,
+            "filter[collection][eq]": collection,
+            fields: "id"
+          })
+          .then(res => res.data)
+          .then(data => (data && data.length >= 1 ? data[0] : null))
+          .then(userPreferences => {
+            if (userPreferences) {
+              return api.updateItem(
+                "directus_collection_presets",
+                userPreferences.id,
+                { search_query, filters, view_query, view_options, view_type }
+              );
+            }
+          })
+          .then(() => {
+            return next({
+              /*
+              NOTE: This is a hack. The route doesn't update if you navigate from the same route to
+                the same route. Therefore, redirecting to just /collections/:collection wouldn't update
+                the view if you were already on that page (clicking on a bookmark while being on the
+                listing page in question). By adding this param, it forces the update.
+                The listing view will remove the query on load so it doesn't clutter the URL too much
+               */
+              path: `/collections/${collection}?b=${bookmark.id}`
+            });
+          })
+          .catch(console.error); // eslint-disable-line no-console
+      }
+    },
+    {
       path: "/collections/directus_files",
       component: ItemListing,
       alias: "/files"

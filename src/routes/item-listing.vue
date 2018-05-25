@@ -18,6 +18,20 @@
 
   <div v-else class="item-listing">
     <v-header-bar info-toggle>
+      <template slot="title">
+        <button
+          :class="currentBookmark ? 'active' : null"
+          :disabled="currentBookmark"
+          class="bookmark"
+          @click="bookmarkModal = true">
+          <i class="material-icons">
+            {{ currentBookmark ? 'bookmark' : 'bookmark_border' }}
+          </i>
+        </button>
+        <div
+          v-if="currentBookmark"
+          class="bookmark-name no-wrap">({{ currentBookmark.title }})</div>
+      </template>
       <v-search-filter
         v-if="selection.length === 0"
         v-show="!emptyCollection"
@@ -115,6 +129,14 @@
         :message="$tc('batch_delete_confirm', selection.length, { count: selection.length })"
         @cancel="confirmRemove = false"
         @confirm="remove" />
+    </portal>
+
+    <portal to="modal" v-if="bookmarkModal">
+      <v-prompt
+        :message="$t('name_bookmark')"
+        v-model="bookmarkTitle"
+        @cancel="bookmarkModal = false"
+        @confirm="saveBookmark" />
     </portal>
   </div>
 </template>
@@ -255,24 +277,6 @@ function getParams(preferences, primaryKeyField) {
   return params;
 }
 
-const defaultState = {
-  notFound: false,
-  error: false,
-
-  fields: null,
-  preferences: null,
-
-  items: [],
-  meta: {},
-  loading: false,
-
-  currentPage: 1,
-  lazyLoading: false,
-
-  selection: [],
-  confirmRemove: false
-};
-
 export default {
   name: "item-listing",
   components: {
@@ -288,7 +292,26 @@ export default {
     }
   },
   data() {
-    return { ...defaultState };
+    return {
+      notFound: false,
+      error: false,
+
+      fields: null,
+      preferences: null,
+
+      items: [],
+      meta: {},
+      loading: false,
+
+      currentPage: 1,
+      lazyLoading: false,
+
+      selection: [],
+      confirmRemove: false,
+
+      bookmarkModal: false,
+      bookmarkTitle: ""
+    };
   },
   computed: {
     resultCopy() {
@@ -314,6 +337,32 @@ export default {
         translatedNames[name] = this.$helpers.formatTitle(name); // #422
       });
       return translatedNames;
+    },
+    currentBookmark() {
+      const bookmarks = this.$store.state.bookmarks;
+
+      const preferences = {
+        collection: this.preferences.collection,
+        search_query: this.preferences.search_query,
+        filters: this.preferences.filters,
+        view_options: this.preferences.view_options,
+        view_type: this.preferences.view_type,
+        view_query: this.preferences.view_query
+      };
+
+      const currentBookmark = bookmarks.filter(bookmark => {
+        const bookmarkPreferences = {
+          collection: bookmark.collection,
+          search_query: bookmark.search_query,
+          filters: bookmark.filters,
+          view_options: bookmark.view_options,
+          view_type: bookmark.view_type,
+          view_query: bookmark.view_query
+        };
+        return this.$lodash.isEqual(bookmarkPreferences, preferences);
+      })[0];
+
+      return currentBookmark || null;
     },
     noResults() {
       if (this.hydrating || this.loading) return false;
@@ -360,6 +409,15 @@ export default {
       return translatedNames;
     }
   },
+  watch: {
+    $route() {
+      if (this.$route.query.b) {
+        this.$router.replace({
+          path: this.$route.path
+        });
+      }
+    }
+  },
   beforeRouteEnter(to, from, next) {
     const collection = to.params.collection;
 
@@ -400,7 +458,6 @@ export default {
 
     return hydrate(collection)
       .then(({ fields, preferences, items, meta }) => {
-        // Object.assign(this, defaultState);
         this.fields = fields;
         this.preferences = preferences;
         this.items = items;
@@ -527,7 +584,64 @@ export default {
           [key]: value
         })
         .catch(console.error); // eslint-disable-line no-console
+    },
+    saveBookmark() {
+      const preferences = { ...this.preferences };
+
+      preferences.user = this.$store.state.currentUser.id;
+      preferences.title = this.bookmarkTitle;
+
+      delete preferences.id;
+      delete preferences.group;
+
+      if (!preferences.collection) {
+        preferences.collection = this.collection;
+      }
+
+      this.$store
+        .dispatch("saveBookmark", preferences)
+        .then(() => {
+          this.bookmarkModal = false;
+        })
+        .catch(console.error); // eslint-disable-line no-console
     }
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.bookmark {
+  margin-left: 10px;
+  opacity: 0.4;
+  transition: opacity var(--fast) var(--transition);
+  position: relative;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  i {
+    font-size: 24px;
+    height: 20px;
+    transform: translateY(-3px); // Vertical alignment of icon
+  }
+}
+
+.bookmark.active {
+  opacity: 1;
+
+  i {
+    color: var(--accent);
+  }
+}
+
+.bookmark-name {
+  color: var(--accent);
+  margin-left: 5px;
+  margin-top: 3px;
+  font-size: 0.77em;
+  line-height: 1.1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+</style>
