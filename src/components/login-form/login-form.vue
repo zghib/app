@@ -210,11 +210,10 @@ export default {
         .ping()
         .then(() => {
           this.exists = true;
+          this.checkingExistence = false;
         })
         .catch(() => {
           this.exists = false;
-        })
-        .finally(() => {
           this.checkingExistence = false;
         });
     },
@@ -231,9 +230,10 @@ export default {
         .then(res => res.data)
         .then(thirdPartyAuthProviders => {
           this.thirdPartyAuthProviders = thirdPartyAuthProviders;
+          this.gettingThirdPartyAuthProviders = false;
         })
-        .catch(console.error) // eslint-disable-line no-console
-        .finally(() => {
+        .catch(error => {
+          console.error(error); // eslint-disable-line no-console
           this.gettingThirdPartyAuthProviders = false;
         });
     },
