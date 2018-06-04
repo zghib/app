@@ -80,11 +80,11 @@ export default {
 label,
 legend {
   margin-bottom: 10px;
-  text-transform: uppercase;
+  text-transform: none;
   color: var(--dark-gray);
-  font-size: 0.85rem;
+  font-size: 1rem;
   line-height: 1.18;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 fieldset,
