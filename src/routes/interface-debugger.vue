@@ -15,7 +15,8 @@
         :required="required"
         :loading="loading"
         :options="options"
-        :new-item="newItem" />
+        :new-item="newItem"
+        :relationship="relationship" />
     </div>
 
     <form @submit.prevent>
@@ -95,6 +96,22 @@
             class="checkbox"
             type="checkbox" /> <label for="loading" class="inline">Loading</label>
         </div>
+
+        <div class="settings">
+          <label for="related">Related Collection</label>
+          <v-input
+            id="related"
+            type="text"
+            v-model="relatedCollection" />
+        </div>
+
+        <div class="settings">
+          <label for="related-pk">Related Collection Primary Key Field</label>
+          <v-input
+            id="related-pk"
+            type="text"
+            v-model="relatedCollectionPrimaryKey" />
+        </div>
       </fieldset>
       <fieldset>
         <legend>Options</legend>
@@ -163,7 +180,9 @@ export default {
       loading: false,
       options: {},
       width: 1000,
-      newItem: false
+      newItem: false,
+      relatedCollection: "",
+      relatedCollectionPrimaryKey: ""
     };
   },
   computed: {
@@ -181,6 +200,19 @@ export default {
     },
     extension() {
       return this.$store.state.extensions.interfaces[this.id];
+    },
+    relationship() {
+      if (
+        this.relatedCollection.length > 0 &&
+        this.relatedCollectionPrimaryKey.length > 0
+      ) {
+        return {
+          collection: this.relatedCollection,
+          primaryKey: this.relatedCollectionPrimaryKey
+        };
+      }
+
+      return null;
     }
   },
   watch: {

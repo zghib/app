@@ -10,7 +10,7 @@
       <optgroup :label="$t('values')">
         <option
           v-for="(key, value) in parsedOptions"
-          :key="key"
+          :key="value"
           :value="value"
         >{{ key }}</option>
       </optgroup>
@@ -36,7 +36,7 @@
       </option>
       <option
         v-for="(key, optionValue) in parsedOptions"
-        :key="key"
+        :key="optionValue"
         :value="optionValue"
       >{{ key }}</option>
     </select>

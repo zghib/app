@@ -106,9 +106,15 @@ function hydrate(collection, primaryKey) {
 
   return Promise.all([
     api.getFields(collection),
+    api.getItems("directus_relations", {
+      "filter[collection_a][eq]": collection
+    }),
     primaryKey !== "+" ? api.getItem(collection, primaryKey) : null
-  ]).then(([fieldsRes, savedValues]) => {
+  ]).then(([fieldsRes, relations, savedValues]) => {
     NProgress.inc();
+
+    // https://lorenstewart.me/2016/11/21/flatten-a-multi-dimensional-array-using-es6/
+    relations = relations.data;
 
     if (store.getters.editing === false) {
       store.dispatch("startEditing", {
@@ -118,10 +124,29 @@ function hydrate(collection, primaryKey) {
       });
     }
 
+    function getRelationship(field) {
+      const fieldID = field.field;
+
+      const fieldRelations = relations
+        .filter(relation => {
+          return relation.field_a === fieldID;
+        })
+        .map(relation => {
+          return {
+            collection: relation.collection_b,
+            field: relation.field_b
+          };
+        });
+
+      if (fieldRelations.length === 0) return null;
+      return fieldRelations[0];
+    }
+
     return {
       fields: mapValues(keyBy(fieldsRes.data, "field"), field => ({
         ...field,
-        name: formatTitle(field.field) // TODO: Map translation key to name field to support translatable field names #421 & #422
+        name: formatTitle(field.field), // TODO: Map translation key to name field to support translatable field names #421 & #422
+        relationship: getRelationship(field)
       }))
     };
   });

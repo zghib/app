@@ -12,6 +12,7 @@
           :options="field.options"
           :type="field.type"
           :value="values[field.field]"
+          :relationship="field.relationship"
           @input="readonly ? null : $emit('stageValue', {
             field: field.field,
             value: $event
@@ -33,6 +34,7 @@
         :options="field.options"
         :type="field.type"
         :value="values[field.field]"
+        :relationship="field.relationship"
         @input="readonly ? null : $emit('stageValue', {
           field: field.field,
           value: $event

@@ -10,6 +10,7 @@
     :loading="loading"
     :options="optionsWithDefaults"
     :new-item="newItem"
+    :relationship="relationship"
     class="v-interface-extension"
     @input="$emit('input', $event)"
     @setfield="$emit('setfield', $event)">
@@ -66,6 +67,10 @@ export default {
     newItem: {
       type: Boolean,
       default: false
+    },
+    relationship: {
+      type: Object,
+      default: null
     }
   },
   computed: {
