@@ -2,7 +2,7 @@
   <div
     ref="container"
     :style="{ minWidth: totalWidth + 'px' }"
-    class="v-table">
+    class="v-table" @scroll="onScroll">
     <div class="toolbar" :class="{ shadow: scrolled }">
       <div
         v-if="selectable"
@@ -50,7 +50,7 @@
       </div>
     </div>
     <div class="body" :class="{ loading }">
-      <v-virtual-list :size="rowHeight" :remain="remain" v-if="link" class="v-virtual-list" :onscroll="onScroll">
+      <template v-if="link">
         <div
           v-for="row in items"
           :key="row[primaryKeyField]"
@@ -93,15 +93,9 @@
             <template v-else>{{ row[field] }}</template>
           </div>
         </div>
-      </v-virtual-list>
+      </template>
 
-      <v-virtual-list
-        v-else
-        class="v-virtual-list"
-        :size="rowHeight"
-        :remain="remain"
-        :onscroll="onScroll"
-        name="row">
+      <template v-else>
         <div
           v-for="row in items"
           :key="row[primaryKeyField]"
@@ -139,7 +133,7 @@
               <template v-else>{{ row[field] }}</template>
           </div>
         </div>
-      </v-virtual-list>
+      </template>
       <transition name="fade">
         <div v-if="lazyLoading" class="lazy-loader">
           <v-spinner />
@@ -150,8 +144,6 @@
 </template>
 
 <script>
-import VVirtualList from "vue-virtual-scroll-list";
-
 export default {
   name: "v-table",
   props: {
@@ -204,26 +196,13 @@ export default {
       default: false
     }
   },
-  components: {
-    VVirtualList
-  },
   data() {
     return {
       widths: {},
       lastDragXPosition: null,
       windowHeight: 0,
-      scrolled: false,
-
-      // Height of the virtual scroll list in px
-      remain: 50
+      scrolled: false
     };
-  },
-  mounted() {
-    window.addEventListener("resize", this.calculateHeight);
-    this.calculateHeight();
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.calculateHeight);
   },
   computed: {
     allSelected() {
@@ -328,12 +307,12 @@ export default {
 
       this.widths = widths;
     },
-    onScroll(event, data) {
-      if (data.offsetAll - data.offset < 500) this.$emit("scrollEnd");
-      this.scrolled = data.offset > 0;
-    },
-    calculateHeight() {
-      this.remain = this.$refs.container.clientHeight / this.rowHeight;
+    onScroll(event) {
+      const { scrollHeight, clientHeight, scrollTop } = event.srcElement;
+      const totalScroll = scrollHeight - clientHeight;
+      const delta = totalScroll - scrollTop;
+      if (delta <= 500) this.$emit("scrollEnd");
+      this.scrolled = scrollTop > 0;
     }
   }
 };
@@ -342,23 +321,10 @@ export default {
 <style lang="scss" scoped>
 .v-table {
   width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.body {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
   position: relative;
-  transition: opacity var(--medium) var(--transition-out);
-  opacity: 1;
-
-  &.loading {
-    transition: opacity var(--medium) var(--transition-in);
-    opacity: 0.4;
-  }
-}
-
-.v-virtual-list {
-  max-height: calc(100vh - var(--header-height) - var(--header-height));
+  max-height: calc(100vh - var(--header-height));
 }
 
 .toolbar,
@@ -372,7 +338,7 @@ export default {
 
 .toolbar {
   position: sticky;
-  height: 60px;
+  height: var(--header-height);
   left: 0;
   top: 0;
   z-index: +1;
@@ -382,6 +348,20 @@ export default {
   &.shadow {
     box-shadow: var(--box-shadow);
     transition: box-shadow var(--medium) var(--transition-in);
+  }
+}
+
+.body {
+  position: relative;
+  transition: opacity var(--medium) var(--transition-out);
+  opacity: 1;
+  height: calc(100% - var(--header-height));
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  &.loading {
+    transition: opacity var(--medium) var(--transition-in);
+    opacity: 0.4;
   }
 }
 
