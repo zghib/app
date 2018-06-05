@@ -14,6 +14,9 @@ import VReadonly from "./components/extensions/readonly/readonly.vue";
 import VListing from "./components/extensions/listing/listing.vue";
 import VListingOptions from "./components/extensions/listing-options/listing-options.vue";
 
+// Item listing
+import VItemListing from "./components/item-listing/item-listing.vue";
+
 // Form inputs
 import VButton from "./components/form-inputs/button.vue";
 import VCheckbox from "./components/form-inputs/checkbox.vue";
@@ -34,11 +37,16 @@ import VHeaderBar from "./components/header-bar/header-bar.vue";
 import VHeaderButton from "./components/header-bar/header-button.vue";
 import VInfoSidebar from "./components/sidebars/info-sidebar.vue";
 
+import VError from "./components/error.vue";
+
 // Extensions
 Vue.component("v-interface", VInterface);
 Vue.component("v-readonly", VReadonly);
 Vue.component("v-listing", VListing);
 Vue.component("v-listing-options", VListingOptions);
+
+// Item Listing
+Vue.component("v-item-listing", VItemListing);
 
 // Form inputs
 Vue.component("v-button", VButton);
@@ -59,6 +67,8 @@ Vue.component("v-prompt", VPrompt);
 Vue.component("v-header-bar", VHeaderBar);
 Vue.component("v-header-button", VHeaderButton);
 Vue.component("v-info-sidebar", VInfoSidebar);
+
+Vue.component("v-error", VError);
 
 Vue.component("invisible-label", InvisibleLabel);
 Vue.component("loader", Loader);

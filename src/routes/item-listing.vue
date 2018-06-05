@@ -76,13 +76,14 @@
           name="listing"
           @input="updatePreferences('view_type', $event)" />
         <v-listing-options
+          :key="`${collection}-${viewType}`"
           :type="viewType"
           :collection="collection"
           :primary-key-field="primaryKeyField"
           :fields="fields"
           :items="items"
-          :options="viewOptions"
-          :query="viewQuery"
+          :view-options="viewOptions"
+          :view-query="viewQuery"
           :selection="selection"
           link="__link__"
           @query="setViewQuery"
@@ -90,39 +91,19 @@
       </template>
     </v-info-sidebar>
 
-    <v-error
-      v-if="fields && Object.keys(fields).length === 0"
-      icon="build"
-      :title="$t('no_fields')"
-      :body="$t('no_fields_body')" />
-
-    <v-error
-      v-else-if="meta && meta.total_count === 0"
-      icon="web_asset"
-      :title="$t('empty_collection')"
-      :body="$t('empty_collection_body')" />
-
-    <v-error
-      v-else-if="(items && items.length === 0) && (meta && meta.total_count !== 0)"
-      :title="$t('no_results')"
-      :body="$t('no_results_body')"
-      icon="search" />
-
-    <v-listing
-      v-else
-      link="__link__"
-      :fields="fields"
-      :items="items"
-      :loading="loading"
-      :lazy-loading="lazyLoading"
+    <v-item-listing
+      :collection="collection"
+      :filters="preferences.filters || []"
+      :search-query="preferences.search_query || ''"
+      :view-query="viewQuery"
+      :view-type="viewType"
+      :view-options="viewOptions"
       :selection="selection"
-      :options="viewOptions"
-      :type="viewType"
-      :query="viewQuery"
+      links
+      @fetch="meta = $event"
       @options="setViewOptions"
       @select="selection = $event"
-      @query="setViewQuery"
-      @next-page="fetchNextPage" />
+      @query="setViewQuery" />
 
     <portal to="modal" v-if="confirmRemove">
       <v-confirm

@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="container"
     :style="{ minWidth: totalWidth + 'px' }"
     class="v-table">
     <div class="toolbar" :class="{ shadow: scrolled }">
@@ -48,8 +49,8 @@
 
       </div>
     </div>
-    <div class="body">
-      <v-virtual-list :size="rowHeight" :remain="visibleRowCount" v-if="link" class="v-virtual-list" :onscroll="onScroll">
+    <div class="body" :class="{ loading }">
+      <v-virtual-list :size="rowHeight" :remain="remain" v-if="link" class="v-virtual-list" :onscroll="onScroll">
         <div
           v-for="row in items"
           :key="row[primaryKeyField]"
@@ -98,7 +99,8 @@
         v-else
         class="v-virtual-list"
         :size="rowHeight"
-        :remain="visibleRowCount"
+        :remain="remain"
+        :onscroll="onScroll"
         name="row">
         <div
           v-for="row in items"
@@ -116,14 +118,26 @@
               @change="toggleCheckbox(row[primaryKeyField])" />
           </div>
           <div
-            v-for="{field} in columns"
+            v-for="{field, fieldInfo} in columns"
             :key="field"
             :style="{
               flexBasis: widths && widths[field] ?
                 widths[field] + 'px' :
                 null
             }"
-            class="cell">{{ row[field] }}</div>
+            class="cell">
+              <div
+                v-if="$lodash.isNil(row[field])"
+                class="empty">--</div>
+              <v-readonly
+                v-else-if="useInterfaces && !$lodash.isNil(row[field])"
+                :interfaceType="fieldInfo.interface"
+                :name="field"
+                :type="fieldInfo.type"
+                :options="fieldInfo.options"
+                :value="row[field]" />
+              <template v-else>{{ row[field] }}</template>
+          </div>
         </div>
       </v-virtual-list>
       <transition name="fade">
@@ -198,39 +212,20 @@ export default {
       widths: {},
       lastDragXPosition: null,
       windowHeight: 0,
-      scrolled: false
+      scrolled: false,
+
+      // Height of the virtual scroll list in px
+      remain: 50
     };
   },
   mounted() {
-    if (this.height === null) {
-      this.getWindowHeight();
-
-      this.windowResizeHandler = this.$lodash.debounce(
-        this.getWindowHeight,
-        200
-      );
-
-      window.addEventListener("resize", this.windowResizeHandler);
-    }
+    window.addEventListener("resize", this.calculateHeight);
+    this.calculateHeight();
   },
   beforeDestroy() {
-    if (this.height === null) {
-      window.removeEventListener("resize", this.windowResizeHandler);
-    }
+    window.removeEventListener("resize", this.calculateHeight);
   },
   computed: {
-    visibleRowCount() {
-      const height = this.height ? this.height : this.fullHeight;
-      return Math.ceil(height / this.rowHeight);
-    },
-    fullHeight() {
-      let headerHeight = getComputedStyle(document.body)
-        .getPropertyValue("--header-height")
-        .trim();
-      headerHeight = headerHeight.substring(0, headerHeight.length - 2); // remove 'px'
-
-      return this.windowHeight - headerHeight * 2;
-    },
     allSelected() {
       const primaryKeyFields = this.items
         .map(item => item[this.primaryKeyField])
@@ -328,20 +323,17 @@ export default {
       const widths = {};
 
       this.columns.forEach(({ field }) => {
-        widths[field] = 200;
+        widths[field] = (this.columnWidths && this.columnWidths[field]) || 200;
       });
 
-      this.widths = {
-        ...widths,
-        ...this.columnWidths
-      };
-    },
-    getWindowHeight() {
-      this.windowHeight = window.innerHeight;
+      this.widths = widths;
     },
     onScroll(event, data) {
       if (data.offsetAll - data.offset < 500) this.$emit("scrollEnd");
       this.scrolled = data.offset > 0;
+    },
+    calculateHeight() {
+      this.remain = this.$refs.container.clientHeight / this.rowHeight;
     }
   }
 };
@@ -350,12 +342,19 @@ export default {
 <style lang="scss" scoped>
 .v-table {
   width: 100%;
-  max-height: calc(100vh - var(--header-height));
+  height: 100%;
   overflow: hidden;
 }
 
 .body {
   position: relative;
+  transition: opacity var(--medium) var(--transition-out);
+  opacity: 1;
+
+  &.loading {
+    transition: opacity var(--medium) var(--transition-in);
+    opacity: 0.4;
+  }
 }
 
 .v-virtual-list {
@@ -373,7 +372,7 @@ export default {
 
 .toolbar {
   position: sticky;
-  height: var(--header-height);
+  height: 60px;
   left: 0;
   top: 0;
   z-index: +1;
@@ -485,6 +484,7 @@ export default {
 }
 
 .lazy-loader {
+  pointer-events: none;
   position: absolute;
   bottom: 0;
   left: 0;

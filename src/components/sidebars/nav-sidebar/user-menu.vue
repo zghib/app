@@ -112,6 +112,7 @@ export default {
   transform: translateY(calc(100% - var(--header-height)));
   transition: transform var(--medium) var(--transition-out);
   will-change: transform;
+  background-color: var(--white);
 
   @media (min-width: 800px) {
     box-shadow: 1px 0 0 0 var(--lightest-gray);

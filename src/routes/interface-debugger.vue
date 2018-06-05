@@ -208,7 +208,7 @@ export default {
       ) {
         return {
           collection: this.relatedCollection,
-          primaryKey: this.relatedCollectionPrimaryKey
+          field: this.relatedCollectionPrimaryKey
         };
       }
 

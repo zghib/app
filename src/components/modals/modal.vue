@@ -172,7 +172,10 @@ export default {
   }
 
   .body {
-    padding: 30px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    max-height: 70vh;
+    position: relative;
   }
 
   .footer {

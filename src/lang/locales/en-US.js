@@ -132,6 +132,7 @@ export default {
   save_as_copy: "Save as Copy",
   save_as_bookmark: "Save as Bookmark",
   search: "Search",
+  select_existing: "Select existing",
   select_field: "Select a Field",
   settings: "Settings",
   settings_interface: "Interface Settings",

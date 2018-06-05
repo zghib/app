@@ -4,9 +4,9 @@
     :primary-key-field="primaryKeyField"
     :fields="fields"
     :items="items"
-    :options="options"
+    :view-options="viewOptions"
     :loading="loading"
-    :query="query"
+    :view-query="viewQuery"
     :selection="selection"
     class="listing-options-extension"
     @query="$emit('query', $event)"
@@ -40,7 +40,7 @@ export default {
       type: Array,
       required: true
     },
-    options: {
+    viewOptions: {
       type: Object,
       default: () => ({})
     },
@@ -48,7 +48,7 @@ export default {
       type: Boolean,
       default: false
     },
-    query: {
+    viewQuery: {
       type: Object,
       default: () => ({})
     },
