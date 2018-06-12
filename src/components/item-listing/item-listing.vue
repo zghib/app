@@ -2,7 +2,7 @@
   <v-error
     v-if="items.error || fields.error"
     icon="warning"
-    :color="danger"
+    color="danger"
     :title="$t('server_error')"
     :body="$t('server_error_copy')" />
 
@@ -117,6 +117,9 @@ export default {
       handler() {
         this.getItems();
       }
+    },
+    searchQuery() {
+      this.getItems();
     }
   },
   methods: {
