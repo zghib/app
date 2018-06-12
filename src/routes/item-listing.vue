@@ -415,7 +415,7 @@ export default {
     return hydrate(collection)
       .then(({ fields, preferences, items, meta }) => {
         return next(vm => {
-          Object.assign(vm.$data, { fields, preferences, items, meta });
+          Object.assign(vm.$data, { fields, preferences, items, meta, notFound: false });
         });
       })
       .catch(error => {
@@ -431,6 +431,8 @@ export default {
     if (collectionInfo === null) {
       this.notFound = true;
       return next();
+    } else {
+      this.notFound = false;
     }
 
     if (collectionInfo.single === true) {
