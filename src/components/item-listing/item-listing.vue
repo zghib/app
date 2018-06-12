@@ -118,6 +118,14 @@ export default {
         this.getItems();
       }
     },
+    filters: {
+      deep: true,
+      handler(newVal, oldVal) {
+        if (this.$lodash.isEqual(newVal, oldVal)) return;
+
+        this.getItems();
+      }
+    },
     searchQuery() {
       this.getItems();
     }
