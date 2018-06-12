@@ -1,9 +1,3 @@
-<docs>
-  See: https://snook.ca/archives/html_and_css/hiding-content-for-accessibility
-
-  The prop is named htmlFor because `for` is a reserved word in JS
-</docs>
-
 <template>
   <label
     :for="htmlFor"
