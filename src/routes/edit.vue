@@ -45,8 +45,7 @@
       <v-activity-overview
         :collection="collection"
         :primary-key="primaryKey"
-        :fields="fields"
-        @reload="hydrate" />
+        :fields="fields" />
     </v-info-sidebar>
 
     <v-edit-form
@@ -201,6 +200,19 @@ export default {
             name: this.newItem
               ? this.$t("creating_item")
               : this.$t("editing_item"),
+            path: this.$route.path
+          }
+        ];
+      }
+
+      if (this.singleItem) {
+        return [
+          {
+            name: this.$t("collections"),
+            path: "/collections"
+          },
+          {
+            name: this.$t("editing_single", { collection: this.$helpers.formatTitle(this.collection) }),
             path: this.$route.path
           }
         ];

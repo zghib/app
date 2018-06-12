@@ -56,6 +56,7 @@ export default {
   discard_changes: "Discard Changes",
   dont_show: "Don't Show",
   editing_item: "Editing Item",
+  editing_single: "Editing {collection}",
   email_address: "Email Address",
   email: "Email",
   empty_collection: "Empty Collection",
