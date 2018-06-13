@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import { keyBy, mapValues, find } from "lodash";
+import { keyBy, mapValues, find, isEqual } from "lodash";
 import NProgress from "nprogress";
 import formatTitle from "@directus/format-title";
 import NotFound from "./not-found.vue";
@@ -207,8 +207,10 @@ function getItems(collection, preferences, fields) {
     interface: "primary-key"
   }).field;
 
+  const params = getParams(preferences, primaryKeyField);
+
   return api
-    .getItems(collection, getParams(preferences, primaryKeyField))
+    .getItems(collection, params)
     .then(({ data, meta }) => ({
       items: data.map(item => ({
         ...item,
@@ -243,16 +245,14 @@ function getParams(preferences, primaryKeyField) {
   }
 
   if (params.fields) {
-    // Make sure all selected fields are retrieved one level deep (to be able to show relational
-    //  items)
-    params.fields = params.fields
+    const fields = params.fields
       .split(",")
-      .map(field => (field.endsWith(".*") ? field : `${field}.*`));
+      .map(field => (field.endsWith(".*") ? field : `${field}.*`))
+      .filter(field => field.length !== 0)
 
-    // Make sure the primaryKey is always fetched
-    if (params.fields.includes(primaryKeyField) === false) {
-      params.fields.push(primaryKeyField);
-    }
+    fields.push(primaryKeyField);
+
+    params.fields = fields.join(",");
   }
 
   return params;
@@ -415,7 +415,14 @@ export default {
     return hydrate(collection)
       .then(({ fields, preferences, items, meta }) => {
         return next(vm => {
-          Object.assign(vm.$data, { fields, preferences, items, meta, notFound: false });
+          Object.assign(vm.$data, {
+            fields,
+            preferences,
+            items,
+            meta,
+            notFound: false,
+            error: null
+          });
         });
       })
       .catch(error => {
@@ -445,6 +452,7 @@ export default {
         this.preferences = preferences;
         this.items = items;
         this.meta = meta;
+        this.error = null;
 
         return next();
       })
