@@ -11,8 +11,10 @@ import NotFound from "./routes/not-found.vue";
 import Interfaces from "./routes/interfaces.vue";
 import InterfaceDebugger from "./routes/interface-debugger.vue";
 import Debug from "./routes/debug.vue";
-import Settings from "./routes/settings.vue";
-import SettingsGlobal from "./routes/settings-global.vue";
+import Settings from "./routes/settings/settings.vue";
+import SettingsGlobal from "./routes/settings/global.vue";
+import SettingsCollections from "./routes/settings/collections.vue";
+import SettingsFields from "./routes/settings/fields.vue";
 
 import ModalDebug from "./routes/modal-debug.vue";
 
@@ -133,6 +135,15 @@ const router = new Router({
     {
       path: "/settings/global",
       component: SettingsGlobal
+    },
+    {
+      path: "/settings/collections",
+      component: SettingsCollections
+    },
+    {
+      path: "/settings/collections/:collection",
+      component: SettingsFields,
+      props: true
     },
     {
       path: "/interfaces",

@@ -10,11 +10,12 @@
         v-else
         class="breadcrumb">
         <li
-          v-for="({ name, path }, index) in (breadcrumb || defaultBreadcrumb)"
+          v-for="({ name, path, color = null }, index) in (breadcrumb || defaultBreadcrumb)"
           :key="path">
           <template v-if="index !== (breadcrumb || defaultBreadcrumb).length - 1">
-          <router-link :to="path">{{ name }}</router-link></template>
-          <h1 v-else>{{ name }}</h1>
+            <router-link :to="path" :style="{ color: color ? `var(--${color})` : null }">{{ name }}</router-link>
+          </template>
+          <h1 v-else :style="{ color: color ? `var(--${color})` : null }">{{ name }}</h1>
         </li>
       </ol>
       <slot name="title" />

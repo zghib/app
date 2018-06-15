@@ -23,7 +23,7 @@
             to="/settings/collections">
             <img
               slot="icon"
-              src="../assets/icons/box.svg"
+              src="../../assets/icons/box.svg"
               alt="">
           </v-card>
 
@@ -90,8 +90,8 @@
 </template>
 
 <script>
-import { version } from "../../package.json";
-import VSignal from "../components/signal.vue";
+import { version } from "../../../package.json";
+import VSignal from "../../components/signal.vue";
 
 export default {
   name: "settings",

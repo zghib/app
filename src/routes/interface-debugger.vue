@@ -53,7 +53,7 @@
             id="type"
             v-model="type">
             <option
-              v-for="(length, type) in extension.dataTypes"
+              v-for="(length, type) in extension.datatypes"
               :key="type"
               :value="type"
             >{{ type }}</option>
@@ -220,7 +220,7 @@ export default {
       this.hydrate();
     },
     type() {
-      this.length = this.extension.dataTypes[this.type];
+      this.length = this.extension.datatypes[this.type];
     }
   },
   created() {
@@ -229,7 +229,7 @@ export default {
   methods: {
     hydrate() {
       // Set type to the first datatype available in the meta info
-      this.type = Object.keys(this.extension.dataTypes)[0];
+      this.type = Object.keys(this.extension.datatypes)[0];
 
       // Populate the options with the default values
       const defaults = this.$lodash.mapValues(

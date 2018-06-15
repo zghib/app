@@ -81,7 +81,7 @@
             }"
             class="cell">
             <div
-              v-if="$lodash.isNil(row[field])"
+              v-if="row[field] === '' || $lodash.isNil(row[field])"
               class="empty">--</div>
             <v-readonly
               v-else-if="useInterfaces && !$lodash.isNil(row[field])"
@@ -121,7 +121,7 @@
             }"
             class="cell">
               <div
-                v-if="$lodash.isNil(row[field])"
+                v-if="row[field] === '' || $lodash.isNil(row[field])"
                 class="empty">--</div>
               <v-readonly
                 v-else-if="useInterfaces && !$lodash.isNil(row[field])"

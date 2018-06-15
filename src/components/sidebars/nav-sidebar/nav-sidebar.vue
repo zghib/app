@@ -57,7 +57,7 @@ export default {
       if (collections == null) return [];
 
       return Object.values(collections)
-        .filter(collection => collection.hidden === false)
+        .filter(collection => collection.hidden == false)
         .map(collection => collection.collection);
     },
     bookmarks() {

@@ -4,17 +4,20 @@
       <v-textarea
         v-if="multiline"
         class="input multiline"
+        :placeholder="placeholder"
         :value="value"
         @input="$emit('input', $event)" />
       <v-input
         v-else
         class="input"
         :value="value"
+        :placeholder="placeholder"
         @input="$emit('input', $event)" />
       <div class="buttons">
         <button class="cancel" @click="$emit('cancel')">{{ cancelText || $t('cancel') }}</button>
         <v-button
           class="confirm"
+          :loading="loading"
           :disabled="required && disabled"
           @click="$emit('confirm')">{{ confirmText || $t('ok') }}</v-button>
       </div>
@@ -49,6 +52,14 @@ export default {
       default: false
     },
     required: {
+      type: Boolean,
+      default: false
+    },
+    placeholder: {
+      type: String,
+      default: ""
+    },
+    loading: {
       type: Boolean,
       default: false
     }

@@ -23,8 +23,10 @@ import VCheckbox from "./components/form-inputs/checkbox.vue";
 import VInput from "./components/form-inputs/input.vue";
 import VRadio from "./components/form-inputs/radio.vue";
 import VSelect from "./components/form-inputs/select.vue";
+import VSimpleSelect from "./components/form-inputs/simple-select.vue";
 import VSlider from "./components/form-inputs/slider.vue";
 import VTextarea from "./components/form-inputs/textarea.vue";
+import VToggle from "./components/form-inputs/toggle.vue";
 
 // Modals
 import VAlert from "./components/modals/alert.vue";
@@ -54,8 +56,10 @@ Vue.component("v-checkbox", VCheckbox);
 Vue.component("v-input", VInput);
 Vue.component("v-radio", VRadio);
 Vue.component("v-select", VSelect);
+Vue.component("v-simple-select", VSimpleSelect);
 Vue.component("v-slider", VSlider);
 Vue.component("v-textarea", VTextarea);
+Vue.component("v-toggle", VToggle);
 
 // Modals
 Vue.component("v-alert", VAlert);

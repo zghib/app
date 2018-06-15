@@ -265,10 +265,20 @@
   --warning: var(--amber);
   --danger: var(--red);
 
+  --accent-dark: var(--light-blue-800);
   --action-dark: var(--light-blue-800);
   --success-dark: var(--green-800);
   --warning-dark: var(--amber-800);
   --danger-dark: var(--red-800);
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/roboto-light.woff2") format("woff2"),
+    url("./fonts/roboto-light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -379,12 +389,18 @@ fieldset {
   vertical-align: middle;
 }
 
+.style-0 {
+  color: var(--darker-gray);
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: 300;
+}
+
 .style-1 {
   color: var(--darker-gray);
-  font-size: 1.38em;
-  line-height: 1.16;
-  font-weight: 400;
-  height: 20px;
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 300;
 }
 
 .style-2 {

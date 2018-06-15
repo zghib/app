@@ -8,7 +8,6 @@
       <div class="modal-wrapper">
         <aside
           ref="modal"
-          :class="{ simple }"
           class="modal-container"
           aria-labelledby="modal-title"
           aria-describedby="modal-description"
@@ -26,25 +25,23 @@
                   id="modal-title"
                   class="style-1">{{ title }}</h1>
                 <button
-                  v-if="!actionRequired && !simple"
+                  v-if="!actionRequired"
                   @click="$emit('close')"><i class="material-icons">close</i></button>
               </header>
-              <div
-                v-if="!simple"
-                class="body">
+              <div class="body">
                 <slot />
               </div>
               <div class="footer">
-                <slot name="footer">
-                  <button
-                    v-if="!actionRequired"
-                    @click="$emit('close')">{{ cancel || $t('cancel') }}</button>
-                  <v-button
-                    :bg="okBg"
-                    :color="okColor"
-                    class="confirm"
-                    @click="$emit('confirm')">{{ ok || $t('ok') }}</v-button>
-                </slot>
+                <button
+                  v-if="!actionRequired"
+                  @click="$emit('close')">{{ $t('cancel') }}</button>
+                <v-button
+                  v-for="(button, id) in buttons"
+                  class="confirm"
+                  :key="id"
+                  :loading="button.loading || false"
+                  :disabled="button.disabled || false"
+                  @click="$emit(id)">{{ button.text }}</v-button>
               </div>
             </div>
           </focus-lock>
@@ -72,25 +69,9 @@ export default {
       type: String,
       required: true
     },
-    cancel: {
-      type: String,
-      default: ""
-    },
-    ok: {
-      type: String,
-      default: ""
-    },
-    okBg: {
-      type: String,
-      default: "action"
-    },
-    okColor: {
-      type: String,
-      default: "white"
-    },
-    simple: {
-      type: Boolean,
-      default: false
+    buttons: {
+      type: [Object],
+      default: () => ({})
     }
   },
   mounted() {
@@ -119,8 +100,8 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: var(--black);
-  opacity: 0.6;
+  background-color: var(--darkest-gray);
+  opacity: 0.9;
 
   &.pointer {
     cursor: pointer;
@@ -147,6 +128,7 @@ export default {
   transition: inherit;
   pointer-events: painted;
   cursor: default;
+  overflow: hidden;
 
   h1 {
     color: var(--darker-gray);
@@ -169,6 +151,8 @@ export default {
     border-bottom: 1px solid var(--lightest-gray);
     position: sticky;
     top: 0;
+    background-color: var(--lightest-gray);
+    height: 60px;
   }
 
   .body {
@@ -180,23 +164,15 @@ export default {
 
   .footer {
     border-top: 1px solid var(--lightest-gray);
+    height: 60px;
   }
 
   button:not(.confirm) {
     transition: var(--fast) var(--transition);
-    color: var(--lighter-gray);
+    color: var(--light-gray);
 
     &:hover {
       color: var(--dark-gray);
-    }
-  }
-
-  &.simple {
-    max-width: 500px;
-
-    header,
-    .footer {
-      border: 0;
     }
   }
 }
@@ -219,9 +195,5 @@ export default {
 .slide-enter,
 .slide-leave-to {
   opacity: 0;
-
-  .modal-container {
-    transform: translateY(50px);
-  }
 }
 </style>

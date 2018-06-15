@@ -79,14 +79,14 @@
   margin-right: 0;
 }
 
-.tooltip[aria-hidden='true'] {
+.tooltip[aria-hidden="true"] {
   visibility: hidden;
   opacity: 0;
   transition: var(--fast) var(--transition-in);
   transition-property: opacity, visibility;
 }
 
-.tooltip[aria-hidden='false'] {
+.tooltip[aria-hidden="false"] {
   visibility: visible;
   opacity: 1;
   transition: var(--fast) var(--transition-out);

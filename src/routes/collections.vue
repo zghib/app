@@ -34,6 +34,7 @@ export default {
       return Object.values(collections)
         .filter(collection => collection.hidden === false)
         .map(collection => ({
+          ...collection,
           collection: this.$t(`collections-${collection.collection}`),
           __link__: `/collections/${collection.collection}`
         }));
@@ -43,6 +44,10 @@ export default {
         {
           field: "collection",
           name: this.$t("collection")
+        },
+        {
+          field: "note",
+          name: this.$t("note")
         }
       ];
     }
@@ -57,6 +62,6 @@ export default {
 
 <style lang="scss" scoped>
 .collections {
-  padding-bottom: (--page-padding-bottom);
+  padding-bottom: var(--page-padding-bottom);
 }
 </style>

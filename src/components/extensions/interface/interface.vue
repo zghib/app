@@ -85,13 +85,13 @@ export default {
     },
     typeOrDefault() {
       if (!this.interface) return null;
-      return this.type ? this.type : Object.keys(this.interface.dataTypes)[0];
+      return this.type ? this.type : Object.keys(this.interface.datatypes)[0];
     },
     lengthOrDefault() {
       if (!this.interface) return null;
       return this.length
         ? this.length
-        : this.interface.dataTypes[this.typeOrDefault];
+        : this.interface.datatypes[this.typeOrDefault];
     },
     optionsWithDefaults() {
       if (!this.interface) return {};

@@ -13,6 +13,9 @@ export const DELETE_BOOKMARK = "🔖 Delete Bookmark";
 
 // Collections
 export const SET_COLLECTIONS = "🗄 Set Collections";
+export const ADD_COLLECTION = "🗄 Add Collection";
+export const DELETE_COLLECTION = "🗄 Remove Collection";
+export const UPDATE_COLLECTION = "🗄 Update Collection";
 
 // Edits
 export const DISCARD_CHANGES = "📝 Discard Changes";

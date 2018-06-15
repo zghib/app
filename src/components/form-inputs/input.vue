@@ -19,6 +19,7 @@
       :placeholder="placeholder"
       :readonly="readonly"
       :required="required"
+      :disabled="disabled"
       :spellcheck="spellcheck"
       :value="value"
       :id="id"
@@ -126,6 +127,10 @@ export default {
     charactercount: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -182,6 +187,11 @@ export default {
       border: var(--input-border-width) solid var(--lighter-gray);
       background-color: var(--white);
       box-shadow: inset 0 0 0 2000px var(--white);
+    }
+
+    &[disabled] {
+      background-color: var(--lightest-gray);
+      cursor: not-allowed;
     }
   }
 

@@ -2,8 +2,8 @@
   <v-modal-base :message="message" @cancel="$emit('cancel')">
     <div class="buttons" @keydown.esc="$emit('cancel')">
       <button class="cancel" @click="$emit('cancel')">{{ cancelText || $t('cancel') }}</button>
-      <v-button class="confirm" @click="$emit('confirm')">
-        <template v-if="busy"><v-spinner :size="20" :line-size="2" /></template>
+      <v-button :bg="color" class="confirm" @click="$emit('confirm')">
+        <template v-if="loading"><v-spinner :size="20" :line-size="2" /></template>
         <template v-else>{{ confirmText || $t('ok') }}</template>
       </v-button>
     </div>
@@ -28,9 +28,13 @@ export default {
       type: String,
       default: null
     },
-    busy: {
+    loading: {
       type: Boolean,
       default: false
+    },
+    color: {
+      type: String,
+      default: "action"
     }
   },
   components: {

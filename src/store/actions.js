@@ -9,6 +9,9 @@ import {
   UPDATE_CURRENT_USER,
   SET_FIELDS,
   SET_COLLECTIONS,
+  ADD_COLLECTION,
+  DELETE_COLLECTION,
+  UPDATE_COLLECTION,
   SET_BOOKMARKS,
   ADD_BOOKMARK,
   DELETE_BOOKMARK
@@ -117,6 +120,18 @@ export function getCollections({ commit }) {
 
       commit(SET_COLLECTIONS, data);
     });
+}
+
+export function addCollection({ commit }, collection) {
+  commit(ADD_COLLECTION, collection);
+}
+
+export function removeCollection({ commit }, collection) {
+  commit(DELETE_COLLECTION, collection);
+}
+
+export function updateCollection({ commit }, { collection, edits }) {
+  commit(UPDATE_COLLECTION, { collection, edits });
 }
 
 export function getBookmarks({ commit }) {

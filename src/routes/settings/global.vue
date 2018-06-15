@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import EditForm from "../components/edit-form/edit-form.vue";
+import EditForm from "../../components/edit-form/edit-form.vue";
 
 export default {
   name: "settings-global",

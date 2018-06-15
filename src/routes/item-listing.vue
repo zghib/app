@@ -123,7 +123,7 @@
 </template>
 
 <script>
-import { keyBy, mapValues, find, isEqual } from "lodash";
+import { keyBy, mapValues, find } from "lodash";
 import NProgress from "nprogress";
 import formatTitle from "@directus/format-title";
 import NotFound from "./not-found.vue";
@@ -209,15 +209,13 @@ function getItems(collection, preferences, fields) {
 
   const params = getParams(preferences, primaryKeyField);
 
-  return api
-    .getItems(collection, params)
-    .then(({ data, meta }) => ({
-      items: data.map(item => ({
-        ...item,
-        __link__: getLink(collection, item[primaryKeyField])
-      })),
-      meta
-    }));
+  return api.getItems(collection, params).then(({ data, meta }) => ({
+    items: data.map(item => ({
+      ...item,
+      __link__: getLink(collection, item[primaryKeyField])
+    })),
+    meta
+  }));
 }
 
 function getParams(preferences, primaryKeyField) {
@@ -248,7 +246,7 @@ function getParams(preferences, primaryKeyField) {
     const fields = params.fields
       .split(",")
       .map(field => (field.endsWith(".*") ? field : `${field}.*`))
-      .filter(field => field.length !== 0)
+      .filter(field => field.length !== 0);
 
     fields.push(primaryKeyField);
 

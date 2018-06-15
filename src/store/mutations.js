@@ -9,6 +9,9 @@ import {
   UPDATE_CURRENT_USER,
   SET_FIELDS,
   SET_COLLECTIONS,
+  ADD_COLLECTION,
+  DELETE_COLLECTION,
+  UPDATE_COLLECTION,
   SET_BOOKMARKS,
   ADD_BOOKMARK,
   DELETE_BOOKMARK,
@@ -62,6 +65,30 @@ const mutations = {
 
   [SET_COLLECTIONS](state, data) {
     state.collections = keyBy(data, "collection");
+  },
+
+  [ADD_COLLECTION](state, collection) {
+    state.collections = {
+      ...state.collections,
+      [collection.collection]: collection
+    };
+  },
+
+  [DELETE_COLLECTION](state, collection) {
+    const copy = { ...state.collections };
+    delete copy[collection];
+
+    state.collections = copy;
+  },
+
+  [UPDATE_COLLECTION](state, { collection, edits }) {
+    state.collections = {
+      ...state.collections,
+      [collection]: {
+        ...state.collections[collection],
+        ...edits
+      }
+    };
   },
 
   [SET_BOOKMARKS](state, data) {
