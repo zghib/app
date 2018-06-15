@@ -107,7 +107,9 @@ export default {
 body.no-padding {
   padding: 0 !important;
 }
+</style>
 
+<style lang="scss" scoped>
 .error {
   position: fixed;
   top: 0;
