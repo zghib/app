@@ -8,7 +8,7 @@
     <div
       v-for="field in fieldsGrouped"
       :class="[
-        isGroup(field) ? null : `col-${field.view_width}`,
+        isGroup(field) ? null : `col-${field.view_width || 4}`,
         isGroup(field) ? 'group' : 'field'
       ]"
       :key="field.field">

@@ -74,7 +74,6 @@
 </template>
 
 <script>
-import NProgress from "nprogress";
 import { keyBy, mapValues } from "lodash";
 import VLoader from "../components/loader.vue";
 import VError from "../components/error.vue";
@@ -101,8 +100,6 @@ function getCollectionInfo(collection) {
 }
 
 function hydrate(collection, primaryKey) {
-  NProgress.inc();
-
   return Promise.all([
     api.getFields(collection),
     api.getItems("directus_relations", {
@@ -110,8 +107,6 @@ function hydrate(collection, primaryKey) {
     }),
     primaryKey !== "+" ? api.getItem(collection, primaryKey) : null
   ]).then(([fieldsRes, relations, savedValues]) => {
-    NProgress.inc();
-
     // https://lorenstewart.me/2016/11/21/flatten-a-multi-dimensional-array-using-es6/
     relations = relations.data;
 

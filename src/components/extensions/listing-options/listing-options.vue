@@ -59,9 +59,17 @@ export default {
       return `listing-options-${this.type}`;
     },
     primaryKeyField() {
-      return Object.values(this.fields).filter(
+      if (!this.fields) return null;
+
+      const primaryKeyArray = Object.values(this.fields).filter(
         field => field.primary_key === true
-      )[0].field;
+      );
+
+      return (
+        primaryKeyArray.length > 0 &&
+        primaryKeyArray[0] &&
+        primaryKeyArray[0].field
+      );
     }
   },
   watch: {

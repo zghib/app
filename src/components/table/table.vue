@@ -325,6 +325,7 @@ export default {
   -webkit-overflow-scrolling: touch;
   position: relative;
   max-height: calc(100vh - var(--header-height));
+  padding-bottom: var(--page-padding-bottom);
 }
 
 .toolbar,

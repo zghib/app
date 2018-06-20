@@ -400,7 +400,7 @@ fieldset {
   color: var(--darker-gray);
   font-size: 18px;
   line-height: 1.4;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .style-2 {
@@ -434,6 +434,26 @@ legend {
   line-height: 1.66;
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.x-small {
+  max-width: var(--width-x-small);
+}
+
+.small {
+  max-width: var(--width-small);
+}
+
+.normal {
+  max-width: var(--width-normal);
+}
+
+.large {
+  max-width: var(--width-large);
+}
+
+.x-large {
+  max-width: var(--width-x-large);
 }
 
 .no-wrap {

@@ -201,6 +201,7 @@ export default {
     },
     lazyLoad() {
       if (this.items.lazyLoading) return;
+      if (this.items.meta.total_count === this.items.data.length) return;
 
       this.items.lazyLoading = true;
       this.items.error = null;

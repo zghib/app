@@ -59,18 +59,18 @@
           :value="viewType"
           name="listing"
           @input="updatePreferences('view_type', $event)" />
-        <v-listing-options
-          :key="`${collection}-${viewType}`"
-          :type="viewType"
-          :collection="collection"
-          :fields="$lodash.keyBy(fields, 'field')"
-          :view-options="viewOptions"
-          :view-query="viewQuery"
-          :selection="selection"
-          link="__link__"
-          @query="setViewQuery"
-          @options="setViewOptions" />
       </template>
+      <v-listing-options
+        :key="`${collection}-${viewType}`"
+        :type="viewType"
+        :collection="collection"
+        :fields="$lodash.keyBy(fields, 'field')"
+        :view-options="viewOptions"
+        :view-query="viewQuery"
+        :selection="selection"
+        link="__link__"
+        @query="setViewQuery"
+        @options="setViewOptions" />
     </v-info-sidebar>
 
     <portal to="modal" v-if="confirmRemove">

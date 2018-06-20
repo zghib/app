@@ -70,7 +70,7 @@ export default {
         return `${url}/${filename}`;
       }
 
-      return this.$helpers.gravatar(this.email, { size: 40, default: 404 });
+      return null;
     },
     currentUserID() {
       return this.$store.state.currentUser && this.$store.state.currentUser.id;

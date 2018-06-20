@@ -18,8 +18,6 @@ import SettingsFields from "./routes/settings/fields.vue";
 
 import ModalDebug from "./routes/modal-debug.vue";
 
-import NProgress from "nprogress";
-
 Vue.use(Router);
 
 const { routerMode } = window.__DirectusConfig__;
@@ -181,8 +179,6 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  NProgress.start();
-
   const { loggedIn } = store.getters;
   const publicRoute = to.matched.some(record => record.meta.publicRoute);
 
@@ -216,8 +212,6 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  NProgress.done();
-
   if (store.state.hydrating === false && from.path !== "/logout") {
     store.dispatch("track", { page: to.path });
   }

@@ -2,7 +2,6 @@ import Vue from "vue";
 import lodash from "lodash";
 import VueDraggable from "vuedraggable";
 import VTooltip from "v-tooltip";
-import NProgress from "nprogress";
 import VueTimeago from "vue-timeago";
 import PortalVue from "portal-vue";
 import en from "date-fns/locale/en/";
@@ -10,7 +9,6 @@ import nl from "date-fns/locale/nl/";
 
 import "./assets/global.scss";
 import "./assets/tooltip.scss";
-import "./assets/progressbar.scss";
 import "./assets/notyf.scss";
 import "./globals";
 import "./helpers/handle-focus";
@@ -41,12 +39,10 @@ Please make sure to rename /static/config_example.js to /static/config.js and ed
 }
 
 Vue.config.productionTip = false;
-NProgress.configure({ showSpinner: false });
 
 Object.defineProperties(Vue.prototype, {
   $lodash: { value: lodash },
   $api: { value: api },
-  $progress: { value: NProgress },
   $notify: { value: notify }
 });
 

@@ -15,7 +15,7 @@
       <form class="new-comment"
        v-show="show !== 'activity'"
        @submit.prevent="addComment">
-        <v-textarea v-model="message" class="textarea" :rows="5" required :placeholder="$t('leave_comment')" />
+        <v-textarea v-model="comment" class="textarea" :rows="5" required :placeholder="$t('leave_comment')" />
         <button type="submit">{{ $t('submit') }}</button>
       </form>
       <transition-group name="activity-items" tag="div">
@@ -24,7 +24,7 @@
           class="activity-item"
           :key="activity.id">
           <i
-            v-if="activity.type === 'message'"
+            v-if="activity.type === 'comment'"
             class="material-icons">message</i>
           <span
             v-else
@@ -68,7 +68,7 @@
               :since="activity.date"
               :locale="$i18n.locale"
               class="date" /></div>
-            <p v-if="activity.htmlMessage" v-html="activity.htmlMessage"></p>
+            <p v-if="activity.htmlcomment" v-html="activity.htmlcomment"></p>
           </div>
         </article>
       </transition-group>
@@ -120,7 +120,7 @@ export default {
       revisions: {},
       revisionsLoading: true,
       previewing: null,
-      message: ""
+      comment: ""
     };
   },
   computed: {
@@ -129,9 +129,9 @@ export default {
 
       switch (this.show) {
         case "comments":
-          return this.data.filter(item => item.message !== null);
+          return this.data.filter(item => item.comment !== null);
         case "activity":
-          return this.data.filter(item => item.message === null);
+          return this.data.filter(item => item.comment === null);
         case "both":
         default:
           return this.data;
@@ -156,14 +156,14 @@ export default {
       ) {
         activityWithChanges.push({
           action: "external",
-          message: this.$t("activity_outside_directus"),
+          comment: this.$t("activity_outside_directus"),
           id: -1
         });
       }
 
       return activityWithChanges.map(activity => ({
         ...activity,
-        htmlMessage: snarkdown(activity.message.replace(/#/g, "") || "")
+        htmlcomment: snarkdown(activity.comment.replace(/#/g, "") || "")
       }));
     }
   },
@@ -189,7 +189,7 @@ export default {
           "filter[collection][eq]": this.collection,
           "filter[item][eq]": this.primaryKey,
           fields:
-            "id,action,type,datetime,message,user.first_name,user.last_name",
+            "id,action,type,datetime,comment,user.first_name,user.last_name",
           sort: "-datetime"
         })
         .then(res => res.data)
@@ -223,7 +223,7 @@ export default {
         name,
         action: item.action.toLowerCase(),
         type: item.type.toLowerCase(),
-        message: item.message
+        comment: item.comment
       };
     },
     getChanges(activityID, index) {
@@ -270,24 +270,24 @@ export default {
         {
           action: "add",
           date: new Date(),
-          message: this.message,
+          comment: this.comment,
           name:
             this.$store.state.currentUser.first_name +
             " " +
             this.$store.state.currentUser.last_name,
-          type: "message",
+          type: "comment",
           id: (this.data && this.data[0] && this.data[0].id + 1) || 1
         },
         ...(this.data || [])
       ];
       this.$api
-        .post("/activity/message", {
+        .post("/activity/comment", {
           collection: this.collection,
           item: this.primaryKey,
-          message: this.message
+          comment: this.comment
         })
         .catch(console.error); // eslint-disable-line no-console
-      this.message = "";
+      this.comment = "";
     }
   }
 };

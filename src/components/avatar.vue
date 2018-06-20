@@ -1,18 +1,17 @@
 <template>
-  <div
-    :class="{ loading }"
-    class="v-avatar">
+  <div class="v-avatar">
     <div
       :style="{ borderColor: `var(--${color})` }"
       class="wrapper">
       <img
+        v-if="src && !error"
         v-show="!error && loading === false"
         :src="src"
         :alt="alt"
         @load="loading = false"
         @error="onImageLoadingError">
       <i
-        v-if="error"
+        v-else
         class="material-icons">person</i>
     </div>
     <div
@@ -28,7 +27,7 @@ export default {
   props: {
     src: {
       type: String,
-      required: true
+      default: null
     },
     alt: {
       type: String,
@@ -49,7 +48,7 @@ export default {
   },
   data() {
     return {
-      loading: true,
+      loading: false,
       error: false
     };
   },
@@ -67,10 +66,6 @@ export default {
   position: relative;
   width: 40px;
   height: 40px;
-
-  &.loading {
-    animation: rotate 1500ms var(--transition) infinite;
-  }
 }
 
 .wrapper {
@@ -106,14 +101,5 @@ i {
   border: 2px solid white;
   width: 12px;
   height: 12px;
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 </style>

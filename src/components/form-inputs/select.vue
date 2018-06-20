@@ -2,15 +2,6 @@
   <div
     :class="{ icon }"
     class="v-select">
-    <div class="value">
-      <i
-        v-if="icon"
-        class="material-icons">{{ icon }}</i>
-      <span
-        v-if="placeholder && !value"
-        class="placeholder">{{ placeholder }}</span>
-      {{ parsedOptions[value] }}
-    </div>
     <select
       v-if="other"
       :id="otherActive ? null : id"
@@ -37,6 +28,7 @@
       :value="value"
       @change="change($event.target.value)">
       <option
+        v-if="placeholder"
         ref="default"
         selected
         disabled
@@ -58,6 +50,15 @@
       :placeholder="placeholder"
       autofocus
       @input="changeCustom">
+    <div class="value">
+      <i
+        v-if="icon"
+        class="material-icons">{{ icon }}</i>
+      <span
+        v-if="placeholder && !value"
+        class="placeholder">{{ placeholder }}</span>
+      {{ parsedOptions[value] }}
+    </div>
     <i class="material-icons chevron">arrow_drop_down</i>
   </div>
 </template>
@@ -180,6 +181,7 @@ export default {
     border-radius: var(--border-radius);
     position: relative;
     user-select: none;
+    pointer-events: none;
   }
 
   input {
@@ -190,6 +192,7 @@ export default {
     width: calc(100% - 40px);
     border-left: 0;
     border-right: 0;
+    z-index: +1;
 
     &::placeholder {
       color: var(--light-gray);
