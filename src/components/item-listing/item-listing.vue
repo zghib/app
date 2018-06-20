@@ -109,12 +109,14 @@ export default {
     this.hydrate();
   },
   watch: {
-    collection() {
+    collection(newVal, oldVal) {
+      if (this.$lodash.isEqual(newVal, oldVal)) return;
       this.hydrate();
     },
     viewQuery: {
       deep: true,
-      handler() {
+      handler(newVal, oldVal) {
+        if (this.$lodash.isEqual(newVal, oldVal)) return;
         this.getItems();
       }
     },
@@ -122,16 +124,18 @@ export default {
       deep: true,
       handler(newVal, oldVal) {
         if (this.$lodash.isEqual(newVal, oldVal)) return;
-
         this.getItems();
       }
     },
-    searchQuery() {
+    searchQuery(newVal, oldVal) {
+      if (this.$lodash.isEqual(newVal, oldVal)) return;
       this.getItems();
     }
   },
   methods: {
     hydrate() {
+      if (this.fields.loading && this.items.loading) return;
+
       this.fields.data = null;
       this.fields.loading = false;
       this.fields.error = null;
@@ -142,6 +146,8 @@ export default {
       this.getFields().then(() => this.getItems());
     },
     getFields() {
+      if (this.fields.loading) return;
+
       this.fields.loading = true;
       this.fields.error = null;
 
@@ -163,6 +169,8 @@ export default {
         });
     },
     getItems() {
+      if (this.items.loading) return;
+
       this.items.loading = true;
       this.items.error = null;
       this.items.page = 0;
@@ -228,7 +236,7 @@ export default {
     formatParams() {
       let params = {
         fields: "*.*",
-        meta: "total_count",
+        meta: "total_count,result_count",
         limit: 50,
         offset: 50 * this.items.page
       };

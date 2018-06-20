@@ -3,7 +3,6 @@
     :is="componentName"
     :primary-key-field="primaryKeyField"
     :fields="fields"
-    :items="items"
     :view-options="viewOptions"
     :loading="loading"
     :view-query="viewQuery"
@@ -28,16 +27,8 @@ export default {
       type: String,
       required: true
     },
-    primaryKeyField: {
-      type: String,
-      required: true
-    },
     fields: {
       type: Object,
-      required: true
-    },
-    items: {
-      type: Array,
       required: true
     },
     viewOptions: {
@@ -66,6 +57,9 @@ export default {
     },
     componentName() {
       return `listing-options-${this.type}`;
+    },
+    primaryKeyField() {
+      return Object.values(this.fields).filter(field => field.primary_key === true)[0].field
     }
   },
   watch: {

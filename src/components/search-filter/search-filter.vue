@@ -1,104 +1,102 @@
 <template>
-  <transition name="fade">
-    <div
-      :class="{ open }"
-      class="search-filter">
+  <div
+    :class="{ open }"
+    class="search-filter">
 
-      <v-header-button
-        class="toggle"
-        :alert="hasFilters"
-        icon="filter_list"
-        no-background
-        @click="open = !open">Filter</v-header-button>
+    <v-header-button
+      class="toggle"
+      :alert="hasFilters"
+      icon="filter_list"
+      no-background
+      @click="open = !open">Filter</v-header-button>
 
-      <div class="wrapper">
-        <i class="material-icons">search</i>
-        <input
-          ref="searchInput"
-          :placeholder="placeholder"
-          :value="searchQuery"
-          :class="{ 'has-filters': hasFilters }"
-          class="search"
-          type="search"
-          @input="search($event.target.value)">
-        <transition name="fade">
-          <button
-            v-show="hasFilters"
-            :class="{ 'has-filters': hasFilters }"
-            class="clear-filters"
-            @click="clearFilters">
-            <i class="material-icons">close</i>
-          </button>
-        </transition>
+    <div class="wrapper">
+      <i class="material-icons">search</i>
+      <input
+        ref="searchInput"
+        :placeholder="placeholder || $t('search')"
+        :value="searchQuery"
+        :class="{ 'has-filters': hasFilters }"
+        class="search"
+        type="search"
+        @input="search($event.target.value)">
+      <transition name="fade">
         <button
+          v-show="hasFilters"
           :class="{ 'has-filters': hasFilters }"
-          class="toggle"
-          @click="open = !open"><i class="material-icons">filter_list</i></button>
-      </div>
-
-      <transition name="slide">
-        <div
-          v-show="open"
-          class="dropdown">
-          <div class="search field">
-            <v-input
-              :placeholder="placeholder"
-              :value="searchQuery"
-              type="search"
-              icon-left="search"
-              @input="search" />
-          </div>
-
-          <div
-            v-for="(filter, i) in filters"
-            :key="i"
-            class="field">
-            <invisible-label :html-for="`filter-${i}`">
-              {{ fields[filter.field] }} {{ operators[filter.operator] }}
-            </invisible-label>
-            <div class="name">
-              <p>{{ fields[filter.field] }}</p>
-              <span>
-                {{ $t(operators[filter.operator]) }}
-                <i class="material-icons">arrow_drop_down</i>
-                <select @change="updateFilter(i, 'operator', $event.target.value)">
-                  <option
-                    v-for="(name, operator) in operators"
-                    :key="operator"
-                    :value="operator">{{ $t(name) }}</option>
-                </select>
-              </span>
-              <button
-                class="remove"
-                @click="deleteFilter(i)">{{ $t('remove') }}</button>
-            </div>
-            <v-input
-              autofocus
-              :id="`filter-${i}`"
-              :value="filter.value"
-              type="text"
-              @input="updateFilter(i, 'value', $event)" />
-          </div>
-
-          <div class="field">
-            <invisible-label html-for="add">{{ $t('add_field_filter') }}</invisible-label>
-            <v-select
-              id="add"
-              :placeholder="$t('add_field_filter')"
-              :options="fields"
-              default-value
-              @input="addFilter" />
-          </div>
-        </div>
+          class="clear-filters"
+          @click="clearFilters">
+          <i class="material-icons">close</i>
+        </button>
       </transition>
-
-      <v-blocker
-        v-if="open"
-        :z-index="18"
-        class="blocker"
-        @click="open = !open" />
+      <button
+        :class="{ 'has-filters': hasFilters }"
+        class="toggle"
+        @click="open = !open"><i class="material-icons">filter_list</i></button>
     </div>
-  </transition>
+
+    <transition name="slide">
+      <div
+        v-show="open"
+        class="dropdown">
+        <div class="search field">
+          <v-input
+            :placeholder="placeholder || $t('search')"
+            :value="searchQuery"
+            type="search"
+            icon-left="search"
+            @input="search" />
+        </div>
+
+        <div
+          v-for="(filter, i) in filters"
+          :key="i"
+          class="field">
+          <invisible-label :html-for="`filter-${i}`">
+            {{ fields[filter.field] }} {{ operators[filter.operator] }}
+          </invisible-label>
+          <div class="name">
+            <p>{{ fields[filter.field] }}</p>
+            <span>
+              {{ $t(operators[filter.operator]) }}
+              <i class="material-icons">arrow_drop_down</i>
+              <select @change="updateFilter(i, 'operator', $event.target.value)">
+                <option
+                  v-for="(name, operator) in operators"
+                  :key="operator"
+                  :value="operator">{{ $t(name) }}</option>
+              </select>
+            </span>
+            <button
+              class="remove"
+              @click="deleteFilter(i)">{{ $t('remove') }}</button>
+          </div>
+          <v-input
+            autofocus
+            :id="`filter-${i}`"
+            :value="filter.value"
+            type="text"
+            @input="updateFilter(i, 'value', $event)" />
+        </div>
+
+        <div class="field">
+          <invisible-label html-for="add">{{ $t('add_field_filter') }}</invisible-label>
+          <v-select
+            id="add"
+            :placeholder="$t('add_field_filter')"
+            :options="fields"
+            default-value
+            @input="addFilter" />
+        </div>
+      </div>
+    </transition>
+
+    <v-blocker
+      v-if="open"
+      :z-index="18"
+      class="blocker"
+      @click="open = !open" />
+  </div>
 </template>
 
 <script>
@@ -112,9 +110,9 @@ export default {
     VHeaderButton
   },
   props: {
-    fields: {
-      type: Object,
-      default: () => ({})
+    fieldNames: {
+      type: Array,
+      default: () => ([])
     },
     filters: {
       type: Array,
@@ -126,7 +124,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: () => this.$t("search")
+      default: null
     }
   },
   data() {
@@ -162,6 +160,13 @@ export default {
         return true;
 
       return false;
+    },
+    fields() {
+      const fields = {};
+      this.fieldNames.forEach(name => {
+        fields[name] = this.$helpers.formatTitle(name);
+      });
+      return fields;
     }
   },
   created() {
@@ -460,18 +465,5 @@ export default {
       width: 340px;
     }
   }
-}
-
-.fade-enter-active {
-  transition: var(--medium) var(--transition-in);
-}
-
-.fade-leave-active {
-  transition: var(--fast) var(--transition-out);
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>
