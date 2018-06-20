@@ -150,8 +150,12 @@ export default {
           this.preferences.search_query.length > 0);
 
       return isFiltering
-        ? this.$tc("item_count_filter", this.meta.result_count, { count: this.$n(this.meta.result_count) })
-        : this.$tc("item_count", this.meta.total_count, { count: this.$n(this.meta.total_count) });
+        ? this.$tc("item_count_filter", this.meta.result_count, {
+            count: this.$n(this.meta.result_count)
+          })
+        : this.$tc("item_count", this.meta.total_count, {
+            count: this.$n(this.meta.total_count)
+          });
     },
     fieldNames() {
       return this.fields.map(field => field.field);
@@ -230,7 +234,7 @@ export default {
         })
         .catch(console.error); // eslint-disable-line no-console
       this.confirmRemove = false;
-    },
+    }
   },
   beforeRouteEnter(to, from, next) {
     const { collection } = to.params;
@@ -241,7 +245,10 @@ export default {
     ])
       .then(([preferences, fieldsRes]) => ({
         preferences,
-        fields: fieldsRes.data.map(field => ({...field, name: formatTitle(field.field)}))
+        fields: fieldsRes.data.map(field => ({
+          ...field,
+          name: formatTitle(field.field)
+        }))
       }))
       .then(({ preferences, fields }) => {
         next(vm => {
@@ -265,7 +272,10 @@ export default {
     ])
       .then(([preferences, fieldsRes]) => ({
         preferences,
-        fields: fieldsRes.data.map(field => ({...field, name: formatTitle(field.field)}))
+        fields: fieldsRes.data.map(field => ({
+          ...field,
+          name: formatTitle(field.field)
+        }))
       }))
       .then(({ preferences, fields }) => {
         this.preferences = preferences;

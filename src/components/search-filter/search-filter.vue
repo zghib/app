@@ -112,7 +112,7 @@ export default {
   props: {
     fieldNames: {
       type: Array,
-      default: () => ([])
+      default: () => []
     },
     filters: {
       type: Array,

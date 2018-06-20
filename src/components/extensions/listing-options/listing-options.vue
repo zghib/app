@@ -59,7 +59,9 @@ export default {
       return `listing-options-${this.type}`;
     },
     primaryKeyField() {
-      return Object.values(this.fields).filter(field => field.primary_key === true)[0].field
+      return Object.values(this.fields).filter(
+        field => field.primary_key === true
+      )[0].field;
     }
   },
   watch: {
