@@ -61,11 +61,11 @@ export default {
   default: "Default",
   delete: "Delete",
   delete_are_you_sure:
-    "Are you sure to delete this item? This action cannot be undone.",
+    "Are you sure you want to delete this item? This action can not be undone.",
   delete_collection_are_you_sure:
-    "Are you sure to delete this collection? This action cannot be undone.",
+    "Are you sure you want to delete this collection? This action can not be undone.",
   delete_field_are_you_sure:
-    'Are you sure to delete the field "{field}"? This action cannot be undone.',
+    'Are you sure you want to delete the field "{field}"? This action can not be undone.',
   delete_bookmark: "Delete Bookmark",
   delete_bookmark_body:
     "Are you sure you want to delete this bookmark? This action cannot be undone.",
@@ -132,7 +132,7 @@ export default {
   new: "New",
   no_related_entries: "Has no related entries",
   not_between: "Not between",
-  not_contains: "Does't contain",
+  not_contains: "Doesn't contain",
   note: "Note",
   no_results: "No Results",
   no_results_body: "The current filters do not match any collection items",
