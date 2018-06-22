@@ -311,7 +311,7 @@ export default {
       const { scrollHeight, clientHeight, scrollTop } = event.srcElement;
       const totalScroll = scrollHeight - clientHeight;
       const delta = totalScroll - scrollTop;
-      if (delta <= 500) this.$emit("scrollEnd");
+      if (delta <= 500) this.$emit("scroll-end");
       this.scrolled = scrollTop > 0;
     }
   }
