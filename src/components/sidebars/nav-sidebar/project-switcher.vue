@@ -8,7 +8,10 @@
       </v-modal>
     </portal>
     <button
-      v-tooltip="$store.state.auth.url + `<br>${$t('latency')}: ${Math.round($store.state.latency[$store.state.latency.length - 1].latency)}ms`"
+      v-tooltip.left="{
+        content: $store.state.auth.url + `<br>${$t('latency')}: ${Math.round($store.state.latency[$store.state.latency.length - 1].latency)}ms`,
+        boundariesElement: 'body'
+      }"
       @click="active = true">
       <v-signal class="icon" />
       <span class="no-wrap">{{ $store.state.auth.projectName }}</span>
