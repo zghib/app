@@ -4,7 +4,7 @@
       :style="{ borderColor: `var(--${color})` }"
       class="wrapper">
       <img
-        v-if="src && !error"
+        v-if="src != null && !error"
         v-show="!error && loading === false"
         :src="src"
         :alt="alt"
