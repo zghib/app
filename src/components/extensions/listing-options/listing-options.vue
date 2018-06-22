@@ -97,7 +97,7 @@ export default {
 
       const filePath = `${this.$api.url}/${this.listing.path.replace(
         "meta.json",
-        "Options.js"
+        "options.js"
       )}`;
 
       Vue.component(this.componentName, () => ({

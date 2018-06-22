@@ -1,49 +1,34 @@
 <template>
   <div class="v-field">
-    <fieldset v-if="fieldset">
+    <component :is="fieldset ? 'fieldset' : 'p'">
       <div>
-        <legend>{{ field.name }}</legend>
+        <div class="label">
+          <component :is="fieldset ? 'legend' : 'label'" :for="field.field">{{ field.name }}</component>
+          <label v-if="batchMode"><v-toggle :value="!blocked" @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" /></label>
+        </div>
         <small v-if="!readonly && field.comment">{{ field.comment }}</small>
-        <v-interface
-          :id="field.interface"
-          :name="field.field"
-          :required="Boolean(field.required)"
-          :readonly="readonly"
-          :options="field.options"
-          :type="field.type"
-          :value="values[field.field]"
-          :relationship="field.relationship"
-          @input="readonly ? null : $emit('stageValue', {
-            field: field.field,
-            value: $event
-          })"
-          @setfield="readonly ? null : $emit('stageValue', {
-            field: $event.field,
-            value: $event.value,
-          })" />
+        <div class="field-wrapper">
+          <v-interface
+            :id="field.field"
+            :name="field.field"
+            :required="Boolean(field.required)"
+            :readonly="readonly || blocked"
+            :options="field.options"
+            :type="field.type"
+            :value="values[field.field]"
+            :relationship="field.relationship"
+            @input="readonly ? null : $emit('stage-value', {
+              field: field.field,
+              value: $event
+            })"
+            @setfield="readonly ? null : $emit('stage-value', {
+              field: $event.field,
+              value: $event.value,
+            })" />
+          <div class="blocker" v-if="blocked" @click="$emit('activate', field.field)" />
+        </div>
       </div>
-    </fieldset>
-    <p v-else>
-      <label :for="field.field">{{ field.name }}</label>
-      <small v-if="!readonly && field.comment">{{ field.comment }}</small>
-      <v-interface
-        :id="field.interface"
-        :name="field.field"
-        :required="Boolean(field.required)"
-        :readonly="readonly"
-        :options="field.options"
-        :type="field.type"
-        :value="values[field.field]"
-        :relationship="field.relationship"
-        @input="readonly ? null : $emit('stageValue', {
-          field: field.field,
-          value: $event
-        })"
-        @setfield="readonly ? null : $emit('stageValue', {
-          field: $event.field,
-          value: $event.value,
-        })" />
-    </p>
+    </component>
   </div>
 </template>
 
@@ -62,6 +47,14 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    blocked: {
+      type: Boolean,
+      default: false
+    },
+    batchMode: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -77,6 +70,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.field-wrapper {
+  position: relative;
+}
+
 label,
 legend {
   margin-bottom: 10px;
@@ -105,5 +102,36 @@ small {
   font-style: italic;
   font-size: 12px;
   color: var(--gray);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+
+  > * {
+    display: inline-block;
+    max-width: max-content;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+  }
+}
+
+.blocker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--body-background);
+  opacity: 0.7;
+  transition: opacity var(--fast) var(--transition-out);
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.3;
+    transition: opacity var(--fast) var(--transition-in);
+  }
 }
 </style>

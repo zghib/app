@@ -117,6 +117,7 @@ export default {
   item_count: "No Items | One Item | {count} Items",
   item_count_filter:
     "No Filtered Items | One Filtered Item | {count} Filtered Items",
+  latency: "Latency",
   learn_more: "Learn More",
   leave_comment: "Leave a comment...",
   length: "Length",

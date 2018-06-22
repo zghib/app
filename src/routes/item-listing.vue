@@ -86,6 +86,7 @@
 
 <script>
 import formatTitle from "@directus/format-title";
+import store from "../store/";
 import VItemListing from "../components/item-listing/item-listing.vue";
 import VSearchFilter from "../components/search-filter/search-filter.vue";
 
@@ -239,6 +240,12 @@ export default {
   beforeRouteEnter(to, from, next) {
     const { collection } = to.params;
 
+    const collectionInfo = store.state.collections[collection];
+
+    if (collectionInfo.single) {
+      return next(`/collections/${collection}/1`);
+    }
+
     return Promise.all([
       api.getMyListingPreferences(collection),
       api.getFields(collection)
@@ -265,6 +272,12 @@ export default {
     this.fields = [];
     this.selection = [];
     this.meta = {};
+
+    const collectionInfo = this.$store.state.collections[collection];
+
+    if (collectionInfo.single) {
+      return next(`/collections/${collection}/1`);
+    }
 
     return Promise.all([
       api.getMyListingPreferences(collection),

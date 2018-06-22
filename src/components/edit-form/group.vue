@@ -17,13 +17,17 @@
           v-if="isGroup(child)"
           :values="values"
           :field="child"
-          @stageValue="$emit('stageValue', $event)" />
+          @stage-value="$emit('stageValue', $event)" />
         <v-field
           v-else
           :readonly="readonly"
           :values="values"
           :field="child"
-          @stageValue="$emit('stageValue', $event)" />
+          :blocked="batchMode && !activeFields.includes(field.field)"
+          :batch-mode="batchMode"
+          @activate="$emit('activate', $event)"
+          @deactivate="$emit('deactivate', $event)"
+          @stage-value="$emit('stageValue', $event)" />
       </div>
     </div>
   </v-interface>
@@ -49,6 +53,14 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    batchMode: {
+      type: Boolean,
+      default: false
+    },
+    activeFields: {
+      type: Array,
+      default: () => []
     }
   },
   methods: {

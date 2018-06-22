@@ -123,7 +123,7 @@ export default {
 
       const filePath = `${this.$api.url}/${this.interfaceInfo.path.replace(
         "meta.json",
-        "Readonly.js"
+        "readonly.js"
       )}`;
 
       Vue.component(this.componentName, () => ({

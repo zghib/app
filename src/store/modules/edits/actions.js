@@ -28,6 +28,10 @@ export function stageValue({ commit, state }, { field, value }) {
   return commit(STAGE_VALUE, { field, value });
 }
 
+export function unstageValue({ commit }, field) {
+  return commit(UNSTAGE_VALUE, { field });
+}
+
 export function save({ commit, state }, overrides) {
   function commitCreated(res) {
     commit(ITEM_CREATED);

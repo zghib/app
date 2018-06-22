@@ -17,13 +17,21 @@
         :values="values"
         :field="field"
         :readonly="readonly"
-        @stageValue="$emit('stageValue', $event)" />
+        :batch-mode="batchMode"
+        :active-fields="activeFields"
+        @activate="activateField"
+        @deactivate="deactivateField"
+        @stage-value="$emit('stage-value', $event)" />
       <v-field
         v-else
         :values="values"
         :field="field"
         :readonly="readonly"
-        @stageValue="$emit('stageValue', $event)" />
+        :blocked="batchMode && !activeFields.includes(field.field)"
+        :batch-mode="batchMode"
+        @activate="activateField"
+        @deactivate="deactivateField"
+        @stage-value="$emit('stage-value', $event)" />
     </div>
   </form>
 </template>
@@ -52,7 +60,16 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    batchMode: {
+      type: Boolean,
+      default: false
     }
+  },
+  data() {
+    return {
+      activeFields: []
+    };
   },
   computed: {
     fieldsGrouped() {
@@ -87,6 +104,19 @@ export default {
   methods: {
     isGroup(field) {
       return field.children && Array.isArray(field.children);
+    },
+    activateField(field) {
+      if (!this.batchMode) return;
+
+      this.activeFields = [...this.activeFields, field];
+    },
+    deactivateField(field) {
+      if (!this.batchMode) return;
+
+      this.activeFields = this.activeFields.filter(
+        activeField => activeField !== field
+      );
+      this.$emit("unstage-value", field);
     }
   }
 };

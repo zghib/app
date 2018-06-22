@@ -132,7 +132,7 @@ export default {
 
       const filePath = `${this.$api.url}/${this.interface.path.replace(
         "meta.json",
-        "Interface.js"
+        "interface.js"
       )}`;
 
       Vue.component(this.componentName, () => ({

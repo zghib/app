@@ -52,7 +52,9 @@
       :fields="fields"
       :values="values"
       :collection="collection"
-      @stageValue="stageValue" />
+      :batch-mode="batch"
+      @unstage-value="unstageValue"
+      @stage-value="stageValue" />
 
     <portal to="modal" v-if="confirmRemove">
       <v-confirm
@@ -253,11 +255,17 @@ export default {
     },
     primaryKeyField() {
       return this.$lodash.find(this.fields, { interface: "primary-key" }).field;
+    },
+    batch() {
+      return this.primaryKey.includes(",");
     }
   },
   methods: {
     stageValue({ field, value }) {
       this.$store.dispatch("stageValue", { field, value });
+    },
+    unstageValue(field) {
+      this.$store.dispatch("unstageValue", field);
     },
     remove() {
       this.confirmRemoveLoading = true;
@@ -271,7 +279,6 @@ export default {
         })
         .catch(console.error); // eslint-disable-line no-console
     },
-    discard() {},
     save(method) {
       this.saving = true;
 
