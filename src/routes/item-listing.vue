@@ -1,6 +1,20 @@
 <template>
   <div class="route-item-listing">
     <v-header-bar info-toggle>
+      <template slot="title">
+        <button
+          :class="currentBookmark ? 'active' : null"
+          :disabled="currentBookmark"
+          class="bookmark"
+          @click="bookmarkModal = true">
+          <i class="material-icons">
+            {{ currentBookmark ? 'bookmark' : 'bookmark_border' }}
+          </i>
+        </button>
+        <div
+          v-if="currentBookmark"
+          class="bookmark-name no-wrap">({{ currentBookmark.title }})</div>
+      </template>
       <v-search-filter
         v-show="selection.length === 0 && !emptyCollection"
         :filters="filters"
@@ -81,6 +95,14 @@
         @cancel="confirmRemove = false"
         @confirm="remove" />
     </portal>
+
+    <portal to="modal" v-if="bookmarkModal">
+      <v-prompt
+        :message="$t('name_bookmark')"
+        v-model="bookmarkTitle"
+        @cancel="bookmarkModal = false"
+        @confirm="saveBookmark" />
+    </portal>
   </div>
 </template>
 
@@ -104,10 +126,38 @@ export default {
       meta: null,
       preferences: null,
       fields: [],
-      confirmRemove: false
+      confirmRemove: false,
+
+      bookmarkModal: false,
+      bookmarkTitle: ""
     };
   },
   computed: {
+    currentBookmark() {
+      if (!this.preferences) return;
+
+      const bookmarks = this.$store.state.bookmarks;
+      const preferences = {
+        collection: this.preferences.collection,
+        search_query: this.preferences.search_query,
+        filters: this.preferences.filters,
+        view_options: this.preferences.view_options,
+        view_type: this.preferences.view_type,
+        view_query: this.preferences.view_query
+      };
+      const currentBookmark = bookmarks.filter(bookmark => {
+        const bookmarkPreferences = {
+          collection: bookmark.collection,
+          search_query: bookmark.search_query,
+          filters: bookmark.filters,
+          view_options: bookmark.view_options,
+          view_type: bookmark.view_type,
+          view_query: bookmark.view_query
+        };
+        return this.$lodash.isEqual(bookmarkPreferences, preferences);
+      })[0];
+      return currentBookmark || null;
+    },
     collection() {
       return this.$route.params.collection;
     },
@@ -235,6 +285,31 @@ export default {
         })
         .catch(console.error); // eslint-disable-line no-console
       this.confirmRemove = false;
+    },
+    saveBookmark() {
+      const preferences = { ...this.preferences };
+      preferences.user = this.$store.state.currentUser.id;
+      preferences.title = this.bookmarkTitle;
+      delete preferences.id;
+      delete preferences.group;
+      if (!preferences.collection) {
+        preferences.collection = this.collection;
+      }
+      this.$store
+        .dispatch("saveBookmark", preferences)
+        .then(() => {
+          this.bookmarkModal = false;
+        })
+        .catch(console.error); // eslint-disable-line no-console
+    }
+  },
+  watch: {
+    $route() {
+      if (this.$route.query.b) {
+        this.$router.replace({
+          path: this.$route.path
+        });
+      }
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -299,3 +374,35 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.bookmark {
+  margin-left: 10px;
+  opacity: 0.4;
+  transition: opacity var(--fast) var(--transition);
+  position: relative;
+  &:hover {
+    opacity: 1;
+  }
+  i {
+    font-size: 24px;
+    height: 20px;
+    transform: translateY(-3px); // Vertical alignment of icon
+  }
+}
+.bookmark.active {
+  opacity: 1;
+  i {
+    color: var(--accent);
+  }
+}
+.bookmark-name {
+  color: var(--accent);
+  margin-left: 5px;
+  margin-top: 3px;
+  font-size: 0.77em;
+  line-height: 1.1;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+</style>
