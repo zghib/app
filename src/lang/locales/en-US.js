@@ -142,6 +142,8 @@ export default {
   no_fields: "No Fields Setup",
   no_fields_body:
     "It seems like this collection doesn't have any fields setup yet",
+  no_files: "No Files",
+  no_files_body: "It seems like there haven't been any files uploaded yet",
   page_not_found: "Page Not Found",
   page_not_found_body: "The page you are looking for doesn't seem to exist.",
   name_bookmark: "What would you like to name this bookmark?",

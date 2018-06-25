@@ -13,6 +13,12 @@
     :body="$t('no_fields_body')" />
 
   <v-error
+    v-else-if="items.meta && items.meta.total_count === 0 && collection === 'directus_files'"
+    icon="image"
+    :title="$t('no_files')"
+    :body="$t('no_files_body')" />
+
+  <v-error
     v-else-if="items.meta && items.meta.total_count === 0"
     icon="web_asset"
     :title="$t('empty_collection')"

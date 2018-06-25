@@ -14,15 +14,12 @@
 
         <section class="content">
           <project-switcher />
-
           <nav-menu
             :title="$t('collections')"
             :links="collectionNames.map(name => ({
               path: `/collections/${name}`,
               name: $t(`collections-${name}`)
-            }))"
-            no-border />
-
+            }))" />
           <nav-bookmarks :bookmarks="bookmarks" />
         </section>
         <user-menu />

@@ -142,6 +142,7 @@ nav:not(.no-border) {
   & button {
     opacity: 0;
     transition: opacity var(--fast) var(--transition);
+    display: flex;
 
     i {
       font-size: 18px;

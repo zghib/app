@@ -1,5 +1,6 @@
 <template>
-  <div class="route-item-listing">
+  <v-not-found v-if="notFound" />
+  <div class="route-item-listing" v-else>
     <v-header-bar info-toggle>
       <template slot="title">
         <button
@@ -111,6 +112,7 @@ import formatTitle from "@directus/format-title";
 import store from "../store/";
 import VItemListing from "../components/item-listing/item-listing.vue";
 import VSearchFilter from "../components/search-filter/search-filter.vue";
+import VNotFound from "./not-found.vue";
 
 import api from "../api";
 
@@ -118,7 +120,8 @@ export default {
   name: "route-item-listing",
   components: {
     VItemListing,
-    VSearchFilter
+    VSearchFilter,
+    VNotFound
   },
   data() {
     return {
@@ -129,7 +132,9 @@ export default {
       confirmRemove: false,
 
       bookmarkModal: false,
-      bookmarkTitle: ""
+      bookmarkTitle: "",
+
+      notFound: false
     };
   },
   computed: {
@@ -299,6 +304,7 @@ export default {
         .dispatch("saveBookmark", preferences)
         .then(() => {
           this.bookmarkModal = false;
+          this.bookmarkTitle = "";
         })
         .catch(console.error); // eslint-disable-line no-console
     }
@@ -315,9 +321,16 @@ export default {
   beforeRouteEnter(to, from, next) {
     const { collection } = to.params;
 
-    const collectionInfo = store.state.collections[collection];
+    const collectionInfo = store.state.collections[collection] || null;
 
-    if (collectionInfo.single) {
+    if (
+      collection.startsWith("directus_") === false &&
+      collectionInfo === null
+    ) {
+      return next(vm => (vm.notFound = true));
+    }
+
+    if (collectionInfo && collectionInfo.single) {
       return next(`/collections/${collection}/1`);
     }
 
@@ -347,10 +360,19 @@ export default {
     this.fields = [];
     this.selection = [];
     this.meta = {};
+    this.notFound = false;
 
-    const collectionInfo = this.$store.state.collections[collection];
+    const collectionInfo = this.$store.state.collections[collection] || null;
 
-    if (collectionInfo.single) {
+    if (
+      collection.startsWith("directus_") === false &&
+      collectionInfo === null
+    ) {
+      this.notFound = true;
+      return next();
+    }
+
+    if (collectionInfo && collectionInfo.single) {
       return next(`/collections/${collection}/1`);
     }
 

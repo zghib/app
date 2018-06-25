@@ -12,7 +12,8 @@
         class="input"
         :value="value"
         :placeholder="placeholder"
-        @input="$emit('input', $event)" />
+        @input="$emit('input', $event)"
+        @keydown.enter="$emit('confirm')" />
       <div class="buttons">
         <button class="cancel" @click="$emit('cancel')">{{ cancelText || $t('cancel') }}</button>
         <v-button

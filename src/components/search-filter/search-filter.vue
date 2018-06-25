@@ -18,7 +18,7 @@
         :value="searchQuery"
         :class="{ 'has-filters': hasFilters }"
         class="search"
-        type="search"
+        type="text"
         @input="search($event.target.value)">
       <transition name="fade">
         <button
