@@ -9,7 +9,7 @@
         <small v-if="!readonly && field.comment">{{ field.comment }}</small>
         <div class="field-wrapper">
           <v-interface
-            :id="field.field"
+            :id="field.interface"
             :name="field.field"
             :required="Boolean(field.required)"
             :readonly="readonly || blocked"
