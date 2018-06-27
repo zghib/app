@@ -150,7 +150,7 @@ export default {
 
       if (
         !lastItem ||
-        ((lastItem.type.toLowerCase !== "entry" ||
+        ((lastItem.type.toLowerCase() !== "entry" ||
           lastItem.action.toLowerCase() !== "add") &&
           this.show !== "comments")
       ) {
@@ -163,7 +163,7 @@ export default {
 
       return activityWithChanges.map(activity => ({
         ...activity,
-        htmlcomment: snarkdown(activity.comment.replace(/#/g, "") || "")
+        htmlcomment: snarkdown((activity.comment || "").replace(/#/g, "") || "")
       }));
     }
   },
