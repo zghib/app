@@ -24,7 +24,7 @@
         :placeholder="resultCopy"
         @filter="updatePreferences('filters', $event)"
         @search="updatePreferences('search_query', $event)"
-        @clearFilters="clearFilters" />
+        @clear-filters="clearFilters" />
       <template slot="buttons">
         <v-header-button
           v-if="selection.length > 1"

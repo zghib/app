@@ -30,7 +30,7 @@
           <v-card
             :title="$t('settings_permissions')"
             element="li"
-            to="/settings/permissions"
+            to="/settings/roles"
             icon="group" />
 
           <v-card

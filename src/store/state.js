@@ -5,10 +5,8 @@ export default {
   latency: [],
   settings: {},
   currentUser: {},
-  fields: {},
   collections: {},
   bookmarks: [],
-  listingPreferences: {},
   sidebars: {
     nav: false,
     info: false

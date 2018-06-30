@@ -103,9 +103,13 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 body.no-padding {
   padding: 0 !important;
+
+  &::before {
+    display: none;
+  }
 }
 </style>
 

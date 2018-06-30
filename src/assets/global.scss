@@ -346,6 +346,17 @@ body {
   color: var(--dark-gray);
   background-color: var(--body-background);
   min-height: 100%;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: var(--header-height);
+    left: 0;
+    top: 0;
+    background-color: var(--darkest-gray);
+  }
 }
 
 body:not(.user-is-tabbing) * {

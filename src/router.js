@@ -15,6 +15,8 @@ import Settings from "./routes/settings/settings.vue";
 import SettingsGlobal from "./routes/settings/global.vue";
 import SettingsCollections from "./routes/settings/collections.vue";
 import SettingsFields from "./routes/settings/fields.vue";
+import SettingsRoles from "./routes/settings/roles.vue";
+import SettingsPermissions from "./routes/settings/permissions.vue";
 
 import ModalDebug from "./routes/modal-debug.vue";
 
@@ -141,6 +143,15 @@ const router = new Router({
     {
       path: "/settings/collections/:collection",
       component: SettingsFields,
+      props: true
+    },
+    {
+      path: "/settings/roles",
+      component: SettingsRoles
+    },
+    {
+      path: "/settings/roles/:id",
+      component: SettingsPermissions,
       props: true
     },
     {
