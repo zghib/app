@@ -12,7 +12,7 @@
         class="input"
         :value="value"
         :placeholder="placeholder"
-        @input="$emit('input', $event)"
+        @input="emitValue"
         @keydown.enter="$emit('confirm')" />
       <div class="buttons">
         <button class="cancel" @click="$emit('cancel')">{{ cancelText || $t('cancel') }}</button>
@@ -63,6 +63,10 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    },
+    safe: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
@@ -71,6 +75,22 @@ export default {
   computed: {
     disabled() {
       return this.value == null || this.value.length === 0;
+    }
+  },
+  methods: {
+    emitValue(val) {
+      if (this.safe) {
+        val = val
+          .toString()
+          .toLowerCase()
+          .replace(/\s+/g, "_") // Replace spaces with _
+          .replace(/[^\w_]+/g, "") // Remove all non-word chars
+          .replace(/__+/g, "_") // Replace multiple _ with single _
+          .replace(/^_+/, "") // Trim _ from start of text
+          .replace(/_+$/, ""); // Trim _ from end of text
+      }
+
+      this.$emit("input", val);
     }
   }
 };

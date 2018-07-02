@@ -24,6 +24,7 @@
     <portal to="modal" v-if="addNew">
       <v-prompt
         v-model="newName"
+        safe
         :confirm-text="$t('create')"
         :message="$t('create_collection')"
         :placeholder="$t('enter_collection_name')"
