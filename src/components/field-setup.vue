@@ -94,7 +94,7 @@
             :loading="option.loading"
             :options="option.options"
             :value="options[optionID] || option.default"
-            @input="options[optionID] = $event" />
+            @input="$set(options, optionID, $event)" />
         </div>
       </form>
     </div>
