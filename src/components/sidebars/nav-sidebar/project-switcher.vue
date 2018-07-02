@@ -9,7 +9,7 @@
     </portal>
     <button
       v-tooltip.left="{
-        content: $store.state.auth.url + `<br>${$t('latency')}: ${Math.round($store.state.latency[$store.state.latency.length - 1].latency)}ms`,
+        content: $store.state.auth.url + `<br>${$t('latency')}: ${$n(Math.round($store.state.latency[$store.state.latency.length - 1].latency))}ms`,
         boundariesElement: 'body'
       }"
       @click="active = true">
@@ -40,7 +40,9 @@ export default {
 
 <style lang="scss" scoped>
 .project-switcher button {
-  height: var(--header-height);
+  height: calc(
+    var(--header-height) + 1px
+  ); /* Force border bottom to be aligned with listing headers */
   width: 100%;
   border-bottom: 1px solid var(--lightest-gray);
   display: flex;

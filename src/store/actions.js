@@ -123,6 +123,21 @@ export function getCollections({ commit }) {
 }
 
 export function addCollection({ commit }, collection) {
+  if (!isEmpty(collection.translation)) {
+    forEach(collection.translation, (value, locale) => {
+      i18n.mergeLocaleMessage(locale, {
+        [`collections-${collection.collection}`]: value
+      });
+    });
+  } else {
+    forEach(availableLanguages, locale => {
+      i18n.mergeLocaleMessage(locale, {
+        [`collections-${collection.collection}`]: formatTitle(
+          collection.collection
+        )
+      });
+    });
+  }
   commit(ADD_COLLECTION, collection);
 }
 
@@ -151,5 +166,10 @@ export function saveBookmark({ commit }, bookmark) {
 
 export function deleteBookmark({ commit }, bookmarkID) {
   commit(DELETE_BOOKMARK, bookmarkID);
-  return api.deleteCollectionPreset(bookmarkID).catch(console.error); // eslint-disable-line no-console
+  return api.deleteCollectionPreset(bookmarkID).catch(error => {
+    this.$events.emit("error", {
+      notify: this.$t("something_went_wrong_body"),
+      error
+    });
+  });
 }

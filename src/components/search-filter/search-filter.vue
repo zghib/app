@@ -230,9 +230,7 @@ export default {
 }
 
 .field:not(:last-child) {
-  margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid var(--lighter-gray);
 
   .name {
     display: flex;

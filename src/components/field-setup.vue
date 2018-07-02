@@ -1,5 +1,6 @@
 <template>
   <v-modal :title="$t('create_field')" :cancel="() => {}" :buttons="buttons" @next="nextTab" @close="$emit('close')">
+
     <div class="tabs">
       <button
         :class="{ active: activeTab === 'interface' }"
@@ -13,17 +14,15 @@
         @click="activeTab = 'options'"
         :disabled="optionsDisabled">{{ $t('options') }}</button>
     </div>
+
     <div class="tab" v-show="activeTab === 'interface'">
       <h1 class="style-0">{{ $t("choose_interface") }}</h1>
-
       <p v-if="interfaceName">
         {{ $t("currently_selected", { thing: interfaces[interfaceName].name}) }}
       </p>
-
       <p v-else>
         {{ $t("select_interface_below" )}}
       </p>
-
       <div class="interfaces">
         <article
           v-for="ext in interfaces"
@@ -41,6 +40,7 @@
         </article>
       </div>
     </div>
+
     <div class="tab" v-show="activeTab === 'schema'">
       <h1 class="style-0">{{ $t("name_field", { field: "dropdown" }) }}</h1>
       <p>{{ $t("intelligent_defaults") }}</p>
@@ -73,6 +73,7 @@
         </details>
       </form>
     </div>
+
     <div class="tab" v-show="activeTab === 'options'">
       <h1 class="style-0">{{ $t('almost_done_options') }}</h1>
       <p>{{ $t('almost_done_copy') }}</p>
@@ -84,7 +85,6 @@
           <label :for="optionID">{{ option.name }}</label>
           <p>{{ option.comment }}</p>
           <v-interface
-            v-model="options[optionID]"
             :id="option.interface"
             :name="optionID"
             :type="option.type"
@@ -92,10 +92,13 @@
             :readonly="option.readonly"
             :required="option.required"
             :loading="option.loading"
-            :options="option.options" />
+            :options="option.options"
+            :value="options[optionID] || option.default"
+            @input="options[optionID] = $event" />
         </div>
       </form>
     </div>
+
   </v-modal>
 </template>
 

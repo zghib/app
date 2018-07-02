@@ -22,7 +22,14 @@
       primary-key-field="collection"
       link="__link__" />
     <portal to="modal" v-if="addNew">
-      <v-prompt :message="$t('create_collection')" :placeholder="$t('enter_collection_name')" v-model="newName" :confirm-text="$t('create')" :loading="adding" @cancel="addNew = false" @confirm="add" />
+      <v-prompt
+        v-model="newName"
+        :confirm-text="$t('create')"
+        :message="$t('create_collection')"
+        :placeholder="$t('enter_collection_name')"
+        :loading="adding"
+        @cancel="addNew = false"
+        @confirm="add" />
     </portal>
   </div>
 </template>
@@ -96,7 +103,12 @@ export default {
           this.$store.dispatch("addCollection", collection);
           this.$router.push(`/settings/collections/${this.newName}`);
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     }
   }
 };

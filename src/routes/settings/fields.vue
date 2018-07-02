@@ -21,10 +21,10 @@
     </v-header-bar>
 
     <h2 class="style-1">{{ $tc("collection_contains_items", count, { collection: $helpers.formatTitle(collection), count: count === "--" ? "--" : $n(count) })}}</h2>
-    <em>Collection names cannot be edited at this time.</em>
+    <em>{{ $t('collection_names_cannot_be_changed') }}</em>
 
-    <h2 class="style-1">Fields</h2>
-    <em>Field settings are saved automatically</em>
+    <h2 class="style-1">{{ $t('fields') }}</h2>
+    <em class="notice">{{ $t('fields_are_saved_automatically') }}</em>
 
     <div class="table">
       <div class="header">
@@ -180,7 +180,12 @@ export default {
         .then(meta => {
           this.count = meta.total_count;
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     remove() {
       this.$api
@@ -189,7 +194,12 @@ export default {
           this.$store.dispatch("removeCollection", this.collection);
           this.$router.push("/settings/collections");
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     save() {
       this.saving = true;
@@ -204,7 +214,12 @@ export default {
           });
           this.$router.push("/settings/collections");
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     stageValue({ field, value }) {
       if (value === this.collectionInfo[field]) {
@@ -229,7 +244,12 @@ export default {
               return field;
             });
           })
-          .catch(console.error); // eslint-disable-line no-console
+          .catch(error => {
+            this.$events.emit("error", {
+              notify: this.$t("something_went_wrong_body"),
+              error
+            });
+          });
       }
 
       // Prevents the API from trying to search for the ID
@@ -245,7 +265,12 @@ export default {
           this.fieldBeingEdited = null;
           this.fields = [...this.fields, savedFieldInfo];
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     startEditingField(field) {
       this.fieldBeingEdited = field;
@@ -266,7 +291,12 @@ export default {
           this.fieldToBeRemoved = null;
           this.confirmFieldRemove = false;
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     saveSort() {
       const fieldUpdates = this.fieldsWithSort.map(field => ({
@@ -280,7 +310,12 @@ export default {
         .then(fields => {
           this.fields = fields;
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -405,5 +440,9 @@ h2 {
       color: var(--danger);
     }
   }
+}
+
+.notice {
+  color: var(--danger);
 }
 </style>

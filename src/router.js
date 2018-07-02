@@ -2,6 +2,8 @@ import Vue from "vue";
 import Router from "vue-router";
 import api from "./api";
 import store from "./store";
+import { i18n } from "./lang/";
+import EventBus from "./events/";
 import hydrateStore from "./hydrate";
 import Collections from "./routes/collections.vue";
 import ItemListing from "./routes/item-listing.vue";
@@ -96,7 +98,12 @@ const router = new Router({
               path: `/collections/${collection}?b=${bookmark.id}`
             });
           })
-          .catch(console.error); // eslint-disable-line no-console
+          .catch(error =>
+            EventBus.emit("error", {
+              notify: i18n.t("something_went_wrong_body"),
+              error
+            })
+          );
       }
     },
     {

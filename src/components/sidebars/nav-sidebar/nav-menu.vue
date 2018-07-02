@@ -3,7 +3,7 @@
     <h3
       v-if="title"
       class="style-4">{{ title }}</h3>
-    <nav :class="{ 'no-border': noBorder }">
+    <nav>
       <ul>
         <li
           v-for="({ path, name, icon, color }) in links"
@@ -44,10 +44,6 @@ export default {
     links: {
       type: Array,
       required: true
-    },
-    noBorder: {
-      type: Boolean,
-      default: false
     }
   }
 };
@@ -121,7 +117,7 @@ nav > ul > li > * {
   padding: 5px 0;
 }
 
-nav:not(.no-border) {
+nav {
   padding-bottom: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid var(--lightest-gray);

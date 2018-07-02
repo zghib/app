@@ -101,7 +101,7 @@
       <v-prompt
         :message="$t('name_bookmark')"
         v-model="bookmarkTitle"
-        @cancel="bookmarkModal = false"
+        @cancel="cancelBookmark"
         @confirm="saveBookmark" />
     </portal>
   </div>
@@ -226,6 +226,10 @@ export default {
     }
   },
   methods: {
+    cancelBookmark() {
+      this.bookmarkTitle = "";
+      this.bookmarkModal = false;
+    },
     setViewQuery(query) {
       const newViewQuery = {
         ...this.preferences.view_query,
@@ -264,7 +268,12 @@ export default {
         .updateCollectionPreset(this.preferences.id, {
           [key]: value
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     createCollectionPreset() {
       return this.$api
@@ -276,7 +285,12 @@ export default {
         .then(({ data }) => {
           this.$set(this.preferences, "id", data.id);
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     clearFilters() {
       this.updatePreferences("filters", null);
@@ -288,7 +302,12 @@ export default {
         .then(() => {
           this.$refs.listing.getItems();
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
       this.confirmRemove = false;
     },
     saveBookmark() {
@@ -306,7 +325,12 @@ export default {
           this.bookmarkModal = false;
           this.bookmarkTitle = "";
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     }
   },
   watch: {
@@ -351,7 +375,12 @@ export default {
           vm.$data.fields = fields;
         });
       })
-      .catch(console.error); // eslint-disable-line no-console
+      .catch(error => {
+        this.$events.emit("error", {
+          notify: this.$t("something_went_wrong_body"),
+          error
+        });
+      });
   },
   beforeRouteUpdate(to, from, next) {
     const { collection } = to.params;
@@ -392,7 +421,12 @@ export default {
         this.fields = fields;
         next();
       })
-      .catch(console.error); // eslint-disable-line no-console
+      .catch(error => {
+        this.$events.emit("error", {
+          notify: this.$t("something_went_wrong_body"),
+          error
+        });
+      });
   }
 };
 </script>

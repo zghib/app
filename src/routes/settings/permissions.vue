@@ -304,7 +304,12 @@ export default {
           this.saving = false;
           this.$router.push("/settings/roles");
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     saveRole() {
       if (Object.keys(this.roleEdits).length === 0) return Promise.resolve();
@@ -391,7 +396,12 @@ export default {
           this.removing = false;
           this.$router.push("/settings/roles");
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     loadPermissions() {
       if (this.isNew) return;
@@ -447,7 +457,12 @@ export default {
             array => this.$lodash.keyBy(array, "field")
           );
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     setPermission({ collection, permission, value, status = null }) {
       if (status === null) {

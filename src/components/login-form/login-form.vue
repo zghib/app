@@ -6,7 +6,6 @@
         id="email"
         v-model="email"
         :placeholder="$t('email')"
-        :disabled="exists !== true"
         icon-left="person"
         class="input"
         type="email"
@@ -52,7 +51,6 @@
         id="email"
         v-model="email"
         :placeholder="$t('email')"
-        :disabled="exists !== true"
         icon-left="person"
         class="input"
         type="email"
@@ -63,7 +61,6 @@
         id="password"
         v-model="password"
         :placeholder="$t('password')"
-        :disabled="exists !== true"
         icon-left="lock"
         type="password"
         name="password"
@@ -189,9 +186,12 @@ export default {
           this.loading = false;
           this.$router.push(lastPage || "/");
         })
-        .catch(err => {
+        .catch(error => {
           this.loading = false;
-          console.error(err); // eslint-disable-line no-console
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
           this.$router.push("/");
         });
     },
@@ -233,7 +233,10 @@ export default {
           this.gettingThirdPartyAuthProviders = false;
         })
         .catch(error => {
-          console.error(error); // eslint-disable-line no-console
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
           this.gettingThirdPartyAuthProviders = false;
         });
     },
@@ -281,7 +284,12 @@ export default {
         this.$store
           .dispatch("loginSSO", this.$route.query.request_token)
           .then(() => this.enterApp())
-          .catch(console.error); // eslint-disable-line no-console
+          .catch(error => {
+            this.$events.emit("error", {
+              notify: this.$t("something_went_wrong_body"),
+              error
+            });
+          });
       }
     }
   }

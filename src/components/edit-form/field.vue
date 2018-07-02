@@ -3,8 +3,14 @@
     <component :is="fieldset ? 'fieldset' : 'p'">
       <div>
         <div class="label">
-          <component :is="fieldset ? 'legend' : 'label'" :for="field.field">{{ field.name }}</component>
-          <label v-if="batchMode"><v-toggle :value="!blocked" @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" /></label>
+          <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
+            {{ field.name }}<i v-tooltip="$t('required')" class="material-icons" v-if="field.required">star</i>
+          </component>
+          <label v-if="batchMode">
+            <v-toggle
+              :value="!blocked"
+              @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" />
+          </label>
         </div>
         <small v-if="!readonly && field.comment">{{ field.comment }}</small>
         <div class="field-wrapper">
@@ -115,6 +121,12 @@ small {
     &:first-child {
       margin-right: 10px;
     }
+  }
+
+  i {
+    color: var(--accent);
+    vertical-align: super;
+    font-size: 10px;
   }
 }
 

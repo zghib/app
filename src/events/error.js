@@ -1,4 +1,4 @@
-import notify from "@/notify";
+import notify from "../notify";
 import { isEmpty, isUndefined } from "lodash";
 
 const handleError = error => {

@@ -72,7 +72,10 @@ export default {
         });
       })
       .catch(error => {
-        console.error(error); // eslint-disable-line no-console
+        this.$events.emit("error", {
+          notify: this.$t("something_went_wrong_body"),
+          error
+        });
         next(vm => {
           vm.$data.error = error;
         });

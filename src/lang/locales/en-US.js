@@ -46,6 +46,8 @@ export default {
   choose_interface: "Choose an interface for how this data should be managed.",
   connection: "Connection",
   collection: "Collection",
+  collection_names_cannot_be_changed:
+    "Collection names cannot be edited at this time.",
   collections: "Collections",
   collection_count: "No Collections | One Collection | {count} Collections",
   "collections-directus_files": "Files",
@@ -103,6 +105,7 @@ export default {
   equal_to: "Equal to",
   field: "Field",
   fields: "Fields",
+  fields_are_saved_automatically: "Field settings are saved automatically",
   file: "File",
   file_library: "File Library",
   forgot_password: "Forgot Password",
@@ -125,6 +128,8 @@ export default {
   item_count: "No Items | One Item | {count} Items",
   item_count_filter:
     "No Filtered Items | One Filtered Item | {count} Filtered Items",
+  item_deleted: "Item Deleted",
+  item_saved: "Item Saved",
   latency: "Latency",
   learn_more: "Learn More",
   leave_comment: "Leave a comment...",
@@ -215,7 +220,7 @@ export default {
   show_advanced_options: "Show advanced options",
   something_went_wrong: "Something went wrong..",
   something_went_wrong_body:
-    "We're having some trouble processing your request.. Please try again by refreshing this page. If the problem persist, please contact your system administrator.",
+    "We're having some trouble processing your request.. Please try again by refreshing this page. If the problem persists, please contact your system administrator.",
   sign_out: "Sign Out",
   sign_out_confirm: "Are you sure you want to sign out?",
   unsaved_changes_copy:
@@ -228,7 +233,7 @@ export default {
   validation: "Validation",
   version: "Version",
   version_and_updates: "Version and Updates",
-  view_type: "View type",
+  view_type: "View As...",
   write_blacklist: "Write Blacklist",
   write_blacklist_copy: "Select the fields that the user can edit",
   yes: "Yes"

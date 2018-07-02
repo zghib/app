@@ -18,60 +18,58 @@
         <v-textarea v-model="comment" class="textarea" :rows="5" required :placeholder="$t('leave_comment')" />
         <button type="submit">{{ $t('submit') }}</button>
       </form>
-      <transition-group name="activity-items" tag="div">
-        <article
-          v-for="(activity, index) in activityWithChanges"
-          class="activity-item"
-          :key="activity.id">
-          <i
-            v-if="activity.type === 'comment'"
-            class="material-icons">message</i>
-          <span
-            v-else
-            :title="activity.action"
-            :class="activity.action"
-            class="indicator" />
+      <article
+        v-for="(activity, index) in activityWithChanges"
+        class="activity-item"
+        :key="activity.id">
+        <i
+          v-if="activity.type === 'comment'"
+          class="material-icons">message</i>
+        <span
+          v-else
+          :title="activity.action"
+          :class="activity.action"
+          class="indicator" />
 
-          <div class="content">
-            <details v-if="activity.action !== 'external' && activity.changes && activity.name">
-              <summary class="title">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
-                v-if="activity.date"
-                :auto-update="1"
-                :since="activity.date"
-                :locale="$i18n.locale"
-                class="date" />
-              <i class="material-icons chevron">chevron_left</i></summary>
-              <div v-if="activity.changes">
-                <div
-                  v-for="({ field, before, after }) in activity.changes"
-                  class="change"
-                  :key="field.field">
-                  <p>{{ field.name }}</p>
-                  <div class="diff">
-                    <div
-                      :class="{ empty: !before }"
-                      class="before">{{ before || '--' }}</div>
-                    <div
-                      :class="{ empty: !after }"
-                      class="after">{{ after || '--' }}</div>
-                  </div>
-                </div>
-                <button
-                  v-if="index !== 0"
-                  class="revert"
-                  @click="previewing = activity">{{ $t("revert") }}</button>
-              </div>
-            </details>
-            <div class="title" v-else-if="activity.name">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
+        <div class="content">
+          <details v-if="activity.action !== 'external' && activity.changes && activity.name">
+            <summary class="title">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
               v-if="activity.date"
               :auto-update="1"
               :since="activity.date"
               :locale="$i18n.locale"
-              class="date" /></div>
-            <p v-if="activity.htmlcomment" v-html="activity.htmlcomment"></p>
-          </div>
-        </article>
-      </transition-group>
+              class="date" />
+            <i class="material-icons chevron">chevron_left</i></summary>
+            <div v-if="activity.changes">
+              <div
+                v-for="({ field, before, after }) in activity.changes"
+                class="change"
+                :key="field.field">
+                <p>{{ field.name }}</p>
+                <div class="diff">
+                  <div
+                    :class="{ empty: !before }"
+                    class="before">{{ before || '--' }}</div>
+                  <div
+                    :class="{ empty: !after }"
+                    class="after">{{ after || '--' }}</div>
+                </div>
+              </div>
+              <button
+                v-if="index !== 0"
+                class="revert"
+                @click="previewing = activity">{{ $t("revert") }}</button>
+            </div>
+          </details>
+          <div class="title" v-else-if="activity.name">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
+            v-if="activity.date"
+            :auto-update="1"
+            :since="activity.date"
+            :locale="$i18n.locale"
+            class="date" /></div>
+          <p v-if="activity.htmlcomment" v-html="activity.htmlcomment"></p>
+        </div>
+      </article>
     </div>
     <v-modal
       v-if="previewing !== null"
@@ -199,10 +197,13 @@ export default {
           this.data = data;
           this.loading = false;
         })
-        .catch(err => {
-          this.error = err;
+        .catch(error => {
+          this.error = error;
           this.loading = false;
-          console.error(err); // eslint-disable-line no-console
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
         });
 
       this.$api
@@ -212,7 +213,12 @@ export default {
           this.revisionsLoading = false;
           this.revisions = this.$lodash.keyBy(revisions, "activity");
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     formatItem(item) {
       const date = new Date(item.datetime);
@@ -263,7 +269,12 @@ export default {
           this.$emit("reload");
           this.hydrate();
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     addComment() {
       this.data = [
@@ -286,7 +297,12 @@ export default {
           item: this.primaryKey,
           comment: this.comment
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
       this.comment = "";
     }
   }
@@ -505,29 +521,5 @@ export default {
       opacity: 1;
     }
   }
-}
-
-.activity-item {
-  display: inline-block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.activity-items-move {
-  transition: var(--slow) var(--transition-in);
-}
-
-.activity-items-enter-active {
-  transition: var(--slow) var(--transition-in);
-}
-
-.activity-items-leave-active {
-  transition: var(--slow) var(--transition-out);
-}
-
-.activity-items-enter,
-.activity-items-leave-to {
-  opacity: 0;
-  transform: translateY(-100%);
 }
 </style>

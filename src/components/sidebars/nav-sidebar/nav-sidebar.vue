@@ -20,7 +20,7 @@
               path: `/collections/${name}`,
               name: $t(`collections-${name}`)
             }))" />
-          <nav-bookmarks :bookmarks="bookmarks" />
+          <nav-bookmarks :bookmarks="bookmarks" no-border />
         </section>
         <user-menu />
       </aside>

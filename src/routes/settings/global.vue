@@ -66,7 +66,12 @@ export default {
         .then(() => {
           this.hydrating = false;
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     }
   },
   beforeRouteLeave(to, from, next) {

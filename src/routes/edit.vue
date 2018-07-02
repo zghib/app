@@ -273,26 +273,43 @@ export default {
       this.$api
         .deleteItem(this.collection, this.primaryKey)
         .then(() => {
+          this.$notify.confirm(this.$t("item_deleted"));
           this.confirmRemoveLoading = false;
           this.confirmRemove = false;
           this.$router.push(`/collections/${this.collection}`);
         })
-        .catch(console.error); // eslint-disable-line no-console
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     },
     save(method) {
       this.saving = true;
 
       if (method === "copy") {
+        const values = Object.assign({}, this.values);
+
+        let primaryKeyField = "";
+
+        this.$lodash.forEach(this.fields, (info, fieldName) => {
+          if (info.primary_key === true) primaryKeyField = fieldName;
+        });
+
+        delete values[primaryKeyField];
+
         return this.$store
           .dispatch("save", {
             primaryKey: "+",
-            values: this.values
+            values
           })
           .then(res => {
             this.saving = false;
             return res.data[this.primaryKeyField];
           })
           .then(pk => {
+            this.$notify.confirm(this.$t("item_saved"));
             if (this.collection.startsWith("directus_")) {
               return this.$router.push(
                 `/${this.collection.substring(9)}/${pk}`
@@ -301,7 +318,12 @@ export default {
 
             return this.$router.push(`/collections/${this.collection}/${pk}`);
           })
-          .catch(console.error); // eslint-disable-line no-console
+          .catch(error => {
+            this.$events.emit("error", {
+              notify: this.$t("something_went_wrong_body"),
+              error
+            });
+          });
       }
 
       return this.$store
@@ -312,6 +334,8 @@ export default {
           return savedValues;
         })
         .then(savedValues => {
+          this.$notify.confirm(this.$t("item_saved"));
+
           if (method === "leave") {
             if (this.collection.startsWith("directus_")) {
               return this.$router.push(`/${this.collection.substring(9)}`);
@@ -344,7 +368,11 @@ export default {
         })
         .catch(error => {
           this.saving = false;
-          console.error(error); // eslint-disable-line no-console
+
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
         });
     }
   },
@@ -364,7 +392,10 @@ export default {
         });
       })
       .catch(error => {
-        console.error(error); // eslint-disable-line no-console
+        this.$events.emit("error", {
+          notify: this.$t("something_went_wrong_body"),
+          error
+        });
         return next(vm => (vm.$data.error = true));
       });
   },
@@ -385,7 +416,10 @@ export default {
         next();
       })
       .catch(error => {
-        console.error(error); // eslint-disable-line no-console
+        this.$events.emit("error", {
+          notify: this.$t("something_went_wrong_body"),
+          error
+        });
         this.error = true;
         next();
       });
