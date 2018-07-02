@@ -77,6 +77,8 @@
 
 <script>
 import { keyBy, mapValues } from "lodash";
+import shortid from "shortid";
+import EventBus from "../events/";
 import VLoader from "../components/loader.vue";
 import VError from "../components/error.vue";
 import VEditForm from "../components/edit-form/edit-form.vue";
@@ -102,50 +104,62 @@ function getCollectionInfo(collection) {
 }
 
 function hydrate(collection, primaryKey) {
+  const id = shortid.generate();
+  store.dispatch("loadingStart", { id });
+
   return Promise.all([
     api.getFields(collection),
     api.getItems("directus_relations", {
       "filter[collection_a][eq]": collection
     }),
     primaryKey !== "+" ? api.getItem(collection, primaryKey) : null
-  ]).then(([fieldsRes, relations, savedValues]) => {
-    // https://lorenstewart.me/2016/11/21/flatten-a-multi-dimensional-array-using-es6/
-    relations = relations.data;
+  ])
+    .then(([fieldsRes, relations, savedValues]) => {
+      // https://lorenstewart.me/2016/11/21/flatten-a-multi-dimensional-array-using-es6/
+      relations = relations.data;
+      store.dispatch("loadingFinished", id);
 
-    if (store.getters.editing === false) {
-      store.dispatch("startEditing", {
-        collection: collection,
-        primaryKey: primaryKey,
-        savedValues: (savedValues && savedValues.data) || {}
-      });
-    }
-
-    function getRelationship(field) {
-      const fieldID = field.field;
-
-      const fieldRelations = relations
-        .filter(relation => {
-          return relation.field_a === fieldID;
-        })
-        .map(relation => {
-          return {
-            collection: relation.collection_b,
-            field: relation.field_b
-          };
+      if (store.getters.editing === false) {
+        store.dispatch("startEditing", {
+          collection: collection,
+          primaryKey: primaryKey,
+          savedValues: (savedValues && savedValues.data) || {}
         });
+      }
 
-      if (fieldRelations.length === 0) return null;
-      return fieldRelations[0];
-    }
+      function getRelationship(field) {
+        const fieldID = field.field;
 
-    return {
-      fields: mapValues(keyBy(fieldsRes.data, "field"), field => ({
-        ...field,
-        name: formatTitle(field.field), // TODO: Map translation key to name field to support translatable field names #421 & #422
-        relationship: getRelationship(field)
-      }))
-    };
-  });
+        const fieldRelations = relations
+          .filter(relation => {
+            return relation.field_a === fieldID;
+          })
+          .map(relation => {
+            return {
+              collection: relation.collection_b,
+              field: relation.field_b
+            };
+          });
+
+        if (fieldRelations.length === 0) return null;
+        return fieldRelations[0];
+      }
+
+      return {
+        fields: mapValues(keyBy(fieldsRes.data, "field"), field => ({
+          ...field,
+          name: formatTitle(field.field), // TODO: Map translation key to name field to support translatable field names #421 & #422
+          relationship: getRelationship(field)
+        }))
+      };
+    })
+    .catch(error => {
+      store.dispatch("loadingFinished", id);
+      EventBus.emit("error", {
+        notify: this.$t("something_went_wrong_body"),
+        error
+      });
+    });
 }
 
 export default {
@@ -270,15 +284,20 @@ export default {
     remove() {
       this.confirmRemoveLoading = true;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$api
         .deleteItem(this.collection, this.primaryKey)
         .then(() => {
+          this.$store.dispatch("loadingFinished", id);
           this.$notify.confirm(this.$t("item_deleted"));
           this.confirmRemoveLoading = false;
           this.confirmRemove = false;
           this.$router.push(`/collections/${this.collection}`);
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -299,12 +318,16 @@ export default {
 
         delete values[primaryKeyField];
 
+        const id = this.$helpers.shortid.generate();
+        this.$store.dispatch("loadingStart", { id });
+
         return this.$store
           .dispatch("save", {
             primaryKey: "+",
             values
           })
           .then(res => {
+            this.$store.dispatch("loadingFinished", id);
             this.saving = false;
             return res.data[this.primaryKeyField];
           })
@@ -319,6 +342,7 @@ export default {
             return this.$router.push(`/collections/${this.collection}/${pk}`);
           })
           .catch(error => {
+            this.$store.dispatch("loadingFinished", id);
             this.$events.emit("error", {
               notify: this.$t("something_went_wrong_body"),
               error
@@ -326,10 +350,14 @@ export default {
           });
       }
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       return this.$store
         .dispatch("save")
         .then(res => res.data)
         .then(savedValues => {
+          this.$store.dispatch("loadingFinished", id);
           this.saving = false;
           return savedValues;
         })
@@ -368,6 +396,7 @@ export default {
         })
         .catch(error => {
           this.saving = false;
+          this.$store.dispatch("loadingFinished", id);
 
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),

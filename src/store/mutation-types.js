@@ -35,6 +35,13 @@ export const SET_FIELDS = "📌 Set Fields";
 export const STORE_HYDRATED = "🏪 Store Hydrated";
 export const HYDRATING_FAILED = "🏪❌ Store Hydration Failed";
 
+// Latency Check
+export const LATENCY = "⏱ Latency Check";
+
+// Loading queue
+export const LOADING_START = "⏳ Queue Request";
+export const LOADING_FINISHED = "⏳ Remove Request from Queue";
+
 // Me
 export const SET_CURRENT_USER = "👨🏻‍💻✅ Set Current User";
 export const UPDATE_CURRENT_USER = "👨🏻‍💻 Current User Updated";
@@ -45,6 +52,3 @@ export const SET_SETTINGS = "⚙️ Set Global Settings";
 // Sidebars
 export const TOGGLE_NAV = "🎨 Toggle Nav Sidebar";
 export const TOGGLE_INFO = "🎨 Toggle Info Sidebar";
-
-// Latency Check
-export const LATENCY = "⏱ Latency Check";

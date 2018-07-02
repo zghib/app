@@ -109,6 +109,7 @@
 
 <script>
 import formatTitle from "@directus/format-title";
+import shortid from "shortid";
 import store from "../store/";
 import VItemListing from "../components/item-listing/item-listing.vue";
 import VSearchFilter from "../components/search-filter/search-filter.vue";
@@ -264,11 +265,19 @@ export default {
       if (isPreferenceFallback) {
         return this.createCollectionPreset();
       }
+
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       return this.$api
         .updateCollectionPreset(this.preferences.id, {
           [key]: value
         })
+        .then(() => {
+          this.$store.dispatch("loadingFinished", id);
+        })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -276,6 +285,9 @@ export default {
         });
     },
     createCollectionPreset() {
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       return this.$api
         .createCollectionPreset({
           ...this.preferences,
@@ -283,9 +295,11 @@ export default {
           user: this.$store.state.currentUser.id
         })
         .then(({ data }) => {
+          this.$store.dispatch("loadingFinished", id);
           this.$set(this.preferences, "id", data.id);
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -297,12 +311,17 @@ export default {
       this.updatePreferences("search_query", null);
     },
     remove() {
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$api
         .deleteItems(this.collection, this.selection)
         .then(() => {
+          this.$store.dispatch("loadingFinished", id);
           this.$refs.listing.getItems();
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -319,13 +338,18 @@ export default {
       if (!preferences.collection) {
         preferences.collection = this.collection;
       }
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$store
         .dispatch("saveBookmark", preferences)
         .then(() => {
+          this.$store.dispatch("loadingFinished", id);
           this.bookmarkModal = false;
           this.bookmarkTitle = "";
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -358,6 +382,9 @@ export default {
       return next(`/collections/${collection}/1`);
     }
 
+    const id = shortid.generate();
+    store.dispatch("loadingStart", { id });
+
     return Promise.all([
       api.getMyListingPreferences(collection),
       api.getFields(collection)
@@ -370,12 +397,14 @@ export default {
         }))
       }))
       .then(({ preferences, fields }) => {
+        store.dispatch("loadingFinished", id);
         next(vm => {
           vm.$data.preferences = preferences;
           vm.$data.fields = fields;
         });
       })
       .catch(error => {
+        store.dispatch("loadingFinished", id);
         this.$events.emit("error", {
           notify: this.$t("something_went_wrong_body"),
           error
@@ -405,6 +434,9 @@ export default {
       return next(`/collections/${collection}/1`);
     }
 
+    const id = this.$helpers.shortid.generate();
+    this.$store.dispatch("loadingStart", { id });
+
     return Promise.all([
       api.getMyListingPreferences(collection),
       api.getFields(collection)
@@ -417,11 +449,13 @@ export default {
         }))
       }))
       .then(({ preferences, fields }) => {
+        this.$store.dispatch("loadingFinished", id);
         this.preferences = preferences;
         this.fields = fields;
         next();
       })
       .catch(error => {
+        this.$store.dispatch("loadingFinished", id);
         this.$events.emit("error", {
           notify: this.$t("something_went_wrong_body"),
           error

@@ -16,7 +16,9 @@ import {
   ADD_BOOKMARK,
   DELETE_BOOKMARK,
   TOGGLE_NAV,
-  TOGGLE_INFO
+  TOGGLE_INFO,
+  LOADING_START,
+  LOADING_FINISHED
 } from "./mutation-types";
 
 const mutations = {
@@ -109,6 +111,14 @@ const mutations = {
 
   [TOGGLE_INFO](state, active = !state.sidebars.info) {
     state.sidebars.info = active;
+  },
+
+  [LOADING_START](state, { id, desc }) {
+    state.queue = [...state.queue, { id, desc }];
+  },
+
+  [LOADING_FINISHED](state, id) {
+    state.queue = state.queue.filter(req => req.id !== id);
   }
 };
 

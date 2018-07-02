@@ -85,6 +85,8 @@
 <script>
 import { keyBy } from "lodash";
 import formatTitle from "@directus/format-title";
+import shortid from "shortid";
+import store from "../../store/";
 import VEditForm from "../../components/edit-form/edit-form.vue";
 import api from "../../api.js";
 import NotFound from "../not-found.vue";
@@ -171,6 +173,9 @@ export default {
     getItemCount() {
       if (!this.collectionInfo) return;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$api
         .getItems(this.collection, {
           fields: "id",
@@ -178,6 +183,7 @@ export default {
         })
         .then(res => res.meta)
         .then(meta => {
+          this.$store.dispatch("loadingFinished", id);
           this.count = meta.total_count;
         })
         .catch(error => {
@@ -188,13 +194,18 @@ export default {
         });
     },
     remove() {
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$api
         .deleteCollection(this.collection)
         .then(() => {
+          this.$store.dispatch("loadingFinished", id);
           this.$store.dispatch("removeCollection", this.collection);
           this.$router.push("/settings/collections");
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -204,9 +215,13 @@ export default {
     save() {
       this.saving = true;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$api
         .updateCollection(this.collection, this.edits)
         .then(() => {
+          this.$store.dispatch("loadingFinished", id);
           this.saving = false;
           this.$store.dispatch("updateCollection", {
             collection: this.collection,
@@ -215,6 +230,7 @@ export default {
           this.$router.push("/settings/collections");
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -233,10 +249,14 @@ export default {
       const existingField = fieldInfo.id != null;
 
       if (existingField) {
+        const id = this.$helpers.shortid.generate();
+        this.$store.dispatch("loadingStart", { id });
+
         return this.$api
           .updateField(this.collection, fieldInfo.field, fieldInfo)
           .then(res => res.data)
           .then(savedFieldInfo => {
+            this.$store.dispatch("loadingFinished", id);
             this.editingField = false;
             this.fieldBeingEdited = null;
             this.fields = this.fields.map(field => {
@@ -245,6 +265,7 @@ export default {
             });
           })
           .catch(error => {
+            this.$store.dispatch("loadingFinished", id);
             this.$events.emit("error", {
               notify: this.$t("something_went_wrong_body"),
               error
@@ -257,15 +278,20 @@ export default {
 
       fieldInfo.collection = this.collection;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       return this.$api
         .createField(this.collection, fieldInfo)
         .then(res => res.data)
         .then(savedFieldInfo => {
+          this.$store.dispatch("loadingFinished", id);
           this.editingField = false;
           this.fieldBeingEdited = null;
           this.fields = [...this.fields, savedFieldInfo];
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -283,15 +309,20 @@ export default {
     removeField(fieldName) {
       this.removingField = true;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$api
         .deleteField(this.collection, fieldName)
         .then(() => {
+          this.$store.dispatch("loadingFinished", id);
           this.fields = this.fields.filter(({ field }) => field !== fieldName);
           this.removingField = false;
           this.fieldToBeRemoved = null;
           this.confirmFieldRemove = false;
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -304,13 +335,18 @@ export default {
         sort: field.sort
       }));
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$api
         .updateFields(this.collection, fieldUpdates)
         .then(res => res.data)
         .then(fields => {
+          this.$store.dispatch("loadingFinished", id);
           this.fields = fields;
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -320,6 +356,9 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     const { collection } = to.params;
+
+    const id = shortid.generate();
+    store.dispatch("loadingStart", { id });
 
     return Promise.all([
       api.getFields("directus_collections"),
@@ -332,6 +371,7 @@ export default {
         fields: fieldsRes.data
       }))
       .then(({ directusFields, fields }) => {
+        store.dispatch("loadingFinished", id);
         next(vm => {
           vm.$data.directusFields = keyBy(
             directusFields.map(field => ({
@@ -353,6 +393,7 @@ export default {
         });
       })
       .catch(error => {
+        store.dispatch("loadingFinished", id);
         next(vm => {
           vm.$data.error = error;
         });

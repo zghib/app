@@ -157,6 +157,9 @@ export default {
       this.fields.loading = true;
       this.fields.error = null;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       return this.$api
         .getFields(this.collection)
         .then(res => res.data)
@@ -168,10 +171,13 @@ export default {
             ...field,
             name: this.$helpers.formatTitle(field.field)
           }));
+
+          this.$store.dispatch("loadingFinished", id);
         })
         .catch(error => {
           this.fields.loading = false;
           this.fields.error = error;
+          this.$store.dispatch("loadingFinished", id);
         });
     },
     getItems() {
@@ -181,11 +187,16 @@ export default {
       this.items.error = null;
       this.items.page = 0;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       return this.$api
         .getItems(this.collection, this.formatParams())
         .then(res => {
           this.items.loading = false;
           this.items.meta = res.meta;
+
+          this.$store.dispatch("loadingFinished", id);
 
           if (this.links) {
             this.items.data = res.data.map(item => ({
@@ -201,6 +212,7 @@ export default {
           this.$emit("fetch", res.meta);
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.items.loading = false;
           this.items.error = error;
         });

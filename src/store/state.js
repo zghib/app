@@ -10,5 +10,6 @@ export default {
   sidebars: {
     nav: false,
     info: false
-  }
+  },
+  queue: []
 };

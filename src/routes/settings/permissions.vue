@@ -298,13 +298,18 @@ export default {
     save() {
       this.saving = true;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.saveRole()
         .then(this.savePermissions)
         .then(() => {
+          this.$store.dispatch("loadingFinished", id);
           this.saving = false;
           this.$router.push("/settings/roles");
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -390,13 +395,19 @@ export default {
       if (this.isSystem) return;
 
       this.removing = true;
+
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       return this.$api
         .deleteRole(this.role.id)
         .then(() => {
+          this.$store.dispatch("loadingFinished", id);
           this.removing = false;
           this.$router.push("/settings/roles");
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -407,6 +418,9 @@ export default {
       if (this.isNew) return;
 
       this.permissionsLoading = true;
+
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
 
       return Promise.all([
         this.$api.getAllFields(),
@@ -419,6 +433,7 @@ export default {
           permissions: permissionsRes.data
         }))
         .then(({ fields, permissions }) => {
+          this.$store.dispatch("loadingFinished", id);
           const savedPermissions = {};
 
           permissions.forEach(permission => {
@@ -458,6 +473,7 @@ export default {
           );
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error

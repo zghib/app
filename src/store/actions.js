@@ -14,7 +14,9 @@ import {
   UPDATE_COLLECTION,
   SET_BOOKMARKS,
   ADD_BOOKMARK,
-  DELETE_BOOKMARK
+  DELETE_BOOKMARK,
+  LOADING_START,
+  LOADING_FINISHED
 } from "./mutation-types";
 
 export function latency({ commit }) {
@@ -172,4 +174,12 @@ export function deleteBookmark({ commit }, bookmarkID) {
       error
     });
   });
+}
+
+export function loadingStart({ commit }, { id, desc }) {
+  commit(LOADING_START, { id, desc });
+}
+
+export function loadingFinished({ commit }, id) {
+  commit(LOADING_FINISHED, id);
 }

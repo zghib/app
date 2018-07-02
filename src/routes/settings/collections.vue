@@ -84,6 +84,9 @@ export default {
     add() {
       this.adding = true;
 
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
       this.$api
         .createCollection({
           collection: this.newName,
@@ -100,10 +103,12 @@ export default {
         })
         .then(res => res.data)
         .then(collection => {
+          this.$store.dispatch("loadingFinished", id);
           this.$store.dispatch("addCollection", collection);
           this.$router.push(`/settings/collections/${this.newName}`);
         })
         .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
