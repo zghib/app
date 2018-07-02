@@ -76,7 +76,7 @@
 
     <v-field-setup
       v-if="editingField"
-      :fieldInfo="fieldBeingEdited"
+      :field-info="fieldBeingEdited"
       @close="editingField = false"
       @save="setFieldSettings" />
   </div>
@@ -230,6 +230,7 @@ export default {
           this.$router.push("/settings/collections");
         })
         .catch(error => {
+          this.saving = false;
           this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
