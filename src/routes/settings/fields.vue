@@ -54,7 +54,7 @@
       :fields="directusFields"
       :values="collectionInfo"
       collection="directus_collections"
-      @stageValue="stageValue" />
+      @stage-value="stageValue" />
 
     <portal to="modal" v-if="confirmRemove">
       <v-confirm
