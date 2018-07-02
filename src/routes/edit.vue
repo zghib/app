@@ -249,8 +249,11 @@ export default {
       ];
     },
     values() {
+      const defaults = this.$lodash.mapValues(this.fields, field => field.default_value);
       const edits = this.$store.state.edits.values;
+
       return {
+        ...defaults,
         ...(this.savedValues || {}),
         ...edits
       };
