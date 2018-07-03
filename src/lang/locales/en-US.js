@@ -138,6 +138,7 @@ export default {
   less_than: "Less than",
   limited: "Limited",
   loading: "Loading...",
+  loading_more: "Loading more items...",
   login: "Log in",
   name: "Name",
   name_field:
