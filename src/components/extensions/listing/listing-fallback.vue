@@ -23,6 +23,10 @@ export default {
     primaryKeyField: {
       type: String,
       required: true
+    },
+    listingName: {
+      type: String,
+      default: ""
     }
   },
   computed: {
@@ -31,6 +35,9 @@ export default {
         return { field: field.field, name: field.name, fieldInfo: field };
       });
     }
+  },
+  created() {
+    this.$notify.alert(this.$t("extension_error", { ext: this.listingName }));
   }
 };
 </script>

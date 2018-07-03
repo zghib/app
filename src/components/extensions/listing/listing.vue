@@ -10,6 +10,7 @@
     :lazy-loading="lazyLoading"
     :selection="selection"
     :link="link"
+    :listing-name="viewType"
     class="v-listing"
     @query="$emit('query', $event)"
     @select="$emit('select', $event)"

@@ -1,6 +1,7 @@
 <template>
   <component
     :is="componentName"
+    :interface-name="id"
     :name="name"
     :value="value"
     :type="typeOrDefault"

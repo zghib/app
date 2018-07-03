@@ -12,7 +12,14 @@ export default {
     value: {
       type: null,
       default: ""
+    },
+    interfaceName: {
+      type: String,
+      default: ""
     }
+  },
+  created() {
+    this.$notify.alert(this.$t("extension_error", { ext: this.interfaceName }));
   }
 };
 </script>

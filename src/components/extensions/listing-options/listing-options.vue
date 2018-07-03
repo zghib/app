@@ -7,6 +7,7 @@
     :loading="loading"
     :view-query="viewQuery"
     :selection="selection"
+    :listing-name="type"
     class="listing-options-extension"
     @query="$emit('query', $event)"
     @select="$emit('select', $event)"

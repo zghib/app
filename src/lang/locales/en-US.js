@@ -130,6 +130,7 @@ export default {
     "No Filtered Items | One Filtered Item | {count} Filtered Items",
   item_deleted: "Item Deleted",
   item_saved: "Item Saved",
+  extension_error: "There was a problem loading the {ext} extension.",
   latency: "Latency",
   learn_more: "Learn More",
   leave_comment: "Leave a comment...",

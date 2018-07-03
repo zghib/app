@@ -434,10 +434,7 @@ export default {
         .then(res => res.data)
         .then(comment => {
           store.dispatch("loadingFinished", id);
-          this.activity = [
-            comment,
-            ...this.activity
-          ];
+          this.activity = [comment, ...this.activity];
         })
         .catch(error => {
           store.dispatch("loadingFinished", id);
