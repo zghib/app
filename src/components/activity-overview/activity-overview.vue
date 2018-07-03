@@ -1,88 +1,71 @@
 <template>
   <div class="v-activity-overview">
-    <div class="tabs">
-      <button
-        :class="{active: show === 'both'}"
-        @click="show = 'both'">{{ $t('both') }}</button>
-      <button
-        :class="{active: show === 'comments'}"
-        @click="show = 'comments'">{{ $t('comments') }}</button>
-      <button
-        :class="{active: show === 'activity'}"
-        @click="show = 'activity'">{{ $t('activity') }}</button>
-    </div>
-    <div class="activity">
-      <form class="new-comment"
-       v-show="show !== 'activity'"
-       @submit.prevent="addComment">
-        <v-textarea v-model="comment" class="textarea" :rows="5" required :placeholder="$t('leave_comment')" />
-        <button type="submit">{{ $t('submit') }}</button>
-      </form>
-      <article
-        v-for="(activity, index) in activityWithChanges"
-        class="activity-item"
-        :key="activity.id">
-        <i
-          v-if="activity.type === 'comment'"
-          class="material-icons">message</i>
-        <span
-          v-else
-          :title="activity.action"
-          :class="activity.action"
-          class="indicator" />
+    <form
+      v-show="show !== 'activity'"
+      class="new-comment"
+      @submit.prevent="postComment">
 
-        <div class="content">
-          <details v-if="activity.action !== 'external' && activity.changes && activity.name">
-            <summary class="title">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
-              v-if="activity.date"
-              :auto-update="1"
-              :since="activity.date"
-              :locale="$i18n.locale"
-              class="date" />
-            <i class="material-icons chevron">chevron_left</i></summary>
-            <div v-if="activity.changes">
-              <div
-                v-for="({ field, before, after }) in activity.changes"
-                class="change"
-                :key="field.field">
-                <p>{{ field.name }}</p>
-                <div class="diff">
-                  <div
-                    :class="{ empty: !before }"
-                    class="before">{{ before || '--' }}</div>
-                  <div
-                    :class="{ empty: !after }"
-                    class="after">{{ after || '--' }}</div>
-                </div>
-              </div>
-              <button
-                v-if="index !== 0"
-                class="revert"
-                @click="previewing = activity">{{ $t("revert") }}</button>
-            </div>
-          </details>
-          <div class="title" v-else-if="activity.name">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
+      <v-textarea
+        v-model="comment"
+        class="textarea"
+        :rows="5"
+        required
+        :placeholder="$t('leave_comment')" />
+
+      <button type="submit">{{ $t('submit') }}</button>
+    </form>
+
+    <article
+      v-for="(activity, index) in activityWithChanges"
+      class="activity-item"
+      :key="activity.id">
+      <i
+        v-if="activity.type === 'comment'"
+        class="material-icons">message</i>
+      <span
+        v-else
+        :title="activity.action"
+        :class="activity.action"
+        class="indicator" />
+
+      <div class="content">
+        <details v-if="activity.action !== 'external' && activity.changes && activity.name">
+          <summary class="title">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
             v-if="activity.date"
             :auto-update="1"
             :since="activity.date"
             :locale="$i18n.locale"
-            class="date" /></div>
-          <p v-if="activity.htmlcomment" v-html="activity.htmlcomment"></p>
-        </div>
-      </article>
-    </div>
-    <v-modal
-      v-if="previewing !== null"
-      :title="$t('preview_and_rollback')"
-      :ok="$t('revert')"
-      @confirm="revert"
-      @close="previewing = null">
-      <edit-form
-        :fields="fields"
-        :values="previewing.revision.data"
-        :readonly="true"
-        :collection="collection" />
-    </v-modal>
+            class="date" />
+          <i class="material-icons chevron">chevron_left</i></summary>
+          <div v-if="activity.changes">
+            <div
+              v-for="({ field, before, after }) in activity.changes"
+              class="change"
+              :key="field">
+              <p>{{ $helpers.formatTitle(field) }}</p>
+              <div class="diff">
+                <div
+                  :class="{ empty: !before }"
+                  class="before">{{ before || '--' }}</div>
+                <div
+                  :class="{ empty: !after }"
+                  class="after">{{ after || '--' }}</div>
+              </div>
+            </div>
+            <button
+              v-if="index !== 0"
+              class="revert">{{ $t("revert") }}</button>
+          </div>
+        </details>
+        <div class="title" v-else-if="activity.name">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
+          v-if="activity.date"
+          :auto-update="1"
+          :since="activity.date"
+          :locale="$i18n.locale"
+          class="date" /></div>
+        <p v-if="activity.htmlcomment" v-html="activity.htmlcomment"></p>
+      </div>
+    </article>
   </div>
 </template>
 
@@ -95,48 +78,43 @@ export default {
   components: {
     EditForm
   },
-  props: {
-    collection: {
-      type: String,
-      required: true
-    },
-    primaryKey: {
-      type: String,
-      required: true
-    },
-    fields: {
-      type: Object,
-      required: true
-    }
-  },
   data() {
     return {
-      show: "both",
-      data: null,
-      error: null,
-      loading: false,
-      revisions: {},
-      revisionsLoading: true,
-      previewing: null,
       comment: ""
     };
   },
+  props: {
+    activity: {
+      type: Array,
+      required: true
+    },
+    revisions: {
+      type: Object,
+      required: true
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    show: {
+      type: String,
+      default: "both"
+    }
+  },
   computed: {
-    activity() {
-      if (!this.data) return [];
-
+    activityFiltered() {
       switch (this.show) {
         case "comments":
-          return this.data.filter(item => item.comment !== null);
+          return this.activity.filter(item => item.comment !== null);
         case "activity":
-          return this.data.filter(item => item.comment === null);
+          return this.activity.filter(item => item.comment === null);
         case "both":
         default:
-          return this.data;
+          return this.activity;
       }
     },
     activityWithChanges() {
-      const activityWithChanges = this.activity.map((activity, i) => ({
+      const activityWithChanges = this.activityFiltered.map((activity, i) => ({
         ...activity,
         changes: this.getChanges(activity.id, i),
         revision: this.revisions[activity.id]
@@ -165,73 +143,7 @@ export default {
       }));
     }
   },
-  watch: {
-    $route() {
-      this.hydrate();
-    }
-  },
-  created() {
-    this.hydrate();
-  },
   methods: {
-    hydrate() {
-      this.loading = true;
-      this.revisionsLoading = true;
-      this.error = null;
-      this.data = null;
-      this.revisions = {};
-      this.previewing = null;
-
-      this.$api
-        .getActivity({
-          "filter[collection][eq]": this.collection,
-          "filter[item][eq]": this.primaryKey,
-          fields:
-            "id,action,type,datetime,comment,user.first_name,user.last_name",
-          sort: "-datetime"
-        })
-        .then(res => res.data)
-        .then(data => data.map(this.formatItem))
-        .then(data => {
-          this.error = null;
-          this.data = data;
-          this.loading = false;
-        })
-        .catch(error => {
-          this.error = error;
-          this.loading = false;
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
-        });
-
-      this.$api
-        .getItemRevisions(this.collection, this.primaryKey)
-        .then(res => res.data)
-        .then(revisions => {
-          this.revisionsLoading = false;
-          this.revisions = this.$lodash.keyBy(revisions, "activity");
-        })
-        .catch(error => {
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
-        });
-    },
-    formatItem(item) {
-      const date = new Date(item.datetime);
-      const name = `${item.user.first_name} ${item.user.last_name}`;
-      return {
-        id: item.id,
-        date,
-        name,
-        action: item.action.toLowerCase(),
-        type: item.type.toLowerCase(),
-        comment: item.comment
-      };
-    },
     getChanges(activityID, index) {
       const revision = this.revisions[activityID];
 
@@ -239,12 +151,12 @@ export default {
 
       let previousUpdate = null;
 
-      for (let i = index + 1; i < this.activity.length; i++) {
+      for (let i = index + 1; i < this.activityFiltered.length; i++) {
         if (
-          this.activity[i].action === "update" ||
-          this.activity[i].action === "add"
+          this.activityFiltered[i].action === "update" ||
+          this.activityFiltered[i].action === "add"
         ) {
-          previousUpdate = this.activity[i];
+          previousUpdate = this.activityFiltered[i];
           break;
         }
       }
@@ -258,51 +170,11 @@ export default {
       return this.$lodash.mapValues(currentDelta, (value, field) => ({
         before: previousData[field],
         after: value,
-        field: this.fields[field]
+        field
       }));
     },
-    revert() {
-      this.$api
-        .revert(this.collection, this.primaryKey, this.previewing.revision.id)
-        .then(() => {
-          this.previewing = null;
-          this.$emit("reload");
-          this.hydrate();
-        })
-        .catch(error => {
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
-        });
-    },
-    addComment() {
-      this.data = [
-        {
-          action: "add",
-          date: new Date(),
-          comment: this.comment,
-          name:
-            this.$store.state.currentUser.first_name +
-            " " +
-            this.$store.state.currentUser.last_name,
-          type: "comment",
-          id: (this.data && this.data[0] && this.data[0].id + 1) || 1
-        },
-        ...(this.data || [])
-      ];
-      this.$api
-        .post("/activity/comment", {
-          collection: this.collection,
-          item: this.primaryKey,
-          comment: this.comment
-        })
-        .catch(error => {
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
-        });
+    postComment() {
+      this.$emit("input", this.comment);
       this.comment = "";
     }
   }
@@ -310,48 +182,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tabs {
-  margin: -20px -20px 20px;
-  display: flex;
-  height: 50px;
-
-  button {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    flex-basis: 20px;
-    position: relative;
-    border-bottom: 1px solid var(--lightest-gray);
-    overflow: visible;
-
-    &::after {
-      content: "";
-      display: block;
-      bottom: -2px;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background-color: var(--action);
-      position: absolute;
-      transform: scaleY(0);
-      transition: transform var(--fast) var(--transition-out);
-      transform-origin: center;
-    }
-
-    &.active {
-      border-color: var(--action);
-    }
-
-    &.active::after {
-      transition: transform var(--fast) var(--transition-in);
-      transform: scaleY(1);
-    }
-  }
-}
-
-.activity {
+.v-activity-overview {
   position: relative;
 
   &::before {

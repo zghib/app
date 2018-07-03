@@ -17,7 +17,7 @@
   </div>
 
   <div v-else class="edit">
-    <v-header-bar :breadcrumb="breadcrumb" info-toggle>
+    <v-header-bar :breadcrumb="breadcrumb" :info-toggle="!newItem">
       <template slot="buttons">
         <v-header-button
           v-if="!newItem && !singleItem"
@@ -41,11 +41,24 @@
       </template>
     </v-header-bar>
 
-    <v-info-sidebar wide>
+    <v-info-sidebar v-if="!newItem" wide>
+      <div class="tabs">
+        <button
+          :class="{ active: activeTab === 'both' }"
+          @click="activeTab = 'both'">{{ $t('both') }}</button>
+        <button
+          :class="{ active: activeTab === 'comments' }"
+          @click="activeTab = 'comments'">{{ $t('comments') }}</button>
+        <button
+          :class="{ active: activeTab === 'activity' }"
+          @click="activeTab = 'activity'">{{ $t('activity') }}</button>
+      </div>
       <v-activity-overview
-        :collection="collection"
-        :primary-key="primaryKey"
-        :fields="fields" />
+        :activity="activity"
+        :revisions="revisions"
+        :loading="activityLoading"
+        :show="activeTab"
+        @input="postComment" />
     </v-info-sidebar>
 
     <v-edit-form
@@ -79,6 +92,7 @@
 import { keyBy, mapValues } from "lodash";
 import shortid from "shortid";
 import EventBus from "../events/";
+import { i18n } from "../lang/";
 import VLoader from "../components/loader.vue";
 import VError from "../components/error.vue";
 import VEditForm from "../components/edit-form/edit-form.vue";
@@ -87,80 +101,6 @@ import formatTitle from "@directus/format-title";
 import VNotFound from "./not-found.vue";
 import store from "../store/";
 import api from "../api";
-
-function getCollectionInfo(collection) {
-  if (
-    collection === "directus_files" ||
-    collection === "directus_users" ||
-    collection === "directus_activity"
-  ) {
-    return true;
-  }
-
-  const { collections } = store.state;
-  const collectionNames = Object.keys(collections);
-
-  return collectionNames.includes(collection) ? collections[collection] : null;
-}
-
-function hydrate(collection, primaryKey) {
-  const id = shortid.generate();
-  store.dispatch("loadingStart", { id });
-
-  return Promise.all([
-    api.getFields(collection),
-    api.getItems("directus_relations", {
-      "filter[collection_a][eq]": collection
-    }),
-    primaryKey !== "+" ? api.getItem(collection, primaryKey) : null
-  ])
-    .then(([fieldsRes, relations, savedValues]) => {
-      // https://lorenstewart.me/2016/11/21/flatten-a-multi-dimensional-array-using-es6/
-      relations = relations.data;
-      store.dispatch("loadingFinished", id);
-
-      if (store.getters.editing === false) {
-        store.dispatch("startEditing", {
-          collection: collection,
-          primaryKey: primaryKey,
-          savedValues: (savedValues && savedValues.data) || {}
-        });
-      }
-
-      function getRelationship(field) {
-        const fieldID = field.field;
-
-        const fieldRelations = relations
-          .filter(relation => {
-            return relation.field_a === fieldID;
-          })
-          .map(relation => {
-            return {
-              collection: relation.collection_b,
-              field: relation.field_b
-            };
-          });
-
-        if (fieldRelations.length === 0) return null;
-        return fieldRelations[0];
-      }
-
-      return {
-        fields: mapValues(keyBy(fieldsRes.data, "field"), field => ({
-          ...field,
-          name: formatTitle(field.field), // TODO: Map translation key to name field to support translatable field names #421 & #422
-          relationship: getRelationship(field)
-        }))
-      };
-    })
-    .catch(error => {
-      store.dispatch("loadingFinished", id);
-      EventBus.emit("error", {
-        notify: this.$t("something_went_wrong_body"),
-        error
-      });
-    });
-}
 
 export default {
   name: "edit",
@@ -196,7 +136,12 @@ export default {
       confirmNavigation: false,
       leavingTo: "",
 
-      collectionInfo: null
+      collectionInfo: null,
+
+      activeTab: "both",
+      activityLoading: false,
+      activity: [],
+      revisions: {}
     };
   },
   computed: {
@@ -249,7 +194,10 @@ export default {
       ];
     },
     values() {
-      const defaults = this.$lodash.mapValues(this.fields, field => field.default_value);
+      const defaults = this.$lodash.mapValues(
+        this.fields,
+        field => field.default_value
+      );
       const edits = this.$store.state.edits.values;
 
       return {
@@ -275,6 +223,14 @@ export default {
     },
     batch() {
       return this.primaryKey.includes(",");
+    }
+  },
+  created() {
+    this.fetchActivity();
+  },
+  watch: {
+    $route() {
+      this.fetchActivity();
     }
   },
   methods: {
@@ -376,6 +332,8 @@ export default {
           }
 
           if (method === "stay") {
+            this.fetchActivity();
+
             if (this.newItem) {
               const primaryKey = savedValues[this.primaryKeyField];
               return this.$router.push(
@@ -406,54 +364,165 @@ export default {
             error
           });
         });
+    },
+    fetchActivity() {
+      this.activity = [];
+      this.revisions = {};
+      this.activeTab = "both";
+      this.activityLoading = true;
+
+      const id = shortid.generate();
+      store.dispatch("loadingStart", { id });
+
+      Promise.all([
+        this.$api.getActivity({
+          "filter[collection][eq]": this.collection,
+          "filter[item][eq]": this.primaryKey,
+          fields:
+            "id,action,type,datetime,comment,user.first_name,user.last_name",
+          sort: "-datetime"
+        }),
+        this.$api.getItemRevisions(this.collection, this.primaryKey)
+      ])
+        .then(([activity, revisions]) => {
+          store.dispatch("loadingFinished", id);
+          return {
+            activity: activity.data,
+            revisions: revisions.data
+          };
+        })
+        .then(({ activity, revisions }) => {
+          return {
+            activity: activity.map(act => {
+              const date = new Date(act.datetime);
+              const name = `${act.user.first_name} ${act.user.last_name}`;
+              return {
+                id: act.id,
+                date,
+                name,
+                action: act.action.toLowerCase(),
+                type: act.type.toLowerCase(),
+                comment: act.comment
+              };
+            }),
+            revisions: this.$lodash.keyBy(revisions, "activity")
+          };
+        })
+        .then(({ activity, revisions }) => {
+          this.activity = activity;
+          this.revisions = revisions;
+          this.activityLoading = false;
+        })
+        .catch(error => {
+          store.dispatch("loadingFinished", id);
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
+    },
+    postComment(comment) {
+      const id = shortid.generate();
+      store.dispatch("loadingStart", { id });
+
+      this.$api
+        .post("/activity/comment", {
+          collection: this.collection,
+          item: this.primaryKey,
+          comment
+        })
+        .then(res => res.data)
+        .then(comment => {
+          store.dispatch("loadingFinished", id);
+          this.activity = [
+            comment,
+            ...this.activity
+          ];
+        })
+        .catch(error => {
+          store.dispatch("loadingFinished", id);
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     }
   },
   beforeRouteEnter(to, from, next) {
     const { collection, primaryKey } = to.params;
+    const exists =
+      Object.keys(store.state.collections).includes(collection) ||
+      collection.startsWith("directus_");
+    const isNew = primaryKey === "+";
 
-    const collectionInfo = getCollectionInfo(collection);
-
-    if (collectionInfo === null) {
+    if (exists === false) {
+      this.notFound = true;
       return next(vm => (vm.$data.notFound = true));
     }
 
-    return hydrate(collection, primaryKey)
+    const id = shortid.generate();
+    store.dispatch("loadingStart", { id });
+
+    return Promise.all([
+      api.getFields(collection),
+      api.getCollectionRelations(collection),
+
+      isNew ? null : api.getItem(collection, primaryKey)
+    ])
+      .then(([fields, relations, item]) => {
+        store.dispatch("loadingFinished", id);
+        return {
+          fields: fields.data,
+          relations: relations[0].data,
+          item: (item && item.data) || null
+        };
+      })
+      .then(({ fields, relations, item }) => {
+        store.dispatch("startEditing", {
+          collection: collection,
+          primaryKey: primaryKey,
+          savedValues: isNew ? null : item
+        });
+        return { fields, relations };
+      })
+      .then(({ fields, relations }) => {
+        function getRelationship(field) {
+          const fieldID = field.field;
+
+          const fieldRelations = relations
+            .filter(relation => {
+              return relation.field_a === fieldID;
+            })
+            .map(relation => {
+              return {
+                collection: relation.collection_b,
+                field: relation.field_b
+              };
+            });
+
+          if (fieldRelations.length === 0) return null;
+          return fieldRelations[0];
+        }
+
+        return {
+          fields: mapValues(keyBy(fields, "field"), field => ({
+            ...field,
+            name: formatTitle(field.field),
+            relationship: getRelationship(field)
+          }))
+        };
+      })
       .then(data => {
-        next(vm => {
-          Object.assign(vm.$data, data, { collectionInfo });
+        return next(vm => {
+          Object.assign(vm.$data, data);
         });
       })
       .catch(error => {
-        this.$events.emit("error", {
-          notify: this.$t("something_went_wrong_body"),
+        EventBus.emit("error", {
+          notify: i18n.t("something_went_wrong_body"),
           error
         });
         return next(vm => (vm.$data.error = true));
-      });
-  },
-  beforeRouteUpdate(to, from, next) {
-    const { collection, primaryKey } = to.params;
-
-    const collectionInfo = getCollectionInfo(collection);
-
-    if (collectionInfo === null) {
-      this.notFound = true;
-      return next();
-    }
-
-    return hydrate(collection, primaryKey)
-      .then(data => {
-        this.fields = data.fields;
-        this.collectionInfo = collectionInfo;
-        next();
-      })
-      .catch(error => {
-        this.$events.emit("error", {
-          notify: this.$t("something_went_wrong_body"),
-          error
-        });
-        this.error = true;
-        next();
       });
   },
   beforeRouteLeave(to, from, next) {
@@ -478,5 +547,65 @@ export default {
 .edit {
   padding: var(--page-padding);
   padding-bottom: var(--page-padding-bottom);
+}
+
+.tabs {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+  border-bottom: 1px solid var(--lightest-gray);
+  position: sticky;
+  top: -20px;
+  background-color: var(--white);
+  z-index: +1;
+  margin: -20px;
+  margin-bottom: 20px;
+
+  button {
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 120px;
+    flex-basis: 120px;
+    height: 50px;
+    position: relative;
+    color: var(--gray);
+
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    position: relative;
+
+    &:hover {
+      color: var(--darker-gray);
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      position: absolute;
+      height: 3px;
+      bottom: -2px;
+      background-color: var(--accent);
+      transform: scaleY(0);
+      transition: transform var(--fast) var(--transition-out);
+    }
+
+    &.active {
+      color: var(--accent);
+
+      &::after {
+        transform: scaleY(1);
+        transition: transform var(--fast) var(--transition-in);
+      }
+    }
+
+    &[disabled] {
+      color: var(--lighter-gray);
+      cursor: not-allowed;
+    }
+  }
 }
 </style>
