@@ -1,16 +1,32 @@
 <template>
   <div class="settings-global">
-    <v-header-bar :breadcrumb="links" />
+    <v-header-bar :breadcrumb="links">
+      <template slot="buttons">
+        <v-header-button
+          :disabled="!editing"
+          :loading="saving"
+          :label="$t('save')"
+          icon="check"
+          color="action"
+          @click="save('leave')" />
+      </template>
+    </v-header-bar>
 
     <edit-form
-      v-if="!hydrating"
       :fields="fields"
       :values="settings"
-      @stageValue="stageValue" />
+      @stage-value="stageValue" />
   </div>
 </template>
 
 <script>
+import shortid from "shortid";
+import { keyBy, mapValues } from "lodash";
+import formatTitle from "@directus/format-title";
+import store from "../../store/";
+import EventBus from "../../events/";
+import { i18n } from "../../lang/";
+import api from "../../api";
 import EditForm from "../../components/edit-form/edit-form.vue";
 
 export default {
@@ -20,9 +36,10 @@ export default {
   },
   data() {
     return {
-      hydrating: false,
       saving: false,
-      deleting: false
+      rawSettings: {},
+      edits: {},
+      fields: {}
     };
   },
   computed: {
@@ -42,37 +59,124 @@ export default {
         }
       ];
     },
-    fields() {
-      return (
-        this.$store.state.fields.directus_settings &&
-        this.$store.state.fields.directus_settings
-      );
+    editing() {
+      return Object.keys(this.edits).length > 0;
     }
   },
-  created() {
-    this.hydrate();
-  },
   methods: {
-    stageValue(field, value) {
-      return value;
-    },
-    hydrate() {
-      this.hydrating = true;
+    stageValue({ field, value }) {
+      if (this.$store.state.settings[field] == value) {
+        return this.$delete(this.edits, field);
+      }
 
-      Promise.all([
-        this.$store.dispatch("getFields", "directus_settings"),
-        this.$store.dispatch("getSettings")
-      ])
+      return this.$set(this.edits, field, value);
+    },
+    save() {
+      const id = shortid.generate();
+      store.dispatch("loadingStart", { id });
+
+      this.saving = true;
+
+      const updates = [];
+
+      this.$lodash.forEach(this.edits, (value, key) => {
+        updates.push({
+          id: this.rawSettings[key].id,
+          value
+        });
+      });
+
+      this.$api
+        .updateItems("directus_settings", updates)
         .then(() => {
-          this.hydrating = false;
+          this.saving = false;
+          this.$store.dispatch("loadingFinished", id);
+          this.$router.push("/settings");
         })
         .catch(error => {
+          this.saving = false;
+          this.$store.dispatch("loadingFinished", id);
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
           });
         });
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    const id = shortid.generate();
+    store.dispatch("loadingStart", { id });
+
+    Promise.all([
+      store.dispatch("getSettings"), // update the store key:val
+      api.getItems("directus_settings"), // get the raw rows (with IDs)
+      api.getFields("directus_settings")
+    ])
+      .then(([, rawSettings, fields]) => {
+        return {
+          fields: fields.data,
+          rawSettings: rawSettings.data
+        };
+      })
+      .then(({ rawSettings, fields }) => {
+        return {
+          rawSettings,
+          fields: keyBy(fields, "field")
+        };
+      })
+      .then(({ rawSettings, fields }) => {
+        return {
+          rawSettings,
+          fields: mapValues(fields, field => ({
+            ...field,
+            name: formatTitle(field.field)
+          }))
+        };
+      })
+      .then(({ rawSettings, fields }) => {
+        const settings = store.state.settings;
+        return {
+          rawSettings: keyBy(rawSettings, "key"),
+          fields: mapValues(
+            settings,
+            (value, key) =>
+              fields[key] || {
+                collection: "directus_settings",
+                field: key,
+                group: null,
+                hidden_input: false,
+                hidden_list: false,
+                id: null,
+                interface: "text-input",
+                locked: true,
+                name: formatTitle(key),
+                note: null,
+                options: null,
+                readonly: false,
+                required: false,
+                sort: null,
+                translation: null,
+                type: "VARCHAR",
+                validation: null,
+                view_width: 4
+              }
+          )
+        };
+      })
+      .then(({ rawSettings, fields }) => {
+        store.dispatch("loadingFinished", id);
+        next(vm => {
+          vm.$data.fields = fields;
+          vm.$data.rawSettings = rawSettings;
+        });
+      })
+      .catch(error => {
+        store.dispatch("loadingFinished", id);
+        EventBus.emit("error", {
+          notify: i18n.t("something_went_wrong_body"),
+          error
+        });
+      });
   },
   beforeRouteLeave(to, from, next) {
     if (this.editing) {
