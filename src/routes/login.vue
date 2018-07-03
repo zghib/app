@@ -59,14 +59,11 @@ export default {
 
 <style lang="scss" scoped>
 .login {
-  height: 100%;
+  padding-top: 30vh;
 }
 
 .form {
-  width: 100%;
-  max-width: 260px;
   margin: 0 auto;
-  margin-top: calc(50vh - 150px); /* visually centered */
 }
 
 small {
