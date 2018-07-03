@@ -9,6 +9,7 @@
       :href="href">
       <div
         v-if="src || icon || $slots.icon"
+        :style="{ backgroundColor: `var(--${color})` }"
         class="header">
 
         <img
@@ -65,6 +66,10 @@ export default {
     icon: {
       type: String,
       default: null
+    },
+    color: {
+      type: String,
+      default: "accent"
     },
     src: {
       type: String,
@@ -160,7 +165,6 @@ export default {
     display: grid;
     grid-template-columns: 1;
     grid-template-rows: 1;
-    background-color: var(--accent);
     align-items: center;
     justify-content: center;
     position: relative;
