@@ -164,7 +164,7 @@ export default {
       if (!previousUpdate) return null;
 
       const previousRevision = this.revisions[previousUpdate.id];
-      const previousData = previousRevision.data;
+      const previousData = (previousRevision && previousRevision.data) || {};
       const currentDelta = revision.delta;
 
       return this.$lodash.mapValues(currentDelta, (value, field) => ({
