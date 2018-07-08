@@ -102,6 +102,7 @@ export default {
     103: "User inactive",
     106: "Wrong username and/or password"
   },
+  error_unknown: "Unknown error. Try again later.",
   esc_cancel: "Escape will cancel and close the window.",
   equal_to: "Equal to",
   field: "Field",

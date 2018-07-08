@@ -7,7 +7,7 @@
         :class="errorType"
         class="notice">
         <i class="material-icons">{{ errorType }}</i>
-        {{ $t(`errors[${error.code}]`) }}
+        {{ errorMessage }}
         <button
           class="close"
           @click="closeError">Close error</button>
@@ -20,6 +20,7 @@
 <script>
 import { version } from "../../package.json";
 import LoginForm from "../components/login-form/login-form.vue";
+import { i18n } from "../lang/";
 
 export default {
   name: "login",
@@ -36,6 +37,8 @@ export default {
       return `${this.$t("version")} ${version}`;
     },
     errorType() {
+      if (!this.error) return;
+
       if (+this.error.code >= 100 && +this.error.code < 200) {
         if (+this.error.code === 101 || +this.error.code === 102) {
           return null;
@@ -47,6 +50,21 @@ export default {
     },
     error() {
       return this.$store.state.auth.error;
+    },
+    errorMessage() {
+      if (!this.error) return;
+
+      if (
+        this.localeMessages.errors &&
+        this.localeMessages.errors[this.error.code] != null
+      ) {
+        return this.$t(`errors[${this.error.code}]`);
+      }
+
+      return this.$t("error_unknown");
+    },
+    localeMessages() {
+      return i18n.getLocaleMessage(i18n.locale);
     }
   },
   methods: {
