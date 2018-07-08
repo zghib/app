@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import api from "./api";
 import store from "./store";
+import { TOGGLE_NAV, TOGGLE_INFO } from "./store/mutation-types";
 import { i18n } from "./lang/";
 import EventBus from "./events/";
 import hydrateStore from "./hydrate";
@@ -203,6 +204,9 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const { loggedIn } = store.getters;
   const publicRoute = to.matched.some(record => record.meta.publicRoute);
+
+  store.commit(TOGGLE_NAV, false);
+  store.commit(TOGGLE_INFO, false);
 
   if (loggedIn === false) {
     if (publicRoute) {
