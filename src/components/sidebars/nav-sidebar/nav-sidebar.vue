@@ -54,7 +54,12 @@ export default {
       if (collections == null) return [];
 
       return Object.values(collections)
-        .filter(collection => collection.hidden == false)
+        .filter(
+          collection =>
+            collection.hidden == false &&
+            collection.managed == true &&
+            collection.collection.startsWith("directus_") === false
+        )
         .map(collection => collection.collection);
     },
     bookmarks() {

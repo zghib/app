@@ -49,11 +49,15 @@ export default {
     items() {
       const collections = this.$store.state.collections || {};
 
-      return Object.values(collections).map(collection => ({
-        ...collection,
-        collection: this.$t(`collections-${collection.collection}`),
-        __link__: `/settings/collections/${collection.collection}`
-      }));
+      return Object.values(collections)
+        .filter(
+          collection => collection.collection.startsWith("directus_") === false
+        )
+        .map(collection => ({
+          ...collection,
+          collection: this.$t(`collections-${collection.collection}`),
+          __link__: `/settings/collections/${collection.collection}`
+        }));
     },
     fields() {
       return [
