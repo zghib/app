@@ -260,7 +260,7 @@ export default {
       }
       this.$set(this.preferences, key, value);
 
-      // user vs group vs collection level preferences, == checks both null and undefined
+      // user vs role vs collection level preferences, == checks both null and undefined
       const isPreferenceFallback = this.preferences.user == null;
       if (isPreferenceFallback) {
         return this.createCollectionPreset();
@@ -334,7 +334,7 @@ export default {
       preferences.user = this.$store.state.currentUser.id;
       preferences.title = this.bookmarkTitle;
       delete preferences.id;
-      delete preferences.group;
+      delete preferences.role;
       if (!preferences.collection) {
         preferences.collection = this.collection;
       }
