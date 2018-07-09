@@ -171,6 +171,10 @@ export default {
   not_empty: "Is not empty",
   not_equal_to: "Not equal to",
   not_in_list: "Not one of these",
+  manage: "Manage",
+  dont_manage: "Don't Manage",
+  dont_manage_copy:
+    "Privileges, preferences, and settings for the {collection} collection will be permanently removed from the system! Are you sure?",
   more_options: "More options",
   mixed: "Mixed",
   my_profile: "My Profile",

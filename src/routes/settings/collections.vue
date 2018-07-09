@@ -15,12 +15,34 @@
       :title="$t('no_collections')"
       :body="$t('no_collections_body')"
       icon="error_outline" />
-    <v-table
-      v-else
-      :items="items"
-      :columns="fields"
-      primary-key-field="collection"
-      link="__link__" />
+
+    <div class="table">
+      <div class="header">
+        <div class="row">
+          <div class="cell">{{ $t('collection') }}</div>
+          <div class="cell">{{ $t('note') }}</div>
+        </div>
+      </div>
+      <div class="body">
+        <router-link
+          v-for="collection in items"
+          :key="collection.collection"
+          class="row"
+          :to="collection.__link__">
+          <div class="cell">{{ collection.name }}</div>
+          <div class="cell">{{ collection.note }}</div>
+          <button
+            v-if="collection.managed"
+            class="managed"
+            @click.prevent.stop="toggleManage(collection)">{{ $t('dont_manage') }}</button>
+          <button
+            v-else
+            class="not-managed"
+            @click.prevent.stop="toggleManage(collection)">{{ $t('manage') }}</button>
+        </router-link>
+      </div>
+    </div>
+
     <portal to="modal" v-if="addNew">
       <v-prompt
         v-model="newName"
@@ -32,6 +54,15 @@
         @cancel="addNew = false"
         @confirm="add" />
     </portal>
+
+    <portal to="modal" v-if="dontManage">
+      <v-confirm
+        :message="$t('dont_manage_copy', { collection: dontManage.name })"
+        color="danger"
+        :confirm-text="$t('dont_manage')"
+        @cancel="dontManage = null"
+        @confirm="stopManaging" />
+    </portal>
   </div>
 </template>
 
@@ -42,7 +73,9 @@ export default {
     return {
       addNew: false,
       newName: "",
-      adding: false
+      adding: false,
+
+      dontManage: null
     };
   },
   computed: {
@@ -55,21 +88,9 @@ export default {
         )
         .map(collection => ({
           ...collection,
-          collection: this.$t(`collections-${collection.collection}`),
+          name: this.$t(`collections-${collection.collection}`),
           __link__: `/settings/collections/${collection.collection}`
         }));
-    },
-    fields() {
-      return [
-        {
-          field: "collection",
-          name: this.$t("collection")
-        },
-        {
-          field: "note",
-          name: this.$t("note")
-        }
-      ];
     },
     breadcrumb() {
       return [
@@ -119,6 +140,43 @@ export default {
             error
           });
         });
+    },
+    toggleManage(collection) {
+      if (collection.managed) {
+        this.dontManage = collection;
+      } else {
+        return this.$api
+          .updateItem("directus_collections", collection.collection, {
+            managed: true
+          })
+          .then(() => {
+            return this.$store.dispatch("getCollections");
+          })
+          .catch(error => {
+            this.$events.emit("error", {
+              notify: this.$t("something_went_wrong_body"),
+              error
+            });
+          });
+      }
+    },
+    stopManaging() {
+      return this.$api
+        .updateItem("directus_collections", this.dontManage.collection, {
+          managed: false
+        })
+        .then(() => {
+          return this.$store.dispatch("getCollections");
+        })
+        .then(() => {
+          this.dontManage = null;
+        })
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     }
   }
 };
@@ -127,5 +185,73 @@ export default {
 <style lang="scss" scoped>
 .collections {
   padding-bottom: var(--page-padding-bottom);
+}
+
+.table {
+  background-color: var(--white);
+  position: relative;
+
+  .row {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--lightest-gray);
+    box-sizing: content-box;
+    height: 40px;
+  }
+
+  .cell {
+    flex-shrink: 0;
+    flex-basis: 200px;
+    padding-right: 20px;
+    position: relative;
+    overflow: hidden;
+    max-height: 100%;
+  }
+
+  .header {
+    position: relative;
+    top: 0;
+    height: var(--header-height);
+
+    .row {
+      height: 100%;
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      background-color: #f5fafd;
+    }
+  }
+
+  button {
+    border-radius: var(--border-radius);
+    padding: 5px 10px;
+    position: absolute;
+    right: 20px;
+
+    &.managed {
+      background-color: var(--lightest-gray);
+      color: var(--light-gray);
+
+      &:hover {
+        background-color: var(--danger);
+        color: var(--white);
+      }
+    }
+
+    &.not-managed {
+      background-color: var(--accent);
+      color: var(--white);
+
+      &:hover {
+        background-color: var(--accent-dark);
+        color: var(--white);
+      }
+    }
+  }
 }
 </style>
