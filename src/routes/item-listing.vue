@@ -288,9 +288,12 @@ export default {
       const id = this.$helpers.shortid.generate();
       this.$store.dispatch("loadingStart", { id });
 
+      const preferences = { ...this.preferences };
+      delete preferences.id;
+
       return this.$api
         .createCollectionPreset({
-          ...this.preferences,
+          ...preferences,
           collection: this.collection,
           user: this.$store.state.currentUser.id
         })
