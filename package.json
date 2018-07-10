@@ -12,7 +12,9 @@
     "dev": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test": "vue-cli-service lint",
-    "fix": "prettier --write \"src/**/*.{js,vue}\""
+    "fix": "prettier --write \"src/**/*.{js,vue}\"",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.0-rc.3",
@@ -22,7 +24,8 @@
     "@vue/eslint-config-prettier": "^3.0.0-rc.3",
     "node-sass": "^4.9.2",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.13"
+    "vue-template-compiler": "^2.5.13",
+    "vuepress": "^0.11.0"
   },
   "dependencies": {
     "@directus/format-title": "^1.2.0",
