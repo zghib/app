@@ -34,14 +34,16 @@
         <div class="listing">
           <v-readonly
             v-model="value"
-            :id="id"
+            :interface-type="id"
             :name="id"
             :type="type"
             :length="length"
             :readonly="readonly"
             :required="required"
             :loading="loading"
-            :options="options" />
+            :options="options"
+            :new-item="newItem"
+            :relationship="relationship" />
         </div>
       </fieldset>
       <fieldset>
