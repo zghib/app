@@ -30,6 +30,9 @@ export default function loadExtension(src) {
     // The src is always a .js file. We can retrieve the extension's CSS by
     //   by fetching the same path with the css extension
     link.href = src.slice(0, -2) + "css";
+    link.onerror = function() {
+      this.remove();
+    }
 
     script.onload = onload;
     script.onerror = onerror;
