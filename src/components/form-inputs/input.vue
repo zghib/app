@@ -189,7 +189,8 @@ export default {
       box-shadow: inset 0 0 0 2000px var(--white);
     }
 
-    &[disabled] {
+    &[disabled],
+    &:read-only {
       background-color: var(--lightest-gray);
       cursor: not-allowed;
     }
