@@ -123,7 +123,8 @@ export default {
               field: "id",
               interface: "primary-key",
               auto_increment: true,
-              primary_key: true
+              primary_key: true,
+              length: 15
             }
           ]
         })
