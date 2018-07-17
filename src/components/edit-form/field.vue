@@ -23,6 +23,8 @@
             :type="field.type"
             :value="values[field.field]"
             :relationship="field.relationship"
+            :fields="fields"
+            :values="values"
             @input="readonly ? null : $emit('stage-value', {
               field: field.field,
               value: $event
@@ -61,6 +63,10 @@ export default {
     batchMode: {
       type: Boolean,
       default: false
+    },
+    fields: {
+      type: Object,
+      required: true
     }
   },
   computed: {

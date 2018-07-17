@@ -12,6 +12,8 @@
     :options="optionsWithDefaults"
     :new-item="newItem"
     :relationship="relationship"
+    :fields="fields"
+    :values="values"
     class="v-interface-extension"
     @input="$emit('input', $event)"
     @setfield="$emit('setfield', $event)">
@@ -70,6 +72,14 @@ export default {
       default: false
     },
     relationship: {
+      type: Object,
+      default: null
+    },
+    fields: {
+      type: Object,
+      default: null
+    },
+    values: {
       type: Object,
       default: null
     }

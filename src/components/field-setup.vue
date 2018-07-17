@@ -94,6 +94,8 @@
             :loading="option.loading"
             :options="option.options"
             :value="options[optionID] || option.default"
+            :fields="selectedInterfaceInfo.options"
+            :values="options"
             @input="$set(options, optionID, $event)" />
         </div>
       </form>

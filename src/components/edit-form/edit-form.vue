@@ -24,8 +24,9 @@
         @stage-value="$emit('stage-value', $event)" />
       <v-field
         v-else
-        :values="values"
         :field="field"
+        :values="values"
+        :fields="fields"
         :readonly="readonly"
         :blocked="batchMode && !activeFields.includes(field.field)"
         :batch-mode="batchMode"
