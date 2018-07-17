@@ -9,6 +9,7 @@ import VDetails from "./components/details.vue";
 import VTable from "./components/table/table.vue";
 
 // Extensions
+import VPage from "./components/extensions/page/page.vue";
 import VInterface from "./components/extensions/interface/interface.vue";
 import VReadonly from "./components/extensions/readonly/readonly.vue";
 import VListing from "./components/extensions/listing/listing.vue";
@@ -42,6 +43,7 @@ import VInfoSidebar from "./components/sidebars/info-sidebar.vue";
 import VError from "./components/error.vue";
 
 // Extensions
+Vue.component("v-page", VPage);
 Vue.component("v-interface", VInterface);
 Vue.component("v-readonly", VReadonly);
 Vue.component("v-listing", VListing);

@@ -1,5 +1,5 @@
 import { keyBy } from "lodash";
-import { SET_INTERFACES, SET_LISTINGS } from "../../mutation-types";
+import { SET_INTERFACES, SET_LISTINGS, SET_PAGES } from "../../mutation-types";
 
 const mutations = {
   [SET_INTERFACES](state, interfaces) {
@@ -7,6 +7,9 @@ const mutations = {
   },
   [SET_LISTINGS](state, listings) {
     state.listings = keyBy(listings, "id");
+  },
+  [SET_PAGES](state, pages) {
+    state.pages = keyBy(pages, "id");
   }
 };
 

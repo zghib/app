@@ -21,6 +21,7 @@ import SettingsCollections from "./routes/settings/collections.vue";
 import SettingsFields from "./routes/settings/fields.vue";
 import SettingsRoles from "./routes/settings/roles.vue";
 import SettingsPermissions from "./routes/settings/permissions.vue";
+import PageExtension from "./routes/page-extension.vue";
 
 import ModalDebug from "./routes/modal-debug.vue";
 
@@ -52,6 +53,11 @@ const router = new Router({
       path: "/collections/:collection/:primaryKey",
       props: true,
       component: Edit
+    },
+    {
+      path: "/ext/:id",
+      props: true,
+      component: PageExtension
     },
     {
       path: "/bookmarks/:collection/:bookmarkID",

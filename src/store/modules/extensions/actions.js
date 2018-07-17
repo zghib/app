@@ -120,6 +120,7 @@ export function getExtensions({ commit }, type) {
 export function getAllExtensions({ dispatch }) {
   return Promise.all([
     dispatch("getExtensions", "interfaces"),
-    dispatch("getExtensions", "listings")
+    dispatch("getExtensions", "listings"),
+    dispatch("getExtensions", "pages")
   ]);
 }

@@ -29,5 +29,6 @@ export default function hydrateStore() {
     })
     .catch(error => {
       store.commit(HYDRATING_FAILED, error);
+      console.error(error); // eslint-disable-line no-console
     });
 }

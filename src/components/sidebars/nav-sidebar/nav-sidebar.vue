@@ -20,6 +20,10 @@
               path: `/collections/${name}`,
               name: $t(`collections-${name}`)
             }))" />
+          <nav-menu
+            v-if="extensions"
+            :title="$t('extensions')"
+            :links="extensions" />
           <nav-bookmarks :bookmarks="bookmarks" no-border />
         </section>
         <user-menu />
@@ -70,6 +74,20 @@ export default {
     },
     active() {
       return this.$store.state.sidebars.nav;
+    },
+    extensions() {
+      const links = [];
+      const pages = this.$store.state.extensions.pages;
+
+      this.$lodash.forEach(pages, (info, key) => {
+        links.push({
+          path: `/ext/${key}`,
+          name: info.name,
+          icon: info.icon
+        });
+      });
+
+      return links;
     }
   },
   methods: {
