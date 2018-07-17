@@ -32,7 +32,7 @@ export default function loadExtension(src) {
     link.href = src.slice(0, -2) + "css";
     link.onerror = function() {
       this.remove();
-    }
+    };
 
     script.onload = onload;
     script.onerror = onerror;

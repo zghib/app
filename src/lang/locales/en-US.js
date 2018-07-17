@@ -43,6 +43,7 @@ export default {
   cancel: "Cancel",
   change_project: "Change Project",
   choose_one: "Choose one",
+  choose_project: "Choose Project",
   choose_interface: "Choose an interface for how this data should be managed.",
   connection: "Connection",
   collection: "Collection",
@@ -230,8 +231,10 @@ export default {
   something_went_wrong: "Something went wrong..",
   something_went_wrong_body:
     "We're having some trouble processing your request.. Please try again by refreshing this page. If the problem persists, please contact your system administrator.",
+  sign_in: "Sign In",
   sign_out: "Sign Out",
   sign_out_confirm: "Are you sure you want to sign out?",
+  to: "To",
   unsaved_changes_copy:
     "You have unsaved changes! Are you sure you want to leave this page?",
   user_directory: "User Directory",
