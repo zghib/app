@@ -16,7 +16,9 @@
         :loading="loading"
         :options="options"
         :new-item="newItem"
-        :relationship="relationship" />
+        :relationship="relationship"
+        :fields="fields"
+        :values="values" />
     </div>
 
     <form @submit.prevent>
@@ -148,15 +150,18 @@
         </div>
 
         <div class="misc">
-          <label for="width">Responsiveness tester</label>
-          <input
-            id="width"
-            v-model="width"
-            min="50"
-            max="1000"
-            step="1"
-            type="range">
-          <span>{{ width }}px</span>
+          <label for="fields">Fields</label>
+          <v-interface
+            :value="JSON.stringify(fields)"
+            @input="fields = JSON.parse($event)"
+            id="json"
+            name="fields" />
+          <label for="values">Values</label>
+          <v-interface
+            :value="JSON.stringify(values)"
+            @input="values = JSON.parse($event)"
+            id="json"
+            name="value s" />
       </div>
       </fieldset>
     </form>
@@ -184,7 +189,65 @@ export default {
       width: 1000,
       newItem: false,
       relatedCollection: "",
-      relatedCollectionPrimaryKey: ""
+      relatedCollectionPrimaryKey: "",
+      fields: {
+        name: {
+          collection: "movies",
+          default_value: null,
+          field: "name",
+          group: null,
+          hidden_input: false,
+          hidden_list: false,
+          id: 154,
+          interface: "text-input",
+          length: "100",
+          locked: false,
+          managed: true,
+          name: "Name",
+          note: null,
+          options: null,
+          primary_key: false,
+          readonly: false,
+          relationship: null,
+          required: false,
+          signed: null,
+          sort: "10",
+          translation: null,
+          type: "VARCHAR",
+          validation: null,
+          view_width: 4
+        },
+        director: {
+          collection: "movies",
+          default_value: null,
+          field: "director",
+          group: null,
+          hidden_input: false,
+          hidden_list: false,
+          id: 161,
+          interface: "text-input",
+          length: "100",
+          locked: false,
+          managed: true,
+          name: "Director",
+          note: null,
+          options: null,
+          primary_key: false,
+          readonly: false,
+          relationship: null,
+          required: false,
+          signed: null,
+          sort: "9",
+          translation: null,
+          type: "VARCHAR",
+          validation: null,
+          view_width: 4
+        }
+      },
+      values: {
+        name: "Directus The Movie",
+        director: "Ben Spielberg"
+      }
     };
   },
   computed: {
