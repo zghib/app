@@ -4,7 +4,7 @@
       <form @submit.prevent="login">
         <img class="logo" alt="" src="../assets/logo-dark.svg" />
 
-        <h1 class="style-0">{{ $t('sign_in') }}</h1>
+        <h1>{{ $t('sign_in') }}</h1>
 
         <label class="project-switcher">
           <select v-model="url">
@@ -324,13 +324,13 @@ form {
   width: 100%;
   position: relative;
   top: -5vh;
-  padding: 30px 40px 20px;
+  padding: 40px 40px 30px;
   box-shadow: var(--box-shadow);
 }
 
 .logo {
   height: 40px;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
   pointer-events: none;
   user-select: none;
 }
@@ -341,6 +341,13 @@ label {
   font-size: 16px;
   color: var(--light-gray);
   font-weight: 400;
+}
+
+h1 {
+  color: var(--darker-gray);
+  font-size: 36px;
+  line-height: 1.4;
+  font-weight: 300;
 }
 
 select {
@@ -356,7 +363,7 @@ select {
 }
 
 .project-switcher {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 
   span {
     transition: color var(--fast) var(--transition);
@@ -380,7 +387,7 @@ select {
 .material-input {
   position: relative;
   width: 100%;
-  margin: 20px 0;
+  margin: 40px 0 20px;
 
   input {
     border: 0;
@@ -388,10 +395,22 @@ select {
     border-bottom: 2px solid var(--lighter-gray);
     width: 100%;
     padding: 10px 0;
+    color: var(--gray);
 
+    &:-webkit-autofill {
+      color: var(--gray) !important;
+      -webkit-text-fill-color: var(--gray);
+      -webkit-box-shadow: 0 0 0px 1000px var(--white) inset;
+    }
     &:focus {
       outline: 0;
       border-color: var(--accent);
+      color: var(--dark-gray);
+      &:-webkit-autofill {
+        color: var(--dark-gray) !important;
+        -webkit-text-fill-color: var(--dark-gray);
+        -webkit-box-shadow: 0 0 0px 1000px var(--white) inset;
+      }
     }
   }
 
@@ -418,7 +437,7 @@ select {
   text-align: right;
   display: block;
   text-decoration: none;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   transition: color var(--fast) var(--transition-out);
 
   &:hover,
@@ -435,7 +454,7 @@ button {
   display: block;
   padding: 10px 0;
   border-radius: var(--border-radius);
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   box-shadow: 0;
   transition: box-shadow var(--fast) var(--transition);
 
