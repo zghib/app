@@ -1,7 +1,6 @@
 import jwtPayload from "@rijk/jwt-payload";
 import api from "../../../api";
 import router from "../../../router";
-import extractHostname from "../../../helpers/extract-hostname";
 import { resetState } from "../../index";
 import {
   LOGIN_PENDING,
@@ -14,6 +13,20 @@ import {
 import { stopPolling } from "../../../polling";
 
 const config = window.__DirectusConfig__; // eslint-disable-line
+
+function extractHostname(url) {
+  let hostname;
+
+  if (url.indexOf("://") > -1) {
+    hostname = url.split("/")[2];
+  } else {
+    hostname = url.split("/")[0];
+  }
+  hostname = hostname.split(":")[0];
+  hostname = hostname.split("?")[0];
+
+  return hostname;
+}
 
 export function login({ commit }, credentials) {
   commit(LOGIN_PENDING);

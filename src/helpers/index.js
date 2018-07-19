@@ -4,13 +4,17 @@ import formatTitle from "@directus/format-title";
 import micromustache from "micromustache";
 import shortid from "shortid";
 import date from "./date";
+import componentExists from "./component-exists";
+import formatFilters from "./format-filters";
 
 const helpers = {
   formatTitle,
   date,
   convertRange,
   micromustache,
-  shortid
+  shortid,
+  componentExists,
+  formatFilters
 };
 
 const helpersPlugin = {
