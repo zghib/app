@@ -3,12 +3,10 @@ import convertRange from "convert-range";
 import formatTitle from "@directus/format-title";
 import micromustache from "micromustache";
 import shortid from "shortid";
-import prefixes from "./prefixes";
 import date from "./date";
 
 const helpers = {
   formatTitle,
-  prefixes,
   date,
   convertRange,
   micromustache,
