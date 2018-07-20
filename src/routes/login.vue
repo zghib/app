@@ -212,12 +212,15 @@ export default {
       if (this.resetMode) {
         this.loading = true;
 
-        this.$axios.post(this.url + "/_/auth/password/request", {
-          email: this.email
-        })
+        this.$axios
+          .post(this.url + "/_/auth/password/request", {
+            email: this.email
+          })
           .then(() => {
             this.loading = false;
-            this.$notification.confirm(this.$t("password_reset_sent", { email: this.email }));
+            this.$notification.confirm(
+              this.$t("password_reset_sent", { email: this.email })
+            );
           })
           .catch(error => {
             this.error = error;
@@ -343,7 +346,6 @@ export default {
     }
   }
 };
-
 </script>
 
 <style lang="scss" scoped>
@@ -724,6 +726,4 @@ small {
     content: ".";
   }
 }
-
-
 </style>
