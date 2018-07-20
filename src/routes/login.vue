@@ -505,9 +505,8 @@ button[type="submit"] {
   display: block;
   padding: 10px 0;
   border-radius: var(--border-radius);
-  box-shadow: 0;
-  transition: var(--medium) var(--transition);
-  transition-property: box-shadow, background-color;
+  box-shadow: var(--box-shadow);
+  transition: box-shadow var(--fast) var(--transition);
   position: relative;
   top: 0;
 
@@ -679,7 +678,6 @@ small {
 .buttons {
   max-height: 105px;
   transition: max-height var(--slow) var(--transition-in);
-  overflow: hidden;
 }
 
 .loading {
@@ -702,6 +700,7 @@ small {
     max-height: 0px;
     transition: var(--slow) var(--transition);
     opacity: 0;
+    overflow: hidden;
   }
 
   .project-switcher i {
