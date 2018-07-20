@@ -357,17 +357,6 @@ body {
   color: var(--dark-gray);
   background-color: var(--body-background);
   height: 100%;
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: var(--header-height);
-    left: 0;
-    top: 0;
-    background-color: var(--darkest-gray);
-  }
 }
 
 body:not(.user-is-tabbing) * {
@@ -554,5 +543,18 @@ input:-webkit-autofill {
   &.success {
     background: var(--success);
     border-left-color: var(--success-dark);
+  }
+}
+
+.directus {
+   &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: var(--header-height);
+    left: 0;
+    top: 0;
+    background-color: var(--darkest-gray);
   }
 }

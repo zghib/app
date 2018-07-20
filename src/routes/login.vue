@@ -1,13 +1,14 @@
 <template>
   <transition name="fade">
-    <div class="login">
-      <form @submit.prevent="login">
+    <div class="login" :class="{ loading }">
+      <form @submit.prevent="processForm">
         <img class="logo" alt="" src="../assets/logo-dark.svg" />
 
-        <h1>{{ $t('sign_in') }}</h1>
+        <h1 v-if="loading">{{ loggedIn? $t('fetching_data') : $t('signing_in') }}</h1>
+        <h1 v-else>{{ resetMode ? $t('reset_password') : $t('sign_in') }}</h1>
 
         <label class="project-switcher">
-          <select v-model="url">
+          <select v-model="url" :disabled="loading">
             <option
               v-for="(name, url) in urls"
               :value="url"
@@ -21,6 +22,7 @@
         <div class="material-input">
           <input
             v-model="email"
+            :disabled="loading"
             :class="{ 'has-value': email && email.length > 0}"
             type="text"
             id="email"
@@ -28,36 +30,62 @@
           <label for="email">{{ $t('email') }}</label>
         </div>
 
-        <div class="material-input">
+        <div v-if="!resetMode" class="material-input">
           <input
             v-model="password"
+            :disabled="loading"
             :class="{ 'has-value': password && password.length > 0}"
             type="password"
             id="password"
             name="password" />
           <label for="password">{{ $t('password') }}</label>
         </div>
+        <div class="buttons">
+          <button
+            type="button"
+            class="forgot"
+            @click.prevent="resetMode = !resetMode" >
+            {{ resetMode? $t('sign_in') : $t('forgot_password') }}
+          </button>
 
-        <a class="forgot" href="/reset-password">{{ $t('forgot_password') }}</a>
-
-        <button class="style-btn" type="submit">{{ $t('sign_in') }}</button>
+          <button
+            class="style-btn"
+            type="submit"
+            :disabled="disabled || loading">
+            {{ resetMode ? $t('reset_password') : $t('sign_in') }}
+          </button>
+        </div>
 
         <transition-group
           name="list"
-          class="third-party-auth"
-          tag="ul">
-          <i key="lock" v-if="!thirdPartyAuthProviders.length" class="material-icons lock">lock_outline</i>
-          <li
-            v-else
-            v-for="provider in thirdPartyAuthProviders"
-            :key="provider.name">
-            <a v-tooltip.bottom="$helpers.formatTitle(provider.name)" :href="url + '/_/auth/sso/' + provider.name">
-              <img
-                :alt="provider.name"
-                :src="provider.icon">
-            </a>
-          </li>
-        </transition-group>
+          tag="div"
+          class="stack">
+          <v-spinner
+            v-if="checkingExistence || gettingThirdPartyAuthProviders"
+            class="spinner"
+            key="spinner"
+            :size="18"
+            :line-size="2"
+            line-fg-color="var(--gray)"
+            line-bg-color="var(--lighter-gray)" />
+
+          <i
+            v-else-if="thirdPartyAuthProviders && !thirdPartyAuthProviders.length"
+            key="lock"
+            class="material-icons lock">{{ loggedIn ? "lock_open" : "lock_outline" }}</i>
+
+          <ul v-else class="third-party-auth" key="third-party-auth">
+            <li
+              v-for="provider in thirdPartyAuthProviders"
+              :key="provider.name">
+              <a v-tooltip.bottom="$helpers.formatTitle(provider.name)" :href="url + '/_/auth/sso/' + provider.name">
+                <img
+                  :alt="provider.name"
+                  :src="provider.icon">
+              </a>
+            </li>
+          </ul>
+          </transition-group>
       </form>
       <transition name="slide">
         <div
@@ -89,12 +117,15 @@ export default {
       password: null,
 
       loading: false,
+      loggedIn: false,
       error: null,
 
       exists: null,
       checkingExistence: false,
-      thirdPartyAuthProviders: [],
-      gettingThirdPartyAuthProviders: false
+      thirdPartyAuthProviders: null,
+      gettingThirdPartyAuthProviders: false,
+
+      resetMode: false
     };
   },
   computed: {
@@ -134,6 +165,16 @@ export default {
     },
     localeMessages() {
       return this.$i18n.getLocaleMessage(this.$i18n.locale);
+    },
+    disabled() {
+      if (this.resetMode) {
+        if (this.email === null) return true;
+        return this.email.length === 0;
+      }
+
+      if (this.email === null || this.password === null) return true;
+
+      return this.email.length === 0 || this.password.length === 0;
     }
   },
   created() {
@@ -167,27 +208,43 @@ export default {
     }
   },
   methods: {
-    login() {
-      const credentials = {
-        url: this.url,
-        email: this.email,
-        password: this.password
-      };
+    processForm() {
+      if (this.resetMode) {
+        this.loading = true;
 
-      this.loading = true;
-
-      this.$store
-        .dispatch("login", credentials)
-        .then(() => {
-          this.enterApp();
+        this.$axios.post(this.url + "/_/auth/password/request", {
+          email: this.email
         })
-        .catch(() => {
-          this.loading = false;
-        });
+          .then(() => {
+            this.loading = false;
+            this.$notification.confirm(this.$t("password_reset_sent", { email: this.email }));
+          })
+          .catch(error => {
+            this.error = error;
+            this.loading = false;
+          });
+      } else {
+        const credentials = {
+          url: this.url,
+          email: this.email,
+          password: this.password
+        };
+
+        this.loading = true;
+
+        this.$store
+          .dispatch("login", credentials)
+          .then(() => {
+            this.loggedIn = true;
+            this.enterApp();
+          })
+          .catch(() => {
+            this.loading = false;
+          });
+      }
     },
     enterApp() {
       if (this.$route.query.redirect) {
-        this.loading = false;
         return this.$router.push(this.$route.query.redirect);
       }
 
@@ -195,7 +252,6 @@ export default {
         .getMe({ fields: "last_page" })
         .then(res => res.data.last_page)
         .then(lastPage => {
-          this.loading = false;
           this.$router.push(lastPage || "/");
         })
         .catch(error => {
@@ -212,7 +268,7 @@ export default {
 
       this.checkingExistence = true;
       this.exists = false;
-      this.thirdPartyAuthProviders = [];
+      this.thirdPartyAuthProviders = null;
 
       const scopedAPI = new sdk();
 
@@ -231,7 +287,7 @@ export default {
     },
     getThirdPartyAuthProviders() {
       this.gettingThirdPartyAuthProviders = true;
-      this.thirdPartyAuthProviders = [];
+      this.thirdPartyAuthProviders = null;
 
       const scopedAPI = new sdk();
 
@@ -250,25 +306,6 @@ export default {
             error
           });
           this.gettingThirdPartyAuthProviders = false;
-        });
-    },
-    resetPassword() {
-      this.resetLoading = true;
-
-      this.$api
-        .request(
-          "POST",
-          "/auth/reset-request",
-          {},
-          {
-            email: this.email
-          }
-        )
-        .then(() => {
-          this.resetLoading = false;
-        })
-        .catch(err => {
-          alert(JSON.stringify(err, "    ", false));
         });
     },
     trySSOLogin() {
@@ -306,6 +343,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style lang="scss" scoped>
@@ -393,22 +431,32 @@ select {
     border: 0;
     font-size: 16px;
     border-bottom: 2px solid var(--lighter-gray);
+    border-width: 2px;
     width: 100%;
     padding: 10px 0;
     color: var(--gray);
+    transition: border-color var(--fast) var(--transition);
+    border-radius: 0;
 
     &:-webkit-autofill {
       color: var(--gray) !important;
       -webkit-text-fill-color: var(--gray);
       -webkit-box-shadow: 0 0 0px 1000px var(--white) inset;
     }
+
+    &:hover {
+      transition: none;
+      border-color: var(--darkest-gray);
+    }
+
     &:focus {
       outline: 0;
       border-color: var(--accent);
       color: var(--dark-gray);
+
       &:-webkit-autofill {
-        color: var(--dark-gray) !important;
-        -webkit-text-fill-color: var(--dark-gray);
+        color: var(--darker-gray) !important;
+        -webkit-text-fill-color: var(--darker-gray);
         -webkit-box-shadow: 0 0 0px 1000px var(--white) inset;
       }
     }
@@ -434,11 +482,12 @@ select {
 }
 
 .forgot {
-  text-align: right;
+  float: right;
   display: block;
   text-decoration: none;
   margin-bottom: 50px;
   transition: color var(--fast) var(--transition-out);
+  color: var(--light-gray);
 
   &:hover,
   .user-is-tabbing &:focus {
@@ -448,19 +497,28 @@ select {
   }
 }
 
-button {
+button[type="submit"] {
   background-color: var(--darkest-gray);
   width: 100%;
   display: block;
   padding: 10px 0;
   border-radius: var(--border-radius);
-  margin-bottom: 30px;
   box-shadow: 0;
-  transition: box-shadow var(--fast) var(--transition);
+  transition: var(--medium) var(--transition);
+  transition-property: box-shadow, background-color;
+  position: relative;
+  top: 0;
 
-  &:hover {
-    transition: none;
-    box-shadow: var(--box-shadow-accent);
+  &[disabled] {
+    background-color: var(--lighter-gray);
+    cursor: not-allowed;
+  }
+
+  &:not([disabled]) {
+    &:hover {
+      box-shadow: var(--box-shadow-accent);
+      top: -1px;
+    }
   }
 }
 
@@ -502,7 +560,7 @@ small {
 }
 
 .list-enter-active {
-  transition: var(--medium) var(--transition-in);
+  transition: var(--fast) var(--transition-in);
 }
 
 .list-leave-active {
@@ -512,8 +570,23 @@ small {
 .list-enter,
 .list-leave-to {
   opacity: 0;
-  transform: translateY(10px) scale(0.9);
-  position: absolute;
+}
+
+.stack {
+  position: relative;
+  width: 100%;
+  padding: 20px 0 10px;
+
+  > * {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+
+  .lock {
+    transform: translateY(-3px);
+  }
 }
 
 .notice {
@@ -576,6 +649,10 @@ small {
 .fade-enter-active {
   opacity: 1;
   transition: var(--slow) var(--transition-in);
+
+  form {
+    transition: transform var(--slow) var(--transition-in);
+  }
 }
 
 .fade-leave-active {
@@ -585,10 +662,68 @@ small {
   top: 0;
   width: 100%;
   height: 100%;
+  z-index: 1000;
+
+  form {
+    transition: transform var(--slow) var(--transition-out);
+  }
 }
 
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
 }
+
+.buttons {
+  max-height: 105px;
+  transition: max-height var(--slow) var(--transition-in);
+  overflow: hidden;
+}
+
+.loading {
+  pointer-events: none;
+  user-select: none;
+
+  h1::after {
+    content: "";
+    animation: ellipsis steps(3) 1s infinite;
+  }
+
+  .material-input {
+    input {
+      transition: var(--fast) var(--transition);
+      border-color: var(--white);
+    }
+  }
+
+  .buttons {
+    max-height: 0px;
+    transition: var(--slow) var(--transition);
+    opacity: 0;
+  }
+
+  .project-switcher i {
+    display: none;
+  }
+}
+
+@keyframes ellipsis {
+  0% {
+    content: ".";
+  }
+
+  33% {
+    content: "..";
+  }
+
+  66% {
+    content: "...";
+  }
+
+  100% {
+    content: ".";
+  }
+}
+
+
 </style>

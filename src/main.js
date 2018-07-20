@@ -4,6 +4,7 @@ import VueDraggable from "vuedraggable";
 import VTooltip from "v-tooltip";
 import VueTimeago from "vue-timeago";
 import PortalVue from "portal-vue";
+import axios from "axios";
 import en from "date-fns/locale/en/";
 import nl from "date-fns/locale/nl/";
 
@@ -43,7 +44,8 @@ Vue.config.productionTip = false;
 Object.defineProperties(Vue.prototype, {
   $lodash: { value: lodash },
   $api: { value: api },
-  $notify: { value: notify }
+  $notify: { value: notify },
+  $axios: { value: axios }
 });
 
 Vue.use(events);

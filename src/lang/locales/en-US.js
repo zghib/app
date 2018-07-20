@@ -106,6 +106,7 @@ export default {
   error_unknown: "Unknown error. Try again later.",
   esc_cancel: "Escape will cancel and close the window.",
   equal_to: "Equal to",
+  fetching_data: "Fetching Data",
   field: "Field",
   fields: "Fields",
   fields_are_saved_automatically: "Field settings are saved automatically",
@@ -184,6 +185,7 @@ export default {
   operator: "Operator",
   options: "Options",
   password: "Password",
+  password_reset_sent: "Password reset email sent to {email}",
   powered_by_directus: "Powered by Directus",
   preview_and_rollback: "Preview and revert",
   read: "Read",
@@ -232,6 +234,7 @@ export default {
   something_went_wrong_body:
     "We're having some trouble processing your request.. Please try again by refreshing this page. If the problem persists, please contact your system administrator.",
   sign_in: "Sign In",
+  signing_in: "Signing In",
   sign_out: "Sign Out",
   sign_out_confirm: "Are you sure you want to sign out?",
   to: "To",

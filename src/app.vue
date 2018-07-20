@@ -1,9 +1,5 @@
 <template>
-  <router-view
-    v-if="publicRoute"
-    class="directus" />
-
-  <div v-else-if="hydratingError" class="error">
+  <div v-if="hydratingError" class="error">
     <v-error
       icon="warning"
       :title="$t('server_error')"
@@ -12,21 +8,18 @@
     <p>Try again later or <router-link to="/logout">login to another instance</router-link>.</p>
   </div>
 
-  <div
-    v-else
-    class="directus">
-
-    <loader
-      v-if="!hydrated"
-      area="full-page" />
-
-    <div v-else>
+  <div v-else-if="!publicRoute">
+    <div v-if="hydrated" class="directus">
       <v-nav-sidebar />
       <router-view class="page-root" />
     </div>
 
+    <loader v-else area="full-page" />
+
     <portal-target name="modal" />
   </div>
+
+  <router-view v-else class="directus" />
 </template>
 
 <script>
@@ -47,7 +40,7 @@ export default {
       return this.$route.meta.publicRoute || false;
     },
     hydrated() {
-      return this.$store.state.hydrated;
+      return this.$store.state.hydrated || false;
     },
     hydratingError() {
       return this.$store.state.hydratingError;

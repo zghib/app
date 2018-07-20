@@ -30,6 +30,7 @@
   "dependencies": {
     "@directus/format-title": "^1.2.0",
     "@rijk/jwt-payload": "^1.0.1",
+    "axios": "^0.18.0",
     "body-scroll-lock": "^2.4.6",
     "convert-range": "^1.1.0",
     "date-fns": "^1.29.0",
