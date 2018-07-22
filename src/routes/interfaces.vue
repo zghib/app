@@ -11,6 +11,11 @@
 
 <script>
 export default {
+  metaInfo() {
+    return {
+      title: "Interfaces"
+    };
+  },
   computed: {
     items() {
       return Object.keys(this.$store.state.extensions.interfaces).map(id => ({

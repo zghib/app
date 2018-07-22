@@ -148,6 +148,11 @@ import api from "../api";
 
 export default {
   name: "route-file-library",
+  metaInfo() {
+    return {
+      title: this.$t("file_library")
+    };
+  },
   components: {
     VItemListing,
     VSearchFilter,

@@ -23,6 +23,11 @@ import api from "../../api";
 
 export default {
   name: "settings-roles",
+  metaInfo() {
+    return {
+      title: `${this.$t("settings")} | ${this.$t("roles")}`
+    };
+  },
   data() {
     return {
       error: null,

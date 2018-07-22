@@ -9,6 +9,15 @@ import VNotFound from "./not-found.vue";
 
 export default {
   name: "page-extension",
+  metaInfo() {
+    const page = this.$store.state.extensions.pages[this.id];
+
+    if (!page) return null;
+
+    return {
+      title: page.name
+    };
+  },
   components: {
     VNotFound
   },

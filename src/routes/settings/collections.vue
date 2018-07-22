@@ -69,6 +69,13 @@
 <script>
 export default {
   name: "settings-collections",
+  metaInfo() {
+    return {
+      title: `${this.$t("settings")} | ${this.$t(
+        "settings_collections_fields"
+      )}`
+    };
+  },
   data() {
     return {
       addNew: false,

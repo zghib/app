@@ -104,6 +104,11 @@ import api from "../api";
 
 export default {
   name: "edit",
+  metaInfo() {
+    return {
+      title: this.$t("editing", { collection: this.collection })
+    };
+  },
   components: {
     VEditForm,
     VLoader,

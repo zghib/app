@@ -5,6 +5,7 @@ import VTooltip from "v-tooltip";
 import VueTimeago from "vue-timeago";
 import PortalVue from "portal-vue";
 import axios from "axios";
+import meta from "vue-meta";
 import en from "date-fns/locale/en/";
 import nl from "date-fns/locale/nl/";
 
@@ -62,6 +63,7 @@ Vue.use(VueTimeago, {
     nl
   }
 });
+Vue.use(meta);
 Vue.component("draggable", VueDraggable);
 
 /* eslint-disable no-new */

@@ -94,6 +94,13 @@ import VFieldSetup from "../../components/field-setup.vue";
 
 export default {
   name: "settings-fields",
+  metaInfo() {
+    return {
+      title: `${this.$t("settings")} | ${this.$t("editing", {
+        collection: this.$helpers.formatTitle(this.collection)
+      })}`
+    };
+  },
   components: {
     VEditForm,
     NotFound,

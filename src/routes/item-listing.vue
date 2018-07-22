@@ -119,6 +119,11 @@ import api from "../api";
 
 export default {
   name: "route-item-listing",
+  metaInfo() {
+    return {
+      title: this.$helpers.formatTitle(this.collection)
+    };
+  },
   components: {
     VItemListing,
     VSearchFilter,

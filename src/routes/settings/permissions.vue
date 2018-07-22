@@ -68,6 +68,15 @@ import VPermissionsWidget from "../../components/permissions-widget/permissions-
 
 export default {
   name: "settings-permissions",
+  metaInfo() {
+    if (!this.role) return;
+
+    return {
+      title: `${this.$t("settings")} | ${this.$helpers.formatTitle(
+        this.role.name
+      )} ${this.$t("permissions")}`
+    };
+  },
   components: {
     VEditForm,
     VPermissionsWidget

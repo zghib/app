@@ -31,6 +31,11 @@ import EditForm from "../../components/edit-form/edit-form.vue";
 
 export default {
   name: "settings-global",
+  metaInfo() {
+    return {
+      title: `${this.$t("settings")} | ${this.$t("settings_global")}`
+    };
+  },
   components: {
     EditForm
   },

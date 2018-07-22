@@ -95,6 +95,11 @@ import VSignal from "../../components/signal.vue";
 
 export default {
   name: "settings",
+  metaInfo() {
+    return {
+      title: `${this.$t("settings")}`
+    };
+  },
   components: {
     VSignal
   },

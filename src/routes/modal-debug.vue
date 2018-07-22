@@ -39,6 +39,11 @@
 
 <script>
 export default {
+  metaInfo() {
+    return {
+      title: "Debug Modals"
+    };
+  },
   data() {
     return {
       alert: false,

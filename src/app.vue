@@ -30,6 +30,9 @@ import VNavSidebar from "./components/sidebars/nav-sidebar/nav-sidebar.vue";
 
 export default {
   name: "directus",
+  metaInfo: {
+    title: "Directus"
+  },
   components: {
     VBlocker,
     VError,

@@ -86,6 +86,7 @@ export default {
   display_name: "Display Name",
   drop_file: "Drop files here or click to upload.",
   dont_show: "Don't Show",
+  editing: "Editing {collection}",
   editing_item: "Editing Item",
   editing_single: "Editing {collection}",
   email_address: "Email Address",

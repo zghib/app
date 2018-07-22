@@ -5,5 +5,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  metaInfo() {
+    return {
+      title: "Debugger"
+    };
+  }
+};
 </script>

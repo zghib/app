@@ -171,6 +171,11 @@
 <script>
 export default {
   name: "interface-debugger",
+  metaInfo() {
+    return {
+      title: "Interface Debugger"
+    };
+  },
   props: {
     id: {
       type: String,

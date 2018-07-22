@@ -24,6 +24,11 @@ import VError from "../components/error.vue";
 
 export default {
   name: "collections",
+  metaInfo() {
+    return {
+      title: this.$t("collections")
+    };
+  },
   components: {
     VError
   },
