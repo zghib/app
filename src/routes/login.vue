@@ -69,6 +69,11 @@
             line-fg-color="var(--gray)"
             line-bg-color="var(--lighter-gray)" />
 
+          <span key="error" class="notice" v-else-if="error" :class="errorType">
+            <i class="material-icons">{{ errorType }}</i>
+            {{ errorMessage }}
+          </span>
+
           <i
             v-else-if="thirdPartyAuthProviders && !thirdPartyAuthProviders.length"
             key="lock"
@@ -87,18 +92,6 @@
           </ul>
           </transition-group>
       </form>
-      <transition name="slide">
-        <div
-          v-if="error"
-          :class="errorType"
-          class="notice">
-          <i class="material-icons">{{ errorType }}</i>
-          {{ errorMessage }}
-          <button
-            class="close"
-            @click="error = null">Close error</button>
-        </div>
-      </transition>
       <small v-tooltip="version" class="style-4">{{ $t('powered_by_directus') }}</small>
     </div>
   </transition>
@@ -205,6 +198,11 @@ export default {
     },
     storeError(error) {
       this.error = error;
+    },
+    error() {
+      setTimeout(() => {
+        this.error = null;
+      }, 10000);
     }
   },
   methods: {
@@ -272,6 +270,7 @@ export default {
       this.checkingExistence = true;
       this.exists = false;
       this.thirdPartyAuthProviders = null;
+      this.error = null;
 
       const scopedAPI = new sdk();
 
@@ -576,7 +575,7 @@ small {
 .stack {
   position: relative;
   width: 100%;
-  padding: 20px 0 10px;
+  padding: 30px 0 20px;
 
   > * {
     position: absolute;
@@ -588,52 +587,6 @@ small {
   .lock {
     transform: translateY(-3px);
   }
-}
-
-.notice {
-  position: absolute;
-  bottom: 50px;
-  background-color: var(--light-gray);
-  border-radius: var(--border-radius);
-  color: var(--white);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 13px;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
-  width: max-content;
-
-  i {
-    margin-right: 5px;
-  }
-}
-
-.notice.error {
-  background-color: var(--danger-dark);
-}
-
-.notice.warning {
-  background-color: var(--warning);
-}
-
-.slide-enter-active {
-  transform: translateY(0);
-  opacity: 1;
-  transition: var(--slow) var(--transition-in);
-}
-
-.slide-leave-active {
-  transform: translateY(0);
-  transition: var(--medium) var(--transition-out);
-}
-
-.slide-enter,
-.slide-leave-to {
-  transform: translateY(calc(50px + 100%));
-  opacity: 0;
 }
 
 .close {
@@ -723,6 +676,32 @@ small {
 
   100% {
     content: ".";
+  }
+}
+
+@media (max-height: 650px) {
+  form {
+    padding: 30px 25px 20px;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+  }
+
+  .forgot {
+    margin-bottom: 20px;
+  }
+
+  .stack {
+    padding: 20px 0;
+  }
+}
+
+.notice {
+  text-align: center;
+
+  &.error {
+    color: var(--danger);
   }
 }
 </style>
