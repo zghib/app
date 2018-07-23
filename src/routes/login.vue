@@ -402,7 +402,7 @@ select {
 }
 
 .project-switcher {
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 
   span {
     transition: color var(--fast) var(--transition);
@@ -446,7 +446,7 @@ select {
 
     &:hover {
       transition: none;
-      border-color: var(--darkest-gray);
+      border-color: var(--darker-gray);
     }
 
     &:focus {
@@ -498,13 +498,13 @@ select {
 }
 
 button[type="submit"] {
-  background-color: var(--darkest-gray);
+  background-color: var(--darker-gray);
+  font-size: 14px;
   width: 100%;
   display: block;
   padding: 10px 0;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
-  transition: box-shadow var(--fast) var(--transition);
+  transition: background-color var(--fast) var(--transition);
   position: relative;
   top: 0;
 
@@ -515,8 +515,7 @@ button[type="submit"] {
 
   &:not([disabled]) {
     &:hover {
-      box-shadow: var(--box-shadow-accent);
-      top: -1px;
+      background-color: var(--darkest-gray);
     }
   }
 }
