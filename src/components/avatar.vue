@@ -70,7 +70,7 @@ export default {
 
 .wrapper {
   border-radius: 50%;
-  border: 3px solid;
+  border: 2px solid;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -88,8 +88,7 @@ i {
   right: 0;
   top: 50%;
   transform: translateY(-55%);
-  color: var(--accent);
-  opacity: 0.7;
+  color: var(--lighter-gray);
   text-align: center;
 }
 
