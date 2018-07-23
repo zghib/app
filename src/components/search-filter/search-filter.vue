@@ -200,7 +200,7 @@ export default {
       this.$emit("filter", filters);
     },
     clearFilters() {
-      this.$emit("clearFilters");
+      this.$emit("clear-filters");
       if (this.open) this.open = false;
     }
   }
