@@ -61,10 +61,14 @@ export default {
   justify-content: center;
   align-items: center;
   transition: var(--fast) var(--transition);
+  position: relative;
 }
 
 i {
-  font-size: 15px;
+  position: relative;
+  top: -1px;
+  left: -0.5px;
+  font-size: 16px;
   color: var(--white);
 }
 
