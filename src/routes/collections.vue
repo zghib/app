@@ -38,6 +38,7 @@ export default {
 
       return Object.values(collections)
         .filter(collection => collection.hidden === false)
+        .filter(collection => collection.collection.startsWith("directus_") === false)
         .map(collection => ({
           ...collection,
           collection: this.$t(`collections-${collection.collection}`),
