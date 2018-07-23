@@ -432,7 +432,6 @@ select {
     border: 0;
     font-size: 16px;
     border-bottom: 2px solid var(--lighter-gray);
-    border-width: 2px;
     width: 100%;
     padding: 10px 0;
     color: var(--gray);
