@@ -2,16 +2,18 @@
   <div class="v-field">
     <component :is="fieldset ? 'fieldset' : 'p'">
       <div>
-        <div class="label">
-          <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
-            {{ field.name }}<i v-tooltip="$t('required')" class="material-icons" v-if="field.required">star</i>
-          </component>
-          <label v-if="batchMode">
-            <v-toggle
-              :value="!blocked"
-              @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" />
-          </label>
-        </div>
+        <template v-if="hideLabel === false">
+          <div class="label">
+            <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
+              {{ field.name }}<i v-tooltip="$t('required')" class="material-icons" v-if="field.required">star</i>
+            </component>
+            <label v-if="batchMode">
+              <v-toggle
+                :value="!blocked"
+                @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" />
+            </label>
+          </div>
+        </template>
         <small v-if="!readonly && field.comment">{{ field.comment }}</small>
         <div class="field-wrapper">
           <v-interface
@@ -76,6 +78,16 @@ export default {
       ];
 
       return (interfaceInfo && interfaceInfo.fieldset) || false;
+    },
+    hideLabel() {
+      const interfaceName = this.field.interface;
+      const interfaceMeta = this.$store.state.extensions.interfaces[interfaceName];
+
+      if (!interfaceMeta) return false;
+
+      if (interfaceMeta && interfaceMeta.hideLabel) return interfaceMeta.hideLabel;
+
+      return false;
     }
   }
 };
