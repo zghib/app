@@ -527,6 +527,84 @@ export default {
         return next(vm => (vm.$data.error = true));
       });
   },
+  beforeRouteUpdate(to, from, next) {
+    const { collection, primaryKey } = to.params;
+    const exists =
+      Object.keys(this.$store.state.collections).includes(collection) ||
+      collection.startsWith("directus_");
+    const isNew = primaryKey === "+";
+
+    if (exists === false) {
+      this.notFound = true;
+      return next();
+    }
+
+    const id = this.$helpers.shortid.generate();
+    this.$store.dispatch("loadingStart", { id });
+
+    return Promise.all([
+      this.$api.getFields(collection),
+      this.$api.getCollectionRelations(collection),
+
+      isNew ? null : this.$api.getItem(collection, primaryKey)
+    ])
+      .then(([fields, relations, item]) => {
+        this.$store.dispatch("loadingFinished", id);
+
+        return {
+          fields: fields.data,
+          relations: relations[0].data,
+          item: (item && item.data) || null
+        };
+      })
+      .then(({ fields, relations, item }) => {
+        this.$store.dispatch("startEditing", {
+          collection: collection,
+          primaryKey: primaryKey,
+          savedValues: isNew ? null : item
+        });
+        return { fields, relations };
+      })
+      .then(({ fields, relations }) => {
+        function getRelationship(field) {
+          const fieldID = field.field;
+
+          const fieldRelations = relations
+            .filter(relation => {
+              return relation.field_a === fieldID;
+            })
+            .map(relation => {
+              return {
+                collection: relation.collection_b,
+                field: relation.field_b
+              };
+            });
+
+          if (fieldRelations.length === 0) return null;
+          return fieldRelations[0];
+        }
+
+        return {
+          fields: mapValues(keyBy(fields, "field"), field => ({
+            ...field,
+            name: formatTitle(field.field),
+            relationship: getRelationship(field)
+          }))
+        };
+      })
+      .then(data => {
+        this.fields = data.fields;
+        next();
+      })
+      .catch(error => {
+        this.$events.emit("error", {
+          notify: i18n.t("something_went_wrong_body"),
+          error
+        });
+        this.error = error;
+        return next();
+      });
+  },
   beforeRouteLeave(to, from, next) {
     // If there aren't any edits, there is no reason to stop the user from navigating
     if (this.$store.getters.editing === false) return next();
