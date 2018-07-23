@@ -119,8 +119,8 @@ export default {
   }
 
   &:hover,
-  &:focus,
-  &:focus-within {
+  .user-is-tabbing &:focus,
+  .user-is-tabbing &:focus-within {
     transform: translateY(0);
     transition: transform var(--slow) var(--transition-in);
   }
