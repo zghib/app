@@ -106,7 +106,9 @@ export default {
   name: "edit",
   metaInfo() {
     return {
-      title: this.$t("editing", { collection: this.$helpers.formatTitle(this.collection) })
+      title: this.$t("editing", {
+        collection: this.$helpers.formatTitle(this.collection)
+      })
     };
   },
   components: {
