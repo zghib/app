@@ -28,6 +28,18 @@
     border-color: var(--darkest-gray);
   }
 
+  &.inverted {
+    background: var(--lightest-gray);
+
+    & .tooltip-inner {
+      color: var(--darker-gray);
+    }
+
+    & .tooltip-arrow {
+      border-color: var(--lightest-gray);
+    }
+  }
+
   & .popover-arrow {
     border-color: var(--white);
     border: 1px solid var(--lighter-gray);
