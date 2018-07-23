@@ -1,4 +1,4 @@
-<p align="center"><a href="https://directus.io" target="_blank" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/522079/43096039-c3acca3a-8e85-11e8-9352-8b007ea2abd3.png" width="200" alt="Directus Logo"/></a></p>
+<p align="center"><a href="https://directus.io" target="_blank" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/522079/43096167-3a1b1118-8e86-11e8-9fb2-7b4e3b1368bc.png" width="200" alt="Directus Logo"/></a></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
