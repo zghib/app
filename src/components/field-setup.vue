@@ -46,7 +46,7 @@
       <p>{{ $t("intelligent_defaults") }}</p>
       <form @submit.prevent class="schema">
         <div class="name">
-          <label>{{ $t("name") }} <v-input type="text" v-model="field" :placeholder="$t('db_name')" /></label>
+          <label>{{ $t("name") }}<i v-tooltip="$t('required')" class="material-icons required">star</i> <v-input type="text" v-model="field" :placeholder="$t('db_name')" /></label>
           <label>{{ $t("display_name") }} <v-input type="text" disabled :value="displayName" :placeholder="$t('auto_generated')" /></label>
         </div>
         <label>{{ $t("note") }} <v-input type="text" v-model="note" :placeholder="$t('add_note')" /></label>
@@ -448,5 +448,11 @@ export default {
       cursor: not-allowed;
     }
   }
+}
+
+.required {
+  color: var(--accent);
+  vertical-align: super;
+  font-size: 7px;
 }
 </style>
