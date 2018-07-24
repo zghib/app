@@ -471,7 +471,7 @@ export default {
       api.getFields(collection),
       api.getCollectionRelations(collection),
 
-      isNew ? null : api.getItem(collection, primaryKey)
+      isNew ? null : api.getItem(collection, primaryKey, { fields: "*.*.*" })
     ])
       .then(([fields, relations, item]) => {
         store.dispatch("loadingFinished", id);
@@ -551,7 +551,7 @@ export default {
       this.$api.getFields(collection),
       this.$api.getCollectionRelations(collection),
 
-      isNew ? null : this.$api.getItem(collection, primaryKey)
+      isNew ? null : this.$api.getItem(collection, primaryKey, { fields: "*.*.*" })
     ])
       .then(([fields, relations, item]) => {
         this.$store.dispatch("loadingFinished", id);
