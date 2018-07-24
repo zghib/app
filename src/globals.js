@@ -18,6 +18,9 @@ import VListingOptions from "./components/extensions/listing-options/listing-opt
 // Item listing
 import VItemListing from "./components/item-listing/item-listing.vue";
 
+// Edit form
+import VEditForm from "./components/edit-form/edit-form.vue";
+
 // Form inputs
 import VButton from "./components/form-inputs/button.vue";
 import VCheckbox from "./components/form-inputs/checkbox.vue";
@@ -51,6 +54,9 @@ Vue.component("v-listing-options", VListingOptions);
 
 // Item Listing
 Vue.component("v-item-listing", VItemListing);
+
+// Edit form
+Vue.component("v-edit-form", VEditForm);
 
 // Form inputs
 Vue.component("v-button", VButton);

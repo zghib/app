@@ -95,7 +95,6 @@ import EventBus from "../events/";
 import { i18n } from "../lang/";
 import VLoader from "../components/loader.vue";
 import VError from "../components/error.vue";
-import VEditForm from "../components/edit-form/edit-form.vue";
 import VActivityOverview from "../components/activity-overview/activity-overview.vue";
 import formatTitle from "@directus/format-title";
 import VNotFound from "./not-found.vue";
@@ -112,7 +111,6 @@ export default {
     };
   },
   components: {
-    VEditForm,
     VLoader,
     VNotFound,
     VError,
