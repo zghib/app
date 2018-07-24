@@ -500,7 +500,10 @@ export default {
             .map(relation => {
               return {
                 collection: relation.collection_b,
-                field: relation.field_b
+                field: relation.field_b,
+                junction_key_a: relation.junction_key_a,
+                junction_collection: relation.junction_collection,
+                junction_key_b: relation.junction_key_b
               };
             });
 
