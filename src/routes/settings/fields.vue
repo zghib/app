@@ -20,10 +20,15 @@
       </template>
     </v-header-bar>
 
-    <h2 class="style-1">{{ $tc("collection_contains_items", count, { collection: $helpers.formatTitle(collection), count: count === "--" ? "--" : $n(count) })}}</h2>
-    <em>{{ $t('collection_names_cannot_be_changed') }}</em>
+    <label class="label">Collection Name</label>
+    <v-input
+      type="text"
+      class="normal"
+      :value="$helpers.formatTitle(collection) || ''"
+      :readonly="true" />
+    <em class="note">{{ $t('collection_names_cannot_be_changed') }}</em>
 
-    <h2 class="style-1">{{ $t('fields') }}</h2>
+    <label class="label">{{ $t('fields') }}</label>
     <em class="notice">{{ $t('fields_are_saved_automatically') }}</em>
 
     <div class="table">
@@ -46,9 +51,8 @@
       </div>
     </div>
 
-    <v-button @click="startEditingField({})">New Field</v-button>
+    <v-button @click="startEditingField({})" class="new-field">New Field</v-button>
 
-    <h2 class="style-1">Additional Settings</h2>
     <v-edit-form
       v-if="fields"
       :fields="directusFields"
@@ -429,7 +433,7 @@ h2 {
   border-radius: var(--border-radius);
   border-spacing: 0;
   width: 100%;
-  margin: 20px 0;
+  margin: 10px 0 20px;
 
   .header {
     color: var(--gray);
@@ -458,7 +462,7 @@ h2 {
       position: relative;
 
       &:hover {
-        background-color: var(--lightest-gray);
+        background-color: var(--highlight);
       }
     }
 
@@ -472,6 +476,10 @@ h2 {
       }
     }
   }
+}
+
+.new-field {
+  margin-bottom: 40px;
 }
 
 .remove-field {
@@ -491,7 +499,23 @@ h2 {
   }
 }
 
+em.note {
+  color: var(--lighter-gray);
+  margin-top: 4px;
+  margin-bottom: 40px;
+  display: block;
+}
+
 .notice {
   color: var(--danger);
+}
+
+label.label {
+  margin-bottom: 10px;
+  text-transform: none;
+  color: var(--dark-gray);
+  font-size: 1rem;
+  line-height: 1.18;
+  font-weight: 500;
 }
 </style>

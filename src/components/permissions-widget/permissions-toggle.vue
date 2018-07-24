@@ -77,13 +77,13 @@ i {
 }
 
 .mine {
-  background-color: var(--amber-600);
-  border-color: var(--amber-600);
+  background-color: var(--orange);
+  border-color: var(--orange);
 }
 
 .role {
-  background-color: var(--yellow-500);
-  border-color: var(--yellow-500);
+  background-color: var(--yellow-700);
+  border-color: var(--yellow-700);
 }
 
 .full {
@@ -104,6 +104,12 @@ i {
     font-weight: 700;
     font-size: 12px;
     color: var(--light-gray);
+
+    // Hack to fix misaligned icons
+    i {
+      top: 0;
+      left: 0;
+    }
 
     &:hover {
       color: var(--dark-gray);

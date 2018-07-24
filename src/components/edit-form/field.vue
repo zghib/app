@@ -81,11 +81,14 @@ export default {
     },
     hideLabel() {
       const interfaceName = this.field.interface;
-      const interfaceMeta = this.$store.state.extensions.interfaces[interfaceName];
+      const interfaceMeta = this.$store.state.extensions.interfaces[
+        interfaceName
+      ];
 
       if (!interfaceMeta) return false;
 
-      if (interfaceMeta && interfaceMeta.hideLabel) return interfaceMeta.hideLabel;
+      if (interfaceMeta && interfaceMeta.hideLabel)
+        return interfaceMeta.hideLabel;
 
       return false;
     }
