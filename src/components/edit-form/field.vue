@@ -5,7 +5,7 @@
         <template v-if="hideLabel === false">
           <div class="label">
             <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
-              {{ field.name }}<i v-tooltip="$t('required')" class="material-icons" v-if="field.required">star</i>
+              {{ field.name || $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons" v-if="field.required">star</i>
             </component>
             <label v-if="batchMode">
               <v-toggle
