@@ -402,12 +402,12 @@ export default {
 }
 
 .row.link:hover {
-  background-color: #f5fafd;
+  background-color: var(--highlight);
   cursor: pointer;
 }
 
 .row.selected {
-  background-color: #f5fafd;
+  background-color: var(--highlight);
 }
 
 .sort.active {

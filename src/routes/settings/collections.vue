@@ -231,7 +231,7 @@ export default {
     text-decoration: none;
 
     &:hover {
-      background-color: #f5fafd;
+      background-color: var(--highlight);
     }
   }
 
