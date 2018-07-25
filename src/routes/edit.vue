@@ -25,7 +25,18 @@
           color="danger"
           :label="$t('delete')"
           @click="confirmRemove = true" />
+
         <v-header-button
+          v-if="batch"
+          :disabled="!editing"
+          :loading="saving"
+          :label="$t('save')"
+          icon="check"
+          color="action"
+          @click="confirmBatchSave = true" />
+
+        <v-header-button
+          v-else
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
@@ -85,6 +96,14 @@
         @confirm="confirmNavigation = false"
         @cancel="$router.push(leavingTo)" />
     </portal>
+
+    <portal to="modal" v-if="confirmBatchSave">
+      <v-confirm
+        :message="$t('update_confirm', { count: primaryKey.split(',').length })"
+        :confirm-text="$t('update')"
+        @confirm="save('leave')"
+        @cancel="confirmBatchSave = false" />
+    </portal>
   </div>
 </template>
 
@@ -137,6 +156,7 @@ export default {
 
       confirmRemove: false,
       confirmRemoveLoading: false,
+      confirmBatchSave: false,
 
       confirmNavigation: false,
       leavingTo: "",

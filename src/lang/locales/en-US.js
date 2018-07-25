@@ -244,6 +244,7 @@ export default {
     "You have unsaved changes! Are you sure you want to leave this page?",
   user_directory: "User Directory",
   update: "Update",
+  update_confirm: "Are you sure you want to update {count} items?",
   unique: "Unique",
   value: "Value",
   values: "Values",
