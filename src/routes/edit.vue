@@ -551,7 +551,9 @@ export default {
       this.$api.getFields(collection),
       this.$api.getCollectionRelations(collection),
 
-      isNew ? null : this.$api.getItem(collection, primaryKey, { fields: "*.*.*" })
+      isNew
+        ? null
+        : this.$api.getItem(collection, primaryKey, { fields: "*.*.*" })
     ])
       .then(([fields, relations, item]) => {
         this.$store.dispatch("loadingFinished", id);
