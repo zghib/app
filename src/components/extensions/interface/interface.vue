@@ -77,11 +77,11 @@ export default {
     },
     fields: {
       type: Object,
-      required: true
+      default: null
     },
     values: {
       type: Object,
-      required: true
+      default: null
     }
   },
   computed: {
