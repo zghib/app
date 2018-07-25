@@ -196,6 +196,7 @@ export default {
   regex: "RegEx",
   related_entries: "Has related entries",
   remove: "Remove",
+  remove_related: "Remove Related Item",
   relationship: "Relationship",
   required: "Required",
   reset_preferences: "Reset all listing preferences",
