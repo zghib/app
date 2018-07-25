@@ -75,6 +75,14 @@
         </div>
 
         <div class="settings">
+          <label for="collection">Collection</label>
+          <v-input
+            id="collection"
+            v-model="collection"
+            class="value" />
+        </div>
+
+        <div class="settings">
           <v-checkbox
             id="readonly"
             v-model="readonly"
@@ -101,20 +109,73 @@
             type="checkbox" /> <label for="loading" class="inline">Loading</label>
         </div>
 
-        <div class="settings">
-          <label for="related">Related Collection</label>
-          <v-input
-            id="related"
-            type="text"
-            v-model="relatedCollection" />
-        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Relationship</legend>
 
-        <div class="settings">
-          <label for="related-pk">Related Collection Primary Key Field</label>
-          <v-input
-            id="related-pk"
-            type="text"
-            v-model="relatedCollectionPrimaryKey" />
+        <div class="relationship">
+          <div class="settings">
+            <label for="field_a">Field A</label>
+            <v-input
+              id="field_a"
+              v-model="relationship.field_a"
+              type="text"
+              class="value" />
+          </div>
+
+          <div class="settings">
+            <label for="field_b">Field B</label>
+            <v-input
+              id="field_b"
+              v-model="relationship.field_b"
+              type="text"
+              class="value" />
+          </div>
+
+          <div class="settings">
+            <label for="collection_a">Collection A</label>
+            <v-input
+              id="collection_a"
+              v-model="relationship.collection_a"
+              type="text"
+              class="value" />
+          </div>
+
+          <div class="settings">
+            <label for="collection_b">Collection B</label>
+            <v-input
+              id="collection_b"
+              v-model="relationship.collection_b"
+              type="text"
+              class="value" />
+          </div>
+
+          <div class="settings">
+            <label for="junction_key_a">Junction Key A</label>
+            <v-input
+              id="junction_key_a"
+              v-model="relationship.junction_key_a"
+              type="text"
+              class="value" />
+          </div>
+
+          <div class="settings">
+            <label for="junction_key_b">Junction Key B</label>
+            <v-input
+              id="junction_key_b"
+              v-model="relationship.junction_key_b"
+              type="text"
+              class="value" />
+          </div>
+
+          <div class="settings">
+            <label for="junction_collection">Junction Collection</label>
+            <v-input
+              id="junction_collection"
+              v-model="relationship.junction_collection"
+              type="text"
+              class="value" />
+          </div>
         </div>
       </fieldset>
       <fieldset>
@@ -152,15 +213,17 @@
         <div class="misc">
           <label for="fields">Fields</label>
           <v-interface
-            :value="JSON.stringify(fields)"
-            @input="fields = JSON.parse($event)"
-            id="json"
+            :value="JSON.stringify(fields, null, 4)"
+            @input="customFields = JSON.parse($event)"
+            id="code"
+            :options="{ language: 'application/json' }"
             name="fields" />
           <label for="values">Values</label>
           <v-interface
-            :value="JSON.stringify(values)"
-            @input="values = JSON.parse($event)"
-            id="json"
+            :value="JSON.stringify(values, null, 4)"
+            @input="customValues = JSON.parse($event)"
+            id="code"
+            :options="{ language: 'application/json' }"
             name="value s" />
       </div>
       </fieldset>
@@ -193,9 +256,17 @@ export default {
       options: {},
       width: 1000,
       newItem: false,
-      relatedCollection: "",
-      relatedCollectionPrimaryKey: "",
-      fields: {
+      collection: "members",
+      relationship: {
+        field_a: "favorites",
+        field_b: "id",
+        collection_a: "members",
+        collection_b: "movies",
+        junction_key_a: "member",
+        junction_key_b: "movie",
+        junction_collection: "member_favorites"
+      },
+      customFields: {
         name: {
           collection: "movies",
           default_value: null,
@@ -249,7 +320,7 @@ export default {
           view_width: 4
         }
       },
-      values: {
+      customValues: {
         name: "Directus The Movie",
         director: "Ben Spielberg"
       }
@@ -271,18 +342,29 @@ export default {
     extension() {
       return this.$store.state.extensions.interfaces[this.id];
     },
-    relationship() {
-      if (
-        this.relatedCollection.length > 0 &&
-        this.relatedCollectionPrimaryKey.length > 0
-      ) {
-        return {
-          collection: this.relatedCollection,
-          field: this.relatedCollectionPrimaryKey
-        };
+    fields() {
+      return {
+        ...this.customFields,
+        [this.id]: {
+          type: this.type,
+          length: this.length,
+          value: this.value,
+          readonly: this.readonly,
+          required: this.required,
+          loading: this.loading,
+          options: this.options,
+          width: this.width,
+          newItem: this.newItem,
+          relationship: this.relationship,
+          collection: this.collection
+        }
       }
-
-      return null;
+    },
+    values() {
+      return {
+        ...this.customValues,
+        [this.id]: this.value
+      }
     }
   },
   watch: {
@@ -380,5 +462,11 @@ output {
   margin: 10px 0;
   font-family: monospace;
   display: block;
+}
+
+.relationship {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 0 20px;
 }
 </style>
