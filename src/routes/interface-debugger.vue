@@ -358,13 +358,13 @@ export default {
           relationship: this.relationship,
           collection: this.collection
         }
-      }
+      };
     },
     values() {
       return {
         ...this.customValues,
         [this.id]: this.value
-      }
+      };
     }
   },
   watch: {
