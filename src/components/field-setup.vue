@@ -10,6 +10,7 @@
         @click="activeTab = 'schema'"
         :disabled="schemaDisabled">{{ $t('schema') }}</button>
       <button
+        v-if="hasOptions"
         :class="{ active: activeTab === 'options' }"
         @click="activeTab = 'options'"
         :disabled="optionsDisabled">{{ $t('options') }}</button>
@@ -172,10 +173,22 @@ export default {
         next: {
           disabled,
           text:
-            this.activeTab === "options" ? this.$t("save") : this.$t("next"),
+            this.activeTab === "options" ||
+            (this.activeTab === "schema" && this.hasOptions === false)
+              ? this.$t("save")
+              : this.$t("next"),
           loading: this.saving
         }
       };
+    },
+    hasOptions() {
+      if (
+        this.interfaceName &&
+        Object.keys(this.interfaces[this.interfaceName].options).length > 0
+      )
+        return true;
+
+      return false;
     }
   },
   created() {
@@ -210,6 +223,9 @@ export default {
           this.activeTab = "schema";
           break;
         case "schema":
+          if (this.hasOptions === false) {
+            this.saveField();
+          }
           this.activeTab = "options";
           break;
         case "options":
