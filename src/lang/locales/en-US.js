@@ -251,6 +251,8 @@ export default {
   update: "Update",
   update_confirm: "Are you sure you want to update {count} items?",
   unique: "Unique",
+  user_edit_warning:
+    "{first_name} {last_name} is editing this item too. Please coordinate with them so you don't lose your changes.",
   value: "Value",
   values: "Values",
   validation: "Validation",

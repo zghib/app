@@ -252,6 +252,8 @@ export default {
   },
   created() {
     this.fetchActivity();
+
+    this.checkOtherUsers();
   },
   watch: {
     $route() {
@@ -444,6 +446,33 @@ export default {
             notify: this.$t("something_went_wrong_body"),
             error
           });
+        });
+    },
+    checkOtherUsers() {
+      const path = this.$router.currentRoute.path;
+      const date = this.$helpers.date.dateToSql(
+        new Date(new Date() - 5 * 60000)
+      );
+
+      this.$api
+        .getUsers({
+          "filter[last_access][gte]": date,
+          "filter[last_page][eq]": path,
+          "filter[id][neq]": this.$store.state.currentUser.id
+        })
+        .then(res => res.data)
+        .then(users => {
+          if (users.length > 0) {
+            users.forEach(user => {
+              const { first_name, last_name } = user;
+              this.$notify.alert(
+                this.$t("user_edit_warning", { first_name, last_name })
+              );
+            });
+          }
+        })
+        .catch(error => {
+          console.error(error);
         });
     },
     postComment(comment) {
