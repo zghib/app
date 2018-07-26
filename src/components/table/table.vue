@@ -134,12 +134,12 @@
           </div>
         </div>
       </template>
-      <transition name="fade">
-        <div v-if="lazyLoading" class="lazy-loader">
-          <v-spinner />
-        </div>
-      </transition>
     </div>
+    <transition name="fade">
+      <div v-if="lazyLoading" class="lazy-loader">
+        <v-spinner />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -466,20 +466,10 @@ export default {
 
 .lazy-loader {
   pointer-events: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  max-width: calc(100vw - var(--nav-sidebar-width));
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px 0;
-  background: linear-gradient(
-    to top,
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
   opacity: 1;
 }
 
