@@ -47,6 +47,8 @@ export default {
   choose_interface: "Choose an interface for how this data should be managed.",
   connection: "Connection",
   collection: "Collection",
+  collection_updated: "{collection} Collection Updated",
+  collection_removed: "{collection} Collection Removed",
   collection_names_cannot_be_changed:
     "Collection names cannot be edited at this time.",
   collections: "Collections",
@@ -109,6 +111,9 @@ export default {
   equal_to: "Equal to",
   fetching_data: "Fetching Data",
   field: "Field",
+  field_created: "{field} Field Created",
+  field_updated: "{field} Field Updated",
+  field_removed: "{field} Field Removed",
   fields: "Fields",
   fields_are_saved_automatically: "Field settings are saved automatically",
   file: "File",

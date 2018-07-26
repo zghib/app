@@ -213,6 +213,11 @@ export default {
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
           this.$store.dispatch("removeCollection", this.collection);
+          this.$notify.confirm(
+            this.$t("collection_removed", {
+              collection: this.$helpers.formatTitle(this.collection)
+            })
+          );
           this.$router.push("/settings/collections");
         })
         .catch(error => {
@@ -232,6 +237,11 @@ export default {
       this.$api
         .updateCollection(this.collection, this.edits)
         .then(() => {
+          this.$notify.confirm(
+            this.$t("collection_updated", {
+              collection: this.$helpers.formatTitle(this.collection)
+            })
+          );
           this.$store.dispatch("loadingFinished", id);
           this.saving = false;
           this.$store.dispatch("updateCollection", {
@@ -275,6 +285,11 @@ export default {
               if (field.id === savedFieldInfo.id) return savedFieldInfo;
               return field;
             });
+            this.$notify.confirm(
+              this.$t("field_updated", {
+                field: this.$helpers.formatTitle(fieldInfo.field)
+              })
+            );
           })
           .catch(error => {
             this.$store.dispatch("loadingFinished", id);
@@ -301,6 +316,11 @@ export default {
           this.editingField = false;
           this.fieldBeingEdited = null;
           this.fields = [...this.fields, savedFieldInfo];
+          this.$notify.confirm(
+            this.$t("field_created", {
+              field: this.$helpers.formatTitle(fieldInfo.field)
+            })
+          );
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
@@ -332,6 +352,11 @@ export default {
           this.removingField = false;
           this.fieldToBeRemoved = null;
           this.confirmFieldRemove = false;
+          this.$notify.confirm(
+            this.$t("field_removed", {
+              field: this.$helpers.formatTitle(fieldName)
+            })
+          );
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
