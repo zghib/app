@@ -56,7 +56,7 @@ export default {
   -webkit-overflow-scrolling: touch;
 
   & .system:not(:empty) {
-    padding-bottom: 30px;
+    padding-bottom: 20px;
     border-bottom: 1px solid var(--lightest-gray);
     margin-bottom: 30px;
   }

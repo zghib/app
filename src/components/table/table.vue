@@ -137,7 +137,9 @@
     </div>
     <transition name="fade">
       <div v-if="lazyLoading" class="lazy-loader">
-        <v-spinner />
+        <v-spinner
+          line-fg-color="var(--light-gray)"
+          line-bg-color="var(--lighter-gray)" />
       </div>
     </transition>
   </div>
@@ -469,8 +471,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
   opacity: 1;
+  transform: translateY(50px);
 }
 
 .fade-enter-active {

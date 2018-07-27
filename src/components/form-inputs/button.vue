@@ -60,12 +60,12 @@ export default {
 
 <style lang="scss" scoped>
 button.action {
-  background-color: var(--action);
-  border-color: var(--action);
+  background-color: var(--darker-gray);
+  border-color: var(--darker-gray);
 
   &:hover {
-    background-color: var(--action-dark);
-    border-color: var(--action-dark);
+    background-color: var(--darkest-gray);
+    border-color: var(--darkest-gray);
   }
 }
 

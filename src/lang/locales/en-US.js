@@ -33,6 +33,7 @@ export default {
   allowed_statuses: "Allowed Statuses",
   api_url: "API URL",
   auto_generated: "Automatically generated...",
+  batch: "Batch",
   batch_edit: "Batch edit",
   batch_delete: "Batch Delete",
   batch_delete_confirm:

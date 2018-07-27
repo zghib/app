@@ -11,6 +11,8 @@
       <transition name="fade">
         <v-spinner
           v-show="spinnerActive"
+          line-fg-color="var(--light-gray)"
+          line-bg-color="var(--lighter-gray)"
           class="spinner" />
       </transition>
     </div>

@@ -31,7 +31,7 @@
           key="edit"
           icon="mode_edit"
           color="warning"
-          :label="$t('batch_edit')"
+          :label="$t('batch')"
           :to="`/collections/${collection}/${selection.join(',')}`" />
         <v-header-button
           v-if="selection.length"
