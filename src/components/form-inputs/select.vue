@@ -57,7 +57,7 @@
       <span
         v-if="placeholder && !value"
         class="placeholder">{{ placeholder }}</span>
-      {{ parsedOptions[value] }}
+      <span class="no-wrap">{{ parsedOptions[value] }}</span>
     </div>
     <i class="material-icons chevron">arrow_drop_down</i>
   </div>
@@ -152,7 +152,6 @@ export default {
 <style lang="scss" scoped>
 .v-select {
   position: relative;
-  margin: 10px 0;
 
   select {
     position: absolute;
@@ -171,6 +170,10 @@ export default {
     border: var(--input-border-width) solid var(--lighter-gray);
     transition: var(--fast) var(--transition);
     transition-property: color, border-color;
+
+    span {
+      padding-right: 33px;
+    }
   }
 
   .value {

@@ -125,6 +125,7 @@ export default {
 
 <style lang="scss">
 .edit-form {
+  width: 100%;
   max-width: 800px;
 
   @media (min-width: 800px) {
@@ -158,6 +159,7 @@ export default {
   .field,
   .group {
     margin-bottom: 30px;
+    overflow: hidden;
   }
 
   .group {
