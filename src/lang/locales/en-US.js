@@ -208,7 +208,7 @@ export default {
   required: "Required",
   reset_preferences: "Reset all listing preferences",
   reset_password: "Reset Password",
-  revert: "revert",
+  revert: "Revert",
   roles: "User Roles",
   role_settings: "Role Settings",
   save: "Save",

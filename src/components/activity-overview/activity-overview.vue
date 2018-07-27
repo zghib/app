@@ -58,7 +58,8 @@
             </div>
             <button
               v-if="index !== 0"
-              class="revert">{{ $t("revert") }}</button>
+              v-tooltip="$t('revert')"
+              class="revert"><i class="material-icons">restore</i></button>
           </div>
         </details>
         <div class="title" v-else-if="activity.name">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
@@ -283,7 +284,7 @@ export default {
 
     .change {
       width: 100%;
-      margin-top: 10px;
+      margin-top: 14px;
 
       p {
         margin-bottom: 4px;
@@ -297,29 +298,85 @@ export default {
 
         > div {
           width: 100%;
-          padding: 4px;
+          padding: 4px 20px 4px 4px;
         }
       }
 
       .before {
+        position: relative;
         color: var(--danger);
         background-color: #fdefed;
+        &:after {
+          content: "close";
+          position: absolute;
+          right: 0px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-family: "Material Icons";
+          color: var(--danger);
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0 5px;
+        }
       }
 
       .after {
+        position: relative;
         color: var(--success);
         background-color: #f6faf0;
+        &:after {
+          content: "check";
+          position: absolute;
+          right: 0px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-family: "Material Icons";
+          color: var(--success);
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0 5px;
+        }
       }
 
       .empty {
         color: var(--gray);
         background-color: var(--lightest-gray);
+        &:after {
+          content: "block";
+          position: absolute;
+          right: 0px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-family: "Material Icons";
+          color: var(--gray);
+          display: inline-block;
+          vertical-align: middle;
+          margin: 0 5px;
+        }
       }
     }
 
     .revert {
-      color: var(--action);
-      margin-top: 20px;
+      transition: all var(--fast) var(--transition);
+      background-color: var(--lightest-gray);
+      border-radius: var(--border-radius);
+      padding: 4px;
+      margin: 14px auto;
+      width: 100%;
+      &:hover {
+        background-color: var(--lighter-gray);
+        i.material-icons {
+          color: var(--dark-gray);
+        }
+      }
+      i.material-icons {
+        width: auto;
+        height: auto;
+        transform: translateX(0);
+        background-color: inherit;
+        font-size: 24px;
+        color: var(--gray);
+      }
     }
 
     .comment {
@@ -421,15 +478,14 @@ export default {
     transition: var(--fast) var(--transition);
     transition-property: color, opacity;
     opacity: 0;
-
-    &:hover {
-      color: var(--accent-dark);
-    }
   }
 
   &:valid button {
     color: var(--accent);
     cursor: pointer;
+    &:hover {
+      color: var(--accent-dark);
+    }
   }
 
   &:focus,
@@ -439,6 +495,56 @@ export default {
     button {
       opacity: 1;
     }
+  }
+}
+</style>
+
+<style lang="scss">
+.v-activity-overview .content .comment {
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    &:hover {
+      color: var(--accent-dark);
+    }
+  }
+  strong {
+    font-weight: 600;
+    color: var(--gray);
+  }
+  code {
+    font-family: "Roboto Mono";
+    color: var(--gray);
+    font-weight: 600;
+  }
+  pre {
+    font-family: "Roboto Mono";
+    color: var(--gray);
+    font-weight: 600;
+    background-color: var(--lighter-gray);
+    padding: 4px 6px;
+    border-radius: var(--border-radius);
+    margin: 10px 0;
+  }
+  ul,
+  ol {
+    margin: 10px 0;
+    padding-left: 25px;
+  }
+  blockquote {
+    font-size: 1.2em;
+    font-weight: 400;
+    margin: 20px 10px 20px 10px;
+    border-left: 2px solid var(--accent);
+    padding-left: 10px;
+    color: var(--accent);
+    line-height: 1.4em;
+  }
+  hr {
+    margin: 20px 0;
+    height: 1px;
+    border: none;
+    background-color: var(--lighter-gray);
   }
 }
 </style>
