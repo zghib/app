@@ -232,7 +232,7 @@ export default {
 
   &.icon {
     .value {
-      padding-left: 33px;
+      padding-left: 38px;
     }
 
     input {
