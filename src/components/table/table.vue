@@ -30,7 +30,7 @@
           class="sort style-4 no-wrap"
           @click="updateSort(field)">{{ name }}<i
             v-if="sortVal.field === field"
-            class="material-icons">{{ sortVal.asc ? 'arrow_downward' : 'arrow_upward' }}</i>
+            class="material-icons">{{ sortVal.asc ? 'arrow_upward' : 'arrow_downward' }}</i>
         </button>
 
         <span
