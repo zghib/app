@@ -1,6 +1,6 @@
 <template>
   <div class="interfaces">
-    <v-header-bar title="Interfaces" />
+    <v-header-bar :breadcrumb="links" />
     <v-table
       :columns="columns"
       :items="items"
@@ -17,10 +17,23 @@ export default {
     };
   },
   computed: {
+    links() {
+      return [
+        {
+          name: this.$t("settings"),
+          path: "/settings",
+          color: "warning"
+        },
+        {
+          name: this.$t("interfaces"),
+          path: "/settings/interfaces"
+        }
+      ];
+    },
     items() {
       return Object.keys(this.$store.state.extensions.interfaces).map(id => ({
         ...this.$store.state.extensions.interfaces[id],
-        __link: `/interfaces/${id}`
+        __link: `/settings/interfaces/${id}`
       }));
     },
     columns() {

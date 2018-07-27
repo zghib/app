@@ -330,12 +330,17 @@ export default {
     links() {
       return [
         {
-          name: "Interfaces",
-          path: "/interfaces"
+          name: this.$t("settings"),
+          path: "/settings",
+          color: "warning"
+        },
+        {
+          name: this.$t("interfaces"),
+          path: "/settings/interfaces"
         },
         {
           name: this.extension.name,
-          path: `/interfaces/${this.id}`
+          path: `/settings/interfaces/${this.id}`
         }
       ];
     },

@@ -32,12 +32,6 @@
             element="li"
             to="/settings/roles"
             icon="group" />
-
-          <v-card
-            :title="$t('settings_extensions')"
-            element="li"
-            to="/settings/extensions"
-            icon="extension" />
         </ul>
       </nav>
     </v-details>
@@ -48,6 +42,13 @@
       open>
       <nav>
         <ul>
+          <v-card
+            :title="$t('interfaces')"
+            :subtitle="$tc('interface_count', interfaceCount, { count: interfaceCount })"
+            element="li"
+            to="/settings/interfaces"
+            icon="extension" />
+
           <v-card
             :title="$t('about_directus')"
             :subtitle="$t('learn_more')"
@@ -112,6 +113,9 @@ export default {
     },
     projectName() {
       return this.$store.state.auth.projectName;
+    },
+    interfaceCount() {
+      return Object.keys(this.$store.state.extensions.interfaces).length;
     },
     version() {
       return version;

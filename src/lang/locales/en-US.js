@@ -128,6 +128,8 @@ export default {
   hidden_list: "Hidden on List",
   in_list: "One of these",
   interface: "Interface",
+  interface_count: "No Interfaces | One Interface | {count} Interfaces",
+  interfaces: "Interfaces",
   info: "Info",
   intelligent_defaults:
     "Directus sets intelligent defaults for the more advanced configuration settings, but you can override those here too!",

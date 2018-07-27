@@ -12,8 +12,8 @@ import FileLibrary from "./routes/file-library.vue";
 import Edit from "./routes/edit.vue";
 import Login from "./routes/login.vue";
 import NotFound from "./routes/not-found.vue";
-import Interfaces from "./routes/interfaces.vue";
-import InterfaceDebugger from "./routes/interface-debugger.vue";
+import Interfaces from "./routes/settings/interfaces.vue";
+import InterfaceDebugger from "./routes/settings/interface-debugger.vue";
 import Debug from "./routes/debug.vue";
 import Settings from "./routes/settings/settings.vue";
 import SettingsGlobal from "./routes/settings/global.vue";
@@ -173,11 +173,11 @@ const router = new Router({
       props: true
     },
     {
-      path: "/interfaces",
+      path: "/settings/interfaces",
       component: Interfaces
     },
     {
-      path: "/interfaces/:id",
+      path: "/settings/interfaces/:id",
       component: InterfaceDebugger,
       props: true
     },
