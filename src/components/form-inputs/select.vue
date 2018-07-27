@@ -214,11 +214,11 @@ export default {
 
   i {
     position: absolute;
-    left: 10px;
+    left: 5px;
     top: 50%;
-    color: var(--light-gray);
+    color: var(--lighter-gray);
     transform: translateY(-50%);
-    font-size: 18px;
+    font-size: 24px;
   }
 
   i.chevron {
@@ -240,7 +240,7 @@ export default {
     select:focus ~ div i,
     input:focus + div i,
     input:focus i {
-      color: var(--accent);
+      color: var(--light-gray);
     }
   }
 
