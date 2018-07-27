@@ -478,6 +478,7 @@ export default {
     postComment(comment) {
       const id = shortid.generate();
       store.dispatch("loadingStart", { id });
+      const currentUser = this.$store.state.currentUser;
 
       this.$api
         .post("/activity/comment", {
@@ -488,7 +489,13 @@ export default {
         .then(res => res.data)
         .then(comment => {
           store.dispatch("loadingFinished", id);
-          this.activity = [comment, ...this.activity];
+          this.activity = [
+            {
+              ...comment,
+              name: `${currentUser.first_name} ${currentUser.last_name}`
+            },
+            ...this.activity
+          ];
         })
         .catch(error => {
           store.dispatch("loadingFinished", id);

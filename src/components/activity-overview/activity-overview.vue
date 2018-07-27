@@ -20,11 +20,12 @@
       class="activity-item"
       :key="activity.id">
       <i
-        v-if="activity.type === 'comment'"
+        v-if="activity.type && activity.type.toLowerCase() === 'comment'"
+        v-tooltip="$t('comment')"
         class="material-icons">message</i>
       <span
         v-else
-        :title="activity.action"
+        v-tooltip="$helpers.formatTitle(activity.action)"
         :class="activity.action"
         class="indicator" />
 
@@ -32,11 +33,14 @@
         <details v-if="activity.action !== 'external' && activity.changes && activity.name">
           <summary class="title">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
             v-if="activity.date"
+            v-tooltip="{ content: $d(activity.date, 'long'), delay: {show: 1500, hide: 100}  }"
             :auto-update="1"
             :since="activity.date"
             :locale="$i18n.locale"
             class="date" />
-          <i class="material-icons chevron">chevron_left</i></summary>
+          <i
+            class="material-icons chevron"
+            v-tooltip="'Revision Details'">chevron_left</i></summary>
           <div v-if="activity.changes">
             <div
               v-for="({ field, before, after }) in activity.changes"
@@ -59,11 +63,12 @@
         </details>
         <div class="title" v-else-if="activity.name">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
           v-if="activity.date"
+          v-tooltip="{ content: $d(activity.date, 'long'), delay: {show: 1500, hide: 100} }"
           :auto-update="1"
           :since="activity.date"
           :locale="$i18n.locale"
           class="date" /></div>
-        <p v-if="activity.htmlcomment" v-html="activity.htmlcomment"></p>
+        <p v-if="activity.htmlcomment" v-html="activity.htmlcomment" :class="{ comment: activity.type && activity.type.toLowerCase() === 'comment' }"></p>
       </div>
     </article>
   </div>
@@ -224,14 +229,15 @@ export default {
   i.material-icons {
     width: 13px;
     background-color: var(--white);
-    font-size: 20px;
-    transform: translateX(-2px);
+    font-size: 24px;
+    transform: translateX(-6px);
     height: 20px;
+    color: var(--lighter-gray);
   }
 
   article {
     display: flex;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
 
   .content {
@@ -258,10 +264,16 @@ export default {
     summary {
       cursor: pointer;
 
+      &:hover {
+        .chevron {
+          color: var(--dark-gray);
+        }
+      }
+
       .chevron {
         float: right;
         color: var(--lighter-gray);
-        transition: transform var(--fast) var(--transition);
+        transition: all var(--fast) var(--transition);
       }
     }
 
@@ -271,10 +283,11 @@ export default {
 
     .change {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 10px;
 
       p {
-        margin-bottom: 10px;
+        margin-bottom: 4px;
+        color: var(--light-gray);
       }
 
       .diff {
@@ -299,8 +312,8 @@ export default {
       }
 
       .empty {
-        background-color: var(--lightest-gray);
         color: var(--gray);
+        background-color: var(--lightest-gray);
       }
     }
 
@@ -308,10 +321,78 @@ export default {
       color: var(--action);
       margin-top: 20px;
     }
+
+    .comment {
+      position: relative;
+      background-color: var(--lightest-gray);
+      color: var(--light-gray);
+      border-radius: var(--border-radius);
+      padding: 8px 10px;
+      display: inline-block;
+      min-width: 36px;
+      // max-height: 400px;
+      &:before {
+        content: "";
+        position: absolute;
+        top: -6px;
+        left: 10px;
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 8px 6px 8px;
+        border-color: transparent transparent var(--lightest-gray) transparent;
+      }
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        &:hover {
+          color: var(--accent-dark);
+        }
+      }
+      strong {
+        font-weight: 600;
+      }
+      code {
+        font-family: "Roboto Mono";
+        color: var(--gray);
+        font-weight: 600;
+      }
+      pre {
+        font-family: "Roboto Mono";
+        color: var(--gray);
+        font-weight: 600;
+        background-color: var(--lighter-gray);
+        padding: 4px 6px;
+        border-radius: var(--border-radius);
+        margin: 4px 0;
+      }
+      ul,
+      ol {
+        margin: 4px 0;
+        padding-left: 25px;
+      }
+      blockquote {
+        font-size: 1.2em;
+        font-weight: 400;
+        margin: 20px 10px 20px 10px;
+        border-left: 2px solid var(--accent);
+        padding-left: 10px;
+        color: var(--accent);
+        line-height: 1.4em;
+      }
+      hr {
+        margin: 20px 0;
+        height: 1px;
+        border: none;
+        background-color: var(--lighter-gray);
+      }
+    }
   }
 
   details[open] .chevron {
     transform: rotate(-90deg);
+    transform-origin: 50% 60%;
   }
 }
 
@@ -331,17 +412,24 @@ export default {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    color: var(--light-gray);
+    color: var(--lighter-gray);
+    cursor: not-allowed;
+    background-color: var(--white);
     text-transform: uppercase;
     font-weight: 700;
     font-size: 0.875rem;
     transition: var(--fast) var(--transition);
     transition-property: color, opacity;
     opacity: 0;
+
+    &:hover {
+      color: var(--accent-dark);
+    }
   }
 
   &:valid button {
     color: var(--accent);
+    cursor: pointer;
   }
 
   &:focus,
