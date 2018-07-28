@@ -83,5 +83,10 @@ label::before {
 
 input:checked + label::before {
   content: "radio_button_checked";
+  color: var(--accent);
+}
+
+input:checked + label {
+  color: var(--accent);
 }
 </style>
