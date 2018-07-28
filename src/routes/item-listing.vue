@@ -305,6 +305,7 @@ export default {
         .then(({ data }) => {
           this.$store.dispatch("loadingFinished", id);
           this.$set(this.preferences, "id", data.id);
+          this.$set(this.preferences, "user", data.user);
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);

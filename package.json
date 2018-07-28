@@ -17,11 +17,11 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.4",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.4",
-    "@vue/cli-plugin-pwa": "^3.0.0-rc.4",
-    "@vue/cli-service": "^3.0.0-rc.4",
-    "@vue/eslint-config-prettier": "^3.0.0-rc.4",
+    "@vue/cli-plugin-babel": "^3.0.0-rc.8",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.8",
+    "@vue/cli-plugin-pwa": "^3.0.0-rc.8",
+    "@vue/cli-service": "^3.0.0-rc.8",
+    "@vue/eslint-config-prettier": "^3.0.0-rc.8",
     "node-sass": "^4.9.2",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13",
