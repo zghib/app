@@ -28,14 +28,14 @@
           v-if="sortable"
           :class="{ active: sortVal.field === field }"
           class="sort style-4 no-wrap"
-          @click="updateSort(field)">{{ name }}<i
+          @click="updateSort(field)">{{ widths[field] > 40 ? name : null }}<i
             v-if="sortVal.field === field"
             class="material-icons">{{ sortVal.asc ? 'arrow_upward' : 'arrow_downward' }}</i>
         </button>
 
         <span
           v-else
-          class="style-4">{{ name }}</span>
+          class="style-4">{{ widths[field] > 40 ? name : null }}</span>
 
         <div
           v-if="resizeable && index !== columns.length - 1"
