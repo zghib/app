@@ -201,9 +201,11 @@ export default {
           if (this.links) {
             this.items.data = res.data.map(item => ({
               ...item,
-              __link__: `/collections/${this.collection}/${
-                item[this.primaryKeyField]
-              }`
+              __link__: this.collection.startsWith("directus_")
+                ? `/${this.collection.substr(9)}/${item[this.primaryKeyField]}`
+                : `/collections/${this.collection}/${
+                    item[this.primaryKeyField]
+                  }`
             }));
           } else {
             this.items.data = res.data;
@@ -212,6 +214,7 @@ export default {
           this.$emit("fetch", res.meta);
         })
         .catch(error => {
+          console.error(error); // eslint-disable-line no-console
           this.$store.dispatch("loadingFinished", id);
           this.items.loading = false;
           this.items.error = error;
@@ -236,9 +239,13 @@ export default {
               ...this.items.data,
               ...res.data.map(item => ({
                 ...item,
-                __link__: `/collections/${this.collection}/${
-                  item[this.primaryKeyField]
-                }`
+                __link__: this.collection.startsWith("directus_")
+                  ? `/${this.collection.substr(9)}/${
+                      item[this.primaryKeyField]
+                    }`
+                  : `/collections/${this.collection}/${
+                      item[this.primaryKeyField]
+                    }`
               }))
             ];
           } else {
@@ -248,6 +255,7 @@ export default {
           this.$emit("fetch", res.meta);
         })
         .catch(error => {
+          console.error(error); // eslint-disable-line no-console
           this.items.lazyLoading = false;
           this.items.error = error;
         });
