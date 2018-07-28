@@ -69,7 +69,8 @@
         :revisions="revisions"
         :loading="activityLoading"
         :show="activeTab"
-        @input="postComment" />
+        @input="postComment"
+        @revert="revertActivity = $event" />
     </v-info-sidebar>
 
     <v-edit-form
@@ -104,6 +105,27 @@
         @confirm="save('leave')"
         @cancel="confirmBatchSave = false" />
     </portal>
+
+    <portal to="modal" v-if="revertActivity">
+      <v-modal
+        :title="$t('preview_and_revert')"
+        :buttons="{
+          revert: {
+            text: $t('revert'),
+            loading: reverting
+          }
+        }"
+        @revert="revertItem(revertActivity.revision.id)"
+        @close="revertActivity = false">
+        <div class="revert">
+          <p>{{ $t('revert_copy', { date: $d(revertActivity.date, 'long') }) }}</p>
+          <v-edit-form
+            readonly
+            :values="revertActivity.revision.data"
+            :fields="fields" />
+        </div>
+      </v-modal>
+    </portal>
   </div>
 </template>
 
@@ -123,9 +145,13 @@ import api from "../api";
 export default {
   name: "edit",
   metaInfo() {
+    const collection = this.collection.startsWith("directus_")
+      ? this.$helpers.formatTitle(this.collection.substr(9))
+      : this.$helpers.formatTitle(this.collection);
+
     return {
       title: this.$t("editing", {
-        collection: this.$helpers.formatTitle(this.collection)
+        collection
       })
     };
   },
@@ -166,7 +192,10 @@ export default {
       activeTab: "both",
       activityLoading: false,
       activity: [],
-      revisions: {}
+      revisions: {},
+
+      revertActivity: null,
+      reverting: false
     };
   },
   computed: {
@@ -174,7 +203,7 @@ export default {
       if (this.collection.startsWith("directus_")) {
         return [
           {
-            name: this.$t(`collections-${this.collection}`),
+            name: this.$helpers.formatTitle(this.collection.substr(9)),
             path: `/${this.collection.substring(9)}`
           },
           {
@@ -401,7 +430,7 @@ export default {
       const id = shortid.generate();
       store.dispatch("loadingStart", { id });
 
-      Promise.all([
+      return Promise.all([
         this.$api.getActivity({
           "filter[collection][eq]": this.collection,
           "filter[item][eq]": this.primaryKey,
@@ -499,6 +528,35 @@ export default {
         })
         .catch(error => {
           store.dispatch("loadingFinished", id);
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
+    },
+    revertItem(revisionID) {
+      this.reverting = true;
+      this.$api
+        .revert(this.collection, this.primaryKey, revisionID)
+        .then(() => {
+          this.reverting = false;
+          this.revertActivity = null;
+
+          return Promise.all([
+            this.$api.getItem(this.collection, this.primaryKey, {
+              fields: "*.*.*"
+            }),
+            this.fetchActivity()
+          ]);
+        })
+        .then(([{ data }]) => {
+          this.$store.dispatch("startEditing", {
+            collection: this.collection,
+            primaryKey: this.primaryKey,
+            savedValues: data
+          });
+        })
+        .catch(error => {
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
@@ -749,6 +807,16 @@ export default {
       color: var(--lighter-gray);
       cursor: not-allowed;
     }
+  }
+}
+
+.revert {
+  padding: 20px;
+
+  p {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted var(--lighter-gray);
   }
 }
 </style>

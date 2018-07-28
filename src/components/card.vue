@@ -142,7 +142,7 @@ export default {
 
 <style lang="scss" scoped>
 .v-card {
-  width: 160px;
+  width: var(--width-small);
   border-radius: 3px;
   box-shadow: var(--box-shadow);
   overflow: hidden;
@@ -161,7 +161,7 @@ export default {
   }
 
   .header {
-    height: 160px;
+    height: var(--width-small);
     display: grid;
     grid-template-columns: 1;
     grid-template-rows: 1;
@@ -221,7 +221,7 @@ export default {
   }
 
   .title {
-    margin-bottom: 5px;
+    margin-bottom: 2px;
   }
 
   .content {
@@ -229,7 +229,7 @@ export default {
     color: var(--gray);
     max-height: 114px; // 8 lines of text
     overflow: hidden;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   .error {

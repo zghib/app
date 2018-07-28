@@ -27,7 +27,7 @@
         :field="field"
         :values="values"
         :fields="fields"
-        :readonly="readonly"
+        :readonly="readonly || field.readonly"
         :blocked="batchMode && !activeFields.includes(field.field)"
         :batch-mode="batchMode"
         @activate="activateField"

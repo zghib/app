@@ -8,7 +8,10 @@
       </v-modal>
     </portal>
     <button
-      :class="{ disconnected: $store.getters.signalStrength == 0 }"
+      :class="{
+        slow: $store.getters.signalStrength == 1,
+        disconnected: $store.getters.signalStrength == 0
+      }"
       v-tooltip.left="{
         content: $store.state.auth.url + `<br>${$t('latency')}: ${$n(Math.round($store.state.latency[$store.state.latency.length - 1].latency))}ms`,
         boundariesElement: 'body'
@@ -50,6 +53,16 @@ export default {
   align-items: center;
   color: var(--accent);
   margin-bottom: 10px;
+
+  &.slow {
+    color: var(--warning);
+    svg {
+      fill: var(--warning);
+    }
+    i {
+      color: var(--warning);
+    }
+  }
 
   &.disconnected {
     color: var(--danger);

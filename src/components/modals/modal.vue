@@ -160,6 +160,7 @@ export default {
     -webkit-overflow-scrolling: touch;
     max-height: 70vh;
     position: relative;
+    background-color: var(--body-background);
   }
 
   .footer {

@@ -121,9 +121,9 @@ button {
   border: var(--input-border-width) solid var(--action);
 
   &:disabled:not(.loading) {
-    background-color: var(--lightest-gray);
+    background-color: var(--lighter-gray);
     border: var(--input-border-width) solid var(--lighter-gray);
-    color: var(--gray);
+    color: var(--light-gray);
     cursor: not-allowed;
   }
 

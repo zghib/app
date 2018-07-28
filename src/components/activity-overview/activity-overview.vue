@@ -42,24 +42,12 @@
             class="material-icons chevron"
             v-tooltip="'Revision Details'">chevron_left</i></summary>
           <div v-if="activity.changes">
-            <div
-              v-for="({ field, before, after }) in activity.changes"
-              class="change"
-              :key="field">
-              <p>{{ $helpers.formatTitle(field) }}</p>
-              <div class="diff">
-                <div
-                  :class="{ empty: !before }"
-                  class="before">{{ before || '--' }}</div>
-                <div
-                  :class="{ empty: !after }"
-                  class="after">{{ after || '--' }}</div>
-              </div>
-            </div>
+            <v-diff :changes="activity.changes" />
             <button
               v-if="index !== 0"
               v-tooltip="$t('revert')"
-              class="revert"><i class="material-icons">restore</i></button>
+              class="revert"
+              @click="$emit('revert', activity)"><i class="material-icons">restore</i></button>
           </div>
         </details>
         <div class="title" v-else-if="activity.name">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
@@ -78,11 +66,13 @@
 <script>
 import snarkdown from "snarkdown";
 import EditForm from "../edit-form/edit-form.vue";
+import VDiff from "./diff.vue";
 
 export default {
   name: "v-activity-overview",
   components: {
-    EditForm
+    EditForm,
+    VDiff
   },
   data() {
     return {
@@ -280,80 +270,6 @@ export default {
 
     > *:not(:first-child) {
       margin-top: 10px;
-    }
-
-    .change {
-      width: 100%;
-      margin-top: 14px;
-
-      p {
-        margin-bottom: 4px;
-        color: var(--light-gray);
-      }
-
-      .diff {
-        width: 100%;
-        border-radius: var(--border-radius);
-        overflow: hidden;
-
-        > div {
-          width: 100%;
-          padding: 4px 20px 4px 4px;
-        }
-      }
-
-      .before {
-        position: relative;
-        color: var(--danger);
-        background-color: #fdefed;
-        &:after {
-          content: "close";
-          position: absolute;
-          right: 0px;
-          top: 50%;
-          transform: translateY(-50%);
-          font-family: "Material Icons";
-          color: var(--danger);
-          display: inline-block;
-          vertical-align: middle;
-          margin: 0 5px;
-        }
-      }
-
-      .after {
-        position: relative;
-        color: var(--success);
-        background-color: #f6faf0;
-        &:after {
-          content: "check";
-          position: absolute;
-          right: 0px;
-          top: 50%;
-          transform: translateY(-50%);
-          font-family: "Material Icons";
-          color: var(--success);
-          display: inline-block;
-          vertical-align: middle;
-          margin: 0 5px;
-        }
-      }
-
-      .empty {
-        color: var(--gray);
-        background-color: var(--lightest-gray);
-        &:after {
-          content: "block";
-          position: absolute;
-          right: 0px;
-          top: 50%;
-          transform: translateY(-50%);
-          font-family: "Material Icons";
-          color: var(--gray);
-          display: inline-block;
-          vertical-align: middle;
-          margin: 0 5px;
-        }
-      }
     }
 
     .revert {

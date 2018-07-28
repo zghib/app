@@ -23,7 +23,7 @@
           <nav-menu
             v-if="extensions"
             :title="$t('extensions')"
-            :links="extensions" />
+            :links="extensions" :no-border="!bookmarks.length" />
           <nav-bookmarks :bookmarks="bookmarks" no-border />
         </section>
         <user-menu />

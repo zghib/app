@@ -143,6 +143,11 @@ const router = new Router({
       alias: "/activity"
     },
     {
+      path: "/collections/directus_activity/:primaryKey",
+      component: Edit,
+      alias: "/activity/:primaryKey"
+    },
+    {
       path: "/debug",
       component: Debug
     },

@@ -1,5 +1,10 @@
 <template>
-  <div class="listing-loading" />
+  <div class="listing-loading">
+    <v-spinner
+      line-fg-color="var(--light-gray)"
+      line-bg-color="var(--lighter-gray)"
+      class="spinner" />
+  </div>
 </template>
 
 <script>
