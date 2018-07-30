@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import sdk from "directus-sdk-javascript/remote";
+import sdk from "@directus/sdk-js/remote";
 
 export default {
   name: "login-form",

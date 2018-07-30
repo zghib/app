@@ -1,4 +1,4 @@
-import SDK, { getPayload } from "directus-sdk-javascript/remote";
+import SDK, { getPayload } from "@directus/sdk-js/remote";
 import store from "./store";
 
 const client = new SDK();

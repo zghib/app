@@ -98,7 +98,7 @@
 </template>
 
 <script>
-import sdk from "directus-sdk-javascript/remote";
+import sdk from "@directus/sdk-js/remote";
 import { version } from "../../package.json";
 
 export default {
