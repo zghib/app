@@ -147,8 +147,6 @@ export default {
         nnull: "is_not_null",
         contains: "contains",
         ncontains: "not_contains",
-        between: "between",
-        nbetween: "not_between",
         empty: "is_empty",
         nempty: "not_empty",
         has: "related_entries",
