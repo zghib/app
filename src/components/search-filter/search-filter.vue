@@ -101,13 +101,11 @@
 
 <script>
 import VBlocker from "../blocker.vue";
-import VHeaderButton from "../header-bar/header-button.vue";
 
 export default {
   name: "search-filter",
   components: {
-    VBlocker,
-    VHeaderButton
+    VBlocker
   },
   props: {
     fieldNames: {

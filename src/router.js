@@ -7,9 +7,9 @@ import { i18n } from "./lang/";
 import EventBus from "./events/";
 import hydrateStore from "./hydrate";
 import Collections from "./routes/collections.vue";
-import ItemListing from "./routes/item-listing.vue";
+import Items from "./routes/items.vue";
 import FileLibrary from "./routes/file-library.vue";
-import Edit from "./routes/edit.vue";
+import Item from "./routes/item.vue";
 import Login from "./routes/login.vue";
 import NotFound from "./routes/not-found.vue";
 import Interfaces from "./routes/settings/interfaces.vue";
@@ -47,12 +47,12 @@ const router = new Router({
     {
       path: "/collections/:collection",
       props: true,
-      component: ItemListing
+      component: Items
     },
     {
       path: "/collections/:collection/:primaryKey",
       props: true,
-      component: Edit
+      component: Item
     },
     {
       path: "/ext/:id",
@@ -124,27 +124,27 @@ const router = new Router({
     },
     {
       path: "/collections/directus_files/:primaryKey",
-      component: Edit,
+      component: Item,
       alias: "/files/:primaryKey"
     },
     {
       path: "/collections/directus_users",
-      component: ItemListing,
+      component: Items,
       alias: "/users"
     },
     {
       path: "/collections/directus_users/:primaryKey",
-      component: Edit,
+      component: Item,
       alias: "/users/:primaryKey"
     },
     {
       path: "/collections/directus_activity",
-      component: ItemListing,
+      component: Items,
       alias: "/activity"
     },
     {
       path: "/collections/directus_activity/:primaryKey",
-      component: Edit,
+      component: Item,
       alias: "/activity/:primaryKey"
     },
     {

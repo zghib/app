@@ -2,8 +2,9 @@ import * as actions from "./actions";
 import mutations from "./mutations";
 
 const state = {
-  listings: {},
-  interfaces: {}
+  layouts: {},
+  interfaces: {},
+  pages: {}
 };
 
 export default {

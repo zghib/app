@@ -1,6 +1,6 @@
 <template>
   <div v-if="error">
-    <v-header-bar />
+    <v-header />
     <v-error
       v-if="error"
       icon="error_outline"
@@ -10,7 +10,7 @@
   </div>
 
   <div class="settings-permissions" v-else>
-    <v-header-bar :breadcrumb="breadcrumb">
+    <v-header :breadcrumb="breadcrumb">
 
       <template slot="buttons">
         <v-header-button
@@ -29,10 +29,10 @@
           @click="save" />
       </template>
 
-    </v-header-bar>
+    </v-header>
     <h2 class="style-1">{{ $t("permissions") }}</h2>
 
-    <v-permissions-widget
+    <v-permissions
       v-if="permissions && statuses"
       :permissions="permissions"
       :statuses="statuses"
@@ -40,7 +40,7 @@
       @input="setPermission" />
 
     <h2 class="style-1">{{ $t("role_settings") }}</h2>
-    <v-edit-form
+    <v-form
       v-if="fields && role"
       :fields="fields"
       :values="role"
@@ -63,8 +63,7 @@
 import { keyBy, mapValues } from "lodash";
 import formatTitle from "@directus/format-title";
 import api from "../../api";
-import VEditForm from "../../components/edit-form/edit-form.vue";
-import VPermissionsWidget from "../../components/permissions-widget/permissions-widget.vue";
+import VPermissions from "../../components/permissions/permissions.vue";
 
 export default {
   name: "settings-permissions",
@@ -78,8 +77,7 @@ export default {
     };
   },
   components: {
-    VEditForm,
-    VPermissionsWidget
+    VPermissions
   },
   data() {
     return {
@@ -470,7 +468,7 @@ export default {
           //   filter by directus data type instead of interface name
           this.statuses = this.$lodash.keyBy(
             fields.filter(field => field.interface === "status").map(field => ({
-              mapping: field.options.status_mapping,
+              mapping: field.options.statusMapping,
               collection: field.collection
             })),
             "collection"

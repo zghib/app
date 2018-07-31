@@ -1,6 +1,6 @@
 <template>
   <div class="collections">
-    <v-header-bar :breadcrumb="breadcrumb">
+    <v-header :breadcrumb="breadcrumb">
       <template slot="buttons">
         <v-header-button
           icon="add"
@@ -9,7 +9,7 @@
           :label="$t('new')"
           @click="addNew = true" />
       </template>
-    </v-header-bar>
+    </v-header>
     <v-error
       v-if="items.length === 0"
       :title="$t('no_collections')"

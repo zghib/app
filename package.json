@@ -17,11 +17,11 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.8",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.8",
-    "@vue/cli-plugin-pwa": "^3.0.0-rc.8",
-    "@vue/cli-service": "^3.0.0-rc.8",
-    "@vue/eslint-config-prettier": "^3.0.0-rc.8",
+    "@vue/cli-plugin-babel": "^3.0.0-rc.10",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.10",
+    "@vue/cli-plugin-pwa": "^3.0.0-rc.10",
+    "@vue/cli-service": "^3.0.0-rc.10",
+    "@vue/eslint-config-prettier": "^3.0.0-rc.10",
     "node-sass": "^4.9.2",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.13",
@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@directus/format-title": "^1.2.0",
-    "@directus/sdk-js": "^3.0.0",
+    "@directus/sdk-js": "^3.1.0",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.4.6",

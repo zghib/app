@@ -58,8 +58,8 @@ export function getExtensions({ commit }, type) {
     case "interfaces":
       request = api.getInterfaces();
       break;
-    case "listings":
-      request = api.getListings();
+    case "layouts":
+      request = api.getLayouts();
       break;
     case "pages":
       request = api.getPages();
@@ -120,7 +120,7 @@ export function getExtensions({ commit }, type) {
 export function getAllExtensions({ dispatch }) {
   return Promise.all([
     dispatch("getExtensions", "interfaces"),
-    dispatch("getExtensions", "listings"),
+    dispatch("getExtensions", "layouts"),
     dispatch("getExtensions", "pages")
   ]);
 }

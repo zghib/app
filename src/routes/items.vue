@@ -45,14 +45,13 @@
           key="add"
           color="action"
           :label="$t('new')"
-          @click="newModal = true" />
+          :to="`/collections/${collection}/+`" />
       </template>
     </v-header>
 
     <v-items
       v-if="preferences"
       ref="listing"
-      :key="key"
       :collection="collection"
       :filters="filters"
       :search-query="searchQuery"
@@ -105,34 +104,6 @@
         @cancel="cancelBookmark"
         @confirm="saveBookmark" />
     </portal>
-
-    <portal to="modal" v-if="newModal">
-      <v-modal
-        :title="$t('file_upload')"
-        :buttons="{
-          upload: {
-            text: $t('upload')
-          }
-        }"
-        @close="newModal = false"
-        @upload="uploadFiles">
-        <div class="new-file">
-          <img
-            v-if="previewSrc"
-            :src="previewSrc" />
-          <div v-else class="dropzone">
-            <p>{{ $t('drop_file') }}</p>
-            <form enctype="multipart/form-data" novalidate>
-              <input
-                type="file"
-                id="file"
-                ref="file"
-                @change="stageFile">
-            </form>
-          </div>
-        </div>
-      </v-modal>
-    </portal>
   </div>
 </template>
 
@@ -146,10 +117,10 @@ import VNotFound from "./not-found.vue";
 import api from "../api";
 
 export default {
-  name: "route-file-library",
+  name: "route-item-listing",
   metaInfo() {
     return {
-      title: this.$t("file_library")
+      title: this.$helpers.formatTitle(this.collection)
     };
   },
   components: {
@@ -167,12 +138,7 @@ export default {
       bookmarkModal: false,
       bookmarkTitle: "",
 
-      notFound: false,
-
-      newModal: false,
-      files: [],
-      previewSrc: null,
-      key: "init"
+      notFound: false
     };
   },
   computed: {
@@ -202,7 +168,7 @@ export default {
       return currentBookmark || null;
     },
     collection() {
-      return "directus_files";
+      return this.$route.params.collection;
     },
     emptyCollection() {
       return (this.meta && this.meta.total_count === 0) || false;
@@ -325,15 +291,19 @@ export default {
       const id = this.$helpers.shortid.generate();
       this.$store.dispatch("loadingStart", { id });
 
+      const preferences = { ...this.preferences };
+      delete preferences.id;
+
       return this.$api
         .createCollectionPreset({
-          ...this.preferences,
+          ...preferences,
           collection: this.collection,
           user: this.$store.state.currentUser.id
         })
         .then(({ data }) => {
           this.$store.dispatch("loadingFinished", id);
           this.$set(this.preferences, "id", data.id);
+          this.$set(this.preferences, "user", data.user);
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
@@ -392,35 +362,6 @@ export default {
             error
           });
         });
-    },
-    uploadFiles() {
-      const formData = new FormData();
-
-      Array.from(this.files).forEach(file => formData.append("file", file));
-
-      const id = shortid.generate();
-      store.dispatch("loadingStart", { id });
-
-      return this.$api
-        .uploadFiles(formData)
-        .then(() => {
-          store.dispatch("loadingFinished", id);
-          this.key = shortid.generate();
-          this.newModal = false;
-          this.files = [];
-          this.previewSrc = null;
-        })
-        .catch(error => {
-          store.dispatch("loadingFinished", id);
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
-        });
-    },
-    stageFile(event) {
-      this.files = event.target.files;
-      this.previewSrc = URL.createObjectURL(event.target.files[0]);
     }
   },
   watch: {
@@ -433,7 +374,7 @@ export default {
     }
   },
   beforeRouteEnter(to, from, next) {
-    const collection = "directus_files";
+    const { collection } = to.params;
 
     const collectionInfo = store.state.collections[collection] || null;
 
@@ -478,7 +419,7 @@ export default {
       });
   },
   beforeRouteUpdate(to, from, next) {
-    const collection = "directus_files";
+    const { collection } = to.params;
 
     this.preferences = null;
     this.fields = [];
@@ -560,44 +501,5 @@ export default {
   line-height: 1.1;
   font-weight: 700;
   text-transform: uppercase;
-}
-
-.new-file {
-  padding: 20px;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .dropzone {
-    width: 100%;
-    height: 400px;
-    max-height: 70vh;
-    padding: 20px;
-
-    background-color: var(--lightest-gray);
-    border: 2px dashed var(--lighter-gray);
-    position: relative;
-
-    input {
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      cursor: pointer;
-    }
-
-    p {
-      font-size: 18px;
-      text-align: center;
-      color: var(--light-gray);
-      position: relative;
-      top: 20%;
-    }
-  }
 }
 </style>

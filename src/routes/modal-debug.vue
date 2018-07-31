@@ -1,6 +1,6 @@
 <template>
   <div class="modal-debug">
-    <v-header-bar title="Debug yo modals" />
+    <v-header title="Debug yo modals" />
 
     <label>
       Title

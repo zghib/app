@@ -1,6 +1,6 @@
 <template>
   <div class="settings-roles">
-    <v-header-bar :breadcrumb="breadcrumb">
+    <v-header :breadcrumb="breadcrumb">
       <template slot="buttons">
         <v-header-button
           icon="add"
@@ -9,7 +9,7 @@
           :label="$t('new')"
           :to="`/settings/roles/+`" />
       </template>
-    </v-header-bar>
+    </v-header>
     <v-table
       :items="items"
       :columns="fields"

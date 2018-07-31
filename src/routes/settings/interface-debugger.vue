@@ -1,11 +1,11 @@
 <template>
   <div class="interface-debugger">
-    <v-header-bar :breadcrumb="links" />
+    <v-header :breadcrumb="links" />
 
     <div
       :style="{ width: width + 'px' }"
       class="interface">
-      <v-interface
+      <v-ext-input
         v-model="value"
         :id="id"
         :name="id"
@@ -34,7 +34,7 @@
 
         <label>Listing</label>
         <div class="listing">
-          <v-readonly
+          <v-ext-display
             v-model="value"
             :interface-type="id"
             :name="id"
@@ -186,7 +186,7 @@
           :key="optionID">
           <label :for="optionID">{{ option.name }}</label>
           <p>{{ option.comment }}</p>
-          <v-interface
+          <v-ext-input
             v-model="options[optionID]"
             :id="option.interface"
             :name="optionID"
@@ -212,14 +212,14 @@
 
         <div class="misc">
           <label for="fields">Fields</label>
-          <v-interface
+          <v-ext-input
             :value="JSON.stringify(fields, null, 4)"
             @input="customFields = JSON.parse($event)"
             id="code"
             :options="{ language: 'application/json' }"
             name="fields" />
           <label for="values">Values</label>
-          <v-interface
+          <v-ext-input
             :value="JSON.stringify(values, null, 4)"
             @input="customValues = JSON.parse($event)"
             id="code"

@@ -1,7 +1,7 @@
 <template>
   <not-found v-if="!collectionInfo" />
   <div class="settings-fields" v-else>
-    <v-header-bar :breadcrumb="breadcrumb">
+    <v-header :breadcrumb="breadcrumb">
        <template slot="buttons">
         <v-header-button
           icon="close"
@@ -18,7 +18,7 @@
           :label="$t('save')"
           @click="save" />
       </template>
-    </v-header-bar>
+    </v-header>
 
     <label class="label">Collection Name</label>
     <v-input
@@ -53,7 +53,7 @@
 
     <v-button @click="startEditingField({})" class="new-field">New Field</v-button>
 
-    <v-edit-form
+    <v-form
       v-if="fields"
       :fields="directusFields"
       :values="collectionInfo"
@@ -91,7 +91,6 @@ import { keyBy } from "lodash";
 import formatTitle from "@directus/format-title";
 import shortid from "shortid";
 import store from "../../store/";
-import VEditForm from "../../components/edit-form/edit-form.vue";
 import api from "../../api.js";
 import NotFound from "../not-found.vue";
 import VFieldSetup from "../../components/field-setup.vue";
@@ -106,7 +105,6 @@ export default {
     };
   },
   components: {
-    VEditForm,
     NotFound,
     VFieldSetup
   },

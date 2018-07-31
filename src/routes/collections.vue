@@ -1,6 +1,6 @@
 <template>
   <div class="collections">
-    <v-header-bar :breadcrumb="[{
+    <v-header :breadcrumb="[{
       name: $t('collections'),
       path: '/collections'
     }]" />

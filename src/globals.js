@@ -9,17 +9,17 @@ import VDetails from "./components/details.vue";
 import VTable from "./components/table/table.vue";
 
 // Extensions
-import VPage from "./components/extensions/page/page.vue";
-import VInterface from "./components/extensions/interface/interface.vue";
-import VReadonly from "./components/extensions/readonly/readonly.vue";
-import VListing from "./components/extensions/listing/listing.vue";
-import VListingOptions from "./components/extensions/listing-options/listing-options.vue";
+import VExtInput from "./components/extension/interface/input/input.vue";
+import VExtDisplay from "./components/extension/interface/display/display.vue";
+import VExtLayout from "./components/extension/layout/layout/layout.vue";
+import VExtLayoutOptions from "./components/extension/layout/layout-options/layout-options.vue";
+import VExtPage from "./components/extension/page/page.vue";
 
 // Item listing
-import VItemListing from "./components/item-listing/item-listing.vue";
+import VItems from "./components/items.vue";
 
 // Edit form
-import VEditForm from "./components/edit-form/edit-form.vue";
+import VForm from "./components/form/form.vue";
 
 // Form inputs
 import VButton from "./components/form-inputs/button.vue";
@@ -39,24 +39,24 @@ import VModal from "./components/modals/modal.vue";
 import VPrompt from "./components/modals/prompt.vue";
 
 // Page Chrome
-import VHeaderBar from "./components/header-bar/header-bar.vue";
-import VHeaderButton from "./components/header-bar/header-button.vue";
+import VHeader from "./components/header/header.vue";
+import VHeaderButton from "./components/header/header-button.vue";
 import VInfoSidebar from "./components/sidebars/info-sidebar.vue";
 
 import VError from "./components/error.vue";
 
 // Extensions
-Vue.component("v-page", VPage);
-Vue.component("v-interface", VInterface);
-Vue.component("v-readonly", VReadonly);
-Vue.component("v-listing", VListing);
-Vue.component("v-listing-options", VListingOptions);
+Vue.component("v-ext-page", VExtPage);
+Vue.component("v-ext-input", VExtInput);
+Vue.component("v-ext-display", VExtDisplay);
+Vue.component("v-ext-layout", VExtLayout);
+Vue.component("v-ext-layout-options", VExtLayoutOptions);
 
 // Item Listing
-Vue.component("v-item-listing", VItemListing);
+Vue.component("v-items", VItems);
 
 // Edit form
-Vue.component("v-edit-form", VEditForm);
+Vue.component("v-form", VForm);
 
 // Form inputs
 Vue.component("v-button", VButton);
@@ -76,7 +76,7 @@ Vue.component("v-modal", VModal);
 Vue.component("v-prompt", VPrompt);
 
 // Page Chrome
-Vue.component("v-header-bar", VHeaderBar);
+Vue.component("v-header", VHeader);
 Vue.component("v-header-button", VHeaderButton);
 Vue.component("v-info-sidebar", VInfoSidebar);
 

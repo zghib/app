@@ -1,6 +1,6 @@
 <template>
   <div class="settings-global">
-    <v-header-bar :breadcrumb="links">
+    <v-header :breadcrumb="links">
       <template slot="buttons">
         <v-header-button
           :disabled="!editing"
@@ -10,9 +10,9 @@
           color="action"
           @click="save('leave')" />
       </template>
-    </v-header-bar>
+    </v-header>
 
-    <edit-form
+    <v-form
       :fields="fields"
       :values="settings"
       @stage-value="stageValue" />
@@ -27,7 +27,6 @@ import store from "../../store/";
 import EventBus from "../../events/";
 import { i18n } from "../../lang/";
 import api from "../../api";
-import EditForm from "../../components/edit-form/edit-form.vue";
 
 export default {
   name: "settings-global",
@@ -35,9 +34,6 @@ export default {
     return {
       title: `${this.$t("settings")} | ${this.$t("settings_global")}`
     };
-  },
-  components: {
-    EditForm
   },
   data() {
     return {

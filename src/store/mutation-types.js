@@ -26,7 +26,7 @@ export const STAGE_VALUE = "📝 Stage Value";
 
 // Extensions
 export const SET_INTERFACES = "📦 Set Interfaces";
-export const SET_LISTINGS = "📦 Set Listings";
+export const SET_LAYOUTS = "📦 Set Layouts";
 export const SET_PAGES = "📦 Set Pages";
 
 // Fields

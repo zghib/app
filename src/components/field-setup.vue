@@ -85,7 +85,7 @@
           :key="optionID">
           <label :for="optionID">{{ option.name }}</label>
           <p>{{ option.comment }}</p>
-          <v-interface
+          <v-ext-input
             :id="option.interface"
             :name="optionID"
             :type="option.type"

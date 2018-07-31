@@ -1,6 +1,6 @@
 <template>
   <v-not-found v-if="exists === false" />
-  <v-page v-else :id="id" />
+  <v-ext-page v-else :id="id" />
 </template>
 
 <script>

@@ -83,7 +83,7 @@
             <div
               v-if="row[field] === '' || $lodash.isNil(row[field])"
               class="empty">--</div>
-            <v-readonly
+            <v-ext-display
               v-else-if="useInterfaces && !$lodash.isNil(row[field])"
               :interface-type="fieldInfo.interface"
               :name="field"
@@ -123,7 +123,7 @@
               <div
                 v-if="row[field] === '' || $lodash.isNil(row[field])"
                 class="empty">--</div>
-              <v-readonly
+              <v-ext-display
                 v-else-if="useInterfaces && !$lodash.isNil(row[field])"
                 :interface-type="fieldInfo.interface"
                 :name="field"
