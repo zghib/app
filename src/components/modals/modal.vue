@@ -20,7 +20,7 @@
                 class="screen-reader-offscreen">
                 {{ $t('dialog_beginning') }} {{ actionRequired ? null : $t('esc_cancel') }}
               </div>
-              <header>
+              <header v-if="title">
                 <h1
                   id="modal-title"
                   class="style-1">{{ title }}</h1>
@@ -67,7 +67,7 @@ export default {
     },
     title: {
       type: String,
-      required: true
+      default: null
     },
     buttons: {
       type: [Object],

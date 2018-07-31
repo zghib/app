@@ -1,7 +1,10 @@
 <template>
   <transition name="fade">
     <div class="login" :class="{ loading }">
-      <form @submit.prevent="processForm">
+
+      <v-install v-if="installing" @install="install" />
+
+      <form v-else @submit.prevent="processForm">
         <img class="logo" alt="" src="../assets/logo-dark.svg" />
 
         <h1 v-if="loading">{{ loggedIn? $t('fetching_data') : $t('signing_in') }}</h1>
@@ -19,79 +22,91 @@
           {{ $t('to') }} <span>{{ $helpers.formatTitle(urls[url] || $t('choose_project')) }} <i class="material-icons">arrow_drop_down</i></span>
         </label>
 
-        <div class="material-input">
-          <input
-            v-model="email"
-            :disabled="loading"
-            :class="{ 'has-value': email && email.length > 0}"
-            type="text"
-            id="email"
-            name="email" />
-          <label for="email">{{ $t('email') }}</label>
-        </div>
-
-        <div v-if="!resetMode" class="material-input">
-          <input
-            v-model="password"
-            :disabled="loading"
-            :class="{ 'has-value': password && password.length > 0}"
-            type="password"
-            id="password"
-            name="password" />
-          <label for="password">{{ $t('password') }}</label>
-        </div>
-        <div class="buttons">
-          <button
-            type="button"
-            class="forgot"
-            @click.prevent="resetMode = !resetMode" >
-            {{ resetMode? $t('sign_in') : $t('forgot_password') }}
+        <template v-if="notInstalled">
+          <p class="install-copy">
+            {{ $t("install_copy") }}
+          </p>
+          <button type="button" class="style-btn" @click="installing = true">
+            {{ $t("install") }}
           </button>
+        </template>
 
-          <button
-            class="style-btn"
-            type="submit"
-            :disabled="disabled || loading">
-            {{ resetMode ? $t('reset_password') : $t('sign_in') }}
-          </button>
-        </div>
+        <template v-else>
+          <div class="material-input">
+            <input
+              v-model="email"
+              :disabled="loading || exists === false"
+              :class="{ 'has-value': email && email.length > 0}"
+              type="text"
+              id="email"
+              name="email" />
+            <label for="email">{{ $t('email') }}</label>
+          </div>
 
-        <transition-group
-          name="list"
-          tag="div"
-          class="stack">
-          <v-spinner
-            v-if="checkingExistence || gettingThirdPartyAuthProviders"
-            class="spinner"
-            key="spinner"
-            :size="18"
-            :line-size="2"
-            line-fg-color="var(--gray)"
-            line-bg-color="var(--lighter-gray)" />
+          <div v-if="!resetMode" class="material-input">
+            <input
+              v-model="password"
+              :disabled="loading || exists === false"
+              :class="{ 'has-value': password && password.length > 0}"
+              type="password"
+              id="password"
+              name="password" />
+            <label for="password">{{ $t('password') }}</label>
+          </div>
+          <div class="buttons">
+            <button
+              type="button"
+              class="forgot"
+              @click.prevent="resetMode = !resetMode" >
+              {{ resetMode? $t('sign_in') : $t('forgot_password') }}
+            </button>
 
-          <span key="error" class="notice" v-else-if="error" :class="errorType">
-            <i class="material-icons">{{ errorType }}</i>
-            {{ errorMessage }}
-          </span>
+            <button
+              class="style-btn"
+              type="submit"
+              :disabled="disabled || loading">
+              {{ resetMode ? $t('reset_password') : $t('sign_in') }}
+            </button>
+          </div>
 
-          <i
-            v-else-if="thirdPartyAuthProviders && !thirdPartyAuthProviders.length"
-            key="lock"
-            class="material-icons lock">{{ loggedIn ? "lock_open" : "lock_outline" }}</i>
+          <transition-group
+            name="list"
+            tag="div"
+            class="stack">
+            <v-spinner
+              v-if="checkingExistence || gettingThirdPartyAuthProviders"
+              class="spinner"
+              key="spinner"
+              :size="18"
+              :line-size="2"
+              line-fg-color="var(--gray)"
+              line-bg-color="var(--lighter-gray)" />
 
-          <ul v-else class="third-party-auth" key="third-party-auth">
-            <li
-              v-for="provider in thirdPartyAuthProviders"
-              :key="provider.name">
-              <a v-tooltip.bottom="$helpers.formatTitle(provider.name)" :href="url + '/_/auth/sso/' + provider.name">
-                <img
-                  :alt="provider.name"
-                  :src="provider.icon">
-              </a>
-            </li>
-          </ul>
+            <span key="error" class="notice" v-else-if="error" :class="errorType" @click="error = null">
+              <i class="material-icons">{{ errorType }}</i>
+              {{ errorMessage }}
+            </span>
+
+            <i
+              v-else-if="thirdPartyAuthProviders && !thirdPartyAuthProviders.length"
+              key="lock"
+              class="material-icons lock">{{ loggedIn ? "lock_open" : "lock_outline" }}</i>
+
+            <ul v-else class="third-party-auth" key="third-party-auth">
+              <li
+                v-for="provider in thirdPartyAuthProviders"
+                :key="provider.name">
+                <a v-tooltip.bottom="$helpers.formatTitle(provider.name)" :href="url + '/_/auth/sso/' + provider.name">
+                  <img
+                    :alt="provider.name"
+                    :src="provider.icon">
+                </a>
+              </li>
+            </ul>
           </transition-group>
+        </template>
       </form>
+
       <small v-tooltip="{ classes: ['inverted'], content: version }" class="style-4">{{ $t('powered_by_directus') }}</small>
     </div>
   </transition>
@@ -101,8 +116,13 @@
 import sdk from "@directus/sdk-js/remote";
 import { version } from "../../package.json";
 
+import VInstall from "../components/install.vue";
+
 export default {
   name: "login",
+  components: {
+    VInstall
+  },
   data() {
     return {
       url: null,
@@ -118,7 +138,10 @@ export default {
       thirdPartyAuthProviders: null,
       gettingThirdPartyAuthProviders: false,
 
-      resetMode: false
+      resetMode: false,
+
+      installing: false,
+      notInstalled: false
     };
   },
   computed: {
@@ -188,9 +211,11 @@ export default {
       this.exists = null;
       this.checkUrl();
     },
-    exists(newVal, oldVal) {
-      if (newVal === true && newVal !== oldVal) {
+    exists(newVal) {
+      if (newVal === true) {
         this.getThirdPartyAuthProviders();
+      } else {
+        this.error = { code: -1 };
       }
     },
     $route() {
@@ -198,11 +223,6 @@ export default {
     },
     storeError(error) {
       this.error = error;
-    },
-    error() {
-      setTimeout(() => {
-        this.error = null;
-      }, 10000);
     }
   },
   methods: {
@@ -271,19 +291,18 @@ export default {
       this.exists = false;
       this.thirdPartyAuthProviders = null;
       this.error = null;
+      this.notInstalled = false;
 
-      const scopedAPI = new sdk();
-
-      scopedAPI.url = this.url;
-
-      scopedAPI
-        .ping()
+      this.$axios
+        .get(this.url + "/server/ping")
         .then(() => {
           this.exists = true;
           this.checkingExistence = false;
+          this.error = null;
         })
         .catch(() => {
           this.exists = false;
+          this.notInstalled = false;
           this.checkingExistence = false;
         });
     },
@@ -303,10 +322,11 @@ export default {
           this.gettingThirdPartyAuthProviders = false;
         })
         .catch(error => {
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
+          if (error.code === 14) {
+            this.notInstalled = true;
+            this.exists = true;
+          }
+
           this.gettingThirdPartyAuthProviders = false;
         });
     },
@@ -342,6 +362,22 @@ export default {
             });
           });
       }
+    },
+    install(info) {
+      this.$axios
+        .post(this.url + "/instances", info)
+        .then(() => {
+          this.installing = false;
+          this.exists = true;
+          this.notInstalled = false;
+          this.$notify.confirm(this.$t("api_installed"));
+        })
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
     }
   }
 };
@@ -444,9 +480,13 @@ select {
       -webkit-box-shadow: 0 0 0px 1000px var(--white) inset;
     }
 
-    &:hover {
+    &:hover:not([disabled]) {
       transition: none;
       border-color: var(--darker-gray);
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
     }
 
     &:focus {
@@ -497,9 +537,9 @@ select {
   }
 }
 
-button[type="submit"] {
-  background-color: var(--darker-gray);
+button.style-btn {
   font-size: 14px;
+  background-color: var(--darker-gray);
   width: 100%;
   display: block;
   padding: 10px 0;
@@ -701,5 +741,10 @@ small {
   &.error {
     color: var(--danger);
   }
+}
+
+.install-copy {
+  line-height: 1.6;
+  margin-bottom: 40px;
 }
 </style>
