@@ -105,6 +105,7 @@ export default {
   email: "Email",
   empty_collection: "Empty Collection",
   empty_collection_body: "There are no items in this collection yet",
+  enable_manual_sorting: "Enable manual sorting",
   enter_value: "Enter Value",
   enter_collection_name: "Enter collection name...",
   environment: "Environment",

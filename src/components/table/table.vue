@@ -5,6 +5,16 @@
     class="v-table" @scroll="onScroll">
     <div class="toolbar" :class="{ shadow: scrolled }">
       <div
+        v-if="manualSortField"
+        class="manual-sort cell"
+        :class="{ active: manualSorting }">
+        <button
+          v-tooltip="$t('enable_manual_sorting')"
+          @click="startManualSorting">
+          <i class="material-icons">sort</i>
+        </button>
+      </div>
+      <div
         v-if="selectable"
         class="select cell">
         <v-checkbox
@@ -50,76 +60,47 @@
       </div>
     </div>
     <div class="body" :class="{ loading }">
-      <template v-if="link">
-        <div
-          v-for="row in items"
-          :key="row[primaryKeyField]"
-          :style="{ height: rowHeight + 'px' }"
-          :class="{ selected: selection && selection.includes(row[primaryKeyField])}"
-          class="link row"
-          tabindex="0"
-          role="link"
-          @click.stop="$router.push(row[link])"
-          @keyup.enter.stop="$router.push(row[link])">
+      <component
+        :is="manualSorting ? 'draggable' : 'div'"
+        v-model="itemsManuallySorted"
+        @end="saveSort">
+        <template v-if="link">
           <div
-            v-if="selectable"
-            class="cell select"
-            @click.stop>
-            <v-checkbox
-              :id="'check-' + row[primaryKeyField]"
-              :value="row[primaryKeyField]"
-              :checked="selection.includes(row[primaryKeyField])"
-              @change="toggleCheckbox(row[primaryKeyField])" />
-          </div>
-          <div
-            v-for="{field, fieldInfo} in columns"
-            :key="field"
-            :style="{
-              flexBasis: widths && widths[field] ?
-                widths[field] + 'px' :
-                null
-            }"
-            class="cell">
+            v-for="row in itemsArray"
+            :key="row[primaryKeyField]"
+            :style="{ height: rowHeight + 'px' }"
+            :class="{ selected: selection && selection.includes(row[primaryKeyField])}"
+            class="link row"
+            tabindex="0"
+            role="link"
+            @click.stop="$router.push(row[link])"
+            @keyup.enter.stop="$router.push(row[link])">
             <div
-              v-if="row[field] === '' || $lodash.isNil(row[field])"
-              class="empty">--</div>
-            <v-ext-display
-              v-else-if="useInterfaces && !$lodash.isNil(row[field])"
-              :interface-type="fieldInfo.interface"
-              :name="field"
-              :type="fieldInfo.type"
-              :options="fieldInfo.options"
-              :value="row[field]" />
-            <template v-else>{{ row[field] }}</template>
-          </div>
-        </div>
-      </template>
-
-      <template v-else>
-        <div
-          v-for="row in items"
-          :key="row[primaryKeyField]"
-          :style="{ height: rowHeight + 'px' }"
-          class="row">
-          <div
-            v-if="selectable"
-            class="select"
-            @click.stop>
-            <v-checkbox
-              :id="'check-' + row[primaryKeyField]"
-              :value="row[primaryKeyField]"
-              :checked="selection.includes(row[primaryKeyField])"
-              @change="toggleCheckbox(row[primaryKeyField])" />
-          </div>
-          <div
-            v-for="{field, fieldInfo} in columns"
-            :key="field"
-            :style="{
-              flexBasis: widths && widths[field] ?
-                widths[field] + 'px' :
-                null
-            }"
-            class="cell">
+              v-if="manualSortField"
+              @click.stop.prevent
+              class="manual-sort cell"
+              :class="{ active: manualSorting }">
+              <i class="material-icons">drag_handle</i>
+            </div>
+            <div
+              v-if="selectable"
+              class="cell select"
+              @click.stop>
+              <v-checkbox
+                :id="'check-' + row[primaryKeyField]"
+                :value="row[primaryKeyField]"
+                :checked="selection.includes(row[primaryKeyField])"
+                @change="toggleCheckbox(row[primaryKeyField])" />
+            </div>
+            <div
+              v-for="{field, fieldInfo} in columns"
+              :key="field"
+              :style="{
+                flexBasis: widths && widths[field] ?
+                  widths[field] + 'px' :
+                  null
+              }"
+              class="cell">
               <div
                 v-if="row[field] === '' || $lodash.isNil(row[field])"
                 class="empty">--</div>
@@ -131,9 +112,50 @@
                 :options="fieldInfo.options"
                 :value="row[field]" />
               <template v-else>{{ row[field] }}</template>
+            </div>
           </div>
-        </div>
-      </template>
+        </template>
+
+        <template v-else>
+          <div
+            v-for="row in itemsArray"
+            :key="row[primaryKeyField]"
+            :style="{ height: rowHeight + 'px' }"
+            class="row">
+            <div
+              v-if="selectable"
+              class="select"
+              @click.stop>
+              <v-checkbox
+                :id="'check-' + row[primaryKeyField]"
+                :value="row[primaryKeyField]"
+                :checked="selection.includes(row[primaryKeyField])"
+                @change="toggleCheckbox(row[primaryKeyField])" />
+            </div>
+            <div
+              v-for="{field, fieldInfo} in columns"
+              :key="field"
+              :style="{
+                flexBasis: widths && widths[field] ?
+                  widths[field] + 'px' :
+                  null
+              }"
+              class="cell">
+                <div
+                  v-if="row[field] === '' || $lodash.isNil(row[field])"
+                  class="empty">--</div>
+                <v-ext-display
+                  v-else-if="useInterfaces && !$lodash.isNil(row[field])"
+                  :interface-type="fieldInfo.interface"
+                  :name="field"
+                  :type="fieldInfo.type"
+                  :options="fieldInfo.options"
+                  :value="row[field]" />
+                <template v-else>{{ row[field] }}</template>
+            </div>
+          </div>
+        </template>
+      </component>
     </div>
     <transition name="fade">
       <div v-if="lazyLoading" class="lazy-loader">
@@ -181,6 +203,10 @@ export default {
       type: Object,
       default: null
     },
+    manualSortField: {
+      type: String,
+      default: null
+    },
     primaryKeyField: {
       type: String,
       required: true
@@ -203,7 +229,10 @@ export default {
       widths: {},
       lastDragXPosition: null,
       windowHeight: 0,
-      scrolled: false
+      scrolled: false,
+
+      manualSorting: false,
+      itemsManuallySorted: []
     };
   },
   computed: {
@@ -235,10 +264,24 @@ export default {
         30 +
         40
       );
+    },
+    itemsArray() {
+      return this.manualSorting ? this.itemsManuallySorted : this.items;
     }
   },
   created() {
     this.initWidths();
+
+    if (!this.manualSortField) return;
+
+    if (
+      this.sortVal &&
+      this.sortVal.field === this.manualSortField &&
+      this.sortVal.asc === true
+    ) {
+      this.manualSorting = true;
+      this.itemsManuallySorted = this.items;
+    }
   },
   watch: {
     columnWidths() {
@@ -246,6 +289,9 @@ export default {
     },
     columns() {
       this.initWidths();
+    },
+    items(newVal) {
+      this.itemsManuallySorted = newVal;
     }
   },
   methods: {
@@ -259,11 +305,22 @@ export default {
       );
       return this.$emit("select", primaryKeyFields);
     },
-    updateSort(field) {
+    updateSort(field, direction) {
+      this.manualSorting = false;
+
+      if (direction) {
+        const newSortVal = {
+          field,
+          asc: direction === "asc"
+        };
+        return this.$emit("sort", newSortVal);
+      }
+
       const newSortVal = {
         field,
         asc: field === this.sortVal.field ? !this.sortVal.asc : "ASC"
       };
+
       this.$emit("sort", newSortVal);
     },
     toggleCheckbox(primaryKeyField) {
@@ -315,6 +372,36 @@ export default {
       const delta = totalScroll - scrollTop;
       if (delta <= 500) this.$emit("scroll-end");
       this.scrolled = scrollTop > 0;
+    },
+    startManualSorting() {
+      if (this.manualSorting) {
+        this.manualSorting = false;
+        return;
+      }
+
+      this.updateSort(this.manualSortField, "asc");
+      this.manualSorting = true;
+    },
+    saveSort() {
+      if (
+        this.itemsManuallySorted.some(row => row[this.manualSortField] == null)
+      ) {
+        return this.$emit(
+          "input",
+          this.itemsManuallySorted.map((row, i) => ({
+            [this.primaryKeyField]: row[this.primaryKeyField],
+            [this.manualSortField]: i + 1
+          }))
+        );
+      }
+
+      return this.$emit(
+        "input",
+        this.itemsManuallySorted.map((row, i) => ({
+          [this.primaryKeyField]: row[this.primaryKeyField],
+          [this.manualSortField]: this.items[i][this.manualSortField]
+        }))
+      );
     }
   }
 };
@@ -459,11 +546,39 @@ export default {
   margin-left: 5px;
 }
 
-.select {
+.select,
+.manual-sort {
   flex-basis: 30px;
   padding: 0;
   margin-left: -3px; /* Shift to accomodate material design icons checkbox */
   margin-right: 8px;
+}
+
+.toolbar .manual-sort {
+  button {
+    color: var(--light-gray);
+    transition: color var(--fast) var(--transition);
+
+    &:hover {
+      transition: none;
+      color: var(--dark-gray);
+    }
+  }
+
+  &.active button {
+    color: var(--accent);
+  }
+}
+
+.body .manual-sort {
+  cursor: not-allowed;
+  color: var(--lightest-gray);
+
+  &.active {
+    cursor: grab;
+    cursor: -webkit-grab;
+    color: var(--gray);
+  }
 }
 
 .lazy-loader {

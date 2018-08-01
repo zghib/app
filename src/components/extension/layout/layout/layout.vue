@@ -11,11 +11,13 @@
     :lazy-loading="lazyLoading"
     :selection="selection"
     :link="link"
+    :sort-field="sortField"
     class="v-layout"
     @query="$emit('query', $event)"
     @select="$emit('select', $event)"
     @options="$emit('options', $event)"
-    @next-page="$emit('next-page', $event)" />
+    @next-page="$emit('next-page', $event)"
+    @input="$emit('input', $event)" />
 </template>
 
 <script>
@@ -61,6 +63,10 @@ export default {
       default: false
     },
     link: {
+      type: String,
+      default: null
+    },
+    sortField: {
       type: String,
       default: null
     }

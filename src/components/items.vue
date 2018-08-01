@@ -41,6 +41,8 @@
     :loading="items.loading"
     :lazy-loading="items.lazyLoading"
     :link="links ? '__link__' : null"
+    :sort-field="sortField"
+    @input="saveItems"
     @select="$emit('select', $event)"
     @query="$emit('query', $event)"
     @options="$emit('options', $event)"
@@ -107,8 +109,12 @@ export default {
   computed: {
     primaryKeyField() {
       if (!this.fields.data) return null;
-      return this.$lodash.find(this.fields.data, { interface: "primary-key" })
-        .field;
+      return this.$lodash.find(this.fields.data, { primary_key: true }).field;
+    },
+    sortField() {
+      if (!this.fields.data) return null;
+      const field = this.$lodash.find(this.fields.data, { type: "SORT" });
+      return (field && field.field) || null;
     }
   },
   created() {
@@ -220,6 +226,94 @@ export default {
           this.items.error = error;
         });
     },
+    saveItems(data) {
+      if (!data) return;
+
+      const pk = this.primaryKeyField;
+
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingFinished", id);
+
+      /**
+       * TODO: Document this somewhere nice
+       *
+       * Layouts have the ability to update records from the layout view.
+       *
+       * Layouts can $emit the "input" event (just like interfaces).
+       *
+       * If the record contains a value for the primaryKeyField, I'll update the
+       * existing record. If it doesn't; we create a new one.
+       *
+       * Layouts can send arrays of objects too. In that case, the same logic as
+       * above applies.
+       *
+       * ~ Rijk (8/1/18)
+       */
+
+      if (Array.isArray(data)) {
+        const update = [];
+        const create = [];
+
+        data.forEach(row => {
+          if (row[pk] && row[pk] != null) {
+            update.push(row);
+          } else {
+            create.push(row);
+          }
+        });
+
+        return Promise.all([
+          update.length > 0
+            ? this.$api.updateItems(this.collection, update)
+            : null,
+          create.length > 0
+            ? this.$api.createItems(this.collection, create)
+            : null
+        ])
+          .then(() => {
+            this.$store.dispatch("loadingFinished", id);
+
+            return this.getItems();
+          })
+          .catch(error => {
+            this.$store.dispatch("loadingFinished", id);
+            this.$events.emit("error", {
+              notify: this.$t("something_went_wrong_body"),
+              error
+            });
+          });
+      } else {
+        if (data[pk] && data[pk] != null) {
+          return this.$api
+            .updateItem(this.collection, data[pk], data)
+            .then(() => {
+              this.$store.dispatch("loadingFinished", id);
+              return this.getItems();
+            })
+            .catch(error => {
+              this.$store.dispatch("loadingFinished", id);
+              this.$events.emit("error", {
+                notify: this.$t("something_went_wrong_body"),
+                error
+              });
+            });
+        } else {
+          return this.$api
+            .createItem(this.collection, data)
+            .then(() => {
+              this.$store.dispatch("loadingFinished", id);
+              return this.getItems();
+            })
+            .catch(error => {
+              this.$store.dispatch("loadingFinished", id);
+              this.$events.emit("error", {
+                notify: this.$t("something_went_wrong_body"),
+                error
+              });
+            });
+        }
+      }
+    },
     lazyLoad() {
       if (this.items.lazyLoading) return;
       if (this.items.meta.total_count === this.items.data.length) return;
@@ -287,6 +381,11 @@ export default {
         params.fields = params.fields
           .split(",")
           .map(field => (field.endsWith(".*") ? field : `${field}.*`));
+
+        // Make sure the sort field gets fetched too
+        if (this.sortField) {
+          params.fields.push(this.sortField);
+        }
 
         // Make sure the primaryKey is always fetched
         if (params.fields.includes(this.primaryKeyField) === false) {

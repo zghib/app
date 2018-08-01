@@ -67,12 +67,12 @@
 
     <v-info-sidebar v-if="preferences">
       <template slot="system">
-        <label for="listing">{{ $t('view_type') }}</label>
+        <label for="layout">{{ $t('view_type') }}</label>
         <v-select
-          id="listing"
-          :options="listingNames"
+          id="layout"
+          :options="layoutNames"
           :value="viewType"
-          name="listing"
+          name="layout"
           @input="updatePreferences('view_type', $event)" />
       </template>
       <v-ext-layout-options
@@ -220,11 +220,11 @@ export default {
     fieldNames() {
       return this.fields.map(field => field.field);
     },
-    listingNames() {
-      if (!this.$store.state.extensions.listings) return {};
+    layoutNames() {
+      if (!this.$store.state.extensions.layouts) return {};
       const translatedNames = {};
-      Object.keys(this.$store.state.extensions.listings).forEach(id => {
-        translatedNames[id] = this.$store.state.extensions.listings[id].name;
+      Object.keys(this.$store.state.extensions.layouts).forEach(id => {
+        translatedNames[id] = this.$store.state.extensions.layouts[id].name;
       });
       return translatedNames;
     }
