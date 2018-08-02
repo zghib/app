@@ -232,7 +232,7 @@ export default {
       const pk = this.primaryKeyField;
 
       const id = this.$helpers.shortid.generate();
-      this.$store.dispatch("loadingFinished", id);
+      this.$store.dispatch("loadingStart", { id });
 
       /**
        * TODO: Document this somewhere nice
