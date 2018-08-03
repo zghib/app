@@ -1,6 +1,9 @@
 <template>
   <div class="debug">
-    <v-file-upload />
+    <v-header title="Upload Component" />
+    <div class="wrapper">
+      <v-upload />
+    </div>
   </div>
 </template>
 
@@ -13,3 +16,14 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.debug {
+  padding: var(--page-padding);
+}
+
+.wrapper {
+  width: var(--width-x-large);
+  height: var(--width-large);
+}
+</style>

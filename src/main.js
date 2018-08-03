@@ -14,6 +14,7 @@ import "./assets/tooltip.scss";
 import "./assets/notyf.scss";
 import "./globals";
 import "./helpers/handle-focus";
+import "./helpers/handle-drag";
 
 // import "./registerServiceWorker";
 import App from "./app.vue";

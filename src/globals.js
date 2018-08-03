@@ -44,6 +44,8 @@ import VHeaderButton from "./components/header/header-button.vue";
 import VInfoSidebar from "./components/sidebars/info-sidebar.vue";
 
 import VError from "./components/error.vue";
+import VUpload from "./components/upload.vue";
+import VProgressRing from "./components/progress-ring.vue";
 
 // Extensions
 Vue.component("v-ext-page", VExtPage);
@@ -89,3 +91,6 @@ Vue.component("v-avatar", VAvatar);
 Vue.component("v-card", VCard);
 Vue.component("v-details", VDetails);
 Vue.component("v-table", VTable);
+
+Vue.component("v-upload", VUpload);
+Vue.component("v-progress-ring", VProgressRing);
