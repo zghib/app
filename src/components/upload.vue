@@ -92,8 +92,11 @@ export default {
       this.$api
         .uploadFiles(
           formData,
-          ({ loaded, total }) =>
-            (this.files[id].progress = Math.round((loaded * 100) / total))
+          ({ loaded, total }) => {
+            const progress = Math.round((loaded * 100) / total);
+            this.files[id].progress = progress;
+            if (progress === 100) this.$emit("upload", this.files[id]);
+          }
         )
         .then(() => {
           // reset the inputs
@@ -115,9 +118,9 @@ export default {
 <style lang="scss" scoped>
 .v-upload {
   position: relative;
-  width: 100%;
-  height: 100%;
   background-color: var(--white);
+  width: 100%;
+  height: var(--width-normal);
 }
 
 .dropzone {

@@ -1,6 +1,6 @@
 <template>
   <v-not-found v-if="notFound" />
-  <div class="route-item-listing" v-else>
+  <div class="route-file-library" v-else>
     <v-header info-toggle>
       <template slot="title">
         <button
@@ -110,26 +110,14 @@
       <v-modal
         :title="$t('file_upload')"
         :buttons="{
-          upload: {
-            text: $t('upload')
+          done: {
+            text: $t('done')
           }
         }"
-        @close="newModal = false"
-        @upload="uploadFiles">
-        <div class="new-file">
-          <img
-            v-if="previewSrc"
-            :src="previewSrc" />
-          <div v-else class="dropzone">
-            <p>{{ $t('drop_file') }}</p>
-            <form enctype="multipart/form-data" novalidate>
-              <input
-                type="file"
-                id="file"
-                ref="file"
-                @change="stageFile">
-            </form>
-          </div>
+        @done="newModal = false"
+        @close="newModal = false">
+        <div class="modal-body">
+          <v-upload @upload="key = $helpers.shortid.generate()" />
         </div>
       </v-modal>
     </portal>
@@ -170,8 +158,8 @@ export default {
       notFound: false,
 
       newModal: false,
-      files: [],
-      previewSrc: null,
+
+      // Changing the key makes the items refresh & reload
       key: "init"
     };
   },
@@ -392,35 +380,6 @@ export default {
             error
           });
         });
-    },
-    uploadFiles() {
-      const formData = new FormData();
-
-      Array.from(this.files).forEach(file => formData.append("file", file));
-
-      const id = shortid.generate();
-      store.dispatch("loadingStart", { id });
-
-      return this.$api
-        .uploadFiles(formData)
-        .then(() => {
-          store.dispatch("loadingFinished", id);
-          this.key = shortid.generate();
-          this.newModal = false;
-          this.files = [];
-          this.previewSrc = null;
-        })
-        .catch(error => {
-          store.dispatch("loadingFinished", id);
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
-        });
-    },
-    stageFile(event) {
-      this.files = event.target.files;
-      this.previewSrc = URL.createObjectURL(event.target.files[0]);
     }
   },
   watch: {
@@ -562,42 +521,7 @@ export default {
   text-transform: uppercase;
 }
 
-.new-file {
+.modal-body {
   padding: 20px;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .dropzone {
-    width: 100%;
-    height: 400px;
-    max-height: 70vh;
-    padding: 20px;
-
-    background-color: var(--lightest-gray);
-    border: 2px dashed var(--lighter-gray);
-    position: relative;
-
-    input {
-      opacity: 0;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      cursor: pointer;
-    }
-
-    p {
-      font-size: 18px;
-      text-align: center;
-      color: var(--light-gray);
-      position: relative;
-      top: 20%;
-    }
-  }
 }
 </style>
