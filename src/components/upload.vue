@@ -90,14 +90,11 @@ export default {
       };
 
       this.$api
-        .uploadFiles(
-          formData,
-          ({ loaded, total }) => {
-            const progress = Math.round((loaded * 100) / total);
-            this.files[id].progress = progress;
-            if (progress === 100) this.$emit("upload", this.files[id]);
-          }
-        )
+        .uploadFiles(formData, ({ loaded, total }) => {
+          const progress = Math.round((loaded * 100) / total);
+          this.files[id].progress = progress;
+          if (progress === 100) this.$emit("upload", this.files[id]);
+        })
         .then(() => {
           // reset the inputs
           this.$refs.select.value = "";
