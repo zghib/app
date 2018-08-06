@@ -93,9 +93,13 @@ export default {
         .uploadFiles(formData, ({ loaded, total }) => {
           const progress = Math.round((loaded * 100) / total);
           this.files[id].progress = progress;
-          if (progress === 100) this.$emit("upload", this.files[id]);
         })
-        .then(() => {
+        .then(res => {
+          this.$emit("upload", {
+            ...this.files[id],
+            data: res
+          });
+
           // reset the inputs
           this.$refs.select.value = "";
           this.$refs.drop.value = "";
