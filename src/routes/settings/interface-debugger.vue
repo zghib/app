@@ -53,6 +53,26 @@
         </div>
       </fieldset>
       <fieldset>
+        <legend>Options</legend>
+        <div
+          v-for="(option, optionID) in extension.options"
+          class="options"
+          :key="optionID">
+          <label :for="optionID">{{ option.name }}</label>
+          <p>{{ option.comment }}</p>
+          <v-ext-input
+            v-model="options[optionID]"
+            :id="option.interface"
+            :name="optionID"
+            :type="option.type"
+            :length="option.length"
+            :readonly="option.readonly"
+            :required="option.required"
+            :loading="option.loading"
+            :options="option.options" />
+        </div>
+      </fieldset>
+      <fieldset>
         <legend>Settings</legend>
 
         <div class="settings">
@@ -186,26 +206,6 @@
               type="text"
               class="value" />
           </div>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Options</legend>
-        <div
-          v-for="(option, optionID) in extension.options"
-          class="options"
-          :key="optionID">
-          <label :for="optionID">{{ option.name }}</label>
-          <p>{{ option.comment }}</p>
-          <v-ext-input
-            v-model="options[optionID]"
-            :id="option.interface"
-            :name="optionID"
-            :type="option.type"
-            :length="option.length"
-            :readonly="option.readonly"
-            :required="option.required"
-            :loading="option.loading"
-            :options="option.options" />
         </div>
       </fieldset>
       <fieldset>
