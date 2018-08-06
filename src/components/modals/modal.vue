@@ -121,7 +121,7 @@ export default {
   position: relative;
   margin: 0 auto;
   width: 90%;
-  max-width: 600px;
+  max-width: 660px;
   background-color: var(--white);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
