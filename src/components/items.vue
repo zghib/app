@@ -356,7 +356,7 @@ export default {
     },
     formatParams() {
       let params = {
-        fields: "*.*",
+        fields: "*.*.*",
         meta: "total_count,result_count",
         limit: 50,
         offset: 50 * this.items.page

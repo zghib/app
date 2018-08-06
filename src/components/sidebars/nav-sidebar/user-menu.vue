@@ -64,10 +64,7 @@ export default {
   computed: {
     avatarURL() {
       if (this.$store.state.currentUser.avatar) {
-        // TODO: This is basically pseudo code. Hasn't been tested yet
-        const { url } = this.$store.state.auth;
-        const { filename } = this.$store.state.currentUser.avatar;
-        return `${url}/${filename}`;
+        return this.$store.state.currentUser.avatar.data.full_url;
       }
 
       return null;

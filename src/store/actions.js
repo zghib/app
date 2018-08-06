@@ -50,7 +50,7 @@ export function getSettings({ commit }) {
 
 export function getCurrentUser({ commit }) {
   return api
-    .getMe()
+    .getMe({ fields: "*.*" })
     .then(res => res.data)
     .then(data => commit(SET_CURRENT_USER, data));
 }

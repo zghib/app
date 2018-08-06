@@ -1,7 +1,7 @@
 <template>
   <div class="v-avatar">
     <div
-      :style="{ borderColor: `var(--${color})` }"
+      :style="{ borderColor: `var(--${color})`, width: `${size}px`, height: `${size}px` }"
       class="wrapper">
       <img
         v-if="src != null && !error"
@@ -12,6 +12,7 @@
         @error="onImageLoadingError">
       <i
         v-else
+        :style="{ fontSize: (size / 2) + 2 + 'px' }"
         class="material-icons">person</i>
     </div>
     <div
@@ -57,6 +58,11 @@ export default {
       this.error = error;
       this.loading = false;
     }
+  },
+  watch: {
+    src() {
+      this.error = false;
+    }
   }
 };
 </script>
@@ -64,8 +70,6 @@ export default {
 <style lang="scss" scoped>
 .v-avatar {
   position: relative;
-  width: 40px;
-  height: 40px;
 }
 
 .wrapper {
@@ -73,6 +77,7 @@ export default {
   border: 2px solid;
   height: 100%;
   width: 100%;
+  position: relative;
   overflow: hidden;
 }
 
