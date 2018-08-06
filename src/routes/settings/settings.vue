@@ -72,6 +72,7 @@
         <ul>
           <v-card
             :title="$t('connection')"
+            :subtitle="`${$t('latency')}: ${$n(Math.round($store.state.latency[$store.state.latency.length - 1].latency))}ms`"
             disabled
             element="li">
             <v-signal
