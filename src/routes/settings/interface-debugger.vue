@@ -2,6 +2,8 @@
   <div class="interface-debugger">
     <v-header :breadcrumb="links" />
 
+    <label>Dummy Label</label>
+
     <div
       :style="{ width: width + 'px' }"
       class="interface">
@@ -26,13 +28,15 @@
         <legend>Output</legend>
 
         <label for="value">Value</label>
+        <p>The value saved into the database</p>
         <v-input
           v-model="value"
           id="value"
           type="text"
           class="value" />
 
-        <label>Listing</label>
+        <label>Display</label>
+        <p>Appearance on the Items Page (eg: Tabular)</p>
         <div class="listing">
           <v-ext-display
             v-model="value"
@@ -53,6 +57,7 @@
 
         <div class="settings">
           <label for="type">Type</label>
+          <p>Allowed datatypes this interface supports</p>
           <select
             id="type"
             v-model="type">
@@ -66,6 +71,7 @@
 
         <div class="settings">
           <label for="length">Length</label>
+          <p>Database length for the column</p>
           <v-input
             id="length"
             v-model="length"
@@ -76,6 +82,7 @@
 
         <div class="settings">
           <label for="collection">Collection</label>
+          <p>The parent collection for this field</p>
           <v-input
             id="collection"
             v-model="collection"
@@ -83,6 +90,7 @@
         </div>
 
         <div class="settings">
+          <p>Toggle the readonly/disabled state</p>
           <v-checkbox
             id="readonly"
             v-model="readonly"
@@ -92,6 +100,7 @@
         </div>
 
         <div class="settings">
+          <p>Toggle the required state</p>
           <v-checkbox
             id="required"
             v-model="required"
@@ -101,6 +110,7 @@
         </div>
 
         <div class="settings">
+          <p>Toggle the loading state (Beta)</p>
           <v-checkbox
             id="loading"
             v-model="loading"
@@ -202,6 +212,7 @@
         <legend>Misc.</legend>
 
         <div class="misc">
+          <p>Toggle viewing between New and Edit</p>
           <v-checkbox
             id="new"
             v-model="newItem"
@@ -212,19 +223,22 @@
 
         <div class="misc">
           <label for="fields">Fields</label>
+          <p>Dummy sibling fields in this collection. Used when you want to test fetching or interacting with other fields on the Item page.</p>
           <v-ext-input
             :value="JSON.stringify(fields, null, 4)"
             @input="customFields = JSON.parse($event)"
             id="code"
             :options="{ language: 'application/json' }"
             name="fields" />
+
           <label for="values">Values</label>
+          <p>Values for the dummy sibling fields above</p>
           <v-ext-input
             :value="JSON.stringify(values, null, 4)"
             @input="customValues = JSON.parse($event)"
             id="code"
             :options="{ language: 'application/json' }"
-            name="value s" />
+            name="values" />
       </div>
       </fieldset>
     </form>
@@ -418,7 +432,7 @@ export default {
 
 .value {
   margin-bottom: 20px;
-  max-width: 400px;
+  max-width: 300px;
 }
 
 .listing {
@@ -427,7 +441,7 @@ export default {
 }
 
 .length {
-  max-width: 100px;
+  max-width: 140px;
 }
 
 .inline {
@@ -452,6 +466,7 @@ fieldset {
     color: var(--light-gray);
     padding-bottom: 10px;
     font-style: italic;
+    max-width: 460px;
   }
 
   .settings,
