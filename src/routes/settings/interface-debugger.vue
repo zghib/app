@@ -78,15 +78,16 @@
         <div class="settings">
           <label for="type">Type</label>
           <p>Allowed datatypes this interface supports</p>
-          <select
+          <v-simple-select
             id="type"
+            class="small"
             v-model="type">
             <option
               v-for="(length, type) in extension.datatypes"
               :key="type"
               :value="type"
             >{{ type }}</option>
-          </select>
+          </v-simple-select>
         </div>
 
         <div class="settings">
