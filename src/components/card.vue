@@ -293,7 +293,11 @@ export default {
       left: 0;
       top: 0;
       opacity: 0;
-      background-image: linear-gradient(-180deg, #000000 4%, rgba(0,0,0,0.00) 100%);
+      background-image: linear-gradient(
+        -180deg,
+        #000000 4%,
+        rgba(0, 0, 0, 0) 100%
+      );
       transition: opacity var(--fast) var(--transition);
     }
 
