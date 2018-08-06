@@ -61,11 +61,19 @@
             element="li"
             to="/settings/activity"
             icon="warning" />
-
+        </ul>
+      </nav>
+    </v-details>
+    <v-details
+      :title="$t('coming_soon')"
+      type="break"
+      open>
+      <nav>
+        <ul>
           <v-card
             :title="$t('connection')"
-            element="li"
-            to="/settings/connection">
+            disabled
+            element="li">
             <v-signal
               slot="icon"
               class="signal" />
@@ -73,16 +81,16 @@
 
           <v-card
             :title="$t('server_details')"
+            disabled
             :subtitle="projectName"
             element="li"
-            to="/settings/server"
             icon="storage" />
 
           <v-card
             :title="$t('version_and_updates')"
+            disabled
             :subtitle="version"
             element="li"
-            to="/settings/updates"
             icon="update" />
         </ul>
       </nav>

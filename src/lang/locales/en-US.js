@@ -62,6 +62,7 @@ export default {
   "collections-directus_activity": "Activity",
   comment: "Comment",
   comments: "Comments",
+  coming_soon: "Coming Soon",
   contains: "Contains",
   collection_contains_items: "{collection} contains {count} items",
   currently_selected: "Currently selected: {thing}",

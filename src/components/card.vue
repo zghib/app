@@ -1,7 +1,7 @@
 <template>
   <component
     :is="element"
-    :class="{ link, selected, selectable, 'selection-mode': selectionMode }"
+    :class="{ link, selected, selectable, 'selection-mode': selectionMode, disabled }"
     class="v-card">
     <component
       :is="wrapperTag"
@@ -158,6 +158,10 @@ export default {
     options: {
       type: Object,
       default: null
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -221,8 +225,8 @@ export default {
     user-select: none;
   }
 
-  &.link:hover,
-  &.selected {
+  &:not(.disabled).link:hover,
+  &:not(.disabled).selected {
     box-shadow: var(--box-shadow-accent);
     transform: translateY(-1px);
   }
@@ -295,6 +299,15 @@ export default {
       backdrop-filter: blur(5px);
       font-size: 10px;
       text-transform: uppercase;
+    }
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    & .header {
+      background-color: var(--dark-gray) !important;
     }
   }
 
