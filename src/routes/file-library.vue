@@ -71,7 +71,7 @@
         <label for="listing">{{ $t('view_type') }}</label>
         <v-select
           id="listing"
-          :options="listingNames"
+          :options="layoutNames"
           :value="viewType"
           name="listing"
           @input="updatePreferences('view_type', $event)" />
@@ -242,11 +242,11 @@ export default {
     fieldNames() {
       return this.fields.map(field => field.field);
     },
-    listingNames() {
-      if (!this.$store.state.extensions.listings) return {};
+    layoutNames() {
+      if (!this.$store.state.extensions.layouts) return {};
       const translatedNames = {};
-      Object.keys(this.$store.state.extensions.listings).forEach(id => {
-        translatedNames[id] = this.$store.state.extensions.listings[id].name;
+      Object.keys(this.$store.state.extensions.layouts).forEach(id => {
+        translatedNames[id] = this.$store.state.extensions.layouts[id].name;
       });
       return translatedNames;
     }
