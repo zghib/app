@@ -159,7 +159,6 @@ export default {
   .field,
   .group {
     margin-bottom: 30px;
-    overflow: hidden;
   }
 
   .group {
