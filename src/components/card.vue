@@ -12,6 +12,15 @@
         :style="{ backgroundColor: `var(--${color})` }"
         class="header">
 
+        <button
+          v-if="selected !== null"
+          type="button"
+          class="select"
+          :class="{ selected }"
+          @click.stop="$emit('select')">
+          <i class="material-icons">{{ selected ? 'check_circle' : 'radio_button_unchecked' }}</i>
+        </button>
+
         <img
           v-if="src && !error"
           :alt="title"
@@ -20,12 +29,12 @@
 
         <i
           v-if="error"
-          class="material-icons error">broken_image</i>
+          class="material-icons error icon">broken_image</i>
 
         <i
           v-if="icon"
           :class="{ 'half-opacity': opacity === 'half' }"
-          class="material-icons">{{ icon }}</i>
+          class="material-icons icon">{{ icon }}</i>
 
         <div
           v-if="$slots.icon"
@@ -105,6 +114,10 @@ export default {
       validator(val) {
         return ["full", "half"].includes(val);
       }
+    },
+    selected: {
+      type: Boolean,
+      default: null
     }
   },
   data() {
@@ -169,13 +182,30 @@ export default {
     justify-content: center;
     position: relative;
 
+    .select {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 12px;
+      color: var(--white);
+      opacity: 0.5;
+      transition: opacity var(--fast) var(--transition);
+
+      &:hover,
+      .user-is-tabbing &:focus,
+      &.selected {
+        transition: none;
+        opacity: 1;
+      }
+    }
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
 
-    i {
+    .icon {
       font-size: 64px;
       color: var(--white);
       text-align: center;
@@ -187,7 +217,6 @@ export default {
     }
 
     img,
-    i,
     .icon {
       grid-row: 1;
       grid-column: 1;
