@@ -197,6 +197,11 @@ export default {
     onImageError(error) {
       this.error = error;
     }
+  },
+  watch: {
+    src() {
+      this.error = null;
+    }
   }
 };
 </script>

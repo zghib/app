@@ -7,7 +7,7 @@
       :multiple="multiple"
       @change="filesChange($event.target.files)" />
 
-    <div class="dropzone">
+    <div class="dropzone" :class="{ 'smaller': small }">
       <div class="icon">
         <i class="material-icons">cloud_upload</i>
       </div>
@@ -58,6 +58,10 @@ export default {
     multiple: {
       type: Boolean,
       default: true
+    },
+    small: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -94,6 +98,7 @@ export default {
           const progress = Math.round((loaded * 100) / total);
           this.files[id].progress = progress;
         })
+        .then(res => res.data)
         .then(res => {
           this.$emit("upload", {
             ...this.files[id],
@@ -203,6 +208,18 @@ input.select {
   .dragging & {
     transition: border-color var(--slow) var(--transition);
     border-color: var(--darkest-gray);
+  }
+
+  &.smaller {
+    .icon i {
+      font-size: 80px;
+    }
+
+    p {
+      &:first-of-type {
+        font-size: 26px;
+      }
+    }
   }
 }
 
