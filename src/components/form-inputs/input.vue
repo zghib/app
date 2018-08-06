@@ -153,15 +153,15 @@ export default {
     height: var(--input-height);
 
     &[type="date"] {
-        -webkit-appearance: none;
+      -webkit-appearance: none;
     }
-    &[type=date]::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        display: none;
+    &[type="date"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      display: none;
     }
     &::-webkit-clear-button {
-        display: none; /* Hide the button */
-        -webkit-appearance: none; /* turn off default browser styling */
+      display: none; /* Hide the button */
+      -webkit-appearance: none; /* turn off default browser styling */
     }
 
     &::placeholder {
