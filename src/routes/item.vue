@@ -597,7 +597,7 @@ export default {
         store.dispatch("startEditing", {
           collection: collection,
           primaryKey: primaryKey,
-          savedValues: isNew ? null : item
+          savedValues: isNew ? {} : item
         });
         return { fields, relations };
       })
@@ -682,7 +682,7 @@ export default {
         this.$store.dispatch("startEditing", {
           collection: collection,
           primaryKey: primaryKey,
-          savedValues: isNew ? null : item
+          savedValues: isNew ? {} : item
         });
         return { fields, relations };
       })
