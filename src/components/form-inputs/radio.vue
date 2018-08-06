@@ -61,6 +61,7 @@ input {
 label {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 label::before {
@@ -79,6 +80,10 @@ label::before {
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
   margin-right: 5px;
+}
+
+input:hover + label {
+  color: var(--accent);
 }
 
 input:checked + label::before {
