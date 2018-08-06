@@ -90,11 +90,17 @@ textarea {
   transition-property: color, border-color;
 
   &::placeholder {
-    color: var(--light-gray);
+    color: var(--lighter-gray);
+  }
+
+  &:hover {
+    transition: none;
+    border-color: var(--light-gray);
+    outline: 0;
   }
 
   &:focus {
-    color: var(--darker-gray);
+    color: var(--dark-gray);
     border-color: var(--accent);
     outline: 0;
   }
