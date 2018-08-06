@@ -169,13 +169,19 @@ export default {
   input {
     transition: all var(--fast) var(--transition);
     background-color: var(--white);
+    color: var(--gray);
     height: var(--input-height);
     border: var(--input-border-width) solid var(--lighter-gray);
     transition: var(--fast) var(--transition);
     transition-property: color, border-color;
 
-    span {
-      padding-right: 33px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+
+    span.no-wrap {
+      padding-right: 18px;
     }
   }
 
@@ -201,7 +207,7 @@ export default {
     z-index: +1;
 
     &::placeholder {
-      color: var(--light-gray);
+      color: var(--lighter-gray);
     }
 
     &:-webkit-autofill {
@@ -233,7 +239,7 @@ export default {
   select:focus ~ input,
   input:focus + div,
   input:focus {
-    color: var(--darker-gray);
+    color: var(--dark-gray);
     border-color: var(--accent);
     outline: 0;
   }
@@ -271,7 +277,10 @@ export default {
   }
 
   .placeholder {
-    color: var(--light-gray);
+    color: var(--lighter-gray);
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
   }
 }
 </style>
