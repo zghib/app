@@ -152,12 +152,29 @@ export default {
     transition-property: color, border-color, padding;
     height: var(--input-height);
 
+    &[type="date"] {
+        -webkit-appearance: none;
+    }
+    &[type=date]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+    &::-webkit-clear-button {
+        display: none; /* Hide the button */
+        -webkit-appearance: none; /* turn off default browser styling */
+    }
+
     &::placeholder {
       color: var(--lighter-gray);
     }
 
+    &:hover {
+      transition: border-color 0s;
+      border-color: var(--light-gray);
+    }
+
     &:focus {
-      color: var(--darker-gray);
+      color: var(--dark-gray);
       border-color: var(--accent);
       outline: 0;
     }

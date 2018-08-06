@@ -4,6 +4,7 @@
     class="v-select">
     <select
       v-if="other"
+      :disabled="disabled"
       :id="otherActive ? null : id"
       :value="value"
       @change="change($event.target.value)">
@@ -24,6 +25,7 @@
     <select
       v-else
       ref="select"
+      :disabled="disabled"
       :id="otherActive ? null : id"
       :value="value"
       @change="change($event.target.value)">
@@ -165,6 +167,7 @@ export default {
 
   .value,
   input {
+    transition: all var(--fast) var(--transition);
     background-color: var(--white);
     height: var(--input-height);
     border: var(--input-border-width) solid var(--lighter-gray);
@@ -204,6 +207,26 @@ export default {
     &:-webkit-autofill {
       box-shadow: inset 0 0 0 1000px var(--white) !important;
     }
+  }
+
+  select:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
+
+  select:disabled ~ div,
+  select:disabled ~ input,
+  input:disabled + div,
+  input:disabled {
+    background-color: var(--body-background);
+  }
+
+  select:hover:not(:disabled) ~ div,
+  select:hover:not(:disabled) ~ input,
+  input:hover:not(:disabled) + div,
+  input:hover:not(:disabled) {
+    border-color: var(--light-gray);
+    transition: none;
   }
 
   select:focus ~ div,

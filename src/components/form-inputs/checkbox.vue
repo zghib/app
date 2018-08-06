@@ -95,10 +95,11 @@ label {
 
   i {
     color: inherit;
+    margin-top: -2px;
   }
 
-  &:hover i,
-  .user-is-tabbing &:focus i {
+  &:hover,
+  .user-is-tabbing &:focus {
     color: var(--accent);
   }
 }
