@@ -98,7 +98,7 @@ label {
     margin-top: -2px;
   }
 
-  &:hover,
+  &:hover:not(:disabled),
   .user-is-tabbing &:focus {
     color: var(--accent);
   }

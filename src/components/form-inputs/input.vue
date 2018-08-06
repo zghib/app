@@ -168,7 +168,7 @@ export default {
       color: var(--lighter-gray);
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       transition: border-color 0s;
       border-color: var(--light-gray);
     }
@@ -200,6 +200,7 @@ export default {
     &[disabled],
     &:read-only {
       background-color: var(--lightest-gray);
+      border-color: var(--lighter-gray);
       cursor: not-allowed;
       &:focus {
         color: var(--gray);

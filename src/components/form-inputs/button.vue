@@ -63,7 +63,7 @@ button.action {
   background-color: var(--darker-gray);
   border-color: var(--darker-gray);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--darkest-gray);
     border-color: var(--darkest-gray);
   }
@@ -73,7 +73,7 @@ button.secondary {
   background-color: var(--secondary);
   border-color: var(--secondary);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--secondary-dark);
     border-color: var(--secondary-dark);
   }
@@ -83,7 +83,7 @@ button.warning {
   background-color: var(--warning);
   border-color: var(--warning);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--warning-dark);
     border-color: var(--warning-dark);
   }
@@ -93,7 +93,7 @@ button.danger {
   background-color: var(--danger);
   border-color: var(--danger);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background-color: var(--danger-dark);
     border-color: var(--danger-dark);
   }

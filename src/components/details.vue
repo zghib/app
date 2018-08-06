@@ -36,8 +36,8 @@ export default {
 <style lang="scss" scoped>
 .v-details {
   width: 100%;
-  margin-top: 40px;
-  margin-bottom: 60px;
+  margin-top: 10px;
+  margin-bottom: 30px;
 
   summary {
     border-top: 1px solid var(--lighter-gray);
@@ -54,8 +54,14 @@ export default {
     cursor: pointer;
     transition: var(--fast) var(--transition);
 
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 10px;
+    border: 0;
+
     &::after {
-      content: "keyboard_arrow_left";
+      content: "keyboard_arrow_right";
       direction: ltr;
       display: inline-block;
       font-family: "Material Icons";
@@ -79,11 +85,15 @@ export default {
 
     &:hover,
     .user-is-tabbing &:focus {
-      color: var(--dark-gray);
+      color: var(--darker-gray);
       &::after {
-        color: var(--dark-gray);
+        color: var(--darker-gray);
       }
     }
+  }
+
+  .content {
+    padding-bottom: 30px;
   }
 
   &.group {
@@ -104,11 +114,11 @@ export default {
 
   &[open] {
     summary {
-      border-bottom: 1px solid var(--lighter-gray);
+      // border-bottom: 1px solid var(--lighter-gray);
     }
 
     summary::after {
-      transform: rotate(-90deg);
+      transform: rotate(90deg);
     }
   }
 }
