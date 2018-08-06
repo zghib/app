@@ -77,7 +77,7 @@ export default {
     },
     color: {
       type: String,
-      default: "accent"
+      default: "darkest-gray"
     },
     src: {
       type: String,
