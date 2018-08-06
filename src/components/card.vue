@@ -59,7 +59,8 @@
         <div class="main">
           <component
             :is="titleElement"
-            class="title "
+            class="title"
+            v-tooltip="title"
           >{{ title }}</component>
           <p
             v-if="subtitle"

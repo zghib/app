@@ -116,8 +116,9 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
-  min-width: 160px;
+  padding: 0 20px;
+  height: 40px;
+  min-width: var(--width-small);
   border: var(--input-border-width) solid var(--action);
 
   &:disabled:not(.loading) {
@@ -133,6 +134,11 @@ button {
 
   &.fullwidth {
     width: 100%;
+  }
+
+  i {
+    vertical-align: -30%;
+    margin-right: 3px;
   }
 }
 

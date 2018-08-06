@@ -121,6 +121,7 @@ export default {
   error_unknown: "Unknown error. Try again later.",
   esc_cancel: "Escape will cancel and close the window.",
   equal_to: "Equal to",
+  existing: "Existing",
   fetching_data: "Fetching Data",
   field: "Field",
   field_created: "{field} Field Created",
@@ -179,6 +180,7 @@ export default {
   navigate_changes:
     "Are you sure you want to leave this page? The changes you made will be lost if you navigate away from this page.",
   new: "New",
+  new_file: "New File",
   no_related_entries: "Has no related entries",
   not_between: "Not between",
   not_contains: "Doesn't contain",
