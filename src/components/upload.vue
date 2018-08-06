@@ -13,7 +13,7 @@
       </div>
       <div class="info">
         <p class="name">{{ $t('drop_files') }}</p>
-        <p class="file-info">100MB, Images only or whatever</p>
+        <p class="file-info no-wrap">100MB, Images only or whatever</p>
       </div>
       <div class="buttons">
         <i
@@ -33,8 +33,8 @@
           :color="file.error !== null ? 'danger' : (file.progress === 100 ? 'success' : 'accent')"
           :stroke="file.progress === 100 ? 0 : 2" />
         <div class="info">
-          <p class="name">{{ file.name }}</p>
-          <p class="file-info">{{ file.size }} <span v-if="file.progress && file.progress !== 100" class="progress">{{ file.progress }}%</span></p>
+          <p class="name no-wrap">{{ file.name }}</p>
+          <p class="file-info no-wrap">{{ file.size }} <span v-if="file.progress && file.progress !== 100" class="progress">{{ file.progress }}%</span></p>
         </div>
       </li>
     </transition-group>
@@ -237,9 +237,14 @@ input.select {
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
     padding: 10px 20px;
+    padding-right: 50px;
     border: var(--input-border-width) solid var(--darkest-gray);
     color: var(--white);
     flex-shrink: 0;
+
+    .info {
+      overflow: hidden;
+    }
 
     .file-info {
       color: var(--light-gray);
@@ -320,6 +325,10 @@ input.select {
 
 .list-item {
   display: inline-block;
+
+  .info {
+    overflow: hidden;
+  }
 }
 
 .list-enter-active,
