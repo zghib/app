@@ -59,7 +59,7 @@
           <v-card
             :title="$t('activity_log')"
             element="li"
-            to="/settings/activity"
+            to="/activity"
             icon="warning" />
         </ul>
       </nav>
