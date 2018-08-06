@@ -153,28 +153,34 @@ export default {
   },
   methods: {
     getRoleCount() {
-      this.$api.getItems("directus_roles", {
-        fields: "-",
-        limit: 0,
-        meta: "total_count"
-      })
+      this.$api
+        .getItems("directus_roles", {
+          fields: "-",
+          limit: 0,
+          meta: "total_count"
+        })
         .then(res => res.meta)
         .then(({ total_count }) => {
-          this.roleCount = this.$tc("role_count", total_count, { count: this.$n(total_count) });
+          this.roleCount = this.$tc("role_count", total_count, {
+            count: this.$n(total_count)
+          });
         })
         .catch(() => {
           this.roleCount = "--";
         });
     },
     getActivityCount() {
-      this.$api.getItems("directus_activity", {
-        fields: "-",
-        limit: 0,
-        meta: "total_count"
-      })
+      this.$api
+        .getItems("directus_activity", {
+          fields: "-",
+          limit: 0,
+          meta: "total_count"
+        })
         .then(res => res.meta)
         .then(({ total_count }) => {
-          this.activityCount = this.$tc("event_count", total_count, { count: this.$n(total_count) });
+          this.activityCount = this.$tc("event_count", total_count, {
+            count: this.$n(total_count)
+          });
         })
         .catch(() => {
           this.activityCount = "--";
