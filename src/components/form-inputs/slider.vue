@@ -89,7 +89,7 @@ export default {
     transition: border-color var(--fast) var(--transition);
     padding: 16px;
     border: var(--input-border-width) solid var(--lighter-gray);
-    border-radius: var(--border-radius);;
+    border-radius: var(--border-radius);
     background-color: var(--white);
     height: 40px;
 
