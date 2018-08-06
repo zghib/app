@@ -1,7 +1,7 @@
 <template>
   <component
     :is="element"
-    :class="{ link }"
+    :class="{ link, selected, selectable, 'selection-mode': selectionMode }"
     class="v-card">
     <component
       :is="wrapperTag"
@@ -13,12 +13,11 @@
         class="header">
 
         <button
-          v-if="selected !== null"
+          v-if="selectable"
           type="button"
           class="select"
-          :class="{ selected }"
           @click.stop="$emit('select')">
-          <i class="material-icons">{{ selected ? 'check_circle' : 'radio_button_unchecked' }}</i>
+          <i class="material-icons">{{ selectionIcon }}</i>
         </button>
 
         <img
@@ -118,6 +117,10 @@ export default {
     selected: {
       type: Boolean,
       default: null
+    },
+    selectionMode: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -143,6 +146,14 @@ export default {
       }
 
       return false;
+    },
+    selectable() {
+      return this.selected !== null;
+    },
+    selectionIcon() {
+      if (this.selected) return "check_circle";
+      if (this.selectionMode && !this.selected) return "radio_button_unchecked";
+      return "check_circle";
     }
   },
   methods: {
@@ -168,7 +179,8 @@ export default {
     user-select: none;
   }
 
-  &.link:hover {
+  &.link:hover,
+  &.selected {
     box-shadow: var(--box-shadow-accent);
     transform: translateY(-1px);
   }
@@ -188,7 +200,7 @@ export default {
       left: 10px;
       font-size: 12px;
       color: var(--white);
-      opacity: 0.5;
+      opacity: 0;
       transition: opacity var(--fast) var(--transition);
 
       &:hover,
@@ -267,6 +279,44 @@ export default {
 
   .half-opacity {
     opacity: 0.5;
+  }
+
+  &.selectable {
+    .select {
+      transition: opacity var(--fast) var(--transition);
+    }
+    .header::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      left: 0;
+      top: 0;
+      opacity: 0;
+      background-image: linear-gradient(-180deg, #000000 4%, rgba(0,0,0,0.00) 100%);
+      transition: opacity var(--fast) var(--transition);
+    }
+
+    &:hover,
+    &.selection-mode,
+    &.selected {
+      .select {
+        transition: none;
+        opacity: 0.5;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      .header::before {
+        opacity: 0.2;
+      }
+    }
+
+    &.selected .select {
+      opacity: 1;
+    }
   }
 }
 </style>
