@@ -86,10 +86,12 @@ export default {
   position: relative;
 
   .input {
-    padding: 10px;
+    transition: border-color var(--fast) var(--transition);
+    padding: 16px;
     border: var(--input-border-width) solid var(--lighter-gray);
-    border-radius: 15px;
+    border-radius: var(--border-radius);;
     background-color: var(--white);
+    height: 40px;
 
     flex-grow: 1;
     flex-shrink: 0;
@@ -97,6 +99,11 @@ export default {
     grid-template-columns: 2;
     grid-template-rows: 1;
     grid-gap: 10px;
+
+    &:hover {
+      transition: none;
+      border-color: var(--light-gray);
+    }
   }
 
   .track-wrapper {
@@ -125,10 +132,11 @@ export default {
 
   input {
     appearance: none;
+    -webkit-appearance: none;
 
     &::-webkit-slider-runnable-track {
       height: 4px;
-      background: var(--light-gray);
+      background: var(--lighter-gray);
       box-shadow: none;
       border: none;
       border-radius: 3px;
@@ -136,6 +144,7 @@ export default {
 
     &::-webkit-slider-thumb {
       appearance: none;
+      -webkit-appearance: none;
       box-shadow: none;
       border: none;
       height: 14px;
