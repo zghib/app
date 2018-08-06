@@ -43,6 +43,18 @@
           v-if="label"
           class="label">{{ label }}</span>
       </div>
+      <div
+        v-else
+        class="header small"
+        :style="{ backgroundColor: `var(--${color})` }">
+        <button
+          v-if="selectable"
+          type="button"
+          class="select"
+          @click.stop="$emit('select')">
+          <i class="material-icons">{{ selectionIcon }}</i>
+        </button>
+      </div>
       <div class="body">
         <component
           :is="titleElement"
@@ -194,14 +206,21 @@ export default {
     justify-content: center;
     position: relative;
 
+    &.small {
+      height: 40px;
+    }
+
     .select {
       position: absolute;
       top: 10px;
       left: 10px;
-      font-size: 12px;
       color: var(--white);
       opacity: 0;
       transition: opacity var(--fast) var(--transition);
+
+      i {
+        font-size: 20px;
+      }
 
       &:hover,
       .user-is-tabbing &:focus,
@@ -290,6 +309,7 @@ export default {
       position: absolute;
       width: 100%;
       height: 50px;
+      max-height: 100%;
       left: 0;
       top: 0;
       opacity: 0;
