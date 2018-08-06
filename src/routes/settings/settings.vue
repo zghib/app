@@ -29,6 +29,7 @@
 
           <v-card
             :title="$t('settings_permissions')"
+            :subtitle="roleCount"
             element="li"
             to="/settings/roles"
             icon="group" />
@@ -58,6 +59,7 @@
 
           <v-card
             :title="$t('activity_log')"
+            :subtitle="activityCount"
             element="li"
             to="/activity"
             icon="warning" />
@@ -113,6 +115,12 @@ export default {
   components: {
     VSignal
   },
+  data() {
+    return {
+      roleCount: "Loading...",
+      activityCount: "Loading..."
+    };
+  },
   computed: {
     globalNum() {
       return Object.keys(this.$store.state.settings).length;
@@ -137,6 +145,40 @@ export default {
           color: "warning"
         }
       ];
+    }
+  },
+  created() {
+    this.getRoleCount();
+    this.getActivityCount();
+  },
+  methods: {
+    getRoleCount() {
+      this.$api.getItems("directus_roles", {
+        fields: "-",
+        limit: 0,
+        meta: "total_count"
+      })
+        .then(res => res.meta)
+        .then(({ total_count }) => {
+          this.roleCount = this.$tc("role_count", total_count, { count: this.$n(total_count) });
+        })
+        .catch(() => {
+          this.roleCount = "--";
+        });
+    },
+    getActivityCount() {
+      this.$api.getItems("directus_activity", {
+        fields: "-",
+        limit: 0,
+        meta: "total_count"
+      })
+        .then(res => res.meta)
+        .then(({ total_count }) => {
+          this.activityCount = this.$tc("event_count", total_count, { count: this.$n(total_count) });
+        })
+        .catch(() => {
+          this.activityCount = "--";
+        });
     }
   }
 };

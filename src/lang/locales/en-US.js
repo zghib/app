@@ -160,6 +160,8 @@ export default {
   is_not_null: "Is not NULL",
   is_null: "Is NULL",
   item_count: "No Items | One Item | {count} Items",
+  event_count: "No Events | One Event | {count} Events",
+  role_count: "No Roles | One Role | {count} Roles",
   item_count_filter:
     "No Filtered Items | One Filtered Item | {count} Filtered Items",
   item_deleted: "Item Deleted",
