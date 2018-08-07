@@ -3,6 +3,7 @@ import convertRange from "convert-range";
 import formatTitle from "@directus/format-title";
 import micromustache from "micromustache";
 import shortid from "shortid";
+import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import date from "./date";
 import componentExists from "./component-exists";
 import formatFilters from "./format-filters";
@@ -14,7 +15,9 @@ const helpers = {
   micromustache,
   shortid,
   componentExists,
-  formatFilters
+  formatFilters,
+  enableBodyScroll,
+  disableBodyScroll
 };
 
 const helpersPlugin = {

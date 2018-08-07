@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 import FocusLock from "vue-focus-lock";
 
 export default {
@@ -30,10 +29,10 @@ export default {
     }
   },
   mounted() {
-    disableBodyScroll(this.$refs.modal);
+    this.$helpers.disableBodyScroll(this.$refs.modal);
   },
   beforeDestroy() {
-    enableBodyScroll(this.$refs.modal);
+    this.$helpers.enableBodyScroll(this.$refs.modal);
   }
 };
 </script>
