@@ -239,6 +239,7 @@ export default {
     align-items: center;
     justify-content: center;
     position: relative;
+    border-bottom: 1px solid var(--lightest-gray);
 
     &.small {
       height: 40px;

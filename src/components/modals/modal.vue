@@ -151,7 +151,6 @@ export default {
     border-bottom: 1px solid var(--lightest-gray);
     position: sticky;
     top: 0;
-    background-color: var(--lightest-gray);
     height: 60px;
   }
 

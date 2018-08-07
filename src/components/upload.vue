@@ -179,7 +179,9 @@ input.select {
   background-color: var(--white);
 
   .icon i {
-    font-size: 124px;
+    font-size: 100px;
+    color: var(--lighter-gray);
+    margin-bottom: -6px;
   }
 
   p {
@@ -191,10 +193,15 @@ input.select {
     }
   }
 
+  .info {
+    text-align: center;
+    color: var(--lighter-gray);
+  }
+
   .file-info {
     text-align: center;
     color: var(--lighter-gray);
-    margin-top: 10px;
+    margin-top: 8px;
   }
 
   .buttons > * {
@@ -212,12 +219,12 @@ input.select {
 
   &.smaller {
     .icon i {
-      font-size: 80px;
+      font-size: 60px;
     }
 
     p {
       &:first-of-type {
-        font-size: 26px;
+        font-size: 22px;
       }
     }
   }
