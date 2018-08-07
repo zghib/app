@@ -13,9 +13,8 @@
       :minlength="minlength"
       :name="name"
       :placeholder="placeholder"
-      :readonly="readonly"
       :required="required"
-      :disabled="disabled"
+      :readonly="readonly"
       :spellcheck="spellcheck"
       :value="value"
       :id="id"
@@ -118,10 +117,6 @@ export default {
     charactercount: {
       type: Boolean,
       default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
     }
   },
   computed: {
@@ -168,8 +163,8 @@ export default {
       color: var(--lighter-gray);
     }
 
-    &:hover:not(:disabled) {
-      transition: border-color 0s;
+    &:hover:not(:read-only) {
+      transition: none;
       border-color: var(--light-gray);
     }
 
@@ -197,7 +192,6 @@ export default {
       box-shadow: inset 0 0 0 2000px var(--white);
     }
 
-    &[disabled],
     &:read-only {
       background-color: var(--lightest-gray);
       border-color: var(--lighter-gray);
