@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import snarkdown from "snarkdown";
 import VDiff from "./diff.vue";
 
 export default {
@@ -133,7 +132,9 @@ export default {
 
       return activityWithChanges.map(activity => ({
         ...activity,
-        htmlcomment: snarkdown((activity.comment || "").replace(/#/g, "") || "")
+        htmlcomment: this.$helpers.snarkdown(
+          (activity.comment || "").replace(/#/g, "") || ""
+        )
       }));
     }
   },
