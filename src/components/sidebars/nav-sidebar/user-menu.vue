@@ -174,6 +174,11 @@ export default {
     vertical-align: -5px;
   }
 
+  button.sign-out {
+    width: 100%;
+    text-align: left;
+  }
+
   .sign-out:hover,
   .user-is-tabbing .sign-out:focus {
     color: var(--accent);
