@@ -36,6 +36,7 @@ export default {
     height: var(--input-height);
     border: var(--input-border-width) solid var(--lighter-gray);
     border-radius: var(--border-radius);
+    background-color: var(--white);
     display: flex;
     align-items: center;
     padding-left: 10px;
@@ -58,6 +59,10 @@ export default {
     height: 100%;
     opacity: 0;
     cursor: pointer;
+  }
+
+  select:hover + .preview {
+    border-color: var(--light-gray);
   }
 
   select:focus + .preview {
