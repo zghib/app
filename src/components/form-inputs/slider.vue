@@ -74,7 +74,7 @@ export default {
     },
     progress() {
       return (
-        Math.round((this.valueOrDefault / (this.max - this.min)) * 100) / 100
+        Math.round(((this.valueOrDefault - this.min) / (this.max - this.min)) * 100) / 100
       );
     }
   }
