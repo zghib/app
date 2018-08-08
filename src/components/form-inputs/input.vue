@@ -168,13 +168,13 @@ export default {
       border-color: var(--light-gray);
     }
 
-    &:focus {
+    &:focus:not(:read-only) {
       color: var(--dark-gray);
       border-color: var(--accent);
       outline: 0;
     }
 
-    &:focus ~ i {
+    &:focus:not(:read-only) ~ i {
       color: var(--light-gray);
     }
 

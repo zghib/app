@@ -93,19 +93,19 @@ textarea {
     color: var(--lighter-gray);
   }
 
-  &:hover {
+  &:hover:not(:read-only) {
     transition: none;
     border-color: var(--light-gray);
     outline: 0;
   }
 
-  &:focus {
+  &:focus:not(:read-only) {
     color: var(--dark-gray);
     border-color: var(--accent);
     outline: 0;
   }
 
-  &:focus + i {
+  &:focus:not(:read-only) + i {
     color: var(--accent);
   }
 
