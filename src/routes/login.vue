@@ -11,16 +11,31 @@
         <h1 v-else>{{ resetMode ? $t('reset_password') : $t('sign_in') }}</h1>
 
         <label class="project-switcher">
-          <select v-model="url" :disabled="loading">
+          <select v-model="selectedUrl" :disabled="loading">
             <option
               v-for="(name, url) in urls"
               :value="url"
               :key="url">
               {{ name }}
             </option>
+            <option
+              v-if="allowOther"
+              value="other"
+            >{{ $t('other') }}</option>
           </select>
           {{ $t('to') }} <span>{{ $helpers.formatTitle(urls[url] || $t('choose_project')) }} <i class="material-icons">arrow_drop_down</i></span>
         </label>
+
+        <div class="material-input" v-if="selectOther">
+          <input
+            v-model="url"
+            :disabled="loading"
+            :class="{ 'has-value': url && url.length > 0}"
+            type="url"
+            id="url"
+            name="url" />
+          <label for="url">{{ $t('api_url') }}</label>
+        </div>
 
         <template v-if="notInstalled">
           <p class="install-copy">
@@ -125,6 +140,8 @@ export default {
   },
   data() {
     return {
+      selectedUrl: null,
+
       url: null,
       email: null,
       password: null,
@@ -148,6 +165,10 @@ export default {
     urls() {
       if (!window.__DirectusConfig__) return;
       return window.__DirectusConfig__.api;
+    },
+    allowOther() {
+      if (!window.__DirectusConfig__) return;
+      return window.__DirectusConfig__.allowOtherAPI;
     },
     version() {
       return `${this.$t("version")} v${version}`;
@@ -191,6 +212,9 @@ export default {
       if (this.email === null || this.password === null) return true;
 
       return this.email.length === 0 || this.password.length === 0;
+    },
+    selectOther() {
+      return this.selectedUrl === "other";
     }
   },
   created() {
@@ -210,6 +234,10 @@ export default {
     url() {
       this.exists = null;
       this.checkUrl();
+    },
+    selectedUrl(url) {
+      if (url === "other") return;
+      return this.url = url;
     },
     exists(newVal) {
       if (newVal === true) {
