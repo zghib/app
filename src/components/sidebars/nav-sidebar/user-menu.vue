@@ -111,6 +111,23 @@ export default {
   will-change: transform;
   background-color: var(--white);
 
+  &:before {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    left: 0;
+    right: 0;
+    top: -4px;
+    opacity: 0;
+    transition: opacity var(--fast) var(--transition);
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.1)
+    );
+  }
+
   @media (min-width: 800px) {
     box-shadow: 1px 0 0 0 var(--lightest-gray);
   }
@@ -120,6 +137,10 @@ export default {
   .user-is-tabbing &:focus-within {
     transform: translateY(0);
     transition: transform var(--slow) var(--transition-in);
+
+    &:before {
+      opacity: 1;
+    }
   }
 
   header {
