@@ -59,7 +59,7 @@
           class="options"
           :key="optionID">
           <label :for="optionID">{{ option.name }}</label>
-          <p v-html="$helpers.snarkdown(option.comment)" />
+          <p v-if="options.comment" v-html="$helpers.snarkdown(option.comment)" />
           <v-ext-input
             v-model="options[optionID]"
             :id="option.interface"
