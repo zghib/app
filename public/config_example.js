@@ -18,7 +18,11 @@
     // If you're using the application and have the correct URL rewrites in place
     //   (everything to /index.html), you can change this to "history" to make
     //   the urls in the app a little prettier
-    routerMode: "hash" // hash | history
+    routerMode: "history", // hash | history
+
+    // If you're serving the app from a folder, change the baseUrl accordingly
+    // so the app routes to the correct paths
+    baseUrl: "/"
   };
 
   window.__DirectusConfig__ = config;
