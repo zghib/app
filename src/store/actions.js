@@ -3,11 +3,13 @@ import { forEach, isEmpty } from "lodash";
 import formatTitle from "@directus/format-title";
 import { i18n, availableLanguages } from "../lang/";
 import {
+  ADD_FIELD,
+  UPDATE_FIELD,
+  REMOVE_FIELD,
   LATENCY,
   SET_SETTINGS,
   SET_CURRENT_USER,
   UPDATE_CURRENT_USER,
-  SET_FIELDS,
   SET_COLLECTIONS,
   ADD_COLLECTION,
   DELETE_COLLECTION,
@@ -48,10 +50,39 @@ export function getSettings({ commit }) {
     .then(data => commit(SET_SETTINGS, data));
 }
 
+export function addField({ commit }, { collection, field }) {
+  commit(ADD_FIELD, { collection, field });
+}
+
+export function updateField({ commit }, { collection, field }) {
+  commit(UPDATE_FIELD, { collection, field });
+}
+
+export function removeField({ commit }, { collection, field }) {
+  commit(REMOVE_FIELD, { collection, field });
+}
+
 export function getCurrentUser({ commit }) {
   return api
-    .getMe({ fields: "*.*" })
+    .getMe({
+      fields: [
+        "id",
+        "avatar.*",
+        "email",
+        "first_name",
+        "last_name",
+        "locale",
+        "roles.*"
+      ]
+    })
     .then(res => res.data)
+    .then(userInfo => {
+      return {
+        ...userInfo,
+        roles: userInfo.roles.map(obj => obj.role),
+        admin: userInfo.roles.map(obj => obj.role).includes(1)
+      };
+    })
     .then(data => commit(SET_CURRENT_USER, data));
 }
 
@@ -69,32 +100,6 @@ export function track({ commit, state }, { page }) {
     {},
     data
   );
-}
-
-export function getFields({ commit }, collection) {
-  return api
-    .getFields(collection)
-    .then(res => res.data)
-    .then(data => {
-      commit(SET_FIELDS, { data, collection });
-
-      forEach(data, field => {
-        // TODO: Move this to a function of the /lang/index.js file
-        if (!isEmpty(field.translation)) {
-          forEach(field.translation, (value, locale) => {
-            i18n.mergeLocaleMessage(locale, {
-              [`fields-${collection}-${field.field}`]: value
-            });
-          });
-        } else {
-          forEach(availableLanguages, locale => {
-            i18n.mergeLocaleMessage(locale, {
-              [`fields-${collection}-${field.field}`]: formatTitle(field.field)
-            });
-          });
-        }
-      });
-    });
 }
 
 export function getCollections({ commit }) {

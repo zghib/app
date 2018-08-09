@@ -4,31 +4,36 @@ import { startPolling } from "./polling";
 import startIdleTracking from "./idle";
 
 export default function hydrateStore() {
-  return Promise.all([
-    store.dispatch("latency"),
-    store.dispatch("getCurrentUser"),
-    store.dispatch("getCollections"),
-    store.dispatch("getSettings"),
-    store.dispatch("getAllExtensions"),
-    store.dispatch("getBookmarks")
-  ])
-    .then(() => {
-      // Set accent color
-      const customColor = store.state.settings.color;
-      if (customColor) {
-        document.documentElement.style.setProperty(
-          "--accent",
-          `var(--${customColor}-600)`
-        );
-      }
+  return (
+    Promise.all([
+      store.dispatch("latency"),
+      store.dispatch("getCurrentUser"),
+      store.dispatch("getCollections"),
+      store.dispatch("getSettings"),
+      store.dispatch("getAllExtensions"),
+      store.dispatch("getBookmarks")
+    ])
+      // Getting permissions relies on the current user and collection info
+      // that's why it's being called after the others are done
+      .then(() => store.dispatch("getPermissions"))
+      .then(() => {
+        // Set accent color
+        const customColor = store.state.settings.color;
+        if (customColor) {
+          document.documentElement.style.setProperty(
+            "--accent",
+            `var(--${customColor}-600)`
+          );
+        }
 
-      store.commit(STORE_HYDRATED, new Date());
+        store.commit(STORE_HYDRATED, new Date());
 
-      startPolling();
-      startIdleTracking(store);
-    })
-    .catch(error => {
-      store.commit(HYDRATING_FAILED, error);
-      console.error(error); // eslint-disable-line no-console
-    });
+        startPolling();
+        startIdleTracking(store);
+      })
+      .catch(error => {
+        store.commit(HYDRATING_FAILED, error);
+        console.error(error); // eslint-disable-line no-console
+      })
+  );
 }

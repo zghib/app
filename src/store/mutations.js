@@ -1,13 +1,15 @@
 import Vue from "vue";
-import { mapValues, keyBy, isEmpty } from "lodash";
+import { mapValues, keyBy, find } from "lodash";
 import {
+  ADD_FIELD,
+  UPDATE_FIELD,
+  REMOVE_FIELD,
   STORE_HYDRATED,
   HYDRATING_FAILED,
   LATENCY,
   SET_SETTINGS,
   SET_CURRENT_USER,
   UPDATE_CURRENT_USER,
-  SET_FIELDS,
   SET_COLLECTIONS,
   ADD_COLLECTION,
   DELETE_COLLECTION,
@@ -57,16 +59,17 @@ const mutations = {
     };
   },
 
-  [SET_FIELDS](state, { data, collection }) {
-    if (isEmpty(state.fields[collection])) {
-      Vue.set(state.fields, collection, {});
-    }
-
-    state.fields[collection] = keyBy(data, "field");
-  },
-
   [SET_COLLECTIONS](state, data) {
-    state.collections = keyBy(data, "collection");
+    state.collections = mapValues(keyBy(data, "collection"), info => {
+      const statusField = find(info.fields, { interface: "status" });
+      const statusMapping =
+        statusField && statusField.options && statusField.options.statusMapping;
+
+      return {
+        ...info,
+        statusMapping
+      };
+    });
   },
 
   [ADD_COLLECTION](state, collection) {
@@ -119,6 +122,26 @@ const mutations = {
 
   [LOADING_FINISHED](state, id) {
     state.queue = state.queue.filter(req => req.id !== id);
+  },
+
+  [ADD_FIELD](state, { collection, field }) {
+    Vue.set(state.collections[collection], "fields", {
+      ...state.collections[collection].fields,
+      [field.field]: field
+    });
+  },
+
+  [UPDATE_FIELD](state, { collection, field }) {
+    Vue.set(state.collections[collection], "fields", {
+      ...state.collections[collection].fields,
+      [field.field]: field
+    });
+  },
+
+  [REMOVE_FIELD](state, { collection, field }) {
+    const clone = Object.assign({}, state.collections[collection]);
+    delete clone[field];
+    Vue.set(state.collections[collection], "fields", clone);
   }
 };
 

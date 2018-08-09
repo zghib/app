@@ -27,7 +27,7 @@
         :field="field"
         :values="values"
         :fields="fields"
-        :readonly="readonly || field.readonly"
+        :readonly="readonly || (field.readonly === true || field.readonly === '1')"
         :blocked="batchMode && !activeFields.includes(field.field)"
         :batch-mode="batchMode"
         @activate="activateField"
@@ -99,7 +99,9 @@ export default {
         return result.push(field);
       });
 
-      return result.filter(field => field.hidden_input === false);
+      return result.filter(
+        field => field.hidden_input === false || field.hidden_input === "0"
+      );
     }
   },
   methods: {

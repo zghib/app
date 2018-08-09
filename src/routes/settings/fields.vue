@@ -288,6 +288,10 @@ export default {
                 field: this.$helpers.formatTitle(fieldInfo.field)
               })
             );
+            this.$store.dispatch("updateField", {
+              collection: this.collection,
+              field: fieldInfo
+            });
           })
           .catch(error => {
             this.$store.dispatch("loadingFinished", id);
@@ -319,6 +323,10 @@ export default {
               field: this.$helpers.formatTitle(fieldInfo.field)
             })
           );
+          this.$store.dispatch("addField", {
+            collection: this.collection,
+            field: savedFieldInfo
+          });
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
@@ -355,6 +363,10 @@ export default {
               field: this.$helpers.formatTitle(fieldName)
             })
           );
+          this.$store.dispatch("removeField", {
+            collection: this.collection,
+            field: fieldName
+          });
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);

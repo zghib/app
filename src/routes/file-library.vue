@@ -125,7 +125,6 @@
 </template>
 
 <script>
-import formatTitle from "@directus/format-title";
 import shortid from "shortid";
 import store from "../store/";
 import VSearchFilter from "../components/search-filter/search-filter.vue";
@@ -149,7 +148,6 @@ export default {
       selection: [],
       meta: null,
       preferences: null,
-      fields: [],
       confirmRemove: false,
 
       bookmarkModal: false,
@@ -164,6 +162,13 @@ export default {
     };
   },
   computed: {
+    fields() {
+      const fields = this.$store.state.collections[this.collection].fields;
+      return Object.values(fields).map(field => ({
+        ...field,
+        name: this.$helpers.formatTitle(field.field)
+      }));
+    },
     currentBookmark() {
       if (!this.preferences) return;
 
@@ -410,22 +415,14 @@ export default {
     const id = shortid.generate();
     store.dispatch("loadingStart", { id });
 
-    return Promise.all([
-      api.getMyListingPreferences(collection),
-      api.getFields(collection)
-    ])
-      .then(([preferences, fieldsRes]) => ({
-        preferences,
-        fields: fieldsRes.data.map(field => ({
-          ...field,
-          name: formatTitle(field.field)
-        }))
+    return Promise.all([api.getMyListingPreferences(collection)])
+      .then(([preferences]) => ({
+        preferences
       }))
-      .then(({ preferences, fields }) => {
+      .then(({ preferences }) => {
         store.dispatch("loadingFinished", id);
         next(vm => {
           vm.$data.preferences = preferences;
-          vm.$data.fields = fields;
         });
       })
       .catch(error => {
@@ -440,7 +437,6 @@ export default {
     const collection = "directus_files";
 
     this.preferences = null;
-    this.fields = [];
     this.selection = [];
     this.meta = {};
     this.notFound = false;
@@ -462,21 +458,13 @@ export default {
     const id = this.$helpers.shortid.generate();
     this.$store.dispatch("loadingStart", { id });
 
-    return Promise.all([
-      api.getMyListingPreferences(collection),
-      api.getFields(collection)
-    ])
-      .then(([preferences, fieldsRes]) => ({
-        preferences,
-        fields: fieldsRes.data.map(field => ({
-          ...field,
-          name: formatTitle(field.field)
-        }))
+    return Promise.all([api.getMyListingPreferences(collection)])
+      .then(([preferences]) => ({
+        preferences
       }))
-      .then(({ preferences, fields }) => {
+      .then(({ preferences }) => {
         this.$store.dispatch("loadingFinished", id);
         this.preferences = preferences;
-        this.fields = fields;
         next();
       })
       .catch(error => {

@@ -24,17 +24,22 @@ export const START_EDITING = "📝 Start Editing";
 export const UNSTAGE_VALUE = "📝 Unstage Value";
 export const STAGE_VALUE = "📝 Stage Value";
 
+// Fields
+export const ADD_FIELD = "📌 Add Field";
+export const UPDATE_FIELD = "📌 Update Field";
+export const REMOVE_FIELD = "📌 Remove Field";
+
 // Extensions
 export const SET_INTERFACES = "📦 Set Interfaces";
 export const SET_LAYOUTS = "📦 Set Layouts";
 export const SET_PAGES = "📦 Set Pages";
 
-// Fields
-export const SET_FIELDS = "📌 Set Fields";
-
 // Hydrate
 export const STORE_HYDRATED = "🏪 Store Hydrated";
 export const HYDRATING_FAILED = "🏪❌ Store Hydration Failed";
+
+// Permissions
+export const SET_PERMISSIONS = "🙅🏻‍♂️ Set Permissions";
 
 // Latency Check
 export const LATENCY = "⏱ Latency Check";

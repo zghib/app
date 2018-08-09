@@ -53,18 +53,32 @@ export default {
   },
   computed: {
     collectionNames() {
-      const collections = this.$store.state.collections;
+      if (this.collections == null) return [];
 
-      if (collections == null) return [];
-
-      return Object.values(collections)
+      return Object.values(this.collections)
         .filter(
           collection =>
             collection.hidden == false &&
             collection.managed == true &&
             collection.collection.startsWith("directus_") === false
         )
+        .filter(collection => {
+          if (collection.statusMapping) {
+            return this.$lodash.some(
+              this.permissions[collection.collection],
+              permission => permission.read !== "none"
+            );
+          }
+
+          return this.permissions[collection.collection].read !== "none";
+        })
         .map(collection => collection.collection);
+    },
+    permissions() {
+      return this.$store.state.permissions;
+    },
+    collections() {
+      return this.$store.state.collections;
     },
     bookmarks() {
       return this.$store.state.bookmarks;

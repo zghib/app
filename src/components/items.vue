@@ -1,6 +1,6 @@
 <template>
   <v-error
-    v-if="items.error || fields.error"
+    v-if="items.error"
     icon="warning"
     color="danger"
     :title="$t('server_error')"
@@ -31,9 +31,9 @@
     icon="search" />
 
   <v-ext-layout
-    v-else-if="fields.data && items.data"
-    :fields="fields.data"
-    :items="items.data"
+    v-else
+    :fields="fields"
+    :items="items.data || []"
     :view-type="viewType"
     :view-query="viewQuery"
     :view-options="viewOptions"
@@ -90,11 +90,6 @@ export default {
   },
   data() {
     return {
-      fields: {
-        data: null,
-        loading: false,
-        error: null
-      },
       items: {
         meta: null,
         data: null,
@@ -108,13 +103,20 @@ export default {
   },
   computed: {
     primaryKeyField() {
-      if (!this.fields.data) return null;
-      return this.$lodash.find(this.fields.data, { primary_key: true }).field;
+      if (!this.fields) return;
+      return this.$lodash.find(Object.values(this.fields), { primary_key: "1" })
+        .field;
     },
     sortField() {
-      if (!this.fields.data) return null;
-      const field = this.$lodash.find(this.fields.data, { type: "SORT" });
+      const field = this.$lodash.find(this.fields, { type: "SORT" });
       return (field && field.field) || null;
+    },
+    fields() {
+      const fields = this.$store.state.collections[this.collection].fields;
+      return this.$lodash.mapValues(fields, field => ({
+        ...field,
+        name: this.$helpers.formatTitle(field.field)
+      }));
     }
   },
   created() {
@@ -146,45 +148,13 @@ export default {
   },
   methods: {
     hydrate() {
-      if (this.fields.loading && this.items.loading) return;
+      if (this.items.loading) return;
 
-      this.fields.data = null;
-      this.fields.loading = false;
-      this.fields.error = null;
       this.items.data = null;
       this.items.loading = false;
       this.items.error = null;
 
-      this.getFields().then(() => this.getItems());
-    },
-    getFields() {
-      if (this.fields.loading) return;
-
-      this.fields.loading = true;
-      this.fields.error = null;
-
-      const id = this.$helpers.shortid.generate();
-      this.$store.dispatch("loadingStart", { id });
-
-      return this.$api
-        .getFields(this.collection)
-        .then(res => res.data)
-        .then(fields => {
-          this.fields.loading = false;
-
-          const fieldsObject = this.$lodash.keyBy(fields, "field");
-          this.fields.data = this.$lodash.mapValues(fieldsObject, field => ({
-            ...field,
-            name: this.$helpers.formatTitle(field.field)
-          }));
-
-          this.$store.dispatch("loadingFinished", id);
-        })
-        .catch(error => {
-          this.fields.loading = false;
-          this.fields.error = error;
-          this.$store.dispatch("loadingFinished", id);
-        });
+      this.getItems();
     },
     getItems() {
       if (this.items.loading) return;

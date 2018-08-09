@@ -20,7 +20,7 @@
       class="activity-item"
       :key="activity.id">
       <i
-        v-if="activity.type && activity.type.toLowerCase() === 'comment'"
+        v-if="activity.action && activity.action.toLowerCase() === 'comment'"
         v-tooltip="$t('comment')"
         class="material-icons">message</i>
       <span
@@ -57,7 +57,7 @@
           :since="activity.date"
           :locale="$i18n.locale"
           class="date" /></div>
-        <p v-if="activity.htmlcomment" v-html="activity.htmlcomment" :class="{ comment: activity.type && activity.type.toLowerCase() === 'comment' }"></p>
+        <p v-if="activity.htmlcomment" v-html="activity.htmlcomment" :class="{ comment: activity.action && activity.action.toLowerCase() === 'comment' }"></p>
       </div>
     </article>
   </div>
@@ -119,9 +119,7 @@ export default {
 
       if (
         !lastItem ||
-        ((lastItem.type.toLowerCase() !== "entry" ||
-          lastItem.action.toLowerCase() !== "add") &&
-          this.show !== "comments")
+        (lastItem.action.toLowerCase() !== "create" && this.show !== "comments")
       ) {
         activityWithChanges.push({
           action: "external",
@@ -149,7 +147,7 @@ export default {
       for (let i = index + 1; i < this.activityFiltered.length; i++) {
         if (
           this.activityFiltered[i].action === "update" ||
-          this.activityFiltered[i].action === "add"
+          this.activityFiltered[i].action === "create"
         ) {
           previousUpdate = this.activityFiltered[i];
           break;

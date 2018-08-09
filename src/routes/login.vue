@@ -237,7 +237,7 @@ export default {
     },
     selectedUrl(url) {
       if (url === "other") return;
-      return this.url = url;
+      return (this.url = url);
     },
     exists(newVal) {
       if (newVal === true) {

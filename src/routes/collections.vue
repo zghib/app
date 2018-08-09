@@ -34,13 +34,25 @@ export default {
   },
   computed: {
     items() {
-      const collections = this.$store.state.collections || {};
+      if (this.collections == null) return [];
 
-      return Object.values(collections)
-        .filter(collection => collection.hidden === false)
+      return Object.values(this.collections)
         .filter(
-          collection => collection.collection.startsWith("directus_") === false
+          collection =>
+            collection.hidden == false &&
+            collection.managed == true &&
+            collection.collection.startsWith("directus_") === false
         )
+        .filter(collection => {
+          if (collection.statusMapping) {
+            return this.$lodash.some(
+              this.permissions[collection.collection],
+              permission => permission.read !== "none"
+            );
+          }
+
+          return this.permissions[collection.collection].read !== "none";
+        })
         .map(collection => ({
           ...collection,
           collection: this.$t(`collections-${collection.collection}`),
@@ -58,6 +70,12 @@ export default {
           name: this.$t("note")
         }
       ];
+    },
+    collections() {
+      return this.$store.state.collections;
+    },
+    permissions() {
+      return this.$store.state.permissions;
     }
   },
   methods: {

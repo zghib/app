@@ -10,24 +10,9 @@
       <i class="material-icons">more_vert</i>
     </header>
     <div class="links">
-      <nav-menu
-        :links="[
-          { path: '/settings', name: $t('admin_settings'), icon: 'settings', color: 'warning' },
-          { path: 'https://getdirectus.com', name: $t('help_and_docs'), icon: 'help' }
-      ]" />
-
-      <nav-menu
-        :links="[
-          { path: '/files', name: $t('file_library'), icon: 'collections' },
-          { path: '/users', name: $t('user_directory'), icon: 'person' }
-      ]" />
-
-      <nav-menu
-        :links="[
-          { path: '/activity', name: $t('activity'), icon: 'notifications' },
-          { path: `/users/${currentUserID}`, name: $t('my_profile'), icon: 'person' }
-      ]" />
-
+      <nav-menu :links="firstLinks" />
+      <nav-menu :links="secondLinks" />
+      <nav-menu :links="thirdLinks" />
       <button
         class="sign-out"
         @click="confirmSignOut = true">
@@ -87,6 +72,72 @@ export default {
         this.$store.state.currentUser.last_name;
 
       return `${firstName} ${lastName}`;
+    },
+    permissions() {
+      return this.$store.state.permissions;
+    },
+    firstLinks() {
+      const links = [];
+
+      if (this.$store.state.currentUser.admin === true) {
+        links.push({
+          path: "/settings",
+          name: this.$t("admin_settings"),
+          icon: "settings",
+          color: "warning"
+        });
+      }
+
+      links.push({
+        path: "https://getdirectus.com",
+        name: this.$t("help_and_docs"),
+        icon: "help"
+      });
+
+      return links;
+    },
+    secondLinks() {
+      const links = [];
+
+      if (this.permissions.directus_files.read !== "none") {
+        links.push({
+          path: "/files",
+          name: this.$t("file_library"),
+          icon: "collections"
+        });
+      }
+
+      if (
+        this.permissions.directus_users.read !== "none" ||
+        this.permissions.directus_users.read !== "mine"
+      ) {
+        links.push({
+          path: "/users",
+          name: this.$t("user_directory"),
+          icon: "person"
+        });
+      }
+
+      return links;
+    },
+    thirdLinks() {
+      const links = [];
+
+      if (this.permissions.directus_activity.read !== "none") {
+        links.push({
+          path: "/activity",
+          name: this.$t("activity"),
+          icon: "notifications"
+        });
+      }
+
+      links.push({
+        path: `/users/${this.currentUserID}`,
+        name: this.$t("my_profile"),
+        icon: "person"
+      });
+
+      return links;
     }
   },
   methods: {
@@ -122,10 +173,7 @@ export default {
     top: -4px;
     opacity: 0;
     transition: opacity var(--fast) var(--transition);
-    background-image: linear-gradient(
-      rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0.1)
-    );
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1));
   }
 
   @media (min-width: 800px) {

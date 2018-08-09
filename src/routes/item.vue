@@ -130,7 +130,7 @@
 </template>
 
 <script>
-import { keyBy, mapValues } from "lodash";
+import { mapValues } from "lodash";
 import shortid from "shortid";
 import EventBus from "../events/";
 import { i18n } from "../lang/";
@@ -175,7 +175,7 @@ export default {
     return {
       saving: false,
 
-      fields: null,
+      relations: [],
 
       notFound: false,
       error: false,
@@ -273,10 +273,42 @@ export default {
       return this.collectionInfo && this.collectionInfo.single === true;
     },
     primaryKeyField() {
-      return this.$lodash.find(this.fields, { interface: "primary-key" }).field;
+      return this.$lodash.find(this.fields, { primary_key: "1" }).field;
     },
     batch() {
       return this.primaryKey.includes(",");
+    },
+    fields() {
+      const getRelationship = field => {
+        const fieldID = field.field;
+
+        const fieldRelations = this.relations
+          .filter(relation => {
+            return relation.field_a === fieldID;
+          })
+          .map(relation => {
+            return {
+              collection_a: relation.collection_a,
+              field_a: relation.field_a,
+              collection_b: relation.collection_b,
+              field_b: relation.field_b,
+              junction_key_a: relation.junction_key_a,
+              junction_collection: relation.junction_collection,
+              junction_key_b: relation.junction_key_b
+            };
+          });
+
+        if (fieldRelations.length === 0) return null;
+        return fieldRelations[0];
+      };
+
+      const fields = this.$store.state.collections[this.collection].fields;
+
+      return mapValues(fields, field => ({
+        ...field,
+        name: formatTitle(field.field),
+        relationship: getRelationship(field)
+      }));
     }
   },
   created() {
@@ -434,8 +466,7 @@ export default {
         this.$api.getActivity({
           "filter[collection][eq]": this.collection,
           "filter[item][eq]": this.primaryKey,
-          fields:
-            "id,action,type,datetime,comment,user.first_name,user.last_name",
+          fields: "id,action,datetime,comment,user.first_name,user.last_name",
           sort: "-datetime"
         }),
         this.$api.getItemRevisions(this.collection, this.primaryKey)
@@ -457,7 +488,6 @@ export default {
                 date,
                 name,
                 action: act.action.toLowerCase(),
-                type: act.type.toLowerCase(),
                 comment: act.comment
               };
             }),
@@ -580,62 +610,28 @@ export default {
     store.dispatch("loadingStart", { id });
 
     return Promise.all([
-      api.getFields(collection),
       api.getCollectionRelations(collection),
 
       isNew ? null : api.getItem(collection, primaryKey, { fields: "*.*.*" })
     ])
-      .then(([fields, relations, item]) => {
+      .then(([relations, item]) => {
         store.dispatch("loadingFinished", id);
         return {
-          fields: fields.data,
           relations: relations[0].data,
           item: (item && item.data) || null
         };
       })
-      .then(({ fields, relations, item }) => {
+      .then(({ relations, item }) => {
         store.dispatch("startEditing", {
           collection: collection,
           primaryKey: primaryKey,
           savedValues: isNew ? {} : item
         });
-        return { fields, relations };
+        return { relations };
       })
-      .then(({ fields, relations }) => {
-        function getRelationship(field) {
-          const fieldID = field.field;
-
-          const fieldRelations = relations
-            .filter(relation => {
-              return relation.field_a === fieldID;
-            })
-            .map(relation => {
-              return {
-                collection_a: relation.collection_a,
-                field_a: relation.field_a,
-                collection_b: relation.collection_b,
-                field_b: relation.field_b,
-                junction_key_a: relation.junction_key_a,
-                junction_collection: relation.junction_collection,
-                junction_key_b: relation.junction_key_b
-              };
-            });
-
-          if (fieldRelations.length === 0) return null;
-          return fieldRelations[0];
-        }
-
-        return {
-          fields: mapValues(keyBy(fields, "field"), field => ({
-            ...field,
-            name: formatTitle(field.field),
-            relationship: getRelationship(field)
-          }))
-        };
-      })
-      .then(data => {
+      .then(({ relations }) => {
         return next(vm => {
-          Object.assign(vm.$data, data);
+          vm.$data.relations = relations;
         });
       })
       .catch(error => {
@@ -662,59 +658,30 @@ export default {
     this.$store.dispatch("loadingStart", { id });
 
     return Promise.all([
-      this.$api.getFields(collection),
       this.$api.getCollectionRelations(collection),
 
       isNew
         ? null
         : this.$api.getItem(collection, primaryKey, { fields: "*.*.*" })
     ])
-      .then(([fields, relations, item]) => {
+      .then(([relations, item]) => {
         this.$store.dispatch("loadingFinished", id);
 
         return {
-          fields: fields.data,
           relations: relations[0].data,
           item: (item && item.data) || null
         };
       })
-      .then(({ fields, relations, item }) => {
+      .then(({ relations, item }) => {
         this.$store.dispatch("startEditing", {
           collection: collection,
           primaryKey: primaryKey,
           savedValues: isNew ? {} : item
         });
-        return { fields, relations };
-      })
-      .then(({ fields, relations }) => {
-        function getRelationship(field) {
-          const fieldID = field.field;
-
-          const fieldRelations = relations
-            .filter(relation => {
-              return relation.field_a === fieldID;
-            })
-            .map(relation => {
-              return {
-                collection: relation.collection_b,
-                field: relation.field_b
-              };
-            });
-
-          if (fieldRelations.length === 0) return null;
-          return fieldRelations[0];
-        }
-
-        return {
-          fields: mapValues(keyBy(fields, "field"), field => ({
-            ...field,
-            name: formatTitle(field.field),
-            relationship: getRelationship(field)
-          }))
-        };
+        return { relations };
       })
       .then(data => {
-        this.fields = data.fields;
+        this.relations = data.relations;
         next();
       })
       .catch(error => {

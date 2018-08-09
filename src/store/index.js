@@ -5,6 +5,7 @@ import createPersistedState from "vuex-persistedstate";
 import auth from "./modules/auth/";
 import extensions from "./modules/extensions";
 import edits from "./modules/edits";
+import permissions from "./modules/permissions";
 
 import state from "./state";
 import * as actions from "./actions";
@@ -26,7 +27,8 @@ const store = new Vuex.Store({
   modules: {
     auth,
     extensions,
-    edits
+    edits,
+    permissions
   },
   plugins: [
     createPersistedState({
