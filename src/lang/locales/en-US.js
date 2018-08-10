@@ -218,6 +218,15 @@ export default {
   options: "Options",
   password: "Password",
   password_reset_sent: "Password reset email sent to {email}",
+  permission_states: {
+    none: "No Items",
+    mine: "My Items Only",
+    role: "Role Items Only",
+    full: "All Items",
+    create: "Only On Creation",
+    update: "Only On Update",
+    always: "Always"
+  },
   powered_by_directus: "Powered by Directus",
   preview_and_revert: "Preview and Revert",
   port: "Port",

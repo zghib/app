@@ -20,6 +20,9 @@
         <div>{{ parent.$t("comment") }}</div>
       </div>
       <div class="cell">
+        <div>{{ parent.$t("explain") }}</div>
+      </div>
+      <div class="cell">
         <div>{{ parent.$t("fields") }}</div>
       </div>
       <div class="cell">

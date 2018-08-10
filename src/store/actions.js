@@ -35,8 +35,18 @@ export function latency({ commit }) {
         latency: delta
       });
     })
-    .catch(() => {
-      commit(LATENCY, {
+    .catch(error => {
+      const end = performance.now();
+      const delta = end - start;
+
+      if (error.code === -2) {
+        return commit(LATENCY, {
+          date: now,
+          latency: delta
+        });
+      }
+
+      return commit(LATENCY, {
         date: now,
         latency: -1
       });

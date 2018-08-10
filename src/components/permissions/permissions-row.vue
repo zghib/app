@@ -35,6 +35,12 @@
           @input="emitValue('comment', $event)" />
       </div>
       <div class="cell">
+        <v-permissions-toggle
+          :value="permission.explain"
+          :options="['none', 'create', 'update', 'always']"
+          @input="emitValue('explain', $event)" />
+      </div>
+      <div class="cell">
         <button
           :class="{ limited: fieldState }"
           @click="fieldsSelect = { collection: permissionName }">
@@ -78,6 +84,12 @@
           :value="getCombinedVal('comment')"
           :options="['none', 'create', 'update', 'full']"
           @input="setAllStatuses('comment', $event)" />
+      </div>
+      <div class="cell">
+        <v-permissions-toggle
+          :value="getCombinedVal('explain')"
+          :options="['none', 'create', 'update', 'always']"
+          @input="setAllStatuses('explain', $event)" />
       </div>
       <div class="cell">
         <button
@@ -130,6 +142,12 @@
             @input="emitValue('comment', $event, status)" />
         </div>
         <div class="cell">
+          <v-permissions-toggle
+            :value="permission[status].explain"
+            :options="['none', 'create', 'update', 'always']"
+            @input="emitValue('explain', $event, status)" />
+        </div>
+        <div class="cell">
           <button
             :class="{ limited: getFieldSettingsPerStatus(status) }"
             @click="fieldsSelect = { collection: permissionName, status }">
@@ -138,9 +156,9 @@
         </div>
         <div class="cell">
           <button
-            :class="{ limited: permission[status].allowed_statuses.length !== 0 }"
+            :class="{ limited: permission[status].status_blacklist.length !== 0 }"
             @click="statusSelect = { collection: permissionName, status }">
-            {{ permission[status].allowed_statuses.length === 0 ? $t('all') : $t('limited') }}
+            {{ permission[status].status_blacklist.length === 0 ? $t('all') : $t('limited') }}
           </button>
         </div>
       </div>

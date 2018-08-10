@@ -5,6 +5,9 @@
       <i v-else-if="value === 'mine'" class="material-icons">person</i>
       <i v-else-if="value === 'role'" class="material-icons">group</i>
       <i v-else-if="value === 'full'" class="material-icons">check</i>
+      <i v-else-if="value === 'create'" class="material-icons">add</i>
+      <i v-else-if="value === 'update'" class="material-icons">edit</i>
+      <i v-else-if="value === 'always'" class="material-icons">announcement</i>
       <i v-else-if="value === 'indeterminate'" class="material-icons">remove</i>
     </button>
     <template slot="popover">
@@ -20,12 +23,18 @@
             <i v-else-if="option === 'mine'" class="material-icons">person</i>
             <i v-else-if="option === 'role'" class="material-icons">group</i>
             <i v-else-if="option === 'full'" class="material-icons">check</i>
+            <i v-else-if="option === 'create'" class="material-icons">add</i>
+            <i v-else-if="option === 'update'" class="material-icons">edit</i>
+            <i v-else-if="option === 'always'" class="material-icons">announcement</i>
           </div>
 
-          <template v-if="option === 'none'">No Items</template>
-          <template v-if="option === 'mine'">My Items Only</template>
-          <template v-if="option === 'role'">Role Items Only</template>
-          <template v-if="option === 'full'">All Items</template>
+          <template v-if="option === 'none'">{{ $t('permission_states.none') }}</template>
+          <template v-if="option === 'mine'">{{ $t('permission_states.mine') }}</template>
+          <template v-if="option === 'role'">{{ $t('permission_states.role') }}</template>
+          <template v-if="option === 'full'">{{ $t('permission_states.full') }}</template>
+          <template v-if="option === 'create'">{{ $t('permission_states.create') }}</template>
+          <template v-if="option === 'update'">{{ $t('permission_states.update') }}</template>
+          <template v-if="option === 'always'">{{ $t('permission_states.always') }}</template>
         </button>
       </div>
     </template>
@@ -42,10 +51,7 @@ export default {
     },
     value: {
       type: String,
-      default: "none",
-      validator(val) {
-        return ["none", "mine", "role", "full", "indeterminate"].includes(val);
-      }
+      default: "none"
     }
   }
 };
@@ -89,6 +95,21 @@ i {
 .full {
   background-color: var(--accent);
   border-color: var(--accent);
+}
+
+.create {
+  background-color: var(--success);
+  border-color: var(--success);
+}
+
+.update {
+  background-color: var(--action);
+  border-color: var(--action);
+}
+
+.always {
+  background-color: var(--warning);
+  border-color: var(--warning);
 }
 
 .indeterminate {

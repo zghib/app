@@ -17,19 +17,19 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.11",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.11",
-    "@vue/cli-plugin-pwa": "^3.0.0-rc.11",
-    "@vue/cli-service": "^3.0.0-rc.11",
-    "@vue/eslint-config-prettier": "^3.0.0-rc.11",
-    "node-sass": "^4.9.2",
+    "@vue/cli-plugin-babel": "^3.0.0-rc.12",
+    "@vue/cli-plugin-eslint": "^3.0.0-rc.12",
+    "@vue/cli-plugin-pwa": "^3.0.0-rc.12",
+    "@vue/cli-service": "^3.0.0-rc.12",
+    "@vue/eslint-config-prettier": "^3.0.0-rc.12",
+    "node-sass": "^4.9.3",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.17",
     "vuepress": "^0.11.0"
   },
   "dependencies": {
     "@directus/format-title": "^1.2.0",
-    "@directus/sdk-js": "^3.4.0",
+    "@directus/sdk-js": "git://github.com/directus/directus-sdk-javascript.git#next",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.4.6",

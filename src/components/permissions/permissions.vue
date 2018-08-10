@@ -1,5 +1,10 @@
 <template>
-  <div class="v-permissions">
+  <div class="v-permissions loading" v-if="loading">
+    <v-spinner
+      line-fg-color="var(--light-gray)"
+      line-bg-color="var(--lighter-gray)" />
+  </div>
+  <div class="v-permissions" v-else>
     <v-permissions-header />
 
     <div class="body">
@@ -28,15 +33,19 @@ export default {
   props: {
     permissions: {
       type: Object,
-      required: true
+      default: () => ({})
     },
     statuses: {
       type: Object,
-      required: true
+      default: () => ({})
     },
     fields: {
       type: Object,
-      required: true
+      default: () => ({})
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -86,6 +95,10 @@ export default {
     &:last-child {
       flex-grow: 1;
     }
+  }
+
+  &.loading {
+    padding: 300px 0;
   }
 }
 </style>

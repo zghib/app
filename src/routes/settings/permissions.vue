@@ -33,7 +33,7 @@
     <h2 class="style-1">{{ $t("permissions") }}</h2>
 
     <v-permissions
-      v-if="permissions && statuses"
+      :loading="!(permissions && statuses)"
       :permissions="permissions"
       :statuses="statuses"
       :fields="permissionFields"
@@ -64,6 +64,7 @@ import { keyBy, mapValues } from "lodash";
 import formatTitle from "@directus/format-title";
 import api from "../../api";
 import VPermissions from "../../components/permissions/permissions.vue";
+import { defaultNone } from "../../store/modules/permissions/defaults";
 
 export default {
   name: "settings-permissions",
@@ -96,7 +97,7 @@ export default {
       permissionsLoading: false,
       savedPermissions: {},
       permissionEdits: {},
-      permissionFields: [],
+      permissionFields: {},
 
       statuses: null
     };
@@ -198,18 +199,9 @@ export default {
       const defaultPermissions = {};
 
       Object.keys(this.collections).forEach(collection => {
-        const defaultPermission = {
-          collection,
-          status: null,
-          allowed_statuses: [],
-          create: "none",
-          delete: "none",
-          navigate: "none",
-          read: "none",
-          read_field_blacklist: [],
-          update: "none",
-          write_field_blacklist: []
-        };
+        const defaultPermission = Object.assign({}, defaultNone);
+
+        defaultPermission.collection = collection;
 
         if (this.statuses[collection] == null) {
           return (defaultPermissions[collection] = defaultPermission);
