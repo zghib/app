@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A lot of thought has gone into the Directus brand and UX. It is therefore extremely important to maintain consistency across the Application and all extensions. Whenever possible, this guide should be followed to the letter. If any questions arise please feel free to reach out to Ben Haynes on Directus Slack (@Interben), the Project Lead and head designer.
+A lot of thought has gone into the Directus brand and UX. It is therefore extremely important to maintain consistency across the Application and all extensions. Whenever possible, this guide should be followed to the letter. If any questions arise please feel free to reach out to Ben Haynes on Directus Slack (@Ben), the Project Lead and head designer.
 
 ## Global CSS Variables
 
