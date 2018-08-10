@@ -27,10 +27,9 @@ import ModalDebug from "./routes/modal-debug.vue";
 
 Vue.use(Router);
 
-const { routerMode, baseUrl } = window.__DirectusConfig__;
+const { routerMode } = window.__DirectusConfig__;
 
 const router = new Router({
-  base: baseUrl,
   mode: routerMode || "history",
   routes: [
     {
