@@ -62,15 +62,9 @@ export default {
     primaryKeyField() {
       if (!this.fields) return null;
 
-      const primaryKeyArray = Object.values(this.fields).filter(
-        field => field.primary_key === true
-      );
+      const primaryKeyField = this.$lodash.find(this.fields, field => field.primary_key === "true" || field.primary_key === "1");
 
-      return (
-        primaryKeyArray.length > 0 &&
-        primaryKeyArray[0] &&
-        primaryKeyArray[0].field
-      );
+      return primaryKeyField ? primaryKeyField.field : null;
     }
   },
   watch: {
