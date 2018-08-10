@@ -151,7 +151,7 @@ export default {
 
 <style lang="scss" scoped>
 .user-menu {
-  padding: 0 20px 20px;
+  padding: 0 20px 10px;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -246,6 +246,7 @@ export default {
   button.sign-out {
     width: 100%;
     text-align: left;
+    padding: 5px 0;
   }
 
   .sign-out:hover,
