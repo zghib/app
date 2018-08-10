@@ -66,7 +66,7 @@
       @select="selection = $event"
       @query="setViewQuery" />
 
-    <v-info-sidebar v-if="preferences" class="info-sidebar">
+    <v-info-sidebar v-if="preferences">
       <template slot="system">
         <label for="listing" class="style-4">{{ $t('view_type') }}</label>
         <v-select
