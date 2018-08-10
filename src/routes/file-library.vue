@@ -66,9 +66,9 @@
       @select="selection = $event"
       @query="setViewQuery" />
 
-    <v-info-sidebar v-if="preferences">
+    <v-info-sidebar v-if="preferences" class="info-sidebar">
       <template slot="system">
-        <label for="listing">{{ $t('view_type') }}</label>
+        <label for="listing" class="style-4">{{ $t('view_type') }}</label>
         <v-select
           id="listing"
           :options="layoutNames"
@@ -479,6 +479,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+label.style-4 {
+  padding-bottom: 5px;
+}
 .bookmark {
   margin-left: 10px;
   opacity: 0.4;
