@@ -84,7 +84,7 @@ export default {
     primaryKeyField() {
       const fieldInfo = this.$lodash.filter(
         this.fields,
-        info => info.interface === "primary-key"
+        info => info.primary_key === true
       )[0];
 
       return fieldInfo && fieldInfo.field;
