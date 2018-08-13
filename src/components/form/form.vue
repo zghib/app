@@ -179,7 +179,7 @@ export default {
 
   .field,
   .group {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 
   .group {

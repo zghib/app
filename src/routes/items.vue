@@ -611,7 +611,7 @@ label.style-4 {
   color: var(--accent);
   margin-left: 5px;
   margin-top: 3px;
-  font-size: 0.77em;
+  font-size: 0.67em;
   line-height: 1.1;
   font-weight: 700;
   text-transform: uppercase;
