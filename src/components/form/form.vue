@@ -147,9 +147,9 @@ export default {
 <style lang="scss">
 .v-form {
   width: 100%;
-  max-width: 800px;
+  max-width: 680px;
 
-  @media (min-width: 800px) {
+  @media (min-width: 680px) {
     &.flex-group,
     .flex-group {
       display: flex;
@@ -161,19 +161,22 @@ export default {
     }
 
     .col-1 {
-      flex-basis: 25%;
+      flex-basis: var(--width-small);
+      margin-right: 20px;
     }
 
     .col-2 {
-      flex-basis: 50%;
+      flex-basis: var(--width-normal);
+      margin-right: 20px;
     }
 
     .col-3 {
-      flex-basis: 75%;
+      flex-basis: var(--width-large);
+      margin-right: 20px;
     }
 
     .col-4 {
-      flex-basis: 100%;
+      flex-basis: var(--width-x-large);
     }
   }
 
