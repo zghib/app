@@ -62,10 +62,9 @@ export default {
     primaryKeyField() {
       if (!this.fields) return null;
 
-      const primaryKeyField = this.$lodash.find(
-        this.fields,
-        field => field.primary_key === "true" || field.primary_key === "1"
-      );
+      const primaryKeyField = this.$lodash.find(this.fields, {
+        primary_key: true
+      });
 
       return primaryKeyField ? primaryKeyField.field : null;
     }

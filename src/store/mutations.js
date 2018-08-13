@@ -62,12 +62,14 @@ const mutations = {
   [SET_COLLECTIONS](state, data) {
     state.collections = mapValues(keyBy(data, "collection"), info => {
       const statusField = find(info.fields, { interface: "status" });
-      const statusMapping =
-        statusField && statusField.options && statusField.options.statusMapping;
+      const status_mapping =
+        statusField &&
+        statusField.options &&
+        statusField.options.status_mapping;
 
       return {
         ...info,
-        statusMapping
+        status_mapping
       };
     });
   },

@@ -161,40 +161,7 @@ export default {
     },
     permissions() {
       if (!this.statuses) return null;
-
-      // NOTE:
-      //   Permissions are rather difficult to manage. Certain collections have
-      //   a status field setup, which means that this logic has to be able to process
-      //   and store both permission settings at a collection level as a
-      //   status level.
-      //
-      //   These records are returned as an array. A permission's collection+status
-      //   basically act as a composite primary key. To prevent having to loop over
-      //   that array multiple times to check if it already exists, I opted to manage
-      //   the data in a nested object.
-      //
-      //   The structure is
-      //
-      //   {
-      //     [collection]: {
-      //       ...[permission_fields]
-      //     }
-      //   }
-      //
-      //   If there's a status mapping associated with the collection, the
-      //   fields are nested:
-      //
-      //   {
-      //     [collection]: {
-      //       [status]: {
-      //         ...[permission_fields]
-      //       }
-      //     }
-      //   }
-      //
-      //   If you feel like this is inefficient or plain wrong, please let me know.
-      //
-      //   ~ Rijk
+      if (!this.collections) return null;
 
       const defaultPermissions = {};
 
@@ -204,18 +171,23 @@ export default {
         defaultPermission.collection = collection;
 
         if (this.statuses[collection] == null) {
-          return (defaultPermissions[collection] = defaultPermission);
+          defaultPermissions[collection] = defaultPermission;
+          defaultPermissions[collection].$create = defaultPermission;
+          return;
         }
 
         Object.keys(this.statuses[collection].mapping).forEach(status => {
-          if (!defaultPermissions[collection])
+          if (!defaultPermissions[collection]) {
             defaultPermissions[collection] = {};
+          }
 
           defaultPermissions[collection][status] = {
             ...defaultPermission,
             status
           };
         });
+
+        defaultPermissions[collection].$create = defaultPermission;
       });
 
       return this.$lodash.merge(
@@ -361,6 +333,32 @@ export default {
             }
           });
         } else {
+          if (this.permissionEdits[collection].$create) {
+            const id =
+              (this.savedPermissions[collection] &&
+                this.savedPermissions[collection].$create &&
+                this.savedPermissions[collection].$create.id) ||
+              null;
+
+            if (id) {
+              update.push({
+                id,
+                ...this.permissionEdits[collection].$create
+              });
+            } else {
+              create.push({
+                collection,
+                status: "$create",
+                role: this.role.id,
+                ...this.permissionEdits[collection].$create
+              });
+            }
+
+            this.$delete(this.permissionEdits[collection], "$create");
+
+            if (Object.keys(this.permissionEdits[collection]) === 0) return;
+          }
+
           const id =
             (this.savedPermissions[collection] &&
               this.savedPermissions[collection].id) ||
@@ -424,7 +422,8 @@ export default {
       return Promise.all([
         this.$api.getAllFields(),
         this.$api.getPermissions({
-          "filter[role][eq]": this.$route.params.id
+          "filter[role][eq]": this.$route.params.id,
+          limit: -1
         })
       ])
         .then(([fieldsRes, permissionsRes]) => ({
@@ -452,17 +451,13 @@ export default {
           this.permissionsLoading = false;
           this.savedPermissions = savedPermissions;
 
-          // TODO:
-          //   instead of filtering client side, use a param to filter
-          //   for this on the server.
-          //
-          // TODO:
-          //   filter by directus data type instead of interface name
           this.statuses = this.$lodash.keyBy(
-            fields.filter(field => field.interface === "status").map(field => ({
-              mapping: field.options.statusMapping,
-              collection: field.collection
-            })),
+            fields
+              .filter(field => field.type.toLowerCase() === "status")
+              .map(field => ({
+                mapping: field.options.status_mapping,
+                collection: field.collection
+              })),
             "collection"
           );
 

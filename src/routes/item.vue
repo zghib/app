@@ -16,18 +16,18 @@
     <v-loader area="content" />
   </div>
 
-  <div v-else class="edit">
+  <div v-else class="edit" :key="`${collection}-${primaryKey}`">
     <v-header :breadcrumb="breadcrumb" :info-toggle="!newItem">
       <template slot="buttons">
         <v-header-button
-          v-if="!newItem && !singleItem"
+          v-if="(!newItem && !singleItem) && permission.delete !== 'none'"
           icon="close"
           color="danger"
           :label="$t('delete')"
           @click="confirmRemove = true" />
 
         <v-header-button
-          v-if="batch"
+          v-if="batch && permission.update !== 'none'"
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
@@ -36,7 +36,7 @@
           @click="confirmBatchSave = true" />
 
         <v-header-button
-          v-else
+          v-else-if="isNew ? permission.create !== 'none' : permission.update !== 'none'"
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
@@ -58,6 +58,7 @@
           :class="{ active: activeTab === 'both' }"
           @click="activeTab = 'both'">{{ $t('both') }}</button>
         <button
+          v-if="permission.comment !== 'none'"
           :class="{ active: activeTab === 'comments' }"
           @click="activeTab = 'comments'">{{ $t('comments') }}</button>
         <button
@@ -69,15 +70,18 @@
         :revisions="revisions"
         :loading="activityLoading"
         :show="activeTab"
+        :comment-permission="permission.comment"
         @input="postComment"
         @revert="revertActivity = $event" />
     </v-info-sidebar>
 
     <v-form
+      :readonly="readonly"
       :fields="fields"
       :values="values"
       :collection="collection"
       :batch-mode="batch"
+      :permissions="permission"
       @unstage-value="unstageValue"
       @stage-value="stageValue" />
 
@@ -95,7 +99,7 @@
         :confirm-text="$t('keep_editing')"
         :cancel-text="$t('discard_changes')"
         @confirm="confirmNavigation = false"
-        @cancel="$router.push(leavingTo)" />
+        @cancel="$router.push(leavingTo); confirmNavigation = false;" />
     </portal>
 
     <portal to="modal" v-if="confirmBatchSave">
@@ -277,6 +281,39 @@ export default {
     },
     batch() {
       return this.primaryKey.includes(",");
+    },
+    statusField() {
+      if (!this.fields) return null;
+
+      return (
+        this.$lodash.find(
+          Object.values(this.fields),
+          field => field.type.toLowerCase() === "status"
+        ) || {}
+      ).field;
+    },
+    status() {
+      if (!this.statusField) return null;
+      return this.savedValues[this.statusField];
+    },
+    permission() {
+      const permission = this.$store.state.permissions[this.collection];
+
+      if (this.isNew) {
+        return permission.$create;
+      }
+
+      if (this.status) {
+        return permission.statuses[this.status];
+      }
+
+      return permission;
+    },
+    readonly() {
+      return this.permission.update === "none";
+    },
+    isNew() {
+      return this.primaryKey === "+";
     },
     fields() {
       const getRelationship = field => {

@@ -31,13 +31,13 @@
       <div class="cell">
         <v-permissions-toggle
           :value="permission.comment"
-          :options="['none', 'create', 'update', 'full']"
+          :options="['none', 'read', 'create', 'update', 'full']"
           @input="emitValue('comment', $event)" />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="permission.explain"
-          :options="['none', 'create', 'update', 'always']"
+          :options="['none', 'on_create', 'on_update', 'always']"
           @input="emitValue('explain', $event)" />
       </div>
       <div class="cell">
@@ -82,7 +82,7 @@
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('comment')"
-          :options="['none', 'create', 'update', 'full']"
+          :options="['none', 'read', 'create', 'update', 'full']"
           @input="setAllStatuses('comment', $event)" />
       </div>
       <div class="cell">
@@ -106,6 +106,36 @@
         </button>
       </div>
     </div>
+    <template v-if="active">
+      <div class="sub row">
+        <div class="cell">
+          <span class="system">{{ $t('permission_states.on_create') }}<i class="material-icons">star</i></span>
+        </div>
+        <div class="cell block"><i class="material-icons">block</i></div>
+        <div class="cell block"><i class="material-icons">block</i></div>
+        <div class="cell block"><i class="material-icons">block</i></div>
+        <div class="cell block"><i class="material-icons">block</i></div>
+        <div class="cell block"><i class="material-icons">block</i></div>
+        <div class="cell block"><i class="material-icons">block</i></div>
+        <div class="cell">
+          <button
+            :class="{ limited: getFieldSettingsPerStatus('$create') }"
+            @click="fieldsSelect = { collection: permissionName, status: '$create' }">
+            {{ getFieldSettingsPerStatus('$create') ? $t('limited') : $t('all') }}
+          </button>
+        </div>
+        <div class="cell" v-if="statuses">
+          <button
+            :class="{ limited: (permission.$create.status_blacklist || []).length !== 0 }"
+            @click="statusSelect = { collection: permissionName, status: '$create' }">
+            {{ (permission.$create.status_blacklist || []).length === 0 ? $t('all') : $t('limited') }}
+          </button>
+        </div>
+        <div class="cell" v-else>
+          <span class="mixed">n/a</span>
+        </div>
+      </div>
+    </template>
     <template v-if="statuses && active">
       <div class="sub row" v-for="(statusInfo, status) in statuses" :key="`${permissionName}-${status}`">
         <div class="cell">
@@ -144,7 +174,7 @@
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].explain"
-            :options="['none', 'create', 'update', 'always']"
+            :options="['none', 'on-create', 'on-update', 'always']"
             @input="emitValue('explain', $event, status)" />
         </div>
         <div class="cell">
@@ -156,15 +186,14 @@
         </div>
         <div class="cell">
           <button
-            :class="{ limited: permission[status].status_blacklist.length !== 0 }"
+            :class="{ limited: (permission[status].status_blacklist || []).length !== 0 }"
             @click="statusSelect = { collection: permissionName, status }">
-            {{ permission[status].status_blacklist.length === 0 ? $t('all') : $t('limited') }}
+            {{ (permission[status].status_blacklist || []).length === 0 ? $t('all') : $t('limited') }}
           </button>
         </div>
       </div>
     </template>
     <button
-      v-if="collapsable"
       class="collapse"
       @click="active = !active">
       <i class="material-icons">{{ active ? "unfold_less" : "unfold_more" }}</i>
@@ -217,7 +246,7 @@
               v-for="(status, name) in statuses"
               :key="`status-${name}`"
               :id="`status-${name}`"
-              :checked="permission[statusSelect.status].allowed_statuses.includes(name)"
+              :checked="!(permission[statusSelect.status].status_blacklist || []).includes(name)"
               :label="status.name"
               :value="name"
               @change="toggleStatus(name)" />
@@ -323,8 +352,9 @@ export default {
 
       let value = this.permission[Object.keys(this.statuses)[0]][field];
 
-      this.$lodash.forEach(this.permission, status => {
-        if (status[field] !== value) value = "indeterminate";
+      this.$lodash.forEach(this.permission, (status, name) => {
+        if (name !== "$create" && status[field] !== value)
+          value = "indeterminate";
       });
 
       return value;
@@ -376,18 +406,18 @@ export default {
       if (!this.statuses) return;
 
       const parentStatus = this.statusSelect.status;
-      const selectedStatuses = this.permission[parentStatus].allowed_statuses;
+      const selectedStatuses = this.permission[parentStatus].status_blacklist;
 
       if (selectedStatuses.includes(status)) {
         return this.emitValue(
-          "allowed_statuses",
+          "status_blacklist",
           selectedStatuses.filter(s => s !== status),
           parentStatus
         );
       }
 
       return this.emitValue(
-        "allowed_statuses",
+        "status_blacklist",
         [...selectedStatuses, status],
         parentStatus
       );
@@ -440,5 +470,20 @@ export default {
 
 .limited {
   color: var(--warning);
+}
+
+.block {
+  color: var(--lightest-gray);
+
+  i {
+    position: relative;
+    left: -3px;
+  }
+}
+
+.system i {
+  color: var(--accent);
+  vertical-align: super;
+  font-size: 7px;
 }
 </style>

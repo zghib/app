@@ -23,7 +23,7 @@
       <i class="material-icons">more_horiz</i>
     </div>
     <component
-      :is="to ? 'router-link' : 'button'"
+      :is="disabled ? 'button' : (to ? 'router-link' : 'button')"
       :style="{ backgroundColor: (noBackground || disabled) ? null : `var(--${color})`, color: `var(--${color})` }"
       :class="{ 'attention': alert, 'no-bg': noBackground }"
       :disabled="disabled"
@@ -52,11 +52,7 @@ export default {
     },
     color: {
       type: String,
-      default: "accent",
-      validator: value =>
-        getComputedStyle(document.body)
-          .getPropertyValue(`--${value}`)
-          .trim() !== ""
+      default: "accent"
     },
     label: {
       type: String,

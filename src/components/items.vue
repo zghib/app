@@ -37,13 +37,13 @@
     :view-type="viewType"
     :view-query="viewQuery"
     :view-options="viewOptions"
-    :selection="selection"
+    :selection="selectionKeys"
     :loading="items.loading"
     :lazy-loading="items.lazyLoading"
     :link="links ? '__link__' : null"
     :sort-field="sortField"
     @input="saveItems"
-    @select="$emit('select', $event)"
+    @select="select"
     @query="$emit('query', $event)"
     @options="$emit('options', $event)"
     @next-page="lazyLoad" />
@@ -104,12 +104,27 @@ export default {
   computed: {
     primaryKeyField() {
       if (!this.fields) return;
-      return this.$lodash.find(Object.values(this.fields), { primary_key: "1" })
-        .field;
+      return this.$lodash.find(Object.values(this.fields), {
+        primary_key: true
+      }).field;
     },
     sortField() {
       const field = this.$lodash.find(this.fields, { type: "SORT" });
       return (field && field.field) || null;
+    },
+    statusField() {
+      const field = this.$lodash.find(this.fields, { type: "STATUS" });
+      return (field && field.field) || null;
+    },
+    userCreatedField() {
+      if (!this.fields) return null;
+
+      return (
+        this.$lodash.find(
+          Object.values(this.fields),
+          field => field.type.toLowerCase() === "user_created"
+        ) || {}
+      ).field;
     },
     fields() {
       const fields = this.$store.state.collections[this.collection].fields;
@@ -117,6 +132,9 @@ export default {
         ...field,
         name: this.$helpers.formatTitle(field.field)
       }));
+    },
+    selectionKeys() {
+      return this.selection.map(item => item[this.primaryKeyField]);
     }
   },
   created() {
@@ -195,6 +213,13 @@ export default {
           this.items.loading = false;
           this.items.error = error;
         });
+    },
+    select(primaryKeys) {
+      const itemsByKey = this.$lodash.keyBy(
+        this.items.data,
+        this.primaryKeyField
+      );
+      this.$emit("select", primaryKeys.map(key => itemsByKey[key]));
     },
     saveItems(data) {
       if (!data) return;
@@ -355,6 +380,16 @@ export default {
         // Make sure the sort field gets fetched too
         if (this.sortField) {
           params.fields.push(this.sortField);
+        }
+
+        // Make sure the status field gets fetched too
+        if (this.statusField) {
+          params.fields.push(this.statusField);
+        }
+
+        // Make sure the user_created field gets fetched too
+        if (this.userCreatedField) {
+          params.fields.push(this.userCreatedField);
         }
 
         // Make sure the primaryKey is always fetched

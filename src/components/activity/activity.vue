@@ -1,7 +1,7 @@
 <template>
   <div class="v-activity">
     <form
-      v-show="show !== 'activity'"
+      v-show="(commentPermission !== 'none' && commentPermission !== 'read') && (show !== 'activity')"
       class="new-comment"
       @submit.prevent="postComment">
 
@@ -92,18 +92,30 @@ export default {
     show: {
       type: String,
       default: "both"
+    },
+    commentPermission: {
+      type: String,
+      default: "none"
     }
   },
   computed: {
     activityFiltered() {
       switch (this.show) {
         case "comments":
-          return this.activity.filter(item => item.comment !== null);
+          return this.commentPermission === "none"
+            ? []
+            : this.activity.filter(item => item.comment !== null);
         case "activity":
           return this.activity.filter(item => item.comment === null);
         case "both":
         default:
-          return this.activity;
+          return this.activity.filter(item => {
+            if (this.commentPermission === "none") {
+              if (item.comment != null) return false;
+            }
+
+            return true;
+          });
       }
     },
     activityWithChanges() {

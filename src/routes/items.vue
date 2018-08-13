@@ -17,7 +17,7 @@
           class="bookmark-name no-wrap">({{ currentBookmark.title }})</div>
       </template>
       <v-search-filter
-        v-show="selection.length === 0 && !emptyCollection"
+        v-show="selection && selection.length === 0 && !emptyCollection"
         :filters="filters"
         :search-query="searchQuery"
         :field-names="fieldNames"
@@ -27,20 +27,23 @@
         @clear-filters="clearFilters" />
       <template slot="buttons">
         <v-header-button
-          v-if="selection.length > 1"
+          v-if="editButton"
           key="edit"
           icon="mode_edit"
           color="warning"
+          :disabled="!editButtonEnabled"
           :label="$t('batch')"
-          :to="`/collections/${collection}/${selection.join(',')}`" />
+          :to="batchURL" />
         <v-header-button
-          v-if="selection.length"
+          v-if="deleteButton"
           key="delete"
           icon="close"
           color="danger"
+          :disabled="!deleteButtonEnabled"
           :label="$t('delete')"
           @click="confirmRemove = true" />
         <v-header-button
+          v-if="addButton"
           icon="add"
           key="add"
           color="action"
@@ -116,7 +119,7 @@ import VNotFound from "./not-found.vue";
 import api from "../api";
 
 export default {
-  name: "route-item-listing",
+  name: "items",
   metaInfo() {
     return {
       title: this.$helpers.formatTitle(this.collection)
@@ -146,6 +149,11 @@ export default {
         ...field,
         name: this.$helpers.formatTitle(field.field)
       }));
+    },
+    batchURL() {
+      return `/collections/${this.collection}/${this.selection
+        .map(item => item[this.primaryKeyField])
+        .join(",")}`;
     },
     currentBookmark() {
       if (!this.preferences) return;
@@ -232,6 +240,122 @@ export default {
         translatedNames[id] = this.$store.state.extensions.layouts[id].name;
       });
       return translatedNames;
+    },
+    statusField() {
+      if (!this.fields) return null;
+
+      return (
+        this.$lodash.find(
+          Object.values(this.fields),
+          field => field.type.toLowerCase() === "status"
+        ) || {}
+      ).field;
+    },
+    userCreatedField() {
+      if (!this.fields) return null;
+
+      return (
+        this.$lodash.find(
+          Object.values(this.fields),
+          field => field.type.toLowerCase() === "user_created"
+        ) || {}
+      ).field;
+    },
+    primaryKeyField() {
+      if (!this.fields) return null;
+      return this.$lodash.find(this.fields, { primary_key: true }).field;
+    },
+    permission() {
+      return this.$store.state.permissions[this.collection];
+    },
+    addButton() {
+      if (this.statusField) {
+        return (
+          Object.values(this.permission.statuses).some(
+            permission => permission.create === "full"
+          ) || this.permission.$create.create === "full"
+        );
+      }
+
+      return this.permission.create === "full";
+    },
+    deleteButton() {
+      if (!this.selection) return false;
+      if (this.selection.length === 0) return false;
+      return true;
+    },
+    deleteButtonEnabled() {
+      const currentUserID = this.$store.state.currentUser.id;
+      let enabled = true;
+
+      this.selection.forEach(item => {
+        const status = this.statusField ? item[this.statusField] : null;
+        const permission = this.statusField
+          ? this.permission.statuses[status]
+          : this.permission;
+        const userID = item[this.userCreatedField];
+
+        if (permission.delete === "none") {
+          return (enabled = false);
+        }
+
+        if (permission.delete === "mine" && userID !== currentUserID) {
+          return (enabled = false);
+        }
+
+        if (permission.delete === "role") {
+          const userRoles = this.$store.state.users[userID];
+          const currentUserRoles = this.$store.state.currentUser.roles;
+          let contains = false;
+
+          userRoles.forEach(role => {
+            if (currentUserRoles.includes(role)) contains = true;
+          });
+
+          if (contains === false) return (enabled = false);
+        }
+      });
+
+      return enabled;
+    },
+    editButton() {
+      if (!this.selection) return false;
+      if (this.selection.length === 0) return false;
+      return true;
+    },
+    editButtonEnabled() {
+      const currentUserID = this.$store.state.currentUser.id;
+      let enabled = true;
+
+      this.selection.forEach(item => {
+        const status = this.statusField ? item[this.statusField] : null;
+        const permission = this.statusField
+          ? this.permission.statuses[status]
+          : this.permission;
+        const userID = item[this.userCreatedField];
+
+        if (permission.update === "none") {
+          return (enabled = false);
+        }
+
+        if (permission.update === "mine" && userID !== currentUserID) {
+          return (enabled = false);
+        }
+
+        if (permission.update === "role") {
+          const userRoles = this.$store.state.users[userID];
+          const currentUserRoles = this.$store.state.currentUser.roles;
+          let contains = false;
+
+          userRoles.forEach(role => {
+            if (currentUserRoles.includes(role)) contains = true;
+          });
+
+          if (contains === false) return (enabled = false);
+        }
+      });
+
+      return enabled;
     }
   },
   methods: {
@@ -327,7 +451,10 @@ export default {
       this.$store.dispatch("loadingStart", { id });
 
       this.$api
-        .deleteItems(this.collection, this.selection)
+        .deleteItems(
+          this.collection,
+          this.selection.map(item => item[this.primaryKeyField])
+        )
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
           this.$refs.listing.getItems();
@@ -397,9 +524,9 @@ export default {
     const id = shortid.generate();
     store.dispatch("loadingStart", { id });
 
-    return Promise.all([api.getMyListingPreferences(collection)])
-      .then(([preferences]) => ({ preferences }))
-      .then(({ preferences }) => {
+    return api
+      .getMyListingPreferences(collection)
+      .then(preferences => {
         store.dispatch("loadingFinished", id);
         next(vm => {
           vm.$data.preferences = preferences;
@@ -438,11 +565,9 @@ export default {
     const id = this.$helpers.shortid.generate();
     this.$store.dispatch("loadingStart", { id });
 
-    return Promise.all([api.getMyListingPreferences(collection)])
-      .then(([preferences]) => ({
-        preferences
-      }))
-      .then(({ preferences }) => {
+    return api
+      .getMyListingPreferences(collection)
+      .then(preferences => {
         this.$store.dispatch("loadingFinished", id);
         this.preferences = preferences;
         next();

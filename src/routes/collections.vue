@@ -44,9 +44,9 @@ export default {
             collection.collection.startsWith("directus_") === false
         )
         .filter(collection => {
-          if (collection.statusMapping) {
+          if (collection.status_mapping) {
             return this.$lodash.some(
-              this.permissions[collection.collection],
+              this.permissions[collection.collection].statuses,
               permission => permission.read !== "none"
             );
           }

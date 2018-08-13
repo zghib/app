@@ -27,7 +27,7 @@
         :field="field"
         :values="values"
         :fields="fields"
-        :readonly="readonly || (field.readonly === true || field.readonly === '1')"
+        :readonly="isReadonly(field)"
         :blocked="batchMode && !activeFields.includes(field.field)"
         :batch-mode="batchMode"
         @activate="activateField"
@@ -41,6 +41,7 @@
 import VField from "./field.vue";
 import VGroup from "./group.vue";
 import VError from "../error.vue";
+import { defaultFull } from "../../store/modules/permissions/defaults";
 
 export default {
   name: "v-form",
@@ -65,6 +66,10 @@ export default {
     batchMode: {
       type: Boolean,
       default: false
+    },
+    permissions: {
+      type: Object,
+      default: () => defaultFull
     }
   },
   data() {
@@ -73,8 +78,14 @@ export default {
     };
   },
   computed: {
+    collection() {
+      return Object.values(this.fields)[0].collection;
+    },
     fieldsGrouped() {
-      const fieldsArray = Object.values(this.fields);
+      const fieldsArray = Object.values(this.fields).filter(
+        field =>
+          this.permissions.read_field_blacklist.includes(field.field) === false
+      );
 
       const result = fieldsArray
         .filter(field => field.type.toLowerCase() === "group")
@@ -120,6 +131,14 @@ export default {
         activeField => activeField !== field
       );
       this.$emit("unstage-value", field);
+    },
+    isReadonly(field) {
+      if (this.readonly) return true;
+      if (field.readonly === true || field.readonly === "1") return true;
+      if (this.permissions.write_field_blacklist.includes(field.field))
+        return true;
+
+      return false;
     }
   }
 };

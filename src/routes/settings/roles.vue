@@ -7,7 +7,7 @@
           key="add"
           color="action"
           :label="$t('new')"
-          :to="`/settings/roles/+`" />
+          @click="addNew = true" />
       </template>
     </v-header>
     <v-table
@@ -15,6 +15,17 @@
       :columns="fields"
       primary-key-field="collection"
       link="__link__" />
+
+    <portal to="modal" v-if="addNew">
+      <v-prompt
+        v-model="newName"
+        :confirm-text="$t('create')"
+        :message="$t('create_role')"
+        :placeholder="$t('enter_role_name')"
+        :loading="adding"
+        @cancel="addNew = false"
+        @confirm="add" />
+    </portal>
   </div>
 </template>
 
@@ -31,7 +42,10 @@ export default {
   data() {
     return {
       error: null,
-      roles: []
+      roles: [],
+      adding: false,
+      addNew: false,
+      newName: ""
     };
   },
   computed: {
@@ -85,6 +99,31 @@ export default {
           vm.$data.error = error;
         });
       });
+  },
+  methods: {
+    add() {
+      this.adding = true;
+
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
+      this.$api
+        .createRole({
+          name: this.newName
+        })
+        .then(res => res.data)
+        .then(role => {
+          this.$store.dispatch("loadingFinished", id);
+          this.$router.push(`/settings/roles/${role.id}`);
+        })
+        .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
+    }
   }
 };
 </script>
