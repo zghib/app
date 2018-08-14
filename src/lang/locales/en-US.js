@@ -102,6 +102,7 @@ export default {
   dont_show: "Don't Show",
   editing: "Editing {collection}",
   editing_item: "Editing Item",
+  editing_items: "Editing {count} Items",
   editing_single: "Editing {collection}",
   email_address: "Email Address",
   email: "Email",

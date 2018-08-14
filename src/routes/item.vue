@@ -205,21 +205,6 @@ export default {
   },
   computed: {
     breadcrumb() {
-      if (this.collection.startsWith("directus_")) {
-        return [
-          {
-            name: this.$helpers.formatTitle(this.collection.substr(9)),
-            path: `/${this.collection.substring(9)}`
-          },
-          {
-            name: this.newItem
-              ? this.$t("creating_item")
-              : this.$t("editing_item"),
-            path: this.$route.path
-          }
-        ];
-      }
-
       if (this.singleItem) {
         return [
           {
@@ -235,22 +220,42 @@ export default {
         ];
       }
 
-      return [
-        {
-          name: this.$t("collections"),
-          path: "/collections"
-        },
-        {
-          name: this.$t(`collections-${this.collection}`),
-          path: `/collections/${this.collection}`
-        },
-        {
+      const breadcrumb = [];
+
+      if (this.collection.startsWith("directus_")) {
+        breadcrumb.push({
+          name: this.$helpers.formatTitle(this.collection.substr(9)),
+          path: `/${this.collection.substring(9)}`
+        });
+      } else {
+        breadcrumb.push(
+          {
+            name: this.$t("collections"),
+            path: "/collections"
+          },
+          {
+            name: this.$t(`collections-${this.collection}`),
+            path: `/collections/${this.collection}`
+          }
+        );
+      }
+
+      if (this.batch) {
+        const count = this.primaryKey.split(",").length;
+        breadcrumb.push({
+          name: this.$t("editing_items", { count }),
+          path: this.$route.path
+        });
+      } else {
+        breadcrumb.push({
           name: this.newItem
             ? this.$t("creating_item")
             : this.$t("editing_item"),
           path: this.$route.path
-        }
-      ];
+        });
+      }
+
+      return breadcrumb;
     },
     values() {
       const defaults = this.$lodash.mapValues(
