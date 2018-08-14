@@ -192,8 +192,6 @@ export default {
       confirmNavigation: false,
       leavingTo: "",
 
-      collectionInfo: null,
-
       activeTab: "both",
       activityLoading: false,
       activity: [],
@@ -256,6 +254,9 @@ export default {
       }
 
       return breadcrumb;
+    },
+    collectionInfo() {
+      return this.$store.state.collections[this.collection];
     },
     values() {
       const defaults = this.$lodash.mapValues(
