@@ -23,11 +23,11 @@
 
     <portal to="modal" v-if="confirmSignOut">
       <v-confirm
-      :busy="confirmSignOutLoading"
-      :message="$t('sign_out_confirm')"
-      :confirm-text="$t('sign_out')"
-      @cancel="confirmSignOut = false"
-      @confirm="signOut" />
+        :busy="confirmSignOutLoading"
+        :message="editing ? $t('sign_out_confirm_edits') : $t('sign_out_confirm')"
+        :confirm-text="$t('sign_out')"
+        @cancel="confirmSignOut = false"
+        @confirm="signOut" />
     </portal>
   </div>
 </template>
@@ -56,6 +56,9 @@ export default {
     },
     currentUserID() {
       return this.$store.state.currentUser && this.$store.state.currentUser.id;
+    },
+    editing() {
+      return this.$store.getters.editing;
     },
     email() {
       return (
