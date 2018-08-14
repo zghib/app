@@ -458,6 +458,8 @@ export default {
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
           this.$refs.listing.getItems();
+          this.selection = [];
+          this.confirmRemove = false;
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
@@ -466,7 +468,6 @@ export default {
             error
           });
         });
-      this.confirmRemove = false;
     },
     saveBookmark() {
       const preferences = { ...this.preferences };
