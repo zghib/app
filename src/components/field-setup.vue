@@ -51,7 +51,7 @@
           <label>{{ $t("display_name") }} <v-input type="text" disabled :value="displayName" :placeholder="$t('auto_generated')" /></label>
         </div>
         <label>{{ $t("note") }} <v-input type="text" v-model="note" :placeholder="$t('add_note')" /></label>
-        <details>
+        <details class="advanced">
           <summary>{{ $t("show_advanced_options") }}</summary>
           <div class="advanced-form">
             <label>
@@ -80,7 +80,7 @@
       <p>{{ $t('almost_done_copy') }}</p>
       <form @submit.prevent v-if="selectedInterfaceInfo" class="options">
         <div
-          v-for="(option, optionID) in selectedInterfaceInfo.options"
+          v-for="(option, optionID) in interfaceOptions.regular"
           class="options"
           :key="optionID">
           <label :for="optionID">{{ option.name }}</label>
@@ -99,6 +99,30 @@
             :values="options"
             @input="$set(options, optionID, $event)" />
         </div>
+
+        <details v-if="Object.keys(interfaceOptions.advanced).length > 0" class="advanced">
+          <summary>{{ $t("show_advanced_options") }}</summary>
+          <div
+            v-for="(option, optionID) in interfaceOptions.advanced"
+            class="options"
+            :key="optionID">
+            <label :for="optionID">{{ option.name }}</label>
+            <p v-html="$helpers.snarkdown(option.comment)" />
+            <v-ext-input
+              :id="option.interface"
+              :name="optionID"
+              :type="option.type"
+              :length="option.length"
+              :readonly="option.readonly"
+              :required="option.required"
+              :loading="option.loading"
+              :options="option.options"
+              :value="options[optionID] || option.default"
+              :fields="selectedInterfaceInfo.options"
+              :values="options"
+              @input="$set(options, optionID, $event)" />
+          </div>
+        </details>
       </form>
     </div>
 
@@ -145,6 +169,17 @@ export default {
       if (!this.interfaceName) return null;
 
       return this.interfaces[this.interfaceName];
+    },
+    interfaceOptions() {
+      if (!this.selectedInterfaceInfo) return null;
+      const options = this.selectedInterfaceInfo.options;
+      const regular = this.$lodash.pickBy(options, opt => !opt.advanced);
+      const advanced = this.$lodash.pickBy(
+        options,
+        opt => opt.advanced === true
+      );
+
+      return { regular, advanced };
     },
     schemaDisabled() {
       return !(this.interfaceName && this.interfaceName.length > 0);
@@ -357,22 +392,6 @@ export default {
       }
     }
 
-    summary {
-      color: var(--accent);
-      cursor: pointer;
-      text-align: center;
-      margin: 30px 0;
-      text-transform: capitalize;
-
-      &:hover {
-        color: var(--accent-dark);
-      }
-
-      &::-webkit-details-marker {
-        display: none;
-      }
-    }
-
     .name {
       margin-bottom: 20px;
     }
@@ -400,6 +419,22 @@ export default {
     > div {
       margin-top: 30px;
     }
+  }
+}
+
+summary {
+  color: var(--accent);
+  cursor: pointer;
+  text-align: center;
+  margin: 30px 0;
+  text-transform: capitalize;
+
+  &:hover {
+    color: var(--accent-dark);
+  }
+
+  &::-webkit-details-marker {
+    display: none;
   }
 }
 
