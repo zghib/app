@@ -1,8 +1,8 @@
 <template>
-  <div class="v-permissions-row">
+  <div class="v-permissions-row" :class="{ 'system-row': system }">
     <div v-if="!statuses" class="row">
       <div class="cell">
-        <span v-tooltip="permissionName">{{ $helpers.formatTitle(permissionName) }}</span>
+        <span :class="{ system }" v-tooltip="permissionName">{{ $helpers.formatTitle(permissionName) }}<i v-if="system" class="material-icons">star</i></span>
         <span class="set-all">
           <button @click.prevent="setAll(true)" type="button">{{ $t('all') }}</button> / <button @click.prevent="setAll(false)" type="button">{{ $t('none') }}</button>
         </span>
@@ -287,6 +287,10 @@ export default {
     fields: {
       type: Object,
       default: () => ({})
+    },
+    system: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -571,5 +575,9 @@ export default {
   button:last-of-type:hover {
     color: var(--danger);
   }
+}
+
+.system-row {
+  color: var(--gray);
 }
 </style>

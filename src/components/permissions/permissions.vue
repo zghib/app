@@ -20,12 +20,14 @@
 
         <v-permissions-row
           v-if="showDirectus"
-          v-for="(permission, name) in directusRows"
+          v-for="(permission, name, i) in directusRows"
+          :class="{ 'border': i === 0 }"
           :permission="permission"
           :permission-name="name"
           :statuses="(statuses[name] || {}).mapping"
           :key="name"
           :fields="fields[name]"
+          system
           @input="$emit('input', $event)" />
       </div>
     </div>
@@ -72,11 +74,14 @@ export default {
         this.permissions,
         (permission, collection) => collection.startsWith("directus_")
       );
-      return this.$lodash(permissions)
+
+      return this.$lodash.mapKeys(this.$lodash(permissions)
         .toPairs()
         .sortBy(0)
         .fromPairs()
-        .value();
+        .value(), (val, key) => {
+          return key.substring(9);
+        });
     },
     rows() {
       const permissions = this.$lodash.pickBy(
@@ -144,7 +149,7 @@ export default {
   background-color: var(--white);
   border-radius: var(--border-radius);
   border: var(--input-border-width) solid var(--lighter-gray);
-  max-width: 1000px;
+  max-width: 1100px;
 
   /deep/ .row {
     display: flex;
@@ -183,6 +188,10 @@ export default {
     &:last-child {
       flex-grow: 1;
     }
+  }
+
+  .border {
+    border-top: 1px solid var(--lighter-gray);
   }
 
   &.loading {
