@@ -102,6 +102,17 @@ export default {
     };
   },
   computed: {
+    allSelected() {
+      const primaryKeys = this.items.data
+        .map(item => item[this.primaryKeyField])
+        .sort();
+      const selection = [...this.selection];
+      selection.sort();
+      return (
+        this.selection.length > 0 &&
+        this.$lodash.isEqual(primaryKeys, selection)
+      );
+    },
     primaryKeyField() {
       if (!this.fields) return;
       return this.$lodash.find(Object.values(this.fields), {
@@ -164,6 +175,15 @@ export default {
       this.getItems();
     }
   },
+  mounted() {
+    this.$helpers.mousetrap.bind("mod+a", () => {
+      this.selectAll();
+      return false;
+    });
+  },
+  beforeDestroy() {
+    this.$helpers.mousetrap.unbind("mod+a");
+  },
   methods: {
     hydrate() {
       if (this.items.loading) return;
@@ -173,6 +193,13 @@ export default {
       this.items.error = null;
 
       this.getItems();
+    },
+    selectAll() {
+      if (this.allSelected) {
+        return this.$emit("select", []);
+      }
+
+      return this.$emit("select", this.items.data);
     },
     getItems() {
       if (this.items.loading) return;

@@ -82,6 +82,7 @@
       :collection="collection"
       :batch-mode="batch"
       :permissions="permission"
+      ref="form"
       @unstage-value="unstageValue"
       @stage-value="stageValue" />
 
@@ -353,6 +354,21 @@ export default {
 
     this.checkOtherUsers();
   },
+  mounted() {
+    const handler = () => {
+      this.save("stay");
+      return false;
+    };
+
+    this.$helpers.mousetrap.bind("mod+s", handler);
+    this.formtrap = this.$helpers
+      .mousetrap(this.$refs.form.$el)
+      .bind("mod+s", handler);
+  },
+  beforeDestroy() {
+    this.$helpers.mousetrap.unbind("mod+s");
+    this.formtrap.unbind("mod+s");
+  },
   watch: {
     $route() {
       this.fetchActivity();
@@ -389,6 +405,8 @@ export default {
         });
     },
     save(method) {
+      if (this.$store.getters.editing === false) return;
+
       this.saving = true;
 
       if (method === "copy") {

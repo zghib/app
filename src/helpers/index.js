@@ -2,6 +2,7 @@ import Vue from "vue";
 import convertRange from "convert-range";
 import formatTitle from "@directus/format-title";
 import micromustache from "micromustache";
+import mousetrap from "mousetrap";
 import shortid from "shortid";
 import { enableBodyScroll, disableBodyScroll } from "body-scroll-lock";
 import snarkdown from "snarkdown";
@@ -19,7 +20,8 @@ const helpers = {
   formatFilters,
   enableBodyScroll,
   disableBodyScroll,
-  snarkdown
+  snarkdown,
+  mousetrap
 };
 
 const helpersPlugin = {

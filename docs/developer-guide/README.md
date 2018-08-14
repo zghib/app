@@ -26,6 +26,7 @@
 * [Notifications](./notifications.md)
 * [Running Rabbit (loading indicator)](./running-rabbit.md)
 * [Using the API (SDK)](./sdk-api.md)
+* [Shortcuts](./shortcuts.md)
 * [Store](./store.md)
 * [Styleguide](./styleguide.md)
 * [Tooltips](./tooltips.md)
