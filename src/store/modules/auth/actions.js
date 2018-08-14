@@ -8,7 +8,8 @@ import {
   LOGIN_FAILED,
   REFRESH_TOKEN,
   REMOVE_AUTH_ERROR,
-  LOGOUT
+  LOGOUT,
+  CHANGE_API
 } from "../../mutation-types";
 import { stopPolling } from "../../../polling";
 
@@ -88,11 +89,20 @@ export function refresh({ commit }, { token, url }) {
 }
 
 export function logout({ commit }, error) {
-  stopPolling();
-  api.logout();
-  resetState();
-  router.push("/login");
-  commit(LOGOUT, error);
+  return new Promise(resolve => {
+    stopPolling();
+    api.logout();
+    resetState();
+    router.push("/login");
+    commit(LOGOUT, error);
+    resolve();
+  });
+}
+
+export function changeAPI({ commit, dispatch }, url) {
+  dispatch("logout").then(() => {
+    commit(CHANGE_API, url);
+  });
 }
 
 export function removeAuthError({ commit }) {

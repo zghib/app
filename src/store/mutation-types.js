@@ -5,6 +5,7 @@ export const LOGIN_FAILED = "🔒❌ Login Failed";
 export const LOGOUT = "🔒 Logout";
 export const REFRESH_TOKEN = "🔒 Refresh Token";
 export const REMOVE_AUTH_ERROR = "🔒 Remove Auth Error";
+export const CHANGE_API = "🔒 Change API";
 
 // Bookmarks
 export const SET_BOOKMARKS = "🔖 Set Bookmarks";

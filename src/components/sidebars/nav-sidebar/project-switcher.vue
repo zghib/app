@@ -1,13 +1,6 @@
 <template>
   <div class="project-switcher">
-    <portal to="modal" v-if="active">
-      <v-modal
-        :title="$t('change_project')"
-        @close="active = false">
-        <login-form class="form" />
-      </v-modal>
-    </portal>
-    <button
+    <div
       :class="{
         slow: $store.getters.signalStrength == 1,
         disconnected: $store.getters.signalStrength == 0
@@ -15,12 +8,18 @@
       v-tooltip.left="{
         content: $store.state.auth.url + `<br>${$t('latency')}: ${$n(Math.round($store.state.latency[$store.state.latency.length - 1].latency))}ms`,
         boundariesElement: 'body'
-      }"
-      @click="active = true">
+      }">
       <v-signal class="icon" />
       <span class="no-wrap">{{ $store.state.auth.projectName }}</span>
-      <i class="material-icons chevron">arrow_drop_down</i>
-    </button>
+      <i v-if="Object.keys(urls).length > 1" class="material-icons chevron">arrow_drop_down</i>
+      <select v-if="Object.keys(urls).length > 1" @change="changeUrl">
+        <option
+          v-for="(name, url) in urls"
+          :key="name + url"
+          :value="url"
+          :checked="url === $store.state.auth.url">{{ name }}</option>
+      </select>
+    </div>
   </div>
 </template>
 
@@ -38,12 +37,23 @@ export default {
     return {
       active: false
     };
+  },
+  computed: {
+    urls() {
+      return window.__DirectusConfig__.api;
+    }
+  },
+  methods: {
+    changeUrl(event) {
+      const newUrl = event.target.value;
+      this.$store.dispatch("changeAPI", newUrl);
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.project-switcher button {
+.project-switcher > div {
   height: calc(
     var(--header-height) + 1px
   ); /* Force border bottom to be aligned with listing headers */
@@ -53,6 +63,7 @@ export default {
   align-items: center;
   color: var(--accent);
   margin-bottom: 10px;
+  position: relative;
 
   &.slow {
     color: var(--warning);
@@ -99,5 +110,15 @@ export default {
 
 .form {
   margin: 20px auto;
+}
+
+select {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
 }
 </style>

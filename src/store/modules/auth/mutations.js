@@ -4,7 +4,8 @@ import {
   LOGIN_FAILED,
   LOGOUT,
   REFRESH_TOKEN,
-  REMOVE_AUTH_ERROR
+  REMOVE_AUTH_ERROR,
+  CHANGE_API
 } from "../../mutation-types";
 
 const mutations = {
@@ -44,6 +45,10 @@ const mutations = {
 
   [REMOVE_AUTH_ERROR](state) {
     state.error = null;
+  },
+
+  [CHANGE_API](state, url) {
+    state.url = url;
   }
 };
 
