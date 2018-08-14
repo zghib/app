@@ -2,7 +2,7 @@
   <div class="v-permissions-row" :class="{ 'system-row': system }">
     <div v-if="!statuses" class="row">
       <div class="cell">
-        <span :class="{ system }" v-tooltip="permissionName">{{ $helpers.formatTitle(permissionName) }}<i v-if="system" class="material-icons">star</i></span>
+        <span :class="{ system }" v-tooltip="permissionName">{{ $helpers.formatTitle(system ? permissionName.substring(9) : permissionName) }}<i v-if="system" class="material-icons">star</i></span>
         <span class="set-all">
           <button @click.prevent="setAll(true)" type="button">{{ $t('all') }}</button> / <button @click.prevent="setAll(false)" type="button">{{ $t('none') }}</button>
         </span>

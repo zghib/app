@@ -75,13 +75,11 @@ export default {
         (permission, collection) => collection.startsWith("directus_")
       );
 
-      return this.$lodash.mapKeys(this.$lodash(permissions)
+      return this.$lodash(permissions)
         .toPairs()
         .sortBy(0)
         .fromPairs()
-        .value(), (val, key) => {
-          return key.substring(9);
-        });
+        .value();
     },
     rows() {
       const permissions = this.$lodash.pickBy(
@@ -101,6 +99,7 @@ export default {
       let full = true;
 
       this.$lodash.forEach(this.permissions, (column, collection) => {
+        if (collection.startsWith("directus_")) return;
         if (this.statuses[collection]) {
           this.$lodash.forEach(column, statusColumn => {
             if (statusColumn[permission] === "full") {
