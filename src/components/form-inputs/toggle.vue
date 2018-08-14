@@ -1,11 +1,11 @@
 <template>
-  <div class="v-toggle">
+  <div class="v-toggle" @click="$emit('input', !value)">
     <input
       type="checkbox"
       :id="id"
       :disabled="disabled"
       :checked="value"
-      @change="$emit('input', $event.target.checked)" />
+      @change="$emit('input', !value)" />
     <div class="switch-track" :class="{ active: value }" />
     <div class="switch-thumb" :class="{ active: value }" />
   </div>

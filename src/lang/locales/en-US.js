@@ -49,6 +49,7 @@ export default {
   choose_one: "Choose one",
   choose_project: "Choose Project",
   choose_interface: "Choose an interface for how this data should be managed.",
+  click_to_toggle_all_none: "Click to toggle entire column on/off",
   connection: "Connection",
   collection: "Collection",
   collection_updated: "{collection} Collection Updated",
@@ -205,6 +206,7 @@ export default {
   permissions: "Permissions",
   name_bookmark: "What would you like to name this bookmark?",
   next: "Next",
+  none: "None",
   not_empty: "Is not empty",
   not_equal_to: "Not equal to",
   not_in_list: "Not one of these",
@@ -287,6 +289,7 @@ export default {
   server_trouble_copy:
     "Try again later or contact your system administrator help.",
   show_advanced_options: "Show advanced options",
+  show_directus_collections: "Show Directus System Collections",
   something_went_wrong: "Something went wrong..",
   something_went_wrong_body:
     "We're having some trouble processing your request.. Please try again by refreshing this page. If the problem persists, please contact your system administrator.",

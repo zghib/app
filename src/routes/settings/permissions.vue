@@ -474,7 +474,14 @@ export default {
           });
         });
     },
-    setPermission({ collection, permission, value, status = null }) {
+    setPermission(value) {
+      if (Array.isArray(value)) {
+        return value.forEach(permission => this.stagePermission(permission));
+      }
+
+      return this.stagePermission(value);
+    },
+    stagePermission({ collection, permission, value, status = null }) {
       if (status === null) {
         return this.$set(this.permissionEdits, collection, {
           ...(this.permissionEdits[collection] || {}),

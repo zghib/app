@@ -3,6 +3,9 @@
     <div v-if="!statuses" class="row">
       <div class="cell">
         <span v-tooltip="permissionName">{{ $helpers.formatTitle(permissionName) }}</span>
+        <span class="set-all">
+          <button @click.prevent="setAll(true)" type="button">{{ $t('all') }}</button> / <button @click.prevent="setAll(false)" type="button">{{ $t('none') }}</button>
+        </span>
       </div>
       <div class="cell">
         <v-permissions-toggle
@@ -54,6 +57,9 @@
     <div v-else class="row">
       <div class="cell">
         <span v-tooltip="permissionName">{{ $helpers.formatTitle(permissionName) }}</span>
+        <span class="set-all">
+          <button @click.prevent="setAll(true)" type="button">{{ $t('all') }}</button> / <button @click.prevent="setAll(false)" type="button">{{ $t('none') }}</button>
+        </span>
       </div>
       <div class="cell">
         <v-permissions-toggle
@@ -280,7 +286,7 @@ export default {
     },
     fields: {
       type: Object,
-      required: true
+      default: () => ({})
     }
   },
   data() {
@@ -328,8 +334,8 @@ export default {
         return !all;
       }
 
-      const readBlacklist = this.permission.read_field_blacklist;
-      const writeBlacklist = this.permission.write_field_blacklist;
+      const readBlacklist = this.permission.read_field_blacklist || [];
+      const writeBlacklist = this.permission.write_field_blacklist || [];
 
       if (readBlacklist.length === 0 && writeBlacklist.length === 0) {
         return false;
@@ -339,6 +345,57 @@ export default {
     }
   },
   methods: {
+    setAll(enabled = true) {
+      const newPermission = enabled
+        ? {
+            create: "full",
+            read: "full",
+            update: "full",
+            delete: "full",
+            comment: "full",
+            explain: "none",
+            read_field_blacklist: [],
+            write_field_blacklist: [],
+            status_blacklist: []
+          }
+        : {
+            create: "none",
+            read: "none",
+            update: "none",
+            delete: "none",
+            comment: "none",
+            explain: "none",
+            read_field_blacklist: [],
+            write_field_blacklist: [],
+            status_blacklist: []
+          };
+
+      if (this.statuses) {
+        const changes = [];
+
+        Object.keys(this.statuses).forEach(status => {
+          Object.keys(newPermission).forEach(permission => {
+            changes.push({
+              collection: this.permissionName,
+              permission,
+              value: newPermission[permission],
+              status
+            });
+          });
+        });
+
+        return this.$emit("input", changes);
+      }
+
+      return this.$emit(
+        "input",
+        Object.keys(newPermission).map(permission => ({
+          collection: this.permissionName,
+          permission,
+          value: newPermission[permission]
+        }))
+      );
+    },
     emitValue(permission, value, status = null) {
       this.$emit("input", {
         collection: this.permissionName,
@@ -485,5 +542,34 @@ export default {
   color: var(--accent);
   vertical-align: super;
   font-size: 7px;
+}
+
+.set-all {
+  opacity: 0;
+  font-size: 10px;
+  margin-left: 5px;
+  color: var(--light-gray);
+  transition: opacity var(--fast) var(--transition);
+
+  button {
+    transition: color var(--fast) var(--transition);
+  }
+}
+
+.v-permissions-row:hover .set-all {
+  opacity: 1;
+  transition: none;
+
+  button:hover {
+    transition: none;
+  }
+
+  button:first-of-type:hover {
+    color: var(--action);
+  }
+
+  button:last-of-type:hover {
+    color: var(--danger);
+  }
 }
 </style>

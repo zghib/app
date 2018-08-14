@@ -4,19 +4,32 @@
       line-fg-color="var(--light-gray)"
       line-bg-color="var(--lighter-gray)" />
   </div>
-  <div class="v-permissions" v-else>
-    <v-permissions-header />
+  <div v-else>
+    <div class="v-permissions">
+      <v-permissions-header @toggle-all="toggleAll" />
 
-    <div class="body">
-      <v-permissions-row
-        v-for="(permission, name) in permissions"
-        :permission="permission"
-        :permission-name="name"
-        :statuses="(statuses[name] || {}).mapping"
-        :key="name"
-        :fields="fields[name]"
-        @input="$emit('input', $event)" />
+      <div class="body">
+        <v-permissions-row
+          v-for="(permission, name) in rows"
+          :permission="permission"
+          :permission-name="name"
+          :statuses="(statuses[name] || {}).mapping"
+          :key="name"
+          :fields="fields[name]"
+          @input="$emit('input', $event)" />
+
+        <v-permissions-row
+          v-if="showDirectus"
+          v-for="(permission, name) in directusRows"
+          :permission="permission"
+          :permission-name="name"
+          :statuses="(statuses[name] || {}).mapping"
+          :key="name"
+          :fields="fields[name]"
+          @input="$emit('input', $event)" />
+      </div>
     </div>
+    <label><v-toggle class="toggle" id="toggle-directus" v-model="showDirectus" />{{ $t('show_directus_collections') }}</label>
   </div>
 </template>
 
@@ -26,6 +39,11 @@ import VPermissionsRow from "./permissions-row.vue";
 
 export default {
   name: "v-permissions",
+  data() {
+    return {
+      showDirectus: false
+    };
+  },
   components: {
     VPermissionsHeader,
     VPermissionsRow
@@ -46,6 +64,76 @@ export default {
     loading: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    directusRows() {
+      const permissions = this.$lodash.pickBy(
+        this.permissions,
+        (permission, collection) => collection.startsWith("directus_")
+      );
+      return this.$lodash(permissions)
+        .toPairs()
+        .sortBy(0)
+        .fromPairs()
+        .value();
+    },
+    rows() {
+      const permissions = this.$lodash.pickBy(
+        this.permissions,
+        (permission, collection) => collection.startsWith("directus_") === false
+      );
+      return this.$lodash(permissions)
+        .toPairs()
+        .sortBy(0)
+        .fromPairs()
+        .value();
+    }
+  },
+  methods: {
+    toggleAll(permission) {
+      const changes = [];
+      let full = true;
+
+      this.$lodash.forEach(this.permissions, (column, collection) => {
+        if (this.statuses[collection]) {
+          this.$lodash.forEach(column, statusColumn => {
+            if (statusColumn[permission] === "full") {
+              full = false;
+            }
+          });
+          return;
+        }
+
+        if (column[permission] === "full") {
+          full = false;
+        }
+      });
+
+      Object.keys(this.permissions).forEach(collection => {
+        if (collection.startsWith("directus_")) return;
+
+        if (this.statuses[collection]) {
+          return Object.keys(this.statuses[collection].mapping).forEach(
+            status => {
+              changes.push({
+                collection,
+                status,
+                permission,
+                value: full ? "full" : "none"
+              });
+            }
+          );
+        }
+
+        changes.push({
+          collection,
+          permission,
+          value: full ? "full" : "none"
+        });
+      });
+
+      this.$emit("input", changes);
     }
   }
 };
@@ -99,6 +187,17 @@ export default {
 
   &.loading {
     padding: 300px 0;
+  }
+}
+
+label {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  margin-top: 10px;
+
+  .toggle {
+    margin-right: 5px;
   }
 }
 </style>
