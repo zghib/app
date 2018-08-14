@@ -306,6 +306,18 @@ export default {
     permission() {
       const permission = this.$store.state.permissions[this.collection];
 
+      if (this.batch) {
+        if (this.statusField) {
+          const statuses = this.savedValues.map(item => item[this.statusField]);
+          return this.$lodash.merge(
+            {},
+            ...statuses.map(status => permission.statuses[status])
+          );
+        }
+
+        return permission;
+      }
+
       if (this.isNew) {
         return permission.$create;
       }
