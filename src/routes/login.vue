@@ -15,7 +15,8 @@
             <option
               v-for="(name, url) in urls"
               :value="url"
-              :key="url">
+              :key="url"
+              :checked="url === storeUrl">
               {{ name }}
             </option>
             <option
@@ -140,7 +141,7 @@ export default {
   },
   data() {
     return {
-      selectedUrl: null,
+      selectedUrl: this.$store.state.auth.url,
 
       url: null,
       email: null,
@@ -175,6 +176,9 @@ export default {
     },
     storeError() {
       return this.$store.state.auth.error;
+    },
+    storeUrl() {
+      return this.$store.state.auth.url;
     },
     errorType() {
       if (!this.error) return;
