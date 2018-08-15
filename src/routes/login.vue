@@ -246,7 +246,7 @@ export default {
     exists(newVal) {
       if (newVal === true) {
         this.getThirdPartyAuthProviders();
-      } else {
+      } else if (newVal === false) {
         this.error = { code: -1 };
       }
     },
@@ -320,7 +320,7 @@ export default {
       if (!this.url) return;
 
       this.checkingExistence = true;
-      this.exists = false;
+      this.exists = null;
       this.thirdPartyAuthProviders = null;
       this.error = null;
       this.notInstalled = false;
