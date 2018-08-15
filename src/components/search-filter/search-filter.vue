@@ -1,6 +1,7 @@
 <template>
   <div
     :class="{ open }"
+    ref="searchFilter"
     class="search-filter">
 
     <v-header-button
@@ -169,6 +170,12 @@ export default {
     this.search = this.$lodash.debounce(this.search, 300);
     this.updateFilter = this.$lodash.debounce(this.updateFilter, 300);
   },
+  mounted() {
+    window.addEventListener("click", this.closeFilter);
+  },
+  beforeDestroy() {
+    window.removeEventListener("click", this.closeFilter);
+  },
   methods: {
     search(value) {
       this.$emit("search", value);
@@ -198,6 +205,12 @@ export default {
     clearFilters() {
       this.$emit("clear-filters");
       if (this.open) this.open = false;
+    },
+    closeFilter(event) {
+      const contains = this.$refs.searchFilter.contains(event.target);
+      if (this.open && contains === false) {
+        this.open = false;
+      }
     }
   }
 };
