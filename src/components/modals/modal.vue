@@ -9,6 +9,7 @@
         <aside
           ref="modal"
           class="modal-container"
+          :class="{ 'full-size': fullSize }"
           aria-labelledby="modal-title"
           aria-describedby="modal-description"
           role="dialog"
@@ -95,11 +96,15 @@ export default {
     },
     tabs: {
       type: Object,
-      default: () => ({})
+      default: null
     },
     activeTab: {
       type: String,
       default: null
+    },
+    fullSize: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
@@ -157,6 +162,12 @@ export default {
   pointer-events: painted;
   cursor: default;
   overflow: hidden;
+
+  &.full-size {
+    max-width: none;
+    width: 100%;
+    margin: 10px;
+  }
 
   h1 {
     color: var(--darker-gray);
