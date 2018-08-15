@@ -348,10 +348,15 @@ export default {
       return true;
     },
     userCreatedField() {
-      return this.$lodash.find(this.fields, field => field.type.toLowerCase() === "user_created");
+      return this.$lodash.find(
+        this.fields,
+        field => field.type.toLowerCase() === "user_created"
+      );
     },
     permissionOptions() {
-      return this.userCreatedField ? ["none", "mine", "role", "full"] : ["none", "full"];
+      return this.userCreatedField
+        ? ["none", "mine", "role", "full"]
+        : ["none", "full"];
     }
   },
   methods: {

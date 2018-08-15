@@ -60,6 +60,9 @@
       </div>
     </div>
     <div class="body" :class="{ loading }">
+      <div v-if="loading && items.length === 0" class="loader">
+        <div v-for="n in 50" :key="n" class="row" :style="{ height: rowHeight + 'px' }" />
+      </div>
       <component
         :is="manualSorting ? 'draggable' : 'div'"
         v-model="itemsManuallySorted"
@@ -578,6 +581,31 @@ export default {
     cursor: grab;
     cursor: -webkit-grab;
     color: var(--gray);
+  }
+}
+
+.loader {
+  div {
+    animation: bounce 2s var(--transition) infinite alternate;
+  }
+
+  $elements: 50;
+  @for $i from 0 to $elements {
+    div:nth-child(#{$i + 1}) {
+      animation-delay: $i * 200ms;
+    }
+  }
+}
+
+@keyframes bounce {
+  from {
+    background-color: var(--white);
+    border-color: var(--lightest-gray);
+  }
+
+  to {
+    background-color: var(--lightest-gray);
+    border-color: var(--white);
   }
 }
 
