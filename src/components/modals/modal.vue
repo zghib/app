@@ -165,8 +165,8 @@ export default {
 
   &.full-size {
     max-width: none;
-    width: 100%;
-    margin: 10px;
+    width: calc(100% - 40px);
+    margin: 20px;
   }
 
   h1 {
