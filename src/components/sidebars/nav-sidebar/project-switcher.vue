@@ -12,7 +12,7 @@
       <v-signal class="icon" />
       <span class="no-wrap">{{ $store.state.auth.projectName }}</span>
       <i v-if="Object.keys(urls).length > 1" class="material-icons chevron">arrow_drop_down</i>
-      <select v-if="Object.keys(urls).length > 1" @change="changeUrl">
+      <select v-if="Object.keys(urls).length > 1" :value="$store.state.auth.url" @change="changeUrl">
         <option
           v-for="(name, url) in urls"
           :key="name + url"
