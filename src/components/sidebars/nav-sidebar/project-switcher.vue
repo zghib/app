@@ -25,13 +25,11 @@
 
 <script>
 import VSignal from "../../signal.vue";
-import LoginForm from "../../login-form/login-form.vue";
 
 export default {
   name: "project-switcher",
   components: {
-    VSignal,
-    LoginForm
+    VSignal
   },
   data() {
     return {
