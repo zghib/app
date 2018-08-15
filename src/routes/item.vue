@@ -88,7 +88,7 @@
 
     <portal to="modal" v-if="confirmRemove">
       <v-confirm
-        :message="$t('delete_are_you_sure')"
+        :message="batch ? $tc('batch_delete_confirm', primaryKey.split(',').length, { count: primaryKey.split(',').length }) : $t('delete_are_you_sure')"
         :busy="confirmRemoveLoading"
         @cancel="confirmRemove = false"
         @confirm="remove" />

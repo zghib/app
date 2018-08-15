@@ -40,7 +40,7 @@ export default {
   batch_edit: "Batch edit",
   batch_delete: "Batch Delete",
   batch_delete_confirm:
-    "No items have been selected | One item will be deleted. | {count} items will be deleted.",
+    "No items have been selected | Are you sure you want to delete this item? This action can not be undone. | Are you sure you want to delete these {count} items? This action can not be undone.",
   between: "Between",
   both: "Both",
   bookmarks: "Bookmarks",
