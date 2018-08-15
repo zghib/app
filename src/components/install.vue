@@ -1,17 +1,13 @@
 <template>
-  <v-modal :buttons="buttons" @next="nextTab" action-required>
+  <v-modal
+    :tabs="tabs"
+    :buttons="buttons"
+    :active-tab="activeTab"
+    @tab="activeTab = $event"
+    @next="nextTab"
+    action-required>
 
-    <div class="tabs">
-      <button
-        :class="{ active: activeTab === 'project' }"
-        @click="activeTab = 'project'">{{ $t('project') }}</button>
-      <button
-        :class="{ active: activeTab === 'database' }"
-        @click="activeTab = 'database'"
-        :disabled="databaseDisabled">{{ $t('database') }}</button>
-    </div>
-
-    <div class="tab" v-show="activeTab === 'project'">
+    <template slot="project">
       <h1 class="style-0">{{ $t("project_info") }}</h1>
       <p>
         {{ $t("project_info_copy" )}}
@@ -35,9 +31,9 @@
           <v-input class="input" id="admin-password" type="password" v-model="values.user_password" autocomplete="new-password" />
         </label>
       </form>
-    </div>
+    </template>
 
-    <div class="tab" v-show="activeTab === 'database'">
+    <template slot="database">
       <h1 class="style-0">{{ $t("database_connection") }}</h1>
       <p>{{ $t("database_connection_copy") }}</p>
       <form @submit.prevent>
@@ -66,7 +62,7 @@
           <v-input class="input" disabled id="db_type" value="MySQL & Variants" />
         </label>
       </form>
-    </div>
+    </template>
 
   </v-modal>
 </template>
@@ -125,6 +121,17 @@ export default {
           text:
             this.activeTab === "database" ? this.$t("save") : this.$t("next"),
           loading: this.saving
+        }
+      };
+    },
+    tabs() {
+      return {
+        project: {
+          text: this.$t("project")
+        },
+        database: {
+          text: this.$t("database"),
+          disabled: this.databaseDisabled
         }
       };
     }

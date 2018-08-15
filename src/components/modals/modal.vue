@@ -28,8 +28,28 @@
                   v-if="!actionRequired"
                   @click="$emit('close')"><i class="material-icons">close</i></button>
               </header>
+
+              <div class="tabs" v-if="tabs">
+                <button
+                  v-for="(info, id) in tabs"
+                  :key="id"
+                  :class="{ active: activeTab === id }"
+                  :disabled="info.disabled"
+                  @click="$emit('tab', id)">{{ info.text }}</button>
+              </div>
+
               <div class="body">
-                <slot />
+                <template v-if="tabs">
+                  <div
+                    v-for="(info, id) in tabs"
+                    :key="`tab-${id}`"
+                    class="tab"
+                    v-show="activeTab === id">
+                    <slot :name="id" />
+                  </div>
+                </template>
+
+                <slot v-else />
               </div>
               <div class="footer">
                 <button
@@ -70,8 +90,16 @@ export default {
       default: null
     },
     buttons: {
-      type: [Object],
+      type: Object,
       default: () => ({})
+    },
+    tabs: {
+      type: Object,
+      default: () => ({})
+    },
+    activeTab: {
+      type: String,
+      default: null
     }
   },
   mounted() {
@@ -195,5 +223,67 @@ export default {
 .slide-enter,
 .slide-leave-to {
   opacity: 0;
+}
+
+.tabs {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  justify-content: center;
+  border-bottom: 1px solid var(--lightest-gray);
+  position: sticky;
+  top: 0;
+  background-color: var(--white);
+  z-index: +1;
+
+  button {
+    flex-grow: 1;
+    flex-shrink: 1;
+    max-width: 120px;
+    flex-basis: 120px;
+    height: 50px;
+    position: relative;
+    color: var(--gray);
+
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    position: relative;
+
+    &:hover {
+      color: var(--darker-gray);
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      position: absolute;
+      height: 3px;
+      bottom: -2px;
+      background-color: var(--accent);
+      transform: scaleY(0);
+      transition: transform var(--fast) var(--transition-out);
+    }
+
+    &.active {
+      color: var(--accent);
+
+      &::after {
+        transform: scaleY(1);
+        transition: transform var(--fast) var(--transition-in);
+      }
+    }
+
+    &[disabled] {
+      color: var(--lighter-gray);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.tab {
+  padding: 30px;
 }
 </style>

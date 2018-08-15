@@ -1,22 +1,14 @@
 <template>
-  <v-modal :title="$t('create_field')" :cancel="() => {}" :buttons="buttons" @next="nextTab" @close="$emit('close')">
+  <v-modal
+    :title="$t('create_field')"
+    :tabs="tabs"
+    :active-tab="activeTab"
+    :buttons="buttons"
+    @tab="activeTab = $event"
+    @next="nextTab"
+    @close="$emit('close')">
 
-    <div class="tabs">
-      <button
-        :class="{ active: activeTab === 'interface' }"
-        @click="activeTab = 'interface'">{{ $t('interface') }}</button>
-      <button
-        :class="{ active: activeTab === 'schema' }"
-        @click="activeTab = 'schema'"
-        :disabled="schemaDisabled">{{ $t('schema') }}</button>
-      <button
-        v-if="hasOptions"
-        :class="{ active: activeTab === 'options' }"
-        @click="activeTab = 'options'"
-        :disabled="optionsDisabled">{{ $t('options') }}</button>
-    </div>
-
-    <div class="tab" v-show="activeTab === 'interface'">
+    <template slot="interface">
       <h1 class="style-0">{{ $t("choose_interface") }}</h1>
       <p v-if="interfaceName">
         {{ $t("currently_selected", { thing: interfaces[interfaceName].name}) }}
@@ -40,9 +32,9 @@
           </div>
         </article>
       </div>
-    </div>
+    </template>
 
-    <div class="tab" v-show="activeTab === 'schema'">
+    <template slot="schema">
       <h1 class="style-0">{{ $t("name_field", { field: "dropdown" }) }}</h1>
       <p>{{ $t("intelligent_defaults") }}</p>
       <form @submit.prevent class="schema">
@@ -73,9 +65,9 @@
           </div>
         </details>
       </form>
-    </div>
+    </template>
 
-    <div class="tab" v-show="activeTab === 'options'">
+    <template slot="options">
       <h1 class="style-0">{{ $t('almost_done_options') }}</h1>
       <p>{{ $t('almost_done_copy') }}</p>
       <form @submit.prevent v-if="selectedInterfaceInfo" class="options">
@@ -124,7 +116,7 @@
           </div>
         </details>
       </form>
-    </div>
+    </template>
 
   </v-modal>
 </template>
@@ -168,7 +160,7 @@ export default {
     selectedInterfaceInfo() {
       if (!this.interfaceName) return null;
 
-      return this.interfaces[this.interfaceName];
+      return Object.assign({}, this.interfaces[this.interfaceName]);
     },
     interfaceOptions() {
       if (!this.selectedInterfaceInfo) return null;
@@ -199,10 +191,13 @@ export default {
     buttons() {
       let disabled = false;
 
-      if (this.activeTab === "interface" && !this.interfaceName)
+      if (this.activeTab === "interface" && !this.interfaceName) {
         disabled = true;
+      }
 
-      if (this.activeTab === "schema" && !this.field) disabled = true;
+      if (this.activeTab === "schema" && !this.field) {
+        disabled = true;
+      }
 
       return {
         next: {
@@ -215,6 +210,29 @@ export default {
           loading: this.saving
         }
       };
+    },
+    tabs() {
+      const tabs = {
+        interface: {
+          text: this.$t("interface")
+        },
+        schema: {
+          text: this.$t("schema"),
+          disabled: !(this.interfaceName && this.interfaceName.length > 0)
+        }
+      };
+
+      if (
+        this.interfaceName &&
+        Object.keys(this.interfaces[this.interfaceName].options).length > 0
+      ) {
+        tabs.options = {
+          text: this.$t("options"),
+          disabled: this.schemaDisabled === true || !this.field
+        };
+      }
+
+      return tabs;
     },
     hasOptions() {
       if (
@@ -308,117 +326,113 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.tab {
-  padding: 30px;
+.style-0 {
+  max-width: 80%;
+  margin-bottom: 30px;
+}
 
-  .style-0 {
-    max-width: 80%;
-    margin-bottom: 30px;
-  }
+p {
+  line-height: 2;
+  max-width: 70%;
+}
 
-  p {
-    line-height: 2;
-    max-width: 70%;
-  }
+.interfaces {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin-top: 30px;
 
-  .interfaces {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-    margin-top: 30px;
+  article {
+    display: block;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    flex-basis: 160px;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: box-shadow var(--fast) var(--transition-out);
+    cursor: pointer;
 
-    article {
-      display: block;
-      background-color: var(--white);
-      border-radius: var(--border-radius);
-      box-shadow: var(--box-shadow);
-      flex-basis: 160px;
-      flex-shrink: 0;
-      overflow: hidden;
-      transition: box-shadow var(--fast) var(--transition-out);
-      cursor: pointer;
+    .header {
+      background-color: var(--lighter-gray);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+      transition: background-color var(--fast) var(--transition-out);
 
+      i {
+        font-size: 48px;
+        color: var(--white);
+      }
+    }
+
+    &.active {
       .header {
-        background-color: var(--lighter-gray);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 0;
-        transition: background-color var(--fast) var(--transition-out);
-
-        i {
-          font-size: 48px;
-          color: var(--white);
-        }
+        background-color: var(--accent);
+        transition: background-color var(--fast) var(--transition-in);
       }
+    }
 
-      &.active {
-        .header {
-          background-color: var(--accent);
-          transition: background-color var(--fast) var(--transition-in);
-        }
-      }
+    .body {
+      padding: 10px;
+    }
 
-      .body {
-        padding: 10px;
-      }
+    h2 {
+      margin: 0;
+      font-size: 13px;
+    }
 
-      h2 {
-        margin: 0;
-        font-size: 13px;
-      }
+    p {
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--lighter-gray);
+      font-size: 11px;
+    }
 
-      p {
-        text-transform: uppercase;
-        font-weight: 700;
-        color: var(--lighter-gray);
-        font-size: 11px;
-      }
+    &:hover {
+      box-shadow: var(--box-shadow-accent);
+      transform: translateY(-1px);
+      transition: box-shadow var(--fast) var(--transition-in);
+    }
+  }
+}
 
-      &:hover {
-        box-shadow: var(--box-shadow-accent);
-        transform: translateY(-1px);
-        transition: box-shadow var(--fast) var(--transition-in);
-      }
+form.schema {
+  margin-top: 30px;
+
+  label:not(.toggle) {
+    > *:last-child {
+      margin-top: 10px;
     }
   }
 
-  form.schema {
+  .name {
+    margin-bottom: 20px;
+  }
+
+  .advanced-form,
+  .name {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr;
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      text-transform: capitalize;
+      font-size: 1rem;
+
+      > *:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+form.options {
+  > div {
     margin-top: 30px;
-
-    label:not(.toggle) {
-      > *:last-child {
-        margin-top: 10px;
-      }
-    }
-
-    .name {
-      margin-bottom: 20px;
-    }
-
-    .advanced-form,
-    .name {
-      display: grid;
-      grid-gap: 20px;
-      grid-template-columns: 1fr 1fr;
-
-      .toggle {
-        display: flex;
-        align-items: center;
-        text-transform: capitalize;
-        font-size: 1rem;
-
-        > *:first-child {
-          margin-right: 10px;
-        }
-      }
-    }
-  }
-
-  form.options {
-    > div {
-      margin-top: 30px;
-    }
   }
 }
 
@@ -441,64 +455,6 @@ summary {
 .no-results {
   margin: 20px auto;
   min-height: 0;
-}
-
-.tabs {
-  display: flex;
-  padding: 0;
-  list-style: none;
-  justify-content: center;
-  border-bottom: 1px solid var(--lightest-gray);
-  position: sticky;
-  top: 0;
-  background-color: var(--white);
-  z-index: +1;
-
-  button {
-    flex-grow: 1;
-    flex-shrink: 1;
-    max-width: 120px;
-    flex-basis: 120px;
-    height: 50px;
-    position: relative;
-    color: var(--gray);
-
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 700;
-    position: relative;
-
-    &:hover {
-      color: var(--darker-gray);
-    }
-
-    &::after {
-      content: "";
-      display: block;
-      width: 100%;
-      position: absolute;
-      height: 3px;
-      bottom: -2px;
-      background-color: var(--accent);
-      transform: scaleY(0);
-      transition: transform var(--fast) var(--transition-out);
-    }
-
-    &.active {
-      color: var(--accent);
-
-      &::after {
-        transform: scaleY(1);
-        transition: transform var(--fast) var(--transition-in);
-      }
-    }
-
-    &[disabled] {
-      color: var(--lighter-gray);
-      cursor: not-allowed;
-    }
-  }
 }
 
 .required {
