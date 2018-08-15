@@ -16,19 +16,19 @@
       <div class="cell">
         <v-permissions-toggle
           :value="permission.read"
-          :options="['none', 'mine', 'role', 'full']"
+          :options="permissionOptions"
           @input="emitValue('read', $event)" />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="permission.update"
-          :options="['none', 'mine', 'role', 'full']"
+          :options="permissionOptions"
           @input="emitValue('update', $event)" />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="permission.delete"
-          :options="['none', 'mine', 'role', 'full']"
+          :options="permissionOptions"
           @input="emitValue('delete', $event)" />
       </div>
       <div class="cell">
@@ -70,19 +70,19 @@
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('read')"
-          :options="['none', 'mine', 'role', 'full']"
+          :options="permissionOptions"
           @input="setAllStatuses('read', $event)" />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('update')"
-          :options="['none', 'mine', 'role', 'full']"
+          :options="permissionOptions"
           @input="setAllStatuses('update', $event)" />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('delete')"
-          :options="['none', 'mine', 'role', 'full']"
+          :options="permissionOptions"
           @input="setAllStatuses('delete', $event)" />
       </div>
       <div class="cell">
@@ -156,19 +156,19 @@
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].read"
-            :options="['none', 'mine', 'role', 'full']"
+            :options="permissionOptions"
             @input="emitValue('read', $event, status)" />
         </div>
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].update"
-            :options="['none', 'mine', 'role', 'full']"
+            :options="permissionOptions"
             @input="emitValue('update', $event, status)" />
         </div>
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].delete"
-            :options="['none', 'mine', 'role', 'full']"
+            :options="permissionOptions"
             @input="emitValue('delete', $event, status)" />
         </div>
         <div class="cell">
@@ -346,6 +346,12 @@ export default {
       }
 
       return true;
+    },
+    userCreatedField() {
+      return this.$lodash.find(this.fields, field => field.type.toLowerCase() === "user_created");
+    },
+    permissionOptions() {
+      return this.userCreatedField ? ["none", "mine", "role", "full"] : ["none", "full"];
     }
   },
   methods: {
