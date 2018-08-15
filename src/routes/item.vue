@@ -17,7 +17,7 @@
   </div>
 
   <div v-else class="edit" :key="`${collection}-${primaryKey}`">
-    <v-header :breadcrumb="breadcrumb" :info-toggle="!newItem">
+    <v-header :breadcrumb="breadcrumb" :info-toggle="!newItem && !batch">
       <template slot="buttons">
         <v-header-button
           v-if="(!newItem && !singleItem) && permission.delete !== 'none'"
@@ -52,7 +52,7 @@
       </template>
     </v-header>
 
-    <v-info-sidebar v-if="!newItem" wide>
+    <v-info-sidebar v-if="!newItem && !batch" wide>
       <div class="tabs">
         <button
           :class="{ active: activeTab === 'both' }"
