@@ -35,7 +35,7 @@
     </template>
 
     <template slot="schema">
-      <h1 class="style-0">{{ $t("name_field", { field: "dropdown" }) }}</h1>
+      <h1 class="style-0">{{ $t("name_field", { field: $helpers.formatTitle(interfaceName).toLowerCase() }) }}</h1>
       <p>{{ $t("intelligent_defaults") }}</p>
       <form @submit.prevent class="schema">
         <div class="name">
