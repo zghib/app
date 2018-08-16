@@ -34,7 +34,7 @@
       </div>
     </template>
 
-    <template slot="schema">
+    <template slot="schema" v-if="interfaceName">
       <h1 class="style-0">{{ $t("name_field", { field: $helpers.formatTitle(interfaceName).toLowerCase() }) }}</h1>
       <p>{{ $t("intelligent_defaults") }}</p>
       <form @submit.prevent class="schema">
