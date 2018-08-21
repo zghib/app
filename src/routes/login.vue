@@ -142,7 +142,7 @@ export default {
   data() {
     return {
       selectedUrl:
-        this.$store.state.auth.url + "/" + this.$store.state.auth.env,
+        this.$store.state.auth.url + "/" + this.$store.state.auth.env + "/",
 
       url: null,
       email: null,
