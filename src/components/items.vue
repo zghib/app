@@ -402,6 +402,8 @@ export default {
         // Make sure all selected fields are retrieved one level deep (to be able to show relational
         //  items)
         params.fields = params.fields.split(",").map(field => {
+          if (field === "*.*") return field;
+
           const fieldInfo = this.fields[field];
 
           if (
