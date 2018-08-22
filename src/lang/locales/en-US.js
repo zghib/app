@@ -65,7 +65,7 @@ export default {
   comments: "Comments",
   coming_soon: "Coming Soon",
   contains: "Contains",
-  config_error: "App Config Missing",
+  config_error: "Missing Config",
   config_error_copy:
     "Make sure you've created the application's configuration file",
   collection_contains_items: "{collection} contains {count} items",
