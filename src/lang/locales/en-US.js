@@ -251,8 +251,8 @@ export default {
   project_info_copy:
     "Below are a few questions about your project, including the credentials of your first administrator.",
   read: "Read",
-  read_blacklist: "Read Blacklist",
-  read_blacklist_copy: "Select the fields that the user can view",
+  readable_fields: "Readable Fields",
+  readable_fields_copy: "Select the fields that the user can view",
   readonly: "Readonly",
   regex: "RegEx",
   related_entries: "Has related entries",
@@ -321,7 +321,7 @@ export default {
   version: "Version",
   version_and_updates: "Version and Updates",
   view_type: "View As...",
-  write_blacklist: "Write Blacklist",
-  write_blacklist_copy: "Select the fields that the user can edit",
+  writable_fields: "Writable Fields",
+  writable_fields_copy: "Select the fields that the user can edit",
   yes: "Yes"
 };
