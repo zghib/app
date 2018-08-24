@@ -175,6 +175,9 @@ export default {
   item_deleted: "Item Deleted",
   item_saved: "Item Saved",
   extension_error: "There was a problem loading the {ext} extension.",
+  extensions_missing: "No Extensions Found",
+  extensions_missing_copy:
+    "Make sure you have the system extensions installed.",
   latency: "Latency",
   learn_more: "Learn More",
   leave_comment: "Leave a comment...",
