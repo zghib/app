@@ -593,7 +593,7 @@ export default {
 
       this.$api
         .getUsers({
-          "filter[last_access][gte]": date,
+          "filter[last_access_on][gte]": date,
           "filter[last_page][eq]": path,
           "filter[id][neq]": this.$store.state.currentUser.id
         })
