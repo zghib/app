@@ -41,6 +41,7 @@ export const HYDRATING_FAILED = "🏪❌ Store Hydration Failed";
 
 // Permissions
 export const SET_PERMISSIONS = "🙅🏻‍♂️ Set Permissions";
+export const ADD_PERMISSION = "🙅🏻‍♂️ Add Permissions";
 
 // Latency Check
 export const LATENCY = "⏱ Latency Check";
