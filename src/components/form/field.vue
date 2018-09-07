@@ -27,6 +27,7 @@
             :relation="relation"
             :fields="fields"
             :values="values"
+            :new-item="newItem"
             @input="readonly ? null : $emit('stage-value', {
               field: field.field,
               value: $event
@@ -69,6 +70,10 @@ export default {
     fields: {
       type: Object,
       required: true
+    },
+    newItem: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

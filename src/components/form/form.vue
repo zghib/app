@@ -19,6 +19,7 @@
         :readonly="readonly"
         :batch-mode="batchMode"
         :active-fields="activeFields"
+        :new-item="newItem"
         @activate="activateField"
         @deactivate="deactivateField"
         @stage-value="$emit('stage-value', $event)" />
@@ -30,6 +31,7 @@
         :readonly="isReadonly(field)"
         :blocked="batchMode && !activeFields.includes(field.field)"
         :batch-mode="batchMode"
+        :new-item="newItem"
         @activate="activateField"
         @deactivate="deactivateField"
         @stage-value="$emit('stage-value', $event)" />
@@ -70,6 +72,10 @@ export default {
     permissions: {
       type: Object,
       default: () => defaultFull
+    },
+    newItem: {
+      type: Boolean,
+      default: false
     }
   },
   data() {

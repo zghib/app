@@ -293,7 +293,7 @@ export default {
             );
             this.$store.dispatch("updateField", {
               collection: this.collection,
-              field: fieldInfo
+              field: savedFieldInfo
             });
           })
           .catch(error => {

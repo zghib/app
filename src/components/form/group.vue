@@ -17,6 +17,7 @@
           v-if="isGroup(child)"
           :values="values"
           :field="child"
+          :new-item="newItem"
           @stage-value="$emit('stageValue', $event)" />
         <v-field
           v-else
@@ -25,6 +26,7 @@
           :field="child"
           :blocked="batchMode && !activeFields.includes(field.field)"
           :batch-mode="batchMode"
+          :new-item="newItem"
           @activate="$emit('activate', $event)"
           @deactivate="$emit('deactivate', $event)"
           @stage-value="$emit('stageValue', $event)" />

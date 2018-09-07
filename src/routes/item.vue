@@ -82,6 +82,7 @@
       :collection="collection"
       :batch-mode="batch"
       :permissions="permission"
+      :new-item="newItem"
       ref="form"
       @unstage-value="unstageValue"
       @stage-value="stageValue" />
