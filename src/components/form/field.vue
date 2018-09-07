@@ -104,6 +104,8 @@ export default {
         return this.$store.getters.m2o(collection, field);
       if (type.toLowerCase() === "o2m")
         return this.$store.getters.o2m(collection, field);
+      if (type.toLowerCase() === "translation")
+        return this.$store.getters.o2m(collection, field);
       return null;
     }
   }
