@@ -412,7 +412,7 @@ export default {
             fieldInfo.type.toLowerCase() === "m2m" ||
             fieldInfo.type.toLowerCase() === "translation"
           ) {
-            return field.endsWith(".*") ? field : field + ".*";
+            return field.endsWith(".*.*") ? field : field + ".*.*";
           }
 
           return field;
