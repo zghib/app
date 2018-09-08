@@ -56,6 +56,8 @@ export const UPDATE_CURRENT_USER = "👨🏻‍💻 Current User Updated";
 
 // Relations
 export const SET_RELATIONS = "❤️ Set Relations";
+export const ADD_RELATION = "❤️ Add Relation";
+export const UPDATE_RELATION = "❤️ Update Relation";
 
 // Settings
 export const SET_SETTINGS = "⚙️ Set Global Settings";

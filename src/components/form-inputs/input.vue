@@ -14,7 +14,7 @@
       :name="name"
       :placeholder="placeholder"
       :required="required"
-      :readonly="readonly"
+      :readonly="readonly || disabled"
       :spellcheck="spellcheck"
       :value="value"
       :id="id"
@@ -74,6 +74,10 @@ export default {
       default: ""
     },
     readonly: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     },

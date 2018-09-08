@@ -49,7 +49,7 @@
             :loading="loading"
             :options="options"
             :new-item="newItem"
-            :relationship="relationship" />
+            :relation="relation" />
         </div>
       </fieldset>
       <fieldset>
@@ -142,68 +142,50 @@
 
       </fieldset>
       <fieldset>
-        <legend>Relationship</legend>
+        <legend>Relation</legend>
 
-        <div class="relationship">
+        <div class="relation">
           <div class="settings">
-            <label for="field_a">Field A</label>
+            <label for="collection_many">Collection Many</label>
             <v-input
-              id="field_a"
-              v-model="relationship.field_a"
+              id="collection_many"
+              v-model="relation.collection_many"
               type="text"
               class="value" />
           </div>
 
           <div class="settings">
-            <label for="field_b">Field B</label>
+            <label for="field_many">Field Many</label>
             <v-input
-              id="field_b"
-              v-model="relationship.field_b"
+              id="field_many"
+              v-model="relation.field_many"
               type="text"
               class="value" />
           </div>
 
           <div class="settings">
-            <label for="collection_a">Collection A</label>
+            <label for="collection_one">Collection One</label>
             <v-input
-              id="collection_a"
-              v-model="relationship.collection_a"
+              id="collection_one"
+              v-model="relation.collection_one"
               type="text"
               class="value" />
           </div>
 
           <div class="settings">
-            <label for="collection_b">Collection B</label>
+            <label for="field_one">Field One</label>
             <v-input
-              id="collection_b"
-              v-model="relationship.collection_b"
+              id="field_one"
+              v-model="relation.field_one"
               type="text"
               class="value" />
           </div>
 
           <div class="settings">
-            <label for="junction_key_a">Junction Key A</label>
+            <label for="junction_field">Junction Field</label>
             <v-input
-              id="junction_key_a"
-              v-model="relationship.junction_key_a"
-              type="text"
-              class="value" />
-          </div>
-
-          <div class="settings">
-            <label for="junction_key_b">Junction Key B</label>
-            <v-input
-              id="junction_key_b"
-              v-model="relationship.junction_key_b"
-              type="text"
-              class="value" />
-          </div>
-
-          <div class="settings">
-            <label for="junction_collection">Junction Collection</label>
-            <v-input
-              id="junction_collection"
-              v-model="relationship.junction_collection"
+              id="junction_field"
+              v-model="relation.junction_field"
               type="text"
               class="value" />
           </div>
@@ -272,14 +254,12 @@ export default {
       width: 1000,
       newItem: false,
       collection: "members",
-      relationship: {
-        field_a: "favorites",
-        field_b: "id",
-        collection_a: "members",
-        collection_b: "movies",
-        junction_key_a: "member",
-        junction_key_b: "movie",
-        junction_collection: "member_favorites"
+      relation: {
+        field_many: "favorites",
+        field_one: "members",
+        collection_many: "members",
+        collection_one: "movies",
+        junction_field: ""
       },
       customFields: {
         name: {
@@ -299,7 +279,7 @@ export default {
           options: null,
           primary_key: false,
           readonly: false,
-          relationship: null,
+          relation: null,
           required: false,
           signed: null,
           sort: "10",
@@ -325,7 +305,7 @@ export default {
           options: null,
           primary_key: false,
           readonly: false,
-          relationship: null,
+          relation: null,
           required: false,
           signed: null,
           sort: "9",
@@ -375,7 +355,7 @@ export default {
           options: this.options,
           width: this.width,
           newItem: this.newItem,
-          relationship: this.relationship,
+          relation: this.relation,
           collection: this.collection
         }
       };
@@ -485,7 +465,7 @@ output {
   display: block;
 }
 
-.relationship {
+.relation {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0 20px;

@@ -35,7 +35,7 @@
     </template>
 
     <template slot="schema" v-if="interfaceName">
-      <h1 class="style-0">{{ $t("name_field", { field: $helpers.formatTitle(interfaceName).toLowerCase() }) }}</h1>
+      <h1 class="style-0">{{ $t("name_field", { field: $helpers.formatTitle(interfaceName) }) }}</h1>
       <p>{{ $t("intelligent_defaults") }}</p>
       <form @submit.prevent class="schema">
         <div class="name">
@@ -64,6 +64,125 @@
             <label class="toggle"><v-toggle v-model="hidden_list" />{{ $t("hidden_list") }}</label>
           </div>
         </details>
+      </form>
+    </template>
+
+    <template slot="relation" v-if="selectedInterfaceInfo && relation">
+      <h1 class="style-0">{{ $t('relation_setup') }}</h1>
+      <p>{{ $t('relation_setup_copy', { relation: $t(relation) }) }}</p>
+
+      <form v-if="relation === 'm2o'" class="single">
+        <p>{{ $t('this_collection') }}</p>
+
+        <v-simple-select class="select" :value="relationInfo.collection_many" disabled>
+          <option selected :value="collectionInfo.collection">{{ collectionInfo.collection }}</option>
+        </v-simple-select>
+
+        <v-simple-select class="select" :value="relationInfo.field_many" disabled>
+          <option selected :value="field">{{ field }}</option>
+        </v-simple-select>
+
+        <i class="material-icons">arrow_backward</i>
+
+        <p>{{ $t('related_collection') }}</p>
+
+        <v-simple-select class="select" v-model="relationInfo.collection_one">
+          <option
+            v-for="({ collection }) in collections"
+            :key="collection"
+            :value="collection">{{ collection }}</option>
+        </v-simple-select>
+
+        <v-simple-select class="select" :value="primaryKeyField.field" disabled>
+          <option selected :value="primaryKeyField.field">{{ primaryKeyField.field }}</option>
+        </v-simple-select>
+      </form>
+
+      <form v-if="relation === 'o2m'" class="single">
+        <p>{{ $t('this_collection') }}</p>
+
+        <v-simple-select class="select" :value="collectionInfo.collection" disabled>
+          <option selected :value="collectionInfo.collection">{{ collectionInfo.collection }}</option>
+        </v-simple-select>
+
+        <v-simple-select class="select" :value="primaryKeyField.field" disabled>
+          <option selected :value="primaryKeyField.field">{{ primaryKeyField.field }}</option>
+        </v-simple-select>
+
+        <i class="material-icons">arrow_forward</i>
+
+        <p>{{ $t('related_collection') }}</p>
+
+        <v-simple-select class="select" v-model="relationInfo.collection_many">
+          <option
+            v-for="({ collection }) in collections"
+            :key="collection"
+            :value="collection">{{ collection }}</option>
+        </v-simple-select>
+
+        <v-simple-select class="select" v-model="relationInfo.field_many">
+          <option
+            v-for="({ field }) in fields(relationInfo.collection_many)"
+            :key="field"
+            :value="field">{{ field }}</option>
+        </v-simple-select>
+      </form>
+
+      <form v-if="relation === 'm2m'" class="full">
+        <p>{{ $t('this_collection') }}</p>
+
+        <v-simple-select class="select" :value="collectionInfo.collection" disabled>
+          <option selected :value="collectionInfo.collection">{{ collectionInfo.collection }}</option>
+        </v-simple-select>
+
+        <v-simple-select class="select" :value="primaryKeyField.field" disabled>
+          <option selected :value="primaryKeyField.field">{{ primaryKeyField.field }}</option>
+        </v-simple-select>
+
+        <i class="material-icons">arrow_forward</i>
+
+        <p>{{ $t('junction_collection') }}</p>
+
+        <v-simple-select
+          class="select"
+          :value="relationInfoM2M[0].collection_many"
+          @input="(val) => { relationInfoM2M[0].collection_many = val; relationInfoM2M[1].collection_many = val; }">
+          <option
+            v-for="({ collection }) in collections"
+            :key="collection"
+            :value="collection">{{ collection }}</option>
+        </v-simple-select>
+
+        <v-simple-select class="select" v-model="relationInfoM2M[currentM2MIndex].field_many">
+          <option
+            v-for="({ field }) in fields(relationInfoM2M[0].collection_many)"
+            :key="field"
+            :value="field">{{ field }}</option>
+        </v-simple-select>
+
+        <v-simple-select class="select" v-model="relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].field_many">
+          <option
+            v-for="({ field }) in fields(relationInfoM2M[0].collection_many)"
+            :key="field"
+            :value="field">{{ field }}</option>
+        </v-simple-select>
+
+        <i class="material-icons">arrow_backward</i>
+
+        <p>{{ $t('related_collection') }}</p>
+
+        <v-simple-select
+          class="select"
+          v-model="relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one">
+          <option
+            v-for="({ collection }) in collections"
+            :key="collection"
+            :value="collection">{{ collection }}</option>
+        </v-simple-select>
+
+        <v-simple-select class="select" :value="primaryKeyFieldByCollection(relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one).field" disabled>
+          <option selected :value="primaryKeyFieldByCollection(relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one).field">{{ primaryKeyFieldByCollection(relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one).field }}</option>
+        </v-simple-select>
       </form>
     </template>
 
@@ -125,6 +244,10 @@
 export default {
   name: "v-field-setup",
   props: {
+    collectionInfo: {
+      type: Object,
+      required: true
+    },
     fieldInfo: {
       type: Object,
       required: true
@@ -150,10 +273,45 @@ export default {
       hidden_list: false,
       length: null,
       default_value: null,
-      validation: null
+      validation: null,
+
+      relationInfo: {
+        id: null,
+        collection_many: null,
+        field_many: null,
+
+        collection_one: null,
+        field_one: null
+      },
+
+      relationInfoM2M: [
+        {
+          id: null,
+          collection_many: null,
+          field_many: null,
+
+          collection_one: null,
+          field_one: null,
+
+          junction_field: null
+        },
+        {
+          id: null,
+          collection_many: null,
+          field_many: null,
+
+          collection_one: null,
+          field_one: null,
+
+          junction_field: null
+        }
+      ]
     };
   },
   computed: {
+    collections() {
+      return this.$store.state.collections;
+    },
     interfaces() {
       return this.$store.state.extensions.interfaces;
     },
@@ -188,17 +346,19 @@ export default {
 
       return this.interfaces[this.interfaceName].datatypes;
     },
+    relation() {
+      if (!this.selectedInterfaceInfo) return null;
+      if (!this.selectedInterfaceInfo.relation == null) return null;
+      return this.selectedInterfaceInfo.relation;
+    },
     buttons() {
       let disabled = false;
-
       if (this.activeTab === "interface" && !this.interfaceName) {
         disabled = true;
       }
-
       if (this.activeTab === "schema" && !this.field) {
         disabled = true;
       }
-
       return {
         next: {
           disabled,
@@ -222,13 +382,21 @@ export default {
         }
       };
 
+      if (this.relation) {
+        tabs.relation = {
+          text: this.$t("relation"),
+          disabled: this.schemaDisabled === true || !this.field
+        };
+      }
+
       if (
         this.interfaceName &&
-        Object.keys(this.interfaces[this.interfaceName].options).length > 0
+        Object.keys(this.selectedInterfaceInfo.options).length > 0
       ) {
+        let disabled = this.schemaDisabled === true || !this.field;
         tabs.options = {
           text: this.$t("options"),
-          disabled: this.schemaDisabled === true || !this.field
+          disabled
         };
       }
 
@@ -242,10 +410,24 @@ export default {
         return true;
 
       return false;
+    },
+    primaryKeyField() {
+      return this.$lodash.find(this.collectionInfo.fields, {
+        primary_key: true
+      });
+    },
+    currentM2MIndex() {
+      const index = this.$lodash.findIndex(this.relationInfoM2M, info => {
+        return info.collection_one === this.collectionInfo.collection;
+      });
+
+      if (index === -1) return 0;
+      return index;
     }
   },
   created() {
     this.useFieldInfo();
+    this.initRelation();
   },
   watch: {
     fieldInfo() {
@@ -253,6 +435,8 @@ export default {
     },
     interfaceName() {
       this.type = Object.keys(this.availableDatatypes)[0];
+
+      this.initRelation();
     },
     field(val) {
       // Based on https://gist.github.com/mathewbyrne/1280286
@@ -264,9 +448,36 @@ export default {
         .replace(/__+/g, "_") // Replace multiple _ with single _
         .replace(/^_+/, "") // Trim _ from start of text
         .replace(/_+$/, ""); // Trim _ from end of text
+
+      if (this.relation) {
+        if (this.relation === "m2o") {
+          this.relationInfo.field_many = this.field;
+        }
+
+        if (this.relation === "o2m") {
+          this.relationInfo.field_one = this.field;
+        }
+      }
+    },
+    relationInfoM2M: {
+      deep: true,
+      handler() {
+        this.relationInfoM2M[0].junction_field = this.relationInfoM2M[1].field_many;
+        this.relationInfoM2M[1].junction_field = this.relationInfoM2M[0].field_many;
+
+        this.relationInfoM2M[this.currentM2MIndex].field_one = this.field;
+      }
     },
     type(datatype) {
       this.length = this.availableDatatypes[datatype];
+    },
+    relationInfo: {
+      deep: true,
+      handler() {
+        if (this.relation === "o2m") {
+          this.getM2OID();
+        }
+      }
     }
   },
   methods: {
@@ -276,9 +487,22 @@ export default {
           this.activeTab = "schema";
           break;
         case "schema":
-          if (this.hasOptions === false) {
-            this.saveField();
+          if (this.relation) {
+            return (this.activeTab = "relation");
           }
+
+          if (this.hasOptions === false) {
+            return this.saveField();
+          }
+
+          this.activeTab = "options";
+
+          break;
+        case "relation":
+          if (this.hasOptions === false) {
+            return this.saveField();
+          }
+
           this.activeTab = "options";
           break;
         case "options":
@@ -309,7 +533,27 @@ export default {
 
       this.saving = true;
 
-      this.$emit("save", fieldInfo);
+      const result = {
+        fieldInfo,
+        relation: null
+      };
+
+      if (this.relation) {
+        if (this.relation === "m2o") {
+          result.relation = { ...this.relationInfo };
+          delete result.relation.field_one;
+        }
+
+        if (this.relation === "o2m") {
+          result.relation = { ...this.relationInfo };
+        }
+
+        if (this.relation === "m2m") {
+          result.relation = [...this.relationInfoM2M];
+        }
+      }
+
+      this.$emit("save", result);
     },
     useFieldInfo() {
       if (!this.fieldInfo) return;
@@ -320,6 +564,161 @@ export default {
 
       // 'interface' is a reserved word in JS, so we need to work around that
       this.interfaceName = this.fieldInfo.interface;
+    },
+    initRelation() {
+      if (!this.relation) return;
+
+      const collection = this.collectionInfo.collection;
+      const field = this.field;
+
+      if (this.relation === "m2o") {
+        const existingRelation = this.$store.getters.m2o(collection, field);
+
+        if (existingRelation) {
+          this.$lodash.forEach(existingRelation, (val, key) => {
+            if (key && val && key.startsWith("collection")) {
+              return this.$set(this.relationInfo, key, val.collection);
+            }
+
+            if (key && val && key.startsWith("field")) {
+              return this.$set(this.relationInfo, key, val.field);
+            }
+
+            if (val) {
+              this.$set(this.relationInfo, key, val);
+            }
+          });
+        } else {
+          this.relationInfo.collection_many = this.collectionInfo.collection;
+          this.relationInfo.field_many = this.field;
+          this.relationInfo.collection_one = Object.values(
+            this.$store.state.collections
+          )[0].collection;
+          this.relationInfo.field_one = this.$lodash.find(
+            Object.values(this.$store.state.collections)[0].fields,
+            { primary_key: true }
+          ).field;
+        }
+      } else if (this.relation === "o2m") {
+        const existingRelation = this.$store.getters.o2m(collection, field);
+
+        if (existingRelation) {
+          this.$lodash.forEach(existingRelation, (val, key) => {
+            if (key && val && key.startsWith("collection")) {
+              return this.$set(this.relationInfo, key, val.collection);
+            }
+
+            if (key && val && key.startsWith("field")) {
+              return this.$set(this.relationInfo, key, val.field);
+            }
+
+            if (val) {
+              this.$set(this.relationInfo, key, val);
+            }
+          });
+        } else {
+          this.relationInfo.collection_one = this.collectionInfo.collection;
+          this.relationInfo.field_one = this.field;
+
+          this.relationInfo.collection_many = Object.values(
+            this.$store.state.collections
+          )[0].collection;
+
+          this.relationInfo.field_many = this.$lodash.find(
+            Object.values(this.$store.state.collections)[0].fields,
+            { primary_key: true }
+          ).field;
+
+          this.getM2OID();
+        }
+      } else if (this.relation === "m2m") {
+        const existingRelation = this.$store.getters.o2m(collection, field);
+
+        if (field && existingRelation) {
+          this.relationInfoM2M[0].id = existingRelation.id;
+
+          this.relationInfoM2M[0].collection_many =
+            existingRelation.collection_many.collection;
+
+          this.relationInfoM2M[0].field_many =
+            existingRelation.field_many.field;
+
+          this.relationInfoM2M[0].collection_one =
+            existingRelation.collection_one.collection;
+
+          this.relationInfoM2M[0].field_one = existingRelation.field_one.field;
+          this.relationInfoM2M[0].junction_field =
+            existingRelation.junction.field_many.field;
+
+          this.relationInfoM2M[1].id = existingRelation.junction.id;
+
+          this.relationInfoM2M[1].collection_many =
+            existingRelation.collection_many.collection;
+
+          this.relationInfoM2M[1].field_many =
+            existingRelation.junction.field_many.field;
+
+          this.relationInfoM2M[1].collection_one =
+            existingRelation.junction.collection_one.collection;
+
+          this.relationInfoM2M[1].field_one =
+            existingRelation.junction.field_one &&
+            existingRelation.junction.field_one.field;
+
+          this.relationInfoM2M[1].junction_field =
+            existingRelation.field_many.field;
+        } else {
+          this.relationInfoM2M[0].collection_many = Object.keys(
+            this.collections
+          )[0];
+
+          this.relationInfoM2M[0].field_many = Object.values(
+            Object.values(this.collections)[0].fields
+          )[0].field;
+
+          this.relationInfoM2M[0].collection_one = this.collectionInfo.collection;
+
+          this.relationInfoM2M[0].junction_field = Object.values(
+            Object.values(this.collections)[0].fields
+          )[1].field;
+
+          this.relationInfoM2M[1].collection_many = Object.keys(
+            this.collections
+          )[0];
+
+          this.relationInfoM2M[1].field_many = Object.values(
+            Object.values(this.collections)[0].fields
+          )[1].field;
+
+          this.relationInfoM2M[1].collection_one = Object.keys(
+            this.collections
+          )[1];
+
+          this.relationInfoM2M[1].junction_field = Object.values(
+            Object.values(this.collections)[0].fields
+          )[0].field;
+        }
+      }
+    },
+    getM2OID() {
+      const collection = this.relationInfo.collection_many;
+      const field = this.relationInfo.field_many;
+
+      const m2o = this.$store.getters.m2o(collection, field);
+
+      if (m2o) {
+        this.relationInfo.id = m2o.id;
+      } else {
+        this.relationInfo.id = null;
+      }
+    },
+    fields(collection) {
+      if (!collection) return {};
+      return this.collections[collection].fields;
+    },
+    primaryKeyFieldByCollection(collection) {
+      const fields = this.fields(collection);
+      return this.$lodash.find(fields, { primary_key: true });
     }
   }
 };
@@ -461,5 +860,116 @@ summary {
   color: var(--accent);
   vertical-align: super;
   font-size: 7px;
+}
+
+.single {
+  margin-top: 40px;
+  display: grid;
+  grid-template-areas:
+    "a _ b"
+    "c _ d"
+    "e f g";
+  grid-template-columns: 1fr 20px 1fr;
+  grid-gap: 10px 0;
+  justify-content: center;
+  align-items: center;
+
+  p:first-of-type {
+    grid-area: a;
+  }
+
+  p:last-of-type {
+    grid-area: b;
+  }
+
+  .select {
+    &:first-of-type {
+      grid-area: c;
+    }
+
+    &:nth-of-type(2) {
+      grid-area: e;
+    }
+
+    &:nth-of-type(3) {
+      grid-area: d;
+    }
+
+    &:nth-of-type(4) {
+      grid-area: g;
+    }
+  }
+
+  i {
+    grid-area: f;
+    font-size: 20px;
+    color: var(--light-gray);
+  }
+}
+
+.full {
+  margin-top: 40px;
+  display: grid;
+  grid-template-areas:
+    "a b c d e"
+    "f g h i j"
+    "k l m n o"
+    "p q r s t";
+  grid-template-columns: 1fr 20px 1fr 20px 1fr;
+  grid-gap: 10px 0;
+  justify-content: center;
+  align-items: center;
+
+  p:first-of-type {
+    grid-area: a;
+  }
+
+  p:nth-of-type(2) {
+    grid-area: c;
+  }
+
+  p:last-of-type {
+    grid-area: e;
+  }
+
+  .select {
+    &:first-of-type {
+      grid-area: f;
+    }
+
+    &:nth-of-type(2) {
+      grid-area: k;
+    }
+
+    &:nth-of-type(3) {
+      grid-area: h;
+    }
+
+    &:nth-of-type(4) {
+      grid-area: m;
+    }
+
+    &:nth-of-type(5) {
+      grid-area: r;
+    }
+
+    &:nth-of-type(6) {
+      grid-area: j;
+    }
+
+    &:nth-of-type(7) {
+      grid-area: t;
+    }
+  }
+
+  i {
+    grid-area: l;
+    font-size: 20px;
+    color: var(--light-gray);
+
+    &:last-of-type {
+      grid-area: s;
+    }
+  }
 }
 </style>

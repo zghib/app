@@ -49,6 +49,7 @@ export default {
   choose_one: "Choose one",
   choose_project: "Choose Project",
   choose_interface: "Choose an interface for how this data should be managed.",
+  clear: "Clear",
   click_to_toggle_all_none: "Click to toggle entire column on/off",
   connection: "Connection",
   collection: "Collection",
@@ -174,6 +175,7 @@ export default {
     "No Filtered Items | One Filtered Item | {count} Filtered Items",
   item_deleted: "Item Deleted",
   item_saved: "Item Saved",
+  junction_collection: "Junction Collection",
   extension_error: "There was a problem loading the {ext} extension.",
   extensions_missing: "No Extensions Found",
   extensions_missing_copy:
@@ -188,6 +190,9 @@ export default {
   loading: "Loading...",
   loading_more: "Loading more items...",
   login: "Log in",
+  m2m: "Many-to-Many (M2M)",
+  m2o: "Many-to-One (M2O)",
+  o2m: "One-to-Many (O2M)",
   name: "Name",
   name_field:
     "Let’s name this {field} field and configure how it will save data.",
@@ -255,7 +260,12 @@ export default {
   readable_fields_copy: "Select the fields that the user can view",
   readonly: "Readonly",
   regex: "RegEx",
+  relation_setup:
+    "Since this is a relational field, we need to map-out the related fields.",
+  relation_setup_copy:
+    "There are different types of relational data, this interface uses one called {relation}.",
   related_entries: "Has related entries",
+  related_collection: "Related Collection",
   remove: "Remove",
   remove_related: "Remove Related Item",
   relationship: "Relationship",
@@ -306,6 +316,7 @@ export default {
   sign_out_confirm: "Are you sure you want to sign out?",
   sign_out_confirm_edits:
     "Are you sure you want to sign out? All unsaved changes will be lost.",
+  this_collection: "This Collection",
   to: "To",
   unsaved_changes_copy:
     "You have unsaved changes! Are you sure you want to leave this page?",

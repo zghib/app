@@ -9,6 +9,7 @@ export function m2o(state, getters, { collections }) {
 
     if (result) {
       return {
+        id: result.id,
         collection_many: collections[result.collection_many],
         collection_one: collections[result.collection_one],
         field_many:
@@ -37,6 +38,7 @@ export function o2m(state, getters, { collections }) {
       );
 
       return {
+        id: result.id,
         collection_many: collections[result.collection_many],
         collection_one: collections[result.collection_one],
         field_many:
@@ -46,11 +48,17 @@ export function o2m(state, getters, { collections }) {
       };
     }
 
-    return {
-      collection_many: collections[result.collection_many],
-      collection_one: collections[result.collection_one],
-      field_many: collections[result.collection_many].fields[result.field_many],
-      field_one: collections[result.collection_one].fields[result.field_one]
-    };
+    if (result) {
+      return {
+        id: result.id,
+        collection_many: collections[result.collection_many],
+        collection_one: collections[result.collection_one],
+        field_many:
+          collections[result.collection_many].fields[result.field_many],
+        field_one: collections[result.collection_one].fields[result.field_one]
+      };
+    }
+
+    return null;
   };
 }
