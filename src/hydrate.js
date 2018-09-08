@@ -1,8 +1,10 @@
+import axios from "axios";
 import store from "./store/";
 import { loadLanguageAsync, availableLanguages } from "./lang/";
 import { STORE_HYDRATED, HYDRATING_FAILED } from "./store/mutation-types";
 import { startPolling } from "./polling";
 import startIdleTracking from "./idle";
+import { version } from "../package.json";
 
 export default function hydrateStore() {
   return (
@@ -14,7 +16,8 @@ export default function hydrateStore() {
       store.dispatch("getAllExtensions"),
       store.dispatch("getBookmarks"),
       store.dispatch("getUsers"),
-      store.dispatch("getRelations")
+      store.dispatch("getRelations"),
+      store.dispatch("getServerInfo")
     ])
       // Getting permissions relies on the current user and collection info
       // that's why it's being called after the others are done
@@ -28,15 +31,34 @@ export default function hydrateStore() {
             `var(--${customColor}-600)`
           );
         }
-
+      })
+      .then(() => {
         if (availableLanguages.includes(store.state.currentUser.locale)) {
           loadLanguageAsync(store.state.currentUser.locale);
         }
-
-        store.commit(STORE_HYDRATED, new Date());
-
+      })
+      .then(() => {
         startPolling();
         startIdleTracking(store);
+      })
+      .then(() => {
+        const isAdmin = store.state.currentUser.admin;
+
+        if (isAdmin) {
+          axios.post("https://telemetry.directus.io/count", {
+            api: {
+              version: store.state.serverInfo.apiVersion,
+              url: store.state.auth.url
+            },
+            app: {
+              version,
+              url: window.location.origin
+            }
+          });
+        }
+      })
+      .then(() => {
+        store.commit(STORE_HYDRATED, new Date());
       })
       .catch(error => {
         store.commit(HYDRATING_FAILED, error);

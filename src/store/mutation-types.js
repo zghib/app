@@ -62,6 +62,9 @@ export const UPDATE_RELATION = "❤️ Update Relation";
 // Settings
 export const SET_SETTINGS = "⚙️ Set Global Settings";
 
+// Server Info
+export const SET_SERVER_INFO = "🔮 Set Server Info";
+
 // Sidebars
 export const TOGGLE_NAV = "🎨 Toggle Nav Sidebar";
 export const TOGGLE_INFO = "🎨 Toggle Info Sidebar";
