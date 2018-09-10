@@ -543,7 +543,7 @@ select {
 
     &:focus {
       outline: 0;
-      border-color: var(--accent);
+      border-color: var(--darker-gray);
       color: var(--dark-gray);
 
       &:-webkit-autofill {
