@@ -342,9 +342,8 @@ export default {
       return enabled;
     },
     editButton() {
-      if (!this.selection) return false;
-      if (this.selection.length === 0) return false;
-      return true;
+      if (this.selection && this.selection.length > 1) return true;
+      return false;
     },
     editButtonEnabled() {
       const currentUserID = this.$store.state.currentUser.id;

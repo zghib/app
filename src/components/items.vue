@@ -145,7 +145,9 @@ export default {
       }));
     },
     selectionKeys() {
-      return this.selection.map(item => item[this.primaryKeyField]);
+      return this.$lodash.uniq(
+        this.selection.map(item => item[this.primaryKeyField])
+      );
     }
   },
   created() {
@@ -242,7 +244,14 @@ export default {
         });
     },
     select(primaryKeys) {
-      const items = [...this.items.data, ...this.selection];
+      const items = [...this.items.data];
+      const existingPKs = items.map(item => item[this.primaryKeyField]);
+
+      this.selection.forEach(item => {
+        if (existingPKs.includes(item[this.primaryKeyField]) === false) {
+          items.push(item);
+        }
+      });
 
       this.$emit(
         "select",

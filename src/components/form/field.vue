@@ -7,7 +7,7 @@
             <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
               {{ field.name || $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons" v-if="(field.required === true || field.required === '1')">star</i>
             </component>
-            <label v-if="batchMode">
+            <label v-if="batchMode" class="batch-label">
               <v-toggle
                 :value="!blocked"
                 @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" />
@@ -128,6 +128,11 @@ legend {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+label.batch-label {
+  overflow: initial;
+  display: flex;
 }
 
 fieldset,
