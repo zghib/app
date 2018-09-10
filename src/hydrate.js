@@ -45,16 +45,13 @@ export default function hydrateStore() {
         const isAdmin = store.state.currentUser.admin;
 
         if (isAdmin) {
-          axios.post("https://telemetry.directus.io/count", {
-            api: {
-              version: store.state.serverInfo.apiVersion,
-              url: store.state.auth.url
-            },
-            app: {
-              version,
-              url: window.location.origin
-            }
-          });
+          axios
+            .post("https://telemetry.directus.io/count", {
+              type: "app",
+              url: window.location.origin,
+              version
+            })
+            .catch(() => {});
         }
       })
       .then(() => {
