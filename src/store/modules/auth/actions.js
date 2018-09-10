@@ -38,7 +38,12 @@ function extractHostname(url) {
 export function login({ commit }, credentials) {
   commit(LOGIN_PENDING);
 
-  const { url } = credentials;
+  let { url } = credentials;
+
+  if (url.endsWith("/") === false) {
+    url += "/";
+  }
+
   const parts = url.split("/");
   const env = parts.pop() || parts.pop();
   const newUrl = parts.join("/");
@@ -99,8 +104,8 @@ export function loginSSO({ commit }, request_token) {
     });
 }
 
-export function refresh({ commit }, { token, url }) {
-  commit(REFRESH_TOKEN, { token, url });
+export function refresh({ commit }, { token, url, env }) {
+  commit(REFRESH_TOKEN, { token, url, env });
 }
 
 export function logout({ commit }, error) {
