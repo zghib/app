@@ -534,7 +534,10 @@ select {
 
     &:hover:not([disabled]) {
       transition: none;
-      border-color: var(--darker-gray);
+      border-color: var(--gray);
+      &:focus {
+        border-color: var(--darker-gray);
+      }
     }
 
     &[disabled] {
