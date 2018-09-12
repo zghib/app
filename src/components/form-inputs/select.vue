@@ -238,7 +238,11 @@ export default {
   select:focus ~ div,
   select:focus ~ input,
   input:focus + div,
-  input:focus {
+  input:focus,
+  select:hover:not(:disabled):focus ~ div,
+  select:hover:not(:disabled):focus ~ input,
+  input:hover:not(:disabled):focus + div,
+  input:hover:not(:disabled):focus {
     color: var(--dark-gray);
     border-color: var(--accent);
     outline: 0;
