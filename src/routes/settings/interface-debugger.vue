@@ -316,8 +316,10 @@ export default {
         }
       },
       customValues: {
+        id: 123,
         name: "Directus The Movie",
-        director: "Ben Spielberg"
+        director: "Ben Spielberg",
+        preview: null
       }
     };
   },
