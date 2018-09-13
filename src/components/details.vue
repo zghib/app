@@ -91,12 +91,9 @@ export default {
     }
   }
 
-  .content {
-    padding-bottom: 30px;
-  }
-
   &.group {
-    border: 1px solid var(--lighter-gray);
+    padding: 20px;
+    border: 2px solid var(--lightest-gray);
     border-radius: 3px;
 
     .content {
