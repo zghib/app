@@ -129,7 +129,7 @@ export default {
       if (this.permissions.directus_activity.read !== "none") {
         links.push({
           path: "/activity",
-          name: this.$t("activity"),
+          name: this.$t("my_activity"),
           icon: "notifications"
         });
       }

@@ -231,6 +231,22 @@ export default {
   },
   computed: {
     breadcrumb() {
+      if (
+        this.collection === "directus_users" &&
+        this.primaryKey == this.$store.state.currentUser.id
+      ) {
+        return [
+          {
+            name: this.$t("user_directory"),
+            path: "/collections/users"
+          },
+          {
+            name: this.$t("editing_my_profile"),
+            path: this.$route.path
+          }
+        ];
+      }
+
       if (this.singleItem) {
         return [
           {

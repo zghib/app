@@ -18,6 +18,7 @@ export const dateTimeFormats = {
 export default {
   about_directus: "About Directus",
   activity: "Activity",
+  my_activity: "My Activity",
   activity_log: "Activity Log",
   activity_outside_directus: "This item was created outside of Directus.",
   admin_email: "Admin Email",
@@ -83,6 +84,7 @@ export default {
     "Next, we need to know how to connect to the database where this project will be managed.",
   datatype: "Datatype",
   db_datatype: "{db} Datatype",
+  editing_my_profile: "Editing My Profile",
   fieldtypes: {
     alias:
       "Fields that do not save data or do not have corresponding database columns",
