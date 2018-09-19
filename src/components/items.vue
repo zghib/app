@@ -139,10 +139,12 @@ export default {
     },
     fields() {
       const fields = this.$store.state.collections[this.collection].fields;
-      return this.$lodash.mapValues(fields, field => ({
-        ...field,
-        name: this.$helpers.formatTitle(field.field)
-      }));
+      return (
+        this.$lodash.mapValues(fields, field => ({
+          ...field,
+          name: this.$helpers.formatTitle(field.field)
+        })) || {}
+      );
     },
     selectionKeys() {
       return this.$lodash.uniq(
