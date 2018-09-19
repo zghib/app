@@ -123,25 +123,62 @@ export default {
       this.$store.dispatch("loadingStart", { id });
 
       this.$api
-        .createCollection({
-          collection: this.newName,
-          hidden: 0,
-          fields: [
-            {
-              type: "integer",
-              datatype: "INT",
-              length: 15,
-              field: "id",
-              interface: "primary-key",
-              auto_increment: true,
-              primary_key: true
-            }
-          ]
-        })
+        .createCollection(
+          {
+            collection: this.newName,
+            hidden: 0,
+            fields: [
+              {
+                type: "integer",
+                datatype: "INT",
+                length: 15,
+                field: "id",
+                interface: "primary-key",
+                auto_increment: true,
+                primary_key: true
+              }
+            ]
+          },
+          {
+            fields: "*.*"
+          }
+        )
         .then(res => res.data)
         .then(collection => {
           this.$store.dispatch("loadingFinished", id);
-          this.$store.dispatch("addCollection", collection);
+          this.$store.dispatch("addCollection", {
+            ...collection,
+
+            // This should ideally be returned from the API
+            // https://github.com/directus/api/issues/207
+            fields: {
+              id: {
+                auto_increment: true,
+                collection: this.newName,
+                datatype: "INT",
+                default_value: null,
+                field: "id",
+                group: null,
+                hidden_input: true,
+                hidden_list: false,
+                interface: "primary-key",
+                length: "10",
+                locked: 0,
+                note: "",
+                options: null,
+                primary_key: true,
+                readonly: 0,
+                required: true,
+                signed: false,
+                sort: 1,
+                translation: null,
+                type: "integer",
+                unique: false,
+                validation: null,
+                view_width: 4
+              }
+            }
+          });
           this.$store.dispatch("addPermission", {
             collection: this.newName,
             permission: defaultFull
