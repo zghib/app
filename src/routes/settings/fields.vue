@@ -41,9 +41,13 @@
       </div>
       <div class="body">
         <draggable v-model="fields" @end="saveSort">
-          <div class="row" v-for="field in fields" :key="field.field" @click="startEditingField(field)">
+          <div
+            class="row"
+            v-for="field in fields"
+            :key="field.field"
+            @click="startEditingField(field)">
             <div class="drag"><i class="material-icons">drag_handle</i></div>
-            <div>{{ $helpers.formatTitle(field.field) }}</div>
+            <div v-tooltip="rowTip(field)">{{ $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons required" v-if="(field.required === true || field.required === '1')">star</i></div>
             <div>{{ ($store.state.extensions.interfaces[field.interface] && $store.state.extensions.interfaces[field.interface].name) || "--" }}</div>
             <button class="remove-field" @click.stop="warnRemoveField(field.field)"><i class="material-icons">close</i></button>
           </div>
@@ -373,6 +377,23 @@ export default {
           });
         });
     },
+    rowTip(field) {
+      if (!field.datatype) return null;
+
+      let str = "";
+
+      if (field.length) {
+        str += `${field.datatype}(${field.length}) `;
+      } else {
+        str += field.datatype;
+      }
+
+      if (field.default) {
+        str += ` - ${this.$t("default")}: ${field.default}`;
+      }
+
+      return str;
+    },
     startEditingField(field) {
       this.fieldBeingEdited = field;
       this.editingField = true;
@@ -518,9 +539,10 @@ h2 {
   .row {
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--lightest-gray);
 
     > div {
-      padding: 3px 5px;
+      padding: 5px 5px;
 
       &:not(.drag) {
         flex-basis: 200px;
@@ -535,6 +557,12 @@ h2 {
 
       &:hover {
         background-color: var(--highlight);
+      }
+
+      .required {
+        color: var(--accent);
+        vertical-align: super;
+        font-size: 7px;
       }
     }
 

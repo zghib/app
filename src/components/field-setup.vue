@@ -66,7 +66,7 @@
             <small class="description">{{ selectedDatatypeInfo && selectedDatatypeInfo.description }}</small>
             <label>{{ $t("default") }} <v-input type="text" v-model="default_value" placeholder="NULL"/></label>
             <label>{{ $t("length") }} <v-input
-              :type="selectedDatatypeInfo.decimal ? 'string' : 'number'"
+              :type="selectedDatatypeInfo && selectedDatatypeInfo.decimal ? 'string' : 'number'"
               @input="length = $event"
               :value="lengthDisabled ? null : length"
               :disabled="lengthDisabled" /></label>
@@ -504,7 +504,7 @@ export default {
         this.length = this.selectedDatatypeInfo.defaultLength;
       }
 
-      if (this.selectedDatatypeInfo.decimal) {
+      if (this.selectedDatatypeInfo && this.selectedDatatypeInfo.decimal) {
         this.length =
           this.selectedDatatypeInfo.defaultDigits +
           "," +
