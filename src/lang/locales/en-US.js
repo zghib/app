@@ -378,7 +378,7 @@ export default {
   server_trouble: "Server Trouble",
   server_trouble_copy:
     "Try again later or contact your system administrator help.",
-  show_advanced_options: "Show advanced options",
+  advanced_options: "Toggle advanced options",
   show_directus_collections: "Show Directus System Collections",
   something_went_wrong: "Something went wrong..",
   something_went_wrong_body:
