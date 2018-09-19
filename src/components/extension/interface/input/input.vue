@@ -97,7 +97,7 @@ export default {
     },
     typeOrDefault() {
       if (!this.interface) return null;
-      return this.type ? this.type : this.interface.types[0];
+      return this.type ? this.type : this.interface && this.interface.types[0];
     },
     optionsWithDefaults() {
       if (!this.interface) return {};
