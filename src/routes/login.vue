@@ -417,7 +417,7 @@ export default {
       const newUrl = parts.join("/");
 
       this.$axios
-        .post(newUrl + "/instances", info)
+        .post(newUrl + "/projects", info)
         .then(() => {
           this.installing = false;
           this.exists = true;
