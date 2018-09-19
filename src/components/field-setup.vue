@@ -9,8 +9,10 @@
     @close="$emit('close')">
 
     <template slot="interface">
-      <h1 class="style-0">{{ $t("choose_interface") }}</h1>
-      <p v-if="interfaceName">
+      <template v-if="!existing">
+        <h1 class="style-0">{{ $t("choose_interface") }}</h1>
+      </template>
+      <p v-if="interfaceName" class="currently-selected">
         {{ $t("currently_selected", { thing: interfaces[interfaceName].name}) }}
       </p>
       <p v-else>
@@ -35,16 +37,18 @@
     </template>
 
     <template slot="schema" v-if="interfaceName">
-      <h1 class="style-0">{{ $t("name_field", { field: $helpers.formatTitle(interfaceName) }) }}</h1>
-      <p>{{ $t("intelligent_defaults") }}</p>
+      <template v-if="!existing">
+        <h1 class="style-0">{{ $t("name_field", { field: $helpers.formatTitle(interfaceName) }) }}</h1>
+        <p>{{ $t("intelligent_defaults") }}</p>
+      </template>
       <form @submit.prevent class="schema">
         <div class="name">
-          <label>{{ $t("name") }}<i v-tooltip="$t('required')" class="material-icons required">star</i> <v-input type="text" v-model="field" :placeholder="$t('db_name')" /></label>
+          <label>{{ $t("name") }}<i v-tooltip="$t('required')" class="material-icons required">star</i> <v-input type="text" v-model="field" :placeholder="$t('db_name')" class="name-input" :disabled="existing" /></label>
           <label>{{ $t("display_name") }} <v-input type="text" disabled :value="displayName" :placeholder="$t('auto_generated')" /></label>
         </div>
         <label>{{ $t("note") }} <v-input type="text" v-model="note" :placeholder="$t('add_note')" /></label>
-        <details class="advanced">
-          <summary>{{ $t("show_advanced_options") }}</summary>
+        <details class="advanced" :open="existing">
+          <summary>{{ $t("advanced_options") }}</summary>
           <div class="advanced-form">
             <label>
               {{ $t("field_type") }}
@@ -83,8 +87,10 @@
     </template>
 
     <template slot="relation" v-if="selectedInterfaceInfo && relation">
-      <h1 class="style-0">{{ $t('relation_setup') }}</h1>
-      <p>{{ $t('relation_setup_copy', { relation: $t(relation) }) }}</p>
+      <template v-if="!existing">
+        <h1 class="style-0">{{ $t('relation_setup') }}</h1>
+        <p>{{ $t('relation_setup_copy', { relation: $t(relation) }) }}</p>
+      </template>
 
       <form v-if="relation === 'm2o'" class="single">
         <p>{{ $t('this_collection') }}</p>
@@ -202,8 +208,10 @@
     </template>
 
     <template slot="options">
-      <h1 class="style-0">{{ $t('almost_done_options') }}</h1>
-      <p>{{ $t('almost_done_copy') }}</p>
+      <template v-if="!existing">
+        <h1 class="style-0">{{ $t('almost_done_options') }}</h1>
+        <p>{{ $t('almost_done_copy') }}</p>
+      </template>
       <form @submit.prevent v-if="selectedInterfaceInfo" class="options">
         <div
           v-for="(option, optionID) in interfaceOptions.regular"
@@ -226,8 +234,8 @@
             @input="$set(options, optionID, $event)" />
         </div>
 
-        <details v-if="Object.keys(interfaceOptions.advanced).length > 0" class="advanced">
-          <summary>{{ $t("show_advanced_options") }}</summary>
+        <details v-if="Object.keys(interfaceOptions.advanced).length > 0" class="advanced" :open="existing">
+          <summary>{{ $t("advanced_options") }}</summary>
           <div
             v-for="(option, optionID) in interfaceOptions.advanced"
             class="options"
@@ -351,6 +359,9 @@ export default {
       );
 
       return { regular, advanced };
+    },
+    existing() {
+      return this.id !== null;
     },
     schemaDisabled() {
       return !(this.interfaceName && this.interfaceName.length > 0);
@@ -481,6 +492,8 @@ export default {
   created() {
     this.useFieldInfo();
     this.initRelation();
+
+    this.activeTab = this.existing ? "schema" : "interface";
   },
   watch: {
     fieldInfo() {
@@ -806,6 +819,11 @@ p {
   max-width: 70%;
 }
 
+.currently-selected {
+  color: var(--accent);
+  font-size: 1.25em;
+}
+
 .interfaces {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -881,6 +899,10 @@ form.schema {
     margin-bottom: 20px;
   }
 
+  .name-input {
+    font-family: "Roboto Mono", monospace;
+  }
+
   .advanced-form,
   .name {
     display: grid;
@@ -913,19 +935,32 @@ form.options {
   }
 }
 
-summary {
-  color: var(--accent);
-  cursor: pointer;
-  text-align: center;
-  margin: 30px 0;
-  text-transform: capitalize;
+details {
+  summary {
+    color: var(--accent);
+    cursor: pointer;
+    text-align: center;
+    margin: 30px 0;
+    text-transform: capitalize;
 
-  &:hover {
-    color: var(--accent-dark);
+    &:hover {
+      color: var(--accent-dark);
+    }
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "arrow_left";
+      font-family: "Material Icons";
+      font-size: 18px;
+      vertical-align: -18%;
+    }
   }
 
-  &::-webkit-details-marker {
-    display: none;
+  &[open] summary::after {
+    content: "arrow_drop_down";
   }
 }
 
