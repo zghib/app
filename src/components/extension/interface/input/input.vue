@@ -1,9 +1,9 @@
 <template>
   <component
     :is="componentName"
-    :input-name="id"
     :name="name"
     :id="name"
+    :input-name="id"
     :value="value"
     :type="typeOrDefault"
     :length="length"

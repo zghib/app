@@ -13,13 +13,25 @@ export default {
       type: null,
       default: ""
     },
-    interfaceName: {
+    inputName: {
+      type: String,
+      default: ""
+    },
+    name: {
       type: String,
       default: ""
     }
   },
   created() {
-    this.$notify.alert(this.$t("extension_error", { ext: this.inputName }));
+    if (this.inputName == null) {
+      this.$notify.alert(
+        this.$t("no_interface_error", {
+          field: this.$helpers.formatTitle(this.name)
+        })
+      );
+    } else {
+      this.$notify.alert(this.$t("extension_error", { ext: this.inputName }));
+    }
   }
 };
 </script>

@@ -296,6 +296,7 @@ export default {
   not_empty: "Is not empty",
   not_equal_to: "Not equal to",
   not_in_list: "Not one of these",
+  no_interface_error: "Field {field} doesn't have an interface setup",
   manage: "Manage",
   max_size: "Max. Size: {size}",
   dont_manage: "Don't Manage",
