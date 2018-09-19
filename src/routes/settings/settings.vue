@@ -3,7 +3,7 @@
     <v-header :breadcrumb="links" />
 
     <v-details
-      :title="$t('settings_interface')"
+      :title="$t('settings_project')"
       type="break"
       open>
 
@@ -63,6 +63,13 @@
             element="li"
             to="/activity"
             icon="warning" />
+
+          <v-card
+            :title="$t('report_issue')"
+            :subtitle="$t('open_on_gh')"
+            element="li"
+            href="https://github.com/directus/app/issues/new/choose"
+            icon="bug_report" />
         </ul>
       </nav>
     </v-details>

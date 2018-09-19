@@ -6,7 +6,8 @@
     <component
       :is="wrapperTag"
       :to="to"
-      :href="href">
+      :href="href"
+      target="__blank">
       <div
         v-if="src || icon || $slots.icon"
         :style="{ backgroundColor: `var(--${color})` }"
