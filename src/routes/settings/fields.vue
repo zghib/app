@@ -518,9 +518,10 @@ h2 {
   .row {
     display: flex;
     align-items: center;
+    border-bottom: 1px solid var(--lightest-gray);
 
     > div {
-      padding: 3px 5px;
+      padding: 5px 5px;
 
       &:not(.drag) {
         flex-basis: 200px;
