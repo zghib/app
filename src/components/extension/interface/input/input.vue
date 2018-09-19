@@ -6,7 +6,7 @@
     :id="name"
     :value="value"
     :type="typeOrDefault"
-    :length="lengthOrDefault"
+    :length="length"
     :readonly="readonly"
     :required="required"
     :loading="loading"
@@ -97,13 +97,7 @@ export default {
     },
     typeOrDefault() {
       if (!this.interface) return null;
-      return this.type ? this.type : Object.keys(this.interface.datatypes)[0];
-    },
-    lengthOrDefault() {
-      if (!this.interface) return null;
-      return this.length
-        ? this.length
-        : this.interface.datatypes[this.typeOrDefault];
+      return this.type ? this.type : this.interface.types[0];
     },
     optionsWithDefaults() {
       if (!this.interface) return {};

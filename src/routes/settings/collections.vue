@@ -128,12 +128,13 @@ export default {
           hidden: 0,
           fields: [
             {
-              type: "INT",
+              type: "integer",
+              datatype: "INT",
+              length: 15,
               field: "id",
               interface: "primary-key",
               auto_increment: true,
-              primary_key: true,
-              length: 15
+              primary_key: true
             }
           ]
         })

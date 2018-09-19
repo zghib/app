@@ -82,6 +82,77 @@ export default {
   database_connection_copy:
     "Next, we need to know how to connect to the database where this project will be managed.",
   datatype: "Datatype",
+  db_datatype: "{db} Datatype",
+  fieldtypes: {
+    alias:
+      "Fields that do not save data or do not have corresponding database columns",
+    array: "Standard array format in API response",
+    boolean: "true or false",
+    datetime: "A date and time in ISO format, eg: 2018-09-19T14:00:43.381Z",
+    date: "Date, eg: 2018-09-19",
+    time: "Time, eg: 14:09:22",
+    file: "Foreign key to directus_files.id",
+    group:
+      "Groups fields together visually, children save group into directus_fields.group",
+    integer: "Whole number",
+    decimal: "Number that includes a decimal",
+    json: "Standard JSON format in API response",
+    lang: "Specific to translation interfaces, this stores the language key",
+    m2o: "Many-to-One Relationship",
+    o2m: "One-to-Many Relationship",
+    sort: "System field used in drag-and-drop item reordering",
+    status: "System field used for publishing workflows",
+    string: "Any text or characters, defined and limited by the length",
+    translation:
+      "Specific to translation interfaces, this o2m is stores multi-lingual content",
+    uuid: "A Universally Unique Identifier",
+    datetime_created:
+      "System field to track the datetime an item was created, used by revisions",
+    datetime_updated:
+      "System field to track the datetime an item was updated, used by revisions",
+    user_created:
+      "System field to track the user who created an item, used by revisions",
+    user_updated:
+      "System field to track the user who updated an item, used by revisions"
+  },
+  datatypes: {
+    mysql: {
+      CHAR:
+        "A fixed-length non-binary string right-padded with spaces. Length can be 0 to 255 characters.",
+      VARCHAR:
+        "A variable-length non-binary string. Length can be 0 to 65,535 characters (MySQL 5.0.3+).",
+      TINYTEXT: "A string with a max length of 255 characters.",
+      TEXT: "A string with a max length of 65,535 characters.",
+      MEDIUMTEXT: "A string with a max length of 16,777,215 characters.",
+      LONGTEXT: "A string with a max length of 4,294,967,295 characters.",
+
+      TINYINT:
+        "An integer. When signed (allows negative) length is -128 to 127, otherwise the max is 255.",
+      SMALLINT:
+        "An integer. When signed (allows negative) length is -32,768 to 32,767, otherwise the max is 65,535.",
+      MEDIUMINT:
+        "An integer. When signed (allows negative) length is -8,388,608 to 8,388,607, otherwise the max is 16,777,215.",
+      INT:
+        "An integer. When signed (allows negative) length is -2,147,483,648 to 2,147,483,647, otherwise the max is 4,294,967,295.",
+      BIGINT:
+        "An integer. When signed (allows negative) length is -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807, otherwise the max is 18,446,744,073,709,551,615.",
+
+      DECIMAL:
+        "An accurate number (eg: for currency), with 1 to 65 digits length (L) and 0 to 30 digits decimal (D). Length format: `L,D`",
+      FLOAT:
+        "An approximate binary number, 4 bytes with a floating decimal point.",
+      DOUBLE:
+        "An approximate binary number, 8 bytes with a floating decimal point.",
+
+      DATE: "A date. Allows `1000-01-01` to `9999-12-31`.",
+      DATETIME:
+        "A date and time. Allows `1000-01-01 00:00:00` to `9999-12-31 23:59:59`.",
+      TIMESTAMP:
+        "A date and time. Allows `1970-01-01 00:00:01` UTC to `2038-01-19 03:14:07` UTC.",
+      TIME: "A time. Allows `-838:59:59` to `838:59:59`.",
+      YEAR: "A year. Allows `1901` to `2155` or `0000`"
+    }
+  },
   db_user: "Database User",
   db_password: "Database User Password",
   db_name: "Database Name",
@@ -134,6 +205,7 @@ export default {
   existing: "Existing",
   fetching_data: "Fetching Data",
   field: "Field",
+  field_type: "Field Type",
   field_created: "{field} Field Created",
   field_updated: "{field} Field Updated",
   field_removed: "{field} Field Removed",

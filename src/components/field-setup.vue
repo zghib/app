@@ -47,16 +47,31 @@
           <summary>{{ $t("show_advanced_options") }}</summary>
           <div class="advanced-form">
             <label>
-              {{ $t("datatype") }}
+              {{ $t("field_type") }}
               <v-simple-select v-model="type">
-                <option v-for="(defaultLength, datatype) in availableDatatypes" :key="datatype" :value="datatype">
-                  {{ datatype }}
+                <option v-for="type in availableFieldTypes" :key="type" :value="type">
+                  {{ $helpers.formatTitle(type) }}
                 </option>
               </v-simple-select>
             </label>
-            <label>{{ $t("length") }} <v-input type="number" v-model="length" /></label>
+            <small class="description">{{ fieldTypeDescription }}</small>
+            <label>
+              {{ $t("db_datatype", { db: $helpers.formatTitle(databaseVendor) }) }}
+              <v-simple-select v-model="datatype">
+                <option v-for="type in availableDatatypes" :key="type" :value="type">
+                  {{ type }}
+                </option>
+              </v-simple-select>
+            </label>
+            <small class="description">{{ selectedDatatypeInfo && selectedDatatypeInfo.description }}</small>
             <label>{{ $t("default") }} <v-input type="text" v-model="default_value" placeholder="NULL"/></label>
+            <label>{{ $t("length") }} <v-input
+              :type="selectedDatatypeInfo.decimal ? 'string' : 'number'"
+              @input="length = $event"
+              :value="lengthDisabled ? null : length"
+              :disabled="lengthDisabled" /></label>
             <label>{{ $t("validation") }} <v-input type="text" v-model="validation" :placeholder="$t('regex')"/></label>
+            <div />
             <label class="toggle"><v-toggle v-model="required" /> {{ $t("required") }} </label>
             <label class="toggle"><v-toggle v-model="readonly" /> {{ $t("readonly") }} </label>
             <label class="toggle"><v-toggle v-model="unique" /> {{ $t("unique") }}</label>
@@ -241,6 +256,8 @@
 </template>
 
 <script>
+import mapping, { datatypes } from "../type-map";
+
 export default {
   name: "v-field-setup",
   props: {
@@ -261,6 +278,7 @@ export default {
       saving: false,
 
       field: null,
+      datatype: null,
       type: null,
       interfaceName: null,
       options: {},
@@ -315,6 +333,9 @@ export default {
     interfaces() {
       return this.$store.state.extensions.interfaces;
     },
+    databaseVendor() {
+      return this.$store.state.serverInfo.databaseVendor;
+    },
     selectedInterfaceInfo() {
       if (!this.interfaceName) return null;
 
@@ -341,10 +362,42 @@ export default {
       if (!this.field) return "";
       return this.$helpers.formatTitle(this.field);
     },
+    availableFieldTypes() {
+      if (!this.interfaceName) return [];
+      return (
+        (this.interfaces[this.interfaceName] &&
+          this.interfaces[this.interfaceName].types) ||
+        []
+      );
+    },
     availableDatatypes() {
-      if (!this.interfaceName) return {};
+      if (!this.type) return [];
+      if (this.availableFieldTypes.length === 0) return [];
+      return mapping[this.type][this.databaseVendor].datatypes;
+    },
+    selectedDatatypeInfo() {
+      return datatypes[this.databaseVendor][this.datatype];
+    },
+    fieldTypeDescription() {
+      if (!this.type) return null;
+      return mapping[this.type].description;
+    },
+    lengthDisabled() {
+      if (
+        this.selectedDatatypeInfo &&
+        this.selectedDatatypeInfo.length === true
+      ) {
+        return false;
+      }
 
-      return this.interfaces[this.interfaceName].datatypes;
+      if (
+        this.selectedDatatypeInfo &&
+        this.selectedDatatypeInfo.decimal === true
+      ) {
+        return false;
+      }
+
+      return true;
     },
     relation() {
       if (!this.selectedInterfaceInfo) return null;
@@ -434,9 +487,29 @@ export default {
       this.useFieldInfo();
     },
     interfaceName() {
-      this.type = Object.keys(this.availableDatatypes)[0];
+      this.type = this.availableFieldTypes[0];
+      this.datatype = this.type
+        ? mapping[this.type][this.databaseVendor].default
+        : null;
 
       this.initRelation();
+    },
+    type(type) {
+      if (type) {
+        this.datatype = mapping[type][this.databaseVendor].default;
+      }
+    },
+    datatype() {
+      if (this.selectedDatatypeInfo.length) {
+        this.length = this.selectedDatatypeInfo.defaultLength;
+      }
+
+      if (this.selectedDatatypeInfo.decimal) {
+        this.length =
+          this.selectedDatatypeInfo.defaultDigits +
+          "," +
+          this.selectedDatatypeInfo.defaultDecimals;
+      }
     },
     field(val) {
       // Based on https://gist.github.com/mathewbyrne/1280286
@@ -467,9 +540,6 @@ export default {
 
         this.relationInfoM2M[this.currentM2MIndex].field_one = this.field;
       }
-    },
-    type(datatype) {
-      this.length = this.availableDatatypes[datatype];
     },
     relationInfo: {
       deep: true,
@@ -517,6 +587,7 @@ export default {
         sort: this.sort,
         field: this.field,
         type: this.type,
+        datatype: this.datatype,
         interface: this.interfaceName,
         default_value: this.default_value,
         options: this.options,
@@ -815,6 +886,13 @@ form.schema {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: 1fr 1fr;
+
+    .description {
+      padding-top: 24px;
+      font-style: italic;
+      font-size: 12px;
+      color: var(--gray);
+    }
 
     .toggle {
       display: flex;
