@@ -295,6 +295,7 @@ export default {
   not_equal_to: "Not equal to",
   not_in_list: "Not one of these",
   manage: "Manage",
+  max_size: "Max. Size: {size}",
   dont_manage: "Don't Manage",
   dont_manage_copy:
     "Privileges, preferences, and settings for the {collection} collection will be permanently removed from the system! Are you sure?",

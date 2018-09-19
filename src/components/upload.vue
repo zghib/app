@@ -13,7 +13,7 @@
       </div>
       <div class="info">
         <p class="name">{{ $t('drop_files') }}</p>
-        <p class="file-info no-wrap">100MB, Images only or whatever</p>
+        <p class="file-info no-wrap">{{ $t("max_size", { size: $helpers.filesize($store.state.serverInfo.maxUploadSize) }) }}</p>
       </div>
       <div class="buttons">
         <i
