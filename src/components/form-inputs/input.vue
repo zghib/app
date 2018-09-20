@@ -178,10 +178,6 @@ export default {
       outline: 0;
     }
 
-    &:focus:not(:read-only) ~ i {
-      color: var(--light-gray);
-    }
-
     &:-webkit-autofill {
       box-shadow: inset 0 0 0 1000px var(--white) !important;
       color: var(--dark-gray) !important;
