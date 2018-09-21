@@ -26,7 +26,6 @@
 
 <style lang="scss" scoped>
 .header {
-  // border-bottom: 1px solid var(--lightest-gray);
   height: 60px;
   .row {
     display: flex;
