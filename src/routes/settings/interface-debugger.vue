@@ -253,7 +253,7 @@ export default {
       required: false,
       loading: false,
       options: {},
-      width: 1000,
+      width: 2000,
       newItem: false,
       collection: "members",
       relation: {
