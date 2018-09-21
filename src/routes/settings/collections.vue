@@ -181,7 +181,10 @@ export default {
           });
           this.$store.dispatch("addPermission", {
             collection: this.newName,
-            permission: defaultFull
+            permission: {
+              $create: defaultFull,
+              ...defaultFull
+            }
           });
           this.$router.push(`/settings/collections/${this.newName}`);
         })
