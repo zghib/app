@@ -1,10 +1,10 @@
 <template>
-  <div class="v-permissions loading" v-if="loading">
+  <div class="v-permissions interface loading" v-if="loading">
     <v-spinner
       line-fg-color="var(--light-gray)"
       line-bg-color="var(--lighter-gray)" />
   </div>
-  <div v-else>
+  <div v-else class="interface">
     <div class="v-permissions">
       <v-permissions-header @toggle-all="toggleAll" />
 
@@ -144,16 +144,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.interface {
+  margin-bottom: 40px;
+}
 .v-permissions {
   background-color: var(--white);
   border-radius: var(--border-radius);
   border: var(--input-border-width) solid var(--lighter-gray);
   max-width: 1100px;
 
-  /deep/ .row {
+  /deep/ .body .row {
     display: flex;
     align-items: center;
     padding: 10px;
+    height: 40px;
 
     &.sub {
       &::before {
@@ -173,6 +177,7 @@ export default {
     &:not(.sub) {
       border-top: 1px solid var(--lightest-gray);
     }
+
   }
 
   /deep/ .cell {

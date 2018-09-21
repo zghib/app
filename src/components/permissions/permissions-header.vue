@@ -26,7 +26,14 @@
 
 <style lang="scss" scoped>
 .header {
-  border-bottom: 1px solid var(--lightest-gray);
+  // border-bottom: 1px solid var(--lightest-gray);
+  height: 60px;
+  .row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 60px;
+  }
 
   .cell {
     text-transform: uppercase;

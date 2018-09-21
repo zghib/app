@@ -32,7 +32,7 @@
     </v-header>
 
     <template v-if="$route.params.id != 1">
-      <h2 class="style-1">{{ $t("permissions") }}</h2>
+      <label>{{ $t("permissions") }}</label>
       <v-permissions
         :loading="!(permissions && statuses)"
         :permissions="permissions"
@@ -41,7 +41,6 @@
         @input="setPermission" />
     </template>
 
-    <h2 class="style-1">{{ $t("role_settings") }}</h2>
     <v-form
       v-if="fields && role"
       :fields="fields"
@@ -511,6 +510,18 @@ export default {
 .settings-permissions {
   padding: var(--page-padding);
   padding-bottom: var(--page-padding-bottom);
+}
+
+label {
+  margin-bottom: 10px;
+  text-transform: none;
+  color: var(--darker-gray);
+  font-size: 1.2rem;
+  line-height: 1.1;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 h2 {
