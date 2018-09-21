@@ -224,7 +224,9 @@ export default {
   select:disabled ~ input,
   input:disabled + div,
   input:disabled {
-    background-color: var(--body-background);
+    background-color: var(--lightest-gray);
+    border-color: var(--lighter-gray);
+    cursor: not-allowed;
   }
 
   select:hover:not(:disabled) ~ div,
