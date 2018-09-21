@@ -37,7 +37,7 @@
 
         <v-header-button
           v-else-if="isNew ? permission.create !== 'none' : permission.update !== 'none'"
-          :disabled="!editing && !invalid"
+          :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
           :options="{
