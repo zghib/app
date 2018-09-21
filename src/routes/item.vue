@@ -37,7 +37,7 @@
 
         <v-header-button
           v-else-if="isNew ? permission.create !== 'none' : permission.update !== 'none'"
-          :disabled="!editing"
+          :disabled="!editing && !invalid"
           :loading="saving"
           :label="$t('save')"
           :options="{
@@ -503,7 +503,7 @@ export default {
           .catch(error => {
             this.$store.dispatch("loadingFinished", id);
             this.$events.emit("error", {
-              notify: this.$t("something_went_wrong_body"),
+              notify: error.message || this.$t("something_went_wrong_body"),
               error
             });
           });
@@ -560,7 +560,7 @@ export default {
           this.$store.dispatch("loadingFinished", id);
 
           this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
+            notify: error.message || this.$t("something_went_wrong_body"),
             error
           });
         });
