@@ -140,7 +140,12 @@ export default {
     },
     isReadonly(field) {
       if (this.readonly) return true;
-      if (field.readonly === true || field.readonly === "1") return true;
+      if (
+        field.readonly === true ||
+        field.readonly === "1" ||
+        field.readonly === 1
+      )
+        return true;
       if (this.permissions.write_field_blacklist.includes(field.field))
         return true;
 
