@@ -93,6 +93,16 @@ textarea {
     color: var(--lighter-gray);
   }
 
+  &:read-only {
+    background-color: var(--lightest-gray);
+    border-color: var(--lighter-gray);
+    cursor: not-allowed;
+    &:focus {
+      color: var(--gray);
+      border-color: var(--lighter-gray);
+    }
+  }
+
   &:hover:not(:read-only) {
     transition: none;
     border-color: var(--light-gray);
