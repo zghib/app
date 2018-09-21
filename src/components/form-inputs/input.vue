@@ -112,7 +112,7 @@ export default {
     },
     iconRightColor: {
       type: String,
-      default: "accent"
+      default: null
     },
     valid: {
       type: Boolean,
