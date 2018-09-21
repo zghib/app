@@ -212,7 +212,7 @@ export default {
   field_updated: "{field} Field Updated",
   field_removed: "{field} Field Removed",
   fields: "Fields",
-  fields_are_saved_automatically: "Field settings are saved automatically",
+  fields_are_saved_instantly: "All changes to fields are saved instantly",
   file: "File",
   file_library: "File Library",
   file_upload: "Upload File(s)",

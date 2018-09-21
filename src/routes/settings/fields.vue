@@ -20,16 +20,8 @@
       </template>
     </v-header>
 
-    <label class="label">Collection Name</label>
-    <v-input
-      type="text"
-      class="normal"
-      :value="$helpers.formatTitle(collection) || ''"
-      :readonly="true" />
-    <em class="note">{{ $t('collection_names_cannot_be_changed') }}</em>
-
     <label class="label">{{ $t('fields') }}</label>
-    <em class="notice">{{ $t('fields_are_saved_automatically') }}</em>
+    <em class="notice">{{ $t('fields_are_saved_instantly') }}</em>
 
     <div class="table">
       <div class="header">
@@ -533,13 +525,16 @@ h2 {
     font-size: 10px;
     text-transform: uppercase;
     font-weight: 700;
-    border-bottom: 1px solid var(--lighter-gray);
+    border-bottom: 1px solid var(--lightest-gray);
+    height: 60px;
+    .row {
+      height: 60px;
+    }
   }
 
   .row {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--lightest-gray);
 
     > div {
       padding: 5px 5px;
@@ -554,6 +549,12 @@ h2 {
     .row {
       cursor: pointer;
       position: relative;
+      height: 40px;
+      border-bottom: 1px solid var(--lightest-gray);
+
+      &:last-of-type {
+        border-bottom: none;
+      }
 
       &:hover {
         background-color: var(--highlight);
