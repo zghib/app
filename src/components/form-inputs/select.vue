@@ -4,7 +4,7 @@
     class="v-select">
     <select
       v-if="other"
-      :disabled="disabled"
+      :disabled="disabled || readonly"
       :id="otherActive ? null : id"
       :value="value"
       @change="change($event.target.value)">
@@ -25,7 +25,7 @@
     <select
       v-else
       ref="select"
-      :disabled="disabled"
+      :disabled="disabled || readonly"
       :id="otherActive ? null : id"
       :value="value"
       @change="change($event.target.value)">
@@ -70,6 +70,10 @@ export default {
   name: "v-select",
   props: {
     disabled: {
+      type: Boolean,
+      default: false
+    },
+    readonly: {
       type: Boolean,
       default: false
     },
