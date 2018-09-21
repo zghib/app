@@ -50,19 +50,19 @@ export default {
       default: false
     },
     max: {
-      type: [Number, Boolean],
+      type: [Number, Boolean, String],
       default: false
     },
     maxlength: {
-      type: [Number, Boolean],
+      type: [Number, Boolean, String],
       default: false
     },
     min: {
-      type: [Number, Boolean],
+      type: [Number, Boolean, String],
       default: false
     },
     minlength: {
-      type: [Number, Boolean],
+      type: [Number, Boolean, String],
       default: false
     },
     name: {

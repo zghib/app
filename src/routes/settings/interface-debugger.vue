@@ -83,7 +83,7 @@
             class="small"
             v-model="type">
             <option
-              v-for="(length, type) in extension.datatypes"
+              v-for="type in extension.types"
               :key="type"
               :value="type"
             >{{ type }}</option>
@@ -229,6 +229,8 @@
 </template>
 
 <script>
+import mapping, { datatypes } from "../../type-map";
+
 export default {
   name: "interface-debugger",
   metaInfo() {
@@ -373,8 +375,17 @@ export default {
     id() {
       this.hydrate();
     },
-    type() {
-      this.length = this.extension.datatypes[this.type];
+    type(type) {
+      if (type) {
+        const { databaseVendor } = this.$store.state.serverInfo;
+        const dbType = mapping[this.type][databaseVendor].default;
+
+        const dbTypeInfo = datatypes[databaseVendor][dbType];
+
+        if (dbTypeInfo.length) {
+          this.length = dbTypeInfo.defaultLength;
+        }
+      }
     }
   },
   created() {
@@ -383,7 +394,7 @@ export default {
   methods: {
     hydrate() {
       // Set type to the first datatype available in the meta info
-      this.type = Object.keys(this.extension.datatypes)[0];
+      this.type = this.extension.types[0];
 
       // Populate the options with the default values
       const defaults = this.$lodash.mapValues(
