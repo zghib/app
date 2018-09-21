@@ -399,8 +399,9 @@ export default {
       // Populate the options with the default values
       const defaults = this.$lodash.mapValues(
         this.extension.options,
-        settings => settings.default || null
+        settings => (settings.default === undefined ? null : settings.default)
       );
+
       this.options = defaults;
     }
   }
