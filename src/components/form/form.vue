@@ -118,7 +118,7 @@ export default {
 
       return result.filter(
         field => field.hidden_input === false || field.hidden_input === "0"
-      );
+      ).sort((a, b) => a.sort > b.sort ? 1 : -1);
     }
   },
   methods: {
