@@ -231,17 +231,35 @@ export default {
   },
   computed: {
     breadcrumb() {
-      if (
-        this.collection === "directus_users" &&
-        this.primaryKey == this.$store.state.currentUser.id
-      ) {
+      if (this.collection === "directus_users") {
+
+        let crumbName = this.$t("editing_item");
+        if (this.primaryKey == this.$store.state.currentUser.id) {
+          crumbName = this.$t("editing_my_profile");
+        } else if (this.newItem){
+          crumbName = this.$t("creating_item");
+        }
+
         return [
           {
             name: this.$t("user_directory"),
-            path: "/collections/users"
+            path: "/users"
           },
           {
-            name: this.$t("editing_my_profile"),
+            name: crumbName,
+            path: this.$route.path
+          }
+        ];
+      }
+
+      if (this.collection === "directus_files") {
+        return [
+          {
+            name: this.$t("file_library"),
+            path: "/files"
+          },
+          {
+            name: this.newItem ? this.$t("creating_item") : this.$t("editing_item"),
             path: this.$route.path
           }
         ];

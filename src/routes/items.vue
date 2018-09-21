@@ -144,6 +144,24 @@ export default {
   },
   computed: {
     breadcrumb() {
+      if (this.collection === "directus_users") {
+        return [
+          {
+            name: this.$t("user_directory"),
+            path: "/users"
+          }
+        ];
+      }
+
+      if (this.collection === "directus_files") {
+        return [
+          {
+            name: this.$t("file_library"),
+            path: "/files"
+          }
+        ];
+      }
+
       const breadcrumb = [];
 
       if (this.collection.startsWith("directus_")) {

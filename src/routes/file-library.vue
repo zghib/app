@@ -1,7 +1,7 @@
 <template>
   <v-not-found v-if="notFound" />
   <div class="route-file-library" v-else>
-    <v-header info-toggle>
+    <v-header info-toggle :breadcrumb="breadcrumb">
       <template slot="title">
         <button
           :class="currentBookmark ? 'active' : null"
@@ -162,6 +162,14 @@ export default {
     };
   },
   computed: {
+    breadcrumb() {
+      return [
+        {
+          name: this.$t("file_library"),
+          path: "/files"
+        }
+      ];
+    },
     fields() {
       const fields = this.$store.state.collections[this.collection].fields;
       return Object.values(fields).map(field => ({
