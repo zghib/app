@@ -27,7 +27,7 @@
         @clear-filters="clearFilters" />
       <template slot="buttons">
         <v-header-button
-          v-if="editButton"
+          v-if="editButton && !activity"
           key="edit"
           icon="mode_edit"
           color="warning"
@@ -35,7 +35,7 @@
           :label="$t('batch')"
           :to="batchURL" />
         <v-header-button
-          v-if="deleteButton"
+          v-if="deleteButton && !activity"
           key="delete"
           icon="close"
           color="danger"
@@ -43,7 +43,7 @@
           :label="$t('delete')"
           @click="confirmRemove = true" />
         <v-header-button
-          v-if="addButton"
+          v-if="addButton && !activity"
           icon="add"
           key="add"
           color="action"
@@ -61,7 +61,7 @@
       :view-query="viewQuery"
       :view-type="viewType"
       :view-options="viewOptions"
-      :selection="selection"
+      :selection="!activity ? selection : null"
       links
       @fetch="meta = $event"
       @options="setViewOptions"
@@ -143,6 +143,9 @@ export default {
     };
   },
   computed: {
+    activity() {
+      return this.collection === "directus_activity";
+    },
     breadcrumb() {
       if (this.collection === "directus_users") {
         return [

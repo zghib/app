@@ -17,7 +17,7 @@
   </div>
 
   <div v-else class="edit" :key="`${collection}-${primaryKey}`">
-    <v-header :breadcrumb="breadcrumb" :info-toggle="!newItem && !batch">
+    <v-header :breadcrumb="breadcrumb" :info-toggle="!newItem && !batch && !activityDetail">
       <template slot="buttons">
         <v-header-button
           v-if="(!newItem && !singleItem) && permission.delete !== 'none'"
@@ -334,6 +334,9 @@ export default {
         ...edits
       };
     },
+    activityDetail() {
+      return this.collection === "directus_activity";
+    },
     editing() {
       return this.$store.getters.editing;
     },
@@ -582,7 +585,9 @@ export default {
             "id,action,action_on,comment,action_by.first_name,action_by.last_name",
           sort: "-action_on"
         }),
-        this.$api.getItemRevisions(this.collection, this.primaryKey)
+        this.activityDetail
+          ? Promise.resolve({ data: [] })
+          : this.$api.getItemRevisions(this.collection, this.primaryKey)
       ])
         .then(([activity, revisions]) => {
           store.dispatch("loadingFinished", id);

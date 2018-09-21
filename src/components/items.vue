@@ -147,6 +147,7 @@ export default {
       );
     },
     selectionKeys() {
+      if (!this.selection) return null;
       return this.$lodash.uniq(
         this.selection.map(item => item[this.primaryKeyField])
       );

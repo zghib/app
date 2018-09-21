@@ -177,7 +177,6 @@ export default {
     &:not(.sub) {
       border-top: 1px solid var(--lightest-gray);
     }
-
   }
 
   /deep/ .cell {
