@@ -51,19 +51,19 @@ export default {
     },
     max: {
       type: [Number, Boolean, String],
-      default: false
+      default: null
     },
     maxlength: {
       type: [Number, Boolean, String],
-      default: false
+      default: null
     },
     min: {
       type: [Number, Boolean, String],
-      default: false
+      default: null
     },
     minlength: {
       type: [Number, Boolean, String],
-      default: false
+      default: null
     },
     name: {
       type: String,
@@ -125,6 +125,7 @@ export default {
   },
   computed: {
     charsRemaining() {
+      if (!this.maxlength) return null;
       return this.maxlength - this.value.length;
     }
   },
