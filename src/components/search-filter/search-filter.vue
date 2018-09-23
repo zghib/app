@@ -185,7 +185,7 @@ export default {
         ...this.filters,
         {
           field,
-          operator: "eq",
+          operator: "contains",
           value: ""
         }
       ]);
