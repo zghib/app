@@ -1,6 +1,6 @@
 {
   "name": "directus",
-  "version": "7.0.0-rc.3",
+  "version": "7.0.0-rc.4",
   "private": true,
   "description": "Directus is an Open-Source Headless CMS & API for Managing Custom Databases",
   "contributors": [
@@ -28,8 +28,8 @@
     "vuepress": "^0.11.0"
   },
   "dependencies": {
-    "@directus/format-title": "^1.2.0",
-    "@directus/sdk-js": "git://github.com/directus/directus-sdk-javascript.git#next",
+    "@directus/format-title": "^2.0.0",
+    "@directus/sdk-js": "^3.7.2",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.5.7",
