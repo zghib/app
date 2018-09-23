@@ -40,8 +40,9 @@ export default {
       this.valueText = event.target.options[event.target.selectedIndex].text;
     }
   },
-  mounted: function () {
-      this.valueText = this.$refs.selectElement.options[this.$refs.selectElement.selectedIndex].text;
+  mounted: function() {
+    let selectElement = this.$refs.selectElement;
+    this.valueText = selectElement.options[selectElement.selectedIndex].text;
   }
 };
 </script>
