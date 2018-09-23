@@ -896,7 +896,7 @@ form.schema {
   }
 
   .name {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .name-input {
@@ -906,7 +906,7 @@ form.schema {
   .advanced-form,
   .name {
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 30px 20px;
     grid-template-columns: 1fr 1fr;
 
     .description {
