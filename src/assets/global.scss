@@ -386,10 +386,19 @@ label {
 
 fieldset {
   border: 0;
-  padding: 0;
+  padding: 10px 0 20px;
 
   legend {
     margin-bottom: 10px;
+  }
+
+  &.centered {
+    border-top: 1px solid var(--lighter-gray);
+    legend {
+      color: var(--gray);
+      padding: 10px 20px;
+      text-align: center;
+    }
   }
 }
 

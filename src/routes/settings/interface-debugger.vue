@@ -444,16 +444,16 @@ export default {
 }
 
 label {
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   width: max-content;
 }
 
 fieldset {
   border-top: 1px solid var(--lighter-gray);
-  padding: 10px 0 20px;
 
   legend {
-    padding: 10px;
+    color: var(--gray);
+    padding: 10px 20px;
     text-align: center;
   }
 

@@ -104,7 +104,8 @@ export default {
     o2m: "One-to-Many Relationship",
     sort: "System field used in drag-and-drop item reordering",
     status: "System field used for publishing workflows",
-    string: "Any text, numbers, spaces, or symbols; defined and limited by its length (number of characters)",
+    string:
+      "Any text, numbers, spaces, or symbols; defined and limited by its length (number of characters)",
     translation:
       "Specific to translation interfaces, this o2m is stores multi-lingual content",
     uuid: "A Universally Unique Identifier",

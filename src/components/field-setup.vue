@@ -889,7 +889,6 @@ p {
 }
 
 form.schema {
-
   label:not(.toggle) {
     > *:last-child {
       margin-top: 10px;
