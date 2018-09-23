@@ -518,6 +518,7 @@ h2 {
   border-radius: var(--border-radius);
   border-spacing: 0;
   width: 100%;
+  max-width: 1000px;
   margin: 10px 0 20px;
 
   .header {

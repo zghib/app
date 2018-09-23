@@ -151,7 +151,7 @@ export default {
   background-color: var(--white);
   border-radius: var(--border-radius);
   border: var(--input-border-width) solid var(--lighter-gray);
-  max-width: 1100px;
+  max-width: 1000px;
 
   /deep/ .body .row {
     display: flex;
