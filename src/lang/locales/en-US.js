@@ -89,7 +89,7 @@ export default {
     alias:
       "Fields that do not save data or do not have corresponding database columns",
     array: "Standard array format in API response",
-    boolean: "true or false",
+    boolean: "True or False",
     datetime: "A date and time in ISO format, eg: 2018-09-19T14:00:43.381Z",
     date: "Date, eg: 2018-09-19",
     time: "Time, eg: 14:09:22",
