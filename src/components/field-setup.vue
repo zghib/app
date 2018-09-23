@@ -12,10 +12,10 @@
       <template v-if="!existing">
         <h1 class="style-0">{{ $t("choose_interface") }}</h1>
       </template>
-      <p v-if="interfaceName" class="currently-selected">
+      <p v-if="interfaceName" class="currently-selected subtext">
         {{ $t("currently_selected", { thing: interfaces[interfaceName].name}) }}
       </p>
-      <p v-else>
+      <p v-else class="subtext">
         {{ $t("select_interface_below" )}}
       </p>
       <div class="interfaces">
@@ -39,7 +39,7 @@
     <template slot="schema" v-if="interfaceName">
       <template v-if="!existing">
         <h1 class="style-0">{{ $t("name_field", { field: $helpers.formatTitle(interfaceName) }) }}</h1>
-        <p>{{ $t("intelligent_defaults") }}</p>
+        <p class="subtext">{{ $t("intelligent_defaults") }}</p>
       </template>
       <form @submit.prevent class="schema">
         <div class="name">
@@ -89,7 +89,7 @@
     <template slot="relation" v-if="selectedInterfaceInfo && relation">
       <template v-if="!existing">
         <h1 class="style-0">{{ $t('relation_setup') }}</h1>
-        <p>{{ $t('relation_setup_copy', { relation: $t(relation) }) }}</p>
+        <p class="subtext">{{ $t('relation_setup_copy', { relation: $t(relation) }) }}</p>
       </template>
 
       <form v-if="relation === 'm2o'" class="single">
@@ -210,7 +210,7 @@
     <template slot="options">
       <template v-if="!existing">
         <h1 class="style-0">{{ $t('almost_done_options') }}</h1>
-        <p>{{ $t('almost_done_copy') }}</p>
+        <p class="subtext">{{ $t('almost_done_copy') }}</p>
       </template>
       <form @submit.prevent v-if="selectedInterfaceInfo" class="options">
         <div
@@ -817,6 +817,9 @@ export default {
 p {
   line-height: 2;
   max-width: 70%;
+  &.subtext {
+    margin-bottom: 30px;
+  }
 }
 
 .currently-selected {
@@ -828,7 +831,6 @@ p {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
-  margin-top: 30px;
 
   article {
     display: block;
@@ -887,7 +889,6 @@ p {
 }
 
 form.schema {
-  margin-top: 30px;
 
   label:not(.toggle) {
     > *:last-child {
@@ -910,10 +911,10 @@ form.schema {
     grid-template-columns: 1fr 1fr;
 
     .description {
-      padding-top: 24px;
+      padding-top: 26px;
       font-style: italic;
       font-size: 12px;
-      color: var(--gray);
+      color: var(--light-gray);
     }
 
     .toggle {
@@ -976,7 +977,6 @@ details {
 }
 
 .single {
-  margin-top: 40px;
   display: grid;
   grid-template-areas:
     "a _ b"
