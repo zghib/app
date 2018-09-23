@@ -44,6 +44,11 @@ export default {
     display: flex;
     align-items: center;
     padding-left: 10px;
+    color: var(--gray);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    text-transform: none;
 
     i {
       position: absolute;
@@ -71,6 +76,7 @@ export default {
 
   select:focus + .preview {
     border-color: var(--accent);
+    color: var(--dark-gray);
   }
 
   select[disabled] {
