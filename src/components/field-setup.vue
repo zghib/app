@@ -1,6 +1,6 @@
 <template>
   <v-modal
-    :title="$t('create_field')"
+    :title="existing?$t('update_field')+': '+displayName:$t('create_field')"
     :tabs="tabs"
     :active-tab="activeTab"
     :buttons="buttons"
@@ -57,8 +57,8 @@
                   {{ $helpers.formatTitle(type) }}
                 </option>
               </v-simple-select>
+              <small class="description">{{ fieldTypeDescription }}</small>
             </label>
-            <small class="description">{{ fieldTypeDescription }}</small>
             <label>
               {{ $t("db_datatype", { db: $helpers.formatTitle(databaseVendor) }) }}
               <v-simple-select v-model="datatype">
@@ -66,8 +66,8 @@
                   {{ type }}
                 </option>
               </v-simple-select>
+              <small class="description">{{ selectedDatatypeInfo && selectedDatatypeInfo.description }}</small>
             </label>
-            <small class="description">{{ selectedDatatypeInfo && selectedDatatypeInfo.description }}</small>
             <label>{{ $t("default") }} <v-input type="text" v-model="default_value" placeholder="NULL"/></label>
             <label>{{ $t("length") }} <v-input
               :type="selectedDatatypeInfo && selectedDatatypeInfo.decimal ? 'string' : 'number'"
@@ -218,7 +218,7 @@
           class="options"
           :key="optionID">
           <label :for="optionID">{{ option.name }}</label>
-          <p v-html="$helpers.snarkdown(option.comment)" />
+          <p class="note" v-html="$helpers.snarkdown(option.comment)" />
           <v-ext-input
             :id="option.interface"
             :name="optionID"
@@ -241,7 +241,7 @@
             class="options"
             :key="optionID">
             <label :for="optionID">{{ option.name }}</label>
-            <p v-html="$helpers.snarkdown(option.comment)" />
+            <p v-html="$helpers.snarkdown(option.comment)" class="note" />
             <v-ext-input
               :id="option.interface"
               :name="optionID"
@@ -827,6 +827,16 @@ p {
   font-size: 1.25em;
 }
 
+.note {
+  display: block;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.5em;
+  color: var(--light-gray);
+}
+
 .interfaces {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -890,7 +900,8 @@ p {
 
 form.schema {
   label:not(.toggle) {
-    > *:last-child {
+    > .v-simple-select,
+    > .v-input {
       margin-top: 10px;
     }
   }
@@ -901,6 +912,7 @@ form.schema {
 
   .name-input {
     font-family: "Roboto Mono", monospace;
+    font-weight: 600;
   }
 
   .advanced-form,
@@ -910,9 +922,12 @@ form.schema {
     grid-template-columns: 1fr 1fr;
 
     .description {
-      padding-top: 26px;
+      display: inline-block;
+      margin-top: 4px;
       font-style: italic;
       font-size: 12px;
+      line-height: 1.5em;
+      font-weight: 500;
       color: var(--light-gray);
     }
 
@@ -921,6 +936,10 @@ form.schema {
       align-items: center;
       text-transform: capitalize;
       font-size: 1rem;
+      cursor: pointer;
+      &:hover {
+        color: var(--accent);
+      }
 
       > *:first-child {
         margin-right: 10px;
@@ -930,21 +949,37 @@ form.schema {
 }
 
 form.options {
-  > div {
+  div.options {
     margin-top: 30px;
+    &:first-of-type {
+      margin-top: 0;
+    }
   }
 }
 
 details {
+  position: relative;
+  margin-top: 60px;
+  border-top: 1px solid var(--lighter-gray);
+  padding-top: 40px;
   summary {
-    color: var(--accent);
+    position: absolute;
+    left: 50%;
+    top: -22px;
+    transform: translateX(-50%);
+    background-color: var(--body-background);
+    color: var(--light-gray);
+    font-size: 1.2rem;
+    line-height: 1.1;
+    font-weight: 400;
+    padding: 10px 20px;
+    text-align: center;
     cursor: pointer;
     text-align: center;
-    margin: 30px 0;
     text-transform: capitalize;
 
     &:hover {
-      color: var(--accent-dark);
+      color: var(--darker-gray);
     }
 
     &::-webkit-details-marker {
@@ -952,15 +987,16 @@ details {
     }
 
     &::after {
-      content: "arrow_left";
+      content: "unfold_more";
       font-family: "Material Icons";
       font-size: 18px;
-      vertical-align: -18%;
+      margin-left: 2px;
+      vertical-align: -19%;
     }
   }
 
   &[open] summary::after {
-    content: "arrow_drop_down";
+    content: "unfold_less";
   }
 }
 
