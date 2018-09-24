@@ -20,8 +20,8 @@
       </template>
     </v-header>
 
-    <label class="label">{{ $t('fields') }}</label>
-    <em class="notice">{{ $t('fields_are_saved_instantly') }}</em>
+    <label class="label ">{{ $t('fields') }} <em class="notice">{{ $t('fields_are_saved_instantly') }}</em></label>
+
 
     <div class="table">
       <div class="header">
@@ -609,7 +609,15 @@ em.note {
 }
 
 .notice {
-  color: var(--danger);
+  margin-left: 4px;
+  background-color: var(--warning);
+  border-radius: var(--border-radius);
+  color: var(--white);
+  padding: 3px 6px;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
 }
 
 label.label {
