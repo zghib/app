@@ -70,7 +70,6 @@
 
     <v-info-sidebar v-if="preferences">
       <template slot="system">
-        <label for="layout" class="style-4">{{ $t('view_type') }}</label>
         <v-select
           id="layout"
           :options="layoutNames"
