@@ -84,6 +84,7 @@
           <invisible-label html-for="add">{{ $t('add_field_filter') }}</invisible-label>
           <v-select
             id="add"
+            icon="add_circle"
             :placeholder="$t('add_field_filter')"
             :options="fields"
             default-value
