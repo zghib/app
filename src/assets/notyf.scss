@@ -42,13 +42,13 @@
     opacity: 0.5;
   }
   100% {
-    opacity: 0.6;
+    opacity: 1.0;
   }
 }
 
 @keyframes disappear {
   0% {
-    opacity: 0.6;
+    opacity: 1.0;
   }
   30% {
     opacity: 0.1;
@@ -65,7 +65,6 @@
   background: white;
   border-radius: 50%;
   display: block;
-  margin: 0 auto;
   position: relative;
 }
 
@@ -78,16 +77,16 @@
     position: absolute;
     width: 3px;
     border-radius: var(--border-radius);
-    left: 9px;
+    left: 18px;
   }
 
   &:after {
     height: 3px;
-    top: 14px;
+    top: 23px;
   }
   &:before {
     height: 8px;
-    top: 4px;
+    top: 13px;
   }
 }
 
@@ -104,14 +103,14 @@
   &:after {
     height: 6px;
     transform: rotate(-45deg);
-    top: 9px;
-    left: 6px;
+    top: 18px;
+    left: 15px;
   }
   &:before {
     height: 11px;
     transform: rotate(45deg);
-    top: 5px;
-    left: 10px;
+    top: 14px;
+    left: 19px;
   }
 }
 
@@ -119,14 +118,23 @@
   display: block;
   overflow: hidden;
   animation: fadeinup 0.3s forwards;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.45);
   position: relative;
   padding-right: 13px;
-  &.notyf--alert {
-    background: var(--danger);
+  &.notyf--alert .notyf__icon {
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    i {
+      background-color: var(--red-100);
+    }
   }
-  &.notyf--confirm {
-    background: var(--success);
+  &.notyf--confirm .notyf__icon {
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    i {
+      background-color: var(--green-100);
+    }
   }
   &.notyf--disappear {
     animation: fadeoutdown 0.3s 1 forwards;
@@ -146,26 +154,30 @@
 .notyf__wrapper {
   display: table;
   width: 100%;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-right: 15px;
+  padding: 10px;
   border-radius: var(--border-radius);
+  border: var(--input-border-width) solid var(--lighter-gray);
+  background-color: var(--white);
 }
 
 .notyf__icon {
   display: table-cell;
-  width: 20%;
+  width: 18%;
   text-align: center;
   vertical-align: middle;
   font-size: 1.3em;
   opacity: 0;
   animation: appear 0.5s forwards;
   animation-delay: 0.25s;
+  color: var(--gray);
+  i {
+    padding: 20px;
+  }
 }
 
 .notyf__message {
   display: table-cell;
-  width: 80%;
+  width: 82%;
   vertical-align: middle;
   position: relative;
   opacity: 0;
@@ -178,7 +190,7 @@
   bottom: 20px;
   right: 30px;
   width: 20%;
-  color: white;
+  color: var(--dark-gray);
   z-index: 9999;
 }
 
