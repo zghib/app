@@ -124,7 +124,7 @@
         @revert="revertItem(revertActivity.revision.id)"
         @close="revertActivity = false">
         <div class="revert">
-          <p>{{ $t('revert_copy', { date: $d(revertActivity.date, 'long') }) }}</p>
+          <p class="notice">{{ $t('revert_copy', { date: $d(revertActivity.date, 'long') }) }}</p>
           <v-form
             readonly
             :values="revertActivity.revision.data"
@@ -894,10 +894,11 @@ export default {
 .revert {
   padding: 20px;
 
-  p {
+  p.notice {
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px dotted var(--lighter-gray);
+    color: var(--warning);
   }
 }
 </style>
