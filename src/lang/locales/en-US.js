@@ -47,7 +47,7 @@ export default {
   bookmarks: "Bookmarks",
   cancel: "Cancel",
   change_project: "Change Project",
-  choose_one: "Choose one",
+  choose_one: "Choose One",
   choose_project: "Choose Project",
   choose_interface: "Choose an interface for how this data should be managed.",
   clear: "Clear",
@@ -78,6 +78,7 @@ export default {
   creating_role: "Creating Role",
   create_role: "Create Role",
   create_field: "Create Field",
+  update_field: "Update Field",
   create_collection: "Create Collection",
   database_connection: "Database Connection",
   database_connection_copy:
@@ -213,7 +214,7 @@ export default {
   field_updated: "{field} Field Updated",
   field_removed: "{field} Field Removed",
   fields: "Fields",
-  fields_are_saved_instantly: "All changes to fields are saved instantly",
+  fields_are_saved_instantly: "Changes saved instantly",
   file: "File",
   file_library: "File Library",
   file_upload: "Upload File(s)",
@@ -352,8 +353,7 @@ export default {
   reset_preferences: "Reset all listing preferences",
   reset_password: "Reset Password",
   revert: "Revert",
-  revert_copy:
-    "Do you want to revert the values of this item to how they were on {date}?",
+  revert_copy: "Do you want to revert this item to how it was on {date}?",
   roles: "User Roles",
   role_settings: "Role Settings",
   save: "Save",
@@ -384,7 +384,7 @@ export default {
   server_trouble: "Server Trouble",
   server_trouble_copy:
     "Try again later or contact your system administrator help.",
-  advanced_options: "Toggle advanced options",
+  advanced_options: "Advanced options",
   show_directus_collections: "Show Directus System Collections",
   something_went_wrong: "Something went wrong..",
   something_went_wrong_body:
