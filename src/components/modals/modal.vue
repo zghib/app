@@ -154,7 +154,7 @@ export default {
   position: relative;
   margin: 0 auto;
   width: 90%;
-  max-width: 660px;
+  max-width: 680px;
   background-color: var(--white);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
