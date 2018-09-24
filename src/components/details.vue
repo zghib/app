@@ -35,34 +35,33 @@ export default {
 
 <style lang="scss" scoped>
 .v-details {
+  position: relative;
   width: 100%;
   margin-top: 10px;
-  margin-bottom: 30px;
+  border-top: 1px solid var(--lighter-gray);
+  padding-top: 30px;
+  margin-bottom: 60px;
 
   summary {
-    border-top: 1px solid var(--lighter-gray);
-    border-bottom: 1px solid var(--lighter-gray);
-    margin-bottom: 20px;
     font-size: 18px;
-    color: var(--gray);
-    list-style-type: none;
+    color: var(--light-gray);
     font-weight: 400;
-    cursor: pointer;
     transition: var(--fast) var(--transition);
-
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 10px;
-    border: 0;
+    margin-top: -16px;
+    background-color: var(--body-background);
+    display: inline-block;
+    padding-right: 10px;
+    position: absolute;
+    top: 4px;
+    cursor: pointer;
 
     &::after {
-      content: "keyboard_arrow_right";
+      content: "unfold_more";
       direction: ltr;
       display: inline-block;
       font-family: "Material Icons";
-      font-size: 24px;
-      color: var(--gray);
+      font-size: 18px;
+      color: var(--light-gray);
       font-style: normal;
       font-weight: normal;
       letter-spacing: normal;
@@ -75,6 +74,8 @@ export default {
       transition: var(--fast) var(--transition);
       width: 24px;
       height: 24px;
+      margin-left: 6px;
+      margin-top: 2px;
       float: right;
     }
 
@@ -110,7 +111,7 @@ export default {
 
   &[open] {
     summary::after {
-      transform: rotate(90deg);
+      content: "unfold_less";
     }
   }
 }
