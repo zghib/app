@@ -285,6 +285,10 @@ export default {
     &.active {
       color: var(--accent);
 
+      &:hover {
+        color: var(--accent);
+      }
+
       &::after {
         transform: scaleY(1);
         transition: transform var(--fast) var(--transition-in);
@@ -294,6 +298,9 @@ export default {
     &[disabled] {
       color: var(--lighter-gray);
       cursor: not-allowed;
+      &:hover {
+        color: var(--lighter-gray);
+      }
     }
   }
 }
