@@ -9,7 +9,7 @@
 
     <template slot="project">
       <h1 class="style-0">{{ $t("project_info") }}</h1>
-      <p>
+      <p class="subtext">
         {{ $t("project_info_copy" )}}
       </p>
 
@@ -35,7 +35,7 @@
 
     <template slot="database">
       <h1 class="style-0">{{ $t("database_connection") }}</h1>
-      <p>{{ $t("database_connection_copy") }}</p>
+      <p class="subtext">{{ $t("database_connection_copy") }}</p>
       <form @submit.prevent>
         <label>
           {{ $t("host") }}
@@ -162,12 +162,16 @@ export default {
 
   .style-0 {
     max-width: 80%;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 
-  p {
-    line-height: 2;
-    max-width: 70%;
+  p.subtext {
+    max-width: 400px;
+    font-size: 16px;
+    color: var(--light-gray);
+    line-height: 26px;
+    font-weight: 400;
   }
 }
 
@@ -233,7 +237,7 @@ form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 20px;
-  padding: 50px 0;
+  padding: 40px 0 40px;
 
   .input {
     margin-top: 10px;
