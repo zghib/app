@@ -26,7 +26,7 @@
           class="interface"
           @click="interfaceName = ext.id">
           <div class="header">
-            <i class="material-icons">text_fields</i>
+            <i class="material-icons">{{ ext.icon ? ext.icon : 'category' }}</i>
           </div>
           <div class="body">
             <h2>{{ ext.name }}</h2>
@@ -818,13 +818,16 @@ p {
   line-height: 2;
   max-width: 70%;
   &.subtext {
-    margin-bottom: 30px;
+    max-width: 460px;
+    font-size: 16px;
+    color: var(--light-gray);
+    line-height: 26px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    &.currently-selected {
+      color: var(--accent);
+    }
   }
-}
-
-.currently-selected {
-  color: var(--accent);
-  font-size: 1.25em;
 }
 
 .note {
@@ -950,9 +953,9 @@ form.schema {
 
 form.options {
   div.options {
-    margin-top: 30px;
-    &:first-of-type {
-      margin-top: 0;
+    margin-bottom: 30px;
+    &:last-of-type {
+      margin-bottom: 20px;
     }
   }
 }
