@@ -800,6 +800,6 @@ small {
 
 .install-copy {
   line-height: 1.6;
-  margin-bottom: 40px;
+  margin-bottom: 80px;
 }
 </style>
