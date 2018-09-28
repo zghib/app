@@ -30,8 +30,14 @@ Vue.use(Router);
 const routerMode =
   window.__DirectusConfig__ && window.__DirectusConfig__.routerMode;
 
+const base =
+  process.env.NODE_ENV === "production" // eslint-disable-line
+    ? window.__DirectusConfig__ && window.__DirectusConfig__.routerBaseUrl
+    : "/";
+
 const router = new Router({
-  mode: routerMode || "history",
+  mode: routerMode || "hash",
+  base: base || "/",
   routes: [
     {
       path: "/modals",
