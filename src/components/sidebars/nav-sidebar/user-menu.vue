@@ -92,7 +92,7 @@ export default {
       }
 
       links.push({
-        path: "https://getdirectus.com",
+        path: "https://docs.directus.io",
         name: this.$t("help_and_docs"),
         icon: "help"
       });

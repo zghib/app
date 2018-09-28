@@ -54,7 +54,7 @@
             :title="$t('about_directus')"
             :subtitle="$t('learn_more')"
             element="li"
-            href="https://getdirectus.com"
+            href="https://directus.io"
             icon="info_outline" />
 
           <v-card
