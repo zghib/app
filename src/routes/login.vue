@@ -51,6 +51,7 @@
           <div class="material-input">
             <input
               v-model="email"
+              autocomplete="email"
               :disabled="loading || exists === false"
               :class="{ 'has-value': email && email.length > 0}"
               type="text"
@@ -62,6 +63,7 @@
           <div v-if="!resetMode" class="material-input">
             <input
               v-model="password"
+              autocomplete="current-password"
               :disabled="loading || exists === false"
               :class="{ 'has-value': password && password.length > 0}"
               type="password"
