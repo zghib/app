@@ -52,7 +52,7 @@
     <v-form
       v-if="fields"
       :fields="directusFields"
-      :values="collectionInfo"
+      :values="values"
       collection="directus_collections"
       @stage-value="stageValue" />
 
@@ -166,16 +166,19 @@ export default {
       ];
     },
     collectionInfo() {
-      return {
-        ...this.$store.state.collections[this.collection],
-        ...this.edits
-      };
+      return this.$store.state.collections[this.collection];
     },
     fieldsWithSort() {
       return this.fields.map((field, index) => ({
         ...field,
         sort: index + 1
       }));
+    },
+    values() {
+      return {
+        ...this.collectionInfo,
+        ...this.edits
+      };
     }
   },
   methods: {
