@@ -236,7 +236,7 @@ export default {
   interfaces: "Interfaces",
   info: "Info",
   intelligent_defaults:
-    "Directus sets intelligent defaults for the more advanced configuration settings, but you can override those here too!",
+    "Advanced options lets you configure how data will be stored in the database and tweak additional app settings.",
   interface_settings:
     "Every interface can be perfectly tailored to your needs. Below are the available options for this interface, but only some are required.",
   install: "Install",
@@ -272,7 +272,7 @@ export default {
   o2m: "One-to-Many (O2M)",
   name: "Name",
   name_field:
-    "Let’s name this {field} field and configure how it will save data.",
+    "Let’s name this {field} field and add a helpful note for users.",
   navigate_changes:
     "Are you sure you want to leave this page? The changes you made will be lost if you navigate away from this page.",
   new: "New",
