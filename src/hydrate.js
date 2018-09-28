@@ -44,7 +44,7 @@ export default function hydrateStore() {
       .then(() => {
         const isAdmin = store.state.currentUser.admin;
 
-        if (isAdmin) {
+        if (isAdmin && navigator.onLine) {
           axios
             .post("https://telemetry.directus.io/count", {
               type: "app",
