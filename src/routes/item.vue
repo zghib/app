@@ -727,7 +727,6 @@ export default {
     const isNew = primaryKey === "+";
 
     if (exists === false) {
-      this.notFound = true;
       return next(vm => (vm.$data.notFound = true));
     }
 

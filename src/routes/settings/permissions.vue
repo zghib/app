@@ -454,7 +454,9 @@ export default {
 
           this.statuses = this.$lodash.keyBy(
             fields
-              .filter(field => field.type.toLowerCase() === "status")
+              .filter(
+                field => field.type && field.type.toLowerCase() === "status"
+              )
               .map(field => ({
                 mapping: field.options.status_mapping,
                 collection: field.collection
