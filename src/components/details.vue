@@ -50,7 +50,6 @@ export default {
     margin-top: -16px;
     background-color: var(--body-background);
     display: inline-block;
-    padding-right: 10px;
     position: absolute;
     top: 4px;
     cursor: pointer;
@@ -93,19 +92,24 @@ export default {
   }
 
   &.group {
-    padding: 20px;
-    border: 2px solid var(--lightest-gray);
+    padding: 0px 20px;
+    border: none;
+    border-top: 1px solid var(--lighter-gray);
     border-radius: 3px;
 
-    .content {
+    &[open] {
       padding: 20px;
+      border: 1px solid var(--lighter-gray);
+    }
+
+    .content {
+      padding-top: 10px;
     }
 
     summary {
       border: 0;
       margin-bottom: 0;
-      padding-left: 20px;
-      padding-right: 20px;
+      padding-left: 10px;
     }
   }
 
