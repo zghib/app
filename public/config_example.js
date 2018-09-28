@@ -20,7 +20,7 @@
     //   (everything to /index.html), you can change this to "history" to make
     //   the urls in the app a little prettier
     routerMode: "hash", // hash | history
-    routerBaseUrl: "/test/"
+    routerBaseUrl: "/"
   };
 
   window.__DirectusConfig__ = config;
