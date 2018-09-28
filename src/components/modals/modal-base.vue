@@ -4,10 +4,8 @@
       <div class="mask" @click="$emit('cancel')" />
       <div class="wrapper">
         <aside class="modal">
-          <focus-lock>
-            <p>{{ message }}</p>
-            <slot />
-          </focus-lock>
+          <p>{{ message }}</p>
+          <slot />
         </aside>
       </div>
     </div>
@@ -15,13 +13,8 @@
 </template>
 
 <script>
-import FocusLock from "vue-focus-lock";
-
 export default {
   name: "v-modal-base",
-  components: {
-    FocusLock
-  },
   props: {
     message: {
       type: String,

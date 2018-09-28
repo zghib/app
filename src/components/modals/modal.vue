@@ -14,58 +14,56 @@
           aria-describedby="modal-description"
           role="dialog"
           @keydown.esc="actionRequired ? null : $emit('close')">
-          <focus-lock>
-            <div role="document">
-              <div
-                id="modal-description"
-                class="screen-reader-offscreen">
-                {{ $t('dialog_beginning') }} {{ actionRequired ? null : $t('esc_cancel') }}
-              </div>
-              <header v-if="title">
-                <h1
-                  id="modal-title"
-                  class="style-1">{{ title }}</h1>
-                <button
-                  v-if="!actionRequired"
-                  @click="$emit('close')"><i class="material-icons">close</i></button>
-              </header>
-
-              <div class="tabs" v-if="tabs">
-                <button
-                  v-for="(info, id) in tabs"
-                  :key="id"
-                  :class="{ active: activeTab === id }"
-                  :disabled="info.disabled"
-                  @click="$emit('tab', id)">{{ info.text }}</button>
-              </div>
-
-              <div class="body">
-                <template v-if="tabs">
-                  <div
-                    v-for="(info, id) in tabs"
-                    :key="`tab-${id}`"
-                    class="tab"
-                    v-show="activeTab === id">
-                    <slot :name="id" />
-                  </div>
-                </template>
-
-                <slot v-else />
-              </div>
-              <div class="footer" :class="{ 'action-required': actionRequired }">
-                <button
-                  v-if="!actionRequired"
-                  @click="$emit('close')">{{ $t('cancel') }}</button>
-                <v-button
-                  v-for="(button, id) in buttons"
-                  class="confirm"
-                  :key="id"
-                  :loading="button.loading || false"
-                  :disabled="button.disabled || false"
-                  @click="$emit(id)">{{ button.text }}</v-button>
-              </div>
+          <div role="document">
+            <div
+              id="modal-description"
+              class="screen-reader-offscreen">
+              {{ $t('dialog_beginning') }} {{ actionRequired ? null : $t('esc_cancel') }}
             </div>
-          </focus-lock>
+            <header v-if="title">
+              <h1
+                id="modal-title"
+                class="style-1">{{ title }}</h1>
+              <button
+                v-if="!actionRequired"
+                @click="$emit('close')"><i class="material-icons">close</i></button>
+            </header>
+
+            <div class="tabs" v-if="tabs">
+              <button
+                v-for="(info, id) in tabs"
+                :key="id"
+                :class="{ active: activeTab === id }"
+                :disabled="info.disabled"
+                @click="$emit('tab', id)">{{ info.text }}</button>
+            </div>
+
+            <div class="body">
+              <template v-if="tabs">
+                <div
+                  v-for="(info, id) in tabs"
+                  :key="`tab-${id}`"
+                  class="tab"
+                  v-show="activeTab === id">
+                  <slot :name="id" />
+                </div>
+              </template>
+
+              <slot v-else />
+            </div>
+            <div class="footer" :class="{ 'action-required': actionRequired }">
+              <button
+                v-if="!actionRequired"
+                @click="$emit('close')">{{ $t('cancel') }}</button>
+              <v-button
+                v-for="(button, id) in buttons"
+                class="confirm"
+                :key="id"
+                :loading="button.loading || false"
+                :disabled="button.disabled || false"
+                @click="$emit(id)">{{ button.text }}</v-button>
+            </div>
+          </div>
         </aside>
       </div>
     </div>
@@ -73,14 +71,10 @@
 </template>
 
 <script>
-import FocusLock from "vue-focus-lock";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export default {
   name: "v-modal",
-  components: {
-    FocusLock
-  },
   props: {
     actionRequired: {
       type: Boolean,
