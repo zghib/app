@@ -218,7 +218,7 @@
           class="options"
           :key="optionID">
           <label :for="optionID">{{ option.name }}</label>
-          <p class="note" v-html="$helpers.snarkdown(option.comment)" />
+          <p class="note" v-html="$helpers.snarkdown(option.comment || '')" />
           <v-ext-input
             :id="option.interface"
             :name="optionID"
@@ -241,7 +241,7 @@
             class="options"
             :key="optionID">
             <label :for="optionID">{{ option.name }}</label>
-            <p v-html="$helpers.snarkdown(option.comment)" class="note" />
+            <p v-html="$helpers.snarkdown(option.comment || '')" class="note" />
             <v-ext-input
               :id="option.interface"
               :name="optionID"
