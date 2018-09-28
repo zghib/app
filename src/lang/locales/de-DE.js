@@ -33,7 +33,7 @@ export default {
   almost_done_copy:
     "Jeder Feldtyp kann perfekt an deine Bedürfnisse angepasst werden. Nachfolgend die verfügbaren Optionen für das Feld, aber nur ein paar sind erforderlich.",
   all: "Alle",
-  allowed_statuses: "Erlaubte Status",
+  statuses: "Status",
   api_url: "API URL",
   api_installed: "API erfolgreich installiert",
   auto_generated: "Automatisch generiert...",

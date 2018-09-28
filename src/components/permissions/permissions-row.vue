@@ -246,7 +246,7 @@
         action-required>
         <form class="modal-content" @submit.prevent>
           <fieldset>
-            <legend class="style-3">{{ $t('allowed_statuses') }}</legend>
+            <legend class="style-3">{{ $t('statuses') }}</legend>
             <p class="style-4">{{ $t('select_statuses_copy') }}</p>
             <v-checkbox
               v-for="(status, name) in statuses"

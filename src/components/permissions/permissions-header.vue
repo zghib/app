@@ -19,7 +19,7 @@
       </div>
       <div class="cell">{{ $t("explain") }}</div>
       <div class="cell">{{ $t("fields") }}</div>
-      <div class="cell">{{ $t("allowed_statuses") }}</div>
+      <div class="cell">{{ $t("statuses") }}</div>
     </div>
   </div>
 </template>
