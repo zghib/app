@@ -72,10 +72,15 @@
 <script>
 export default {
   name: "v-install",
+  props: {
+    saving: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       activeTab: "project",
-      saving: false,
 
       values: {
         db_host: "localhost",
@@ -151,7 +156,6 @@ export default {
       }
     },
     save() {
-      this.saving = true;
       this.$emit("install", this.values);
     }
   }

@@ -2,7 +2,7 @@
   <transition name="fade">
     <div class="login" :class="{ loading }">
 
-      <v-install v-if="installing" @install="install" />
+      <v-install v-if="installing" @install="install" :saving="saving" />
 
       <form v-else @submit.prevent="processForm">
         <img class="logo" alt="" src="../assets/logo-dark.svg" />
@@ -160,7 +160,8 @@ export default {
       resetMode: false,
 
       installing: false,
-      notInstalled: false
+      notInstalled: false,
+      saving: false
     };
   },
   computed: {
@@ -415,6 +416,7 @@ export default {
       const parts = this.url.split("/");
       parts.pop() || parts.pop();
       const newUrl = parts.join("/");
+      this.saving = true;
 
       this.$axios
         .post(newUrl + "/projects", info)
@@ -423,12 +425,15 @@ export default {
           this.exists = true;
           this.notInstalled = false;
           this.$notify.confirm(this.$t("api_installed"));
+          this.saving = false;
         })
         .catch(error => {
           this.$events.emit("error", {
             notify: this.$t("something_went_wrong_body"),
             error
           });
+
+          this.saving = false;
         });
     }
   }
