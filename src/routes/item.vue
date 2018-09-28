@@ -432,6 +432,11 @@ export default {
   watch: {
     $route() {
       this.fetchActivity();
+    },
+    notFound(notFound) {
+      if (this.singleItem && notFound === true) {
+        this.$router.push(`/collections/${this.collection}/+`);
+      }
     }
   },
   methods: {
@@ -752,6 +757,11 @@ export default {
         next();
       })
       .catch(error => {
+        store.dispatch("loadingFinished", id);
+        if (error && error.code === 203) {
+          return next(vm => (vm.$data.notFound = true));
+        }
+
         EventBus.emit("error", {
           notify: i18n.t("something_went_wrong_body"),
           error
@@ -765,6 +775,26 @@ export default {
       Object.keys(this.$store.state.collections).includes(collection) ||
       collection.startsWith("directus_");
     const isNew = primaryKey === "+";
+
+    this.saving = false;
+
+    this.notFound = false;
+    this.error = false;
+
+    this.confirmRemove = false;
+    this.confirmRemoveLoading = false;
+    this.confirmBatchSave = false;
+
+    this.confirmNavigation = false;
+    this.leavingTo = "";
+
+    this.activeTab = "both";
+    this.activityLoading = false;
+    this.activity = [];
+    this.revisions = {};
+
+    this.revertActivity = null;
+    this.reverting = false;
 
     if (exists === false) {
       this.notFound = true;
@@ -799,6 +829,12 @@ export default {
         next();
       })
       .catch(error => {
+        this.$store.dispatch("loadingFinished", id);
+        if (error && error.code === 203) {
+          this.notFound = true;
+          return next();
+        }
+
         this.$events.emit("error", {
           notify: i18n.t("something_went_wrong_body"),
           error
