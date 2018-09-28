@@ -266,7 +266,9 @@ export default {
       this.$set(this.edits, field, value);
     },
     setFieldSettings({ fieldInfo, relation }) {
-      const existingField = fieldInfo.id != null;
+      const existingField = this.$store.state.collections[
+        this.collection
+      ].fields.hasOwnProperty(fieldInfo.field);
 
       const requests = [];
 
