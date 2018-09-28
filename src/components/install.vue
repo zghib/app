@@ -13,7 +13,7 @@
         {{ $t("project_info_copy" )}}
       </p>
 
-      <form @submit.prevent>
+      <form @submit.prevent="nextTab">
         <label>
           {{ $t("project_name") }}
           <v-input class="input" id="project-name" v-model="values.project_name" />
@@ -30,13 +30,14 @@
           {{ $t("admin_password") }}
           <v-input class="input" id="admin-password" type="password" v-model="values.user_password" autocomplete="new-password" />
         </label>
+        <input type="submit" class="hidden" />
       </form>
     </template>
 
     <template slot="database">
       <h1 class="style-0">{{ $t("database_connection") }}</h1>
       <p class="subtext">{{ $t("database_connection_copy") }}</p>
-      <form @submit.prevent>
+      <form @submit.prevent="nextTab">
         <label>
           {{ $t("host") }}
           <v-input class="input" id="db_host" v-model="values.db_host" />
@@ -61,6 +62,7 @@
           {{ $t("db_type") }}
           <v-input class="input" disabled id="db_type" value="MySQL & Variants" />
         </label>
+        <input type="submit" class="hidden" />
       </form>
     </template>
 
@@ -157,6 +159,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.hidden {
+  display: none;
+}
+
 .tab {
   padding: 30px;
 

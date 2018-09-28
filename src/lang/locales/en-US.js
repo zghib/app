@@ -271,8 +271,7 @@ export default {
   m2o: "Many-to-One (M2O)",
   o2m: "One-to-Many (O2M)",
   name: "Name",
-  name_field:
-    "Let’s name this {field} field and add a helpful note for users.",
+  name_field: "Let’s name this {field} field and add a helpful note for users.",
   navigate_changes:
     "Are you sure you want to leave this page? The changes you made will be lost if you navigate away from this page.",
   new: "New",
