@@ -49,9 +49,7 @@ export function login({ commit }, credentials) {
     link.href = url;
     url = link.href;
   }
-
-  alert(url);
-
+  
   const parts = url.split("/");
   const env = parts.pop() || parts.pop();
   const newUrl = parts.join("/");
