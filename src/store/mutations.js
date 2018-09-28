@@ -141,7 +141,7 @@ const mutations = {
   },
 
   [REMOVE_FIELD](state, { collection, field }) {
-    const clone = Object.assign({}, state.collections[collection]);
+    const clone = Object.assign({}, state.collections[collection].fields);
     delete clone[field];
     Vue.set(state.collections[collection], "fields", clone);
   }
