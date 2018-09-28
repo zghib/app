@@ -4,7 +4,7 @@
     :title="$t('no_fields')"
     :body="$t('no_fields_body')"
     icon="error_outline" />
-  <form v-else class="v-form flex-group">
+  <form v-else class="v-form flex-group" @submit.prevent>
     <div
       v-for="field in groupedFields"
       :class="[
