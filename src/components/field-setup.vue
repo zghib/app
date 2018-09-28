@@ -18,21 +18,29 @@
       <p v-else class="subtext">
         {{ $t("select_interface_below" )}}
       </p>
-      <div class="interfaces">
-        <article
-          v-for="ext in interfaces"
-          :key="ext.id"
-          :class="{ active: interfaceName === ext.id }"
-          class="interface"
-          @click="interfaceName = ext.id">
-          <div class="header">
-            <i class="material-icons">{{ ext.icon ? ext.icon : 'category' }}</i>
+      <div >
+        <v-details
+          v-for="(group, index) in interfacesGrouped"
+          :title="group.title"
+          :key="group.title"
+          :open="index === 0">
+          <div class="interfaces">
+            <article
+              v-for="ext in group.interfaces"
+              :key="group.title + '-' + ext.id"
+              :class="{ active: interfaceName === ext.id }"
+              class="interface"
+              @click="interfaceName = ext.id">
+              <div class="header">
+                <i class="material-icons">{{ ext.icon ? ext.icon : 'category' }}</i>
+              </div>
+              <div class="body">
+                <h2>{{ ext.name }}</h2>
+                <p>Directus Team</p>
+              </div>
+            </article>
           </div>
-          <div class="body">
-            <h2>{{ ext.name }}</h2>
-            <p>Directus Team</p>
-          </div>
-        </article>
+        </v-details>
       </div>
     </template>
 
@@ -340,6 +348,76 @@ export default {
     },
     interfaces() {
       return this.$store.state.extensions.interfaces;
+    },
+    interfacesGrouped() {
+      const groups = [
+        {
+          title: this.$t("popular"),
+          interfaces: [
+            "text-input",
+            "textarea",
+            "wysiwyg",
+            "datetime",
+            "calendar",
+            "toggle",
+            "single-file",
+            "many-to-one",
+            "one-to-many"
+          ]
+        },
+        {
+          title: this.$t("text"),
+          interfaces: [
+            "code",
+            "hashed",
+            "markdown",
+            "password",
+            "primary-key",
+            "slug",
+            "tags",
+            "text-input",
+            "textarea",
+            "wysiwyg",
+            "wysiwyg-full"
+          ]
+        },
+        {
+          title: this.$t("numeric"),
+          interfaces: ["numeric", "primary-key", "rating", "slider", "sort"]
+        },
+        {
+          title: this.$t("date_and_time"),
+          interfaces: ["date", "datetime", "time", "calendar"]
+        },
+        {
+          title: this.$t("relational"),
+          interfaces: [
+            "one-to-many",
+            "many-to-one",
+            "many-to-many",
+            "single-file",
+            "translation"
+          ]
+        }
+      ];
+
+      groups.push({
+        title: this.$t("other"),
+        interfaces: Object.keys(this.interfaces).filter(name => {
+          let inUse = false;
+
+          groups.forEach(group => {
+            if (group.interfaces.includes(name)) inUse = true;
+          });
+
+          return inUse === false;
+        })
+      });
+
+      return groups.map(group => ({
+        ...group,
+        interfaces: group.interfaces.map(name => this.interfaces[name])
+      }));
     },
     databaseVendor() {
       return this.$store.state.serverInfo.databaseVendor;

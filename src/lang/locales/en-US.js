@@ -157,6 +157,7 @@ export default {
       YEAR: "A year. Allows `1901` to `2155` or `0000`"
     }
   },
+  date_and_time: "Date & Time",
   db_user: "Database User",
   db_password: "Database User Password",
   db_name: "Database Name",
@@ -289,6 +290,7 @@ export default {
     "It seems like this collection doesn't have any fields setup yet",
   no_files: "No Files",
   no_files_body: "It seems like there haven't been any files uploaded yet",
+  numeric: "Numeric",
   page_not_found: "Page Not Found",
   page_not_found_body: "The page you are looking for doesn't seem to exist.",
   permissions: "Permissions",
@@ -326,6 +328,7 @@ export default {
     on_update: "On Update",
     always: "Always"
   },
+  popular: "Popular",
   powered_by_directus: "Powered by Directus",
   preview_and_revert: "Preview and Revert",
   port: "Port",
@@ -338,6 +341,7 @@ export default {
   readable_fields: "Readable Fields",
   readable_fields_copy: "Select the fields that the user can view",
   readonly: "Readonly",
+  relational: "Relational",
   report_issue: "Report Issue",
   regex: "RegEx",
   relation_setup:
@@ -395,6 +399,7 @@ export default {
   sign_out_confirm: "Are you sure you want to sign out?",
   sign_out_confirm_edits:
     "Are you sure you want to sign out? All unsaved changes will be lost.",
+  text: "Text",
   this_collection: "This Collection",
   to: "To",
   unsaved_changes_copy:
