@@ -33,7 +33,7 @@ export default {
   almost_done_copy:
     "Every interface can be perfectly tailored to your needs. Below are the available options for this field, but only some are required.",
   all: "All",
-  allowed_statuses: "Allowed Statuses",
+  statuses: "Statuses",
   api_url: "API URL",
   api_installed: "API Successfully Installed",
   auto_generated: "Automatically generated...",
