@@ -3,6 +3,7 @@
     <input
       :id="id"
       :name="name"
+      :disabled="disabled"
       :checked="shouldBeChecked"
       :value="value"
       type="radio"
@@ -25,6 +26,14 @@ export default {
     id: {
       type: String,
       required: true
+    },
+    readonly: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     },
     value: {
       type: String,
@@ -84,6 +93,11 @@ label::before {
 
 input:hover + label {
   color: var(--accent);
+}
+
+input:disabled + label {
+  color: var(--light-gray);
+  cursor: not-allowed;
 }
 
 input:checked + label::before {
