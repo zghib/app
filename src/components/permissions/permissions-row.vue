@@ -180,7 +180,7 @@
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].explain"
-            :options="['none', 'on-create', 'on-update', 'always']"
+            :options="['none', 'create', 'update', 'always']"
             @input="emitValue('explain', $event, status)" />
         </div>
         <div class="cell">
