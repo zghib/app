@@ -180,8 +180,8 @@ export default {
     }
 
     .col-2 {
-      max-width: var(--width-normal);
-      flex-basis: var(--width-normal);
+      max-width: var(--width-medium);
+      flex-basis: var(--width-medium);
       margin-right: 20px;
     }
 

@@ -19,7 +19,7 @@
   --info-sidebar-width: 360px;
 
   --width-small: 140px;
-  --width-normal: 300px;
+  --width-medium: 300px;
   --width-large: 460px;
   --width-x-large: 620px;
 
@@ -473,7 +473,7 @@ legend {
 }
 
 .normal {
-  max-width: var(--width-normal);
+  max-width: var(--width-medium);
 }
 
 .large {

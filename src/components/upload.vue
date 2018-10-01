@@ -126,7 +126,7 @@ export default {
   position: relative;
   background-color: var(--white);
   width: 100%;
-  height: var(--width-normal);
+  height: var(--width-medium);
 }
 
 .dropzone {

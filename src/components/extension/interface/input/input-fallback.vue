@@ -38,6 +38,6 @@ export default {
 
 <style lang="scss" scoped>
 .v-ext-input-fallback {
-  max-width: var(--width-normal);
+  max-width: var(--width-medium);
 }
 </style>
