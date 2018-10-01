@@ -1,31 +1,30 @@
-<p align="center"><a href="https://directus.io" target="_blank" rel="noopener noreferrer"><img src="https://user-images.githubusercontent.com/522079/43096167-3a1b1118-8e86-11e8-9fb2-7b4e3b1368bc.png" width="200" alt="Directus Logo"/></a></p>
+<p align="center">
+  <a href="https://directus.io" target="_blank" rel="noopener noreferrer">
+    <img src="https://user-images.githubusercontent.com/522079/43096167-3a1b1118-8e86-11e8-9fb2-7b4e3b1368bc.png" width="140" alt="Directus Logo"/>
+  </a>
+</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
 
-# The All-New Directus 7<br>Future-Proof Headless CMS
+<h1 align="center">The All-New Directus 7<br>Future-Proof Headless CMS</h1>
+<h3 align="center">
+  <a href="https://directus.io">Website</a> • 
+  <a href="https://docs.directus.io">Documentation</a> • 
+  <a href="https://docs.directus.io/api/reference.html">API Reference</a> • 
+  <a href="https://docs.directus.io/app/user-guide.html">User Guide</a> • 
+  <a href="https://directus.app">Demo</a> • 
+  <a href="https://docs.directus.io/supporting-directus.html">Contribute</a>
+</h3>
 
-_The Directus 7 App has been rebuilt from the ground-up in Vue.js and decoupled from our new "versionless" API._
+> _The Directus 7 App has been rebuilt from the ground-up in Vue.js and decoupled from our new "versionless" API. Both can easily be customized and extended to suit your project's needs._
 
-* [Learn more on our website](https://directus.io)
 * [Live Demo: Stable](https://directus.app)
   * [![Build Status](https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg)](https://semaphoreci.com/directus/app)
 * [Live Demo: Canary](https://next.directus.app)
   * [![Build Status](https://semaphoreci.com/api/v1/directus/next/branches/master/badge.svg)](https://semaphoreci.com/directus/next)
 
-## Supporting Directus
-
-Directus is a GPLv3-licensed open source project with development made possible by support from these backers. If you'd like to join them, please consider:
-
-* [Become a backer or sponsor through Patreon](https://www.patreon.com/directus)
-* [One-time donation through PayPal](https://paypal.com/directus)
-
-### Sponsors
-
-[RANGER Studio](http://rangerstudio.com), Bas Jansen
-
 ## Introduction
 
-Directus is a feature-rich suite of software for managing content in projects of any size. Instances of the [Directus API](https://github.com/directus/api) allow you to easily connect pure database content to: websites, native apps, wearables, IoT devices, digital signage, kiosks, etc – while the [Directus App](https://github.com/directus/app) allows non-technical users to manage content. 
+Directus is an open-source suite of software for managing content in projects of any size. Instances of the [Directus API](https://github.com/directus/api) allow you to easily connect any SQL database content to: websites, native apps, wearables, IoT devices, digital signage, kiosks, etc – while the [Directus App](https://github.com/directus/app) allows non-technical users to manage that API content. 
 
 ### No Assumptions
 
@@ -106,6 +105,17 @@ We love pull-requests! If you would like to contribute to Directus please submit
 </table>
 
 Other Key Contributors: [coolov](https://github.com/coolov), [freen](https://github.com/freen), [jel-massih](https://github.com/jel-massih), [Lasha](https://github.com/Lasha)
+
+## Supporting Directus
+
+Directus is a GPLv3-licensed open source project with development made possible by support from these backers. If you'd like to join them, please consider:
+
+* [Become a backer or sponsor through Patreon](https://www.patreon.com/directus)
+* [One-time donation through PayPal](https://paypal.com/directus)
+
+### Sponsors
+
+[RANGER Studio](http://rangerstudio.com), Bas Jansen
 
 ## License, Copyright, & Trademarks
 
