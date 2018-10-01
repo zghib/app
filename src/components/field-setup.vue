@@ -51,7 +51,7 @@
       </template>
       <form @submit.prevent class="schema">
         <div class="name">
-          <label>{{ $t("name") }}<i v-tooltip="$t('required')" class="material-icons required">star</i> <v-input type="text" v-model="field" :placeholder="$t('db_name')" class="name-input" :disabled="existing" /></label>
+          <label>{{ $t("name") }}<i v-tooltip="$t('required')" class="material-icons required">star</i> <v-input type="text" v-model="field" :placeholder="$t('db_column_name')" class="name-input" :disabled="existing" /></label>
           <label>{{ $t("display_name") }} <v-input type="text" disabled :value="displayName" :placeholder="$t('auto_generated')" /></label>
         </div>
         <label>{{ $t("note") }} <v-input type="text" v-model="note" :placeholder="$t('add_note')" /></label>
@@ -362,7 +362,10 @@ export default {
             "toggle",
             "single-file",
             "many-to-one",
-            "one-to-many"
+            "one-to-many",
+            "primary-key",
+            "status",
+            "sort"
           ]
         },
         {

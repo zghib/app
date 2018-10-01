@@ -162,6 +162,7 @@ export default {
   db_password: "Database User Password",
   db_name: "Database Name",
   db_type: "Database Type",
+  db_column_name: "Database column name...",
   default: "Default",
   delete: "Delete",
   delete_are_you_sure:
@@ -224,8 +225,8 @@ export default {
   greater_than: "Greater than",
   help_and_docs: "Help & Docs",
   keep_editing: "Keep editing",
-  hidden_input: "Hidden on Details",
-  hidden_list: "Hidden on List",
+  hidden_input: "Hidden on Detail",
+  hidden_list: "Hidden on Browse",
   host: "Host",
   in_list: "One of these",
   initial_schema: "Choose an Initial Schema",
