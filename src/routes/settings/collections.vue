@@ -19,8 +19,8 @@
     <div class="table">
       <div class="header">
         <div class="row">
-          <div class="cell">{{ $t('collection') }}</div>
-          <div class="cell">{{ $t('note') }}</div>
+          <div class="cell style-4">{{ $t('collection') }}</div>
+          <div class="cell note style-4">{{ $t('note') }}</div>
         </div>
       </div>
       <div class="body">
@@ -30,7 +30,7 @@
           class="row"
           :to="collection.__link__">
           <div class="cell">{{ collection.name }}</div>
-          <div class="cell">{{ collection.note }}</div>
+          <div class="cell note">{{ collection.note }}</div>
           <button
             v-if="collection.managed"
             class="managed"
@@ -262,6 +262,13 @@ export default {
     position: relative;
     overflow: hidden;
     max-height: 100%;
+    &.note {
+      flex-grow: 1;
+      padding-right: 120px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   .header {
