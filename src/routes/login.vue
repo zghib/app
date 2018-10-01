@@ -24,7 +24,7 @@
               value="other"
             >{{ $t('other') }}</option>
           </select>
-          {{ $t('to') }} <span>{{ $helpers.formatTitle(urls[url] || $t('choose_project')) }} <i class="material-icons">arrow_drop_down</i></span>
+          {{ $t('to') }} <span>{{ (urls[url] || $t('choose_project')) }} <i class="material-icons">arrow_drop_down</i></span>
         </label>
 
         <div class="material-input" v-if="selectOther">
