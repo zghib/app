@@ -104,7 +104,9 @@ Directus is a GPLv3-licensed open source project with development made possible 
 * [One-time donation through PayPal](https://paypal.com/directus)
 * [Other ways to help](https://docs.directus.io/supporting-directus.html)
 
-### Sponsors: [RANGER Studio](http://rangerstudio.com), Bas Jansen
+### Sponsors
+
+[RANGER Studio](http://rangerstudio.com), Bas Jansen
 
 ### Core Team
 
