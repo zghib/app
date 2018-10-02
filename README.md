@@ -18,12 +18,15 @@
   <a href="https://directus.app">Demo</a> • 
   <a href="https://docs.directus.io/supporting-directus.html">Contribute</a>
 </h3>
-[![Build Status](https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg)]
+
 <p>&nbsp;</p>
 
 > _The Directus 7 App has been rebuilt from the ground-up in Vue.js and decoupled from our new "versionless" API. Both can easily be customized and extended to suit your project's needs._
 
-<p>&nbsp;</p>
+
+<p align="center">
+  <img src="https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg">
+</p>
 
 ## 🐰 Introduction
 
@@ -91,7 +94,17 @@ We love pull-requests! If you would like to contribute to Directus please submit
 
 We have two online demos available so you can easily check out Directus in action: [stable](https://directus.app) or [canary](https://next.directus.app)
 
-## 🌎 Team
+## ❤️ Supporting Directus
+
+Directus is a GPLv3-licensed open source project with development made possible by support from our community, core team, and sponsors. It's not easy building premium open-source software; if you would like to help ensure Directus stays free, please consider becoming a sponsor.
+
+* [Become a backer or sponsor through Patreon](https://www.patreon.com/directus)
+* [One-time donation through PayPal](https://paypal.com/directus)
+* [Other ways to help](https://docs.directus.io/supporting-directus.html)
+
+### Sponsors: [RANGER Studio](http://rangerstudio.com), Bas Jansen
+
+### Core Team
 
 <table>
    <tr>
@@ -113,17 +126,7 @@ We have two online demos available so you can easily check out Directus in actio
    </tr>
 </table>
 
-Other Key Contributors: [coolov](https://github.com/coolov), [freen](https://github.com/freen), [jel-massih](https://github.com/jel-massih), [Lasha](https://github.com/Lasha)
-
-## ❤️ Supporting Directus
-
-Directus is a GPLv3-licensed open source project with development made possible by support from our community, partners, and sponsors.
-
-### Sponsors: [RANGER Studio](http://rangerstudio.com), Bas Jansen
-
-* [Become a backer or sponsor through Patreon](https://www.patreon.com/directus)
-* [One-time donation through PayPal](https://paypal.com/directus)
-* [Other ways to help](https://docs.directus.io/supporting-directus.html)
+**Other Key Contributors: [coolov](https://github.com/coolov), [freen](https://github.com/freen), [jel-massih](https://github.com/jel-massih), [Lasha](https://github.com/Lasha)**
 
 ----
 
