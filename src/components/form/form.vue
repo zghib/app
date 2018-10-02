@@ -8,7 +8,7 @@
     <div
       v-for="field in groupedFields"
       :class="[
-        isGroup(field) ? null : `col-${field.view_width || 4}`,
+        isGroup(field) ? null : `col-${field.width || 4}`,
         isGroup(field) ? 'group' : 'field'
       ]"
       :key="field.field">
@@ -118,7 +118,7 @@ export default {
 
       return result
         .filter(
-          field => field.hidden_input === false || field.hidden_input === "0"
+          field => field.hidden_detail === false || field.hidden_detail === "0"
         )
         .sort((a, b) => (a.sort > b.sort ? 1 : -1));
     }

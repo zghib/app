@@ -269,8 +269,8 @@ export default {
           default_value: null,
           field: "name",
           group: null,
-          hidden_input: false,
-          hidden_list: false,
+          hidden_detail: false,
+          hidden_browse: false,
           id: 154,
           interface: "text-input",
           length: "100",
@@ -288,15 +288,15 @@ export default {
           translation: null,
           type: "VARCHAR",
           validation: null,
-          view_width: 4
+          width: 4
         },
         director: {
           collection: "movies",
           default_value: null,
           field: "director",
           group: null,
-          hidden_input: false,
-          hidden_list: false,
+          hidden_detail: false,
+          hidden_browse: false,
           id: 161,
           interface: "text-input",
           length: "100",
@@ -314,7 +314,7 @@ export default {
           translation: null,
           type: "VARCHAR",
           validation: null,
-          view_width: 4
+          width: 4
         }
       },
       customValues: {

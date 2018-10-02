@@ -9,7 +9,7 @@
       <div
         v-for="child in field.children"
         :class="[
-          isGroup(child) ? null : `col-${child.view_width}`,
+          isGroup(child) ? null : `col-${child.width}`,
           isGroup(child) ? 'group' : 'field'
         ]"
         :key="child.field">

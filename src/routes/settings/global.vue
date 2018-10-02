@@ -145,8 +145,8 @@ export default {
                 collection: "directus_settings",
                 field: key,
                 group: null,
-                hidden_input: false,
-                hidden_list: false,
+                hidden_detail: false,
+                hidden_browse: false,
                 id: null,
                 interface: "text-input",
                 locked: true,
@@ -159,7 +159,7 @@ export default {
                 translation: null,
                 type: "VARCHAR",
                 validation: null,
-                view_width: 4
+                width: 4
               }
           )
         };

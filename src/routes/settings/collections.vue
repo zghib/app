@@ -159,8 +159,8 @@ export default {
                 default_value: null,
                 field: "id",
                 group: null,
-                hidden_input: true,
-                hidden_list: false,
+                hidden_detail: true,
+                hidden_browse: false,
                 interface: "primary-key",
                 length: "10",
                 locked: 0,
@@ -175,7 +175,7 @@ export default {
                 type: "integer",
                 unique: false,
                 validation: null,
-                view_width: 4
+                width: 4
               }
             }
           });
