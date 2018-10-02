@@ -3,9 +3,13 @@
     <img src="https://user-images.githubusercontent.com/522079/43096167-3a1b1118-8e86-11e8-9fb2-7b4e3b1368bc.png" width="140" alt="Directus Logo"/>
   </a>
 </p>
+
 <p>&nbsp;</p>
 
-<h1 align="center">The All-New Directus 7<br>Future-Proof Headless CMS</h1>
+<h1 align="center">
+  The All-New Directus 7<br>Future-Proof Headless CMS
+</h1>
+
 <h3 align="center">
   <a href="https://directus.io">Website</a> • 
   <a href="https://docs.directus.io">Documentation</a> • 
@@ -14,44 +18,46 @@
   <a href="https://directus.app">Demo</a> • 
   <a href="https://docs.directus.io/supporting-directus.html">Contribute</a>
 </h3>
+[![Build Status](https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg)]
+<p>&nbsp;</p>
 
 > _The Directus 7 App has been rebuilt from the ground-up in Vue.js and decoupled from our new "versionless" API. Both can easily be customized and extended to suit your project's needs._
 
-* [Live Demo: Stable](https://directus.app)
-  * [![Build Status](https://semaphoreci.com/api/v1/directus/app/branches/build/badge.svg)](https://semaphoreci.com/directus/app)
-* [Live Demo: Canary](https://next.directus.app)
-  * [![Build Status](https://semaphoreci.com/api/v1/directus/next/branches/master/badge.svg)](https://semaphoreci.com/directus/next)
+<p>&nbsp;</p>
 
-## Introduction
+## 🐰 Introduction
 
-Directus is an open-source suite of software for managing content in projects of any size. Instances of the [Directus API](https://github.com/directus/api) allow you to easily connect any SQL database content to: websites, native apps, wearables, IoT devices, digital signage, kiosks, etc – while the [Directus App](https://github.com/directus/app) allows non-technical users to manage that API content. 
+Directus is an open-source suite of software for managing content in projects of any size. Instances of the [Directus API](https://github.com/directus/api) allow you to easily connect any SQL database content anywhere (websites, native apps, wearables, IoT devices, digital signage, kiosks, etc) while the [Directus App](https://github.com/directus/app) allows non-technical users to manage that content. 
 
-### No Assumptions
+* **No Assumptions.** That’s our motto, and we mean it. It’s your content, your workflow, your stack, your servers, and your database – Directus stays out of the way.
+* **Pure, decoupled content.** Directus stores all your data unaltered, in SQL databases designed by you. Connect to your data from anywhere everywhere.
+* **Directus is a simple toolkit, not a one-size-fits-all behemoth.** Every aspect of the framework can be tailored, extended, or even bypassed if needed. Truly limitless.
+* **Full internationalization.** Manage multilingual content in as many languages as your project needs. And for international teams, the Directus App itself supports translations.
 
-### Transparent
+## 📖 Documentation
 
-### Internationalization
-
-## Documentation
+* [What is Directus?](https://docs.directus.io)
+* [Installing the Directus Suite](https://docs.directus.io)
+* [Extending Directus](https://docs.directus.io)
 
 ### Directus App
 
 * [App Docs](https://docs.directus.io)
 * [User Guide](https://docs.directus.io)
-   * [Installation](https://docs.directus.io)
+* [Install the App](https://docs.directus.io)
 
 ### Directus API
 
 * [API Docs](https://docs.directus.io)
 * [API Reference](https://docs.directus.io)
-   * [Installation](https://docs.directus.io)
+* [Install the API](https://docs.directus.io)
 
 ### Tutorials
 
 * [Tutorials](https://medium.com/directus)
 * [Videos](https://www.youtube.com/playlist?list=PLD--x9rY3ZL31stRPkA4FdGC4idIM-8-d)
 
-## Support & Resources
+## 🤲 Support & Resources
 
 ### Open-Source Support
 
@@ -63,8 +69,7 @@ For help with open-source instances please post questions with the `directus` ta
 
 ### Reporting Bugs
 
-If you believe you've found a bug in the Directus Core codebase, please submit new tickets here: [App](https://github.com/directus/app/issues/new?template=Bug_report.md) or [API](https://github.com/directus/api/issues/new?template=Bug_report.md)
-**For all security related issues, please chat with us directly through [directus.io](https://directus.io/).**
+If you believe you've found a bug in the Directus Core codebase, please submit new tickets to either the [App](https://github.com/directus/app/issues/new?template=Bug_report.md) or the [API](https://github.com/directus/api/issues/new?template=Bug_report.md). **For all security related issues, please chat with us directly through [directus.io](https://directus.io/).**
 
 ### Community Discussions
 
@@ -82,7 +87,11 @@ Feature requests are managed as GitHub issues within the appropriate Directus re
 
 We love pull-requests! If you would like to contribute to Directus please submit pull-requests to the `development` branch.
 
-## Team
+### Online Demos
+
+We have two online demos available so you can easily check out Directus in action: [stable](https://directus.app) or [canary](https://next.directus.app)
+
+## 🌎 Team
 
 <table>
    <tr>
@@ -106,19 +115,18 @@ We love pull-requests! If you would like to contribute to Directus please submit
 
 Other Key Contributors: [coolov](https://github.com/coolov), [freen](https://github.com/freen), [jel-massih](https://github.com/jel-massih), [Lasha](https://github.com/Lasha)
 
-## Supporting Directus
+## ❤️ Supporting Directus
 
-Directus is a GPLv3-licensed open source project with development made possible by support from these backers. If you'd like to join them, please consider:
+Directus is a GPLv3-licensed open source project with development made possible by support from our community, partners, and sponsors.
+
+### Sponsors: [RANGER Studio](http://rangerstudio.com), Bas Jansen
 
 * [Become a backer or sponsor through Patreon](https://www.patreon.com/directus)
 * [One-time donation through PayPal](https://paypal.com/directus)
+* [Other ways to help](https://docs.directus.io/supporting-directus.html)
 
-### Sponsors
+----
 
-[RANGER Studio](http://rangerstudio.com), Bas Jansen
-
-## License, Copyright, & Trademarks
-
-* Directus is released under the [GPLv3](http://www.gnu.org/copyleft/gpl.html) license
-* Copyright © 2006-2018, [RANGER Studio LLC](http://rngr.org/)
-* [RANGER Studio LLC](http://rngr.org/) owns all Directus trademarks and logos on behalf of our project's community
+<p align="center">
+  Directus is released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPLv3</a> license. <a href="http://rangerstudio.com">RANGER Studio LLC</a> owns all Directus trademarks and logos on behalf of our project's community. Copyright © 2006-2018, <a href="http://rangerstudio.com">RANGER Studio LLC</a>.
+</p>
