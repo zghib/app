@@ -88,7 +88,10 @@ Feature requests are managed as GitHub issues within the appropriate Directus re
 
 ### Contributing
 
-We love pull-requests! If you would like to contribute to Directus please submit pull-requests to the `development` branch.
+We love pull-requests! To work on Directus you'll need to install it locally from source by following the instructions below. Submit all pull-requests to the `development` branch of our `api` and `app` repositories.
+
+* [Setup API Development Environment](https://docs.directus.io/api/contributor-guide/install-dev.html)
+* [Setup App Development Environment](https://docs.directus.io/app/contributor-guide/install-dev.html)
 
 ### Online Demos
 
