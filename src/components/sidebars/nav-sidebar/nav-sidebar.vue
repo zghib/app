@@ -17,6 +17,7 @@
           <nav-menu
             v-if="collections && collections.length > 0"
             :title="$t('collections')"
+            :no-border="!bookmarks.length && !extensions"
             :links="collections.map(({ collection, icon }) => ({
               path: `/collections/${collection}`,
               name: $t(`collections-${collection}`),
@@ -101,7 +102,7 @@ export default {
         });
       });
 
-      return links;
+      return links.length ? links : null;
     }
   },
   methods: {
