@@ -343,6 +343,7 @@ export default {
   readonly: "Readonly",
   relational: "Relational",
   report_issue: "Report Issue",
+  request_feature: "Request Feature",
   regex: "RegEx",
   relation_setup:
     "Since this is a relational field, we need to map-out the related fields.",

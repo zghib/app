@@ -68,8 +68,15 @@
             :title="$t('report_issue')"
             :subtitle="$t('open_on_gh')"
             element="li"
-            href="https://github.com/directus/app/issues/new/choose"
+            href="https://github.com/directus/app/issues/new?template=Bug_report.md"
             icon="bug_report" />
+
+          <v-card
+            :title="$t('request_feature')"
+            :subtitle="$t('open_on_gh')"
+            element="li"
+            href="https://github.com/directus/app/issues/new?template=Feature_request.md"
+            icon="how_to_vote" />
         </ul>
       </nav>
     </v-details>
