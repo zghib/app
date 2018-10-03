@@ -2,19 +2,21 @@
   <div class="v-field">
     <component :is="fieldset ? 'fieldset' : 'p'">
       <div>
-        <template v-if="hideLabel === false">
-          <div class="label">
-            <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
-              {{ field.name || $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons" v-if="(field.required === true || field.required === '1')">star</i>
-            </component>
-            <label v-if="batchMode" class="batch-label">
-              <v-toggle
-                :value="!blocked"
-                @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" />
-            </label>
-          </div>
-        </template>
-        <small v-if="!readonly && field.note" v-html="$helpers.snarkdown(field.note)" />
+        <div class="heading">
+          <template v-if="hideLabel === false">
+            <div class="label">
+              <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
+                {{ field.name || $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons" v-if="(field.required === true || field.required === '1')">star</i>
+              </component>
+              <label v-if="batchMode" class="batch-label">
+                <v-toggle
+                  :value="!blocked"
+                  @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" />
+              </label>
+            </div>
+          </template>
+          <small v-if="!readonly && field.note" v-html="$helpers.snarkdown(field.note)" />
+        </div>
         <div class="field-wrapper">
           <v-ext-input
             :id="field.interface"
@@ -113,13 +115,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.heading {
+  margin-bottom: 14px;
+}
 .field-wrapper {
   position: relative;
 }
 
 label,
 legend {
-  margin-bottom: 10px;
   text-transform: none;
   color: var(--darker-gray);
   font-size: 1.2rem;
@@ -149,10 +153,12 @@ p {
 
 small {
   order: 2;
-  margin-top: 10px;
+  display: block;
+  margin-top: 4px;
   font-style: italic;
   font-size: 12px;
-  color: var(--gray);
+  line-height: 1.5em;
+  color: var(--light-gray);
 }
 
 .label {
