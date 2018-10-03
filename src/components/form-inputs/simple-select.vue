@@ -42,7 +42,8 @@ export default {
   },
   mounted: function() {
     let selectElement = this.$refs.selectElement;
-    this.valueText = selectElement.options[selectElement.selectedIndex].text;
+    this.valueText =
+      selectElement.options[selectElement.selectedIndex].text || this.value;
   }
 };
 </script>
