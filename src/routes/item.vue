@@ -167,7 +167,8 @@ function getFieldsQuery(collection) {
         fieldInfo.type.toLowerCase() === "m2o" ||
         fieldInfo.type.toLowerCase() === "o2m" ||
         fieldInfo.type.toLowerCase() === "m2m" ||
-        fieldInfo.type.toLowerCase() === "translation"
+        fieldInfo.type.toLowerCase() === "translation" ||
+        fieldInfo.type.toLowerCase() === "file"
       ) {
         return field.endsWith(".*") ? field : field + ".*";
       }
