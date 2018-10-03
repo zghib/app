@@ -611,6 +611,11 @@ export default {
           this.selectedDatatypeInfo.defaultDecimals;
       }
     },
+    lengthDisabled(disabled) {
+      if (disabled) {
+        this.length = null;
+      }
+    },
     field(val) {
       // Based on https://gist.github.com/mathewbyrne/1280286
       this.field = val
