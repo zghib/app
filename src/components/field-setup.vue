@@ -504,14 +504,20 @@ export default {
       if (this.activeTab === "schema" && !this.field) {
         disabled = true;
       }
+
+      let text = this.$t("next");
+
+      if (
+        this.activeTab === "options" ||
+        (this.activeTab === "schema" && this.hasOptions === false)
+      ) {
+        text = this.$t("save");
+      }
+
       return {
         next: {
           disabled,
-          text:
-            this.activeTab === "options" ||
-            (this.activeTab === "schema" && this.hasOptions === false)
-              ? this.$t("save")
-              : this.$t("next"),
+          text,
           loading: this.saving
         }
       };
