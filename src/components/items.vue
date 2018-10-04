@@ -120,11 +120,11 @@ export default {
       }).field;
     },
     sortField() {
-      const field = this.$lodash.find(this.fields, { type: "SORT" });
+      const field = this.$lodash.find(this.fields, { type: "sort" });
       return (field && field.field) || null;
     },
     statusField() {
-      const field = this.$lodash.find(this.fields, { type: "STATUS" });
+      const field = this.$lodash.find(this.fields, { type: "status" });
       return (field && field.field) || null;
     },
     userCreatedField() {
