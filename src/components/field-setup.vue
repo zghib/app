@@ -595,8 +595,27 @@ export default {
         ? mapping[this.type][this.databaseVendor].default
         : null;
 
-      if (mapping[this.type].defaultValue) {
-        this.default_value = mapping[this.type].defaultValue;
+      if (
+        this.selectedInterfaceInfo &&
+        this.selectedInterfaceInfo.recommended
+      ) {
+        const {
+          defaultValue,
+          length,
+          validation
+        } = this.selectedInterfaceInfo.recommended;
+
+        if (defaultValue) {
+          this.default_value = defaultValue;
+        }
+
+        if (length) {
+          this.length = length;
+        }
+
+        if (validation) {
+          this.validation = validation;
+        }
       }
 
       this.initRelation();

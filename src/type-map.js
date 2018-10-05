@@ -233,10 +233,8 @@ export default {
     description: i18n.t("fieldtypes.status"),
     mysql: {
       datatypes: ["CHAR", "VARCHAR", "INT"],
-      default: "VARCHAR",
-      length: 20
-    },
-    defaultValue: "draft"
+      default: "VARCHAR"
+    }
   },
   string: {
     description: i18n.t("fieldtypes.string"),
