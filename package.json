@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@directus/format-title": "^2.0.0",
-    "@directus/sdk-js": "^3.7.2",
+    "@directus/sdk-js": "^3.7.4",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.5.7",
