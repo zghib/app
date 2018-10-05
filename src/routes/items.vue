@@ -312,6 +312,8 @@ export default {
       return this.$store.state.permissions[this.collection];
     },
     addButton() {
+      if (this.$store.state.currentUser.admin) return true;
+
       if (this.statusField) {
         return (
           Object.values(this.permission.statuses).some(
@@ -328,6 +330,7 @@ export default {
       return true;
     },
     deleteButtonEnabled() {
+      if (this.$store.state.currentUser.admin) return true;
       const currentUserID = this.$store.state.currentUser.id;
       let enabled = true;
 
@@ -368,6 +371,8 @@ export default {
     editButtonEnabled() {
       const currentUserID = this.$store.state.currentUser.id;
       let enabled = true;
+
+      if (this.$store.state.currentUser.admin) return true;
 
       this.selection.forEach(item => {
         const status = this.statusField ? item[this.statusField] : null;
