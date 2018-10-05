@@ -33,7 +33,7 @@ function setI18nLanguage(lang) {
  * Load a new language file (if it hasn't been loaded yet) and change the system language
  *   to this new language.
  * @async
- * @param {string} lang The langauge to change to
+ * @param {string} lang The language to change to
  * @returns {Promise<string>} The language that was passed
  */
 export function loadLanguageAsync(lang) {
