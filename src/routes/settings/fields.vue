@@ -22,7 +22,6 @@
 
     <label class="label ">{{ $t('fields') }} <em class="notice">{{ $t('fields_are_saved_instantly') }}</em></label>
 
-
     <div class="table">
       <div class="header">
         <div class="row">
