@@ -30,7 +30,7 @@
               :key="group.title + '-' + ext.id"
               :class="{ active: interfaceName === ext.id }"
               class="interface"
-              @click="interfaceName = ext.id">
+              @click="setInterface(ext.id)">
               <div class="header">
                 <i class="material-icons">{{ ext.icon ? ext.icon : 'category' }}</i>
               </div>
@@ -706,6 +706,10 @@ export default {
           this.saveField();
           break;
       }
+    },
+    setInterface(id) {
+      this.interfaceName = id;
+      this.nextTab();
     },
     saveField() {
       const fieldInfo = {
