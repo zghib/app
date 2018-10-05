@@ -360,7 +360,7 @@ export default {
             "datetime",
             "calendar",
             "toggle",
-            "single-file",
+            "file",
             "many-to-one",
             "one-to-many",
             "primary-key",
@@ -398,7 +398,7 @@ export default {
             "one-to-many",
             "many-to-one",
             "many-to-many",
-            "single-file",
+            "file",
             "translation"
           ]
         }
