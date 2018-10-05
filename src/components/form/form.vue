@@ -118,7 +118,7 @@ export default {
 
       return result
         .filter(
-          field => field.hidden_detail === false || field.hidden_detail === "0"
+          field => field.hidden_detail === false || field.hidden_detail == "0"
         )
         .sort((a, b) => (a.sort > b.sort ? 1 : -1));
     }
