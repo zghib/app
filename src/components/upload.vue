@@ -1,6 +1,7 @@
 <template>
-  <div class="v-upload" :class="{ uploading: Object.keys(files).length > 0 }">
+  <div class="v-upload" :class="{ uploading: Object.keys(files).length > 0, disabled }">
     <input
+      :disabled="disabled"
       class="select"
       type="file"
       ref="select"
@@ -40,6 +41,7 @@
     </transition-group>
 
     <input
+      :disabled="disabled"
       class="drop"
       type="file"
       ref="drop"
@@ -60,6 +62,10 @@ export default {
       default: true
     },
     small: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }
@@ -127,6 +133,11 @@ export default {
   background-color: var(--white);
   width: 100%;
   height: var(--width-medium);
+
+  &.disabled {
+    background-color: var(--body-background);
+    cursor: not-allowed;
+  }
 }
 
 .dropzone {
@@ -176,7 +187,6 @@ input.select {
   transition-property: border-color, color;
   border: var(--input-border-width) dashed var(--lighter-gray);
   border-radius: var(--border-radius);
-  background-color: var(--white);
 
   .icon i {
     font-size: 100px;
@@ -324,6 +334,10 @@ input.select {
       color: var(--gray);
     }
   }
+}
+
+.v-upload.disabled .buttons {
+  pointer-events: none;
 }
 
 .dragging input.drop {
