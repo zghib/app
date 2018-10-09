@@ -30,8 +30,8 @@
           <div>{{ $t('interface')}}</div>
         </div>
       </div>
-      <div class="body">
-        <draggable v-model="fields" @end="saveSort">
+      <div class="body" :class="{ dragging }">
+        <draggable v-model="fields" @start="startSort" @end="saveSort">
           <div
             class="row"
             v-for="field in fields"
@@ -113,6 +113,7 @@ export default {
   data() {
     return {
       saving: false,
+      dragging: false,
 
       fields: null,
       directusFields: null,
@@ -430,7 +431,11 @@ export default {
           });
         });
     },
+    startSort() {
+      this.dragging = true;
+    },
     saveSort() {
+      this.dragging = false;
       const fieldUpdates = this.fieldsWithSort.map(field => ({
         field: field.field,
         sort: field.sort
@@ -552,7 +557,26 @@ h2 {
     }
   }
 
+  .sortable-drag {
+    opacity: 0;
+  }
+
+  .dragging .sortable-chosen,
+  .sortable-chosen:active {
+    background-color: var(--highlight) !important;
+    color: var(--accent);
+
+    .manual-sort {
+      color: var(--accent);
+    }
+  }
+
   .body {
+
+    &.dragging .row:hover {
+      background-color: var(--white);
+    }
+
     .row {
       cursor: pointer;
       position: relative;
