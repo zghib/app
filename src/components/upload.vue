@@ -13,7 +13,7 @@
         <i class="material-icons">cloud_upload</i>
       </div>
       <div class="info">
-        <p class="name">{{ $t('drop_files') }}</p>
+        <p class="name">{{ $tc('drop_files', multiple ? 2 : 1) }}</p>
         <p class="file-info no-wrap">{{ $t("max_size", { size: $helpers.filesize($store.state.serverInfo.maxUploadSize) }) }}</p>
       </div>
       <div class="buttons">

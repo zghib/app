@@ -181,7 +181,7 @@ export default {
   dialog_beginning: "Beginning of dialog window.",
   discard_changes: "Discard Changes",
   display_name: "Display Name",
-  drop_files: "Drop files here...",
+  drop_files: "Can't Drop Files | Drop file here... | Drop files here...",
   dont_show: "Don't Show",
   editing: "Editing {collection}",
   editing_item: "Editing Item",
