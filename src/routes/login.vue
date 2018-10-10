@@ -236,7 +236,15 @@ export default {
       this.checkUrl();
     }
 
-    const lastUsedURL = this.storeUrl;
+    let lastUsedURL = this.storeUrl;
+
+    // Check if the last used URL is still a valid option before using it
+    if (
+      Object.keys(window.__DirectusConfig__.api).includes(lastUsedURL) === false
+    ) {
+      lastUsedURL = null;
+    }
+
     this.url =
       lastUsedURL || Object.keys(window.__DirectusConfig__.api)[0] || "";
 
