@@ -816,7 +816,7 @@ export default {
 
     return this.$api
       .getItem(collection, primaryKey, {
-        fields: getFieldsQuery(this.collection)
+        fields: getFieldsQuery(collection)
       })
       .then(res => res.data)
       .then(item => {
