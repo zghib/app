@@ -572,7 +572,6 @@ h2 {
   }
 
   .body {
-
     &.dragging .row:hover {
       background-color: var(--white);
     }
