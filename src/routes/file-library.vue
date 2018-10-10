@@ -326,15 +326,19 @@ export default {
       const id = this.$helpers.shortid.generate();
       this.$store.dispatch("loadingStart", { id });
 
+      const preferences = { ...this.preferences };
+      delete preferences.id;
+
       return this.$api
         .createCollectionPreset({
-          ...this.preferences,
+          ...preferences,
           collection: this.collection,
           user: this.$store.state.currentUser.id
         })
         .then(({ data }) => {
           this.$store.dispatch("loadingFinished", id);
           this.$set(this.preferences, "id", data.id);
+          this.$set(this.preferences, "user", data.user);
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
