@@ -493,9 +493,9 @@ export default {
               name: formatTitle(field.field)
             }))
             .sort((a, b) => {
-              if (a.sort == null) return 1;
-              if (b.sort == null) return -1;
               if (a.sort == b.sort) return 0;
+              if (a.sort === null) return 1;
+              if (b.sort === null) return -1;
               return a.sort > b.sort ? 1 : -1;
             });
         });
