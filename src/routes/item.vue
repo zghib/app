@@ -47,7 +47,7 @@
           }"
           icon="check"
           color="action"
-          @click="save('leave')"
+          @click="singleItem ? save('stay') : save('leave')"
           @input="save" />
       </template>
     </v-header>
