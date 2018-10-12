@@ -445,7 +445,9 @@ export default {
       this.$store.dispatch("loadingStart", { id });
 
       this.$api
-        .updateFields(this.collection, fieldUpdates)
+        .patch(`/fields/${this.collection}`, fieldUpdates, {
+          activity_skip: 1
+        })
         .then(res => res.data)
         .then(fields => {
           this.$store.dispatch("loadingFinished", id);
