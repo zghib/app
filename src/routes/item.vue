@@ -351,7 +351,7 @@ export default {
       return this.collectionInfo && this.collectionInfo.single === true;
     },
     primaryKeyField() {
-      return this.$lodash.find(this.fields, { primary_key: "1" }).field;
+      return this.$lodash.find(this.fields, { primary_key: true }).field;
     },
     batch() {
       return this.primaryKey.includes(",");
