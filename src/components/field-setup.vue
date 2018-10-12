@@ -344,10 +344,10 @@ export default {
   },
   computed: {
     collections() {
-      return this.$store.state.collections;
+      return Object.assign({}, this.$store.state.collections);
     },
     interfaces() {
-      return this.$store.state.extensions.interfaces;
+      return Object.assign({}, this.$store.state.extensions.interfaces);
     },
     interfacesGrouped() {
       const groups = [
@@ -432,7 +432,7 @@ export default {
     },
     interfaceOptions() {
       if (!this.selectedInterfaceInfo) return null;
-      const options = this.selectedInterfaceInfo.options;
+      const options = Object.assign({}, this.selectedInterfaceInfo.options);
       const regular = this.$lodash.pickBy(options, opt => !opt.advanced);
       const advanced = this.$lodash.pickBy(
         options,
@@ -588,6 +588,18 @@ export default {
     },
     interfaceName(name) {
       if (!name) return;
+
+      if (name !== this.fieldInfo.interface) {
+        const options = {
+          ...this.interfaceOptions.advanced,
+          ...this.interfaceOptions.regular
+        };
+
+        this.$lodash.forEach(options, (info, key) => {
+          this.$set(this.options, key, info.default);
+        });
+      }
+
       if (this.existing) return;
 
       this.type = this.availableFieldTypes[0];
@@ -645,16 +657,6 @@ export default {
           "," +
           this.selectedDatatypeInfo.defaultDecimals;
       }
-    },
-    interfaceOptions(groupedOptions) {
-      const options = {
-        ...groupedOptions.advanced,
-        ...groupedOptions.regular
-      };
-
-      this.$lodash.forEach(options, (info, key) => {
-        this.$set(this.options, key, info.default);
-      });
     },
     lengthDisabled(disabled) {
       if (disabled) {
@@ -783,12 +785,25 @@ export default {
     useFieldInfo() {
       if (!this.fieldInfo) return;
 
-      Object.keys(this.fieldInfo).forEach(key => {
-        if (this.fieldInfo[key] != null) this[key] = this.fieldInfo[key];
+      // This is somewhat disgusting. The parent fields route shouldn't pass in the
+      // stale copy of the field based on the API load, but should instead pass
+      // just the name of the field, so we can directly pull it from the store.
+      //
+      // The parent should also use the store directly, seeing that we are loading
+      // the fields nested in the collections anyway (this didn't use to be
+      // that way). +1 for future optimizations!
+      const fieldName = this.fieldInfo.field;
+      const collectionName = this.collectionInfo.collection;
+      const storeFieldCopy = this.$lodash.clone(
+        this.$store.state.collections[collectionName].fields[fieldName]
+      );
+
+      Object.keys(storeFieldCopy).forEach(key => {
+        if (storeFieldCopy[key] != null) this[key] = storeFieldCopy[key];
       });
 
       // 'interface' is a reserved word in JS, so we need to work around that
-      this.interfaceName = this.fieldInfo.interface;
+      this.interfaceName = storeFieldCopy.interface;
     },
     initRelation() {
       if (!this.relation) return;
