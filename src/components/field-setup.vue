@@ -18,7 +18,7 @@
       <p v-else class="subtext">
         {{ $t("select_interface_below" )}}
       </p>
-      <div >
+      <div>
         <v-details
           v-for="(group, index) in interfacesGrouped"
           :title="group.title"
@@ -61,8 +61,8 @@
             <label>
               {{ $t("field_type") }}
               <v-simple-select v-model="type">
-                <option v-for="type in availableFieldTypes" :key="type" :value="type">
-                  {{ $helpers.formatTitle(type) }}
+                <option v-for="typeOption in availableFieldTypes" :key="typeOption" :value="typeOption" :selected="type === typeOption">
+                  {{ $helpers.formatTitle(typeOption) }}
                 </option>
               </v-simple-select>
               <small class="description">{{ fieldTypeDescription }}</small>
@@ -70,8 +70,8 @@
             <label>
               {{ $t("db_datatype", { db: $helpers.formatTitle(databaseVendor) }) }}
               <v-simple-select v-model="datatype">
-                <option v-for="type in availableDatatypes" :key="type" :value="type">
-                  {{ type }}
+                <option v-for="typeOption in availableDatatypes" :key="typeOption" :value="typeOption" :selected="datatype === typeOption">
+                  {{ typeOption }}
                 </option>
               </v-simple-select>
               <small class="description">{{ selectedDatatypeInfo && selectedDatatypeInfo.description }}</small>
@@ -588,6 +588,7 @@ export default {
     },
     interfaceName(name) {
       if (!name) return;
+      if (this.existing) return;
 
       this.type = this.availableFieldTypes[0];
 
@@ -621,11 +622,15 @@ export default {
       this.initRelation();
     },
     type(type) {
+      if (this.existing) return;
+
       if (type) {
         this.datatype = mapping[type][this.databaseVendor].default;
       }
     },
     datatype() {
+      if (this.existing) return;
+
       if (this.selectedDatatypeInfo.length) {
         this.length = this.selectedDatatypeInfo.defaultLength;
 
