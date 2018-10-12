@@ -196,6 +196,7 @@ export default {
   enter_collection_name: "Enter collection name...",
   enter_role_name: "Enter role name...",
   environment: "Environment",
+  project_key: "Project Key",
   errors: {
     "-1": "Couldn't reach API",
     11: "Can't connect to database",
