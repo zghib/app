@@ -643,6 +643,15 @@ export default {
     datatype() {
       if (this.existing) return;
 
+      if (
+        this.selectedInterfaceInfo &&
+        this.selectedInterfaceInfo.recommended &&
+        this.selectedInterfaceInfo.recommended.length
+      ) {
+        this.length = this.selectedInterfaceInfo.recommended.length;
+        return;
+      }
+
       if (this.selectedDatatypeInfo.length) {
         this.length = this.selectedDatatypeInfo.defaultLength;
 
@@ -783,7 +792,7 @@ export default {
       this.$emit("save", result);
     },
     useFieldInfo() {
-      if (!this.fieldInfo) return;
+      if (!this.fieldInfo || Object.keys(this.fieldInfo).length === 0) return;
 
       // This is somewhat disgusting. The parent fields route shouldn't pass in the
       // stale copy of the field based on the API load, but should instead pass
