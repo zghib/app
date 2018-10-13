@@ -472,7 +472,8 @@ export default {
     },
     fieldTypeDescription() {
       if (!this.type) return null;
-      return mapping[this.type].description;
+
+      return mapping[this.type] && mapping[this.type].description;
     },
     lengthDisabled() {
       if (
