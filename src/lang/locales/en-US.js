@@ -418,6 +418,7 @@ export default {
   version: "Version",
   version_and_updates: "Version and Updates",
   view_type: "View As...",
+  welcome: "Welcome",
   writable_fields: "Writable Fields",
   writable_fields_copy: "Select the fields that the user can edit",
   yes: "Yes"
