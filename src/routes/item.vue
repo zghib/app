@@ -530,7 +530,8 @@ export default {
           return savedValues;
         })
         .then(savedValues => {
-          this.$notify.confirm(this.$t("item_saved"));
+          const savedValuesLength = this.savedValues.length;
+          this.$notify.confirm(this.$tc("item_saved", savedValuesLength, { count: savedValuesLength }));
 
           if (method === "leave") {
             if (this.collection.startsWith("directus_")) {
@@ -608,7 +609,7 @@ export default {
               const date = new Date(act.action_on);
               const name = `${act.action_by.first_name} ${
                 act.action_by.last_name
-              }`;
+                }`;
               return {
                 id: act.id,
                 date,

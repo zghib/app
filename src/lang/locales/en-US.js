@@ -253,7 +253,7 @@ export default {
   item_count_filter:
     "No Filtered Items | One Filtered Item | {count} Filtered Items",
   item_deleted: "Item Deleted",
-  item_saved: "Item Saved",
+  item_saved: "Item Saved | {count} Items Saved",
   junction_collection: "Junction Collection",
   extension_error: "There was a problem loading the {ext} extension.",
   extensions_missing: "No Extensions Found",
