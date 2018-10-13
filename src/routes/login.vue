@@ -814,7 +814,11 @@ small {
 }
 
 .install-copy {
-  line-height: 1.6;
   margin-bottom: 80px;
+  max-width: 400px;
+  font-size: 16px;
+  color: var(--light-gray);
+  line-height: 26px;
+  font-weight: 400;
 }
 </style>
