@@ -191,12 +191,11 @@ export default {
         defaultPermissions[collection].$create = defaultPermission;
       });
 
-      return this.$lodash.merge(
-        {},
-        defaultPermissions,
-        this.savedPermissions,
-        this.permissionEdits
-      );
+      return {
+        ...defaultPermissions,
+        ...this.savedPermissions,
+        ...this.permissionEdits
+      };
     }
   },
   beforeRouteEnter(to, from, next) {

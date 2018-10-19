@@ -350,7 +350,7 @@ export default {
     userCreatedField() {
       return this.$lodash.find(
         this.fields,
-        field => field.type.toLowerCase() === "user_created"
+        field => field.type && field.type.toLowerCase() === "user_created"
       );
     },
     permissionOptions() {
