@@ -361,6 +361,7 @@ export default {
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
           this.$refs.listing.getItems();
+          this.selection = [];
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
