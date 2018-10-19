@@ -312,8 +312,8 @@ export default {
       const permissionInfo = status ? this.permission[status] : this.permission;
 
       return {
-        read: permissionInfo.read_field_blacklist,
-        write: permissionInfo.write_field_blacklist
+        read: permissionInfo.read_field_blacklist || [],
+        write: permissionInfo.write_field_blacklist || []
       };
     },
     /**
