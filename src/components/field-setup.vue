@@ -601,13 +601,13 @@ export default {
         });
       }
 
-      if (this.existing) return;
-
       this.type = this.availableFieldTypes[0];
 
       this.datatype = this.type
         ? mapping[this.type][this.databaseVendor].default
         : null;
+
+      if (this.existing) return;
 
       if (
         this.selectedInterfaceInfo &&
@@ -642,7 +642,7 @@ export default {
       }
     },
     datatype() {
-      if (this.existing) return;
+      if (this.existing && this.length !== null) return;
 
       if (
         this.selectedInterfaceInfo &&
