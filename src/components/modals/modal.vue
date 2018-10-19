@@ -38,13 +38,13 @@
                 @click="$emit('tab', id)">{{ info.text }}</button>
             </div>
 
-            <div class="body">
+            <div ref="tabsBody" class="body">
               <template v-if="tabs">
                 <div
                   v-for="(info, id) in tabs"
                   :key="`tab-${id}`"
                   class="tab"
-                  v-show="activeTab === id">
+                  v-if="activeTab === id">
                   <slot :name="id" />
                 </div>
               </template>
@@ -106,6 +106,19 @@ export default {
   },
   beforeDestroy() {
     enableBodyScroll(this.$refs.modal);
+  },
+  watch: {
+    /*
+     * Focus on the first input in the currently rendered tab on change of tab
+     * Improves keyboard navigation greatly
+     */
+    activeTab() {
+      // A timeout is needed to allow the browser to render the dom first before
+      // firing the focus method
+      setTimeout(() => {
+        this.$refs.tabsBody.querySelector("input").focus();
+      }, 0);
+    }
   }
 };
 </script>

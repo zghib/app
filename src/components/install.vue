@@ -16,7 +16,7 @@
       <form @submit.prevent="nextTab">
         <label>
           {{ $t("project_name") }}
-          <v-input class="input" id="project-name" v-model="values.project_name" />
+          <v-input class="input" ref="projectName" id="project-name" v-model="values.project_name" autofocus />
         </label>
         <label>
           {{ $t("project_key") }}
