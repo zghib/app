@@ -492,6 +492,7 @@ export default {
         .deleteItem(this.collection, this.primaryKey)
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
+          this.$store.dispatch("discardChanges", id);
           this.$notify.confirm(this.$t("item_deleted"));
           this.confirmRemoveLoading = false;
           this.confirmRemove = false;
