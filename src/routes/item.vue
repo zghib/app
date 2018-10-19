@@ -336,15 +336,14 @@ export default {
     collectionInfo() {
       return this.$store.state.collections[this.collection];
     },
+    defaultValues() {
+      return this.$lodash.mapValues(this.fields, field => field.default_value);
+    },
     values() {
-      const defaults = this.$lodash.mapValues(
-        this.fields,
-        field => field.default_value
-      );
       const edits = this.$store.state.edits.values;
 
       return {
-        ...defaults,
+        ...this.defaultValues,
         ...(this.savedValues || {}),
         ...edits
       };
@@ -426,8 +425,11 @@ export default {
   },
   created() {
     this.fetchActivity();
-
     this.checkOtherUsers();
+
+    if (this.isNew) {
+      this.stageDefaultValues();
+    }
   },
   mounted() {
     const handler = () => {
@@ -455,6 +457,11 @@ export default {
     }
   },
   methods: {
+    stageDefaultValues() {
+      this.$lodash.forEach(this.defaultValues, (value, field) =>
+        this.stageValue({ field, value })
+      );
+    },
     stageValue({ field, value }) {
       this.$store.dispatch("stageValue", { field, value });
     },
