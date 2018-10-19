@@ -86,6 +86,7 @@ export default {
         this.permissions,
         (permission, collection) => collection.startsWith("directus_") === false
       );
+
       return this.$lodash(permissions)
         .toPairs()
         .sortBy(0)

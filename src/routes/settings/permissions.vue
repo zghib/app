@@ -164,38 +164,70 @@ export default {
       if (!this.statuses) return null;
       if (!this.collections) return null;
 
-      const defaultPermissions = {};
+      const permissions = {};
 
       Object.keys(this.collections).forEach(collection => {
         const defaultPermission = Object.assign({}, defaultNone);
-
         defaultPermission.collection = collection;
 
         if (this.statuses[collection] == null) {
-          defaultPermissions[collection] = defaultPermission;
-          defaultPermissions[collection].$create = defaultPermission;
+          permissions[collection] = defaultPermission;
+          permissions[collection].$create = defaultPermission;
+
+          if (this.savedPermissions[collection]) {
+            permissions[collection] = {
+              ...permissions[collection],
+              ...this.savedPermissions[collection]
+            };
+          }
+
+          if (this.permissionEdits[collection]) {
+            permissions[collection] = {
+              ...permissions[collection],
+              ...this.permissionEdits[collection]
+            };
+          }
+
           return;
         }
 
         Object.keys(this.statuses[collection].mapping).forEach(status => {
-          if (!defaultPermissions[collection]) {
-            defaultPermissions[collection] = {};
+          if (!permissions[collection]) {
+            permissions[collection] = {};
           }
 
-          defaultPermissions[collection][status] = {
+          permissions[collection][status] = {
             ...defaultPermission,
             status
           };
+
+          if (
+            this.savedPermissions[collection] &&
+            this.savedPermissions[collection][status]
+          ) {
+            permissions[collection][status] = {
+              ...permissions[collection][status],
+              ...this.savedPermissions[collection][status]
+            };
+          }
+
+          if (
+            this.permissionEdits[collection] &&
+            this.permissionEdits[collection][status]
+          ) {
+            permissions[collection][status] = {
+              ...permissions[collection][status],
+              ...this.permissionEdits[collection][status]
+            };
+          }
+
+          return;
         });
 
-        defaultPermissions[collection].$create = defaultPermission;
+        permissions[collection].$create = defaultPermission;
       });
 
-      return {
-        ...defaultPermissions,
-        ...this.savedPermissions,
-        ...this.permissionEdits
-      };
+      return permissions;
     }
   },
   beforeRouteEnter(to, from, next) {
