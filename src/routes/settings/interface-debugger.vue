@@ -208,8 +208,8 @@
           <label for="fields">Fields</label>
           <p>Dummy sibling fields in this collection. Used when you want to test fetching or interacting with other fields on the Item page.</p>
           <v-ext-input
-            :value="JSON.stringify(fields, null, 4)"
-            @input="customFields = JSON.parse($event)"
+            :value="fields"
+            @input="customFields = $event"
             id="code"
             :options="{ language: 'application/json' }"
             name="fields" />
@@ -217,8 +217,8 @@
           <label for="values">Values</label>
           <p>Values for the dummy sibling fields above</p>
           <v-ext-input
-            :value="JSON.stringify(values, null, 4)"
-            @input="customValues = JSON.parse($event)"
+            :value="values"
+            @input="customValues = $event"
             id="code"
             :options="{ language: 'application/json' }"
             name="values" />
