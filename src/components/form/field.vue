@@ -29,6 +29,7 @@
             :relation="relation"
             :fields="fields"
             :values="values"
+            :length="field.length"
             :new-item="newItem"
             @input="readonly ? null : $emit('stage-value', {
               field: field.field,
