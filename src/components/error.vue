@@ -45,7 +45,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: calc(100vh - var(--header-height));
+  margin: 100px 0;
 
   i {
     font-size: 48px;

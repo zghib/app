@@ -510,7 +510,8 @@ export default {
 
       if (
         this.activeTab === "options" ||
-        (this.activeTab === "schema" && this.hasOptions === false)
+        (this.activeTab === "schema" && this.hasOptions === false) ||
+        this.existing
       ) {
         text = this.$t("save");
       }
@@ -714,6 +715,10 @@ export default {
   },
   methods: {
     nextTab() {
+      if (this.existing) {
+        return this.saveField();
+      }
+
       switch (this.activeTab) {
         case "interface":
           this.activeTab = "schema";
