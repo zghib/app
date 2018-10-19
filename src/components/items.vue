@@ -247,18 +247,11 @@ export default {
         });
     },
     select(primaryKeys) {
-      const items = [...this.items.data];
-      const existingPKs = items.map(item => item[this.primaryKeyField]);
-
-      this.selection.forEach(item => {
-        if (existingPKs.includes(item[this.primaryKeyField]) === false) {
-          items.push(item);
-        }
-      });
-
       this.$emit(
         "select",
-        items.filter(item => primaryKeys.includes(item[this.primaryKeyField]))
+        primaryKeys.map(key =>
+          this.$lodash.find(this.items.data, { [this.primaryKeyField]: key })
+        )
       );
     },
     saveItems(data) {
