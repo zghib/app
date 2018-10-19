@@ -205,7 +205,8 @@ export default {
     101: "Logged out due to inactivity",
     102: "Logged out due to inactivity",
     103: "User inactive",
-    106: "Wrong username and/or password"
+    106: "Wrong username and/or password",
+    107: "User not found"
   },
   error_unknown: "Unknown error. Try again later.",
   esc_cancel: "Escape will cancel and close the window.",

@@ -101,7 +101,7 @@
               line-fg-color="var(--gray)"
               line-bg-color="var(--lighter-gray)" />
 
-            <span key="error" class="notice" v-else-if="error" :class="errorType" @click="error = null">
+            <span key="error" class="notice" v-else-if="error || SSOerror" :class="errorType" @click="error = null">
               <i class="material-icons">{{ errorType }}</i>
               {{ errorMessage }}
             </span>
@@ -115,7 +115,7 @@
               <li
                 v-for="provider in thirdPartyAuthProviders"
                 :key="provider.name">
-                <a v-tooltip.bottom="$helpers.formatTitle(provider.name)" :href="url + '/auth/sso/' + provider.name">
+                <a v-tooltip.bottom="$helpers.formatTitle(provider.name)" :href="url + 'auth/sso/' + provider.name">
                   <img
                     :alt="provider.name"
                     :src="provider.icon">
@@ -154,6 +154,7 @@ export default {
       loading: false,
       loggedIn: false,
       error: null,
+      SSOerror: null,
 
       exists: null,
       checkingExistence: false,
@@ -190,10 +191,12 @@ export default {
       return this.$store.state.auth.url + "/" + this.$store.state.auth.env;
     },
     errorType() {
-      if (!this.error) return;
+      if (!this.error && !this.SSOerror) return;
 
-      if (+this.error.code >= 100 && +this.error.code < 200) {
-        if (+this.error.code === 101 || +this.error.code === 102) {
+      const errorCode = (this.error && this.error.code) || this.SSOerror;
+
+      if (+errorCode >= 100 && +errorCode < 200) {
+        if (+errorCode === 101 || +errorCode === 102) {
           return null;
         }
 
@@ -202,13 +205,15 @@ export default {
       return "error";
     },
     errorMessage() {
-      if (!this.error) return;
+      if (!this.error && !this.SSOerror) return;
+
+      const errorCode = (this.error && this.error.code) || this.SSOerror;
 
       if (
         this.localeMessages.errors &&
-        this.localeMessages.errors[this.error.code] != null
+        this.localeMessages.errors[errorCode] != null
       ) {
-        return this.$t(`errors[${this.error.code}]`);
+        return this.$t(`errors[${errorCode}]`);
       }
 
       return this.$t("error_unknown");
@@ -397,7 +402,7 @@ export default {
        *   use the "pretty" error notice instead
        */
       if (this.$route.query.error) {
-        this.error = this.$route.query.error;
+        this.SSOerror = +this.$route.query.code;
 
         const uri = window.location.toString();
         if (uri.indexOf("?") > 0) {

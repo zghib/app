@@ -210,7 +210,6 @@ const router = new Router({
         store.dispatch("logout");
         next("/login");
       }
-      // redirect: '/login',
     },
     {
       path: "*",
