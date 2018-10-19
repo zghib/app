@@ -587,7 +587,7 @@ export default {
     fieldInfo() {
       this.useFieldInfo();
     },
-    interfaceName(name) {
+    interfaceName(name, oldName) {
       if (!name) return;
 
       if (name !== this.fieldInfo.interface) {
@@ -600,6 +600,8 @@ export default {
           this.$set(this.options, key, info.default);
         });
       }
+
+      if (this.existing && oldName == null) return;
 
       this.type = this.availableFieldTypes[0];
 
