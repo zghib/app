@@ -135,6 +135,8 @@ export default {
   input {
     appearance: none;
     -webkit-appearance: none;
+    width: 100%;
+    height: 4px;
 
     &::-webkit-slider-runnable-track {
       height: 4px;
@@ -158,6 +160,26 @@ export default {
       box-shadow: 0 0 0 2px var(--white);
       z-index: +1;
       position: relative;
+    }
+
+    &::-moz-range-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      box-shadow: none;
+      border: none;
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: -5px;
+      cursor: ew-resize;
+      box-shadow: 0 0 0 2px var(--white);
+      z-index: +1;
+      position: relative;
+    }
+
+    &::-moz-focus-outer {
+      border: 0;
     }
   }
 
