@@ -84,7 +84,7 @@
               :disabled="lengthDisabled" /></label>
             <label>{{ $t("validation") }} <v-input type="text" v-model="validation" :placeholder="$t('regex')"/></label>
             <div />
-            <label class="toggle"><v-toggle v-model="required" /> {{ $t("required") }} </label>
+            <label class="toggle" v-if="type !== 'alias'"><v-toggle v-model="required" /> {{ $t("required") }} </label>
             <label class="toggle"><v-toggle v-model="readonly" /> {{ $t("readonly") }} </label>
             <label class="toggle"><v-toggle v-model="unique" /> {{ $t("unique") }}</label>
             <label class="toggle"><v-toggle v-model="hidden_detail" /> {{ $t("hidden_detail") }}</label>
