@@ -399,7 +399,21 @@ export default {
       }
 
       if (this.isNew) {
-        return permission.$create;
+        if (this.status) {
+          return {
+            ...permission.statuses[this.status],
+            read_field_blacklist: permission.$create.read_field_blacklist,
+            write_field_blacklist: permission.$create.write_field_blacklist,
+            status_blacklist: permission.$create.status_blacklist
+          };
+        }
+
+        return {
+          ...permission,
+          read_field_blacklist: permission.$create.read_field_blacklist,
+          write_field_blacklist: permission.$create.write_field_blacklist,
+          status_blacklist: permission.$create.status_blacklist
+        };
       }
 
       if (this.status) {
