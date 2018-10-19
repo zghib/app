@@ -52,7 +52,7 @@ export default {
   background-color: var(--white);
   border-left: 1px solid var(--lightest-gray);
   padding: 20px;
-  overflow: scroll;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 
   & .system:not(:empty) {

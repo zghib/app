@@ -420,7 +420,7 @@ export default {
 <style lang="scss" scoped>
 .v-table {
   width: 100%;
-  overflow: scroll;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
   position: relative;
   max-height: calc(100vh - var(--header-height));
@@ -456,7 +456,7 @@ export default {
   transition: opacity var(--medium) var(--transition-out);
   opacity: 1;
   height: calc(100% - var(--header-height));
-  overflow: scroll;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 
   &.loading {

@@ -201,7 +201,7 @@ aside {
   padding: 20px;
   padding-top: 0;
   height: calc(100% - var(--header-height) - var(--header-height));
-  overflow: scroll;
+  overflow: auto;
   -webkit-overflow-scrolling: touch;
 
   @media (min-width: 800px) {

@@ -307,7 +307,7 @@ input.select {
     border-bottom-right-radius: var(--border-radius);
     padding: 0 20px;
     list-style: none;
-    overflow: scroll;
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
 

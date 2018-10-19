@@ -192,7 +192,7 @@ export default {
   }
 
   .body {
-    overflow: scroll;
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
     max-height: 70vh;
     position: relative;
