@@ -680,9 +680,7 @@ export default {
         .toLowerCase()
         .replace(/\s+/g, "_") // Replace spaces with _
         .replace(/[^\w_]+/g, "") // Remove all non-word chars
-        .replace(/__+/g, "_") // Replace multiple _ with single _
-        .replace(/^_+/, "") // Trim _ from start of text
-        .replace(/_+$/, ""); // Trim _ from end of text
+        .replace(/__+/g, "_"); // Replace multiple _ with single _
 
       if (this.relation) {
         if (this.relation === "m2o") {
