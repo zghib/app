@@ -38,19 +38,20 @@ function extractHostname(url) {
 export function login({ commit }, credentials) {
   commit(LOGIN_PENDING);
 
-  let { url } = credentials;
+  const { url } = credentials;
+  let formattedUrl = url;
 
-  if (url.endsWith("/") === false) {
-    url += "/";
+  if (formattedUrl.endsWith("/") === false) {
+    formattedUrl += "/";
   }
 
-  if (url.startsWith("http") === false) {
+  if (formattedUrl.startsWith("http") === false) {
     const link = document.createElement("a");
-    link.href = url;
-    url = link.href;
+    link.href = formattedUrl;
+    formattedUrl = link.href;
   }
 
-  const parts = url.split("/");
+  const parts = formattedUrl.split("/");
   const env = parts.pop() || parts.pop();
   const newUrl = parts.join("/");
 
@@ -65,6 +66,7 @@ export function login({ commit }, credentials) {
       commit(LOGIN_SUCCESS, {
         ...info,
         projectName:
+          urls[url] ||
           urls[info.url + "/" + info.env + "/"] ||
           formatTitle(extractHostname(info.url))
       });
@@ -78,12 +80,6 @@ export function login({ commit }, credentials) {
 export function loginSSO({ commit }, request_token) {
   commit(LOGIN_PENDING);
 
-  /**
-   * Yes this is a very hacky way of achieving this. It's just an alpha okay, take it easy.
-   *
-   * I have to refactor the auth flow quite a bit to accomodate for the project switcher modal too
-   *   so I'm not too worried about hacking in this as a proof of concept.
-   */
   const { url, env } = jwtPayload(request_token);
   api.url = url;
   api.env = env;
