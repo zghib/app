@@ -48,7 +48,7 @@ export default {
     },
     autofocus: {
       type: Boolean,
-      default: false
+      default: true
     },
     max: {
       type: [Number, Boolean, String],
