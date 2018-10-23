@@ -16,7 +16,7 @@
       :body="$t('no_collections_body')"
       icon="error_outline" />
 
-    <div class="table">
+    <div class="table" v-else>
       <div class="header">
         <div class="row">
           <div class="cell style-4">{{ $t('collection') }}</div>
