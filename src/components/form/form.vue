@@ -94,14 +94,14 @@ export default {
       );
 
       const result = fieldsArray
-        .filter(field => field.type.toLowerCase() === "group")
+        .filter(field => field.type && field.type.toLowerCase() === "group")
         .map(group => ({
           ...group,
           children: []
         }));
 
       const nonGroupFields = fieldsArray.filter(
-        field => field.type.toLowerCase() !== "group"
+        field => field.type && field.type.toLowerCase() !== "group"
       );
 
       nonGroupFields.forEach(field => {

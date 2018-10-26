@@ -157,18 +157,18 @@ function getFieldsQuery(collection) {
       const fieldInfo = fields[field];
 
       if (
-        fieldInfo.type.toLowerCase() === "o2m" &&
+        (fieldInfo.type && fieldInfo.type.toLowerCase()) === "o2m" &&
         store.getters.o2m(collection, field).junction != null
       ) {
         return field.endsWith(".*.*") ? field : field + ".*.*";
       }
 
       if (
-        fieldInfo.type.toLowerCase() === "m2o" ||
-        fieldInfo.type.toLowerCase() === "o2m" ||
-        fieldInfo.type.toLowerCase() === "m2m" ||
-        fieldInfo.type.toLowerCase() === "translation" ||
-        fieldInfo.type.toLowerCase() === "file"
+        (fieldInfo.type && fieldInfo.type.toLowerCase()) === "m2o" ||
+        (fieldInfo.type && fieldInfo.type.toLowerCase()) === "o2m" ||
+        (fieldInfo.type && fieldInfo.type.toLowerCase()) === "m2m" ||
+        (fieldInfo.type && fieldInfo.type.toLowerCase()) === "translation" ||
+        (fieldInfo.type && fieldInfo.type.toLowerCase()) === "file"
       ) {
         return field.endsWith(".*") ? field : field + ".*";
       }
@@ -375,7 +375,7 @@ export default {
       return (
         this.$lodash.find(
           Object.values(this.fields),
-          field => field.type.toLowerCase() === "status"
+          field => field.type && field.type.toLowerCase() === "status"
         ) || {}
       ).field;
     },

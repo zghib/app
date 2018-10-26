@@ -1,17 +1,5 @@
 <template>
-  <v-ext-display-fallback
-    v-if="interfaceType === null"
-    :name="name"
-    :value="value"
-    :type="type"
-    :length="length"
-    :readonly="readonly"
-    :required="required"
-    :loading="loading"
-    :options="optionsWithDefaults"
-    class="v-ext-display" />
   <component
-    v-else
     :is="componentName"
     :name="name"
     :value="value"
@@ -30,6 +18,7 @@ import loadExtension from "../../../../helpers/load-extension";
 import componentExists from "../../../../helpers/component-exists";
 import VExtDisplayFallback from "./display-fallback.vue";
 import VExtDisplayLoading from "./display-loading.vue";
+import { datatypes } from "../../../../type-map";
 
 export default {
   name: "v-ext-display",
@@ -48,7 +37,11 @@ export default {
     },
     type: {
       type: String,
-      required: true
+      default: null
+    },
+    datatype: {
+      type: String,
+      default: null
     },
     length: {
       type: [String, Number],
@@ -79,10 +72,29 @@ export default {
       return this.$store.state.extensions.interfaces;
     },
     interfaceInfo() {
+      if (this.interfaceType === null) return this.interfaceFallback;
       return this.interfaces && this.interfaces[this.interfaceType];
     },
     componentName() {
+      if (this.interfaceType === null) return this.componentNameFallback;
       return `display-${this.interfaceType}`;
+    },
+    componentNameFallback() {
+      return `display-${this.interfaceFallback.id}`;
+    },
+    databaseVendor() {
+      return this.$store.state.serverInfo.databaseVendor;
+    },
+    interfaceFallback() {
+      // Default to text-input if all else fails
+      if (this.datatype == null) return this.interfaces["text-input"];
+
+      // Lookup the raw db datatype based on the current vendor in the type-map
+      // to extract the fallback interface to use.
+      const fallback =
+        datatypes[this.databaseVendor][this.datatype].fallbackInterface;
+
+      return this.interfaces[fallback];
     },
     optionsWithDefaults() {
       if (!this.interfaceInfo) return {};
@@ -113,13 +125,6 @@ export default {
     registerDisplay() {
       // If component already exists, do nothing
       if (componentExists(this.componentName)) return;
-
-      // If the extension isn't known by the API (e.g. it's not in the store), register it with the
-      //   fallback immediately
-      if (!this.interfaceInfo) {
-        Vue.component(this.componentName, VExtDisplayFallback);
-        return;
-      }
 
       const filePath = `${this.$api.url}/${this.interfaceInfo.path.replace(
         "meta.json",

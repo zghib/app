@@ -12,52 +12,63 @@ export const datatypes = {
       length: true,
       defaultLength: 50,
       maxLength: 255,
-      description: i18n.t("datatypes.mysql.CHAR")
+      description: i18n.t("datatypes.mysql.CHAR"),
+      fallbackInterface: "text-input"
     },
 
     VARCHAR: {
       length: true,
       defaultLength: 255,
       maxLength: 65535,
-      description: i18n.t("datatypes.mysql.VARCHAR")
+      description: i18n.t("datatypes.mysql.VARCHAR"),
+      fallbackInterface: "text-input"
     },
 
     TINYTEXT: {
-      description: i18n.t("datatypes.mysql.TINYTEXT")
+      description: i18n.t("datatypes.mysql.TINYTEXT"),
+      fallbackInterface: "textarea"
     },
 
     TEXT: {
-      description: i18n.t("datatypes.mysql.TEXT")
+      description: i18n.t("datatypes.mysql.TEXT"),
+      fallbackInterface: "textarea"
     },
 
     MEDIUMTEXT: {
-      description: i18n.t("datatypes.mysql.MEDIUMTEXT")
+      description: i18n.t("datatypes.mysql.MEDIUMTEXT"),
+      fallbackInterface: "textarea"
     },
 
     LONGTEXT: {
-      description: i18n.t("datatypes.mysql.LONGTEXT")
+      description: i18n.t("datatypes.mysql.LONGTEXT"),
+      fallbackInterface: "textarea"
     },
 
     // Numeric
     // -------------------------------------------------------------------------
     TINYINT: {
-      description: i18n.t("datatypes.mysql.TINYINT")
+      description: i18n.t("datatypes.mysql.TINYINT"),
+      fallbackInterface: "toggle"
     },
 
     SMALLINT: {
-      description: i18n.t("datatypes.mysql.SMALLINT")
+      description: i18n.t("datatypes.mysql.SMALLINT"),
+      fallbackInterface: "numeric"
     },
 
     MEDIUMINT: {
-      description: i18n.t("datatypes.mysql.MEDIUMINT")
+      description: i18n.t("datatypes.mysql.MEDIUMINT"),
+      fallbackInterface: "numeric"
     },
 
     INT: {
-      description: i18n.t("datatypes.mysql.INT")
+      description: i18n.t("datatypes.mysql.INT"),
+      fallbackInterface: "numeric"
     },
 
     BIGINT: {
-      description: i18n.t("datatypes.mysql.BIGINT")
+      description: i18n.t("datatypes.mysql.BIGINT"),
+      fallbackInterface: "numeric"
     },
 
     // Decimal Numbers
@@ -68,43 +79,51 @@ export const datatypes = {
       defaultDigits: 10,
       maxDigits: 65,
       defaultDecimals: 10,
-      maxDecimals: 30
+      maxDecimals: 30,
+      fallbackInterface: "numeric"
     },
 
     FLOAT: {
       decimal: true,
       description: i18n.t("datatypes.mysql.FLOAT"),
       defaultDigits: 10,
-      defaultDecimals: 10
+      defaultDecimals: 10,
+      fallbackInterface: "numeric"
     },
 
     DOUBLE: {
       decimal: true,
       description: i18n.t("datatypes.mysql.DOUBLE"),
       defaultDigits: 10,
-      defaultDecimals: 10
+      defaultDecimals: 10,
+      fallbackInterface: "numeric"
     },
 
     // Date and Time
     // -------------------------------------------------------------------------
     DATE: {
-      description: i18n.t("datatypes.mysql.DATE")
+      description: i18n.t("datatypes.mysql.DATE"),
+      fallbackInterface: "date"
     },
 
     DATETIME: {
-      description: i18n.t("datatypes.mysql.DATETIME")
+      description: i18n.t("datatypes.mysql.DATETIME"),
+      fallbackInterface: "datetime"
     },
 
     TIME: {
-      description: i18n.t("datatypes.mysql.TIME")
+      description: i18n.t("datatypes.mysql.TIME"),
+      fallbackInterface: "time"
     },
 
     TIMESTAMP: {
-      description: i18n.t("datatypes.mysql.TIMESTAMP")
+      description: i18n.t("datatypes.mysql.TIMESTAMP"),
+      fallbackInterface: "time"
     },
 
     YEAR: {
-      description: i18n.t("datatypes.mysql.YEAR")
+      description: i18n.t("datatypes.mysql.YEAR"),
+      fallbackInterface: "numeric"
     }
   }
 };

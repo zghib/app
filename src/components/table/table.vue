@@ -114,6 +114,7 @@
                 :interface-type="fieldInfo.interface"
                 :name="field"
                 :type="fieldInfo.type"
+                :datatype="fieldInfo.datatype"
                 :options="fieldInfo.options"
                 :value="row[field]" />
               <template v-else>{{ row[field] }}</template>

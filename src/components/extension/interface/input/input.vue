@@ -28,13 +28,14 @@ import loadExtension from "../../../../helpers/load-extension";
 import componentExists from "../../../../helpers/component-exists";
 import InputFallback from "./input-fallback.vue";
 import InputLoading from "./input-loading.vue";
+import { datatypes } from "../../../../type-map";
 
 export default {
   name: "v-ext-input",
   props: {
     id: {
       type: String,
-      required: true
+      default: null
     },
     name: {
       type: String,
@@ -45,6 +46,10 @@ export default {
       default: null
     },
     type: {
+      type: String,
+      default: null
+    },
+    datatype: {
       type: String,
       default: null
     },
@@ -90,9 +95,14 @@ export default {
       return this.$store.state.extensions.interfaces;
     },
     interface() {
+      if (this.id === null) return this.interfaceFallback;
       return this.interfaces && this.interfaces[this.id];
     },
+    databaseVendor() {
+      return this.$store.state.serverInfo.databaseVendor;
+    },
     componentName() {
+      if (this.id === null) return this.componentNameFallback;
       return `input-${this.id}`;
     },
     typeOrDefault() {
@@ -111,6 +121,20 @@ export default {
         ...defaults,
         ...this.options
       };
+    },
+    componentNameFallback() {
+      return `input-${this.interfaceFallback.id}`;
+    },
+    interfaceFallback() {
+      // Default to text-input if all else fails
+      if (this.datatype == null) return this.interfaces["text-input"];
+
+      // Lookup the raw db datatype based on the current vendor in the type-map
+      // to extract the fallback interface to use.
+      const fallback =
+        datatypes[this.databaseVendor][this.datatype].fallbackInterface;
+
+      return this.interfaces[fallback];
     }
   },
   watch: {
@@ -128,13 +152,6 @@ export default {
     registerInterface() {
       // If component already exists, do nothing
       if (componentExists(this.componentName)) return;
-
-      // If the extension isn't known by the API (e.g. it's not in the store), register it with the
-      //   fallback immediately
-      if (!this.interface) {
-        Vue.component(this.componentName, InputFallback);
-        return;
-      }
 
       const filePath = `${this.$api.url}/${this.interface.path.replace(
         "meta.json",

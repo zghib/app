@@ -133,7 +133,7 @@ export default {
       return (
         this.$lodash.find(
           Object.values(this.fields),
-          field => field.type.toLowerCase() === "user_created"
+          field => field.type && field.type.toLowerCase() === "user_created"
         ) || {}
       ).field;
     },
@@ -416,10 +416,10 @@ export default {
             if (!fieldInfo) return null;
 
             if (
-              fieldInfo.type.toLowerCase() === "m2o" ||
-              fieldInfo.type.toLowerCase() === "o2m" ||
-              fieldInfo.type.toLowerCase() === "m2m" ||
-              fieldInfo.type.toLowerCase() === "translation"
+              (fieldInfo.type && field.type.toLowerCase() === "m2o") ||
+              (fieldInfo.type && field.type.toLowerCase() === "o2m") ||
+              (fieldInfo.type && field.type.toLowerCase() === "m2m") ||
+              (fieldInfo.type && field.type.toLowerCase() === "translation")
             ) {
               return field.endsWith(".*.*") ? field : field + ".*.*";
             }

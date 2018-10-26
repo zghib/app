@@ -25,6 +25,7 @@
             :readonly="readonly || blocked"
             :options="field.options"
             :type="field.type"
+            :datatype="field.datatype"
             :value="values[field.field]"
             :relation="relation"
             :fields="fields"
