@@ -242,7 +242,8 @@ export default {
       this.checkUrl();
     }
 
-    let lastUsedURL = this.storeUrl;
+    let lastUsedURL =
+      this.storeUrl || Object.keys(window.__DirectusConfig__.api)[0];
 
     // Check if the last used URL is still a valid option before using it
     if (
@@ -253,6 +254,7 @@ export default {
 
     this.url =
       lastUsedURL || Object.keys(window.__DirectusConfig__.api)[0] || "";
+    this.selectedUrl = this.url;
 
     if (this.url.endsWith("/") === false) this.url = this.url + "/";
 
