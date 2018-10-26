@@ -25,7 +25,7 @@
               value="other"
             >{{ $t('other') }}</option>
           </select>
-          {{ $t('to') }} <span>{{ (urls[url] || $t('choose_project')) }} <i v-if="Object.keys(urls).length > 1 || allowOther" class="material-icons">arrow_drop_down</i></span>
+          {{ $t('to') }} <span>{{ (urls[selectedUrl] || $t('choose_project')) }} <i v-if="Object.keys(urls).length > 1 || allowOther" class="material-icons">arrow_drop_down</i></span>
         </label>
 
         <div class="material-input" v-if="selectOther">
@@ -302,7 +302,7 @@ export default {
           });
       } else {
         const credentials = {
-          url: this.url,
+          url: this.selectedUrl,
           email: this.email,
           password: this.password
         };
