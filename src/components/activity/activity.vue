@@ -12,7 +12,7 @@
         required
         :placeholder="$t('leave_comment')" />
 
-      <button type="submit">{{ $t('submit') }}</button>
+      <button type="submit" :disabled="comment.trim().length === 0">{{ $t('submit') }}</button>
     </form>
 
     <article
@@ -135,12 +135,32 @@ export default {
           comment: this.$t("activity_outside_directus"),
           id: -1
         });
+      } else {
+        const create = lastItem.action.toLowerCase() === "create";
+        const upload = lastItem.action.toLowerCase() === "upload";
+
+        if (!create && !upload) {
+          activityWithChanges.push({
+            action: "external",
+            comment: this.$t("activity_outside_directus"),
+            id: -1
+          });
+        }
       }
 
       return activityWithChanges.map(activity => ({
         ...activity,
         htmlcomment: this.$helpers.snarkdown(
-          (activity.comment || "").replace(/#/g, "") || ""
+          (activity.comment || "")
+            // Remove headings because they're ugly basically
+            .replace(/#/g, "")
+            // Cleanup the comment, and escape HTML chars in order to prevent
+            // XSS style problems
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;") || ""
         )
       }));
     }
@@ -313,7 +333,7 @@ export default {
       padding: 8px 10px;
       display: inline-block;
       min-width: 36px;
-      // max-height: 400px;
+
       &:before {
         content: "";
         position: absolute;
@@ -395,22 +415,23 @@ export default {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    color: var(--lighter-gray);
-    cursor: not-allowed;
-    background-color: var(--white);
     text-transform: uppercase;
     font-weight: 700;
     font-size: 0.875rem;
     transition: var(--fast) var(--transition);
     transition-property: color, opacity;
     opacity: 0;
-  }
 
-  &:valid button {
     color: var(--accent);
     cursor: pointer;
     &:hover {
       color: var(--accent-dark);
+    }
+
+    &[disabled] {
+      color: var(--lighter-gray);
+      cursor: not-allowed;
+      background-color: var(--white);
     }
   }
 
