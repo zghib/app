@@ -140,7 +140,9 @@ export default {
       return Object.keys(this.$store.state.settings).length;
     },
     collectionsNum() {
-      return Object.keys(this.$store.state.collections).length;
+      return Object.keys(this.$store.state.collections).filter(
+        name => name.startsWith("directus_") === false
+      ).length;
     },
     projectName() {
       return this.$store.state.auth.projectName;
