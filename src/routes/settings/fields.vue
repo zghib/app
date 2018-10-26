@@ -484,10 +484,15 @@ export default {
           vm.$data.directusFields = keyBy(
             directusFields.map(field => ({
               ...field,
-              name: formatTitle(field.field)
+              name: formatTitle(field.field),
+              note: vm.$t("note_" + field.field)
             })),
             "field"
           );
+          delete vm.$data.directusFields.note.note;
+          vm.$data.directusFields.note.options = {
+            placeholder: vm.$t("note_note")
+          };
 
           vm.$data.fields = fields
             .map(field => ({
