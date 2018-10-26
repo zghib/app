@@ -31,15 +31,15 @@
 
     </v-header>
 
-    <template v-if="$route.params.id != 1">
-      <label>{{ $t("permissions") }}</label>
-      <v-permissions
-        :loading="!(permissions && statuses)"
-        :permissions="permissions"
-        :statuses="statuses"
-        :fields="permissionFields"
-        @input="setPermission" />
-    </template>
+    <label>{{ $t("permissions") }}</label>
+    <p v-if="isAdmin" class="admin-note">{{ $t("permissions_admin") }}</p>
+    <v-permissions
+      v-else
+      :loading="!(permissions && statuses)"
+      :permissions="permissions"
+      :statuses="statuses"
+      :fields="permissionFields"
+      @input="setPermission" />
 
     <v-form
       v-if="fields && role"
@@ -113,6 +113,9 @@ export default {
       if (this.role.id === 1 || this.role.id === 2) return true;
 
       return false;
+    },
+    isAdmin() {
+      return this.$route.params.id == 1;
     },
     collections() {
       return this.$store.state.collections;
@@ -563,5 +566,13 @@ h2 {
   &:not(:first-of-type) {
     margin-top: 60px;
   }
+}
+
+.admin-note {
+  color: var(--warning);
+  font-size: 1.2rem;
+  line-height: 1.1;
+  font-weight: 400;
+  margin-bottom: 40px;
 }
 </style>

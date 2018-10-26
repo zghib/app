@@ -319,6 +319,9 @@ export default {
   options: "Options",
   password: "Password",
   password_reset_sent: "Password reset email sent to {email}",
+  permissions_no_collections: "This project does not have any collections yet.",
+  permissions_admin:
+    "Admins have access to all managed data within the system by default.",
   permission_states: {
     none: "None",
     mine: "Mine Only",
