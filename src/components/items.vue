@@ -415,11 +415,13 @@ export default {
 
             if (!fieldInfo) return null;
 
+            fieldInfo.type = fieldInfo.type.toLowerCase();
+
             if (
-              (fieldInfo.type && field.type.toLowerCase() === "m2o") ||
-              (fieldInfo.type && field.type.toLowerCase() === "o2m") ||
-              (fieldInfo.type && field.type.toLowerCase() === "m2m") ||
-              (fieldInfo.type && field.type.toLowerCase() === "translation")
+              fieldInfo.type === "m2o" ||
+              fieldInfo.type === "o2m" ||
+              fieldInfo.type === "m2m" ||
+              fieldInfo.type === "translation"
             ) {
               return field.endsWith(".*.*") ? field : field + ".*.*";
             }
