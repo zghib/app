@@ -819,6 +819,10 @@ export default {
 
       // 'interface' is a reserved word in JS, so we need to work around that
       this.interfaceName = storeFieldCopy.interface;
+
+      // The API saves the type case insensitive, but the mapping requires lowercase
+      this.type = this.type && this.type.toLowerCase();
+      this.datatype = this.datatype && this.type.toLowerCase();
     },
     initRelation() {
       if (!this.relation) return;
