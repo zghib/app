@@ -130,18 +130,11 @@ export default {
         activityWithChanges[activityWithChanges.length - 1];
 
       if (!lastItem && this.show !== "comments") {
-        if (
-          !(
-            lastItem.action.toLowerCase() === "create" ||
-            lastItem.action.toLowerCase() === "upload"
-          )
-        ) {
-          activityWithChanges.push({
-            action: "external",
-            comment: this.$t("activity_outside_directus"),
-            id: -1
-          });
-        }
+        activityWithChanges.push({
+          action: "external",
+          comment: this.$t("activity_outside_directus"),
+          id: -1
+        });
       }
 
       return activityWithChanges.map(activity => ({
