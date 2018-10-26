@@ -13,6 +13,7 @@
     :spellcheck="spellcheck"
     :wrap="wrap"
     :value="value"
+    :autofocus="autofocus"
     class="v-textarea"
     @keydown="$emit('keydown', $event.target.value)"
     @input="$emit('input', $event.target.value)"/>
@@ -71,6 +72,10 @@ export default {
       default: null
     },
     value: {
+      type: String,
+      default: null
+    },
+    autofocus: {
       type: String,
       default: null
     }

@@ -4,12 +4,14 @@
       <v-textarea
         v-if="multiline"
         class="input multiline"
+        autofocus
         :placeholder="placeholder"
         :value="value"
         @input="$emit('input', $event)" />
       <v-input
         v-else
         class="input"
+        autofocus
         :value="value"
         :placeholder="placeholder"
         @input="emitValue"
