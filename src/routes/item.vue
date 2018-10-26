@@ -438,11 +438,11 @@ export default {
     }
   },
   created() {
-    this.fetchActivity();
-    this.checkOtherUsers();
-
     if (this.isNew) {
       this.stageDefaultValues();
+    } else {
+      this.fetchActivity();
+      this.checkOtherUsers();
     }
   },
   mounted() {
