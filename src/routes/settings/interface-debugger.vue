@@ -203,26 +203,6 @@
             class="checkbox"
             type="checkbox" /> <label for="new" class="inline">New item</label>
         </div>
-
-        <div class="misc">
-          <label for="fields">Fields</label>
-          <p>Dummy sibling fields in this collection. Used when you want to test fetching or interacting with other fields on the Item page.</p>
-          <v-ext-input
-            :value="fields"
-            @input="customFields = $event"
-            id="code"
-            :options="{ language: 'application/json' }"
-            name="fields" />
-
-          <label for="values">Values</label>
-          <p>Values for the dummy sibling fields above</p>
-          <v-ext-input
-            :value="values"
-            @input="customValues = $event"
-            id="code"
-            :options="{ language: 'application/json' }"
-            name="values" />
-      </div>
       </fieldset>
     </form>
   </div>

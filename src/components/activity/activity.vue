@@ -129,15 +129,19 @@ export default {
         activityWithChanges &&
         activityWithChanges[activityWithChanges.length - 1];
 
-      if (
-        !lastItem ||
-        (lastItem.action.toLowerCase() !== "create" && this.show !== "comments")
-      ) {
-        activityWithChanges.push({
-          action: "external",
-          comment: this.$t("activity_outside_directus"),
-          id: -1
-        });
+      if (!lastItem && this.show !== "comments") {
+        if (
+          !(
+            lastItem.action.toLowerCase() === "create" ||
+            lastItem.action.toLowerCase() === "upload"
+          )
+        ) {
+          activityWithChanges.push({
+            action: "external",
+            comment: this.$t("activity_outside_directus"),
+            id: -1
+          });
+        }
       }
 
       return activityWithChanges.map(activity => ({
@@ -159,7 +163,8 @@ export default {
       for (let i = index + 1; i < this.activityFiltered.length; i++) {
         if (
           this.activityFiltered[i].action === "update" ||
-          this.activityFiltered[i].action === "create"
+          this.activityFiltered[i].action === "create" ||
+          this.activityFiltered[i].action === "upload"
         ) {
           previousUpdate = this.activityFiltered[i];
           break;
@@ -223,6 +228,9 @@ export default {
     }
     &.external {
       border-color: var(--gray);
+    }
+    &.upload {
+      border-color: var(--purple-500);
     }
   }
 
