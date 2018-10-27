@@ -451,6 +451,10 @@ export default {
         .then(res => res.data)
         .then(fields => {
           this.$store.dispatch("loadingFinished", id);
+          this.$store.dispatch("updateFields", {
+            collection: this.collection,
+            updates: fieldUpdates
+          });
           this.fields = fields;
         })
         .catch(error => {

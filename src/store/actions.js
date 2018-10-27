@@ -5,6 +5,7 @@ import { i18n, availableLanguages } from "../lang/";
 import {
   ADD_FIELD,
   UPDATE_FIELD,
+  UPDATE_FIELDS,
   REMOVE_FIELD,
   LATENCY,
   SET_SETTINGS,
@@ -66,6 +67,10 @@ export function addField({ commit }, { collection, field }) {
 
 export function updateField({ commit }, { collection, field }) {
   commit(UPDATE_FIELD, { collection, field });
+}
+
+export function updateFields({ commit }, { collection, updates }) {
+  commit(UPDATE_FIELDS, { collection, updates });
 }
 
 export function removeField({ commit }, { collection, field }) {

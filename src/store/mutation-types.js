@@ -28,6 +28,7 @@ export const STAGE_VALUE = "📝 Stage Value";
 // Fields
 export const ADD_FIELD = "📌 Add Field";
 export const UPDATE_FIELD = "📌 Update Field";
+export const UPDATE_FIELDS = "📌 Update Fields";
 export const REMOVE_FIELD = "📌 Remove Field";
 
 // Extensions

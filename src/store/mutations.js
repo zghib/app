@@ -3,6 +3,7 @@ import { mapValues, keyBy, find } from "lodash";
 import {
   ADD_FIELD,
   UPDATE_FIELD,
+  UPDATE_FIELDS,
   REMOVE_FIELD,
   STORE_HYDRATED,
   HYDRATING_FAILED,
@@ -141,6 +142,15 @@ const mutations = {
     Vue.set(state.collections[collection], "fields", {
       ...state.collections[collection].fields,
       [field.field]: field
+    });
+  },
+
+  [UPDATE_FIELDS](state, { collection, updates }) {
+    updates.forEach(update => {
+      Vue.set(state.collections[collection].fields, update.field, {
+        ...state.collections[collection].fields[update.field],
+        ...update
+      });
     });
   },
 
