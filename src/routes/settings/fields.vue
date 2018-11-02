@@ -36,11 +36,30 @@
             class="row"
             v-for="field in fields"
             :key="field.field"
-            @click="startEditingField(field)">
+            @click.self="startEditingField(field)">
             <div class="drag"><i class="material-icons">drag_handle</i></div>
             <div v-tooltip="rowTip(field)">{{ $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons required" v-if="(field.required === true || field.required === '1')">star</i></div>
             <div>{{ ($store.state.extensions.interfaces[field.interface] && $store.state.extensions.interfaces[field.interface].name) || "--" }}</div>
-            <button class="remove-field" @click.stop="warnRemoveField(field.field)"><i class="material-icons">close</i></button>
+            
+            <v-popover class="more-options" placement="left-start">
+              <button type="button" class="menu-toggle" @click.once.self.stop="">
+                <i class="material-icons">more_vert</i>
+              </button>
+              <template slot="popover" @click.stop="">
+                <ul class="ctx-menu">
+                  <li>
+                    <button v-close-popover type="button" @click.stop="duplicateField(field)" :disabled="!canDuplicate(field.interface)">
+                      <i class="material-icons">control_point_duplicate</i> {{ $t('duplicate') }} 
+                    </button>
+                  </li>
+                  <li>
+                    <button v-close-popover type="button" @click.stop="warnRemoveField(field.field)">
+                      <i class="material-icons">close</i> {{ $t('delete') }}
+                    </button>
+                  </li>
+                </ul>
+              </template>
+            </v-popover>
           </div>
         </draggable>
       </div>
@@ -79,6 +98,14 @@
       :collection-info="collectionInfo"
       @close="editingField = false"
       @save="setFieldSettings" />
+
+    <v-field-duplicate
+      v-if="duplicatingField"
+      :field-information="fieldBeingDuplicated"
+      :collection-information="collectionInfo"
+      @close="duplicatingField = false"
+      @save="duplicateFieldSettings" />
+
   </div>
 </template>
 
@@ -90,6 +117,7 @@ import store from "../../store/";
 import api from "../../api.js";
 import NotFound from "../not-found.vue";
 import VFieldSetup from "../../components/field-setup.vue";
+import VFieldDuplicate from "../../components/field-duplicate.vue";
 
 export default {
   name: "settings-fields",
@@ -102,7 +130,8 @@ export default {
   },
   components: {
     NotFound,
-    VFieldSetup
+    VFieldSetup,
+    VFieldDuplicate
   },
   props: {
     collection: {
@@ -112,6 +141,13 @@ export default {
   },
   data() {
     return {
+      duplicateInterfaceBlacklist: [
+        "primary-key",
+        "many-to-many",
+        "one-to-many",
+        "many-to-one",
+        "sort"
+      ],
       saving: false,
       dragging: false,
 
@@ -133,6 +169,9 @@ export default {
       fieldBeingEdited: null,
       fieldToBeRemoved: null,
       confirmFieldRemove: false,
+
+      fieldBeingDuplicated: null,
+      duplicatingField: false,
 
       editingField: false,
 
@@ -268,6 +307,53 @@ export default {
 
       this.$set(this.edits, field, value);
     },
+    canDuplicate(fieldInterface) {
+      return (
+        this.duplicateInterfaceBlacklist.includes(fieldInterface) === false
+      );
+    },
+    duplicateFieldSettings({ fieldInfo, collection }) {
+      const requests = [];
+
+      const id = this.$helpers.shortid.generate();
+      this.$store.dispatch("loadingStart", { id });
+
+      fieldInfo.collection = collection;
+      requests.push(this.$api.createField(collection, fieldInfo));
+
+      return Promise.all(requests)
+        .then(([fieldRes]) => ({
+          savedFieldInfo: fieldRes.data
+        }))
+        .then(({ savedFieldInfo }) => {
+          this.$store.dispatch("loadingFinished", id);
+
+          if (this.collection === collection) {
+            this.fields = [...this.fields, savedFieldInfo];
+          }
+          this.$store.dispatch("addField", {
+            collection: collection,
+            field: savedFieldInfo
+          });
+
+          this.$notify.confirm(
+            this.$t("field_created", {
+              field: this.$helpers.formatTitle(fieldInfo.field)
+            })
+          );
+        })
+        .then(() => {
+          this.duplicatingField = false;
+          this.fieldBeingDuplicated = null;
+        })
+        .catch(error => {
+          this.$store.dispatch("loadingFinished", id);
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
+    },
     setFieldSettings({ fieldInfo, relation }) {
       const existingField = this.$store.state.collections[
         this.collection
@@ -390,6 +476,10 @@ export default {
       }
 
       return str;
+    },
+    duplicateField(field) {
+      this.fieldBeingDuplicated = field;
+      this.duplicatingField = true;
     },
     startEditingField(field) {
       this.fieldBeingEdited = field;
@@ -624,19 +714,21 @@ h2 {
   margin-bottom: 40px;
 }
 
-.remove-field {
+.more-options {
   position: absolute;
-  right: 10px;
+  right: 0;
   top: 50%;
   transform: translateY(-50%);
 
   i {
-    color: var(--gray);
+    color: var(--lighter-gray);
+    transition: color var(--fast) var(--transition);
   }
 
   &:hover {
     i {
-      color: var(--danger);
+      transition: none;
+      color: var(--gray);
     }
   }
 }
@@ -667,5 +759,46 @@ label.label {
   font-size: 1.2rem;
   line-height: 1.1;
   font-weight: 400;
+}
+
+.ctx-menu {
+  list-style: none;
+  padding: 0;
+  width: var(--width-small);
+
+  li {
+    display: block;
+  }
+
+  i {
+    color: var(--light-gray);
+    margin-right: 5px;
+    transition: color var(--fast) var(--transition);
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    color: var(--darker-gray);
+    width: 100%;
+    height: 100%;
+    transition: color var(--fast) var(--transition);
+    &:disabled,
+    &[disabled] {
+      color: var(--lighter-gray);
+      i {
+        color: var(--lighter-gray);
+      }
+    }
+    &:not(:disabled):not(&[disabled]):hover {
+      color: var(--accent);
+      transition: none;
+      i {
+        color: var(--accent);
+        transition: none;
+      }
+    }
+  }
 }
 </style>

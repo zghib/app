@@ -434,5 +434,7 @@ export default {
   welcome: "Welcome",
   writable_fields: "Writable Fields",
   writable_fields_copy: "Select the fields that the user can edit",
-  yes: "Yes"
+  yes: "Yes",
+  duplicating_field: "Duplicating Field",
+  duplicate: "Duplicate"
 };

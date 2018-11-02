@@ -342,5 +342,7 @@ export default {
   view_type: "Ansehen als...",
   writable_fields: "Beschreibbare Felder",
   write_fields_copy: "Wähle die Felder aus, die der User bearbeiten darf.",
-  yes: "Ja"
+  yes: "Ja",
+  duplicating_field: "Feld duplizieren",
+  duplicate: "Duplikat"
 };

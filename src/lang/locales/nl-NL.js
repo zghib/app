@@ -140,5 +140,7 @@ export default {
   version: "Versie",
   version_and_updates: "Versie en updates",
   view_type: "Bekijk type",
-  yes: "Ja"
+  yes: "Ja",
+  duplicating_field: "Veld dupliceren",
+  duplicate: "Dupliceer"
 };

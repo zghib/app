@@ -437,5 +437,7 @@ export default {
   writable_fields: "Champs modifiable",
   writable_fields_copy:
     "Sélectionnez les champs que l'utilisateur peut modifier",
-  yes: "Oui"
+  yes: "Oui",
+  duplicating_field: "Champ en double",
+  duplicate: "Dupliquer"
 };
