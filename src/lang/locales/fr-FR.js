@@ -27,21 +27,21 @@ export default {
   add_new: "Nouveau",
   add_field_filter: "Ajouter un champ de filtre",
   add_note: "Ajouter une note utile aux utilisateurs...",
-  admin_settings: "Paramètres administrateur",
+  admin_settings: "Administration",
   almost_done_options:
-    "Presque fini! Veuillez vérifier les options d'interface ci-dessous.",
+    "Presque fini ! Veuillez vérifier les options d'interface ci-dessous.",
   almost_done_copy:
     "Chaque interface peut être adaptée à vos besoins. Vous trouverez ci-dessous les options disponibles pour ce champ, mais seules certaines sont requises.",
   all: "Tout",
   statuses: "Statuts",
-  api_url: "API URL",
+  api_url: "URL API",
   api_installed: "API installées avec succés",
   auto_generated: "Généré automatiquement...",
   batch: "Lot",
-  batch_edit: "Edition d'éléments par lot: {collection}",
+  batch_edit: "Edition d'éléments par lot : {collection}",
   batch_delete: "Suppression par lot",
   batch_delete_confirm:
-    "Aucun élément n'as était sélectionné | Êtes-vous sûr de bien vouloir supprimer cet élément? Vous ne pourrez pas revenir en arrière. | Êtes-vous sûr de bien vouloir supprimer ces {count} éléments?  Vous ne pourrez pas revenir en arrière.",
+    "Aucun élément n'as été sélectionné | Êtes-vous sûr de bien vouloir supprimer cet élément ? Vous ne pourrez pas revenir en arrière ! | Êtes-vous sûr de bien vouloir supprimer ces {count} éléments ?  Vous ne pourrez pas revenir en arrière !",
   between: "Entre",
   both: "Tous",
   bookmarks: "Favoris",
@@ -72,11 +72,11 @@ export default {
   config_error: "Configuration manquante",
   config_error_copy:
     "Assurez-vous d'avoir créé le fichier de configuration de l'application.",
-  collection_contains_items: "{collection} continet {count} élément",
+  collection_contains_items: "{collection} contient {count} élément(s)",
   currently_selected: "Actuellement sélectionné: {thing}",
   create: "Créer",
   creating_item: "Creation d'élément",
-  creating_item_page_title: "Creation d'élément: {collection}",
+  creating_item_page_title: "Creation d'élément : {collection}",
   creating_role: "Creation de rôle",
   create_role: "Créer un rôle",
   create_field: "Créer un champ",
@@ -94,9 +94,9 @@ export default {
     array: "Format de tableau standard dans la réponse de l'API",
     boolean: "Vrai ou Faux",
     datetime:
-      "Une date et une heure au format ISO, ex: 2018-09-19T14: 00: 43.381Z",
-    date: "Date, ex: 2018-09-19",
-    time: "heure, ex: 14:09:22",
+      "Une date et une heure au format ISO, ex : 2018-09-19T14: 00: 43.381Z",
+    date: "Date, ex : 2018-09-19",
+    time: "heure, ex : 14:09:22",
     file: "Clé étrangère pour directus_files.id",
     group:
       "Groups fields together visually, children save group into directus_fields.group",
@@ -111,7 +111,7 @@ export default {
       "Champ système utilisé dans la réorganisation d'éléments par glisser-déposer",
     status: "Champ système utilisé pour la publication des flux",
     string:
-      "Tout texte, chiffres, espaces ou symboles; défini et limité par sa longueur (nombre de caractères)",
+      "Tout texte, chiffres, espaces ou symboles ; défini et limité par sa longueur (nombre de caractères)",
     translation:
       "Spécifique aux interfaces de traduction, cet o2m stocke du contenu multilingue.",
     uuid: "Identifiant universel unique",
@@ -138,7 +138,7 @@ export default {
         "Une chaîne d'une longueur maximale de 4 294 967 295 caractères.",
 
       TINYINT:
-        "Un nombre entier. Lorsque signé (autorise négatif), la longueur est comprise entre -128 et 127; sinon, la valeur maximale est de 255.",
+        "Un nombre entier. Lorsque signé (autorise négatif), la longueur est comprise entre -128 et 127 ; sinon, la valeur maximale est de 255.",
       SMALLINT:
         "Un nombre entier. Lorsque signé (autorise négatif), la longueur est comprise entre -32 768 et 32 767, sinon la valeur maximale est 65 535.",
       MEDIUMINT:
@@ -172,16 +172,16 @@ export default {
   default: "Défaut",
   delete: "Supprimer",
   delete_are_you_sure:
-    "Êtes-vous sûr de vouloir supprimer cet élément? Cette action ne peut pas être annulée.",
+    "Êtes-vous sûr de vouloir supprimer cet élément ? Cette action ne peut pas être annulée !",
   delete_collection_are_you_sure:
-    "Êtes-vous sûr de vouloir supprimer cette collection? Cette action ne peut pas être annulée.",
+    "Êtes-vous sûr de vouloir supprimer cette collection ? Cette action ne peut pas être annulée !",
   delete_field_are_you_sure:
-    'Êtes-vous sûr de vouloir supprimer le champ "{field}"? Cette action ne peut pas être annulée.',
+    'Êtes-vous sûr de vouloir supprimer le champ "{field}" ? Cette action ne peut pas être annulée !',
   delete_role_are_you_sure:
-    'Êtes-vous sûr de vouloir supprimer le rôle "{name}"? Cette action ne peut pas être annulée.',
+    'Êtes-vous sûr de vouloir supprimer le rôle "{name}" ? Cette action ne peut pas être annulée !',
   delete_bookmark: "Supprimer le favoris",
   delete_bookmark_body:
-    "Êtes vous sûr de vouloir supprimer ce favoris? Cette action ne peut pas être annulée.",
+    "Êtes vous sûr de vouloir supprimer ce favoris ? Cette action ne peut pas être annulée !",
   description: "Description",
   delete_confirmation: "Confirmation de suppression",
   dialog_beginning: "Début de la fenêtre de dialogue.",
@@ -190,7 +190,7 @@ export default {
   drop_files:
     "Impossible de déposer des fichiers | Déposer un fichier ici ... | Déposer des fichiers ici ...",
   dont_show: "Ne pas afficher",
-  editing: "Edition d'élément: {collection}",
+  editing: "Edition d'élément : {collection}",
   editing_item: "Edition d'élément",
   editing_items: "Edition en lot de {count} élément",
   editing_single: "Edition {collection}",
@@ -227,12 +227,12 @@ export default {
   fields: "Champs",
   fields_are_saved_instantly: "Enregistrement automatique des modifications",
   file: "Fichier",
-  file_library: "Bibliothèque de fichiers",
+  file_library: "Fichiers",
   file_upload: "Télécharger des fichier(s)",
   forgot_password: "Mot de passe oublié",
   greater_than_equal: "Plus grand ou égal à",
   greater_than: "Plus grand que",
-  help_and_docs: "Aide & documentation",
+  help_and_docs: "Documentation",
   keep_editing: "Continuer l'edition",
   hidden_detail: "Caché dans les détails",
   hidden_browse: "Caché sur Parcourir",
@@ -349,7 +349,7 @@ export default {
   port: "Port",
   project: "Projet",
   project_name: "Nom du projet",
-  project_info: "Inforamtions sur le projet",
+  project_info: "Informations sur le projet",
   project_info_copy:
     "Vous trouverez ci-dessous quelques questions sur votre projet, notamment les informations d'identification de votre premier administrateur.",
   read: "Lecture",
@@ -421,7 +421,7 @@ export default {
   to: "À",
   unsaved_changes_copy:
     "Vous avez des changements non enregistrés! Êtes-vous sûr de vouloir quitter cette page??",
-  user_directory: "Répertoire utilisateur",
+  user_directory: "Utilisateurs",
   update: "Mettre à jour",
   update_confirm: "Êtes-vous sûr de vouloir mettre à jour {count} éléments?",
   unique: "Unique",
