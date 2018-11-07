@@ -32,20 +32,17 @@
       </div>
       <div class="body" :class="{ dragging }">
         <draggable v-model="fields" @start="startSort" @end="saveSort">
-          <div
-            class="row"
-            v-for="field in fields"
-            :key="field.field"
-            @click.self="startEditingField(field)">
+          <div class="row" v-for="field in fields" :key="field.field">
             <div class="drag"><i class="material-icons">drag_handle</i></div>
-            <div v-tooltip="rowTip(field)">{{ $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons required" v-if="(field.required === true || field.required === '1')">star</i></div>
-            <div>{{ ($store.state.extensions.interfaces[field.interface] && $store.state.extensions.interfaces[field.interface].name) || "--" }}</div>
-            
+            <div class="inner row" @click.stop="startEditingField(field)">
+              <div v-tooltip="rowTip(field)">{{ $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons required" v-if="(field.required === true || field.required === '1')">star</i></div>
+              <div>{{ ($store.state.extensions.interfaces[field.interface] && $store.state.extensions.interfaces[field.interface].name) || "--" }}</div>
+            </div>
             <v-popover class="more-options" placement="left-start">
-              <button type="button" class="menu-toggle" @click.once.self.stop="">
+              <button type="button" class="menu-toggle">
                 <i class="material-icons">more_vert</i>
               </button>
-              <template slot="popover" @click.stop="">
+              <template slot="popover">
                 <ul class="ctx-menu">
                   <li>
                     <button v-close-popover type="button" @click.stop="duplicateField(field)" :disabled="!canDuplicate(field.interface)">
@@ -663,9 +660,17 @@ h2 {
     > div {
       padding: 5px 5px;
 
-      &:not(.drag) {
+      &:not(.drag):not(.more-options) {
         flex-basis: 200px;
       }
+    }
+  }
+
+  .inner.row {
+    flex-grow: 1;
+
+    > div {
+      padding: 0;
     }
   }
 
