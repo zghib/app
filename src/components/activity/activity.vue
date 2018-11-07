@@ -125,6 +125,8 @@ export default {
         revision: this.revisions[activity.id]
       }));
 
+      if (activityWithChanges.length === 0) return [];
+
       const lastItem =
         activityWithChanges &&
         activityWithChanges[activityWithChanges.length - 1];
