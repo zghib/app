@@ -162,7 +162,6 @@ export default {
 
       edits: {},
 
-      fieldEdits: {},
       fieldBeingEdited: null,
       fieldToBeRemoved: null,
       confirmFieldRemove: false,
