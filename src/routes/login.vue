@@ -398,12 +398,14 @@ export default {
         });
     },
     trySSOLogin() {
+      const queryParams = new URLSearchParams(window.location.search);
+
       /**
        * NOTE: The only reason this was implemented this way is due to the fact that the API doesn't return
        *   error codes yet for SSO errors. As soon as issue directus/api#126 has been fixed, we can
        *   use the "pretty" error notice instead
        */
-      if (this.$route.query.error) {
+      if (queryParams.get("error")) {
         this.SSOerror = +this.$route.query.code;
 
         const uri = window.location.toString();
@@ -416,17 +418,20 @@ export default {
       }
 
       if (
-        this.$route.query.request_token &&
-        this.$route.query.request_token.length > 0
+        queryParams.get("request_token") &&
+        queryParams.get("request_token").length > 0
       ) {
+        this.clearRequestToken();
+        this.loading = true;
         this.$store
-          .dispatch("loginSSO", this.$route.query.request_token)
+          .dispatch("loginSSO", queryParams.get("request_token"))
           .then(() => this.enterApp())
           .catch(error => {
             this.$events.emit("error", {
               notify: this.$t("something_went_wrong_body"),
               error
             });
+            this.loading = false;
           });
       }
     },
@@ -457,6 +462,14 @@ export default {
 
           this.saving = false;
         });
+    },
+    clearRequestToken() {
+      const url = window.location.href;
+      const newUrl = url
+        .replace(new RegExp("[?&]request_token=[^&#]*(#.*)?$"), "$1")
+        .replace(new RegExp("([?&])request_token=[^&]*&"), "$1");
+
+      history.replaceState({}, "Login | Directus", newUrl);
     }
   }
 };
