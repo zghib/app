@@ -1,5 +1,5 @@
 <template>
-  <div class="v-toggle" @click="$emit('input', !value)">
+  <div class="v-toggle" :class="{ disabled }" @click="emitValue">
     <input
       type="checkbox"
       :id="id"
@@ -27,6 +27,12 @@ export default {
       type: String,
       default: null
     }
+  },
+  methods: {
+    emitValue() {
+      if (this.disabled) return;
+      this.$emit("input", !this.value);
+    }
   }
 };
 </script>
@@ -37,6 +43,10 @@ export default {
   position: relative;
   cursor: pointer;
   width: max-content;
+}
+
+.disabled {
+  opacity: 0.5;
 }
 
 input {

@@ -257,6 +257,8 @@ export default {
   item_deleted: "Item Deleted",
   item_saved: "Item Saved | {count} Items Saved",
   junction_collection: "Junction Collection",
+  cant_disable_primary:
+    "You can't disable primary key on an existing field. Remove this field instead.",
   extension_error: "There was a problem loading the {ext} extension.",
   extensions_missing: "No Extensions Found",
   extensions_missing_copy:
@@ -314,6 +316,7 @@ export default {
   no_interface_error: "Field {field} doesn't have an interface setup",
   manage: "Manage",
   max_size: "Max. Size: {size}",
+  max_one_primary_key: "You can only have 1 primary key field per collection",
   dont_manage: "Don't Manage",
   dont_manage_copy:
     "Privileges, preferences, and settings for the {collection} collection will be permanently removed from the system! Are you sure?",
@@ -345,6 +348,7 @@ export default {
   popular: "Popular",
   powered_by_directus: "Powered by Directus",
   preview_and_revert: "Preview and Revert",
+  primary_key: "Primary Key",
   port: "Port",
   project: "Project",
   project_name: "Project Name",

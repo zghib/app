@@ -35,7 +35,17 @@
           <div class="row" v-for="field in fields" :key="field.field">
             <div class="drag"><i class="material-icons">drag_handle</i></div>
             <div class="inner row" @click.stop="startEditingField(field)">
-              <div v-tooltip="rowTip(field)">{{ $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons required" v-if="(field.required === true || field.required === '1')">star</i></div>
+              <div>
+                {{ $helpers.formatTitle(field.field) }}
+                <i
+                  v-tooltip="$t('required')"
+                  class="material-icons required"
+                  v-if="(field.required === true || field.required === '1')">star</i>
+                <i
+                  v-tooltip="$t('primary_key')"
+                  class="material-icons key"
+                  v-if="field.primary_key">vpn_key</i>
+              </div>
               <div>{{ ($store.state.extensions.interfaces[field.interface] && $store.state.extensions.interfaces[field.interface].name) || "--" }}</div>
             </div>
             <v-popover class="more-options" placement="left-start">
@@ -432,23 +442,6 @@ export default {
           });
         });
     },
-    rowTip(field) {
-      if (!field.datatype) return null;
-
-      let str = "";
-
-      if (field.length) {
-        str += `${field.datatype}(${field.length}) `;
-      } else {
-        str += field.datatype;
-      }
-
-      if (field.default) {
-        str += ` - ${this.$t("default")}: ${field.default}`;
-      }
-
-      return str;
-    },
     duplicateField(field) {
       this.fieldBeingDuplicated = field;
       this.duplicatingField = true;
@@ -677,6 +670,13 @@ h2 {
         color: var(--accent);
         vertical-align: super;
         font-size: 7px;
+      }
+
+      .key {
+        color: var(--light-gray);
+        font-size: 16px;
+        vertical-align: -3px;
+        margin-left: 2px;
       }
     }
 

@@ -89,7 +89,15 @@
             <label class="toggle"><v-toggle v-model="unique" /> {{ $t("unique") }}</label>
             <label class="toggle"><v-toggle v-model="hidden_detail" /> {{ $t("hidden_detail") }}</label>
             <label class="toggle"><v-toggle v-model="hidden_browse" />{{ $t("hidden_browse") }}</label>
-            <label class="toggle"><v-toggle v-model="primary_key" />{{ $t("primary_key") }}</label>
+            <label
+              class="toggle"
+              :class="{ disabled: primaryKeyDisabled }"
+              v-tooltip="primaryKeyTooltip">
+              <v-toggle
+                v-model="primary_key"
+                :disabled="primaryKeyDisabled" />
+              {{ $t("primary_key") }}
+            </label>
           </div>
         </details>
       </form>
@@ -427,6 +435,20 @@ export default {
     },
     databaseVendor() {
       return this.$store.state.serverInfo.databaseVendor;
+    },
+    primaryKeyDisabled() {
+      if (!this.primaryKeyField) return false;
+
+      return true;
+    },
+    primaryKeyTooltip() {
+      if (!this.primaryKeyField) return null;
+
+      if (this.field === this.primaryKeyField.field) {
+        return this.$t("cant_disable_primary");
+      }
+
+      return this.$t("max_one_primary_key");
     },
     selectedInterfaceInfo() {
       if (!this.interfaceName) return null;
@@ -1119,12 +1141,18 @@ form.schema {
       text-transform: capitalize;
       font-size: 1rem;
       cursor: pointer;
-      &:hover {
+      width: max-content;
+
+      &:not(.disabled):hover {
         color: var(--accent);
       }
 
       > *:first-child {
         margin-right: 10px;
+      }
+
+      &.disabled {
+        color: var(--light-gray);
       }
     }
   }
