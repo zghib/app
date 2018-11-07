@@ -80,14 +80,14 @@ export function login({ commit }, credentials) {
 export function loginSSO({ commit }, request_token) {
   commit(LOGIN_PENDING);
 
-  const { url, env } = jwtPayload(request_token);
+  const { url, project } = jwtPayload(request_token);
   api.url = url;
-  api.env = env;
+  api.env = project;
 
   return api
     .request(
       "POST",
-      "/auth/access_token",
+      "auth/sso/access_token",
       {},
       {
         request_token
@@ -98,7 +98,7 @@ export function loginSSO({ commit }, request_token) {
       api.token = token;
 
       commit(LOGIN_SUCCESS, {
-        env,
+        env: project,
         url,
         token,
         projectName: config.api[url] || extractHostname(url)
