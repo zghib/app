@@ -149,8 +149,7 @@ export default {
       DECIMAL:
         "Un nombre précis (ex: une devise), d'une longueur maximale de 65 chiffres (L) avec une partie décimale de maximum 30 chiffres (D). Format de longueur: `L, D`",
       FLOAT: "Un nombre décimal binaire approximatif de 4 octets.",
-      DOUBLE:
-        "Un nombre décimal binaire approximatif de 8 octets.",
+      DOUBLE: "Un nombre décimal binaire approximatif de 8 octets.",
 
       DATE: "Une date entre `1000-01-01` et `9999-12-31`.",
       DATETIME:
@@ -312,7 +311,8 @@ export default {
   not_empty: "N'est pas vide",
   not_equal_to: "N'est pas égal à",
   not_in_list: "N'est pas contenu dans",
-  no_interface_error: "Le champ « {champ} » n'a pas de configuration d'interface",
+  no_interface_error:
+    "Le champ « {champ} » n'a pas de configuration d'interface",
   manage: "Gérer",
   max_size: "Taille max : {size}",
   dont_manage: "Ne pas gérer",
