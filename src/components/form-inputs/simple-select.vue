@@ -38,16 +38,19 @@ export default {
     stageValue(event) {
       this.$emit("input", event.target.value);
       this.valueText = event.target.options[event.target.selectedIndex].text;
+    },
+    getValueText() {
+      const selectElement = this.$refs.selectElement;
+      this.valueText =
+        selectElement.options[selectElement.selectedIndex].text || this.value;
     }
   },
   mounted() {
-    const selectElement = this.$refs.selectElement;
-    this.valueText =
-      selectElement.options[selectElement.selectedIndex].text || this.value;
+    this.getValueText();
   },
   watch: {
-    value(value) {
-      this.valueText = value;
+    value() {
+      this.getValueText();
     }
   }
 };
