@@ -170,18 +170,8 @@ export default {
       fieldBeingDuplicated: null,
       duplicatingField: false,
 
-      editingField: false,
-
-      count: "--"
+      editingField: false
     };
-  },
-  created() {
-    this.getItemCount();
-  },
-  watch: {
-    collection() {
-      this.getItemCount();
-    }
   },
   computed: {
     breadcrumb() {
@@ -218,29 +208,6 @@ export default {
     }
   },
   methods: {
-    getItemCount() {
-      if (!this.collectionInfo) return;
-
-      const id = this.$helpers.shortid.generate();
-      this.$store.dispatch("loadingStart", { id });
-
-      this.$api
-        .getItems(this.collection, {
-          fields: "id",
-          meta: "total_count"
-        })
-        .then(res => res.meta)
-        .then(meta => {
-          this.$store.dispatch("loadingFinished", id);
-          this.count = meta.total_count;
-        })
-        .catch(error => {
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
-        });
-    },
     remove() {
       const id = this.$helpers.shortid.generate();
       this.$store.dispatch("loadingStart", { id });
