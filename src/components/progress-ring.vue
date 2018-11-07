@@ -83,6 +83,7 @@ export default {
 <style lang="scss" scoped>
 .v-progress-ring {
   position: relative;
+  text-align: center;
 
   svg {
     width: 100%;
