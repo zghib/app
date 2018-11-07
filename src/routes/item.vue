@@ -493,7 +493,11 @@ export default {
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
           this.$store.dispatch("discardChanges", id);
-          this.$notify.confirm(this.$t("item_deleted"));
+          this.$notify({
+            title: this.$t("item_deleted"),
+            color: "green",
+            iconMain: "check"
+          });
           this.confirmRemoveLoading = false;
           this.confirmRemove = false;
           this.$router.push(`/collections/${this.collection}`);
@@ -536,7 +540,11 @@ export default {
             return res.data[this.primaryKeyField];
           })
           .then(pk => {
-            this.$notify.confirm(this.$t("item_saved"));
+            this.$notify({
+              title: this.$t("item_saved"),
+              color: "green",
+              iconMain: "check"
+            });
             if (this.collection.startsWith("directus_")) {
               return this.$router.push(
                 `/${this.collection.substring(9)}/${pk}`
@@ -567,11 +575,13 @@ export default {
         })
         .then(savedValues => {
           const savedValuesLength = this.savedValues.length;
-          this.$notify.confirm(
-            this.$tc("item_saved", savedValuesLength, {
+          this.$notify({
+            title: this.$tc("item_saved", savedValuesLength, {
               count: savedValuesLength
-            })
-          );
+            }),
+            color: "green",
+            iconMain: "check"
+          });
 
           if (method === "leave") {
             if (this.collection.startsWith("directus_")) {
@@ -691,9 +701,11 @@ export default {
           if (users.length > 0) {
             users.forEach(user => {
               const { first_name, last_name } = user;
-              this.$notify.alert(
-                this.$t("user_edit_warning", { first_name, last_name })
-              );
+              this.$notify({
+                title: this.$t("user_edit_warning", { first_name, last_name }),
+                color: "red",
+                iconMain: "error"
+              });
             });
           }
         })

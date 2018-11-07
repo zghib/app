@@ -253,11 +253,13 @@ export default {
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
           this.$store.dispatch("removeCollection", this.collection);
-          this.$notify.confirm(
-            this.$t("collection_removed", {
+          this.$notify({
+            title: this.$t("collection_removed", {
               collection: this.$helpers.formatTitle(this.collection)
-            })
-          );
+            }),
+            color: "green",
+            iconMain: "check"
+          });
           this.$router.push("/settings/collections");
         })
         .catch(error => {
@@ -277,11 +279,13 @@ export default {
       this.$api
         .updateCollection(this.collection, this.edits)
         .then(() => {
-          this.$notify.confirm(
-            this.$t("collection_updated", {
+          this.$notify({
+            title: this.$t("collection_updated", {
               collection: this.$helpers.formatTitle(this.collection)
-            })
-          );
+            }),
+            color: "green",
+            iconMain: "check"
+          });
           this.$store.dispatch("loadingFinished", id);
           this.saving = false;
           this.$store.dispatch("updateCollection", {
@@ -335,12 +339,13 @@ export default {
             collection: collection,
             field: savedFieldInfo
           });
-
-          this.$notify.confirm(
-            this.$t("field_created", {
+          this.$notify({
+            title: this.$t("field_created", {
               field: this.$helpers.formatTitle(fieldInfo.field)
-            })
-          );
+            }),
+            color: "green",
+            iconMain: "check"
+          });
         })
         .then(() => {
           this.duplicatingField = false;
@@ -406,11 +411,13 @@ export default {
               return field;
             });
 
-            this.$notify.confirm(
-              this.$t("field_updated", {
+            this.$notify({
+              title: this.$t("field_updated", {
                 field: this.$helpers.formatTitle(fieldInfo.field)
-              })
-            );
+              }),
+              color: "green",
+              iconMain: "check"
+            });
 
             this.$store.dispatch("updateField", {
               collection: this.collection,
@@ -419,11 +426,13 @@ export default {
           } else {
             this.fields = [...this.fields, savedFieldInfo];
 
-            this.$notify.confirm(
-              this.$t("field_created", {
+            this.$notify({
+              title: this.$t("field_created", {
                 field: this.$helpers.formatTitle(fieldInfo.field)
-              })
-            );
+              }),
+              color: "green",
+              iconMain: "check"
+            });
 
             this.$store.dispatch("addField", {
               collection: this.collection,
@@ -503,11 +512,13 @@ export default {
           this.removingField = false;
           this.fieldToBeRemoved = null;
           this.confirmFieldRemove = false;
-          this.$notify.confirm(
-            this.$t("field_removed", {
+          this.$notify({
+            title: this.$t("field_removed", {
               field: this.$helpers.formatTitle(fieldName)
-            })
-          );
+            }),
+            color: "green",
+            iconMain: "check"
+          });
           this.$store.dispatch("removeField", {
             collection: this.collection,
             field: fieldName

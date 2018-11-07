@@ -24,13 +24,19 @@ export default {
   },
   created() {
     if (this.inputName == null) {
-      this.$notify.alert(
-        this.$t("no_interface_error", {
+      this.$notify({
+        title: this.$t("no_interface_error", {
           field: this.$helpers.formatTitle(this.name)
-        })
-      );
+        }),
+        color: "red",
+        iconMain: "error"
+      });
     } else {
-      this.$notify.alert(this.$t("extension_error", { ext: this.inputName }));
+      this.$notify({
+        title: this.$t("extension_error", { ext: this.inputName }),
+        color: "red",
+        iconMain: "error"
+      });
     }
   }
 };

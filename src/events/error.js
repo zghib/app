@@ -1,4 +1,4 @@
-import notify from "../notify";
+import notify from "../notifications";
 import { isEmpty, isUndefined } from "lodash";
 
 const handleError = error => {
@@ -9,7 +9,11 @@ const handleError = error => {
     console.error(error.error); //eslint-disable-line no-console
   }
   if (!isEmpty(error.notify)) {
-    notify.alert(error.notify);
+    notify({
+      title: error.notify,
+      color: "red",
+      iconMain: "error"
+    });
   }
 };
 

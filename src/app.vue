@@ -33,6 +33,7 @@
     <loader v-else area="full-page" />
 
     <portal-target name="modal" />
+    <v-notification/>
   </div>
 
   <router-view v-else class="directus" />
@@ -43,6 +44,7 @@ import VBlocker from "./components/blocker.vue";
 import VError from "./components/error.vue";
 import { TOGGLE_NAV } from "./store/mutation-types";
 import VNavSidebar from "./components/sidebars/nav-sidebar/nav-sidebar.vue";
+import VNotification from "./components/notifications/notifications.vue";
 
 export default {
   name: "directus",
@@ -52,7 +54,8 @@ export default {
   components: {
     VBlocker,
     VError,
-    VNavSidebar
+    VNavSidebar,
+    VNotification
   },
   computed: {
     publicRoute() {

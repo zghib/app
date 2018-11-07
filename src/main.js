@@ -11,7 +11,6 @@ import nl from "date-fns/locale/nl/";
 
 import "./assets/global.scss";
 import "./assets/tooltip.scss";
-import "./assets/notyf.scss";
 import "./globals";
 import "./helpers/handle-focus";
 import "./helpers/handle-drag";
@@ -23,7 +22,7 @@ import { i18n } from "./lang/";
 import store from "./store/";
 import api from "./api";
 import helpers from "./helpers";
-import notify from "./notify";
+import notify from "./notifications";
 import events from "./events/";
 
 Vue.config.productionTip = false;

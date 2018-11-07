@@ -38,7 +38,11 @@ export default {
     }
   },
   created() {
-    this.$notify.alert(this.$t("extension_error", { ext: this.layoutName }));
+    this.$notify({
+      title: this.$t("extension_error", { ext: this.layoutName }),
+      color: "red",
+      iconMain: "error"
+    });
   }
 };
 </script>

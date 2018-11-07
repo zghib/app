@@ -72,3 +72,7 @@ export const TOGGLE_INFO = "🎨 Toggle Info Sidebar";
 
 // Users
 export const SET_USERS = "👯‍♀️ Set Users";
+
+// Notifications
+export const PUSH_NOTIFICATION = "💬 Push Notification";
+export const REMOVE_NOTIFICATION = "💬❌ Remove Notification";

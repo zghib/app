@@ -442,7 +442,11 @@ export default {
           this.installing = false;
           this.exists = true;
           this.notInstalled = false;
-          this.$notify.confirm(this.$t("api_installed"));
+          this.$notify({
+            title: this.$t("api_installed"),
+            color: "green",
+            iconMain: "check"
+          });
           this.saving = false;
         })
         .catch(error => {
