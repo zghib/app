@@ -48,10 +48,11 @@ export default {
   collection_names_cannot_be_changed:
     "Název kategorie nemůže být v současné chvíli změněn.",
   collections: "Kategorie",
-  collection_count: "Žádné kategorie | Počet kategorií: 1 | Počet kategorií: {count}",
-    "collections-directus_files": "Soubory",
-    "collections-directus_users": "Uživatelé",
-    "collections-directus_activity": "Aktivity",
+  collection_count:
+    "Žádné kategorie | Počet kategorií: 1 | Počet kategorií: {count}",
+  "collections-directus_files": "Soubory",
+  "collections-directus_users": "Uživatelé",
+  "collections-directus_activity": "Aktivity",
   collection_contains_items: "{collection} obsahuje {count} položek",
   comment: "Komentář",
   comments: "Komentáře",
@@ -67,7 +68,8 @@ export default {
   description: "Popis",
   discard_changes: "Ano, odejít bez uložení",
   display_name: "Zobrazit jméno",
-  drop_files: "Nelze přesunout soboury | Přesuňte soubor sem... | Přesuňte soubory sem...",
+  drop_files:
+    "Nelze přesunout soboury | Přesuňte soubor sem... | Přesuňte soubory sem...",
   dont_show: "Nezobrazovat",
   editing: "Úprava položky: {collection}",
   editing_item: "Úprava položky",
@@ -110,8 +112,7 @@ export default {
   loading_more: "Náhrávám více položek...",
   login: "Přihlásit",
   name: "Jméno",
-  navigate_changes:
-    "Pokud opustíte stránku Vaše úpravy budou ztraceny",
+  navigate_changes: "Pokud opustíte stránku Vaše úpravy budou ztraceny",
   new: "Nový",
   new_file: "Nový soubor",
   no_results: "Bez výsledků",
@@ -145,7 +146,8 @@ export default {
   signing_in: "Přihlašuji",
   sign_out: "Odhlásit se",
   sign_out_confirm: "Chcete se odhlásit?",
-  sign_out_confirm_edits: "Opravdu se chcete odhlásit? Všechny neuložené změny budou ztraceny.",
+  sign_out_confirm_edits:
+    "Opravdu se chcete odhlásit? Všechny neuložené změny budou ztraceny.",
   unsaved_changes_copy: "Máte neuložené změny. Opravdu chcete opustit stránku?",
   user_directory: "Uživatelé",
   update_confirm: "Opravdu chcete aktualizovat {count} položek?",
