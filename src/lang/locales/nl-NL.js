@@ -18,7 +18,7 @@ export const dateTimeFormats = {
 export default {
   about_directus: "Over Directus",
   activity: "Activiteit",
-  my_activity: "Mijn Activitiet",
+  my_activity: "Mijn Activiteit",
   activity_log: "Activiteit Overzicht",
   activity_outside_directus: "Dit item is buiten Directus gecreëerd.",
   admin_email: "Admin Email",
@@ -407,7 +407,7 @@ export default {
   sign_out_confirm: "Weet je zeker dat je uit wilt loggen?",
   sign_out_confirm_edits:
     "Weet je zeker dat je uit wilt loggen? Alle wijzigingen gaan verloren.",
-  text: "Tekstt",
+  text: "Tekst",
   this_collection: "Deze collectie",
   to: "Aan",
   unsaved_changes_copy:
