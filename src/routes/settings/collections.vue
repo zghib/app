@@ -136,7 +136,8 @@ export default {
                 interface: "primary-key",
                 auto_increment: true,
                 primary_key: true,
-                hidden_detail: true
+                hidden_detail: true,
+                hidden_browse: true
               }
             ]
           },
@@ -161,7 +162,7 @@ export default {
                 field: "id",
                 group: null,
                 hidden_detail: true,
-                hidden_browse: false,
+                hidden_browse: true,
                 interface: "primary-key",
                 length: "10",
                 locked: 0,
