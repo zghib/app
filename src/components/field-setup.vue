@@ -799,6 +799,10 @@ export default {
         // translation: this.translation, < Haven't implemented that yet
       };
 
+      if (this.lengthDisabled) {
+        delete fieldInfo.length;
+      }
+
       this.saving = true;
 
       const result = {
