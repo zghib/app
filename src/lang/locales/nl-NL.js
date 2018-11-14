@@ -274,7 +274,7 @@ export default {
   no_related_entries: "Heeft geen gerelateerd items",
   not_between: "Niet tussen",
   not_contains: "Bevat niet",
-  note: "Hint",
+  note: "Notitie",
   note_note: "Een interne beschrijving...",
   note_hidden:
     "[Meer info](https://docs.directus.io/app/admin/collections.html#hidden)",
