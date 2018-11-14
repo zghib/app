@@ -54,4 +54,6 @@ export function loadLanguageAsync(lang) {
 }
 
 // Array of available languages in the system
-export const availableLanguages = ["en-US", "de-DE", "fr-FR", "it-IT"];
+export const availableLanguages = ["en-US", "de-DE", "fr-FR", "it-IT", "nl-NL"];
+
+i18n.availableLanguages = availableLanguages;
