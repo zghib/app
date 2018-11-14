@@ -243,11 +243,39 @@ export default {
     },
     viewQuery() {
       if (!this.preferences) return {};
-      return (
+
+      const viewQuery =
         (this.preferences.view_query &&
           this.preferences.view_query[this.viewType]) ||
-        {}
-      );
+        {};
+
+      // Filter out the fieldnames of fields that don't exist anymore
+      // Sorting / querying fields that don't exist anymore will return
+      // a 422 in the API and brick the app
+
+      const collectionFieldNames = this.fields.map(f => f.field);
+
+      if (viewQuery.fields) {
+        viewQuery.fields = viewQuery.fields
+          .split(",")
+          .filter(fieldName => collectionFieldNames.includes(fieldName))
+          .join(",");
+      }
+
+      if (viewQuery.sort) {
+        // If the sort is descending, the fieldname starts with -
+        // The fieldnames in the array of collection field names don't have this
+        // which is why we have to take it out.
+        const sortFieldName = viewQuery.sort.startsWith("-")
+          ? viewQuery.sort.substring(1)
+          : viewQuery.sort;
+
+        if (collectionFieldNames.includes(sortFieldName) === false) {
+          viewQuery.sort = this.primaryKeyField;
+        }
+      }
+
+      return viewQuery;
     },
     viewOptions() {
       if (!this.preferences) return {};
