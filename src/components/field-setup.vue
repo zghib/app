@@ -556,7 +556,14 @@ export default {
         },
         {
           title: this.$t("date_and_time"),
-          interfaces: ["date", "datetime", "time", "calendar"]
+          interfaces: [
+            "calendar",
+            "date",
+            "time",
+            "datetime",
+            "datetime-created",
+            "datetime-updated"
+          ]
         },
         {
           title: this.$t("relational"),
