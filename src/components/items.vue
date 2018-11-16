@@ -138,7 +138,7 @@ export default {
       ).field;
     },
     fields() {
-      const fields = this.$store.state.collections[this.collection].fields;
+      const fields = this.$store.state.collections.data[this.collection].fields;
       return (
         this.$lodash.mapValues(fields, field => ({
           ...field,

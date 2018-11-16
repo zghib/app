@@ -12,7 +12,7 @@ export function addPermission({ commit }, { collection, permission }) {
 }
 
 export function getPermissions({ commit, rootState }) {
-  const collections = rootState.collections;
+  const collections = rootState.collections.data;
   const admin = rootState.currentUser.admin === true;
   const defaultPerm = admin ? defaultFull : defaultNone;
 

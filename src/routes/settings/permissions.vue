@@ -118,7 +118,7 @@ export default {
       return this.$route.params.id == 1;
     },
     collections() {
-      return this.$store.state.collections;
+      return this.$store.state.collections.data;
     },
     breadcrumb() {
       if (!this.role) return [];

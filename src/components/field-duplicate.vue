@@ -78,7 +78,7 @@ export default {
         .length;
     },
     collections() {
-      const collections = Object.assign({}, this.$store.state.collections);
+      const collections = Object.assign({}, this.$store.state.collections.data);
       return Object.keys(collections)
         .filter(collection => collection.startsWith("directus_") === false)
         .reduce((obj, collection) => {

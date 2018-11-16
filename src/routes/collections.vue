@@ -72,7 +72,7 @@ export default {
       ];
     },
     collections() {
-      return this.$store.state.collections;
+      return this.$store.state.collections.data;
     },
     permissions() {
       return this.$store.state.permissions;

@@ -1,20 +1,11 @@
-import Vue from "vue";
-import { mapValues, keyBy, find } from "lodash";
+import { mapValues, keyBy } from "lodash";
 import {
-  ADD_FIELD,
-  UPDATE_FIELD,
-  UPDATE_FIELDS,
-  REMOVE_FIELD,
   STORE_HYDRATED,
   HYDRATING_FAILED,
   LATENCY,
   SET_SETTINGS,
   SET_CURRENT_USER,
   UPDATE_CURRENT_USER,
-  SET_COLLECTIONS,
-  ADD_COLLECTION,
-  DELETE_COLLECTION,
-  UPDATE_COLLECTION,
   SET_BOOKMARKS,
   ADD_BOOKMARK,
   DELETE_BOOKMARK,
@@ -60,49 +51,6 @@ const mutations = {
     };
   },
 
-  [SET_COLLECTIONS](state, data) {
-    state.collections = mapValues(keyBy(data, "collection"), info => {
-      const statusField = find(info.fields, { interface: "status" });
-      let status_mapping =
-        statusField &&
-        statusField.options &&
-        statusField.options.status_mapping;
-
-      if (status_mapping && typeof status_mapping === "string") {
-        status_mapping = JSON.parse(status_mapping);
-      }
-
-      return {
-        ...info,
-        status_mapping
-      };
-    });
-  },
-
-  [ADD_COLLECTION](state, collection) {
-    state.collections = {
-      ...state.collections,
-      [collection.collection]: collection
-    };
-  },
-
-  [DELETE_COLLECTION](state, collection) {
-    const copy = { ...state.collections };
-    delete copy[collection];
-
-    state.collections = copy;
-  },
-
-  [UPDATE_COLLECTION](state, { collection, edits }) {
-    state.collections = {
-      ...state.collections,
-      [collection]: {
-        ...state.collections[collection],
-        ...edits
-      }
-    };
-  },
-
   [SET_BOOKMARKS](state, data) {
     state.bookmarks = data;
   },
@@ -129,35 +77,6 @@ const mutations = {
 
   [LOADING_FINISHED](state, id) {
     state.queue = state.queue.filter(req => req.id !== id);
-  },
-
-  [ADD_FIELD](state, { collection, field }) {
-    Vue.set(state.collections[collection], "fields", {
-      ...state.collections[collection].fields,
-      [field.field]: field
-    });
-  },
-
-  [UPDATE_FIELD](state, { collection, field }) {
-    Vue.set(state.collections[collection], "fields", {
-      ...state.collections[collection].fields,
-      [field.field]: field
-    });
-  },
-
-  [UPDATE_FIELDS](state, { collection, updates }) {
-    updates.forEach(update => {
-      Vue.set(state.collections[collection].fields, update.field, {
-        ...state.collections[collection].fields[update.field],
-        ...update
-      });
-    });
-  },
-
-  [REMOVE_FIELD](state, { collection, field }) {
-    const clone = Object.assign({}, state.collections[collection].fields);
-    delete clone[field];
-    Vue.set(state.collections[collection], "fields", clone);
   }
 };
 

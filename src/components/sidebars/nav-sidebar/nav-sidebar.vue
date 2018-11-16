@@ -59,7 +59,7 @@ export default {
       return this.$store.state.permissions;
     },
     collections() {
-      const collections = this.$store.state.collections;
+      const collections = this.$store.state.collections.data;
 
       if (collections == null) return [];
 
