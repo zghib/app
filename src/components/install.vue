@@ -3,32 +3,52 @@
     :tabs="tabs"
     :buttons="buttons"
     :active-tab="activeTab"
-    @tab="activeTab = $event"
+    @tab="activeTab = $event;"
     @next="nextTab"
-    action-required>
-
+    action-required
+  >
     <template slot="project">
       <h1 class="style-0">{{ $t("project_info") }}</h1>
-      <p class="subtext">
-        {{ $t("project_info_copy" )}}
-      </p>
+      <p class="subtext">{{ $t("project_info_copy") }}</p>
 
       <form @submit.prevent="nextTab">
         <label>
           {{ $t("project_name") }}
-          <v-input class="input" ref="projectName" id="project-name" v-model="values.project_name" autofocus />
+          <v-input
+            class="input"
+            ref="projectName"
+            id="project-name"
+            v-model="values.project_name"
+            autofocus
+          />
         </label>
         <label>
           {{ $t("project_key") }}
-          <v-input class="input" id="environment" disabled value="Default ( _ )" />
+          <v-input
+            class="input"
+            id="environment"
+            disabled
+            value="Default ( _ )"
+          />
         </label>
         <label>
           {{ $t("admin_email") }}
-          <v-input class="input" id="admin-email" type="email" v-model="values.user_email" />
+          <v-input
+            class="input"
+            id="admin-email"
+            type="email"
+            v-model="values.user_email"
+          />
         </label>
         <label>
           {{ $t("admin_password") }}
-          <v-input class="input" id="admin-password" type="password" v-model="values.user_password" autocomplete="new-password" />
+          <v-input
+            class="input"
+            id="admin-password"
+            type="password"
+            v-model="values.user_password"
+            autocomplete="new-password"
+          />
         </label>
         <input type="submit" class="hidden" />
       </form>
@@ -52,7 +72,12 @@
         </label>
         <label>
           {{ $t("db_password") }}
-          <v-input type="password" class="input" id="db_password" v-model="values.db_password" />
+          <v-input
+            type="password"
+            class="input"
+            id="db_password"
+            v-model="values.db_password"
+          />
         </label>
         <label>
           {{ $t("db_name") }}
@@ -60,12 +85,16 @@
         </label>
         <label>
           {{ $t("db_type") }}
-          <v-input class="input" disabled id="db_type" value="MySQL & Variants" />
+          <v-input
+            class="input"
+            disabled
+            id="db_type"
+            value="MySQL & Variants"
+          />
         </label>
         <input type="submit" class="hidden" />
       </form>
     </template>
-
   </v-modal>
 </template>
 

@@ -6,7 +6,8 @@
     :primaryKeyField="primaryKeyField"
     :use-interfaces="true"
     link="__link__"
-    class="v-ext-layout-fallback" />
+    class="v-ext-layout-fallback"
+  />
 </template>
 
 <script>

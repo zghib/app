@@ -9,7 +9,8 @@
     :required="required"
     :loading="loading"
     :options="optionsWithDefaults"
-    class="v-ext-display" />
+    class="v-ext-display"
+  />
 </template>
 
 <script>

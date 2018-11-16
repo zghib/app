@@ -1,38 +1,44 @@
 <template>
   <v-modal
-    :title="existing?$t('update_field')+': '+displayName:$t('create_field')"
+    :title="
+      existing ? $t('update_field') + ': ' + displayName : $t('create_field')
+    "
     :tabs="tabs"
     :active-tab="activeTab"
     :buttons="buttons"
-    @tab="activeTab = $event"
+    @tab="activeTab = $event;"
     @next="nextTab"
-    @close="$emit('close')">
-
+    @close="$emit('close');"
+  >
     <template slot="interface">
       <template v-if="!existing">
         <h1 class="style-0">{{ $t("choose_interface") }}</h1>
       </template>
       <p v-if="interfaceName" class="currently-selected subtext">
-        {{ $t("currently_selected", { thing: interfaces[interfaceName].name}) }}
+        {{
+          $t("currently_selected", { thing: interfaces[interfaceName].name })
+        }}
       </p>
-      <p v-else class="subtext">
-        {{ $t("select_interface_below" )}}
-      </p>
+      <p v-else class="subtext">{{ $t("select_interface_below") }}</p>
       <div>
         <v-details
           v-for="(group, index) in interfacesGrouped"
           :title="group.title"
           :key="group.title"
-          :open="index === 0">
+          :open="index === 0"
+        >
           <div class="interfaces">
             <article
               v-for="ext in group.interfaces"
               :key="group.title + '-' + ext.id"
               :class="{ active: interfaceName === ext.id }"
               class="interface"
-              @click="setInterface(ext.id)">
+              @click="setInterface(ext.id);"
+            >
               <div class="header">
-                <i class="material-icons">{{ ext.icon ? ext.icon : 'category' }}</i>
+                <i class="material-icons">{{
+                  ext.icon ? ext.icon : "category"
+                }}</i>
               </div>
               <div class="body">
                 <h2>{{ ext.name }}</h2>
@@ -46,56 +52,121 @@
 
     <template slot="schema" v-if="interfaceName">
       <template v-if="!existing">
-        <h1 class="style-0">{{ $t("name_field", { field: $helpers.formatTitle(interfaceName) }) }}</h1>
+        <h1 class="style-0">
+          {{ $t("name_field", { field: $helpers.formatTitle(interfaceName) }) }}
+        </h1>
         <p class="subtext">{{ $t("intelligent_defaults") }}</p>
       </template>
       <form @submit.prevent class="schema">
         <div class="name">
-          <label>{{ $t("name") }}<i v-tooltip="$t('required')" class="material-icons required">star</i> <v-input type="text" v-model="field" :placeholder="$t('db_column_name')" class="name-input" :disabled="existing" /></label>
-          <label>{{ $t("display_name") }} <v-input type="text" disabled :value="displayName" :placeholder="$t('auto_generated')" /></label>
+          <label
+            >{{ $t("name")
+            }}<i v-tooltip="$t('required')" class="material-icons required"
+              >star</i
+            >
+            <v-input
+              type="text"
+              v-model="field"
+              :placeholder="$t('db_column_name')"
+              class="name-input"
+              :disabled="existing"
+          /></label>
+          <label
+            >{{ $t("display_name") }}
+            <v-input
+              type="text"
+              disabled
+              :value="displayName"
+              :placeholder="$t('auto_generated')"
+          /></label>
         </div>
-        <label>{{ $t("note") }} <v-input type="text" v-model="note" :placeholder="$t('add_note')" /></label>
+        <label
+          >{{ $t("note") }}
+          <v-input type="text" v-model="note" :placeholder="$t('add_note')"
+        /></label>
         <details class="advanced" :open="existing">
           <summary>{{ $t("advanced_options") }}</summary>
           <div class="advanced-form">
             <label>
               {{ $t("field_type") }}
               <v-simple-select v-model="type">
-                <option v-for="typeOption in availableFieldTypes" :key="typeOption" :value="typeOption" :selected="type === typeOption">
+                <option
+                  v-for="typeOption in availableFieldTypes"
+                  :key="typeOption"
+                  :value="typeOption"
+                  :selected="type === typeOption"
+                >
                   {{ $helpers.formatTitle(typeOption) }}
                 </option>
               </v-simple-select>
               <small class="description">{{ fieldTypeDescription }}</small>
             </label>
             <label>
-              {{ $t("db_datatype", { db: $helpers.formatTitle(databaseVendor) }) }}
+              {{
+                $t("db_datatype", { db: $helpers.formatTitle(databaseVendor) })
+              }}
               <v-simple-select v-model="datatype">
-                <option v-for="typeOption in availableDatatypes" :key="typeOption" :value="typeOption" :selected="datatype === typeOption">
+                <option
+                  v-for="typeOption in availableDatatypes"
+                  :key="typeOption"
+                  :value="typeOption"
+                  :selected="datatype === typeOption"
+                >
                   {{ typeOption }}
                 </option>
               </v-simple-select>
-              <small class="description">{{ selectedDatatypeInfo && selectedDatatypeInfo.description }}</small>
+              <small class="description">{{
+                selectedDatatypeInfo && selectedDatatypeInfo.description
+              }}</small>
             </label>
-            <label>{{ $t("default") }} <v-input type="text" v-model="default_value" placeholder="NULL"/></label>
-            <label>{{ $t("length") }} <v-input
-              :type="selectedDatatypeInfo && selectedDatatypeInfo.decimal ? 'string' : 'number'"
-              @input="length = $event"
-              :value="lengthDisabled ? null : length"
-              :disabled="lengthDisabled" /></label>
-            <label>{{ $t("validation") }} <v-input type="text" v-model="validation" :placeholder="$t('regex')"/></label>
+            <label
+              >{{ $t("default") }}
+              <v-input type="text" v-model="default_value" placeholder="NULL"
+            /></label>
+            <label
+              >{{ $t("length") }}
+              <v-input
+                :type="
+                  selectedDatatypeInfo && selectedDatatypeInfo.decimal
+                    ? 'string'
+                    : 'number'
+                "
+                @input="length = $event;"
+                :value="lengthDisabled ? null : length"
+                :disabled="lengthDisabled"
+            /></label>
+            <label
+              >{{ $t("validation") }}
+              <v-input
+                type="text"
+                v-model="validation"
+                :placeholder="$t('regex')"
+            /></label>
             <div />
-            <label class="toggle" v-if="type !== 'alias'"><v-toggle v-model="required" /> {{ $t("required") }} </label>
-            <label class="toggle"><v-toggle v-model="readonly" /> {{ $t("readonly") }} </label>
-            <label class="toggle"><v-toggle v-model="unique" /> {{ $t("unique") }}</label>
-            <label class="toggle"><v-toggle v-model="hidden_detail" /> {{ $t("hidden_detail") }}</label>
-            <label class="toggle"><v-toggle v-model="hidden_browse" />{{ $t("hidden_browse") }}</label>
+            <label class="toggle" v-if="type !== 'alias'"
+              ><v-toggle v-model="required" /> {{ $t("required") }}
+            </label>
+            <label class="toggle"
+              ><v-toggle v-model="readonly" /> {{ $t("readonly") }}
+            </label>
+            <label class="toggle"
+              ><v-toggle v-model="unique" /> {{ $t("unique") }}</label
+            >
+            <label class="toggle"
+              ><v-toggle v-model="hidden_detail" />
+              {{ $t("hidden_detail") }}</label
+            >
+            <label class="toggle"
+              ><v-toggle v-model="hidden_browse" />{{
+                $t("hidden_browse")
+              }}</label
+            >
             <label
               class="toggle"
               :class="{ disabled: primaryKeyDisabled }"
-              v-tooltip="primaryKeyTooltip">
-              <v-toggle
-                v-model="primary_key"
-                :disabled="primaryKeyDisabled" />
+              v-tooltip="primaryKeyTooltip"
+            >
+              <v-toggle v-model="primary_key" :disabled="primaryKeyDisabled" />
               {{ $t("primary_key") }}
             </label>
           </div>
@@ -105,135 +176,213 @@
 
     <template slot="relation" v-if="selectedInterfaceInfo && relation">
       <template v-if="!existing">
-        <h1 class="style-0">{{ $t('relation_setup') }}</h1>
-        <p class="subtext">{{ $t('relation_setup_copy', { relation: $t(relation) }) }}</p>
+        <h1 class="style-0">{{ $t("relation_setup") }}</h1>
+        <p class="subtext">
+          {{ $t("relation_setup_copy", { relation: $t(relation) }) }}
+        </p>
       </template>
 
       <form v-if="relation === 'm2o'" class="single">
-        <p>{{ $t('this_collection') }}</p>
+        <p>{{ $t("this_collection") }}</p>
 
-        <v-simple-select class="select" :value="relationInfo.collection_many" disabled>
-          <option selected :value="collectionInfo.collection">{{ collectionInfo.collection }}</option>
+        <v-simple-select
+          class="select"
+          :value="relationInfo.collection_many"
+          disabled
+        >
+          <option selected :value="collectionInfo.collection">{{
+            collectionInfo.collection
+          }}</option>
         </v-simple-select>
 
-        <v-simple-select class="select" :value="relationInfo.field_many" disabled>
+        <v-simple-select
+          class="select"
+          :value="relationInfo.field_many"
+          disabled
+        >
           <option selected :value="field">{{ field }}</option>
         </v-simple-select>
 
         <i class="material-icons">arrow_backward</i>
 
-        <p>{{ $t('related_collection') }}</p>
+        <p>{{ $t("related_collection") }}</p>
 
         <v-simple-select class="select" v-model="relationInfo.collection_one">
           <option
-            v-for="({ collection }) in collections"
+            v-for="{ collection } in collections"
             :key="collection"
-            :value="collection">{{ collection }}</option>
+            :value="collection"
+            >{{ collection }}</option
+          >
         </v-simple-select>
 
         <v-simple-select class="select" :value="primaryKeyField.field" disabled>
-          <option selected :value="primaryKeyField.field">{{ primaryKeyField.field }}</option>
+          <option selected :value="primaryKeyField.field">{{
+            primaryKeyField.field
+          }}</option>
         </v-simple-select>
       </form>
 
       <form v-if="relation === 'o2m'" class="single">
-        <p>{{ $t('this_collection') }}</p>
+        <p>{{ $t("this_collection") }}</p>
 
-        <v-simple-select class="select" :value="collectionInfo.collection" disabled>
-          <option selected :value="collectionInfo.collection">{{ collectionInfo.collection }}</option>
+        <v-simple-select
+          class="select"
+          :value="collectionInfo.collection"
+          disabled
+        >
+          <option selected :value="collectionInfo.collection">{{
+            collectionInfo.collection
+          }}</option>
         </v-simple-select>
 
         <v-simple-select class="select" :value="primaryKeyField.field" disabled>
-          <option selected :value="primaryKeyField.field">{{ primaryKeyField.field }}</option>
+          <option selected :value="primaryKeyField.field">{{
+            primaryKeyField.field
+          }}</option>
         </v-simple-select>
 
         <i class="material-icons">arrow_forward</i>
 
-        <p>{{ $t('related_collection') }}</p>
+        <p>{{ $t("related_collection") }}</p>
 
         <v-simple-select class="select" v-model="relationInfo.collection_many">
           <option
-            v-for="({ collection }) in collections"
+            v-for="{ collection } in collections"
             :key="collection"
-            :value="collection">{{ collection }}</option>
+            :value="collection"
+            >{{ collection }}</option
+          >
         </v-simple-select>
 
         <v-simple-select class="select" v-model="relationInfo.field_many">
           <option
-            v-for="({ field }) in fields(relationInfo.collection_many)"
+            v-for="{ field } in fields(relationInfo.collection_many)"
             :key="field"
-            :value="field">{{ field }}</option>
+            :value="field"
+            >{{ field }}</option
+          >
         </v-simple-select>
       </form>
 
       <form v-if="relation === 'm2m'" class="full">
-        <p>{{ $t('this_collection') }}</p>
+        <p>{{ $t("this_collection") }}</p>
 
-        <v-simple-select class="select" :value="collectionInfo.collection" disabled>
-          <option selected :value="collectionInfo.collection">{{ collectionInfo.collection }}</option>
+        <v-simple-select
+          class="select"
+          :value="collectionInfo.collection"
+          disabled
+        >
+          <option selected :value="collectionInfo.collection">{{
+            collectionInfo.collection
+          }}</option>
         </v-simple-select>
 
         <v-simple-select class="select" :value="primaryKeyField.field" disabled>
-          <option selected :value="primaryKeyField.field">{{ primaryKeyField.field }}</option>
+          <option selected :value="primaryKeyField.field">{{
+            primaryKeyField.field
+          }}</option>
         </v-simple-select>
 
         <i class="material-icons">arrow_forward</i>
 
-        <p>{{ $t('junction_collection') }}</p>
+        <p>{{ $t("junction_collection") }}</p>
 
         <v-simple-select
           class="select"
           :value="relationInfoM2M[0].collection_many"
-          @input="(val) => { relationInfoM2M[0].collection_many = val; relationInfoM2M[1].collection_many = val; }">
+          @input="
+            val => {
+              relationInfoM2M[0].collection_many = val;
+              relationInfoM2M[1].collection_many = val;
+            }
+          "
+        >
           <option
-            v-for="({ collection }) in collections"
+            v-for="{ collection } in collections"
             :key="collection"
-            :value="collection">{{ collection }}</option>
+            :value="collection"
+            >{{ collection }}</option
+          >
         </v-simple-select>
 
-        <v-simple-select class="select" v-model="relationInfoM2M[currentM2MIndex].field_many">
+        <v-simple-select
+          class="select"
+          v-model="relationInfoM2M[currentM2MIndex].field_many"
+        >
           <option
-            v-for="({ field }) in fields(relationInfoM2M[0].collection_many)"
+            v-for="{ field } in fields(relationInfoM2M[0].collection_many)"
             :key="field"
-            :value="field">{{ field }}</option>
+            :value="field"
+            >{{ field }}</option
+          >
         </v-simple-select>
 
-        <v-simple-select class="select" v-model="relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].field_many">
+        <v-simple-select
+          class="select"
+          v-model="relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].field_many"
+        >
           <option
-            v-for="({ field }) in fields(relationInfoM2M[0].collection_many)"
+            v-for="{ field } in fields(relationInfoM2M[0].collection_many)"
             :key="field"
-            :value="field">{{ field }}</option>
+            :value="field"
+            >{{ field }}</option
+          >
         </v-simple-select>
 
         <i class="material-icons">arrow_backward</i>
 
-        <p>{{ $t('related_collection') }}</p>
+        <p>{{ $t("related_collection") }}</p>
 
         <v-simple-select
           class="select"
-          v-model="relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one">
+          v-model="relationInfoM2M[currentM2MIndex == 0 ? 1 : 0].collection_one"
+        >
           <option
-            v-for="({ collection }) in collections"
+            v-for="{ collection } in collections"
             :key="collection"
-            :value="collection">{{ collection }}</option>
+            :value="collection"
+            >{{ collection }}</option
+          >
         </v-simple-select>
 
-        <v-simple-select class="select" :value="primaryKeyFieldByCollection(relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one).field" disabled>
-          <option selected :value="primaryKeyFieldByCollection(relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one).field">{{ primaryKeyFieldByCollection(relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one).field }}</option>
+        <v-simple-select
+          class="select"
+          :value="
+            primaryKeyFieldByCollection(
+              relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one
+            ).field
+          "
+          disabled
+        >
+          <option
+            selected
+            :value="
+              primaryKeyFieldByCollection(
+                relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one
+              ).field
+            "
+            >{{
+              primaryKeyFieldByCollection(
+                relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].collection_one
+              ).field
+            }}</option
+          >
         </v-simple-select>
       </form>
     </template>
 
     <template slot="options">
       <template v-if="!existing">
-        <h1 class="style-0">{{ $t('almost_done_options') }}</h1>
-        <p class="subtext">{{ $t('almost_done_copy') }}</p>
+        <h1 class="style-0">{{ $t("almost_done_options") }}</h1>
+        <p class="subtext">{{ $t("almost_done_copy") }}</p>
       </template>
       <form @submit.prevent v-if="selectedInterfaceInfo" class="options">
         <div
           v-for="(option, optionID) in interfaceOptions.regular"
           class="options"
-          :key="optionID">
+          :key="optionID"
+        >
           <label :for="optionID">{{ option.name }}</label>
           <p class="note" v-html="$helpers.snarkdown(option.comment || '')" />
           <v-ext-input
@@ -248,15 +397,21 @@
             :value="options[optionID]"
             :fields="selectedInterfaceInfo.options"
             :values="options"
-            @input="$set(options, optionID, $event)" />
+            @input="$set(options, optionID, $event);"
+          />
         </div>
 
-        <details v-if="Object.keys(interfaceOptions.advanced).length > 0" class="advanced" :open="existing">
+        <details
+          v-if="Object.keys(interfaceOptions.advanced).length > 0"
+          class="advanced"
+          :open="existing"
+        >
           <summary>{{ $t("advanced_options") }}</summary>
           <div
             v-for="(option, optionID) in interfaceOptions.advanced"
             class="options"
-            :key="optionID">
+            :key="optionID"
+          >
             <label :for="optionID">{{ option.name }}</label>
             <p v-html="$helpers.snarkdown(option.comment || '')" class="note" />
             <v-ext-input
@@ -271,12 +426,12 @@
               :value="options[optionID] || option.default"
               :fields="selectedInterfaceInfo.options"
               :values="options"
-              @input="$set(options, optionID, $event)" />
+              @input="$set(options, optionID, $event);"
+            />
           </div>
         </details>
       </form>
     </template>
-
   </v-modal>
 </template>
 

@@ -1,24 +1,33 @@
 <template>
   <div class="v-avatar">
     <div
-      :style="{ borderColor: `var(--${color})`, width: `${size}px`, height: `${size}px` }"
-      class="wrapper">
+      :style="{
+        borderColor: `var(--${color})`,
+        width: `${size}px`,
+        height: `${size}px`
+      }"
+      class="wrapper"
+    >
       <img
         v-if="src != null && !error"
         v-show="!error && loading === false"
         :src="src"
         :alt="alt"
-        @load="loading = false"
-        @error="onImageLoadingError">
+        @load="loading = false;"
+        @error="onImageLoadingError"
+      />
       <i
         v-else
-        :style="{ fontSize: (size / 2) + 2 + 'px' }"
-        class="material-icons">person</i>
+        :style="{ fontSize: size / 2 + 2 + 'px' }"
+        class="material-icons"
+        >person</i
+      >
     </div>
     <div
       v-if="indicator"
       :style="{ backgroundColor: `var(--${color})` }"
-      class="indicator"/>
+      class="indicator"
+    />
   </div>
 </template>
 

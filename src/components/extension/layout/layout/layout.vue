@@ -13,11 +13,12 @@
     :link="link"
     :sort-field="sortField"
     class="v-layout"
-    @query="$emit('query', $event)"
-    @select="$emit('select', $event)"
-    @options="$emit('options', $event)"
-    @next-page="$emit('next-page', $event)"
-    @input="$emit('input', $event)" />
+    @query="$emit('query', $event);"
+    @select="$emit('select', $event);"
+    @options="$emit('options', $event);"
+    @next-page="$emit('next-page', $event);"
+    @input="$emit('input', $event);"
+  />
 </template>
 
 <script>

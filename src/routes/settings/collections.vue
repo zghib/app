@@ -7,20 +7,22 @@
           key="add"
           color="action"
           :label="$t('new')"
-          @click="addNew = true" />
+          @click="addNew = true;"
+        />
       </template>
     </v-header>
     <v-error
       v-if="items.length === 0"
       :title="$t('no_collections')"
       :body="$t('no_collections_body')"
-      icon="error_outline" />
+      icon="error_outline"
+    />
 
     <div class="table" v-else>
       <div class="header">
         <div class="row">
-          <div class="cell style-4">{{ $t('collection') }}</div>
-          <div class="cell note style-4">{{ $t('note') }}</div>
+          <div class="cell style-4">{{ $t("collection") }}</div>
+          <div class="cell note style-4">{{ $t("note") }}</div>
         </div>
       </div>
       <div class="body">
@@ -28,17 +30,24 @@
           v-for="collection in items"
           :key="collection.collection"
           class="row"
-          :to="collection.__link__">
+          :to="collection.__link__"
+        >
           <div class="cell">{{ collection.name }}</div>
           <div class="cell note">{{ collection.note }}</div>
           <button
             v-if="collection.managed"
             class="managed"
-            @click.prevent.stop="toggleManage(collection)">{{ $t('dont_manage') }}</button>
+            @click.prevent.stop="toggleManage(collection);"
+          >
+            {{ $t("dont_manage") }}
+          </button>
           <button
             v-else
             class="not-managed"
-            @click.prevent.stop="toggleManage(collection)">{{ $t('manage') }}</button>
+            @click.prevent.stop="toggleManage(collection);"
+          >
+            {{ $t("manage") }}
+          </button>
         </router-link>
       </div>
     </div>
@@ -51,8 +60,9 @@
         :message="$t('create_collection')"
         :placeholder="$t('enter_collection_name')"
         :loading="adding"
-        @cancel="addNew = false"
-        @confirm="add" />
+        @cancel="addNew = false;"
+        @confirm="add"
+      />
     </portal>
 
     <portal to="modal" v-if="dontManage">
@@ -60,8 +70,9 @@
         :message="$t('dont_manage_copy', { collection: dontManage.name })"
         color="danger"
         :confirm-text="$t('dont_manage')"
-        @cancel="dontManage = null"
-        @confirm="stopManaging" />
+        @cancel="dontManage = null;"
+        @confirm="stopManaging"
+      />
     </portal>
   </div>
 </template>

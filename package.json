@@ -23,6 +23,7 @@
     "@vue/cli-service": "^3.0.0",
     "@vue/eslint-config-prettier": "^3.0.0",
     "node-sass": "^4.9.3",
+    "prettier": "^1.15.2",
     "sass-loader": "^6.0.6",
     "vue-template-compiler": "^2.5.17"
   },

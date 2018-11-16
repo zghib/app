@@ -5,7 +5,8 @@
       :columns="columns"
       :items="items"
       link="__link"
-      primary-key-field="id" />
+      primary-key-field="id"
+    />
   </div>
 </template>
 

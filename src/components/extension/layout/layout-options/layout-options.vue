@@ -9,9 +9,10 @@
     :selection="selection"
     :layout-name="type"
     class="v-ext-layout-options"
-    @query="$emit('query', $event)"
-    @select="$emit('select', $event)"
-    @options="$emit('options', $event)" />
+    @query="$emit('query', $event);"
+    @select="$emit('select', $event);"
+    @options="$emit('options', $event);"
+  />
 </template>
 
 <script>

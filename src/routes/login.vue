@@ -1,49 +1,59 @@
 <template>
   <transition name="fade">
     <div class="login" :class="{ loading }">
-
       <v-install v-if="installing" @install="install" :saving="saving" />
 
       <form v-else @submit.prevent="processForm">
         <img class="logo" alt="" src="../assets/logo-dark.svg" />
 
-        <h1 v-if="loading">{{ loggedIn? $t('fetching_data') : $t('signing_in') }}</h1>
-        <h1 v-else-if="notInstalled">{{ $t('welcome') }}</h1>
-        <h1 v-else>{{ resetMode ? $t('reset_password') : $t('sign_in') }}</h1>
+        <h1 v-if="loading">
+          {{ loggedIn ? $t("fetching_data") : $t("signing_in") }}
+        </h1>
+        <h1 v-else-if="notInstalled">{{ $t("welcome") }}</h1>
+        <h1 v-else>{{ resetMode ? $t("reset_password") : $t("sign_in") }}</h1>
 
         <label class="project-switcher">
-          <select v-model="selectedUrl" :disabled="loading" v-if="Object.keys(urls).length > 1 || allowOther">
+          <select
+            v-model="selectedUrl"
+            :disabled="loading"
+            v-if="Object.keys(urls).length > 1 || allowOther"
+          >
             <option
               v-for="(name, u) in urls"
               :value="u"
               :key="u"
-              :checked="u === url || u === url + '/'">
+              :checked="u === url || u === url + '/'"
+            >
               {{ name }}
             </option>
-            <option
-              v-if="allowOther"
-              value="other"
-            >{{ $t('other') }}</option>
+            <option v-if="allowOther" value="other">{{ $t("other") }}</option>
           </select>
-          {{ $t('to') }} <span>{{ (urls[selectedUrl] || $t('choose_project')) }} <i v-if="Object.keys(urls).length > 1 || allowOther" class="material-icons">arrow_drop_down</i></span>
+          {{ $t("to") }}
+          <span
+            >{{ urls[selectedUrl] || $t("choose_project") }}
+            <i
+              v-if="Object.keys(urls).length > 1 || allowOther"
+              class="material-icons"
+              >arrow_drop_down</i
+            ></span
+          >
         </label>
 
         <div class="material-input" v-if="selectOther">
           <input
             v-model="url"
             :disabled="loading"
-            :class="{ 'has-value': url && url.length > 0}"
+            :class="{ 'has-value': url && url.length > 0 }"
             type="url"
             id="url"
-            name="url" />
-          <label for="url">{{ $t('api_url') }}</label>
+            name="url"
+          />
+          <label for="url">{{ $t("api_url") }}</label>
         </div>
 
         <template v-if="notInstalled">
-          <p class="install-copy">
-            {{ $t("install_copy") }}
-          </p>
-          <button type="button" class="style-btn" @click="installing = true">
+          <p class="install-copy">{{ $t("install_copy") }}</p>
+          <button type="button" class="style-btn" @click="installing = true;">
             {{ $t("install") }}
           </button>
         </template>
@@ -54,11 +64,12 @@
               v-model="email"
               autocomplete="email"
               :disabled="loading || exists === false"
-              :class="{ 'has-value': email && email.length > 0}"
+              :class="{ 'has-value': email && email.length > 0 }"
               type="text"
               id="email"
-              name="email" />
-            <label for="email">{{ $t('email') }}</label>
+              name="email"
+            />
+            <label for="email">{{ $t("email") }}</label>
           </div>
 
           <div v-if="!resetMode" class="material-input">
@@ -66,32 +77,32 @@
               v-model="password"
               autocomplete="current-password"
               :disabled="loading || exists === false"
-              :class="{ 'has-value': password && password.length > 0}"
+              :class="{ 'has-value': password && password.length > 0 }"
               type="password"
               id="password"
-              name="password" />
-            <label for="password">{{ $t('password') }}</label>
+              name="password"
+            />
+            <label for="password">{{ $t("password") }}</label>
           </div>
           <div class="buttons">
             <button
               type="button"
               class="forgot"
-              @click.prevent="resetMode = !resetMode" >
-              {{ resetMode? $t('sign_in') : $t('forgot_password') }}
+              @click.prevent="resetMode = !resetMode;"
+            >
+              {{ resetMode ? $t("sign_in") : $t("forgot_password") }}
             </button>
 
             <button
               class="style-btn"
               type="submit"
-              :disabled="disabled || loading">
-              {{ resetMode ? $t('reset_password') : $t('sign_in') }}
+              :disabled="disabled || loading"
+            >
+              {{ resetMode ? $t("reset_password") : $t("sign_in") }}
             </button>
           </div>
 
-          <transition-group
-            name="list"
-            tag="div"
-            class="stack">
+          <transition-group name="list" tag="div" class="stack">
             <v-spinner
               v-if="checkingExistence || gettingThirdPartyAuthProviders"
               class="spinner"
@@ -99,26 +110,38 @@
               :size="18"
               :line-size="2"
               line-fg-color="var(--gray)"
-              line-bg-color="var(--lighter-gray)" />
+              line-bg-color="var(--lighter-gray)"
+            />
 
-            <span key="error" class="notice" v-else-if="error || SSOerror" :class="errorType" @click="error = null">
-              <i class="material-icons">{{ errorType }}</i>
-              {{ errorMessage }}
+            <span
+              key="error"
+              class="notice"
+              v-else-if="error || SSOerror"
+              :class="errorType"
+              @click="error = null;"
+            >
+              <i class="material-icons">{{ errorType }}</i> {{ errorMessage }}
             </span>
 
             <i
-              v-else-if="thirdPartyAuthProviders && !thirdPartyAuthProviders.length"
+              v-else-if="
+                thirdPartyAuthProviders && !thirdPartyAuthProviders.length
+              "
               key="lock"
-              class="material-icons lock">{{ loggedIn ? "lock_open" : "lock_outline" }}</i>
+              class="material-icons lock"
+              >{{ loggedIn ? "lock_open" : "lock_outline" }}</i
+            >
 
             <ul v-else class="third-party-auth" key="third-party-auth">
               <li
                 v-for="provider in thirdPartyAuthProviders"
-                :key="provider.name">
-                <a v-tooltip.bottom="$helpers.formatTitle(provider.name)" :href="url + 'auth/sso/' + provider.name">
-                  <img
-                    :alt="provider.name"
-                    :src="provider.icon">
+                :key="provider.name"
+              >
+                <a
+                  v-tooltip.bottom="$helpers.formatTitle(provider.name)"
+                  :href="url + 'auth/sso/' + provider.name"
+                >
+                  <img :alt="provider.name" :src="provider.icon" />
                 </a>
               </li>
             </ul>
@@ -126,7 +149,11 @@
         </template>
       </form>
 
-      <small v-tooltip="{ classes: ['inverted'], content: version }" class="style-4">{{ $t('powered_by_directus') }}</small>
+      <small
+        v-tooltip="{ classes: ['inverted'], content: version }"
+        class="style-4"
+        >{{ $t("powered_by_directus") }}</small
+      >
     </div>
   </transition>
 </template>
@@ -171,9 +198,8 @@ export default {
   computed: {
     urls() {
       if (!window.__DirectusConfig__) return;
-      return this.$lodash.mapKeys(
-        window.__DirectusConfig__.api,
-        (val, key) => (key.endsWith("/") === false ? key + "/" : key)
+      return this.$lodash.mapKeys(window.__DirectusConfig__.api, (val, key) =>
+        key.endsWith("/") === false ? key + "/" : key
       );
     },
     allowOther() {

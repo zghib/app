@@ -1,27 +1,40 @@
 <template>
   <header class="v-header">
-    <button
-      :disabled="navActive"
-      class="nav-toggle"
-      @click="activateNav"><i class="material-icons">menu</i></button>
+    <button :disabled="navActive" class="nav-toggle" @click="activateNav">
+      <i class="material-icons">menu</i>
+    </button>
     <div class="title">
       <h1 v-if="title">{{ title }}</h1>
-      <ol
-        v-else
-        class="breadcrumb">
+      <ol v-else class="breadcrumb">
         <li
-          v-for="({ name, path, color = null }, index) in (breadcrumb || defaultBreadcrumb)"
-          :key="path">
-          <template v-if="index !== (breadcrumb || defaultBreadcrumb).length - 1">
-            <router-link :to="path" :style="{ color: color ? `var(--${color})` : null }">{{ name }}</router-link>
+          v-for="({ name, path, color = null }, index) in breadcrumb ||
+            defaultBreadcrumb"
+          :key="path"
+        >
+          <template
+            v-if="index !== (breadcrumb || defaultBreadcrumb).length - 1"
+          >
+            <router-link
+              :to="path"
+              :style="{ color: color ? `var(--${color})` : null }"
+              >{{ name }}</router-link
+            >
           </template>
-          <h1 v-else :style="{ color: color ? `var(--${color})` : null }">{{ name }}</h1>
+          <h1 v-else :style="{ color: color ? `var(--${color})` : null }">
+            {{ name }}
+          </h1>
         </li>
       </ol>
       <slot name="title" />
     </div>
     <slot />
-    <v-header-button v-if="infoToggle" :label="$t('info')" icon="info" no-background @click="toggleInfo" />
+    <v-header-button
+      v-if="infoToggle"
+      :label="$t('info')"
+      icon="info"
+      no-background
+      @click="toggleInfo"
+    />
     <slot name="buttons" />
   </header>
 </template>

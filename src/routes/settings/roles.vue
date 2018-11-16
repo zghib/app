@@ -7,14 +7,16 @@
           key="add"
           color="action"
           :label="$t('new')"
-          @click="addNew = true" />
+          @click="addNew = true;"
+        />
       </template>
     </v-header>
     <v-table
       :items="items"
       :columns="fields"
       primary-key-field="collection"
-      link="__link__" />
+      link="__link__"
+    />
 
     <portal to="modal" v-if="addNew">
       <v-prompt
@@ -23,8 +25,9 @@
         :message="$t('create_role')"
         :placeholder="$t('enter_role_name')"
         :loading="adding"
-        @cancel="addNew = false"
-        @confirm="add" />
+        @cancel="addNew = false;"
+        @confirm="add"
+      />
     </portal>
   </div>
 </template>

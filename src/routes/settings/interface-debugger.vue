@@ -4,9 +4,7 @@
 
     <label>Dummy Label</label>
 
-    <div
-      :style="{ width: width + 'px' }"
-      class="interface">
+    <div :style="{ width: width + 'px' }" class="interface">
       <v-ext-input
         v-model="value"
         :id="id"
@@ -20,7 +18,8 @@
         :new-item="newItem"
         :relation="relation"
         :fields="fields"
-        :values="values" />
+        :values="values"
+      />
     </div>
 
     <form @submit.prevent>
@@ -29,11 +28,7 @@
 
         <label for="value">Value</label>
         <p>The value saved into the database</p>
-        <v-input
-          v-model="value"
-          id="value"
-          type="text"
-          class="value" />
+        <v-input v-model="value" id="value" type="text" class="value" />
 
         <label>Display</label>
         <p>Appearance on the Items Page (eg: Tabular)</p>
@@ -49,7 +44,8 @@
             :loading="loading"
             :options="options"
             :new-item="newItem"
-            :relation="relation" />
+            :relation="relation"
+          />
         </div>
       </fieldset>
       <fieldset>
@@ -57,9 +53,13 @@
         <div
           v-for="(option, optionID) in extension.options"
           class="options"
-          :key="optionID">
+          :key="optionID"
+        >
           <label :for="optionID">{{ option.name }}</label>
-          <p v-if="options.comment" v-html="$helpers.snarkdown(option.comment)" />
+          <p
+            v-if="options.comment"
+            v-html="$helpers.snarkdown(option.comment)"
+          />
           <v-ext-input
             v-model="options[optionID]"
             :id="option.interface"
@@ -69,7 +69,8 @@
             :readonly="option.readonly"
             :required="option.required"
             :loading="option.loading"
-            :options="option.options" />
+            :options="option.options"
+          />
         </div>
       </fieldset>
       <fieldset>
@@ -78,15 +79,10 @@
         <div class="settings">
           <label for="type">Type</label>
           <p>Allowed datatypes this interface supports</p>
-          <v-simple-select
-            id="type"
-            class="small"
-            v-model="type">
-            <option
-              v-for="type in extension.types"
-              :key="type"
-              :value="type"
-            >{{ type }}</option>
+          <v-simple-select id="type" class="small" v-model="type">
+            <option v-for="type in extension.types" :key="type" :value="type">{{
+              type
+            }}</option>
           </v-simple-select>
         </div>
 
@@ -98,16 +94,14 @@
             v-model="length"
             type="number"
             class="length"
-            :min="0" />
+            :min="0"
+          />
         </div>
 
         <div class="settings">
           <label for="collection">Collection</label>
           <p>The parent collection for this field</p>
-          <v-input
-            id="collection"
-            v-model="collection"
-            class="value" />
+          <v-input id="collection" v-model="collection" class="value" />
         </div>
 
         <div class="settings">
@@ -117,7 +111,9 @@
             v-model="readonly"
             value="readonly"
             class="checkbox"
-            type="checkbox" /> <label for="readonly" class="inline">Read only</label>
+            type="checkbox"
+          />
+          <label for="readonly" class="inline">Read only</label>
         </div>
 
         <div class="settings">
@@ -127,7 +123,9 @@
             v-model="required"
             value="required"
             class="checkbox"
-            type="checkbox" /> <label for="required" class="inline">Required</label>
+            type="checkbox"
+          />
+          <label for="required" class="inline">Required</label>
         </div>
 
         <div class="settings">
@@ -137,9 +135,10 @@
             v-model="loading"
             value="loading"
             class="checkbox"
-            type="checkbox" /> <label for="loading" class="inline">Loading</label>
+            type="checkbox"
+          />
+          <label for="loading" class="inline">Loading</label>
         </div>
-
       </fieldset>
       <fieldset>
         <legend>Relation</legend>
@@ -151,7 +150,8 @@
               id="collection_many"
               v-model="relation.collection_many"
               type="text"
-              class="value" />
+              class="value"
+            />
           </div>
 
           <div class="settings">
@@ -160,7 +160,8 @@
               id="field_many"
               v-model="relation.field_many"
               type="text"
-              class="value" />
+              class="value"
+            />
           </div>
 
           <div class="settings">
@@ -169,7 +170,8 @@
               id="collection_one"
               v-model="relation.collection_one"
               type="text"
-              class="value" />
+              class="value"
+            />
           </div>
 
           <div class="settings">
@@ -178,7 +180,8 @@
               id="field_one"
               v-model="relation.field_one"
               type="text"
-              class="value" />
+              class="value"
+            />
           </div>
 
           <div class="settings">
@@ -187,7 +190,8 @@
               id="junction_field"
               v-model="relation.junction_field"
               type="text"
-              class="value" />
+              class="value"
+            />
           </div>
         </div>
       </fieldset>
@@ -201,7 +205,9 @@
             v-model="newItem"
             value="newItem"
             class="checkbox"
-            type="checkbox" /> <label for="new" class="inline">New item</label>
+            type="checkbox"
+          />
+          <label for="new" class="inline">New item</label>
         </div>
       </fieldset>
     </form>

@@ -2,11 +2,7 @@
   <div class="settings">
     <v-header :breadcrumb="links" />
 
-    <v-details
-      :title="$t('settings_project')"
-      type="break"
-      open>
-
+    <v-details :title="$t('settings_project')" type="break" open>
       <nav>
         <ul>
           <v-card
@@ -14,17 +10,18 @@
             :subtitle="$tc('item_count', globalNum, { count: globalNum })"
             element="li"
             to="/settings/global"
-            icon="public" />
+            icon="public"
+          />
 
           <v-card
             :title="$t('settings_collections_fields')"
-            :subtitle="$tc('collection_count', collectionsNum, { count: collectionsNum })"
+            :subtitle="
+              $tc('collection_count', collectionsNum, { count: collectionsNum })
+            "
             element="li"
-            to="/settings/collections">
-            <img
-              slot="icon"
-              src="../../assets/icons/box.svg"
-              alt="">
+            to="/settings/collections"
+          >
+            <img slot="icon" src="../../assets/icons/box.svg" alt="" />
           </v-card>
 
           <v-card
@@ -32,68 +29,75 @@
             :subtitle="roleCount"
             element="li"
             to="/settings/roles"
-            icon="group" />
+            icon="group"
+          />
         </ul>
       </nav>
     </v-details>
 
-    <v-details
-      :title="$t('additional_info')"
-      type="break"
-      open>
+    <v-details :title="$t('additional_info')" type="break" open>
       <nav>
         <ul>
           <v-card
             :title="$t('interfaces')"
-            :subtitle="$tc('interface_count', interfaceCount, { count: interfaceCount })"
+            :subtitle="
+              $tc('interface_count', interfaceCount, { count: interfaceCount })
+            "
             element="li"
             to="/settings/interfaces"
-            icon="extension" />
+            icon="extension"
+          />
 
           <v-card
             :title="$t('about_directus')"
             :subtitle="$t('learn_more')"
             element="li"
             href="https://directus.io"
-            icon="info_outline" />
+            icon="info_outline"
+          />
 
           <v-card
             :title="$t('activity_log')"
             :subtitle="activityCount"
             element="li"
             to="/activity"
-            icon="warning" />
+            icon="warning"
+          />
 
           <v-card
             :title="$t('report_issue')"
             :subtitle="$t('open_on_gh')"
             element="li"
             href="https://github.com/directus/app/issues/new?template=Bug_report.md"
-            icon="bug_report" />
+            icon="bug_report"
+          />
 
           <v-card
             :title="$t('request_feature')"
             :subtitle="$t('open_on_gh')"
             element="li"
             href="https://github.com/directus/app/issues/new?template=Feature_request.md"
-            icon="how_to_vote" />
+            icon="how_to_vote"
+          />
         </ul>
       </nav>
     </v-details>
-    <v-details
-      :title="$t('coming_soon')"
-      type="break"
-      open>
+    <v-details :title="$t('coming_soon')" type="break" open>
       <nav>
         <ul>
           <v-card
             :title="$t('connection')"
-            :subtitle="`${$t('latency')}: ${$n(Math.round($store.state.latency[$store.state.latency.length - 1].latency))}ms`"
+            :subtitle="
+              `${$t('latency')}: ${$n(
+                Math.round(
+                  $store.state.latency[$store.state.latency.length - 1].latency
+                )
+              )}ms`
+            "
             disabled
-            element="li">
-            <v-signal
-              slot="icon"
-              class="signal" />
+            element="li"
+          >
+            <v-signal slot="icon" class="signal" />
           </v-card>
 
           <v-card
@@ -101,14 +105,16 @@
             disabled
             :subtitle="projectName"
             element="li"
-            icon="storage" />
+            icon="storage"
+          />
 
           <v-card
             :title="$t('version_and_updates')"
             disabled
             :subtitle="version"
             element="li"
-            icon="update" />
+            icon="update"
+          />
         </ul>
       </nav>
     </v-details>

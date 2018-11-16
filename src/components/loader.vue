@@ -1,19 +1,14 @@
 <template>
   <transition name="fade">
-    <div
-      v-show="active"
-      :class="area"
-      :style="{ zIndex }"
-      class="loader">
-      <div
-        :class="{ transparent }"
-        class="overlay" />
+    <div v-show="active" :class="area" :style="{ zIndex }" class="loader">
+      <div :class="{ transparent }" class="overlay" />
       <transition name="fade">
         <v-spinner
           v-show="spinnerActive"
           line-fg-color="var(--light-gray)"
           line-bg-color="var(--lighter-gray)"
-          class="spinner" />
+          class="spinner"
+        />
       </transition>
     </div>
   </transition>

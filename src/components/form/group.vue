@@ -4,7 +4,8 @@
     :name="field.field"
     :options="field.options"
     :type="field.type"
-    class="v-group">
+    class="v-group"
+  >
     <div class="flex-group">
       <div
         v-for="child in field.children"
@@ -12,13 +13,15 @@
           isGroup(child) ? null : `col-${child.width}`,
           isGroup(child) ? 'group' : 'field'
         ]"
-        :key="child.field">
+        :key="child.field"
+      >
         <v-group
           v-if="isGroup(child)"
           :values="values"
           :field="child"
           :new-item="newItem"
-          @stage-value="$emit('stageValue', $event)" />
+          @stage-value="$emit('stageValue', $event);"
+        />
         <v-field
           v-else
           :readonly="readonly"
@@ -27,9 +30,10 @@
           :blocked="batchMode && !activeFields.includes(field.field)"
           :batch-mode="batchMode"
           :new-item="newItem"
-          @activate="$emit('activate', $event)"
-          @deactivate="$emit('deactivate', $event)"
-          @stage-value="$emit('stageValue', $event)" />
+          @activate="$emit('activate', $event);"
+          @deactivate="$emit('deactivate', $event);"
+          @stage-value="$emit('stageValue', $event);"
+        />
       </div>
     </div>
   </v-ext-input>

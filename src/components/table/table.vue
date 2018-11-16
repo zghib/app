@@ -2,113 +2,127 @@
   <div
     ref="container"
     :style="{ minWidth: totalWidth + 'px' }"
-    class="v-table" @scroll="onScroll">
+    class="v-table"
+    @scroll="onScroll"
+  >
     <div class="toolbar" :class="{ shadow: scrolled }">
       <div
         v-if="manualSortField"
         class="manual-sort cell"
-        :class="{ active: manualSorting }">
+        :class="{ active: manualSorting }"
+      >
         <button
           v-tooltip="$t('enable_manual_sorting')"
-          @click="startManualSorting">
+          @click="startManualSorting"
+        >
           <i class="material-icons">sort</i>
         </button>
       </div>
-      <div
-        v-if="selectable"
-        class="select cell">
+      <div v-if="selectable" class="select cell">
         <v-checkbox
           id="select-all"
           :checked="allSelected"
           name="select-all"
           value="all"
-          @change="selectAll" />
+          @change="selectAll"
+        />
       </div>
       <div
-        v-for="({field, name}, index) in columns"
+        v-for="({ field, name }, index) in columns"
         :key="field"
         :style="{
-          flexBasis: widths && widths[field] ?
-            widths[field] + 'px' :
-            null
+          flexBasis: widths && widths[field] ? widths[field] + 'px' : null
         }"
-        class="cell">
-
+        class="cell"
+      >
         <button
           v-if="sortable"
           :class="{ active: sortVal.field === field }"
           class="sort style-4 no-wrap"
-          @click="updateSort(field)">{{ widths[field] > 40 ? name : null }}<i
-            v-if="sortVal.field === field"
-            class="material-icons">{{ sortVal.asc ? 'arrow_upward' : 'arrow_downward' }}</i>
+          @click="updateSort(field);"
+        >
+          {{ widths[field] > 40 ? name : null
+          }}<i v-if="sortVal.field === field" class="material-icons">{{
+            sortVal.asc ? "arrow_upward" : "arrow_downward"
+          }}</i>
         </button>
 
-        <span
-          v-else
-          class="style-4">{{ widths[field] > 40 ? name : null }}</span>
+        <span v-else class="style-4">{{
+          widths[field] > 40 ? name : null
+        }}</span>
 
         <div
           v-if="resizeable && index !== columns.length - 1"
           class="drag-handle"
           draggable
-          @drag="drag(field, $event)"
+          @drag="drag(field, $event);"
           @dragstart="hideDragImage"
-          @dragend="dragEnd">
+          @dragend="dragEnd"
+        >
           <div class="drag-handle-line" />
         </div>
-
       </div>
     </div>
     <div class="body" :class="{ loading, dragging }">
       <div v-if="loading && items.length === 0" class="loader">
-        <div v-for="n in 50" :key="n" class="row" :style="{ height: rowHeight + 'px' }" />
+        <div
+          v-for="n in 50"
+          :key="n"
+          class="row"
+          :style="{ height: rowHeight + 'px' }"
+        />
       </div>
       <component
         :is="manualSorting ? 'draggable' : 'div'"
         v-model="itemsManuallySorted"
         :options="{ handle: '.manual-sort' }"
         @start="startSort"
-        @end="saveSort">
+        @end="saveSort"
+      >
         <template v-if="link">
           <div
             v-for="row in itemsArray"
             :key="row[primaryKeyField]"
             :style="{ height: rowHeight + 'px' }"
-            :class="{ selected: selection && selection.includes(row[primaryKeyField])}"
+            :class="{
+              selected: selection && selection.includes(row[primaryKeyField])
+            }"
             class="link row"
             tabindex="0"
             role="link"
-            @click.stop="$router.push(row[link])"
-            @keyup.enter.stop="$router.push(row[link])">
+            @click.stop="$router.push(row[link]);"
+            @keyup.enter.stop="$router.push(row[link]);"
+          >
             <div
               v-if="manualSortField"
               @click.stop.prevent
               class="manual-sort cell"
-              :class="{ active: manualSorting }">
+              :class="{ active: manualSorting }"
+            >
               <i class="material-icons">drag_handle</i>
             </div>
-            <div
-              v-if="selectable"
-              class="cell select"
-              @click.stop>
+            <div v-if="selectable" class="cell select" @click.stop>
               <v-checkbox
                 :id="'check-' + row[primaryKeyField]"
                 :value="row[primaryKeyField]"
                 :checked="selection.includes(row[primaryKeyField])"
-                @change="toggleCheckbox(row[primaryKeyField])" />
+                @change="toggleCheckbox(row[primaryKeyField]);"
+              />
             </div>
             <div
-              v-for="{field, fieldInfo} in columns"
+              v-for="{ field, fieldInfo } in columns"
               :key="field"
               :style="{
-                flexBasis: widths && widths[field] ?
-                  widths[field] + 'px' :
-                  null
+                flexBasis: widths && widths[field] ? widths[field] + 'px' : null
               }"
-              class="cell">
+              class="cell"
+            >
               <div
                 v-if="row[field] === '' || $lodash.isNil(row[field])"
-                class="empty">--</div>
+                class="empty"
+              >
+                --
+              </div>
               <v-ext-display
                 v-else-if="useInterfaces && !$lodash.isNil(row[field])"
                 :interface-type="fieldInfo.interface"
@@ -116,7 +130,8 @@
                 :type="fieldInfo.type"
                 :datatype="fieldInfo.datatype"
                 :options="fieldInfo.options"
-                :value="row[field]" />
+                :value="row[field]"
+              />
               <template v-else>{{ row[field] }}</template>
             </div>
           </div>
@@ -127,37 +142,39 @@
             v-for="row in itemsArray"
             :key="row[primaryKeyField]"
             :style="{ height: rowHeight + 'px' }"
-            class="row">
-            <div
-              v-if="selectable"
-              class="select"
-              @click.stop>
+            class="row"
+          >
+            <div v-if="selectable" class="select" @click.stop>
               <v-checkbox
                 :id="'check-' + row[primaryKeyField]"
                 :value="row[primaryKeyField]"
                 :checked="selection.includes(row[primaryKeyField])"
-                @change="toggleCheckbox(row[primaryKeyField])" />
+                @change="toggleCheckbox(row[primaryKeyField]);"
+              />
             </div>
             <div
-              v-for="{field, fieldInfo} in columns"
+              v-for="{ field, fieldInfo } in columns"
               :key="field"
               :style="{
-                flexBasis: widths && widths[field] ?
-                  widths[field] + 'px' :
-                  null
+                flexBasis: widths && widths[field] ? widths[field] + 'px' : null
               }"
-              class="cell">
-                <div
-                  v-if="row[field] === '' || $lodash.isNil(row[field])"
-                  class="empty">--</div>
-                <v-ext-display
-                  v-else-if="useInterfaces && !$lodash.isNil(row[field])"
-                  :interface-type="fieldInfo.interface"
-                  :name="field"
-                  :type="fieldInfo.type"
-                  :options="fieldInfo.options"
-                  :value="row[field]" />
-                <template v-else>{{ row[field] }}</template>
+              class="cell"
+            >
+              <div
+                v-if="row[field] === '' || $lodash.isNil(row[field])"
+                class="empty"
+              >
+                --
+              </div>
+              <v-ext-display
+                v-else-if="useInterfaces && !$lodash.isNil(row[field])"
+                :interface-type="fieldInfo.interface"
+                :name="field"
+                :type="fieldInfo.type"
+                :options="fieldInfo.options"
+                :value="row[field]"
+              />
+              <template v-else>{{ row[field] }}</template>
             </div>
           </div>
         </template>
@@ -167,7 +184,8 @@
       <div v-if="lazyLoading" class="lazy-loader">
         <v-spinner
           line-fg-color="var(--light-gray)"
-          line-bg-color="var(--lighter-gray)" />
+          line-bg-color="var(--lighter-gray)"
+        />
       </div>
     </transition>
   </div>

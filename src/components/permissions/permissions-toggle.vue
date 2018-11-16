@@ -19,31 +19,57 @@
           v-close-popover
           v-for="option in options"
           :key="option"
-          @click="$emit('input', option)">
-
+          @click="$emit('input', option);"
+        >
           <div class="box" :class="option">
             <i v-if="option === 'none'" class="material-icons">close</i>
             <i v-else-if="option === 'mine'" class="material-icons">person</i>
             <i v-else-if="option === 'role'" class="material-icons">group</i>
             <i v-else-if="option === 'full'" class="material-icons">check</i>
-            <i v-else-if="option === 'read'" class="material-icons">remove_red_eye</i>
+            <i v-else-if="option === 'read'" class="material-icons"
+              >remove_red_eye</i
+            >
             <i v-else-if="option === 'create'" class="material-icons">add</i>
             <i v-else-if="option === 'on_create'" class="material-icons">add</i>
             <i v-else-if="option === 'update'" class="material-icons">edit</i>
-            <i v-else-if="option === 'on_update'" class="material-icons">edit</i>
-            <i v-else-if="option === 'always'" class="material-icons">announcement</i>
+            <i v-else-if="option === 'on_update'" class="material-icons"
+              >edit</i
+            >
+            <i v-else-if="option === 'always'" class="material-icons"
+              >announcement</i
+            >
           </div>
 
-          <template v-if="option === 'none'">{{ $t('permission_states.none') }}</template>
-          <template v-if="option === 'mine'">{{ $t('permission_states.mine') }}</template>
-          <template v-if="option === 'role'">{{ $t('permission_states.role') }}</template>
-          <template v-if="option === 'full'">{{ $t('permission_states.full') }}</template>
-          <template v-if="option === 'read'">{{ $t('permission_states.read') }}</template>
-          <template v-if="option === 'create'">{{ $t('permission_states.create') }}</template>
-          <template v-if="option === 'on_create'">{{ $t('permission_states.on_create') }}</template>
-          <template v-if="option === 'update'">{{ $t('permission_states.update') }}</template>
-          <template v-if="option === 'on_update'">{{ $t('permission_states.on_update') }}</template>
-          <template v-if="option === 'always'">{{ $t('permission_states.always') }}</template>
+          <template v-if="option === 'none'">{{
+            $t("permission_states.none")
+          }}</template>
+          <template v-if="option === 'mine'">{{
+            $t("permission_states.mine")
+          }}</template>
+          <template v-if="option === 'role'">{{
+            $t("permission_states.role")
+          }}</template>
+          <template v-if="option === 'full'">{{
+            $t("permission_states.full")
+          }}</template>
+          <template v-if="option === 'read'">{{
+            $t("permission_states.read")
+          }}</template>
+          <template v-if="option === 'create'">{{
+            $t("permission_states.create")
+          }}</template>
+          <template v-if="option === 'on_create'">{{
+            $t("permission_states.on_create")
+          }}</template>
+          <template v-if="option === 'update'">{{
+            $t("permission_states.update")
+          }}</template>
+          <template v-if="option === 'on_update'">{{
+            $t("permission_states.on_update")
+          }}</template>
+          <template v-if="option === 'always'">{{
+            $t("permission_states.always")
+          }}</template>
         </button>
       </div>
     </template>

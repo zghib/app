@@ -3,7 +3,8 @@
     <v-spinner
       line-fg-color="var(--light-gray)"
       line-bg-color="var(--lighter-gray)"
-      class="spinner" />
+      class="spinner"
+    />
   </div>
 </template>
 

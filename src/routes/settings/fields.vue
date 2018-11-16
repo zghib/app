@@ -2,13 +2,14 @@
   <not-found v-if="!collectionInfo" />
   <div class="settings-fields" v-else>
     <v-header :breadcrumb="breadcrumb">
-       <template slot="buttons">
+      <template slot="buttons">
         <v-header-button
           icon="close"
           key="delete"
           color="danger"
           :label="$t('delete')"
-          @click="confirmRemove = true" />
+          @click="confirmRemove = true;"
+        />
         <v-header-button
           icon="check"
           key="save"
@@ -16,37 +17,51 @@
           :loading="saving"
           :disabled="Object.keys(edits).length === 0"
           :label="$t('save')"
-          @click="save" />
+          @click="save"
+        />
       </template>
     </v-header>
 
-    <label class="label ">{{ $t('fields') }} <em class="notice">{{ $t('fields_are_saved_instantly') }}</em></label>
+    <label class="label "
+      >{{ $t("fields") }}
+      <em class="notice">{{ $t("fields_are_saved_instantly") }}</em></label
+    >
 
     <div class="table">
       <div class="header">
         <div class="row">
           <div class="drag"><i class="material-icons">swap_vert</i></div>
-          <div>{{ $t('field')}}</div>
-          <div>{{ $t('interface')}}</div>
+          <div>{{ $t("field") }}</div>
+          <div>{{ $t("interface") }}</div>
         </div>
       </div>
       <div class="body" :class="{ dragging }">
         <draggable v-model="fields" @start="startSort" @end="saveSort">
           <div class="row" v-for="field in fields" :key="field.field">
             <div class="drag"><i class="material-icons">drag_handle</i></div>
-            <div class="inner row" @click.stop="startEditingField(field)">
+            <div class="inner row" @click.stop="startEditingField(field);">
               <div>
                 {{ $helpers.formatTitle(field.field) }}
                 <i
                   v-tooltip="$t('required')"
                   class="material-icons required"
-                  v-if="(field.required === true || field.required === '1')">star</i>
+                  v-if="field.required === true || field.required === '1'"
+                  >star</i
+                >
                 <i
                   v-tooltip="$t('primary_key')"
                   class="material-icons key"
-                  v-if="field.primary_key">vpn_key</i>
+                  v-if="field.primary_key"
+                  >vpn_key</i
+                >
               </div>
-              <div>{{ ($store.state.extensions.interfaces[field.interface] && $store.state.extensions.interfaces[field.interface].name) || "--" }}</div>
+              <div>
+                {{
+                  ($store.state.extensions.interfaces[field.interface] &&
+                    $store.state.extensions.interfaces[field.interface].name) ||
+                    "--"
+                }}
+              </div>
             </div>
             <v-popover class="more-options" placement="left-start">
               <button type="button" class="menu-toggle">
@@ -55,13 +70,23 @@
               <template slot="popover">
                 <ul class="ctx-menu">
                   <li>
-                    <button v-close-popover type="button" @click.stop="duplicateField(field)" :disabled="!canDuplicate(field.interface)">
-                      <i class="material-icons">control_point_duplicate</i> {{ $t('duplicate') }} 
+                    <button
+                      v-close-popover
+                      type="button"
+                      @click.stop="duplicateField(field);"
+                      :disabled="!canDuplicate(field.interface)"
+                    >
+                      <i class="material-icons">control_point_duplicate</i>
+                      {{ $t("duplicate") }}
                     </button>
                   </li>
                   <li>
-                    <button v-close-popover type="button" @click.stop="warnRemoveField(field.field)">
-                      <i class="material-icons">close</i> {{ $t('delete') }}
+                    <button
+                      v-close-popover
+                      type="button"
+                      @click.stop="warnRemoveField(field.field);"
+                    >
+                      <i class="material-icons">close</i> {{ $t("delete") }}
                     </button>
                   </li>
                 </ul>
@@ -72,22 +97,26 @@
       </div>
     </div>
 
-    <v-button @click="startEditingField({})" class="new-field">New Field</v-button>
+    <v-button @click="startEditingField({});" class="new-field"
+      >New Field</v-button
+    >
 
     <v-form
       v-if="fields"
       :fields="directusFields"
       :values="values"
       collection="directus_collections"
-      @stage-value="stageValue" />
+      @stage-value="stageValue"
+    />
 
     <portal to="modal" v-if="confirmRemove">
       <v-confirm
         color="danger"
         :message="$t('delete_collection_are_you_sure')"
         :confirm-text="$t('delete')"
-        @cancel="confirmRemove = false"
-        @confirm="remove" />
+        @cancel="confirmRemove = false;"
+        @confirm="remove"
+      />
     </portal>
 
     <portal to="modal" v-if="confirmFieldRemove">
@@ -95,24 +124,26 @@
         color="danger"
         :message="$t('delete_field_are_you_sure', { field: fieldToBeRemoved })"
         :confirm-text="$t('delete')"
-        @cancel="confirmFieldRemove = false"
-        @confirm="removeField(fieldToBeRemoved)" />
+        @cancel="confirmFieldRemove = false;"
+        @confirm="removeField(fieldToBeRemoved);"
+      />
     </portal>
 
     <v-field-setup
       v-if="editingField"
       :field-info="fieldBeingEdited"
       :collection-info="collectionInfo"
-      @close="editingField = false"
-      @save="setFieldSettings" />
+      @close="editingField = false;"
+      @save="setFieldSettings"
+    />
 
     <v-field-duplicate
       v-if="duplicatingField"
       :field-information="fieldBeingDuplicated"
       :collection-information="collectionInfo"
-      @close="duplicatingField = false"
-      @save="duplicateFieldSettings" />
-
+      @close="duplicatingField = false;"
+      @save="duplicateFieldSettings"
+    />
   </div>
 </template>
 

@@ -1,17 +1,16 @@
 <template>
   <div class="v-diff">
     <div
-      v-for="({ field, before, after }) in changes"
+      v-for="{ field, before, after } in changes"
       class="change"
-      :key="field">
+      :key="field"
+    >
       <p>{{ $helpers.formatTitle(field) }}</p>
       <div class="diff">
-        <div
-          :class="{ empty: !before }"
-          class="before">{{ before || '--' }}</div>
-        <div
-          :class="{ empty: !after }"
-          class="after">{{ after || '--' }}</div>
+        <div :class="{ empty: !before }" class="before">
+          {{ before || "--" }}
+        </div>
+        <div :class="{ empty: !after }" class="after">{{ after || "--" }}</div>
       </div>
     </div>
   </div>

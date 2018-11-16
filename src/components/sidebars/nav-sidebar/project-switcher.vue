@@ -6,18 +6,33 @@
         disconnected: $store.getters.signalStrength == 0
       }"
       v-tooltip.left="{
-        content: $store.state.auth.url + `<br>${$t('latency')}: ${$n(Math.round($store.state.latency[$store.state.latency.length - 1].latency))}ms`,
+        content:
+          $store.state.auth.url +
+          `<br>${$t('latency')}: ${$n(
+            Math.round(
+              $store.state.latency[$store.state.latency.length - 1].latency
+            )
+          )}ms`,
         boundariesElement: 'body'
-      }">
+      }"
+    >
       <v-signal class="icon" />
       <span class="no-wrap">{{ $store.state.auth.projectName }}</span>
-      <i v-if="Object.keys(urls).length > 1" class="material-icons chevron">arrow_drop_down</i>
-      <select v-if="Object.keys(urls).length > 1" :value="currentUrl" @change.prevent="changeUrl">
+      <i v-if="Object.keys(urls).length > 1" class="material-icons chevron"
+        >arrow_drop_down</i
+      >
+      <select
+        v-if="Object.keys(urls).length > 1"
+        :value="currentUrl"
+        @change.prevent="changeUrl"
+      >
         <option
           v-for="(name, url) in urls"
           :key="name + url"
           :value="url"
-          :checked="url === currentUrl || url + '/' === currentUrl">{{ name }}</option>
+          :checked="url === currentUrl || url + '/' === currentUrl"
+          >{{ name }}</option
+        >
       </select>
     </div>
   </div>
@@ -38,9 +53,8 @@ export default {
   },
   computed: {
     urls() {
-      return this.$lodash.mapKeys(
-        window.__DirectusConfig__.api,
-        (val, key) => (key.endsWith("/") === false ? key + "/" : key)
+      return this.$lodash.mapKeys(window.__DirectusConfig__.api, (val, key) =>
+        key.endsWith("/") === false ? key + "/" : key
       );
     },
     currentUrl() {

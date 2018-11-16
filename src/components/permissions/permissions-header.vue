@@ -3,19 +3,54 @@
     <div class="row">
       <div class="cell">{{ $t("collection") }}</div>
       <div class="cell">
-        <button type="button" v-tooltip="$t('click_to_toggle_all_none')" class="cell" @click="$emit('toggle-all', 'create')">{{ $t("create") }}</button>
+        <button
+          type="button"
+          v-tooltip="$t('click_to_toggle_all_none')"
+          class="cell"
+          @click="$emit('toggle-all', 'create');"
+        >
+          {{ $t("create") }}
+        </button>
       </div>
       <div class="cell">
-        <button type="button" v-tooltip="$t('click_to_toggle_all_none')" class="cell" @click="$emit('toggle-all', 'read')">{{ $t("read") }}</button>
+        <button
+          type="button"
+          v-tooltip="$t('click_to_toggle_all_none')"
+          class="cell"
+          @click="$emit('toggle-all', 'read');"
+        >
+          {{ $t("read") }}
+        </button>
       </div>
       <div class="cell">
-        <button type="button" v-tooltip="$t('click_to_toggle_all_none')" class="cell" @click="$emit('toggle-all', 'update')">{{ $t("update") }}</button>
+        <button
+          type="button"
+          v-tooltip="$t('click_to_toggle_all_none')"
+          class="cell"
+          @click="$emit('toggle-all', 'update');"
+        >
+          {{ $t("update") }}
+        </button>
       </div>
       <div class="cell">
-        <button type="button" v-tooltip="$t('click_to_toggle_all_none')" class="cell" @click="$emit('toggle-all', 'delete')">{{ $t("delete") }}</button>
+        <button
+          type="button"
+          v-tooltip="$t('click_to_toggle_all_none')"
+          class="cell"
+          @click="$emit('toggle-all', 'delete');"
+        >
+          {{ $t("delete") }}
+        </button>
       </div>
       <div class="cell">
-        <button type="button" v-tooltip="$t('click_to_toggle_all_none')" class="cell" @click="$emit('toggle-all', 'comment')">{{ $t("comment") }}</button>
+        <button
+          type="button"
+          v-tooltip="$t('click_to_toggle_all_none')"
+          class="cell"
+          @click="$emit('toggle-all', 'comment');"
+        >
+          {{ $t("comment") }}
+        </button>
       </div>
       <div class="cell">{{ $t("explain") }}</div>
       <div class="cell">{{ $t("fields") }}</div>

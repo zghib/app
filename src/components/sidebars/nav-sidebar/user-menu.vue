@@ -5,7 +5,8 @@
         :src="avatarURL"
         :alt="fullName"
         :indicator="true"
-        class="avatar" />
+        class="avatar"
+      />
       <span class="no-wrap">{{ fullName }}</span>
       <i class="material-icons">more_vert</i>
     </header>
@@ -13,21 +14,21 @@
       <nav-menu :links="firstLinks" />
       <nav-menu :links="secondLinks" />
       <nav-menu :links="thirdLinks" />
-      <button
-        class="sign-out"
-        @click="confirmSignOut = true">
-        <i class="material-icons icon">exit_to_app</i>
-        {{ $t('sign_out') }}
+      <button class="sign-out" @click="confirmSignOut = true;">
+        <i class="material-icons icon">exit_to_app</i> {{ $t("sign_out") }}
       </button>
     </div>
 
     <portal to="modal" v-if="confirmSignOut">
       <v-confirm
         :busy="confirmSignOutLoading"
-        :message="editing ? $t('sign_out_confirm_edits') : $t('sign_out_confirm')"
+        :message="
+          editing ? $t('sign_out_confirm_edits') : $t('sign_out_confirm')
+        "
         :confirm-text="$t('sign_out')"
-        @cancel="confirmSignOut = false"
-        @confirm="signOut" />
+        @cancel="confirmSignOut = false;"
+        @confirm="signOut"
+      />
     </portal>
   </div>
 </template>

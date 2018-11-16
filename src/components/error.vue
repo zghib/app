@@ -1,9 +1,7 @@
 <template>
   <transition name="error">
     <div class="v-error">
-      <i
-        :class="color"
-        class="material-icons">{{ icon }}</i>
+      <i :class="color" class="material-icons">{{ icon }}</i>
       <h2 class="style-1">{{ title }}</h2>
       <p>{{ body }}</p>
     </div>

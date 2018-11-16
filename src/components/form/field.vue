@@ -6,22 +6,34 @@
           <template v-if="hideLabel === false">
             <div class="label">
               <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
-                {{ field.name || $helpers.formatTitle(field.field) }}<i v-tooltip="$t('required')" class="material-icons" v-if="(field.required === true || field.required === '1')">star</i>
+                {{ field.name || $helpers.formatTitle(field.field)
+                }}<i
+                  v-tooltip="$t('required')"
+                  class="material-icons"
+                  v-if="field.required === true || field.required === '1'"
+                  >star</i
+                >
               </component>
               <label v-if="batchMode" class="batch-label">
                 <v-toggle
                   :value="!blocked"
-                  @input="$emit(blocked ? 'activate' : 'deactivate', field.field)" />
+                  @input="
+                    $emit(blocked ? 'activate' : 'deactivate', field.field);
+                  "
+                />
               </label>
             </div>
           </template>
-          <small v-if="!readonly && field.note" v-html="$helpers.snarkdown(field.note)" />
+          <small
+            v-if="!readonly && field.note"
+            v-html="$helpers.snarkdown(field.note)"
+          />
         </div>
         <div class="field-wrapper">
           <v-ext-input
             :id="field.interface"
             :name="field.field"
-            :required="(field.required === true || field.required === '1')"
+            :required="field.required === true || field.required === '1'"
             :readonly="readonly || blocked"
             :options="field.options"
             :type="field.type"
@@ -32,15 +44,28 @@
             :values="values"
             :length="field.length"
             :new-item="newItem"
-            @input="readonly ? null : $emit('stage-value', {
-              field: field.field,
-              value: $event
-            })"
-            @setfield="readonly ? null : $emit('stage-value', {
-              field: $event.field,
-              value: $event.value,
-            })" />
-          <div class="blocker" v-if="blocked" @click="$emit('activate', field.field)" />
+            @input="
+              readonly
+                ? null
+                : $emit('stage-value', {
+                    field: field.field,
+                    value: $event
+                  });
+            "
+            @setfield="
+              readonly
+                ? null
+                : $emit('stage-value', {
+                    field: $event.field,
+                    value: $event.value
+                  });
+            "
+          />
+          <div
+            class="blocker"
+            v-if="blocked"
+            @click="$emit('activate', field.field);"
+          />
         </div>
       </div>
     </component>

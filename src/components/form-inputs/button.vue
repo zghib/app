@@ -4,17 +4,17 @@
     :type="type"
     :disabled="disabled || loading"
     class="form-button style-btn"
-    @click="$emit('click')">
-    <i
-      v-if="icon && !loading"
-      class="material-icons">{{ icon }}</i>
+    @click="$emit('click');"
+  >
+    <i v-if="icon && !loading" class="material-icons">{{ icon }}</i>
     <v-spinner
       v-if="loading"
       :line-size="2"
       size="13"
       line-foreground-color="#fff"
       line-background-color="var(--darkest-gray)"
-      class="spinner" />
+      class="spinner"
+    />
     <slot />
   </button>
 </template>

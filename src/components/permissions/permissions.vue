@@ -2,14 +2,17 @@
   <div class="v-permissions interface loading" v-if="loading">
     <v-spinner
       line-fg-color="var(--light-gray)"
-      line-bg-color="var(--lighter-gray)" />
+      line-bg-color="var(--lighter-gray)"
+    />
   </div>
   <div v-else class="interface">
     <div class="v-permissions">
       <v-permissions-header @toggle-all="toggleAll" />
 
       <div class="body">
-        <p v-if="Object.keys(rows).length === 0" class="no-collections-message">{{ $t('permissions_no_collections') }}</p>
+        <p v-if="Object.keys(rows).length === 0" class="no-collections-message">
+          {{ $t("permissions_no_collections") }}
+        </p>
 
         <v-permissions-row
           v-for="(permission, name) in rows"
@@ -18,22 +21,28 @@
           :statuses="(statuses[name] || {}).mapping"
           :key="name"
           :fields="fields[name]"
-          @input="$emit('input', $event)" />
+          @input="$emit('input', $event);"
+        />
 
         <v-permissions-row
           v-if="showDirectus"
           v-for="(permission, name, i) in directusRows"
-          :class="{ 'border': i === 0 }"
+          :class="{ border: i === 0 }"
           :permission="permission"
           :permission-name="name"
           :statuses="(statuses[name] || {}).mapping"
           :key="name"
           :fields="fields[name]"
           system
-          @input="$emit('input', $event)" />
+          @input="$emit('input', $event);"
+        />
       </div>
     </div>
-    <label><v-toggle class="toggle" id="toggle-directus" v-model="showDirectus" />{{ $t('show_directus_collections') }}</label>
+    <label
+      ><v-toggle class="toggle" id="toggle-directus" v-model="showDirectus" />{{
+        $t("show_directus_collections")
+      }}</label
+    >
   </div>
 </template>
 

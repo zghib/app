@@ -6,12 +6,12 @@
       icon="error_outline"
       color="warning"
       :title="$t('server_trouble')"
-      :body="$t('server_trouble_copy')" />
+      :body="$t('server_trouble_copy')"
+    />
   </div>
 
   <div class="settings-permissions" v-else>
     <v-header :breadcrumb="breadcrumb">
-
       <template slot="buttons">
         <v-header-button
           v-if="!isNew && !isSystem"
@@ -19,16 +19,17 @@
           :label="$t('delete')"
           icon="close"
           color="danger"
-          @click="confirmRemove = true" />
+          @click="confirmRemove = true;"
+        />
         <v-header-button
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
           icon="check"
           color="action"
-          @click="save" />
+          @click="save"
+        />
       </template>
-
     </v-header>
 
     <label>{{ $t("permissions") }}</label>
@@ -39,14 +40,16 @@
       :permissions="permissions"
       :statuses="statuses"
       :fields="permissionFields"
-      @input="setPermission" />
+      @input="setPermission"
+    />
 
     <v-form
       v-if="fields && role"
       :fields="fields"
       :values="role"
       collection="directus_roles"
-      @stage-value="stageValue" />
+      @stage-value="stageValue"
+    />
 
     <portal to="modal" v-if="confirmRemove">
       <v-confirm
@@ -54,8 +57,9 @@
         :message="$t('delete_role_are_you_sure', { name: role.name })"
         :confirm-text="$t('delete')"
         :loading="removing"
-        @cancel="confirmRemove = false"
-        @confirm="remove" />
+        @cancel="confirmRemove = false;"
+        @confirm="remove"
+      />
     </portal>
   </div>
 </template>

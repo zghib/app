@@ -16,8 +16,9 @@
     :fields="fields"
     :values="values"
     class="v-ext-input"
-    @input="$emit('input', $event)"
-    @setfield="$emit('setfield', $event)">
+    @input="$emit('input', $event);"
+    @setfield="$emit('setfield', $event);"
+  >
     <slot />
   </component>
 </template>

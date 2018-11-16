@@ -3,7 +3,8 @@
     v-if="groupedFields.length === 0"
     :title="$t('no_fields')"
     :body="$t('no_fields_body')"
-    icon="error_outline" />
+    icon="error_outline"
+  />
   <form v-else class="v-form flex-group" @submit.prevent>
     <div
       v-for="field in groupedFields"
@@ -11,7 +12,8 @@
         isGroup(field) ? null : `col-${field.width || 4}`,
         isGroup(field) ? 'group' : 'field'
       ]"
-      :key="field.field">
+      :key="field.field"
+    >
       <v-group
         v-if="isGroup(field)"
         :values="values"
@@ -22,7 +24,8 @@
         :new-item="newItem"
         @activate="activateField"
         @deactivate="deactivateField"
-        @stage-value="$emit('stage-value', $event)" />
+        @stage-value="$emit('stage-value', $event);"
+      />
       <v-field
         v-else
         :field="field"
@@ -34,7 +37,8 @@
         :new-item="newItem"
         @activate="activateField"
         @deactivate="deactivateField"
-        @stage-value="$emit('stage-value', $event)" />
+        @stage-value="$emit('stage-value', $event);"
+      />
     </div>
   </form>
 </template>

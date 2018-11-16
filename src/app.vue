@@ -4,8 +4,12 @@
       icon="warning"
       :title="$t('server_error')"
       :body="$t('server_error_copy')"
-      color="danger" />
-    <p>Try again later or <router-link to="/logout">login to another instance</router-link>.</p>
+      color="danger"
+    />
+    <p>
+      Try again later or
+      <router-link to="/logout">login to another instance</router-link>.
+    </p>
   </div>
 
   <div v-else-if="configError" class="error">
@@ -13,7 +17,8 @@
       icon="settings"
       :title="$t('config_error')"
       :body="$t('config_error_copy')"
-      color="warning" />
+      color="warning"
+    />
   </div>
 
   <div v-else-if="extensionError" class="error">
@@ -21,7 +26,8 @@
       icon="extension"
       :title="$t('extensions_missing')"
       :body="$t('extensions_missing_copy')"
-      color="warning" />
+      color="warning"
+    />
   </div>
 
   <div v-else-if="!publicRoute">
@@ -33,7 +39,7 @@
     <loader v-else area="full-page" />
 
     <portal-target name="modal" />
-    <v-notification/>
+    <v-notification />
   </div>
 
   <router-view v-else class="directus" />

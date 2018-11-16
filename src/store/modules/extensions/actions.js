@@ -21,11 +21,10 @@ function translateFields(meta, type, id) {
       //   like $t:option $t:or $t:value
       return value
         .split(" ")
-        .map(
-          word =>
-            word.startsWith("$t:")
-              ? i18n.t(`${type}-${id}-${word.substring(3)}`)
-              : word
+        .map(word =>
+          word.startsWith("$t:")
+            ? i18n.t(`${type}-${id}-${word.substring(3)}`)
+            : word
         )
         .join(" ");
     }

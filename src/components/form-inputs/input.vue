@@ -1,10 +1,11 @@
 <template>
   <div
     :class="{ 'icon-left': iconLeft, 'icon-right': iconRight }"
-    class="v-input">
+    class="v-input"
+  >
     <input
       ref="input"
-      :class="{charactercount}"
+      :class="{ charactercount }"
       :type="type"
       :autocomplete="autocomplete"
       :max="max"
@@ -19,17 +20,16 @@
       :value="value"
       :id="id"
       :step="step"
-      @keyup="$emit('keyup', $event)"
-      @keydown="$emit('keydown', $event)"
-      @input="$emit('input', $event.target.value)">
-    <i
-      v-if="iconLeft"
-      :class="iconLeftColor"
-      class="material-icons">{{ iconLeft }}</i>
-    <i
-      v-if="iconRight"
-      :class="iconRightColor"
-      class="material-icons">{{ iconRight }}</i>
+      @keyup="$emit('keyup', $event);"
+      @keydown="$emit('keydown', $event);"
+      @input="$emit('input', $event.target.value);"
+    />
+    <i v-if="iconLeft" :class="iconLeftColor" class="material-icons">{{
+      iconLeft
+    }}</i>
+    <i v-if="iconRight" :class="iconRightColor" class="material-icons">{{
+      iconRight
+    }}</i>
     <span v-if="charactercount">{{ charsRemaining }}</span>
   </div>
 </template>

@@ -1,15 +1,13 @@
 <template>
-  <div
-    :class="{ open }"
-    ref="searchFilter"
-    class="search-filter">
-
+  <div :class="{ open }" ref="searchFilter" class="search-filter">
     <v-header-button
       class="toggle"
       :alert="hasFilters"
       icon="filter_list"
       no-background
-      @click="open = !open">Filter</v-header-button>
+      @click="open = !open;"
+      >Filter</v-header-button
+    >
 
     <div class="wrapper">
       <i class="material-icons">search</i>
@@ -20,39 +18,40 @@
         :class="{ 'has-filters': hasFilters }"
         class="search"
         type="text"
-        @input="search($event.target.value)">
+        @input="search($event.target.value);"
+      />
       <transition name="fade">
         <button
           v-show="hasFilters"
           :class="{ 'has-filters': hasFilters }"
           class="clear-filters"
-          @click="clearFilters">
+          @click="clearFilters"
+        >
           <i class="material-icons">close</i>
         </button>
       </transition>
       <button
         :class="{ 'has-filters': hasFilters }"
         class="toggle"
-        @click="open = !open"><i class="material-icons">filter_list</i></button>
+        @click="open = !open;"
+      >
+        <i class="material-icons">filter_list</i>
+      </button>
     </div>
 
     <transition name="slide">
-      <div
-        v-show="open"
-        class="dropdown">
+      <div v-show="open" class="dropdown">
         <div class="search field">
           <v-input
             :placeholder="placeholder || $t('search')"
             :value="searchQuery"
             type="search"
             icon-left="search"
-            @input="search" />
+            @input="search"
+          />
         </div>
 
-        <div
-          v-for="(filter, i) in filters"
-          :key="i"
-          class="field">
+        <div v-for="(filter, i) in filters" :key="i" class="field">
           <invisible-label :html-for="`filter-${i}`">
             {{ fields[filter.field] }} {{ operators[filter.operator] }}
           </invisible-label>
@@ -61,34 +60,42 @@
             <span>
               {{ $t(operators[filter.operator]) }}
               <i class="material-icons">arrow_drop_down</i>
-              <select @change="updateFilter(i, 'operator', $event.target.value)">
+              <select
+                @change="updateFilter(i, 'operator', $event.target.value);"
+              >
                 <option
                   v-for="(name, operator) in operators"
                   :key="operator"
-                  :value="operator">{{ $t(name) }}</option>
+                  :value="operator"
+                  >{{ $t(name) }}</option
+                >
               </select>
             </span>
-            <button
-              class="remove"
-              @click="deleteFilter(i)">{{ $t('remove') }}</button>
+            <button class="remove" @click="deleteFilter(i);">
+              {{ $t("remove") }}
+            </button>
           </div>
           <v-input
             autofocus
             :id="`filter-${i}`"
             :value="filter.value"
             type="text"
-            @input="updateFilter(i, 'value', $event)" />
+            @input="updateFilter(i, 'value', $event);"
+          />
         </div>
 
         <div class="field">
-          <invisible-label html-for="add">{{ $t('add_field_filter') }}</invisible-label>
+          <invisible-label html-for="add">{{
+            $t("add_field_filter")
+          }}</invisible-label>
           <v-select
             id="add"
             icon="add_circle"
             :placeholder="$t('add_field_filter')"
             :options="fields"
             default-value
-            @input="addFilter" />
+            @input="addFilter"
+          />
         </div>
       </div>
     </transition>
@@ -97,7 +104,8 @@
       v-if="open"
       :z-index="18"
       class="blocker"
-      @click="open = !open" />
+      @click="open = !open;"
+    />
   </div>
 </template>
 

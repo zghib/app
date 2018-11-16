@@ -7,7 +7,8 @@
       :checked="shouldBeChecked"
       :value="value"
       type="radio"
-      @change="updateInput">
+      @change="updateInput"
+    />
     <label :for="id">{{ label }}</label>
   </div>
 </template>

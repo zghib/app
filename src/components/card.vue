@@ -1,23 +1,27 @@
 <template>
   <component
     :is="element"
-    :class="{ link, selected, selectable, 'selection-mode': selectionMode, disabled }"
-    class="v-card">
-    <component
-      :is="wrapperTag"
-      :to="to"
-      :href="href"
-      target="__blank">
+    :class="{
+      link,
+      selected,
+      selectable,
+      'selection-mode': selectionMode,
+      disabled
+    }"
+    class="v-card"
+  >
+    <component :is="wrapperTag" :to="to" :href="href" target="__blank">
       <div
         v-if="src || icon || $slots.icon"
         :style="{ backgroundColor: `var(--${color})` }"
-        class="header">
-
+        class="header"
+      >
         <button
           v-if="selectable"
           type="button"
           class="select"
-          @click.stop="$emit('select')">
+          @click.stop="$emit('select');"
+        >
           <i class="material-icons">{{ selectionIcon }}</i>
         </button>
 
@@ -25,50 +29,43 @@
           v-if="src && !error"
           :alt="title"
           :src="src"
-          @error="onImageError">
+          @error="onImageError"
+        />
 
-        <i
-          v-if="error"
-          class="material-icons error icon">broken_image</i>
+        <i v-if="error" class="material-icons error icon">broken_image</i>
 
         <i
           v-if="icon"
           :class="{ 'half-opacity': opacity === 'half' }"
-          class="material-icons icon">{{ icon }}</i>
+          class="material-icons icon"
+          >{{ icon }}</i
+        >
 
-        <div
-          v-if="$slots.icon"
-          class="custom-icon"><slot name="icon"/></div>
+        <div v-if="$slots.icon" class="custom-icon"><slot name="icon" /></div>
 
-        <span
-          v-if="label"
-          class="label">{{ label }}</span>
+        <span v-if="label" class="label">{{ label }}</span>
       </div>
       <div
         v-else
         class="header small"
-        :style="{ backgroundColor: `var(--${color})` }">
+        :style="{ backgroundColor: `var(--${color})` }"
+      >
         <button
           v-if="selectable"
           type="button"
           class="select"
-          @click.stop="$emit('select')">
+          @click.stop="$emit('select');"
+        >
           <i class="material-icons">{{ selectionIcon }}</i>
         </button>
       </div>
-      <div class="body" :class="{ 'menu': options != null }">
+      <div class="body" :class="{ menu: options != null }">
         <div class="main">
-          <component
-            :is="titleElement"
-            class="title"
-            v-tooltip="title"
-          >{{ title }}</component>
-          <p
-            v-if="subtitle"
-            class="subtitle style-4">{{ subtitle }}</p>
-          <p
-            v-if="body"
-            class="content">{{ body }}</p>
+          <component :is="titleElement" class="title" v-tooltip="title">{{
+            title
+          }}</component>
+          <p v-if="subtitle" class="subtitle style-4">{{ subtitle }}</p>
+          <p v-if="body" class="content">{{ body }}</p>
         </div>
         <v-popover placement="right-start" offset="2">
           <button v-if="options != null" type="button" class="menu-toggle">
@@ -78,9 +75,7 @@
           <template slot="popover">
             <ul class="ctx-menu">
               <li v-for="({ text, icon }, id) in options" :key="id">
-                <button
-                  type="button"
-                  @click="$emit(id)">
+                <button type="button" @click="$emit(id);">
                   <i class="material-icons" v-if="icon">{{ icon }}</i>
                   {{ text }}
                 </button>

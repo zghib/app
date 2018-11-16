@@ -1,42 +1,32 @@
 <template>
   <div class="v-header-button">
-    <div
-      v-if="Object.keys(options).length > 0"
-      class="options">
-      <select
-        :disabled="disabled"
-        v-model="choice"
-        @change="emitChange">
-        <option
-          disabled
-          selected
-          value="">
-          {{ $t('more_options') }}
-        </option>
-        <option
-          v-for="(display, value) in options"
-          :value="value"
-          :key="value">
+    <div v-if="Object.keys(options).length > 0" class="options">
+      <select :disabled="disabled" v-model="choice" @change="emitChange">
+        <option disabled selected value=""> {{ $t("more_options") }} </option>
+        <option v-for="(display, value) in options" :value="value" :key="value">
           {{ display }}
         </option>
       </select>
       <i class="material-icons">more_horiz</i>
     </div>
     <component
-      :is="disabled ? 'button' : (to ? 'router-link' : 'button')"
-      :style="{ backgroundColor: (noBackground || disabled) ? null : `var(--${color})`, color: `var(--${color})` }"
-      :class="{ 'attention': alert, 'no-bg': noBackground }"
+      :is="disabled ? 'button' : to ? 'router-link' : 'button'"
+      :style="{
+        backgroundColor: noBackground || disabled ? null : `var(--${color})`,
+        color: `var(--${color})`
+      }"
+      :class="{ attention: alert, 'no-bg': noBackground }"
       :disabled="disabled"
       :to="to || null"
-      @click="!to ? $emit('click', $event) : null">
-      <i
-        v-if="!loading"
-        class="material-icons">{{ icon }}</i>
+      @click="!to ? $emit('click', $event) : null;"
+    >
+      <i v-if="!loading" class="material-icons">{{ icon }}</i>
       <v-spinner
         v-else
         :size="24"
         line-fg-color="white"
-        line-bg-color="transparent"/>
+        line-bg-color="transparent"
+      />
       <span class="style-btn" v-if="label">{{ label }}</span>
     </component>
   </div>

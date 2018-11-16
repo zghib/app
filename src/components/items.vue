@@ -4,31 +4,44 @@
     icon="warning"
     color="danger"
     :title="$t('server_error')"
-    :body="$t('server_error_copy')" />
+    :body="$t('server_error_copy')"
+  />
 
   <v-error
     v-else-if="items.fields && Object.keys(items.fields).length === 0"
     icon="build"
     :title="$t('no_fields')"
-    :body="$t('no_fields_body')" />
+    :body="$t('no_fields_body')"
+  />
 
   <v-error
-    v-else-if="collection === 'directus_files' && items.meta && items.meta.total_count === 0"
+    v-else-if="
+      collection === 'directus_files' &&
+        items.meta &&
+        items.meta.total_count === 0
+    "
     icon="image"
     :title="$t('no_files')"
-    :body="$t('no_files_body')" />
+    :body="$t('no_files_body')"
+  />
 
   <v-error
     v-else-if="items.meta && items.meta.total_count === 0"
     icon="web_asset"
     :title="$t('empty_collection')"
-    :body="$t('empty_collection_body')" />
+    :body="$t('empty_collection_body')"
+  />
 
   <v-error
-    v-else-if="(items.data && items.data.length === 0) && (items.meta && items.meta.total_count !== 0)"
+    v-else-if="
+      items.data &&
+        items.data.length === 0 &&
+        (items.meta && items.meta.total_count !== 0)
+    "
     :title="$t('no_results')"
     :body="$t('no_results_body')"
-    icon="search" />
+    icon="search"
+  />
 
   <v-ext-layout
     v-else
@@ -44,9 +57,10 @@
     :sort-field="sortField"
     @input="saveItems"
     @select="select"
-    @query="$emit('query', $event)"
-    @options="$emit('options', $event)"
-    @next-page="lazyLoad" />
+    @query="$emit('query', $event);"
+    @options="$emit('options', $event);"
+    @next-page="lazyLoad"
+  />
 </template>
 
 <script>

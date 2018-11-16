@@ -1,12 +1,7 @@
 <template>
-  <details
-    :open="open"
-    :class="type"
-    class="v-details">
+  <details :open="open" :class="type" class="v-details">
     <summary>{{ title }}</summary>
-    <div class="content">
-      <slot />
-    </div>
+    <div class="content"><slot /></div>
   </details>
 </template>
 

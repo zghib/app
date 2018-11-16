@@ -2,9 +2,10 @@
   <div
     class="v-progress-ring"
     :style="{
-      height: (radius * 2) + 'px',
-      width: (radius * 2) + 'px'
-    }">
+      height: radius * 2 + 'px',
+      width: radius * 2 + 'px'
+    }"
+  >
     <svg>
       <circle
         class="background"
@@ -13,7 +14,8 @@
         :stroke-width="stroke"
         :r="normalizedRadius"
         :cx="radius"
-        :cy="radius" />
+        :cy="radius"
+      />
       <circle
         :stroke="`var(--${color})`"
         fill="transparent"
@@ -22,12 +24,15 @@
         :stroke-width="stroke"
         :r="normalizedRadius"
         :cx="radius"
-        :cy="radius" />
+        :cy="radius"
+      />
     </svg>
     <i
       v-if="icon"
       class="material-icons"
-      :style="{ fontSize: iconSize, color: `var(--${color})` }">{{ icon }}</i>
+      :style="{ fontSize: iconSize, color: `var(--${color})` }"
+      >{{ icon }}</i
+    >
   </div>
 </template>
 

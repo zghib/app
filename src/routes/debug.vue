@@ -1,9 +1,7 @@
 <template>
   <div class="debug">
     <v-header title="Upload Component" />
-    <div class="wrapper">
-      <v-upload />
-    </div>
+    <div class="wrapper"><v-upload /></div>
   </div>
 </template>
 

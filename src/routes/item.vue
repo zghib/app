@@ -8,7 +8,8 @@
       icon="error_outline"
       color="warning"
       :title="$t('server_trouble')"
-      :body="$t('server_trouble_copy')" />
+      :body="$t('server_trouble_copy')"
+    />
   </div>
 
   <div v-else-if="fields === null">
@@ -17,14 +18,18 @@
   </div>
 
   <div v-else class="edit" :key="`${collection}-${primaryKey}`">
-    <v-header :breadcrumb="breadcrumb" :info-toggle="!newItem && !batch && !activityDetail">
+    <v-header
+      :breadcrumb="breadcrumb"
+      :info-toggle="!newItem && !batch && !activityDetail"
+    >
       <template slot="buttons">
         <v-header-button
-          v-if="(!newItem && !singleItem) && permission.delete !== 'none'"
+          v-if="!newItem && !singleItem && permission.delete !== 'none'"
           icon="close"
           color="danger"
           :label="$t('delete')"
-          @click="confirmRemove = true" />
+          @click="confirmRemove = true;"
+        />
 
         <v-header-button
           v-if="batch && permission.update !== 'none'"
@@ -33,22 +38,26 @@
           :label="$t('save')"
           icon="check"
           color="action"
-          @click="confirmBatchSave = true" />
+          @click="confirmBatchSave = true;"
+        />
 
         <v-header-button
-          v-else-if="isNew ? permission.create !== 'none' : permission.update !== 'none'"
+          v-else-if="
+            isNew ? permission.create !== 'none' : permission.update !== 'none'
+          "
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
           :options="{
             stay: $t('save_and_stay'),
             add: $t('save_and_add'),
-            copy: $t('save_as_copy'),
+            copy: $t('save_as_copy')
           }"
           icon="check"
           color="action"
-          @click="singleItem ? save('stay') : save('leave')"
-          @input="save" />
+          @click="singleItem ? save('stay') : save('leave');"
+          @input="save"
+        />
       </template>
     </v-header>
 
@@ -56,14 +65,23 @@
       <div class="tabs">
         <button
           :class="{ active: activeTab === 'both' }"
-          @click="activeTab = 'both'">{{ $t('both') }}</button>
+          @click="activeTab = 'both';"
+        >
+          {{ $t("both") }}
+        </button>
         <button
           v-if="permission.comment !== 'none'"
           :class="{ active: activeTab === 'comments' }"
-          @click="activeTab = 'comments'">{{ $t('comments') }}</button>
+          @click="activeTab = 'comments';"
+        >
+          {{ $t("comments") }}
+        </button>
         <button
           :class="{ active: activeTab === 'activity' }"
-          @click="activeTab = 'activity'">{{ $t('activity') }}</button>
+          @click="activeTab = 'activity';"
+        >
+          {{ $t("activity") }}
+        </button>
       </div>
       <v-activity
         :activity="activity"
@@ -72,7 +90,8 @@
         :show="activeTab"
         :comment-permission="permission.comment"
         @input="postComment"
-        @revert="revertActivity = $event" />
+        @revert="revertActivity = $event;"
+      />
     </v-info-sidebar>
 
     <v-form
@@ -85,14 +104,22 @@
       :new-item="newItem"
       ref="form"
       @unstage-value="unstageValue"
-      @stage-value="stageValue" />
+      @stage-value="stageValue"
+    />
 
     <portal to="modal" v-if="confirmRemove">
       <v-confirm
-        :message="batch ? $tc('batch_delete_confirm', primaryKey.split(',').length, { count: primaryKey.split(',').length }) : $t('delete_are_you_sure')"
+        :message="
+          batch
+            ? $tc('batch_delete_confirm', primaryKey.split(',').length, {
+                count: primaryKey.split(',').length
+              })
+            : $t('delete_are_you_sure')
+        "
         :busy="confirmRemoveLoading"
-        @cancel="confirmRemove = false"
-        @confirm="remove" />
+        @cancel="confirmRemove = false;"
+        @confirm="remove"
+      />
     </portal>
 
     <portal to="modal" v-if="confirmNavigation">
@@ -100,16 +127,21 @@
         :message="$t('unsaved_changes_copy')"
         :confirm-text="$t('keep_editing')"
         :cancel-text="$t('discard_changes')"
-        @confirm="confirmNavigation = false"
-        @cancel="$router.push(leavingTo); confirmNavigation = false;" />
+        @confirm="confirmNavigation = false;"
+        @cancel="
+          $router.push(leavingTo);
+          confirmNavigation = false;
+        "
+      />
     </portal>
 
     <portal to="modal" v-if="confirmBatchSave">
       <v-confirm
         :message="$t('update_confirm', { count: primaryKey.split(',').length })"
         :confirm-text="$t('update')"
-        @confirm="save('leave')"
-        @cancel="confirmBatchSave = false" />
+        @confirm="save('leave');"
+        @cancel="confirmBatchSave = false;"
+      />
     </portal>
 
     <portal to="modal" v-if="revertActivity">
@@ -121,14 +153,18 @@
             loading: reverting
           }
         }"
-        @revert="revertItem(revertActivity.revision.id)"
-        @close="revertActivity = false">
+        @revert="revertItem(revertActivity.revision.id);"
+        @close="revertActivity = false;"
+      >
         <div class="revert">
-          <p class="notice">{{ $t('revert_copy', { date: $d(revertActivity.date, 'long') }) }}</p>
+          <p class="notice">
+            {{ $t("revert_copy", { date: $d(revertActivity.date, "long") }) }}
+          </p>
           <v-form
             readonly
             :values="revertActivity.revision.data"
-            :fields="fields" />
+            :fields="fields"
+          />
         </div>
       </v-modal>
     </portal>

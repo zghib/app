@@ -1,13 +1,14 @@
 <template>
-  <v-modal-base :message="message" @cancel="$emit('cancel')">
-    <div class="v-prompt" @keydown.esc="$emit('cancel')">
+  <v-modal-base :message="message" @cancel="$emit('cancel');">
+    <div class="v-prompt" @keydown.esc="$emit('cancel');">
       <v-textarea
         v-if="multiline"
         class="input multiline"
         autofocus
         :placeholder="placeholder"
         :value="value"
-        @input="$emit('input', $event)" />
+        @input="$emit('input', $event);"
+      />
       <v-input
         v-else
         class="input"
@@ -15,14 +16,19 @@
         :value="value"
         :placeholder="placeholder"
         @input="emitValue"
-        @keydown.enter="$emit('confirm')" />
+        @keydown.enter="$emit('confirm');"
+      />
       <div class="buttons">
-        <button class="cancel" @click="$emit('cancel')">{{ cancelText || $t('cancel') }}</button>
+        <button class="cancel" @click="$emit('cancel');">
+          {{ cancelText || $t("cancel") }}
+        </button>
         <v-button
           class="confirm"
           :loading="loading"
           :disabled="required && disabled"
-          @click="$emit('confirm')">{{ confirmText || $t('ok') }}</v-button>
+          @click="$emit('confirm');"
+          >{{ confirmText || $t("ok") }}</v-button
+        >
       </div>
     </div>
   </v-modal-base>

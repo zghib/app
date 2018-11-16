@@ -5,11 +5,12 @@
       :checked="shouldBeChecked"
       :value="value"
       type="checkbox"
-      @change="updateInput">
-    <label
-      :for="id"
-      class="no-wrap">
-      <i class="material-icons">{{ shouldBeChecked ? 'check_box' : 'check_box_outline_blank' }}</i>
+      @change="updateInput"
+    />
+    <label :for="id" class="no-wrap">
+      <i class="material-icons">{{
+        shouldBeChecked ? "check_box" : "check_box_outline_blank"
+      }}</i>
       {{ label }}
     </label>
   </span>

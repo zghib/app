@@ -5,7 +5,8 @@
       :id="id"
       :disabled="disabled"
       :checked="value"
-      @change="$emit('input', !value)" />
+      @change="$emit('input', !value);"
+    />
     <div class="switch-track" :class="{ active: value }" />
     <div class="switch-thumb" :class="{ active: value }" />
   </div>

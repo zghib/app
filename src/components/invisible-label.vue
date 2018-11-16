@@ -1,7 +1,5 @@
 <template>
-  <label
-    :for="htmlFor"
-    class="invisible-label"><slot /></label>
+  <label :for="htmlFor" class="invisible-label"><slot /></label>
 </template>
 
 <script>

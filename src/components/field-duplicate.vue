@@ -1,24 +1,52 @@
 <template>
-  <v-modal :title="$t('duplicating_field') + ': ' +  $helpers.formatTitle(fieldInfo.field)" :buttons="buttons" @save="saveField()" @close="$emit('close')">
-      <form @submit.prevent class="options">
-        <div class="options">
-          <label>{{ $t("collection") }}<i v-tooltip="$t('required')" class="material-icons required">star</i> 
-            <v-simple-select required v-model="selectedCollection">
-              <option v-for="collection in Object.keys(this.collections)" :key="collection" :value="collection" :selected="collection === selectedCollection">
-                {{ $helpers.formatTitle(collection) }}
-              </option>
-            </v-simple-select>
-          </label>
-        </div>
-        <div class="options">
-          <label>{{ $t("field") + " " + $t("name") }}<i v-tooltip="$t('required')" class="material-icons required">star</i> 
-            <v-input required v-model="field" :value="field" :placeholder="fieldInfo.field" :icon-right="iconToShow.icon" :icon-right-color="iconToShow.color" />
-          </label>
-          <p class="small-text"> 
-            {{ $t("display_name") }}: <b>{{ $helpers.formatTitle(field || '...') }}</b>
-          </p>          
-        </div>
-      </form>
+  <v-modal
+    :title="
+      $t('duplicating_field') + ': ' + $helpers.formatTitle(fieldInfo.field)
+    "
+    :buttons="buttons"
+    @save="saveField();"
+    @close="$emit('close');"
+  >
+    <form @submit.prevent class="options">
+      <div class="options">
+        <label
+          >{{ $t("collection")
+          }}<i v-tooltip="$t('required')" class="material-icons required"
+            >star</i
+          >
+          <v-simple-select required v-model="selectedCollection">
+            <option
+              v-for="collection in Object.keys(this.collections)"
+              :key="collection"
+              :value="collection"
+              :selected="collection === selectedCollection"
+            >
+              {{ $helpers.formatTitle(collection) }}
+            </option>
+          </v-simple-select>
+        </label>
+      </div>
+      <div class="options">
+        <label
+          >{{ $t("field") + " " + $t("name")
+          }}<i v-tooltip="$t('required')" class="material-icons required"
+            >star</i
+          >
+          <v-input
+            required
+            v-model="field"
+            :value="field"
+            :placeholder="fieldInfo.field"
+            :icon-right="iconToShow.icon"
+            :icon-right-color="iconToShow.color"
+          />
+        </label>
+        <p class="small-text">
+          {{ $t("display_name") }}:
+          <b>{{ $helpers.formatTitle(field || "...") }}</b>
+        </p>
+      </div>
+    </form>
   </v-modal>
 </template>
 

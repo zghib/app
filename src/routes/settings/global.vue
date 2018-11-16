@@ -8,14 +8,12 @@
           :label="$t('save')"
           icon="check"
           color="action"
-          @click="save('leave')" />
+          @click="save('leave');"
+        />
       </template>
     </v-header>
 
-    <v-form
-      :fields="fields"
-      :values="settings"
-      @stage-value="stageValue" />
+    <v-form :fields="fields" :values="settings" @stage-value="stageValue" />
   </div>
 </template>
 

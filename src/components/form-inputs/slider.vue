@@ -9,20 +9,19 @@
         :max="max"
         :step="step"
         type="range"
-        @input="$emit('input', Number($event.target.value))">
-      <div
-        ref="track"
-        class="track-wrapper">
-        <div
-          :style="{ transform: `scaleX(${progress})` }"
-          class="track-fill" />
+        @input="$emit('input', Number($event.target.value));"
+      />
+      <div ref="track" class="track-wrapper">
+        <div :style="{ transform: `scaleX(${progress})` }" class="track-fill" />
       </div>
     </div>
     <output
       :for="id"
       :class="{
         'output-shown': alwaysShowOutput
-      }">{{ valueOrDefault }} {{ unit }}</output>
+      }"
+      >{{ valueOrDefault }} {{ unit }}</output
+    >
   </div>
 </template>
 

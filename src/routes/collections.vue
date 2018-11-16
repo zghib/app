@@ -1,21 +1,27 @@
 <template>
   <div class="collections">
-    <v-header :breadcrumb="[{
-      name: $t('collections'),
-      path: '/collections'
-    }]" />
+    <v-header
+      :breadcrumb="[
+        {
+          name: $t('collections'),
+          path: '/collections'
+        }
+      ]"
+    />
     <v-error
       v-if="items.length === 0"
       :title="$t('no_collections')"
       :body="$t('no_collections_body')"
-      icon="error_outline" />
+      icon="error_outline"
+    />
     <v-table
       v-else
       :items="items"
       :columns="fields"
       primary-key-field="collection"
       link="__link__"
-      @select="select" />
+      @select="select"
+    />
   </div>
 </template>
 

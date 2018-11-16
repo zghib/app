@@ -1,25 +1,24 @@
 <template>
-  <div
-    :class="{ icon }"
-    class="v-select">
+  <div :class="{ icon }" class="v-select">
     <select
       v-if="other"
       :disabled="disabled || readonly"
       :id="otherActive ? null : id"
       :value="value"
-      @change="change($event.target.value)">
+      @change="change($event.target.value);"
+    >
       <optgroup :label="$t('values')">
         <option
           v-for="(key, value) in parsedOptions"
           :key="value"
           :value="value"
-        >{{ key }}</option>
+          >{{ key }}</option
+        >
       </optgroup>
       <optgroup :label="$t('other')">
-        <option
-          :value="customValue || '__other'"
-          :selected="otherActive"
-        >{{ customValue.length ? customValue : $t('enter_value') }}</option>
+        <option :value="customValue || '__other'" :selected="otherActive">{{
+          customValue.length ? customValue : $t("enter_value")
+        }}</option>
       </optgroup>
     </select>
     <select
@@ -28,13 +27,9 @@
       :disabled="disabled || readonly"
       :id="otherActive ? null : id"
       :value="value"
-      @change="change($event.target.value)">
-      <option
-        v-if="placeholder"
-        ref="default"
-        selected
-        disabled
-        value="">
+      @change="change($event.target.value);"
+    >
+      <option v-if="placeholder" ref="default" selected disabled value="">
         {{ placeholder }}
       </option>
       <option
@@ -42,7 +37,8 @@
         :key="optionValue"
         :value="optionValue"
         :selected="value == optionValue"
-      >{{ key }}</option>
+        >{{ key }}</option
+      >
     </select>
     <input
       v-if="otherActive"
@@ -52,14 +48,13 @@
       :id="id"
       :placeholder="placeholder"
       autofocus
-      @input="changeCustom">
+      @input="changeCustom"
+    />
     <div class="value">
-      <i
-        v-if="icon"
-        class="material-icons">{{ icon }}</i>
-      <span
-        v-if="placeholder && !value"
-        class="placeholder">{{ placeholder }}</span>
+      <i v-if="icon" class="material-icons">{{ icon }}</i>
+      <span v-if="placeholder && !value" class="placeholder">{{
+        placeholder
+      }}</span>
       <span class="no-wrap">{{ parsedOptions[value] }}</span>
     </div>
     <i class="material-icons chevron">arrow_drop_down</i>

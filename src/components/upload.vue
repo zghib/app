@@ -1,41 +1,67 @@
 <template>
-  <div class="v-upload" :class="{ uploading: Object.keys(files).length > 0, disabled }">
+  <div
+    class="v-upload"
+    :class="{ uploading: Object.keys(files).length > 0, disabled }"
+  >
     <input
       :disabled="disabled"
       class="select"
       type="file"
       ref="select"
       :multiple="multiple"
-      @change="filesChange($event.target.files)" />
+      @change="filesChange($event.target.files);"
+    />
 
-    <div class="dropzone" :class="{ 'smaller': small }">
-      <div class="icon">
-        <i class="material-icons">cloud_upload</i>
-      </div>
+    <div class="dropzone" :class="{ smaller: small }">
+      <div class="icon"><i class="material-icons">cloud_upload</i></div>
       <div class="info">
-        <p class="name">{{ $tc('drop_files', multiple ? 2 : 1) }}</p>
-        <p class="file-info no-wrap">{{ $t("max_size", { size: $helpers.filesize($store.state.serverInfo.maxUploadSize) }) }}</p>
+        <p class="name">{{ $tc("drop_files", multiple ? 2 : 1) }}</p>
+        <p class="file-info no-wrap">
+          {{
+            $t("max_size", {
+              size: $helpers.filesize($store.state.serverInfo.maxUploadSize)
+            })
+          }}
+        </p>
       </div>
       <div class="buttons">
         <i
           v-tooltip="$t('select_from_device')"
-          @click="$refs.select.click()" class="material-icons select">devices</i>
+          @click="$refs.select.click();"
+          class="material-icons select"
+          >devices</i
+        >
       </div>
     </div>
     <transition-group tag="ol" name="list">
-      <li
-        class="list-item"
-        v-for="(file, id) in files"
-        :key="id">
+      <li class="list-item" v-for="(file, id) in files" :key="id">
         <v-progress-ring
           class="icon"
           :progress="file.progress"
-          :icon="file.error !== null ? 'cloud_off' : (file.progress === 100 ? 'cloud_done' : 'cloud_upload')"
-          :color="file.error !== null ? 'danger' : (file.progress === 100 ? 'success' : 'accent')"
-          :stroke="file.progress === 100 ? 0 : 2" />
+          :icon="
+            file.error !== null
+              ? 'cloud_off'
+              : file.progress === 100
+              ? 'cloud_done'
+              : 'cloud_upload'
+          "
+          :color="
+            file.error !== null
+              ? 'danger'
+              : file.progress === 100
+              ? 'success'
+              : 'accent'
+          "
+          :stroke="file.progress === 100 ? 0 : 2"
+        />
         <div class="info">
           <p class="name no-wrap">{{ file.name }}</p>
-          <p class="file-info no-wrap">{{ file.size }} <span v-if="file.progress && file.progress !== 100" class="progress">{{ file.progress }}%</span></p>
+          <p class="file-info no-wrap">
+            {{ file.size }}
+            <span v-if="file.progress && file.progress !== 100" class="progress"
+              >{{ file.progress }}%</span
+            >
+          </p>
         </div>
       </li>
     </transition-group>
@@ -47,7 +73,8 @@
       ref="drop"
       :multiple="multiple"
       @click.prevent
-      @change="filesChange($event.target.files)" />
+      @change="filesChange($event.target.files);"
+    />
   </div>
 </template>
 

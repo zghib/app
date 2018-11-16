@@ -1,7 +1,5 @@
 <template>
-  <component :is="componentName">
-    <slot />
-  </component>
+  <component :is="componentName"> <slot /> </component>
 </template>
 
 <script>

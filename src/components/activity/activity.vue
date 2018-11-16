@@ -1,63 +1,102 @@
 <template>
   <div class="v-activity">
     <form
-      v-show="(commentPermission !== 'none' && commentPermission !== 'read') && (show !== 'activity')"
+      v-show="
+        commentPermission !== 'none' &&
+          commentPermission !== 'read' &&
+          show !== 'activity'
+      "
       class="new-comment"
-      @submit.prevent="postComment">
-
+      @submit.prevent="postComment"
+    >
       <v-textarea
         v-model="comment"
         class="textarea"
         :rows="5"
         required
-        :placeholder="$t('leave_comment')" />
+        :placeholder="$t('leave_comment')"
+      />
 
-      <button type="submit" :disabled="comment.trim().length === 0">{{ $t('submit') }}</button>
+      <button type="submit" :disabled="comment.trim().length === 0">
+        {{ $t("submit") }}
+      </button>
     </form>
 
     <article
       v-for="(activity, index) in activityWithChanges"
       class="activity-item"
-      :key="activity.id">
+      :key="activity.id"
+    >
       <i
         v-if="activity.action && activity.action.toLowerCase() === 'comment'"
         v-tooltip="$t('comment')"
-        class="material-icons">message</i>
+        class="material-icons"
+        >message</i
+      >
       <span
         v-else
         v-tooltip="$helpers.formatTitle(activity.action)"
         :class="activity.action"
-        class="indicator" />
+        class="indicator"
+      />
 
       <div class="content">
-        <details v-if="activity.action !== 'external' && activity.changes && activity.name">
-          <summary class="title">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
-            v-if="activity.date"
-            v-tooltip="{ content: $d(activity.date, 'long'), delay: {show: 1500, hide: 100}  }"
-            :auto-update="1"
-            :since="activity.date"
-            :locale="$i18n.locale"
-            class="date" />
-          <i
-            class="material-icons chevron"
-            v-tooltip="'Revision Details'">chevron_left</i></summary>
+        <details
+          v-if="
+            activity.action !== 'external' && activity.changes && activity.name
+          "
+        >
+          <summary class="title"
+            >{{ activity.name }}<span v-if="activity.date">•</span
+            ><v-timeago
+              v-if="activity.date"
+              v-tooltip="{
+                content: $d(activity.date, 'long'),
+                delay: { show: 1500, hide: 100 }
+              }"
+              :auto-update="1"
+              :since="activity.date"
+              :locale="$i18n.locale"
+              class="date"
+            />
+            <i class="material-icons chevron" v-tooltip="'Revision Details'"
+              >chevron_left</i
+            ></summary
+          >
           <div v-if="activity.changes">
             <v-diff :changes="activity.changes" />
             <button
               v-if="index !== 0"
               v-tooltip="$t('revert')"
               class="revert"
-              @click="$emit('revert', activity)"><i class="material-icons">restore</i></button>
+              @click="$emit('revert', activity);"
+            >
+              <i class="material-icons">restore</i>
+            </button>
           </div>
         </details>
-        <div class="title" v-else-if="activity.name">{{ activity.name }}<span v-if="activity.date">•</span><v-timeago
-          v-if="activity.date"
-          v-tooltip="{ content: $d(activity.date, 'long'), delay: {show: 1500, hide: 100} }"
-          :auto-update="1"
-          :since="activity.date"
-          :locale="$i18n.locale"
-          class="date" /></div>
-        <p v-if="activity.htmlcomment" v-html="activity.htmlcomment" :class="{ comment: activity.action && activity.action.toLowerCase() === 'comment' }"></p>
+        <div class="title" v-else-if="activity.name">
+          {{ activity.name }}<span v-if="activity.date">•</span
+          ><v-timeago
+            v-if="activity.date"
+            v-tooltip="{
+              content: $d(activity.date, 'long'),
+              delay: { show: 1500, hide: 100 }
+            }"
+            :auto-update="1"
+            :since="activity.date"
+            :locale="$i18n.locale"
+            class="date"
+          />
+        </div>
+        <p
+          v-if="activity.htmlcomment"
+          v-html="activity.htmlcomment"
+          :class="{
+            comment:
+              activity.action && activity.action.toLowerCase() === 'comment'
+          }"
+        ></p>
       </div>
     </article>
   </div>

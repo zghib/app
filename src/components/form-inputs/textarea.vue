@@ -15,8 +15,9 @@
     :value="value"
     :autofocus="autofocus"
     class="v-textarea"
-    @keydown="$emit('keydown', $event.target.value)"
-    @input="$emit('input', $event.target.value)"/>
+    @keydown="$emit('keydown', $event.target.value);"
+    @input="$emit('input', $event.target.value);"
+  />
 </template>
 
 <script>

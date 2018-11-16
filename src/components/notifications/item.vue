@@ -1,12 +1,18 @@
 <template>
-    <div class="notification" :class="item.type">
-        <div class="icon-main" :style="{backgroundColor: ringColor}"><i class="material-icons" :style="{color: iconColor}">{{item.iconMain}}</i></div>
-        <div class="content">
-          <div class="title">{{item.title}}</div>
-          <div class="details" v-html="detailHtml"></div>
-        </div>
-        <div class="icon-right" @click="actionClick"><i class="material-icons">{{item.iconRight}}</i></div>
+  <div class="notification" :class="item.type">
+    <div class="icon-main" :style="{ backgroundColor: ringColor }">
+      <i class="material-icons" :style="{ color: iconColor }">{{
+        item.iconMain
+      }}</i>
     </div>
+    <div class="content">
+      <div class="title">{{ item.title }}</div>
+      <div class="details" v-html="detailHtml"></div>
+    </div>
+    <div class="icon-right" @click="actionClick">
+      <i class="material-icons">{{ item.iconRight }}</i>
+    </div>
+  </div>
 </template>
 <script>
 import { mapMutations } from "vuex";

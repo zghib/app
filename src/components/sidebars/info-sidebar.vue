@@ -3,9 +3,7 @@
     <v-blocker :z-index="9" v-show="active" @click="disableSidebar" />
     <transition name="info">
       <aside class="info-sidebar" :class="{ wide }" v-show="active">
-        <div class="system">
-          <slot name="system" />
-        </div>
+        <div class="system"><slot name="system" /></div>
         <slot />
       </aside>
     </transition>

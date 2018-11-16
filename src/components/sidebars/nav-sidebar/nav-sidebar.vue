@@ -1,14 +1,9 @@
 <template>
   <div class="nav-sidebar">
-    <v-blocker
-      v-show="active"
-      class="blocker"
-      @click="disableNav" />
+    <v-blocker v-show="active" class="blocker" @click="disableNav" />
     <transition name="nav">
       <aside :class="{ active }">
-        <button
-          class="a11y-close"
-          @click="disableNav">Close nav</button>
+        <button class="a11y-close" @click="disableNav">Close nav</button>
 
         <v-logo class="logo" />
 
@@ -18,15 +13,20 @@
             v-if="collections && collections.length > 0"
             :title="$t('collections')"
             :no-border="!bookmarks.length && !extensions"
-            :links="collections.map(({ collection, icon }) => ({
-              path: `/collections/${collection}`,
-              name: $t(`collections-${collection}`),
-              icon
-            }))" />
+            :links="
+              collections.map(({ collection, icon }) => ({
+                path: `/collections/${collection}`,
+                name: $t(`collections-${collection}`),
+                icon
+              }))
+            "
+          />
           <nav-menu
             v-if="extensions"
             :title="$t('extensions')"
-            :links="extensions" :no-border="!bookmarks.length" />
+            :links="extensions"
+            :no-border="!bookmarks.length"
+          />
           <nav-bookmarks :bookmarks="bookmarks" no-border />
         </section>
         <user-menu />

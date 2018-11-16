@@ -4,7 +4,8 @@
     <v-error
       :title="$t('page_not_found')"
       :body="$t('page_not_found_body')"
-      icon="not_interested" />
+      icon="not_interested"
+    />
   </div>
 </template>
 

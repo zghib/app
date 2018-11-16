@@ -7,14 +7,15 @@
           :class="currentBookmark ? 'active' : null"
           :disabled="currentBookmark"
           class="bookmark"
-          @click="bookmarkModal = true">
+          @click="bookmarkModal = true;"
+        >
           <i class="material-icons">
-            {{ currentBookmark ? 'bookmark' : 'bookmark_border' }}
+            {{ currentBookmark ? "bookmark" : "bookmark_border" }}
           </i>
         </button>
-        <div
-          v-if="currentBookmark"
-          class="bookmark-name no-wrap">({{ currentBookmark.title }})</div>
+        <div v-if="currentBookmark" class="bookmark-name no-wrap">
+          ({{ currentBookmark.title }})
+        </div>
       </template>
       <v-search-filter
         v-show="selection && selection.length === 0 && !emptyCollection"
@@ -22,9 +23,10 @@
         :search-query="searchQuery"
         :field-names="fieldNames"
         :placeholder="resultCopy"
-        @filter="updatePreferences('filters', $event)"
-        @search="updatePreferences('search_query', $event)"
-        @clear-filters="clearFilters" />
+        @filter="updatePreferences('filters', $event);"
+        @search="updatePreferences('search_query', $event);"
+        @clear-filters="clearFilters"
+      />
       <template slot="buttons">
         <v-header-button
           v-if="editButton && !activity"
@@ -33,7 +35,8 @@
           color="warning"
           :disabled="!editButtonEnabled"
           :label="$t('batch')"
-          :to="batchURL" />
+          :to="batchURL"
+        />
         <v-header-button
           v-if="deleteButton && !activity"
           key="delete"
@@ -41,14 +44,16 @@
           color="danger"
           :disabled="!deleteButtonEnabled"
           :label="$t('delete')"
-          @click="confirmRemove = true" />
+          @click="confirmRemove = true;"
+        />
         <v-header-button
           v-if="addButton && !activity"
           icon="add"
           key="add"
           color="action"
           :label="$t('new')"
-          :to="`/collections/${collection}/+`" />
+          :to="`/collections/${collection}/+`"
+        />
       </template>
     </v-header>
 
@@ -63,10 +68,11 @@
       :view-options="viewOptions"
       :selection="!activity ? selection : null"
       links
-      @fetch="meta = $event"
+      @fetch="meta = $event;"
       @options="setViewOptions"
-      @select="selection = $event"
-      @query="setViewQuery" />
+      @select="selection = $event;"
+      @query="setViewQuery"
+    />
 
     <v-info-sidebar v-if="preferences">
       <template slot="system">
@@ -75,7 +81,8 @@
           :options="layoutNames"
           :value="viewType"
           name="layout"
-          @input="updatePreferences('view_type', $event)" />
+          @input="updatePreferences('view_type', $event);"
+        />
       </template>
       <v-ext-layout-options
         :key="`${collection}-${viewType}`"
@@ -87,16 +94,22 @@
         :selection="selection"
         link="__link__"
         @query="setViewQuery"
-        @options="setViewOptions" />
+        @options="setViewOptions"
+      />
     </v-info-sidebar>
 
     <portal to="modal" v-if="confirmRemove">
       <v-confirm
-        :message="$tc('batch_delete_confirm', selection.length, { count: selection.length })"
+        :message="
+          $tc('batch_delete_confirm', selection.length, {
+            count: selection.length
+          })
+        "
         color="danger"
         :confirm-text="$t('delete')"
-        @cancel="confirmRemove = false"
-        @confirm="remove" />
+        @cancel="confirmRemove = false;"
+        @confirm="remove"
+      />
     </portal>
 
     <portal to="modal" v-if="bookmarkModal">
@@ -104,7 +117,8 @@
         :message="$t('name_bookmark')"
         v-model="bookmarkTitle"
         @cancel="cancelBookmark"
-        @confirm="saveBookmark" />
+        @confirm="saveBookmark"
+      />
     </portal>
   </div>
 </template>

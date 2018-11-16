@@ -1,27 +1,39 @@
 <template>
   <div class="nav-bookmarks">
-    <h3
-      v-if="bookmarks && bookmarks.length > 0"
-      class="style-4">{{ $t('bookmarks') }}</h3>
+    <h3 v-if="bookmarks && bookmarks.length > 0" class="style-4">
+      {{ $t("bookmarks") }}
+    </h3>
     <nav
       v-if="bookmarks && bookmarks.length > 0"
-      :class="{ 'no-border': noBorder }">
+      :class="{ 'no-border': noBorder }"
+    >
       <ul>
-        <li
-          v-for="bookmark in bookmarks"
-          :key="bookmark.id"
-          class="bookmark">
-          <router-link class="no-wrap" :to="`/bookmarks/${bookmark.collection}/${bookmark.id}`">
-            <i class="material-icons icon">bookmark_outline</i>{{ bookmark.title }}
+        <li v-for="bookmark in bookmarks" :key="bookmark.id" class="bookmark">
+          <router-link
+            class="no-wrap"
+            :to="`/bookmarks/${bookmark.collection}/${bookmark.id}`"
+          >
+            <i class="material-icons icon">bookmark_outline</i
+            >{{ bookmark.title }}
           </router-link>
-          <button v-tooltip="$t('delete_bookmark')" @click="confirmRemove = true; toBeDeletedBookmark = bookmark.id">
+          <button
+            v-tooltip="$t('delete_bookmark')"
+            @click="
+              confirmRemove = true;
+              toBeDeletedBookmark = bookmark.id;
+            "
+          >
             <i class="material-icons">remove_circle_outline</i>
           </button>
         </li>
       </ul>
     </nav>
     <portal to="modal" v-if="confirmRemove">
-      <v-confirm :message="$t('delete_bookmark_body')" @cancel="confirmRemove = false" @confirm="deleteBookmark" />
+      <v-confirm
+        :message="$t('delete_bookmark_body')"
+        @cancel="confirmRemove = false;"
+        @confirm="deleteBookmark"
+      />
     </portal>
   </div>
 </template>
