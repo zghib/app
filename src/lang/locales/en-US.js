@@ -400,6 +400,7 @@ export default {
   settings_collections_fields: "Collections & Fields",
   settings_permissions: "Roles & Permissions",
   settings_extensions: "Extensions",
+  settings_saved: "Settings Saved",
   server_details: "Server Details",
   server_error: "Server Error",
   server_error_copy:

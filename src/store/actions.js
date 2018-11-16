@@ -1,7 +1,6 @@
 import api from "../api";
 import {
   LATENCY,
-  SET_SETTINGS,
   SET_CURRENT_USER,
   UPDATE_CURRENT_USER,
   SET_BOOKMARKS,
@@ -41,13 +40,6 @@ export function latency({ commit }) {
         latency: -1
       });
     });
-}
-
-export function getSettings({ commit }) {
-  return api
-    .getSettings()
-    .then(res => res.data)
-    .then(data => commit(SET_SETTINGS, data));
 }
 
 export function getCurrentUser({ commit }) {

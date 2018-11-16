@@ -60,9 +60,6 @@ export const SET_RELATIONS = "❤️ Set Relations";
 export const ADD_RELATION = "❤️ Add Relation";
 export const UPDATE_RELATION = "❤️ Update Relation";
 
-// Settings
-export const SET_SETTINGS = "⚙️ Set Global Settings";
-
 // Server Info
 export const SET_SERVER_INFO = "🔮 Set Server Info";
 

@@ -143,10 +143,11 @@ export default {
   },
   computed: {
     globalNum() {
-      return Object.keys(this.$store.state.settings).length;
+      return Object.keys(this.$store.state.collections.directus_settings.fields)
+        .length;
     },
     collectionsNum() {
-      return Object.keys(this.$store.state.collections.data).filter(
+      return Object.keys(this.$store.state.collections).filter(
         name => name.startsWith("directus_") === false
       ).length;
     },

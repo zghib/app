@@ -30,7 +30,12 @@
     />
   </div>
 
-  <div v-else-if="!publicRoute">
+  <div
+    v-else-if="!publicRoute"
+    :style="{
+      '--accent': `var(--${color})`
+    }"
+  >
     <div v-if="hydrated" class="directus">
       <v-nav-sidebar />
       <router-view class="page-root" />
@@ -46,6 +51,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import VBlocker from "./components/blocker.vue";
 import VError from "./components/error.vue";
 import { TOGGLE_NAV } from "./store/mutation-types";
@@ -64,6 +70,9 @@ export default {
     VNotification
   },
   computed: {
+    ...mapState({
+      color: state => state.settings.values.color || "light-blue-400"
+    }),
     publicRoute() {
       return this.$route.meta.publicRoute || false;
     },

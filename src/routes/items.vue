@@ -201,7 +201,7 @@ export default {
       return breadcrumb;
     },
     fields() {
-      const fields = this.$store.state.collections.data[this.collection].fields;
+      const fields = this.$store.state.collections[this.collection].fields;
       return Object.values(fields).map(field => ({
         ...field,
         name: this.$helpers.formatTitle(field.field)
@@ -638,8 +638,7 @@ export default {
     this.meta = {};
     this.notFound = false;
 
-    const collectionInfo =
-      this.$store.state.collections.data[collection] || null;
+    const collectionInfo = this.$store.state.collections[collection] || null;
 
     if (
       collection.startsWith("directus_") === false &&

@@ -78,7 +78,7 @@ export default {
       ];
     },
     collections() {
-      return this.$store.state.collections.data;
+      return this.$store.state.collections;
     },
     permissions() {
       return this.$store.state.permissions;

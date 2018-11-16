@@ -232,7 +232,7 @@ export default {
       ];
     },
     collectionInfo() {
-      return this.$store.state.collections.data[this.collection];
+      return this.$store.state.collections[this.collection];
     },
     fieldsWithSort() {
       return this.fields.map((field, index) => ({
@@ -364,7 +364,7 @@ export default {
         });
     },
     setFieldSettings({ fieldInfo, relation }) {
-      const existingField = this.$store.state.collections.data[
+      const existingField = this.$store.state.collections[
         this.collection
       ].fields.hasOwnProperty(fieldInfo.field);
 

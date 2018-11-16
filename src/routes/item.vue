@@ -370,7 +370,7 @@ export default {
       return breadcrumb;
     },
     collectionInfo() {
-      return this.$store.state.collections.data[this.collection];
+      return this.$store.state.collections[this.collection];
     },
     defaultValues() {
       return this.$lodash.mapValues(this.fields, field => field.default_value);
@@ -465,7 +465,7 @@ export default {
       return this.primaryKey === "+";
     },
     fields() {
-      const fields = this.$store.state.collections.data[this.collection].fields;
+      const fields = this.$store.state.collections[this.collection].fields;
 
       return mapValues(fields, field => ({
         ...field,
@@ -861,7 +861,7 @@ export default {
   beforeRouteUpdate(to, from, next) {
     const { collection, primaryKey } = to.params;
     const exists =
-      Object.keys(this.$store.state.collections.data).includes(collection) ||
+      Object.keys(this.$store.state.collections).includes(collection) ||
       collection.startsWith("directus_");
     const isNew = primaryKey === "+";
 

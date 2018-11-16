@@ -7,6 +7,7 @@ import extensions from "./modules/extensions";
 import collections from "./modules/collections";
 import edits from "./modules/edits";
 import permissions from "./modules/permissions";
+import settings from "./modules/settings";
 import users from "./modules/users";
 import relations from "./modules/relations";
 import serverInfo from "./modules/server-info";
@@ -44,7 +45,8 @@ const store = new Vuex.Store({
     users,
     relations,
     serverInfo,
-    notifications
+    notifications,
+    settings
   },
   plugins: [
     createPersistedState({

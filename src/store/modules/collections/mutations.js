@@ -14,7 +14,7 @@ import {
 
 const mutations = {
   [SET_COLLECTIONS](state, data) {
-    state.data = _.mapValues(_.keyBy(data, "collection"), info => {
+    const collections = _.mapValues(_.keyBy(data, "collection"), info => {
       const statusField = _.find(info.fields, { interface: "status" });
       let status_mapping =
         statusField &&
@@ -30,59 +30,63 @@ const mutations = {
         status_mapping
       };
     });
+
+    _.forEach(collections, (value, key) => {
+      state[key] = value;
+    });
   },
 
   [ADD_COLLECTION](state, collection) {
-    state.data = {
-      ...state.data,
+    state = {
+      ...state,
       [collection.collection]: collection
     };
   },
 
   [DELETE_COLLECTION](state, collection) {
-    const copy = { ...state.data };
+    const copy = { ...state };
     delete copy[collection];
 
-    state.data = copy;
+    state = copy;
   },
 
   [UPDATE_COLLECTION](state, { collection, edits }) {
-    state.data = {
-      ...state.data,
+    state = {
+      ...state,
       [collection]: {
-        ...state.data[collection],
+        ...state[collection],
         ...edits
       }
     };
   },
 
   [ADD_FIELD](state, { collection, field }) {
-    Vue.set(state.data[collection], "fields", {
-      ...state.data[collection].fields,
+    Vue.set(state[collection], "fields", {
+      ...state[collection].fields,
       [field.field]: field
     });
   },
 
   [UPDATE_FIELD](state, { collection, field }) {
-    Vue.set(state.data[collection], "fields", {
-      ...state.data[collection].fields,
+    Vue.set(state[collection], "fields", {
+      ...state[collection].fields,
       [field.field]: field
     });
   },
 
   [UPDATE_FIELDS](state, { collection, updates }) {
     updates.forEach(update => {
-      Vue.set(state.data[collection].fields, update.field, {
-        ...state.data[collection].fields[update.field],
+      Vue.set(state[collection].fields, update.field, {
+        ...state[collection].fields[update.field],
         ...update
       });
     });
   },
 
   [REMOVE_FIELD](state, { collection, field }) {
-    const clone = Object.assign({}, state.data[collection].fields);
+    const clone = Object.assign({}, state[collection].fields);
     delete clone[field];
-    Vue.set(state.data[collection], "fields", clone);
+    Vue.set(state[collection], "fields", clone);
   }
 };
 

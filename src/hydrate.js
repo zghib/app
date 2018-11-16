@@ -23,16 +23,6 @@ export default function hydrateStore() {
       // that's why it's being called after the others are done
       .then(() => store.dispatch("getPermissions"))
       .then(() => {
-        // Set accent color
-        const customColor = store.state.settings.color;
-        if (customColor) {
-          document.documentElement.style.setProperty(
-            "--accent",
-            `var(--${customColor}-600)`
-          );
-        }
-      })
-      .then(() => {
         if (availableLanguages.includes(store.state.currentUser.locale)) {
           loadLanguageAsync(store.state.currentUser.locale);
         }

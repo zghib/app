@@ -100,7 +100,7 @@ export default {
   },
   computed: {
     items() {
-      const collections = this.$store.state.collections.data || {};
+      const collections = this.$store.state.collections || {};
 
       return Object.values(collections)
         .filter(

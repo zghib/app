@@ -510,7 +510,7 @@ export default {
   },
   computed: {
     collections() {
-      return Object.assign({}, this.$store.state.collections.data);
+      return Object.assign({}, this.$store.state.collections);
     },
     interfaces() {
       return Object.assign({}, this.$store.state.extensions.interfaces);
@@ -1002,7 +1002,7 @@ export default {
       const fieldName = this.fieldInfo.field;
       const collectionName = this.collectionInfo.collection;
       const storeFieldCopy = this.$lodash.clone(
-        this.$store.state.collections.data[collectionName].fields[fieldName]
+        this.$store.state.collections[collectionName].fields[fieldName]
       );
 
       Object.keys(storeFieldCopy).forEach(key => {
@@ -1043,10 +1043,10 @@ export default {
           this.relationInfo.collection_many = this.collectionInfo.collection;
           this.relationInfo.field_many = this.field;
           this.relationInfo.collection_one = Object.values(
-            this.$store.state.collections.data
+            this.$store.state.collections
           )[0].collection;
           this.relationInfo.field_one = this.$lodash.find(
-            Object.values(this.$store.state.collections.data)[0].fields,
+            Object.values(this.$store.state.collections)[0].fields,
             { primary_key: true }
           ).field;
         }
@@ -1072,11 +1072,11 @@ export default {
           this.relationInfo.field_one = this.field;
 
           this.relationInfo.collection_many = Object.values(
-            this.$store.state.collections.data
+            this.$store.state.collections
           )[0].collection;
 
           this.relationInfo.field_many = this.$lodash.find(
-            Object.values(this.$store.state.collections.data)[0].fields,
+            Object.values(this.$store.state.collections)[0].fields,
             { primary_key: true }
           ).field;
 

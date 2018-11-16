@@ -10,7 +10,7 @@ import {
 } from "../../mutation-types";
 import { i18n, availableLanguages } from "../../../lang/";
 import formatTitle from "@directus/format-title";
-import { forEach, isEmpty } from "lodash";
+import _ from "lodash";
 import api from "../../../api";
 
 export function addField({ commit }, { collection, field }) {
@@ -29,42 +29,67 @@ export function removeField({ commit }, { collection, field }) {
   commit(REMOVE_FIELD, { collection, field });
 }
 
-export function getCollections({ commit }) {
-  return api
-    .getCollections()
-    .then(res => res.data)
-    .then(data => {
-      forEach(data, collection => {
-        if (!isEmpty(collection.translation)) {
-          forEach(collection.translation, (value, locale) => {
-            i18n.mergeLocaleMessage(locale, {
-              [`collections-${collection.collection}`]: value
-            });
-          });
-        } else {
-          forEach(availableLanguages, locale => {
-            i18n.mergeLocaleMessage(locale, {
-              [`collections-${collection.collection}`]: formatTitle(
-                collection.collection
-              )
-            });
-          });
-        }
-      });
+export async function getCollections({ commit }) {
+  let { data: collections } = await api.getCollections();
 
-      commit(SET_COLLECTIONS, data);
-    });
+  /*
+   * We're using vue-i18n to provide the translations for collections /
+   * extensions / fields and all other user generated content as well.
+   * In order to make this work, the collection names need to be scoped.
+   * The loop below will go over all collections to check if they have a
+   * translation object setup. If so, that's being injected into the vue-i18n
+   * messages so the app can render it based on the current language with the
+   * regular $t() function eg $t('collections-about')
+   */
+
+  _.forEach(collections, collection => {
+    if (_.isEmpty(collection.translation)) {
+      // If translations haven't been setup, we're using the title formatter
+      _.forEach(availableLanguages, locale => {
+        i18n.mergeLocaleMessage(locale, {
+          [`collections-${collection.collection}`]: formatTitle(
+            collection.collection
+          )
+        });
+      });
+    } else {
+      _.forEach(collection.translation, (value, locale) => {
+        i18n.mergeLocaleMessage(locale, {
+          [`collections-${collection.collection}`]: value
+        });
+      });
+    }
+  });
+
+  /*
+   * directus_settings uses a different format for the values. Instead of
+   * field = column, here field = row. This is done to prevent having to create
+   * new columns for each new setting that's saved (there's only 1 row).
+   *
+   * /collections returns the actual database fields for directus_settings.
+   * In order for the app to use the correct fields for the settings, we have to
+   * fetch the "fields" separate from a dedicated endpoint and augment the collections
+   * value with this.
+   */
+
+  const { data: settingsFields } = await api.getSettingsFields();
+
+  collections = _.keyBy(collections, "collection");
+
+  collections.directus_settings.fields = _.keyBy(settingsFields, "field");
+
+  commit(SET_COLLECTIONS, collections);
 }
 
 export function addCollection({ commit }, collection) {
-  if (!isEmpty(collection.translation)) {
-    forEach(collection.translation, (value, locale) => {
+  if (!_.isEmpty(collection.translation)) {
+    _.forEach(collection.translation, (value, locale) => {
       i18n.mergeLocaleMessage(locale, {
         [`collections-${collection.collection}`]: value
       });
     });
   } else {
-    forEach(availableLanguages, locale => {
+    _.forEach(availableLanguages, locale => {
       i18n.mergeLocaleMessage(locale, {
         [`collections-${collection.collection}`]: formatTitle(
           collection.collection

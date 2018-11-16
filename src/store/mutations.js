@@ -1,9 +1,7 @@
-import { mapValues, keyBy } from "lodash";
 import {
   STORE_HYDRATED,
   HYDRATING_FAILED,
   LATENCY,
-  SET_SETTINGS,
   SET_CURRENT_USER,
   UPDATE_CURRENT_USER,
   SET_BOOKMARKS,
@@ -34,10 +32,6 @@ const mutations = {
     }
 
     state.latency = latencies;
-  },
-
-  [SET_SETTINGS](state, data) {
-    state.settings = mapValues(keyBy(data, "key"), obj => obj.value);
   },
 
   [SET_CURRENT_USER](state, data) {
