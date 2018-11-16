@@ -3,11 +3,7 @@
     <h3 v-if="title" class="style-4">{{ title }}</h3>
     <nav :class="{ 'no-border': noBorder }">
       <ul>
-        <li
-          v-for="{ path, name, icon, color } in links"
-          :key="path"
-          class="no-wrap"
-        >
+        <li v-for="{ path, name, icon, color } in links" :key="path">
           <component
             :is="path.startsWith('http') ? 'a' : 'router-link'"
             :to="path"
