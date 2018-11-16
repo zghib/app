@@ -36,7 +36,13 @@
         class="cell"
       >
         <button
-          v-if="sortable"
+          v-if="
+            sortable &&
+              !(
+                columns[index].fieldInfo.type === 'o2m' ||
+                columns[index].fieldInfo.type === 'm2o'
+              )
+          "
           :class="{ active: sortVal.field === field }"
           class="sort style-4 no-wrap"
           @click="updateSort(field);"
