@@ -263,9 +263,14 @@ export default {
     select(primaryKeys) {
       this.$emit(
         "select",
-        primaryKeys.map(key =>
-          this.$lodash.find(this.items.data, { [this.primaryKeyField]: key })
-        )
+        primaryKeys.map(key => {
+          return (
+            this.$lodash.find(this.items.data, {
+              [this.primaryKeyField]: key
+            }) ||
+            this.$lodash.find(this.selection, { [this.primaryKeyField]: key })
+          );
+        })
       );
     },
     saveItems(data) {

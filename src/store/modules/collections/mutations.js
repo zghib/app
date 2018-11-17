@@ -37,10 +37,14 @@ const mutations = {
   },
 
   [ADD_COLLECTION](state, collection) {
-    state = {
+    const newState = {
       ...state,
       [collection.collection]: collection
     };
+
+    _.forEach(newState, (value, key) => {
+      state[key] = value;
+    });
   },
 
   [DELETE_COLLECTION](state, collection) {
