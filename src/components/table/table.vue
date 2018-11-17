@@ -39,8 +39,9 @@
           v-if="
             sortable &&
               !(
-                columns[index].fieldInfo.type === 'o2m' ||
-                columns[index].fieldInfo.type === 'm2o'
+                columns[index].fieldInfo.type.toLowerCase() === 'o2m' ||
+                columns[index].fieldInfo.type.toLowerCase() === 'm2o' ||
+                columns[index].fieldInfo.type.toLowerCase() === 'translation'
               )
           "
           :class="{ active: sortVal.field === field }"

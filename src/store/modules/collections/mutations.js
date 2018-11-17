@@ -45,9 +45,8 @@ const mutations = {
   },
 
   [UPDATE_COLLECTION](state, { collection, edits }) {
-    Vue.set(state, collection, {
-      ...state[collection],
-      ...edits
+    _.forEach(edits, (value, key) => {
+      Vue.set(state[collection], key, value);
     });
   },
 
