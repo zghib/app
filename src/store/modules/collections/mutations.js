@@ -37,31 +37,18 @@ const mutations = {
   },
 
   [ADD_COLLECTION](state, collection) {
-    const newState = {
-      ...state,
-      [collection.collection]: collection
-    };
-
-    _.forEach(newState, (value, key) => {
-      state[key] = value;
-    });
+    Vue.set(state, collection.collection, collection);
   },
 
   [DELETE_COLLECTION](state, collection) {
-    const copy = { ...state };
-    delete copy[collection];
-
-    state = copy;
+    Vue.delete(state, collection);
   },
 
   [UPDATE_COLLECTION](state, { collection, edits }) {
-    state = {
-      ...state,
-      [collection]: {
-        ...state[collection],
-        ...edits
-      }
-    };
+    Vue.set(state, collection, {
+      ...state[collection],
+      ...edits
+    });
   },
 
   [ADD_FIELD](state, { collection, field }) {
