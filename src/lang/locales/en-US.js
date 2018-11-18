@@ -267,6 +267,7 @@ export default {
   learn_more: "Learn More",
   leave_comment: "Leave a comment...",
   length: "Length",
+  length_disabled_placeholder: "Length is determined by the datatype",
   less_than_equal: "Less than or equal to",
   less_than: "Less than",
   limited: "Limited",
