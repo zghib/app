@@ -45,7 +45,7 @@ export async function getCollections({ commit }) {
   _.forEach(collections, collection => {
     if (_.isEmpty(collection.translation)) {
       // If translations haven't been setup, we're using the title formatter
-      _.forEach(availableLanguages, locale => {
+      Object.keys(availableLanguages).forEach(locale => {
         i18n.mergeLocaleMessage(locale, {
           [`collections-${collection.collection}`]: formatTitle(
             collection.collection
@@ -89,7 +89,7 @@ export function addCollection({ commit }, collection) {
       });
     });
   } else {
-    _.forEach(availableLanguages, locale => {
+    Object.keys(availableLanguages).forEach(locale => {
       i18n.mergeLocaleMessage(locale, {
         [`collections-${collection.collection}`]: formatTitle(
           collection.collection

@@ -23,7 +23,11 @@ export default function hydrateStore() {
       // that's why it's being called after the others are done
       .then(() => store.dispatch("getPermissions"))
       .then(() => {
-        if (availableLanguages.includes(store.state.currentUser.locale)) {
+        if (
+          Object.keys(availableLanguages).includes(
+            store.state.currentUser.locale
+          )
+        ) {
           loadLanguageAsync(store.state.currentUser.locale);
         }
       })
