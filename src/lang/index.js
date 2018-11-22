@@ -55,7 +55,7 @@ export function loadLanguageAsync(lang) {
 
 // Array of available languages in the system
 export const availableLanguages = {
-  "cd-CZ": "Czech (Czech Republic)",
+  "cs-CZ": "Czech (Czech Republic)",
   "nl-NL": "Dutch (Netherlands)",
   "en-US": "English (United States)",
   "fr-FR": "French (France)",

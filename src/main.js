@@ -18,7 +18,7 @@ import "./helpers/handle-drag";
 // import "./registerServiceWorker";
 import App from "./app.vue";
 import router from "./router";
-import { i18n } from "./lang/";
+import { i18n, loadLanguageAsync } from "./lang/";
 import store from "./store/";
 import api from "./api";
 import helpers from "./helpers";
@@ -60,3 +60,8 @@ new Vue({
   api,
   helpers
 }).$mount("#app");
+
+store.watch(
+  state => state.currentUser.locale,
+  locale => loadLanguageAsync(locale)
+);

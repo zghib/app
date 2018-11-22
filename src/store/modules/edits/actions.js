@@ -4,7 +4,8 @@ import {
   START_EDITING,
   STAGE_VALUE,
   UNSTAGE_VALUE,
-  ITEM_CREATED
+  ITEM_CREATED,
+  UPDATE_CURRENT_USER
 } from "../../mutation-types";
 
 export function discardChanges({ commit }) {
@@ -32,7 +33,7 @@ export function unstageValue({ commit }, field) {
   return commit(UNSTAGE_VALUE, { field });
 }
 
-export function save({ commit, state }, overrides) {
+export function save({ commit, state, rootState }, overrides) {
   function commitCreated(res) {
     commit(ITEM_CREATED);
     return res;
@@ -42,6 +43,13 @@ export function save({ commit, state }, overrides) {
     ...state,
     ...overrides
   };
+
+  if (
+    info.collection === "directus_users" &&
+    info.primaryKey == rootState.currentUser.id
+  ) {
+    commit(UPDATE_CURRENT_USER, info.values);
+  }
 
   if (info.primaryKey === "+") {
     return api.createItem(info.collection, info.values).then(commitCreated);
