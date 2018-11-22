@@ -55,12 +55,12 @@ export function loadLanguageAsync(lang) {
 
 // Array of available languages in the system
 export const availableLanguages = {
-  "cd-CZ": "Czechian",
-  "nl-NL": "Dutch",
-  "en-US": "English (US)",
-  "fr-FR": "French",
-  "de-DE": "German",
-  "it-IT": "Italian"
+  "cd-CZ": "Czech (Czech Republic)",
+  "nl-NL": "Dutch (Netherlands)",
+  "en-US": "English (United States)",
+  "fr-FR": "French (France)",
+  "de-DE": "German (Germany)",
+  "it-IT": "Italian (Italy)"
 };
 
 i18n.availableLanguages = availableLanguages;
