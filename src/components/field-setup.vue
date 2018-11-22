@@ -134,7 +134,9 @@
                 @input="length = $event;"
                 :value="lengthDisabled ? null : length"
                 :disabled="lengthDisabled"
-                :placeholder="lengthDisabled ? $t('length_disabled_placeholder') : ''"
+                :placeholder="
+                  lengthDisabled ? $t('length_disabled_placeholder') : ''
+                "
             /></label>
             <label
               >{{ $t("validation") }}
