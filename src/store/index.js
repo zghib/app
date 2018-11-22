@@ -51,7 +51,8 @@ const store = new Vuex.Store({
   plugins: [
     createPersistedState({
       key: "directus",
-      paths: persistedPaths
+      paths: persistedPaths,
+      storage: window.sessionStorage
     })
   ]
 });
