@@ -29,10 +29,10 @@
   },
   "dependencies": {
     "@directus/format-title": "^2.0.0",
-    "@directus/sdk-js": "^3.9.0",
+    "@directus/sdk-js": "^3.10.0",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
-    "body-scroll-lock": "^2.5.7",
+    "body-scroll-lock": "^2.6.0",
     "convert-range": "^1.1.0",
     "date-fns": "^1.29.0",
     "filesize": "^3.6.1",

@@ -9,6 +9,7 @@
       disabled
     }"
     class="v-card"
+    @click="$emit('click', $event);"
   >
     <component :is="wrapperTag" :to="to" :href="href" target="__blank">
       <div
@@ -221,7 +222,7 @@ export default {
     user-select: none;
   }
 
-  &:not(.disabled).link:hover,
+  &:not(.disabled):hover,
   &:not(.disabled).selected {
     box-shadow: var(--box-shadow-accent);
     transform: translateY(-1px);

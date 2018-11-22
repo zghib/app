@@ -164,6 +164,8 @@ export default {
   db_name: "Database Name",
   db_type: "Database Type",
   db_column_name: "Database column name...",
+  db_updated: "Database successfully updated",
+  db_update_failed: "The database couldn't be updated.",
   default: "Default",
   delete: "Delete",
   delete_are_you_sure:
@@ -398,6 +400,9 @@ export default {
   settings: "Settings",
   settings_project: "Project Settings",
   settings_global: "Global Settings",
+  settings_update_database: "Update Database",
+  settings_update_database_confirm:
+    "This will update the system fields in your database to the latest version of Directus. Please make sure to make a backup before you run this operation.",
   settings_collections_fields: "Collections & Fields",
   settings_permissions: "Roles & Permissions",
   settings_extensions: "Extensions",

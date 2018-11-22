@@ -31,6 +31,13 @@
             to="/settings/roles"
             icon="group"
           />
+
+          <v-card
+            :title="$t('settings_update_database')"
+            element="li"
+            icon="update"
+            @click="updateDBActive = true;"
+          />
         </ul>
       </nav>
     </v-details>
@@ -118,6 +125,16 @@
         </ul>
       </nav>
     </v-details>
+
+    <portal to="modal" v-if="updateDBActive">
+      <v-confirm
+        :message="$t('settings_update_database_confirm')"
+        :confirm-text="$t('update')"
+        :loading="updateDBInProgress"
+        @confirm="updateDB"
+        @cancel="updateDBActive = false;"
+      />
+    </portal>
   </div>
 </template>
 
@@ -138,7 +155,9 @@ export default {
   data() {
     return {
       roleCount: "Loading...",
-      activityCount: "Loading..."
+      activityCount: "Loading...",
+      updateDBActive: false,
+      updateDBInProgress: false
     };
   },
   computed: {
@@ -207,6 +226,28 @@ export default {
         })
         .catch(() => {
           this.activityCount = "--";
+        });
+    },
+    updateDB() {
+      this.updateDBInProgress = true;
+
+      this.$api
+        .updateDatabase()
+        .then(() => {
+          this.updateDBInProgress = false;
+          this.updateDBActive = false;
+          this.$notify({
+            title: this.$t("db_updated"),
+            color: "green",
+            iconMain: "check"
+          });
+        })
+        .catch(error => {
+          this.updateDBInProgress = false;
+          this.$events.emit("error", {
+            notify: this.$t("db_update_failed"),
+            error
+          });
         });
     }
   }
