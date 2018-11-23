@@ -215,6 +215,7 @@ export default {
   overflow: hidden;
   transition: box-shadow var(--fast) var(--transition);
   background-color: var(--white);
+  cursor: pointer;
 
   a {
     text-decoration: none;
