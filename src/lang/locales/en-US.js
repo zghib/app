@@ -401,6 +401,7 @@ export default {
   settings_project: "Project Settings",
   settings_global: "Global Settings",
   settings_update_database: "Update Database",
+  settings_update_database_subtext: "Run Script",
   settings_update_database_confirm:
     "This will update the system fields in your database to the latest version of Directus. Please make sure to make a backup before you run this operation.",
   settings_collections_fields: "Collections & Fields",

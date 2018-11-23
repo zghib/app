@@ -34,6 +34,7 @@
 
           <v-card
             :title="$t('settings_update_database')"
+            :subtitle="$t('settings_update_database_subtext')"
             element="li"
             icon="update"
             @click="updateDBActive = true;"
