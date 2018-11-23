@@ -72,6 +72,9 @@ a {
   text-decoration: none;
   display: block;
   position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &::before {
     content: "";
