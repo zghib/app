@@ -12,15 +12,6 @@
     </p>
   </div>
 
-  <div v-else-if="configError" class="error">
-    <v-error
-      icon="settings"
-      :title="$t('config_error')"
-      :body="$t('config_error_copy')"
-      color="warning"
-    />
-  </div>
-
   <div v-else-if="extensionError" class="error">
     <v-error
       icon="extension"
@@ -81,9 +72,6 @@ export default {
     },
     hydratingError() {
       return this.$store.state.hydratingError;
-    },
-    configError() {
-      return window.__DirectusConfig__ == null;
     },
     extensionError() {
       if (!this.hydrated) return null;

@@ -25,6 +25,17 @@ import helpers from "./helpers";
 import notify from "./notifications";
 import events from "./events/";
 
+// Create a default config when the config file is missing. This allows the app
+// to work even when the configuration hasn't been set
+const defaultConfig = {
+  api: {},
+  allowOtherAPI: true,
+  routerMode: "hash",
+  routerBaseUrl: "/"
+};
+
+window.__DirectusConfig__ = window.__DirectusConfig__ || defaultConfig;
+
 Vue.config.productionTip = false;
 
 Object.defineProperties(Vue.prototype, {
