@@ -330,7 +330,7 @@ export default {
           });
       } else {
         const credentials = {
-          url: this.selectedUrl,
+          url: this.url,
           email: this.email,
           password: this.password
         };
