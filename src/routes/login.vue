@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import sdk from "@directus/sdk-js/dist/remote.cjs.js";
+import sdk from "@directus/sdk-js";
 import { version } from "../../package.json";
 
 import VInstall from "../components/install.vue";
