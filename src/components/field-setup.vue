@@ -832,6 +832,12 @@ export default {
 
       if (type) {
         this.datatype = mapping[type][this.databaseVendor].default;
+        // NOTE: this is to force string types that are longer than 255 characters into a TEXT mysql type. This should be refactored and cleaned up when this field-setup component is getting refactored.
+        // Also, this is hardcoded for MySQL TEXT.
+        // Fix for https://github.com/directus/app/issues/1149
+        if (this.length > 255 && this.type.toLowerCase() === "string") {
+          this.datatype = "TEXT";
+        }
       }
     },
     datatype() {
