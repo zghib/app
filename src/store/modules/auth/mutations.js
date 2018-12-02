@@ -17,7 +17,7 @@ const mutations = {
     state.loading = false;
     state.error = null;
     state.token = info.token;
-    state.env = info.env;
+    state.project = info.project;
     state.url = info.url;
     state.projectName = info.projectName;
   },
@@ -25,7 +25,7 @@ const mutations = {
   [LOGIN_FAILED](state, error) {
     state.token = null;
     state.url = null;
-    state.env = null;
+    state.project = null;
     state.projectName = null;
     state.loading = false;
     state.error = error;
@@ -39,7 +39,7 @@ const mutations = {
     state.loading = false;
     state.error = null;
     state.token = info.token;
-    state.env = info.env;
+    state.project = info.project;
     state.url = info.url;
   },
 
@@ -47,9 +47,9 @@ const mutations = {
     state.error = null;
   },
 
-  [CHANGE_API](state, { url, env }) {
+  [CHANGE_API](state, { url, project }) {
     state.url = url;
-    state.env = env;
+    state.project = project;
   }
 };
 

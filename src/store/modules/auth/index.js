@@ -5,7 +5,7 @@ import * as getters from "./getters";
 const state = {
   token: null,
   url: null,
-  env: "_",
+  project: "_",
   error: null,
   loading: false,
   projectName: null

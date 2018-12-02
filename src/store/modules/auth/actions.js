@@ -52,14 +52,14 @@ export function login({ commit }, credentials) {
   }
 
   const parts = formattedUrl.split("/");
-  const env = parts.pop() || parts.pop();
+  const project = parts.pop() || parts.pop();
   const newUrl = parts.join("/");
 
   return api
     .login({
       ...credentials,
       url: newUrl,
-      env,
+      project,
       persist: true
     })
     .then(info => {
@@ -67,7 +67,7 @@ export function login({ commit }, credentials) {
         ...info,
         projectName:
           urls[url] ||
-          urls[info.url + "/" + info.env + "/"] ||
+          urls[info.url + "/" + info.project + "/"] ||
           formatTitle(extractHostname(info.url))
       });
     })
@@ -82,7 +82,7 @@ export function loginSSO({ commit }, request_token) {
 
   const { url, project } = jwtPayload(request_token);
   api.url = url;
-  api.env = project;
+  api.project = project;
 
   return api
     .request(
@@ -98,7 +98,7 @@ export function loginSSO({ commit }, request_token) {
       api.token = token;
 
       commit(LOGIN_SUCCESS, {
-        env: project,
+        project: project,
         url,
         token,
         projectName: config.api[url] || extractHostname(url)
@@ -106,14 +106,14 @@ export function loginSSO({ commit }, request_token) {
     });
 }
 
-export function refresh({ commit }, { token, url, env }) {
-  commit(REFRESH_TOKEN, { token, url, env });
+export function refresh({ commit }, { token, url, project }) {
+  commit(REFRESH_TOKEN, { token, url, project });
 }
 
 export function logout({ commit }, error) {
   return new Promise(resolve => {
     stopPolling();
-    api.logout();
+    api.reset();
     resetState();
     i18n.locale = "en-US";
     router.push("/login");
@@ -125,10 +125,10 @@ export function logout({ commit }, error) {
 export function changeAPI({ commit, dispatch }, url) {
   dispatch("logout").then(() => {
     const parts = url.split("/");
-    const env = parts.pop() || parts.pop();
+    const project = parts.pop() || parts.pop();
     const newUrl = parts.join("/");
 
-    commit(CHANGE_API, { url: newUrl, env });
+    commit(CHANGE_API, { url: newUrl, project });
   });
 }
 

@@ -14,7 +14,7 @@ if (payload && storedUrl) {
   if (timeDiff > 10000) {
     client.url = storedUrl;
     client.token = storedToken;
-    client.env = project;
+    client.project = project;
   } else {
     store.dispatch("clearAuth");
   }
