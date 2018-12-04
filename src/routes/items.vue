@@ -392,7 +392,7 @@ export default {
         }
 
         if (permission.delete === "role") {
-          const userRoles = this.$store.state.users[userID];
+          const userRoles = this.$store.state.users[userID].roles;
           const currentUserRoles = this.$store.state.currentUser.roles;
           let contains = false;
 
@@ -432,7 +432,7 @@ export default {
         }
 
         if (permission.update === "role") {
-          const userRoles = this.$store.state.users[userID];
+          const userRoles = this.$store.state.users[userID].roles;
           const currentUserRoles = this.$store.state.currentUser.roles;
           let contains = false;
 
