@@ -60,6 +60,7 @@ export const availableLanguages = {
   "en-US": "English (United States)",
   "fr-FR": "French (France)",
   "de-DE": "German (Germany)",
+  "pt-BR": "Portuguese (Brazil)",
   "it-IT": "Italian (Italy)"
 };
 
