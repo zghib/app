@@ -206,7 +206,7 @@ function getFieldsQuery(collection) {
         (fieldInfo.type && fieldInfo.type.toLowerCase()) === "translation" ||
         (fieldInfo.type && fieldInfo.type.toLowerCase()) === "file"
       ) {
-        return field.endsWith(".*") ? field : field + ".*";
+        return field.endsWith(".*.*") ? field : field + ".*.*";
       }
 
       return field;
