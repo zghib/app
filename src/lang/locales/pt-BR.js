@@ -3,7 +3,6 @@
 // Anna Erbetta  anna@digitalabs.com.br
 // Lucas Ponte  lucas@digitalabs.com.br
 
-
 export const dateTimeFormats = {
   short: {
     year: "numeric",
@@ -57,7 +56,8 @@ export default {
   choose_project: "Escolher Projeto",
   choose_interface: "Escolha uma interface para gerenciar esses dados.",
   clear: "Limpar",
-  click_to_toggle_all_none: "Clique para selecionar/deselecionar a coluna inteira",
+  click_to_toggle_all_none:
+    "Clique para selecionar/deselecionar a coluna inteira",
   connection: "Conexão",
   collection: "Coleção",
   collections_and_fields: "Coleção & Campos",
@@ -123,7 +123,7 @@ export default {
     user_created:
       "Campo do sistema para rastrear qual usuário criou um determinado item, usado em revisões",
     user_updated:
-      "Campo do sistema para rastrear qual usuário atualizou um determinado item, usado em revisões",
+      "Campo do sistema para rastrear qual usuário atualizou um determinado item, usado em revisões"
   },
   datatypes: {
     mysql: {
@@ -133,8 +133,10 @@ export default {
         "Uma string de tamanho variável não binária. Comprimento pode ser entre 0 e 65.535 caracteres (MySQL 5.0.3+).",
       TINYTEXT: "Uma string com no máximo 255 caracteres de comprimento.",
       TEXT: "Uma string com no máximo 65.535 caracteres de comprimento.",
-      MEDIUMTEXT: "Uma string com no máximo 16.777.215 caracteres de comprimento.",
-      LONGTEXT: "Uma stringo com no máximo 4.294.967.295 caracteres de comprimento.",
+      MEDIUMTEXT:
+        "Uma string com no máximo 16.777.215 caracteres de comprimento.",
+      LONGTEXT:
+        "Uma stringo com no máximo 4.294.967.295 caracteres de comprimento.",
 
       BOOLEAN: "Verdadeiro ou falso. É salvo como 1 ou 0 respectivamente.",
       TINYINT:
@@ -190,7 +192,8 @@ export default {
   dialog_beginning: "Começo da janela de diálogo.",
   discard_changes: "Descartar Mudanças",
   display_name: "Mostrar Nome",
-  drop_files: "Não foi possível jogar os arquivos | Jogue o arquivo aqui... | Jogue os arquivos aqui...",
+  drop_files:
+    "Não foi possível jogar os arquivos | Jogue o arquivo aqui... | Jogue os arquivos aqui...",
   dont_show: "Não mostrar",
   editing: "Editando Item: {collection}",
   editing_item: "Editando Item",
@@ -286,7 +289,8 @@ export default {
   m2o: "Muitos-para-um (N para 1)",
   o2m: "Um-para-muitos (1 para N)",
   name: "Nome",
-  name_field: "Vamos nomear esse campo {field}, e adicionar uma anotação para ajudar os usuários.",
+  name_field:
+    "Vamos nomear esse campo {field}, e adicionar uma anotação para ajudar os usuários.",
   navigate_changes:
     "Tem certeza que deseja sair desta página? As mudanças feitas serão perdidas.",
   new: "Novo",
@@ -304,13 +308,14 @@ export default {
   note_single:
     "[Learn More](https://docs.directus.io/app/admin/collections.html#single)",
   no_results: "Sem resultados",
-  no_results_body: "Os filtros atuais não correspondem à nenhum item de coleção",
+  no_results_body:
+    "Os filtros atuais não correspondem à nenhum item de coleção",
   no_collections: "Nenhuma coleção registrada",
   no_collections_body: "Parece que não há coleções registradas ainda",
   no_fields: "Nenhum campo registrado",
   no_fields_body:
     "Parece que esta coleção ainda não possui campos registrados ainda",
-      no_files: "Nenhum arquivo",
+  no_files: "Nenhum arquivo",
   no_files_body: "Parece que não foi feito upload de nenhum arquivo ainda",
   numeric: "Numérico",
   page_not_found: "Página não encontrada",
@@ -385,7 +390,8 @@ export default {
   reset_preferences: "Reverter todas as preferências de listagem",
   reset_password: "Recuperar senha",
   revert: "Reverter",
-  revert_copy: "Tem certeza que deseja reverter esse item para como ele estava em {date}?",
+  revert_copy:
+    "Tem certeza que deseja reverter esse item para como ele estava em {date}?",
   roles: "Funções de usuário",
   role_settings: "Configuração de funções",
   save: "Salvar",
