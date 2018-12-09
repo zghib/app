@@ -172,6 +172,10 @@
               <v-toggle v-model="primary_key" :disabled="primaryKeyDisabled" />
               {{ $t("primary_key") }}
             </label>
+            <label class="toggle" v-if="isNumeric">
+              <v-toggle v-model="signed" />
+              {{ $t("signed") }}
+            </label>
           </div>
         </details>
       </form>
@@ -473,6 +477,7 @@ export default {
       hidden_detail: false,
       hidden_browse: false,
       primary_key: false,
+      signed: true,
 
       length: null,
       default_value: null,
@@ -766,6 +771,9 @@ export default {
 
       if (index === -1) return 0;
       return index;
+    },
+    isNumeric() {
+      return this.type === "integer";
     }
   },
   created() {
@@ -965,13 +973,16 @@ export default {
         hidden_detail: this.hidden_detail,
         hidden_browse: this.hidden_browse,
         primary_key: this.primary_key,
-        length: this.length,
         validation: this.validation
         // translation: this.translation, < Haven't implemented that yet
       };
 
-      if (this.lengthDisabled) {
-        delete fieldInfo.length;
+      if (this.lengthDisabled === false) {
+        fieldInfo.length = this.length;
+      }
+
+      if (this.isNumeric === true) {
+        fieldInfo.signed = this.signed;
       }
 
       this.saving = true;
