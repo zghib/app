@@ -52,7 +52,7 @@
           {{ $t("comment") }}
         </button>
       </div>
-      <div class="cell">{{ $t("explain") }}</div>
+      <!-- <div class="cell">{{ $t("explain") }}</div> -->
       <div class="cell">{{ $t("fields") }}</div>
       <div class="cell">{{ $t("statuses") }}</div>
     </div>

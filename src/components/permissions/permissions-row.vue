@@ -54,13 +54,15 @@
           @input="emitValue('comment', $event);"
         />
       </div>
-      <div class="cell">
-        <v-permissions-toggle
-          :value="permission.explain"
-          :options="['none', 'on_create', 'on_update', 'always']"
-          @input="emitValue('explain', $event);"
-        />
-      </div>
+      <!--
+        <div class="cell">
+          <v-permissions-toggle
+            :value="permission.explain"
+            :options="['none', 'on_create', 'on_update', 'always']"
+            @input="emitValue('explain', $event);"
+          />
+        </div>
+      -->
       <div class="cell">
         <button
           :class="{ limited: fieldState }"
@@ -121,13 +123,15 @@
           @input="setAllStatuses('comment', $event);"
         />
       </div>
-      <div class="cell">
-        <v-permissions-toggle
-          :value="getCombinedVal('explain')"
-          :options="['none', 'create', 'update', 'always']"
-          @input="setAllStatuses('explain', $event);"
-        />
-      </div>
+      <!--
+        <div class="cell">
+          <v-permissions-toggle
+            :value="getCombinedVal('explain')"
+            :options="['none', 'create', 'update', 'always']"
+            @input="setAllStatuses('explain', $event);"
+          />
+        </div>
+      -->
       <div class="cell">
         <button :class="{ mixed: fieldState }" @click="active = !active;">
           {{ fieldState ? $t("mixed") : $t("all") }}
@@ -226,13 +230,15 @@
             @input="emitValue('comment', $event, status);"
           />
         </div>
-        <div class="cell">
-          <v-permissions-toggle
-            :value="permission[status].explain"
-            :options="['none', 'create', 'update', 'always']"
-            @input="emitValue('explain', $event, status);"
-          />
-        </div>
+        <!--
+          <div class="cell">
+            <v-permissions-toggle
+              :value="permission[status].explain"
+              :options="['none', 'create', 'update', 'always']"
+              @input="emitValue('explain', $event, status);"
+            />
+          </div>
+        -->
         <div class="cell">
           <button
             :class="{ limited: getFieldSettingsPerStatus(status) }"
