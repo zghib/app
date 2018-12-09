@@ -7,9 +7,7 @@
       <i v-else-if="value === 'full'" class="material-icons">check</i>
       <i v-else-if="value === 'read'" class="material-icons">remove_red_eye</i>
       <i v-else-if="value === 'create'" class="material-icons">add</i>
-      <i v-else-if="value === 'on_create'" class="material-icons">add</i>
       <i v-else-if="value === 'update'" class="material-icons">edit</i>
-      <i v-else-if="value === 'on_update'" class="material-icons">edit</i>
       <i v-else-if="value === 'always'" class="material-icons">announcement</i>
       <i v-else-if="value === 'indeterminate'" class="material-icons">remove</i>
     </button>
@@ -30,11 +28,7 @@
               >remove_red_eye</i
             >
             <i v-else-if="option === 'create'" class="material-icons">add</i>
-            <i v-else-if="option === 'on_create'" class="material-icons">add</i>
             <i v-else-if="option === 'update'" class="material-icons">edit</i>
-            <i v-else-if="option === 'on_update'" class="material-icons"
-              >edit</i
-            >
             <i v-else-if="option === 'always'" class="material-icons"
               >announcement</i
             >
@@ -58,14 +52,8 @@
           <template v-if="option === 'create'">{{
             $t("permission_states.create")
           }}</template>
-          <template v-if="option === 'on_create'">{{
-            $t("permission_states.on_create")
-          }}</template>
           <template v-if="option === 'update'">{{
             $t("permission_states.update")
-          }}</template>
-          <template v-if="option === 'on_update'">{{
-            $t("permission_states.on_update")
           }}</template>
           <template v-if="option === 'always'">{{
             $t("permission_states.always")
@@ -143,16 +131,6 @@ i {
 }
 
 .update {
-  background-color: var(--success);
-  border-color: var(--success);
-}
-
-.on_create {
-  background-color: var(--yellow-700);
-  border-color: var(--yellow-700);
-}
-
-.on_update {
   background-color: var(--success);
   border-color: var(--success);
 }

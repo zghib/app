@@ -58,7 +58,7 @@
         <div class="cell">
           <v-permissions-toggle
             :value="permission.explain"
-            :options="['none', 'on_create', 'on_update', 'always']"
+            :options="['none', 'create', 'update', 'always']"
             @input="emitValue('explain', $event);"
           />
         </div>
@@ -145,7 +145,7 @@
       <div class="sub row">
         <div class="cell">
           <span class="system"
-            >{{ $t("permission_states.on_create")
+            >{{ $t("permission_states.create")
             }}<i class="material-icons">star</i></span
           >
         </div>
