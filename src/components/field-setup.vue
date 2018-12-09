@@ -689,8 +689,13 @@ export default {
     },
     relation() {
       if (!this.selectedInterfaceInfo) return null;
-      if (!this.selectedInterfaceInfo.relation == null) return null;
-      return this.selectedInterfaceInfo.relation;
+      if (!this.selectedInterfaceInfo.relation) return null;
+
+      if (typeof this.selectedInterfaceInfo.relation === "string") {
+        return this.selectedInterfaceInfo.relation;
+      }
+
+      return this.selectedInterfaceInfo.relation.type;
     },
     buttons() {
       let disabled = false;
@@ -1151,7 +1156,7 @@ export default {
 
           this.relationInfoM2M[0].junction_field = Object.values(
             Object.values(this.collections)[0].fields
-          )[1].field;
+          )[0].field;
 
           this.relationInfoM2M[1].collection_many = Object.keys(
             this.collections
@@ -1159,7 +1164,7 @@ export default {
 
           this.relationInfoM2M[1].field_many = Object.values(
             Object.values(this.collections)[0].fields
-          )[1].field;
+          )[0].field;
 
           this.relationInfoM2M[1].collection_one = Object.keys(
             this.collections
@@ -1168,6 +1173,19 @@ export default {
           this.relationInfoM2M[1].junction_field = Object.values(
             Object.values(this.collections)[0].fields
           )[0].field;
+
+          // Recommended relationships
+          // Interfaces can recommend a related collection. For example, the files
+          // interface will recommend the collection_many to be directus_files
+          // in order to make it easier for the user to setup the interface
+          if (
+            this.selectedInterfaceInfo.relation &&
+            typeof this.selectedInterfaceInfo.relation === "object"
+          ) {
+            if (this.selectedInterfaceInfo.relation.relatedCollection) {
+              this.relationInfoM2M[1].collection_one = this.selectedInterfaceInfo.relation.relatedCollection;
+            }
+          }
         }
       }
     },

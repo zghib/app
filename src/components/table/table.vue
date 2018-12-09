@@ -138,6 +138,7 @@
                 :datatype="fieldInfo.datatype"
                 :options="fieldInfo.options"
                 :value="row[field]"
+                :relation="fieldInfo.relation"
               />
               <template v-else>{{ row[field] }}</template>
             </div>
