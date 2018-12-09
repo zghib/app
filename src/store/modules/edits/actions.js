@@ -34,11 +34,6 @@ export function unstageValue({ commit }, field) {
 }
 
 export function save({ commit, state, rootState }, overrides) {
-  function commitCreated(res) {
-    commit(ITEM_CREATED);
-    return res;
-  }
-
   const info = {
     ...state,
     ...overrides
@@ -52,10 +47,16 @@ export function save({ commit, state, rootState }, overrides) {
   }
 
   if (info.primaryKey === "+") {
-    return api.createItem(info.collection, info.values).then(commitCreated);
+    return api.createItem(info.collection, info.values).then(res => {
+      commit(ITEM_CREATED);
+      return res;
+    });
   }
 
   return api
     .updateItem(info.collection, info.primaryKey, info.values)
-    .then(commitCreated);
+    .then(res => {
+      commit(ITEM_CREATED);
+      return res;
+    });
 }

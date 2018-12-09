@@ -21,7 +21,10 @@ const mutations = {
     state.error = null;
     state.collection = null;
     state.primaryKey = null;
-    state.values = {};
+
+    // Don't clear savedValues / edits here
+    // Clearing them will cause a flash of no-values on the edit form between the
+    // time the values have been saved and the page has navigated away
   },
 
   [START_EDITING](state, { collection, primaryKey, savedValues }) {
