@@ -297,12 +297,12 @@ export default {
   note: "Nota",
   note_note: "Una descrizione interna ...",
   note_hidden:
-    "[Ulteriori informazioni] (https://docs.directus.io/app/admin/collections.html#hidden)",
+    "[Ulteriori informazioni] (https://docs.directus.io/guides/collections.html#hidden)",
   note_icon: "L'icona mostrata nella barra laterale di navigazione dell'app",
   note_managed:
-    "[Ulteriori informazioni] (https://docs.directus.io/app/admin/collections.html#managing-collections)",
+    "[Ulteriori informazioni] (https://docs.directus.io/guides/collections.html#managing-collections)",
   note_single:
-    "[Ulteriori informazioni] (https://docs.directus.io/app/admin/collections.html#single)",
+    "[Ulteriori informazioni] (https://docs.directus.io/guides/collections.html#single)",
   no_results: "Nessun risultato",
   no_results_body:
     "I filtri attuali non corrispondono ad alcun elemento della collezione",

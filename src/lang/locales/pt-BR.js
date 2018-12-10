@@ -301,12 +301,12 @@ export default {
   note: "Nota",
   note_note: "Uma descrição interna...",
   note_hidden:
-    "[Learn More](https://docs.directus.io/app/admin/collections.html#hidden)",
+    "[Learn More](https://docs.directus.io/guides/collections.html#hidden)",
   note_icon: "O ícone mostrado na barra lateral do App",
   note_managed:
-    "[Learn More](https://docs.directus.io/app/admin/collections.html#managing-collections)",
+    "[Learn More](https://docs.directus.io/guides/collections.html#managing-collections)",
   note_single:
-    "[Learn More](https://docs.directus.io/app/admin/collections.html#single)",
+    "[Learn More](https://docs.directus.io/guides/collections.html#single)",
   no_results: "Sem resultados",
   no_results_body:
     "Os filtros atuais não correspondem à nenhum item de coleção",

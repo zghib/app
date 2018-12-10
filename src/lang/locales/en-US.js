@@ -291,12 +291,12 @@ export default {
   note: "Note",
   note_note: "An internal description...",
   note_hidden:
-    "[Learn More](https://docs.directus.io/app/admin/collections.html#hidden)",
+    "[Learn More](https://docs.directus.io/guides/collections.html#hidden)",
   note_icon: "The icon shown in the App's navigation sidebar",
   note_managed:
-    "[Learn More](https://docs.directus.io/app/admin/collections.html#managing-collections)",
+    "[Learn More](https://docs.directus.io/guides/collections.html#managing-collections)",
   note_single:
-    "[Learn More](https://docs.directus.io/app/admin/collections.html#single)",
+    "[Learn More](https://docs.directus.io/guides/collections.html#single)",
   no_results: "No Results",
   no_results_body: "The current filters do not match any collection items",
   no_collections: "No Collections Setup",

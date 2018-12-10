@@ -277,12 +277,12 @@ export default {
   note: "Notitie",
   note_note: "Een interne beschrijving...",
   note_hidden:
-    "[Meer info](https://docs.directus.io/app/admin/collections.html#hidden)",
+    "[Meer info](https://docs.directus.io/guides/collections.html#hidden)",
   note_icon: "The icon shown in the App's navigation sidebar",
   note_managed:
-    "[Meer info](https://docs.directus.io/app/admin/collections.html#managing-collections)",
+    "[Meer info](https://docs.directus.io/guides/collections.html#managing-collections)",
   note_single:
-    "[Meer info](https://docs.directus.io/app/admin/collections.html#single)",
+    "[Meer info](https://docs.directus.io/guides/collections.html#single)",
   no_results: "Geen resultaten",
   no_results_body: "Er zijn geen items die voldoen aan de huidige filters",
   no_collections: "Geen collecties",
