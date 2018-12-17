@@ -55,9 +55,9 @@ h3 {
 
 .icon {
   font-size: 18px;
-  width: 15px;
+  width: 18px;
   height: 18px;
-  margin-right: 10px;
+  margin-right: 8px;
   color: var(--light-gray);
   fill: var(--light-gray);
 
