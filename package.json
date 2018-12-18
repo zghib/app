@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@directus/format-title": "^2.2.0",
-    "@directus/sdk-js": "^5.0.0",
+    "@directus/sdk-js": "^5.1.0",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.6.1",
@@ -51,8 +51,7 @@
     "vue-simple-spinner": "^1.2.8",
     "vue-timeago": "^4.0.2",
     "vuedraggable": "^2.17.0",
-    "vuex": "^3.0.1",
-    "vuex-persistedstate": "^2.5.4"
+    "vuex": "^3.0.1"
   },
   "babel": {
     "presets": [

@@ -219,7 +219,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  const { loggedIn } = store.getters;
+  const loggedIn = api.loggedIn;
   const publicRoute = to.matched.some(record => record.meta.publicRoute);
 
   store.commit(TOGGLE_NAV, false);

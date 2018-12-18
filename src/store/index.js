@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import createPersistedState from "vuex-persistedstate";
 
 import auth from "./modules/auth/";
 import extensions from "./modules/extensions";
@@ -22,14 +21,6 @@ Vue.use(Vuex);
 
 const debug = process.env.NODE_ENV !== "production"; // eslint-disable-line no-undef
 
-const persistedPaths = [
-  "auth.token",
-  "auth.url",
-  "auth.env",
-  "auth.projectName",
-  "edits"
-];
-
 const store = new Vuex.Store({
   state,
   actions,
@@ -47,14 +38,7 @@ const store = new Vuex.Store({
     serverInfo,
     notifications,
     settings
-  },
-  plugins: [
-    createPersistedState({
-      key: "directus",
-      paths: persistedPaths,
-      storage: window.sessionStorage
-    })
-  ]
+  }
 });
 
 export default store;
