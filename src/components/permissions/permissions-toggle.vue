@@ -17,7 +17,7 @@
           v-close-popover
           v-for="option in options"
           :key="option"
-          @click="$emit('input', option);"
+          @click="$emit('input', option)"
         >
           <div class="box" :class="option">
             <i v-if="option === 'none'" class="material-icons">close</i>

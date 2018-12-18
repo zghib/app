@@ -53,7 +53,7 @@
 
         <template v-if="notInstalled">
           <p class="install-copy">{{ $t("install_copy") }}</p>
-          <button type="button" class="style-btn" @click="installing = true;">
+          <button type="button" class="style-btn" @click="installing = true">
             {{ $t("install") }}
           </button>
         </template>
@@ -88,7 +88,7 @@
             <button
               type="button"
               class="forgot"
-              @click.prevent="resetMode = !resetMode;"
+              @click.prevent="resetMode = !resetMode"
             >
               {{ resetMode ? $t("sign_in") : $t("forgot_password") }}
             </button>
@@ -118,7 +118,7 @@
               class="notice"
               v-else-if="error || SSOerror"
               :class="errorType"
-              @click="error = null;"
+              @click="error = null"
             >
               <i class="material-icons">{{ errorType }}</i> {{ errorMessage }}
             </span>

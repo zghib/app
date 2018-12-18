@@ -46,7 +46,7 @@
           "
           :class="{ active: sortVal.field === field }"
           class="sort style-4 no-wrap"
-          @click="updateSort(field);"
+          @click="updateSort(field)"
         >
           {{ widths[field] > 40 ? name : null
           }}<i v-if="sortVal.field === field" class="material-icons">{{
@@ -62,7 +62,7 @@
           v-if="resizeable && index !== columns.length - 1"
           class="drag-handle"
           draggable
-          @drag="drag(field, $event);"
+          @drag="drag(field, $event)"
           @dragstart="hideDragImage"
           @dragend="dragEnd"
         >
@@ -97,8 +97,8 @@
             class="link row"
             tabindex="0"
             role="link"
-            @click.stop="$router.push(row[link]);"
-            @keyup.enter.stop="$router.push(row[link]);"
+            @click.stop="$router.push(row[link])"
+            @keyup.enter.stop="$router.push(row[link])"
           >
             <div
               v-if="manualSortField"
@@ -113,7 +113,7 @@
                 :id="'check-' + row[primaryKeyField]"
                 :value="row[primaryKeyField]"
                 :checked="selection.includes(row[primaryKeyField])"
-                @change="toggleCheckbox(row[primaryKeyField]);"
+                @change="toggleCheckbox(row[primaryKeyField])"
               />
             </div>
             <div
@@ -157,7 +157,7 @@
                 :id="'check-' + row[primaryKeyField]"
                 :value="row[primaryKeyField]"
                 :checked="selection.includes(row[primaryKeyField])"
-                @change="toggleCheckbox(row[primaryKeyField]);"
+                @change="toggleCheckbox(row[primaryKeyField])"
               />
             </div>
             <div

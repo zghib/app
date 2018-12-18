@@ -21,7 +21,7 @@
           :statuses="(statuses[name] || {}).mapping"
           :key="name"
           :fields="fields[name]"
-          @input="$emit('input', $event);"
+          @input="$emit('input', $event)"
         />
 
         <v-permissions-row
@@ -34,7 +34,7 @@
           :key="name"
           :fields="fields[name]"
           system
-          @input="$emit('input', $event);"
+          @input="$emit('input', $event)"
         />
       </div>
     </div>

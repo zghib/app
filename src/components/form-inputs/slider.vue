@@ -9,7 +9,7 @@
         :max="max"
         :step="step"
         type="range"
-        @input="$emit('input', Number($event.target.value));"
+        @input="$emit('input', Number($event.target.value))"
       />
       <div ref="track" class="track-wrapper">
         <div :style="{ transform: `scaleX(${progress})` }" class="track-fill" />

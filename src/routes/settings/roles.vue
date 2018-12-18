@@ -7,7 +7,7 @@
           key="add"
           color="action"
           :label="$t('new')"
-          @click="addNew = true;"
+          @click="addNew = true"
         />
       </template>
     </v-header>
@@ -25,7 +25,7 @@
         :message="$t('create_role')"
         :placeholder="$t('enter_role_name')"
         :loading="adding"
-        @cancel="addNew = false;"
+        @cancel="addNew = false"
         @confirm="add"
       />
     </portal>

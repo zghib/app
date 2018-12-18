@@ -20,7 +20,7 @@
           :values="values"
           :field="child"
           :new-item="newItem"
-          @stage-value="$emit('stageValue', $event);"
+          @stage-value="$emit('stageValue', $event)"
         />
         <v-field
           v-else
@@ -30,9 +30,9 @@
           :blocked="batchMode && !activeFields.includes(field.field)"
           :batch-mode="batchMode"
           :new-item="newItem"
-          @activate="$emit('activate', $event);"
-          @deactivate="$emit('deactivate', $event);"
-          @stage-value="$emit('stageValue', $event);"
+          @activate="$emit('activate', $event)"
+          @deactivate="$emit('deactivate', $event)"
+          @stage-value="$emit('stageValue', $event)"
         />
       </div>
     </div>

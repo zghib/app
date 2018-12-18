@@ -14,7 +14,7 @@
       <nav-menu :links="firstLinks" />
       <nav-menu :links="secondLinks" />
       <nav-menu :links="thirdLinks" />
-      <button class="sign-out" @click="confirmSignOut = true;">
+      <button class="sign-out" @click="confirmSignOut = true">
         <i class="material-icons icon">exit_to_app</i> {{ $t("sign_out") }}
       </button>
     </div>
@@ -26,7 +26,7 @@
           editing ? $t('sign_out_confirm_edits') : $t('sign_out_confirm')
         "
         :confirm-text="$t('sign_out')"
-        @cancel="confirmSignOut = false;"
+        @cancel="confirmSignOut = false"
         @confirm="signOut"
       />
     </portal>

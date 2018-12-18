@@ -57,8 +57,8 @@
     :sort-field="sortField"
     @input="saveItems"
     @select="select"
-    @query="$emit('query', $event);"
-    @options="$emit('options', $event);"
+    @query="$emit('query', $event)"
+    @options="$emit('options', $event)"
     @next-page="lazyLoad"
   />
 </template>

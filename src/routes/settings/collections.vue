@@ -7,7 +7,7 @@
           key="add"
           color="action"
           :label="$t('new')"
-          @click="addNew = true;"
+          @click="addNew = true"
         />
       </template>
     </v-header>
@@ -37,14 +37,14 @@
           <button
             v-if="collection.managed"
             class="managed"
-            @click.prevent.stop="toggleManage(collection);"
+            @click.prevent.stop="toggleManage(collection)"
           >
             {{ $t("dont_manage") }}
           </button>
           <button
             v-else
             class="not-managed"
-            @click.prevent.stop="toggleManage(collection);"
+            @click.prevent.stop="toggleManage(collection)"
           >
             {{ $t("manage") }}
           </button>
@@ -60,7 +60,7 @@
         :message="$t('create_collection')"
         :placeholder="$t('enter_collection_name')"
         :loading="adding"
-        @cancel="addNew = false;"
+        @cancel="addNew = false"
         @confirm="add"
       />
     </portal>
@@ -70,7 +70,7 @@
         :message="$t('dont_manage_copy', { collection: dontManage.name })"
         color="danger"
         :confirm-text="$t('dont_manage')"
-        @cancel="dontManage = null;"
+        @cancel="dontManage = null"
         @confirm="stopManaging"
       />
     </portal>

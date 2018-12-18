@@ -3,8 +3,8 @@
     <div
       :style="{ zIndex }"
       class="blocker"
-      @click="$emit('click');"
-      @touchend="$emit('click');"
+      @click="$emit('click')"
+      @touchend="$emit('click')"
     />
   </transition>
 </template>

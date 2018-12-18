@@ -6,9 +6,9 @@
     :tabs="tabs"
     :active-tab="activeTab"
     :buttons="buttons"
-    @tab="activeTab = $event;"
+    @tab="activeTab = $event"
     @next="nextTab"
-    @close="$emit('close');"
+    @close="$emit('close')"
   >
     <template slot="interface">
       <template v-if="!existing">
@@ -33,7 +33,7 @@
               :key="group.title + '-' + ext.id"
               :class="{ active: interfaceName === ext.id }"
               class="interface"
-              @click="setInterface(ext.id);"
+              @click="setInterface(ext.id)"
             >
               <div class="header">
                 <i class="material-icons">{{
@@ -131,7 +131,7 @@
                     ? 'string'
                     : 'number'
                 "
-                @input="length = $event;"
+                @input="length = $event"
                 :value="lengthDisabled ? null : length"
                 :disabled="lengthDisabled"
                 :placeholder="
@@ -404,7 +404,7 @@
             :value="options[optionID]"
             :fields="selectedInterfaceInfo.options"
             :values="options"
-            @input="$set(options, optionID, $event);"
+            @input="$set(options, optionID, $event)"
           />
         </div>
 
@@ -433,7 +433,7 @@
               :value="options[optionID] || option.default"
               :fields="selectedInterfaceInfo.options"
               :values="options"
-              @input="$set(options, optionID, $event);"
+              @input="$set(options, optionID, $event)"
             />
           </div>
         </details>

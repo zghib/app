@@ -69,7 +69,7 @@
               v-if="index !== 0"
               v-tooltip="$t('revert')"
               class="revert"
-              @click="$emit('revert', activity);"
+              @click="$emit('revert', activity)"
             >
               <i class="material-icons">restore</i>
             </button>

@@ -4,8 +4,8 @@
       $t('duplicating_field') + ': ' + $helpers.formatTitle(fieldInfo.field)
     "
     :buttons="buttons"
-    @save="saveField();"
-    @close="$emit('close');"
+    @save="saveField()"
+    @close="$emit('close')"
   >
     <form @submit.prevent class="options">
       <div class="options">

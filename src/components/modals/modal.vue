@@ -4,7 +4,7 @@
       <div
         :class="actionRequired ? null : 'pointer'"
         class="modal-mask"
-        @click="actionRequired ? null : $emit('close');"
+        @click="actionRequired ? null : $emit('close')"
       />
       <div class="modal-wrapper">
         <aside
@@ -14,7 +14,7 @@
           aria-labelledby="modal-title"
           aria-describedby="modal-description"
           role="dialog"
-          @keydown.esc="actionRequired ? null : $emit('close');"
+          @keydown.esc="actionRequired ? null : $emit('close')"
         >
           <div role="document">
             <div id="modal-description" class="screen-reader-offscreen">
@@ -23,7 +23,7 @@
             </div>
             <header v-if="title">
               <h1 id="modal-title" class="style-1">{{ title }}</h1>
-              <button v-if="!actionRequired" @click="$emit('close');">
+              <button v-if="!actionRequired" @click="$emit('close')">
                 <i class="material-icons">close</i>
               </button>
             </header>
@@ -34,7 +34,7 @@
                 :key="id"
                 :class="{ active: activeTab === id }"
                 :disabled="info.disabled"
-                @click="$emit('tab', id);"
+                @click="$emit('tab', id)"
               >
                 {{ info.text }}
               </button>
@@ -55,7 +55,7 @@
               <slot v-else />
             </div>
             <div class="footer" :class="{ 'action-required': actionRequired }">
-              <button v-if="!actionRequired" @click="$emit('close');">
+              <button v-if="!actionRequired" @click="$emit('close')">
                 {{ $t("cancel") }}
               </button>
               <v-button
@@ -64,7 +64,7 @@
                 :key="id"
                 :loading="button.loading || false"
                 :disabled="button.disabled || false"
-                @click="$emit(id);"
+                @click="$emit(id)"
                 >{{ button.text }}</v-button
               >
             </div>

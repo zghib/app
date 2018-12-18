@@ -18,7 +18,7 @@
       :class="{ attention: alert, 'no-bg': noBackground }"
       :disabled="disabled"
       :to="to || null"
-      @click="!to ? $emit('click', $event) : null;"
+      @click="!to ? $emit('click', $event) : null"
     >
       <i v-if="!loading" class="material-icons">{{ icon }}</i>
       <v-spinner

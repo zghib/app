@@ -24,7 +24,7 @@
         :new-item="newItem"
         @activate="activateField"
         @deactivate="deactivateField"
-        @stage-value="$emit('stage-value', $event);"
+        @stage-value="$emit('stage-value', $event)"
       />
       <v-field
         v-else
@@ -37,7 +37,7 @@
         :new-item="newItem"
         @activate="activateField"
         @deactivate="deactivateField"
-        @stage-value="$emit('stage-value', $event);"
+        @stage-value="$emit('stage-value', $event)"
       />
     </div>
   </form>

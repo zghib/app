@@ -37,7 +37,7 @@
             :subtitle="$t('settings_update_database_subtext')"
             element="li"
             icon="update"
-            @click="updateDBActive = true;"
+            @click="updateDBActive = true"
           />
         </ul>
       </nav>
@@ -133,7 +133,7 @@
         :confirm-text="$t('update')"
         :loading="updateDBInProgress"
         @confirm="updateDB"
-        @cancel="updateDBActive = false;"
+        @cancel="updateDBActive = false"
       />
     </portal>
   </div>

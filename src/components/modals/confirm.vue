@@ -1,10 +1,10 @@
 <template>
-  <v-modal-base :message="message" @cancel="$emit('cancel');">
-    <div class="buttons" @keydown.esc="$emit('cancel');">
-      <button class="cancel" @click="$emit('cancel');">
+  <v-modal-base :message="message" @cancel="$emit('cancel')">
+    <div class="buttons" @keydown.esc="$emit('cancel')">
+      <button class="cancel" @click="$emit('cancel')">
         {{ cancelText || $t("cancel") }}
       </button>
-      <v-button :bg="color" class="confirm" @click="$emit('confirm');">
+      <v-button :bg="color" class="confirm" @click="$emit('confirm')">
         <template v-if="loading"
           ><v-spinner :size="20" :line-size="2"
         /></template>

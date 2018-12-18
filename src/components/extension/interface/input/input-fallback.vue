@@ -2,7 +2,7 @@
   <v-input
     :value="value"
     class="v-ext-input-fallback"
-    @input="$emit('input', $event);"
+    @input="$emit('input', $event)"
   />
 </template>
 

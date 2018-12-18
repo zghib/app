@@ -28,7 +28,7 @@
           icon="close"
           color="danger"
           :label="$t('delete')"
-          @click="confirmRemove = true;"
+          @click="confirmRemove = true"
         />
 
         <v-header-button
@@ -38,7 +38,7 @@
           :label="$t('save')"
           icon="check"
           color="action"
-          @click="confirmBatchSave = true;"
+          @click="confirmBatchSave = true"
         />
 
         <v-header-button
@@ -55,7 +55,7 @@
           }"
           icon="check"
           color="action"
-          @click="singleItem ? save('stay') : save('leave');"
+          @click="singleItem ? save('stay') : save('leave')"
           @input="save"
         />
       </template>
@@ -65,20 +65,20 @@
       <div class="tabs">
         <button
           :class="{ active: activeTab === 'both' }"
-          @click="activeTab = 'both';"
+          @click="activeTab = 'both'"
         >
           {{ $t("both") }}
         </button>
         <button
           v-if="permission.comment !== 'none'"
           :class="{ active: activeTab === 'comments' }"
-          @click="activeTab = 'comments';"
+          @click="activeTab = 'comments'"
         >
           {{ $t("comments") }}
         </button>
         <button
           :class="{ active: activeTab === 'activity' }"
-          @click="activeTab = 'activity';"
+          @click="activeTab = 'activity'"
         >
           {{ $t("activity") }}
         </button>
@@ -90,7 +90,7 @@
         :show="activeTab"
         :comment-permission="permission.comment"
         @input="postComment"
-        @revert="revertActivity = $event;"
+        @revert="revertActivity = $event"
       />
     </v-info-sidebar>
 
@@ -117,7 +117,7 @@
             : $t('delete_are_you_sure')
         "
         :busy="confirmRemoveLoading"
-        @cancel="confirmRemove = false;"
+        @cancel="confirmRemove = false"
         @confirm="remove"
       />
     </portal>
@@ -127,7 +127,7 @@
         :message="$t('unsaved_changes_copy')"
         :confirm-text="$t('keep_editing')"
         :cancel-text="$t('discard_changes')"
-        @confirm="confirmNavigation = false;"
+        @confirm="confirmNavigation = false"
         @cancel="
           $router.push(leavingTo);
           confirmNavigation = false;
@@ -139,8 +139,8 @@
       <v-confirm
         :message="$t('update_confirm', { count: primaryKey.split(',').length })"
         :confirm-text="$t('update')"
-        @confirm="save('leave');"
-        @cancel="confirmBatchSave = false;"
+        @confirm="save('leave')"
+        @cancel="confirmBatchSave = false"
       />
     </portal>
 
@@ -153,8 +153,8 @@
             loading: reverting
           }
         }"
-        @revert="revertItem(revertActivity.revision.id);"
-        @close="revertActivity = false;"
+        @revert="revertItem(revertActivity.revision.id)"
+        @close="revertActivity = false"
       >
         <div class="revert">
           <p class="notice">

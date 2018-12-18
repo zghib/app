@@ -7,7 +7,7 @@
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
           class="cell"
-          @click="$emit('toggle-all', 'create');"
+          @click="$emit('toggle-all', 'create')"
         >
           {{ $t("create") }}
         </button>
@@ -17,7 +17,7 @@
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
           class="cell"
-          @click="$emit('toggle-all', 'read');"
+          @click="$emit('toggle-all', 'read')"
         >
           {{ $t("read") }}
         </button>
@@ -27,7 +27,7 @@
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
           class="cell"
-          @click="$emit('toggle-all', 'update');"
+          @click="$emit('toggle-all', 'update')"
         >
           {{ $t("update") }}
         </button>
@@ -37,7 +37,7 @@
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
           class="cell"
-          @click="$emit('toggle-all', 'delete');"
+          @click="$emit('toggle-all', 'delete')"
         >
           {{ $t("delete") }}
         </button>
@@ -47,7 +47,7 @@
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
           class="cell"
-          @click="$emit('toggle-all', 'comment');"
+          @click="$emit('toggle-all', 'comment')"
         >
           {{ $t("comment") }}
         </button>

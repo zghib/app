@@ -31,7 +31,7 @@
     <portal to="modal" v-if="confirmRemove">
       <v-confirm
         :message="$t('delete_bookmark_body')"
-        @cancel="confirmRemove = false;"
+        @cancel="confirmRemove = false"
         @confirm="deleteBookmark"
       />
     </portal>

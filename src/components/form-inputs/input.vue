@@ -20,9 +20,9 @@
       :value="value"
       :id="id"
       :step="step"
-      @keyup="$emit('keyup', $event);"
-      @keydown="$emit('keydown', $event);"
-      @input="$emit('input', $event.target.value);"
+      @keyup="$emit('keyup', $event)"
+      @keydown="$emit('keydown', $event)"
+      @input="$emit('input', $event.target.value)"
     />
     <i v-if="iconLeft" :class="iconLeftColor" class="material-icons">{{
       iconLeft

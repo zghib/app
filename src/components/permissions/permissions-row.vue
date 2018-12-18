@@ -10,11 +10,11 @@
           }}<i v-if="system" class="material-icons">star</i></span
         >
         <span class="set-all">
-          <button @click.prevent="setAll(true);" type="button">
+          <button @click.prevent="setAll(true)" type="button">
             {{ $t("all") }}
           </button>
           /
-          <button @click.prevent="setAll(false);" type="button">
+          <button @click.prevent="setAll(false)" type="button">
             {{ $t("none") }}
           </button>
         </span>
@@ -23,35 +23,35 @@
         <v-permissions-toggle
           :value="permission.create"
           :options="['none', 'full']"
-          @input="emitValue('create', $event);"
+          @input="emitValue('create', $event)"
         />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="permission.read"
           :options="permissionOptions"
-          @input="emitValue('read', $event);"
+          @input="emitValue('read', $event)"
         />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="permission.update"
           :options="permissionOptions"
-          @input="emitValue('update', $event);"
+          @input="emitValue('update', $event)"
         />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="permission.delete"
           :options="permissionOptions"
-          @input="emitValue('delete', $event);"
+          @input="emitValue('delete', $event)"
         />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="permission.comment"
           :options="['none', 'read', 'create', 'update', 'full']"
-          @input="emitValue('comment', $event);"
+          @input="emitValue('comment', $event)"
         />
       </div>
       <!--
@@ -66,7 +66,7 @@
       <div class="cell">
         <button
           :class="{ limited: fieldState }"
-          @click="fieldsSelect = { collection: permissionName };"
+          @click="fieldsSelect = { collection: permissionName }"
         >
           {{ fieldState ? $t("limited") : $t("all") }}
         </button>
@@ -79,11 +79,11 @@
           $helpers.formatTitle(permissionName)
         }}</span>
         <span class="set-all">
-          <button @click.prevent="setAll(true);" type="button">
+          <button @click.prevent="setAll(true)" type="button">
             {{ $t("all") }}
           </button>
           /
-          <button @click.prevent="setAll(false);" type="button">
+          <button @click.prevent="setAll(false)" type="button">
             {{ $t("none") }}
           </button>
         </span>
@@ -92,35 +92,35 @@
         <v-permissions-toggle
           :value="getCombinedVal('create')"
           :options="['none', 'full']"
-          @input="setAllStatuses('create', $event);"
+          @input="setAllStatuses('create', $event)"
         />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('read')"
           :options="permissionOptions"
-          @input="setAllStatuses('read', $event);"
+          @input="setAllStatuses('read', $event)"
         />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('update')"
           :options="permissionOptions"
-          @input="setAllStatuses('update', $event);"
+          @input="setAllStatuses('update', $event)"
         />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('delete')"
           :options="permissionOptions"
-          @input="setAllStatuses('delete', $event);"
+          @input="setAllStatuses('delete', $event)"
         />
       </div>
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('comment')"
           :options="['none', 'read', 'create', 'update', 'full']"
-          @input="setAllStatuses('comment', $event);"
+          @input="setAllStatuses('comment', $event)"
         />
       </div>
       <!--
@@ -133,12 +133,12 @@
         </div>
       -->
       <div class="cell">
-        <button :class="{ mixed: fieldState }" @click="active = !active;">
+        <button :class="{ mixed: fieldState }" @click="active = !active">
           {{ fieldState ? $t("mixed") : $t("all") }}
         </button>
       </div>
       <div class="cell">
-        <button class="mixed" @click="active = !active;">--</button>
+        <button class="mixed" @click="active = !active">--</button>
       </div>
     </div>
     <template v-if="active">
@@ -159,7 +159,7 @@
           <button
             :class="{ limited: getFieldSettingsPerStatus('$create') }"
             @click="
-              fieldsSelect = { collection: permissionName, status: '$create' };
+              fieldsSelect = { collection: permissionName, status: '$create' }
             "
           >
             {{
@@ -173,7 +173,7 @@
               limited: (permission.$create.status_blacklist || []).length !== 0
             }"
             @click="
-              statusSelect = { collection: permissionName, status: '$create' };
+              statusSelect = { collection: permissionName, status: '$create' }
             "
           >
             {{
@@ -199,35 +199,35 @@
           <v-permissions-toggle
             :value="permission[status].create"
             :options="['none', 'full']"
-            @input="emitValue('create', $event, status);"
+            @input="emitValue('create', $event, status)"
           />
         </div>
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].read"
             :options="permissionOptions"
-            @input="emitValue('read', $event, status);"
+            @input="emitValue('read', $event, status)"
           />
         </div>
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].update"
             :options="permissionOptions"
-            @input="emitValue('update', $event, status);"
+            @input="emitValue('update', $event, status)"
           />
         </div>
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].delete"
             :options="permissionOptions"
-            @input="emitValue('delete', $event, status);"
+            @input="emitValue('delete', $event, status)"
           />
         </div>
         <div class="cell">
           <v-permissions-toggle
             :value="permission[status].comment"
             :options="['none', 'create', 'update', 'full']"
-            @input="emitValue('comment', $event, status);"
+            @input="emitValue('comment', $event, status)"
           />
         </div>
         <!--
@@ -242,7 +242,7 @@
         <div class="cell">
           <button
             :class="{ limited: getFieldSettingsPerStatus(status) }"
-            @click="fieldsSelect = { collection: permissionName, status };"
+            @click="fieldsSelect = { collection: permissionName, status }"
           >
             {{ getFieldSettingsPerStatus(status) ? $t("limited") : $t("all") }}
           </button>
@@ -252,7 +252,7 @@
             :class="{
               limited: (permission[status].status_blacklist || []).length !== 0
             }"
-            @click="statusSelect = { collection: permissionName, status };"
+            @click="statusSelect = { collection: permissionName, status }"
           >
             {{
               (permission[status].status_blacklist || []).length === 0
@@ -263,14 +263,14 @@
         </div>
       </div>
     </template>
-    <button class="collapse" @click="active = !active;">
+    <button class="collapse" @click="active = !active">
       <i class="material-icons">{{ active ? "unfold_less" : "unfold_more" }}</i>
     </button>
     <portal v-if="fieldsSelect" to="modal">
       <v-modal
         :title="$t('select_fields')"
         :buttons="{ confirm: { text: $t('confirm') } }"
-        @confirm="fieldsSelect = null;"
+        @confirm="fieldsSelect = null"
         action-required
       >
         <form @submit.prevent class="modal-content">
@@ -284,7 +284,7 @@
               :checked="!blacklist.read.includes(name)"
               :label="$helpers.formatTitle(name)"
               :value="name"
-              @change="toggleField(name);"
+              @change="toggleField(name)"
             />
           </fieldset>
           <fieldset>
@@ -297,7 +297,7 @@
               :checked="!blacklist.write.includes(name)"
               :label="$helpers.formatTitle(name)"
               :value="name"
-              @change="toggleField(name, true);"
+              @change="toggleField(name, true)"
             />
           </fieldset>
         </form>
@@ -307,7 +307,7 @@
       <v-modal
         :title="$t('select_statuses')"
         :buttons="{ confirm: { text: $t('confirm') } }"
-        @confirm="statusSelect = null;"
+        @confirm="statusSelect = null"
         action-required
       >
         <form class="modal-content" @submit.prevent>
@@ -325,7 +325,7 @@
               "
               :label="status.name"
               :value="name"
-              @change="toggleStatus(name);"
+              @change="toggleStatus(name)"
             />
           </fieldset>
         </form>

@@ -5,7 +5,7 @@
       :disabled="disabled || readonly"
       :id="otherActive ? null : id"
       :value="value"
-      @change="change($event.target.value);"
+      @change="change($event.target.value)"
     >
       <optgroup :label="$t('values')">
         <option
@@ -27,7 +27,7 @@
       :disabled="disabled || readonly"
       :id="otherActive ? null : id"
       :value="value"
-      @change="change($event.target.value);"
+      @change="change($event.target.value)"
     >
       <option v-if="placeholder" ref="default" selected disabled value="">
         {{ placeholder }}

@@ -5,7 +5,7 @@
       :alert="hasFilters"
       icon="filter_list"
       no-background
-      @click="open = !open;"
+      @click="open = !open"
       >Filter</v-header-button
     >
 
@@ -18,7 +18,7 @@
         :class="{ 'has-filters': hasFilters }"
         class="search"
         type="text"
-        @input="search($event.target.value);"
+        @input="search($event.target.value)"
       />
       <transition name="fade">
         <button
@@ -33,7 +33,7 @@
       <button
         :class="{ 'has-filters': hasFilters }"
         class="toggle"
-        @click="open = !open;"
+        @click="open = !open"
       >
         <i class="material-icons">filter_list</i>
       </button>
@@ -61,7 +61,7 @@
               {{ $t(operators[filter.operator]) }}
               <i class="material-icons">arrow_drop_down</i>
               <select
-                @change="updateFilter(i, 'operator', $event.target.value);"
+                @change="updateFilter(i, 'operator', $event.target.value)"
               >
                 <option
                   v-for="(name, operator) in operators"
@@ -71,7 +71,7 @@
                 >
               </select>
             </span>
-            <button class="remove" @click="deleteFilter(i);">
+            <button class="remove" @click="deleteFilter(i)">
               {{ $t("remove") }}
             </button>
           </div>
@@ -80,7 +80,7 @@
             :id="`filter-${i}`"
             :value="filter.value"
             type="text"
-            @input="updateFilter(i, 'value', $event);"
+            @input="updateFilter(i, 'value', $event)"
           />
         </div>
 
@@ -104,7 +104,7 @@
       v-if="open"
       :z-index="18"
       class="blocker"
-      @click="open = !open;"
+      @click="open = !open"
     />
   </div>
 </template>

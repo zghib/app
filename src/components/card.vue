@@ -9,7 +9,7 @@
       disabled
     }"
     class="v-card"
-    @click="$emit('click', $event);"
+    @click="$emit('click', $event)"
   >
     <component :is="wrapperTag" :to="to" :href="href" target="__blank">
       <div
@@ -21,7 +21,7 @@
           v-if="selectable"
           type="button"
           class="select"
-          @click.stop="$emit('select');"
+          @click.stop="$emit('select')"
         >
           <i class="material-icons">{{ selectionIcon }}</i>
         </button>
@@ -55,7 +55,7 @@
           v-if="selectable"
           type="button"
           class="select"
-          @click.stop="$emit('select');"
+          @click.stop="$emit('select')"
         >
           <i class="material-icons">{{ selectionIcon }}</i>
         </button>
@@ -76,7 +76,7 @@
           <template slot="popover">
             <ul class="ctx-menu">
               <li v-for="({ text, icon }, id) in options" :key="id">
-                <button type="button" @click="$emit(id);">
+                <button type="button" @click="$emit(id)">
                   <i class="material-icons" v-if="icon">{{ icon }}</i>
                   {{ text }}
                 </button>

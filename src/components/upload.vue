@@ -9,7 +9,7 @@
       type="file"
       ref="select"
       :multiple="multiple"
-      @change="filesChange($event.target.files);"
+      @change="filesChange($event.target.files)"
     />
 
     <div class="dropzone" :class="{ smaller: small }">
@@ -27,14 +27,14 @@
       <div class="buttons">
         <i
           v-tooltip="$t('select_from_device')"
-          @click="$refs.select.click();"
+          @click="$refs.select.click()"
           class="material-icons select"
           >devices</i
         >
       </div>
     </div>
     <transition-group tag="ol" name="list">
-      <li class="list-item" v-for="(file, id) in files" :key="id">
+      <li class="list-item" v-for="file in files" :key="file.name">
         <v-progress-ring
           class="icon"
           :progress="file.progress"
@@ -73,7 +73,7 @@
       ref="drop"
       :multiple="multiple"
       @click.prevent
-      @change="filesChange($event.target.files);"
+      @change="filesChange($event.target.files)"
     />
   </div>
 </template>

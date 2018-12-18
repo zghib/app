@@ -7,7 +7,7 @@
           :class="currentBookmark ? 'active' : null"
           :disabled="currentBookmark"
           class="bookmark"
-          @click="bookmarkModal = true;"
+          @click="bookmarkModal = true"
         >
           <i class="material-icons">
             {{ currentBookmark ? "bookmark" : "bookmark_border" }}
@@ -23,8 +23,8 @@
         :search-query="searchQuery"
         :field-names="fieldNames"
         :placeholder="resultCopy"
-        @filter="updatePreferences('filters', $event);"
-        @search="updatePreferences('search_query', $event);"
+        @filter="updatePreferences('filters', $event)"
+        @search="updatePreferences('search_query', $event)"
         @clear-filters="clearFilters"
       />
       <template slot="buttons">
@@ -44,7 +44,7 @@
           color="danger"
           :disabled="!deleteButtonEnabled"
           :label="$t('delete')"
-          @click="confirmRemove = true;"
+          @click="confirmRemove = true"
         />
         <v-header-button
           v-if="addButton && !activity"
@@ -68,9 +68,9 @@
       :view-options="viewOptions"
       :selection="!activity ? selection : null"
       links
-      @fetch="meta = $event;"
+      @fetch="meta = $event"
       @options="setViewOptions"
-      @select="selection = $event;"
+      @select="selection = $event"
       @query="setViewQuery"
     />
 
@@ -81,7 +81,7 @@
           :options="layoutNames"
           :value="viewType"
           name="layout"
-          @input="updatePreferences('view_type', $event);"
+          @input="updatePreferences('view_type', $event)"
         />
       </template>
       <v-ext-layout-options
@@ -107,7 +107,7 @@
         "
         color="danger"
         :confirm-text="$t('delete')"
-        @cancel="confirmRemove = false;"
+        @cancel="confirmRemove = false"
         @confirm="remove"
       />
     </portal>

@@ -8,7 +8,7 @@
           :label="$t('save')"
           icon="check"
           color="action"
-          @click="save('leave');"
+          @click="save('leave')"
         />
       </template>
     </v-header>

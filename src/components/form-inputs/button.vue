@@ -4,7 +4,7 @@
     :type="type"
     :disabled="disabled || loading"
     class="form-button style-btn"
-    @click="$emit('click');"
+    @click="$emit('click')"
   >
     <i v-if="icon && !loading" class="material-icons">{{ icon }}</i>
     <v-spinner

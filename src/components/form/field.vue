@@ -18,7 +18,7 @@
                 <v-toggle
                   :value="!blocked"
                   @input="
-                    $emit(blocked ? 'activate' : 'deactivate', field.field);
+                    $emit(blocked ? 'activate' : 'deactivate', field.field)
                   "
                 />
               </label>
@@ -50,7 +50,7 @@
                 : $emit('stage-value', {
                     field: field.field,
                     value: $event
-                  });
+                  })
             "
             @setfield="
               readonly
@@ -58,13 +58,13 @@
                 : $emit('stage-value', {
                     field: $event.field,
                     value: $event.value
-                  });
+                  })
             "
           />
           <div
             class="blocker"
             v-if="blocked"
-            @click="$emit('activate', field.field);"
+            @click="$emit('activate', field.field)"
           />
         </div>
       </div>

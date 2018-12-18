@@ -3,7 +3,7 @@
     :tabs="tabs"
     :buttons="buttons"
     :active-tab="activeTab"
-    @tab="activeTab = $event;"
+    @tab="activeTab = $event"
     @next="nextTab"
     action-required
   >

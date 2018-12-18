@@ -13,7 +13,7 @@
         v-show="!error && loading === false"
         :src="src"
         :alt="alt"
-        @load="loading = false;"
+        @load="loading = false"
         @error="onImageLoadingError"
       />
       <i
