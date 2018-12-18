@@ -40,4 +40,4 @@ about: Create a report to help us improve platform stability
 - Browser: [eg: Chrome 68.0.3440.106]
 - Directus App: [eg: 7.0.0]
 - Directus API: [eg: 2.0.0]
-- Install Method: [eg: cloned `master` branch]
+- Install Method: [eg: cloned `master` branch of @directus/directus]
