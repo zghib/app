@@ -16,6 +16,8 @@ about: Create a report to help us improve platform stability
 
 # Bug Report
 
+<!-- Only report bugs with the officially supported LAMP stack. Issues with alternate stacks are "enhancements". -->
+
 ## Steps to Reproduce
 
 1. Go to '...'
