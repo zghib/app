@@ -76,7 +76,7 @@
           <template slot="popover">
             <ul class="ctx-menu">
               <li v-for="({ text, icon }, id) in options" :key="id">
-                <button type="button" @click="$emit(id)">
+                <button type="button" @click="$emit(id)" v-close-popover>
                   <i class="material-icons" v-if="icon">{{ icon }}</i>
                   {{ text }}
                 </button>
