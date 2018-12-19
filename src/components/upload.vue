@@ -113,6 +113,14 @@ export default {
       const formData = new FormData();
       const { name, size, type } = file;
 
+      if (size !== -1 && size > this.$store.state.serverInfo.maxUploadSize) {
+        this.$events.emit("warning", {
+          notify: this.$t("upload_exceeds_max_size", { filename: name })
+        });
+
+        return;
+      }
+
       formData.append("data", file, name);
 
       this.files = {
