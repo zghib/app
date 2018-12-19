@@ -21,6 +21,7 @@
     <v-header
       :breadcrumb="breadcrumb"
       :info-toggle="!newItem && !batch && !activityDetail"
+      item-detail
     >
       <template slot="buttons">
         <v-header-button
@@ -61,7 +62,7 @@
       </template>
     </v-header>
 
-    <v-info-sidebar v-if="!newItem && !batch" wide>
+    <v-info-sidebar v-if="!newItem && !batch" wide item-detail>
       <div class="tabs">
         <button
           :class="{ active: activeTab === 'both' }"

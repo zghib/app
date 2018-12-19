@@ -29,10 +29,18 @@
     </div>
     <slot />
     <v-header-button
-      v-if="infoToggle"
+      v-if="infoToggle && !itemDetail"
       :label="$t('info')"
       icon="info"
       no-background
+      @click="toggleInfo"
+    />
+    <v-header-button
+      v-if="infoToggle && itemDetail"
+      :label="$t('info')"
+      icon="info"
+      no-background
+      class="info-mobile"
       @click="toggleInfo"
     />
     <slot name="buttons" />
@@ -54,6 +62,10 @@ export default {
       default: null
     },
     infoToggle: {
+      type: Boolean,
+      default: false
+    },
+    itemDetail: {
       type: Boolean,
       default: false
     }
@@ -166,6 +178,12 @@ export default {
   h1.title,
   .title h1 {
     color: var(--white);
+  }
+}
+
+.info-mobile {
+  @media (min-width: 1235px) {
+    visibility: hidden;
   }
 }
 </style>

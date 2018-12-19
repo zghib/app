@@ -1,6 +1,11 @@
 <template>
   <div class="nav-sidebar">
-    <v-blocker v-show="active" class="blocker" @click="disableNav" />
+    <v-blocker
+      v-show="active"
+      class="blocker"
+      @click="disableNav"
+      :z-index="2"
+    />
     <transition name="nav">
       <aside :class="{ active }">
         <button class="a11y-close" @click="disableNav">Close nav</button>

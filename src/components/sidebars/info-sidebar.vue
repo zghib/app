@@ -1,12 +1,27 @@
 <template>
   <div>
-    <v-blocker :z-index="9" v-show="active" @click="disableSidebar" />
+    <v-blocker
+      :z-index="9"
+      v-show="active"
+      @click="disableSidebar"
+      class="blocker-info"
+    />
     <transition name="info">
-      <aside class="info-sidebar" :class="{ wide }" v-show="active">
+      <aside
+        class="info-sidebar"
+        v-if="active && !itemDetail"
+        :class="{ wide }"
+      >
         <div class="system"><slot name="system" /></div>
         <slot />
       </aside>
     </transition>
+    
+    <aside class="info-sidebar"
+      v-if="itemDetail"
+      :class="[{ wide, 'hide-when-small': !active }, 'info-leave-active']">
+      <slot />
+    </aside>
   </div>
 </template>
 
@@ -21,6 +36,10 @@ export default {
   },
   props: {
     wide: {
+      type: Boolean,
+      default: false
+    },
+    itemDetail: {
       type: Boolean,
       default: false
     }
@@ -79,5 +98,21 @@ export default {
 .info-enter,
 .info-leave-to {
   transform: translateX(100%);
+}
+
+.blocker-info {
+  @media (min-width: 1235px) {
+    display: none;
+  }
+}
+
+.hide-when-small {
+  visibility: hidden;
+  transform: translateX(100%);
+
+  @media (min-width: 1235px) {
+    visibility: visible;
+    transform: initial;
+  }
 }
 </style>
