@@ -16,10 +16,12 @@
         <slot />
       </aside>
     </transition>
-    
-    <aside class="info-sidebar"
+
+    <aside
+      class="info-sidebar"
       v-if="itemDetail"
-      :class="[{ wide, 'hide-when-small': !active }, 'info-leave-active']">
+      :class="[{ wide, 'hide-when-small': !active }, 'info-leave-active']"
+    >
       <slot />
     </aside>
   </div>

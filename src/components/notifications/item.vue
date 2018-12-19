@@ -34,12 +34,12 @@ export default {
     iconColor() {
       return this.item.color !== undefined
         ? `var(--${this.item.color}-500)`
-        : "var(--blue-grey-500)";
+        : "var(--blue-gray-500)";
     },
     ringColor() {
       return this.item.color !== undefined
         ? `var(--${this.item.color}-100)`
-        : "var(--blue-grey-100)";
+        : "var(--blue-gray-100)";
     }
   },
   methods: {
