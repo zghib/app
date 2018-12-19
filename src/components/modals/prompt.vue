@@ -18,6 +18,7 @@
         @input="emitValue"
         @keydown.enter="$emit('confirm')"
       />
+      <slot />
       <div class="buttons">
         <button class="cancel" @click="$emit('cancel')">
           {{ cancelText || $t("cancel") }}

@@ -5,7 +5,7 @@ const handleWarning = warning => {
   if (!isEmpty(warning.notify)) {
     notify({
       title: warning.notify,
-      color: warning.color || "warning",
+      color: warning.color || "orange",
       iconMain: warning.iconMain || "warning"
     });
   }

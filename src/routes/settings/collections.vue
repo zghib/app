@@ -62,7 +62,32 @@
         :loading="adding"
         @cancel="addNew = false"
         @confirm="add"
-      />
+      >
+        <v-details title="Default fields" :open="true">
+          <div class="advanced-form">
+            <label class="toggle"
+              ><v-toggle v-model="status" /> {{ $t("Status") }}</label
+            >
+            <label class="toggle"
+              ><v-toggle v-model="sort" /> {{ $t("Sort") }}</label
+            >
+            <label class="toggle"
+              ><v-toggle v-model="createdBy" :value="true" />
+              {{ $t("Created by") }}</label
+            >
+            <label class="toggle"
+              ><v-toggle v-model="createdOn" :value="true" />
+              {{ $t("Created on") }}</label
+            >
+            <label class="toggle"
+              ><v-toggle v-model="modifiedBy" /> {{ $t("Modified by") }}</label
+            >
+            <label class="toggle"
+              ><v-toggle v-model="modifiedOn" /> {{ $t("Modified on") }}</label
+            >
+          </div>
+        </v-details>
+      </v-prompt>
     </portal>
 
     <portal to="modal" v-if="dontManage">
@@ -94,6 +119,12 @@ export default {
       addNew: false,
       newName: "",
       adding: false,
+      status: true,
+      sort: false,
+      createdBy: true,
+      createdOn: true,
+      modifiedBy: false,
+      modifiedOn: false,
 
       dontManage: null
     };
@@ -133,24 +164,340 @@ export default {
       const id = this.$helpers.shortid.generate();
       this.$store.dispatch("loadingStart", { id });
 
+      let fieldsToAdd = [
+        {
+          type: "integer",
+          datatype: "INT",
+          length: 15,
+          field: "id",
+          interface: "primary-key",
+          auto_increment: true,
+          primary_key: true,
+          hidden_detail: true,
+          hidden_browse: true
+        }
+      ];
+      let fieldsToDispatch = {
+        id: {
+          auto_increment: true,
+          collection: this.newName,
+          datatype: "INT",
+          default_value: null,
+          field: "id",
+          group: null,
+          hidden_detail: true,
+          hidden_browse: true,
+          interface: "primary-key",
+          length: "10",
+          locked: 0,
+          note: "",
+          options: null,
+          primary_key: true,
+          readonly: 0,
+          required: true,
+          signed: false,
+          sort: 1,
+          translation: null,
+          type: "integer",
+          unique: false,
+          validation: null,
+          width: 4
+        }
+      };
+
+      if (this.status) {
+        fieldsToAdd.push({
+          type: "status",
+          datatype: "VARCHAR",
+          length: 20,
+          field: "status",
+          interface: "status",
+          options: {
+            status_mapping: {
+              published: {
+                name: "Published",
+                text_color: "white",
+                background_color: "accent",
+                browse_subdued: false,
+                browse_badge: true,
+                soft_delete: false,
+                published: true
+              },
+              draft: {
+                name: "Draft",
+                text_color: "white",
+                background_color: "blue-grey-200",
+                browse_subdued: true,
+                browse_badge: true,
+                soft_delete: false,
+                published: false
+              },
+              deleted: {
+                name: "Deleted",
+                text_color: "white",
+                background_color: "red",
+                browse_subdued: true,
+                browse_badge: true,
+                soft_delete: true,
+                published: false
+              }
+            }
+          }
+        });
+        fieldsToDispatch.status = {
+          collection: this.newName,
+          field: "status",
+          datatype: "VARCHAR",
+          unique: false,
+          primary_key: false,
+          auto_increment: false,
+          default_value: null,
+          note: null,
+          signed: true,
+          type: "status",
+          sort: 0,
+          interface: "status",
+          hidden_detail: false,
+          hidden_browse: false,
+          required: false,
+          options: {
+            status_mapping: {
+              published: {
+                name: "Published",
+                text_color: "white",
+                background_color: "accent",
+                browse_subdued: false,
+                browse_badge: true,
+                soft_delete: false,
+                published: true
+              },
+              draft: {
+                name: "Draft",
+                text_color: "white",
+                background_color: "blue-grey-200",
+                browse_subdued: true,
+                browse_badge: true,
+                soft_delete: false,
+                published: false
+              },
+              deleted: {
+                name: "Deleted",
+                text_color: "white",
+                background_color: "red",
+                browse_subdued: true,
+                browse_badge: true,
+                soft_delete: true,
+                published: false
+              }
+            }
+          },
+          locked: false,
+          translation: null,
+          readonly: false,
+          width: 4,
+          validation: null,
+          group: null,
+          length: "20"
+        };
+      }
+      if (this.sort) {
+        fieldsToAdd.push({
+          type: "sort",
+          datatype: "INT",
+          field: "sort",
+          interface: "sort"
+        });
+        fieldsToDispatch.sort = {
+          collection: this.newName,
+          field: "sort",
+          datatype: "INT",
+          unique: false,
+          primary_key: false,
+          auto_increment: false,
+          default_value: null,
+          note: null,
+          signed: false,
+          type: "sort",
+          sort: 0,
+          interface: "sort",
+          hidden_detail: false,
+          hidden_browse: false,
+          required: false,
+          options: null,
+          locked: false,
+          translation: null,
+          readonly: false,
+          width: 4,
+          validation: null,
+          group: null,
+          length: "10"
+        };
+      }
+      if (this.createdBy) {
+        fieldsToAdd.push({
+          type: "user_created",
+          datatype: "INT",
+          field: "created_by",
+          interface: "user-created",
+          options: {
+            template: "{{first_name}} {{last_name}}",
+            display: "both"
+          },
+          readonly: true,
+          hidden_detail: true,
+          hidden_browse: true
+        });
+        fieldsToDispatch.created_by = {
+          collection: this.newName,
+          field: "created_by",
+          datatype: "INT",
+          unique: false,
+          primary_key: false,
+          auto_increment: false,
+          default_value: null,
+          note: null,
+          signed: false,
+          type: "user_created",
+          sort: 0,
+          interface: "user-created",
+          hidden_detail: true,
+          hidden_browse: true,
+          required: false,
+          options: {
+            template: "{{first_name}} {{last_name}}",
+            display: "both"
+          },
+          locked: false,
+          translation: null,
+          readonly: true,
+          width: 4,
+          validation: null,
+          group: null,
+          length: "10"
+        };
+      }
+      if (this.createdOn) {
+        fieldsToAdd.push({
+          type: "datetime_created",
+          datatype: "DATETIME",
+          field: "created_on",
+          interface: "datetime-created",
+          readonly: true,
+          hidden_detail: true,
+          hidden_browse: true
+        });
+        fieldsToDispatch.created_on = {
+          collection: this.newName,
+          field: "created_on",
+          datatype: "DATETIME",
+          unique: false,
+          primary_key: false,
+          auto_increment: false,
+          default_value: null,
+          note: null,
+          signed: true,
+          type: "datetime_created",
+          sort: 0,
+          interface: "datetime-created",
+          hidden_detail: true,
+          hidden_browse: true,
+          required: false,
+          options: null,
+          locked: false,
+          translation: null,
+          readonly: true,
+          width: 4,
+          validation: null,
+          group: null,
+          length: null
+        };
+      }
+      if (this.modifiedBy) {
+        fieldsToAdd.push({
+          type: "user_updated",
+          datatype: "INT",
+          field: "modified_by",
+          interface: "user-updated",
+          options: {
+            template: "{{first_name}} {{last_name}}",
+            display: "both"
+          },
+          readonly: true,
+          hidden_detail: true,
+          hidden_browse: true
+        });
+        fieldsToDispatch.modified_by = {
+          collection: this.newName,
+          field: "modified_by",
+          datatype: "INT",
+          unique: false,
+          primary_key: false,
+          auto_increment: false,
+          default_value: null,
+          note: null,
+          signed: false,
+          type: "user_updated",
+          sort: 0,
+          interface: "user-updated",
+          hidden_detail: true,
+          hidden_browse: true,
+          required: false,
+          options: {
+            template: "{{first_name}} {{last_name}}",
+            display: "both"
+          },
+          locked: false,
+          translation: null,
+          readonly: true,
+          width: 4,
+          validation: null,
+          group: null,
+          length: "10"
+        };
+      }
+      if (this.modifiedOn) {
+        fieldsToAdd.push({
+          type: "datetime_updated",
+          datatype: "DATETIME",
+          field: "modified_on",
+          interface: "datetime-updated",
+          readonly: true,
+          hidden_detail: true,
+          hidden_browse: true
+        });
+        fieldsToDispatch.modified_on = {
+          collection: this.newName,
+          field: "modified_on",
+          datatype: "DATETIME",
+          unique: false,
+          primary_key: false,
+          auto_increment: false,
+          default_value: null,
+          note: null,
+          signed: true,
+          type: "datetime_updated",
+          sort: 0,
+          interface: "datetime-updated",
+          hidden_detail: true,
+          hidden_browse: true,
+          required: false,
+          options: null,
+          locked: false,
+          translation: null,
+          readonly: true,
+          width: 4,
+          validation: null,
+          group: null,
+          length: null
+        };
+      }
+
       this.$api
         .createCollection(
           {
             collection: this.newName,
             hidden: 0,
-            fields: [
-              {
-                type: "integer",
-                datatype: "INT",
-                length: 15,
-                field: "id",
-                interface: "primary-key",
-                auto_increment: true,
-                primary_key: true,
-                hidden_detail: true,
-                hidden_browse: true
-              }
-            ]
+            fields: fieldsToAdd
           },
           {
             fields: "*.*"
@@ -164,33 +511,7 @@ export default {
 
             // This should ideally be returned from the API
             // https://github.com/directus/api/issues/207
-            fields: {
-              id: {
-                auto_increment: true,
-                collection: this.newName,
-                datatype: "INT",
-                default_value: null,
-                field: "id",
-                group: null,
-                hidden_detail: true,
-                hidden_browse: true,
-                interface: "primary-key",
-                length: "10",
-                locked: 0,
-                note: "",
-                options: null,
-                primary_key: true,
-                readonly: 0,
-                required: true,
-                signed: false,
-                sort: 1,
-                translation: null,
-                type: "integer",
-                unique: false,
-                validation: null,
-                width: 4
-              }
-            }
+            fields: fieldsToDispatch
           });
           this.$store.dispatch("addPermission", {
             collection: this.newName,
@@ -325,6 +646,38 @@ export default {
       &:hover {
         background-color: var(--accent-dark);
         color: var(--white);
+      }
+    }
+  }
+}
+
+.v-details {
+  margin-top: 30px;
+  margin-bottom: 0;
+
+  .advanced-form {
+    display: grid;
+    grid-gap: 30px 20px;
+    grid-template-columns: 1fr 1fr;
+
+    .toggle {
+      display: flex;
+      align-items: center;
+      text-transform: capitalize;
+      font-size: 1rem;
+      cursor: pointer;
+      width: max-content;
+
+      &:not(.disabled):hover {
+        color: var(--accent);
+      }
+
+      > *:first-child {
+        margin-right: 10px;
+      }
+
+      &.disabled {
+        color: var(--light-gray);
       }
     }
   }
