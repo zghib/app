@@ -387,7 +387,7 @@ export default {
   settings: "Instellingen",
   settings_project: "Project Instellingen",
   settings_global: "Global Instellingen",
-  settings_collections_fields: "Collecites & Velden",
+  settings_collections_fields: "Collecties & Velden",
   settings_permissions: "Rollen & Permissies",
   settings_extensions: "Extensies",
   server_details: "Server Details",
