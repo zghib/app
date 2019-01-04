@@ -154,7 +154,6 @@
         <div class="cell block"><i class="material-icons">block</i></div>
         <div class="cell block"><i class="material-icons">block</i></div>
         <div class="cell block"><i class="material-icons">block</i></div>
-        <div class="cell block"><i class="material-icons">block</i></div>
         <div class="cell">
           <button
             :class="{ limited: getFieldSettingsPerStatus('$create') }"
