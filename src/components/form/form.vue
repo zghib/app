@@ -203,6 +203,10 @@ export default {
     .col-4 {
       max-width: var(--width-x-large);
       flex-basis: var(--width-x-large);
+      
+      & & {
+        max-width: 100%;
+      }
     }
   }
 
