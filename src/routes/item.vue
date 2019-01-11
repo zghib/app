@@ -694,9 +694,14 @@ export default {
           return {
             activity: activity.map(act => {
               const date = new Date(act.action_on);
-              const name = `${act.action_by.first_name} ${
+              let name = `${act.action_by.first_name} ${
                 act.action_by.last_name
               }`;
+
+              if (act.action_by === 0) {
+                name = "Public"
+              }
+              
               return {
                 id: act.id,
                 date,
