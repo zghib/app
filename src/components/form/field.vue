@@ -32,7 +32,7 @@
         <div class="field-wrapper">
           <v-ext-input
             :id="field.interface"
-            :name="field.field"
+            :name="name"
             :required="field.required === true || field.required === '1'"
             :readonly="readonly || blocked"
             :options="field.options"
@@ -103,6 +103,10 @@ export default {
     newItem: {
       type: Boolean,
       default: false
+    },
+    name: {
+      type: String,
+      required: true
     }
   },
   computed: {
