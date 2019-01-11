@@ -645,11 +645,11 @@ export default {
           }
 
           if (method === "add") {
-            if (this.collection.startsWith("directus_")) {
-              return this.$router.push(`/${this.collection.substring(9)}/+`);
-            }
-
-            return this.$router.push(`/collections/${this.collection}/+`);
+            return this.$store.dispatch("startEditing", {
+              collection: this.collection,
+              primaryKey: "+",
+              savedValues: {}
+            });
           }
         })
         .catch(error => {
