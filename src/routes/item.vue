@@ -559,6 +559,9 @@ export default {
 
         this.$lodash.forEach(this.fields, (info, fieldName) => {
           if (info.primary_key === true) primaryKeyField = fieldName;
+
+          // Delete the alias type fields
+          if (info.type.toLowerCase() === "alias") delete values[fieldName];
         });
 
         delete values[primaryKeyField];
@@ -578,7 +581,7 @@ export default {
           })
           .then(pk => {
             this.$notify({
-              title: this.$t("item_saved"),
+              title: this.$tc("item_saved"),
               color: "green",
               iconMain: "check"
             });
