@@ -63,7 +63,11 @@
                 }}
               </div>
             </div>
-            <v-popover class="more-options" placement="left-start" v-if="canDuplicate(field.interface) || fields.length > 1">
+            <v-popover
+              class="more-options"
+              placement="left-start"
+              v-if="canDuplicate(field.interface) || fields.length > 1"
+            >
               <button type="button" class="menu-toggle">
                 <i class="material-icons">more_vert</i>
               </button>

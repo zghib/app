@@ -215,12 +215,22 @@
         <p>{{ $t("related_collection") }}</p>
 
         <v-simple-select class="select" v-model="relationInfo.collection_one">
-          <option
-            v-for="{ collection } in collections"
-            :key="collection"
-            :value="collection"
-            >{{ collection }}</option
-          >
+          <optgroup :label="$t('collections')">
+            <option
+              v-for="collection in collectionsGrouped.user"
+              :key="collection"
+              :value="collection"
+              >{{ collection }}</option
+            >
+          </optgroup>
+          <optgroup label="Directus">
+            <option
+              v-for="collection in collectionsGrouped.system"
+              :key="collection"
+              :value="collection"
+              >{{ collection }}</option
+            >
+          </optgroup>
         </v-simple-select>
 
         <v-simple-select class="select" :value="primaryKeyField.field" disabled>
@@ -254,12 +264,22 @@
         <p>{{ $t("related_collection") }}</p>
 
         <v-simple-select class="select" v-model="relationInfo.collection_many">
-          <option
-            v-for="{ collection } in collections"
-            :key="collection"
-            :value="collection"
-            >{{ collection }}</option
-          >
+          <optgroup :label="$t('collections')">
+            <option
+              v-for="collection in collectionsGrouped.user"
+              :key="collection"
+              :value="collection"
+              >{{ collection }}</option
+            >
+          </optgroup>
+          <optgroup label="Directus">
+            <option
+              v-for="collection in collectionsGrouped.system"
+              :key="collection"
+              :value="collection"
+              >{{ collection }}</option
+            >
+          </optgroup>
         </v-simple-select>
 
         <v-simple-select class="select" v-model="relationInfo.field_many">
@@ -305,12 +325,22 @@
             }
           "
         >
-          <option
-            v-for="{ collection } in collections"
-            :key="collection"
-            :value="collection"
-            >{{ collection }}</option
-          >
+          <optgroup :label="$t('collections')">
+            <option
+              v-for="collection in collectionsGrouped.user"
+              :key="collection"
+              :value="collection"
+              >{{ collection }}</option
+            >
+          </optgroup>
+          <optgroup label="Directus">
+            <option
+              v-for="collection in collectionsGrouped.system"
+              :key="collection"
+              :value="collection"
+              >{{ collection }}</option
+            >
+          </optgroup>
         </v-simple-select>
 
         <v-simple-select
@@ -345,12 +375,22 @@
           class="select"
           v-model="relationInfoM2M[currentM2MIndex == 0 ? 1 : 0].collection_one"
         >
-          <option
-            v-for="{ collection } in collections"
-            :key="collection"
-            :value="collection"
-            >{{ collection }}</option
-          >
+          <optgroup :label="$t('collections')">
+            <option
+              v-for="collection in collectionsGrouped.user"
+              :key="collection"
+              :value="collection"
+              >{{ collection }}</option
+            >
+          </optgroup>
+          <optgroup label="Directus">
+            <option
+              v-for="collection in collectionsGrouped.system"
+              :key="collection"
+              :value="collection"
+              >{{ collection }}</option
+            >
+          </optgroup>
         </v-simple-select>
 
         <v-simple-select
@@ -519,6 +559,16 @@ export default {
   computed: {
     collections() {
       return Object.assign({}, this.$store.state.collections);
+    },
+    collectionsGrouped() {
+      const collectionNames = Object.keys(this.collections);
+      const system = collectionNames.filter(name =>
+        name.startsWith("directus_")
+      );
+      const user = collectionNames.filter(
+        name => !name.startsWith("directus_")
+      );
+      return { system, user };
     },
     interfaces() {
       return Object.assign({}, this.$store.state.extensions.interfaces);
