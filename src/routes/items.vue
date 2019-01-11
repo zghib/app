@@ -40,7 +40,7 @@
         <v-header-button
           v-if="deleteButton && !activity"
           key="delete"
-          icon="close"
+          icon="delete_outline"
           color="danger"
           :disabled="!deleteButtonEnabled"
           :label="$t('delete')"

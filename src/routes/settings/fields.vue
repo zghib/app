@@ -4,7 +4,7 @@
     <v-header :breadcrumb="breadcrumb">
       <template slot="buttons">
         <v-header-button
-          icon="close"
+          icon="delete_outline"
           key="delete"
           color="danger"
           :label="$t('delete')"

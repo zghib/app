@@ -39,7 +39,7 @@
         <v-header-button
           v-if="selection.length"
           key="delete"
-          icon="close"
+          icon="delete_outline"
           color="danger"
           :label="$t('delete')"
           @click="confirmRemove = true"

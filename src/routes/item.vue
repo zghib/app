@@ -26,7 +26,7 @@
       <template slot="buttons">
         <v-header-button
           v-if="!newItem && !singleItem && permission.delete !== 'none'"
-          icon="close"
+          icon="delete_outline"
           color="danger"
           :label="$t('delete')"
           @click="confirmRemove = true"
@@ -694,14 +694,14 @@ export default {
           return {
             activity: activity.map(act => {
               const date = new Date(act.action_on);
-              let name = `${act.action_by.first_name} ${
-                act.action_by.last_name
-              }`;
+              let name;
 
-              if (act.action_by === 0) {
-                name = "Public"
+              if (act.action_by) {
+                name = act.action_by.first_name + " " + act.action_by.last_name;
+              } else {
+                name = "Public";
               }
-              
+
               return {
                 id: act.id,
                 date,

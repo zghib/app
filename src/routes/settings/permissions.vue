@@ -17,7 +17,7 @@
           v-if="!isNew && !isSystem"
           :loading="removing"
           :label="$t('delete')"
-          icon="close"
+          icon="delete_outline"
           color="danger"
           @click="confirmRemove = true"
         />
