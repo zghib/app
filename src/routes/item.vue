@@ -397,6 +397,19 @@ export default {
     newItem() {
       return this.primaryKey === "+";
     },
+
+    // Get the status name of the value that's marked as soft delete
+    // This will make the delete button update the item to the hidden status
+    // instead of deleting it completely from the database
+    softDeleteStatus() {
+      const statusKeys = Object.keys(this.collectionInfo.status_mapping);
+      const index = this.$lodash.findIndex(
+        Object.values(this.collectionInfo.status_mapping),
+        { soft_delete: true }
+      );
+      return statusKeys[index];
+    },
+
     singleItem() {
       return this.collectionInfo && this.collectionInfo.single === true;
     },
@@ -525,8 +538,17 @@ export default {
       const id = this.$helpers.shortid.generate();
       this.$store.dispatch("loadingStart", { id });
 
-      this.$api
-        .deleteItem(this.collection, this.primaryKey)
+      let request;
+
+      if (this.softDeleteStatus) {
+        request = this.$api.updateItem(this.collection, this.primaryKey, {
+          [this.statusField]: this.softDeleteStatus
+        });
+      } else {
+        request = this.$api.deleteItem(this.collection, this.primaryKey);
+      }
+
+      request
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
           this.$store.dispatch("discardChanges", id);
