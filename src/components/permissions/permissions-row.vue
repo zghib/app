@@ -277,7 +277,7 @@
             <legend class="style-3">{{ $t("readable_fields") }}</legend>
             <p class="style-4">{{ $t("readable_fields_copy") }}</p>
             <v-checkbox
-              v-for="(field, name) in fields"
+              v-for="(field, name) in fieldsWithoutPK"
               :key="`${permissionName}-read-${name}`"
               :id="`${permissionName}-read-${name}`"
               :checked="!blacklist.read.includes(name)"
@@ -371,6 +371,16 @@ export default {
     };
   },
   computed: {
+    primaryKeyFieldName() {
+      return this.$lodash.find(this.fields, { primary_key: true }).field;
+    },
+    fieldsWithoutPK() {
+      const fieldsCopy = Object.assign({}, this.fields);
+
+      delete fieldsCopy[this.primaryKeyFieldName];
+
+      return fieldsCopy;
+    },
     collapsable() {
       return this.statuses != null;
     },
