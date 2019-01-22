@@ -121,7 +121,11 @@
             </label>
             <label
               >{{ $t("default") }}
-              <v-input type="text" v-model="default_value" placeholder="NULL" :disabled="type === 'o2m' || type === 'translation'"
+              <v-input
+                type="text"
+                v-model="default_value"
+                placeholder="NULL"
+                :disabled="type === 'o2m' || type === 'translation'"
             /></label>
             <label
               >{{ $t("length") }}
