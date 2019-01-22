@@ -26,7 +26,7 @@ export default {
   props: {
     interfaceType: {
       type: String,
-      default: null
+      default: "text-input"
     },
     name: {
       type: String,

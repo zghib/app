@@ -31,7 +31,7 @@
         </div>
         <div class="field-wrapper">
           <v-ext-input
-            :id="field.interface"
+            :id="field.interface || 'text-input'"
             :name="name"
             :required="field.required === true || field.required === '1'"
             :readonly="readonly || blocked"
