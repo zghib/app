@@ -34,7 +34,7 @@
 
     <loader v-else area="full-page" />
 
-    <portal-target name="modal" />
+    <portal-target name="modal" multiple />
     <v-notification />
   </div>
 
