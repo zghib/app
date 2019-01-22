@@ -17,19 +17,19 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.2.0",
-    "@vue/cli-plugin-eslint": "^3.2.1",
-    "@vue/cli-plugin-pwa": "^3.2.0",
-    "@vue/cli-service": "^3.2.0",
+    "@vue/cli-plugin-babel": "^3.3.0",
+    "@vue/cli-plugin-eslint": "^3.3.0",
+    "@vue/cli-plugin-pwa": "^3.3.0",
+    "@vue/cli-service": "^3.3.1",
     "@vue/eslint-config-prettier": "^3.0.0",
     "node-sass": "^4.11.0",
-    "prettier": "^1.15.3",
+    "prettier": "^1.16.1",
     "sass-loader": "^6.0.6",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.22"
   },
   "dependencies": {
-    "@directus/format-title": "^2.2.0",
-    "@directus/sdk-js": "^5.1.2",
+    "@directus/format-title": "^2.2.1",
+    "@directus/sdk-js": "^5.1.4",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.6.1",
@@ -40,18 +40,18 @@
     "lodash": "^4.17.5",
     "micromustache": "^5.4.0",
     "mousetrap": "^1.6.2",
-    "portal-vue": "^1.5.0",
+    "portal-vue": "^1.5.1",
     "shortid": "^2.2.12",
     "snarkdown": "^1.2.2",
     "v-tooltip": "^2.0.0-rc.33",
-    "vue": "^2.5.21",
+    "vue": "^2.5.22",
     "vue-i18n": "^7.8.1",
     "vue-meta": "^1.5.8",
     "vue-router": "^3.0.2",
     "vue-simple-spinner": "^1.2.8",
     "vue-timeago": "^4.0.2",
     "vuedraggable": "^2.17.0",
-    "vuex": "^3.0.1"
+    "vuex": "^3.1.0"
   },
   "babel": {
     "presets": [
