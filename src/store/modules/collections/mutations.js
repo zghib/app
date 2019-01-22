@@ -37,6 +37,15 @@ const mutations = {
   },
 
   [ADD_COLLECTION](state, collection) {
+    if (
+      Object.values(collection.fields).some(field => field.type === "status")
+    ) {
+      const statusField = Object.values(collection.fields).filter(
+        field => field.type === "status"
+      )[0];
+      collection.status_mapping = statusField.options.status_mapping;
+    }
+
     Vue.set(state, collection.collection, collection);
   },
 
@@ -55,6 +64,14 @@ const mutations = {
       ...state[collection].fields,
       [field.field]: field
     });
+
+    if (field.type === "status") {
+      Vue.set(
+        state[collection],
+        "status_mapping",
+        field.options.status_mapping
+      );
+    }
   },
 
   [UPDATE_FIELD](state, { collection, field }) {

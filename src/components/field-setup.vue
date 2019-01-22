@@ -510,7 +510,6 @@ export default {
       activeTab: "interface",
       id: null,
       sort: null,
-      saving: false,
 
       field: null,
       datatype: null,
