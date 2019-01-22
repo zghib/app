@@ -138,6 +138,7 @@
       v-if="editingField"
       :field-info="fieldBeingEdited"
       :collection-info="collectionInfo"
+      :saving="fieldSaving"
       @close="editingField = false"
       @save="setFieldSettings"
     />
@@ -191,6 +192,7 @@ export default {
         "many-to-one",
         "sort"
       ],
+      fieldSaving: false,
       saving: false,
       dragging: false,
 
@@ -369,6 +371,8 @@ export default {
         });
     },
     setFieldSettings({ fieldInfo, relation }) {
+      this.fieldSaving = true;
+
       const existingField = this.$store.state.collections[
         this.collection
       ].fields.hasOwnProperty(fieldInfo.field);
@@ -476,6 +480,9 @@ export default {
             notify: this.$t("something_went_wrong_body"),
             error
           });
+        })
+        .finally(() => {
+          this.fieldSaving = false;
         });
     },
     duplicateField(field) {

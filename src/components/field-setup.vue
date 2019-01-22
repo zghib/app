@@ -499,6 +499,10 @@ export default {
     fieldInfo: {
       type: Object,
       required: true
+    },
+    saving: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -1043,8 +1047,6 @@ export default {
       if (this.isNumeric === true) {
         fieldInfo.signed = this.signed;
       }
-
-      this.saving = true;
 
       const result = {
         fieldInfo,
