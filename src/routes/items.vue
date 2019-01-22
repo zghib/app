@@ -344,6 +344,8 @@ export default {
     // This will make the delete button update the item to the hidden status
     // instead of deleting it completely from the database
     softDeleteStatus() {
+      if (!this.collectionInfo.status_mapping) return null;
+
       const statusKeys = Object.keys(this.collectionInfo.status_mapping);
       const index = this.$lodash.findIndex(
         Object.values(this.collectionInfo.status_mapping),
