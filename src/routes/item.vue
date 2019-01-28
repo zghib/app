@@ -577,16 +577,21 @@ export default {
       if (method === "copy") {
         const values = Object.assign({}, this.values);
 
-        let primaryKeyField = "";
-
+        // Delete fields that shouldn't be duplicated:
+        // primary key, alias, user created, user modified, date created, date modified
         this.$lodash.forEach(this.fields, (info, fieldName) => {
-          if (info.primary_key === true) primaryKeyField = fieldName;
+          if (info.primary_key === true) delete values[fieldName];
 
-          // Delete the alias type fields
-          if (info.type.toLowerCase() === "alias") delete values[fieldName];
+          switch (info.type.toLowerCase()) {
+            case "alias":
+            case "datetime_created":
+            case "datetime_updated":
+            case "user_created":
+            case "user_updated":
+              delete values[fieldName];
+              break;
+          }
         });
-
-        delete values[primaryKeyField];
 
         const id = this.$helpers.shortid.generate();
         this.$store.dispatch("loadingStart", { id });
