@@ -577,8 +577,7 @@ export default {
       if (method === "copy") {
         const values = Object.assign({}, this.values);
 
-        // Delete fields that shouldn't be duplicated:
-        // primary key, alias, user created, user modified, date created, date modified
+        // Delete fields that shouldn't / can't be duplicated
         this.$lodash.forEach(this.fields, (info, fieldName) => {
           if (info.primary_key === true) delete values[fieldName];
 
@@ -588,6 +587,8 @@ export default {
             case "datetime_updated":
             case "user_created":
             case "user_updated":
+            case "o2m":
+            case "m2o":
               delete values[fieldName];
               break;
           }
