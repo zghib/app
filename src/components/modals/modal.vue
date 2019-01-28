@@ -41,8 +41,13 @@
             </div>
 
             <div ref="tabsBody" class="body">
-              <template v-if="tabs && activeTab === id">
-                <div v-for="(info, id) in tabs" :key="`tab-${id}`" class="tab">
+              <template v-if="tabs">
+                <div
+                  v-for="(info, id) in tabs"
+                  v-show="activeTab === id"
+                  :key="`tab-${id}`"
+                  class="tab"
+                >
                   <slot :name="id" />
                 </div>
               </template>
