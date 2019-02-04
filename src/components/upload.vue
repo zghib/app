@@ -8,6 +8,7 @@
       class="select"
       type="file"
       ref="select"
+      :accept="accept"
       :multiple="multiple"
       @change="filesChange($event.target.files)"
     />
@@ -71,6 +72,7 @@
       class="drop"
       type="file"
       ref="drop"
+      :accept="accept"
       :multiple="multiple"
       @click.prevent
       @change="filesChange($event.target.files)"
@@ -84,6 +86,9 @@ import filesize from "filesize";
 export default {
   name: "v-upload",
   props: {
+    accept: {
+      type: String
+    },
     multiple: {
       type: Boolean,
       default: true
