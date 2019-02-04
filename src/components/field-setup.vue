@@ -331,6 +331,7 @@
         <p>{{ $t("junction_collection") }}</p>
 
         <v-simple-select
+          v-if="!createM2Mjunction"
           class="select"
           :value="relationInfoM2M[0].collection_many"
           @input="
@@ -358,7 +359,16 @@
           </optgroup>
         </v-simple-select>
 
+        <v-input
+          class="select"
+          v-if="createM2Mjunction"
+          type="text"
+          v-model="createM2MjunctionName"
+          :placeholder="autoM2Msuggestion(collectionInfo.collection, relationInfoM2M[currentM2MIndex == 0 ? 1 : 0].collection_one)"
+        />
+
         <v-simple-select
+          v-if="!createM2Mjunction"
           class="select"
           v-model="relationInfoM2M[currentM2MIndex].field_many"
         >
@@ -370,7 +380,16 @@
           >
         </v-simple-select>
 
+        <v-input
+          class="select"
+          v-if="createM2Mjunction"
+          type="text"
+          v-model="relationInfoM2M[currentM2MIndex].field_many"
+          :placeholder="autoM2Msuggestion(collectionInfo.collection, 'id')"
+        />
+
         <v-simple-select
+          v-if="!createM2Mjunction"
           class="select"
           v-model="relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].field_many"
         >
@@ -381,6 +400,22 @@
             >{{ field }}</option
           >
         </v-simple-select>
+
+        <v-input
+          class="select"
+          v-if="createM2Mjunction"
+          type="text"
+          v-model="relationInfoM2M[currentM2MIndex === 0 ? 1 : 0].field_many"
+          :placeholder="autoM2Msuggestion(relationInfoM2M[currentM2MIndex == 0 ? 1 : 0].collection_one, 'id')"
+        />
+
+        <v-checkbox
+          value="m2mjunction"
+          :label="$t('auto_generate')"
+          id="createM2Mjunction"
+          :checked="createM2Mjunction"
+          @change="createM2Mjunction = !createM2Mjunction"
+        />
 
         <i class="material-icons">arrow_backward</i>
 
@@ -499,6 +534,7 @@
 
 <script>
 import mapping, { datatypes } from "../type-map";
+import { defaultFull } from "../store/modules/permissions/defaults";
 
 export default {
   name: "v-field-setup",
@@ -571,7 +607,10 @@ export default {
 
           junction_field: null
         }
-      ]
+      ],
+
+      createM2Mjunction: false,
+      createM2MjunctionName: null,
     };
   },
   computed: {
@@ -954,13 +993,7 @@ export default {
       }
     },
     field(val) {
-      // Based on https://gist.github.com/mathewbyrne/1280286
-      this.field = val
-        .toString()
-        .toLowerCase()
-        .replace(/\s+/g, "_") // Replace spaces with _
-        .replace(/[^\w_]+/g, "") // Remove all non-word chars
-        .replace(/__+/g, "_"); // Replace multiple _ with single _
+      this.field = this.validateFieldName(val)
 
       if (this.relation) {
         if (this.relation === "m2o") {
@@ -975,9 +1008,15 @@ export default {
     relationInfoM2M: {
       deep: true,
       handler() {
-        this.relationInfoM2M[0].junction_field = this.relationInfoM2M[1].field_many;
-        this.relationInfoM2M[1].junction_field = this.relationInfoM2M[0].field_many;
-
+        if (this.createM2Mjunction) {
+          var val0 = this.relationInfoM2M[0].field_many = this.validateFieldName(this.relationInfoM2M[0].field_many);
+          var val1 = this.relationInfoM2M[1].field_many = this.validateFieldName(this.relationInfoM2M[1].field_many);
+          this.relationInfoM2M[0].junction_field = val1;
+          this.relationInfoM2M[1].junction_field = val0;
+        } else {
+          this.relationInfoM2M[0].junction_field = this.relationInfoM2M[1].field_many;
+          this.relationInfoM2M[1].junction_field = this.relationInfoM2M[0].field_many;
+        }
         this.relationInfoM2M[this.currentM2MIndex].field_one = this.field;
       }
     },
@@ -988,6 +1027,26 @@ export default {
           this.getM2OID();
         }
       }
+    },
+
+    createM2Mjunction(enabled) {
+      if (enabled) {
+        var ix = this.currentM2MIndex;
+        var currentCollection = this.collectionInfo.collection;
+        this.relationInfoM2M[ix].field_one = currentCollection;
+        this.relationInfoM2M[ix === 0 ? 1 : 0].field_one = currentCollection;
+        this.createM2MjunctionName = this.autoM2Msuggestion(currentCollection, this.relationInfoM2M[ix == 0 ? 1 : 0].collection_one);
+        this.relationInfoM2M[ix].field_many = this.autoM2Msuggestion(currentCollection, "id");
+        this.relationInfoM2M[ix === 0 ? 1 : 0].field_many = this.autoM2Msuggestion(this.relationInfoM2M[ix == 0 ? 1 : 0].collection_one, "id");
+      } else {
+        this.initRelation();
+      }
+    },
+    createM2MjunctionName(val) {
+      var formatval = this.validateFieldName(val);
+      this.createM2MjunctionName = formatval;
+      this.relationInfoM2M[0].collection_many = formatval;
+      this.relationInfoM2M[1].collection_many = formatval;
     }
   },
   methods: {
@@ -1075,6 +1134,9 @@ export default {
 
         if (this.relation === "m2m") {
           result.relation = [...this.relationInfoM2M];
+          if (this.createM2Mjunction === true) {
+            this.createM2MjunctionCollection();
+          }
         }
       }
 
@@ -1274,6 +1336,161 @@ export default {
     primaryKeyFieldByCollection(collection) {
       const fields = this.fields(collection);
       return this.$lodash.find(fields, { primary_key: true });
+    },
+    validateFieldName(string) {
+      // Based on https://gist.github.com/mathewbyrne/1280286
+        return string
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, "_") // Replace spaces with _
+        .replace(/[^\w_]+/g, "") // Remove all non-word chars
+        .replace(/__+/g, "_"); // Replace multiple _ with single _
+    },
+    autoM2Msuggestion(collectionName, suffix) {
+      return collectionName + "_" + suffix;
+    },
+
+    // issue here getting the new field to add M2M relationships without refreshing 
+    createM2MjunctionCollection() {
+      var collectionData = {
+        collection: this.createM2MjunctionName,
+        hidden: true,
+        note: this.$t("junction_collection"),
+        fields: [
+          {
+              field: "id",
+              type: "integer",
+              datatype: "int",
+              interface: "primary-key",
+              primary_key: true,
+              auto_increment: true,
+              signed: false,
+              length: 10
+          },
+          {
+              field: this.relationInfoM2M[0].field_many,
+              type: "integer",
+              length: 10,
+              datatype: "int",
+              interface: null,
+              readonly: false,
+              required: true,
+          },
+          {
+              field: this.relationInfoM2M[1].field_many,
+              type: "integer",
+              length: 10,
+              datatype: "int",
+              interface: null,
+              readonly: false,
+              required: true,
+          }
+        ]
+      }
+      var fieldDispatch = {
+        id: {
+            auto_increment: true,
+            collection: this.createM2MjunctionName,
+            datatype: "int",
+            default_value: null,
+            field: "id",
+            group: null,
+            hidden_detail: true,
+            hidden_browse: true,
+            interface: "primary-key",
+            length: "10",
+            locked: 0,
+            note: null,
+            options: null,
+            primary_key: true,
+            readonly: 0,
+            required: true,
+            signed: false,
+            sort: 1,
+            translation: null,
+            type: "integer",
+            unique: false,
+            validation: null,
+            width: 4
+          }
+      }
+      fieldDispatch[this.relationInfoM2M[0].field_many] = {
+        collection: this.createM2MjunctionName,
+        field: this.relationInfoM2M[0].field_many,
+        datatype: "int",
+        unique: false,
+        primary_key: false,
+        auto_increment: false,
+        default_value: null,
+        note: null,
+        signed: true,
+        type: "integer",
+        sort: 0,
+        interface: null,
+        hidden_detail: true,
+        hidden_browse: true,
+        required: true,
+        options: null,
+        locked: false,
+        translation: null,
+        readonly: false,
+        width: 4,
+        validation: null,
+        group: null,
+        length: 10
+      };
+      fieldDispatch[this.relationInfoM2M[1].field_many] = {
+        collection: this.createM2MjunctionName,
+        field: this.relationInfoM2M[1].field_many,
+        datatype: "int",
+        unique: false,
+        primary_key: false,
+        auto_increment: false,
+        default_value: null,
+        note: null,
+        signed: true,
+        type: "integer",
+        sort: 0,
+        interface: null,
+        hidden_detail: true,
+        hidden_browse: true,
+        required: true,
+        options: null,
+        locked: false,
+        translation: null,
+        readonly: false,
+        width: 4,
+        validation: null,
+        group: null,
+        length: 10
+      };
+      this.$api
+        .createCollection(
+            collectionData,
+            {
+              fields: "*.*"
+            }
+          )
+          .then(res => res.data)
+          .then(collection => {
+            this.$store.dispatch("addCollection", {
+              ...collection,
+              fields: fieldDispatch
+            });
+            this.$store.dispatch("addPermission", {
+              collection: this.createM2MjunctionName,
+              permission: {
+                $create: defaultFull,
+                ...defaultFull
+              }
+            });
+          })
+          .catch(error => {
+            this.$events.emit("error", {
+              notify: this.$t("something_went_wrong_body"),
+              error
+            });
+          })
     }
   }
 };
@@ -1542,7 +1759,8 @@ details {
     "a b c d e"
     "f g h i j"
     "k l m n o"
-    "p q r s t";
+    "p q r s t"
+    "u u v w w";
   grid-template-columns: 1fr 20px 1fr 20px 1fr;
   grid-gap: 10px 0;
   justify-content: center;
@@ -1597,6 +1815,12 @@ details {
 
     &:last-of-type {
       grid-area: s;
+    }
+  }
+
+  .form-checkbox {
+    &:first-of-type {
+      grid-area: v;
     }
   }
 }
