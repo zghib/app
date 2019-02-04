@@ -27,11 +27,11 @@
     "prettier": "^1.16.3",
     "sass-loader": "^6.0.6",
     "vue-eslint-parser": "^5.0.0",
-    "vue-template-compiler": "^2.5.22"
+    "vue-template-compiler": "^2.6.0"
   },
   "dependencies": {
     "@directus/format-title": "^2.2.1",
-    "@directus/sdk-js": "^5.1.4",
+    "@directus/sdk-js": "^5.2.1",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.6.1",
@@ -46,7 +46,7 @@
     "shortid": "^2.2.12",
     "snarkdown": "^1.2.2",
     "v-tooltip": "^2.0.0-rc.33",
-    "vue": "^2.5.22",
+    "vue": "^2.6.0",
     "vue-i18n": "^7.8.1",
     "vue-meta": "^1.5.8",
     "vue-router": "^3.0.2",
