@@ -52,6 +52,15 @@ export function save({ commit, state, rootState }, overrides) {
       return res;
     });
   }
+  
+  if (info.collection.startsWith("directus_")) {
+    return api
+      .updateItem(info.collection, info.primaryKey, info.values)
+      .then(res => {
+        commit(ITEM_CREATED);
+        return res;
+      });
+  }
 
   return api
     .patch("/items/" + info.collection + "/" + info.primaryKey, info.values, {
