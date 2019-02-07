@@ -30,7 +30,7 @@
           v-for="(name, url) in urls"
           :key="name + url"
           :value="url"
-          :checked="url === currentUrl || url + '/' === currentUrl"
+          :selected="url === currentUrl || url + '/' === currentUrl"
           >{{ name }}</option
         >
       </select>
@@ -59,7 +59,7 @@ export default {
     },
     currentUrl() {
       return (
-        this.$store.state.auth.url + "/" + this.$store.state.auth.env + "/"
+        this.$store.state.auth.url + "/" + this.$store.state.auth.project + "/"
       );
     }
   },
