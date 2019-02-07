@@ -237,6 +237,16 @@ export default {
   color: var(--darkest-gray);
   transform-origin: top;
   box-shadow: var(--box-shadow);
+
+  @media (min-width: 800px) {
+    left: var(--nav-sidebar-width);
+    width: calc(100% - var(--nav-sidebar-width));
+  }
+
+  @media (min-width: 1000px) {
+    left: 0;
+    width: 100%;
+  }
 }
 
 .blocker {
