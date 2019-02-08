@@ -88,6 +88,8 @@ export default {
   datatype: "Datatype",
   db_datatype: "{db} Datatype",
   editing_my_profile: "Editing My Profile",
+  embed: "Embed",
+  embed_placeholder: "YouTube, Vimeo, or other link",
   fieldtypes: {
     alias:
       "Fields that do not save data or do not have corresponding database columns",

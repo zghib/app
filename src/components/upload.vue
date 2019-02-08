@@ -26,6 +26,20 @@
         </p>
       </div>
       <div class="buttons">
+        <form class="embed-input" @submit.prevent="saveEmbed" v-if="embed">
+          <input
+            type="url"
+            :placeholder="$t('embed_placeholder')"
+            v-model="embedLink"
+          />
+          <button type="submit">Save</button>
+        </form>
+        <i
+          v-tooltip="$t('embed')"
+          @click="embed = !embed"
+          class="material-icons select"
+          >link</i
+        >
         <i
           v-tooltip="$t('select_from_device')"
           @click="$refs.select.click()"
@@ -104,10 +118,32 @@ export default {
   },
   data() {
     return {
-      files: {}
+      files: {},
+      embedLink: null,
+      embed: false
     };
   },
   methods: {
+    saveEmbed() {
+      this.$api
+        .createItem("directus_files", {
+          data: this.embedLink
+        })
+        .then(res => {
+          this.$emit("upload", {
+            data: res
+          });
+        })
+        .then(() => (this.embed = false))
+        .then(() => (this.embedLink = null))
+        .catch(error => {
+          this.$events.emit("error", {
+            notify: this.$t("something_went_wrong_body"),
+            error
+          });
+        });
+    },
+
     filesChange(fileList) {
       if (!fileList || !fileList.length) return;
 
@@ -187,15 +223,54 @@ export default {
     position: absolute;
     top: 22px;
     right: 20px;
+    display: flex;
+    align-items: center;
+    height: 26px;
 
     > * {
-      display: inline-block;
       cursor: pointer;
       transition: color var(--fast) var(--transition);
       user-select: none;
+      margin-left: 10px;
 
       &:hover {
         transition: none;
+      }
+    }
+
+    .embed-input {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      input {
+        border-radius: var(--border-radius);
+        border: 1px solid var(--lighter-gray);
+        padding: 4px;
+        color: var(--dark-gray);
+
+        &::placeholder {
+          color: var(--lighter-gray);
+        }
+
+        padding-right: 40px;
+        width: 250px;
+      }
+
+      button {
+        width: 40px;
+        position: absolute;
+        right: 0;
+        height: 100%;
+        background-color: var(--light-gray);
+        border-top-right-radius: var(--border-radius);
+        border-bottom-right-radius: var(--border-radius);
+        color: var(--white);
+
+        &:hover {
+          background-color: var(--accent);
+          color: var(--white);
+        }
       }
     }
   }
