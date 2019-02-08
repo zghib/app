@@ -212,9 +212,14 @@ export default {
   .body {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-    max-height: 70vh;
+    height: 70vh;
     position: relative;
     background-color: var(--body-background);
+
+    .tab {
+      height: 100%;
+      position: relative;
+    }
   }
 
   .footer {
