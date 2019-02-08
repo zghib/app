@@ -678,11 +678,15 @@ export default {
           }
 
           if (method === "add") {
-            return this.$store.dispatch("startEditing", {
-              collection: this.collection,
-              primaryKey: "+",
-              savedValues: {}
-            });
+            if (this.$route.fullPath.endsWith("+")) {
+              this.$store.dispatch("startEditing", {
+                collection: this.collection,
+                primaryKey: "+",
+                savedValues: {}
+              });
+            } else {
+              this.$router.push(`/collections/${this.collection}/+`);
+            }
           }
         })
         .catch(error => {
