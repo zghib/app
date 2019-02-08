@@ -52,7 +52,7 @@ export function save({ commit, state, rootState }, overrides) {
       return res;
     });
   }
-  
+
   if (info.collection.startsWith("directus_")) {
     return api
       .updateItem(info.collection, info.primaryKey, info.values)

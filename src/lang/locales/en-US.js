@@ -319,6 +319,8 @@ export default {
   not_in_list: "Not one of these",
   no_interface_error: "Field {field} doesn't have an interface setup",
   manage: "Manage",
+  manage_started: "Started Managing {collection}",
+  manage_stopped: "Stopped Managing {collection}",
   max_size: "Max. Size: {size}",
   max_one_primary_key: "You can only have 1 primary key field per collection",
   dont_manage: "Don't Manage",

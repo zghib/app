@@ -541,6 +541,15 @@ export default {
           .then(() => {
             return this.$store.dispatch("getCollections");
           })
+          .then(() => {
+            this.$notify({
+              title: this.$t("manage_started", {
+                collection: collection.collection
+              }),
+              color: "green",
+              iconMain: "check"
+            });
+          })
           .catch(error => {
             this.$events.emit("error", {
               notify: this.$t("something_went_wrong_body"),
@@ -558,6 +567,14 @@ export default {
           return this.$store.dispatch("getCollections");
         })
         .then(() => {
+          this.$notify({
+            title: this.$t("manage_stopped", {
+              collection: this.dontManage.collection
+            }),
+            color: "green",
+            iconMain: "check"
+          });
+
           this.dontManage = null;
         })
         .catch(error => {

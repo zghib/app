@@ -32,7 +32,7 @@ const mutations = {
     });
 
     _.forEach(collections, (value, key) => {
-      state[key] = value;
+      Vue.set(state, key, value);
     });
   },
 
