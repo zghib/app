@@ -421,6 +421,7 @@ export default {
   something_went_wrong: "Something went wrong.",
   something_went_wrong_body:
     "Trouble processing request. Try again after refreshing the page.",
+  sort_by: "Sort By",
   sign_in: "Sign In",
   signing_in: "Signing In",
   sign_out: "Sign Out",
