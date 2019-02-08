@@ -956,6 +956,10 @@ export default {
       }
 
       this.initRelation();
+
+      if (this.type === "status") {
+        this.required = true;
+      }
     },
     type(type) {
       if (this.existing) return;
