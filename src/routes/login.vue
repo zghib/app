@@ -320,9 +320,11 @@ export default {
           })
           .then(() => {
             this.loading = false;
-            this.$notification.confirm(
-              this.$t("password_reset_sent", { email: this.email })
-            );
+            this.$notify({
+              title: this.$t("password_reset_sent", { email: this.email }),
+              color: "green",
+              iconMain: "check"
+            });
           })
           .catch(error => {
             this.error = error;
