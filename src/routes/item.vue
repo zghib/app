@@ -379,6 +379,13 @@ export default {
           return [field.default_value];
         }
 
+        if (field.type === "boolean") {
+          if (field.default_value === "1" || field.default_value === "true") {
+            return true;
+          }
+          return false;
+        }
+
         return field.default_value;
       });
     },
