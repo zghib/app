@@ -374,7 +374,13 @@ export default {
       return this.$store.state.collections[this.collection];
     },
     defaultValues() {
-      return this.$lodash.mapValues(this.fields, field => field.default_value);
+      return this.$lodash.mapValues(this.fields, field => {
+        if (field.type === "array") {
+          return [field.default_value];
+        }
+
+        return field.default_value;
+      });
     },
     values() {
       const edits = this.$store.state.edits.values;
