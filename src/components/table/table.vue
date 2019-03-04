@@ -395,7 +395,8 @@ export default {
       const widths = {};
 
       this.columns.forEach(({ field }) => {
-        widths[field] = (this.columnWidths && this.columnWidths[field]) || 200;
+        const width = (this.columnWidths && this.columnWidths[field]) || 200;
+        widths[field] = width > 0 ? width : 200;
       });
 
       this.widths = widths;
