@@ -61,8 +61,9 @@ export const availableLanguages = {
   "en-US": "English (United States)",
   "fr-FR": "French (France)",
   "de-DE": "German (Germany)",
+  "it-IT": "Italian (Italy)",
   "pt-BR": "Portuguese (Brazil)",
-  "it-IT": "Italian (Italy)"
+  "ru-RU": "Russian (Russia)"
 };
 
 i18n.availableLanguages = availableLanguages;
