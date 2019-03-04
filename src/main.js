@@ -7,7 +7,7 @@ import PortalVue from "portal-vue";
 import axios from "axios";
 import meta from "vue-meta";
 import en from "date-fns/locale/en/";
-import nl from "date-fns/locale/nl/";
+import VueTheMask from "vue-the-mask";
 
 import "./assets/global.scss";
 import "./assets/tooltip.scss";
@@ -55,10 +55,10 @@ Vue.use(VueTimeago, {
   name: "v-timeago",
   locale: "en-US",
   locales: {
-    en,
-    nl
+    en
   }
 });
+Vue.use(VueTheMask);
 Vue.use(meta);
 Vue.component("draggable", VueDraggable);
 
