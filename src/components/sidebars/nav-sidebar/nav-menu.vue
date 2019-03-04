@@ -4,14 +4,9 @@
     <nav :class="{ 'no-border': noBorder }">
       <ul>
         <li v-for="{ path, name, icon, color } in links" :key="path">
-          <component
-            :is="path.startsWith('http') ? 'a' : 'router-link'"
+          <router-link
             :to="path"
-            :href="path"
-            target="__blank"
-            rel="noopener noreferrer"
-            :class="color || null"
-          >
+            :class="color || null">
             <i v-if="icon" class="material-icons icon">{{ icon }}</i>
             <svg v-else class="icon" viewBox="0 0 17 18">
               <path
@@ -20,7 +15,7 @@
               />
             </svg>
             {{ name }}
-          </component>
+          </router-link>
         </li>
       </ul>
     </nav>
