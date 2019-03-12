@@ -64,7 +64,7 @@ export const availableLanguages = {
   "it-IT": "Italian (Italy)",
   "pt-BR": "Portuguese (Brazil)",
   "ru-RU": "Russian (Russia)",
-  "ms-MY"   : "Malay (Malaysia)"
+  "ms-MY": "Malay (Malaysia)"
 };
 
 i18n.availableLanguages = availableLanguages;

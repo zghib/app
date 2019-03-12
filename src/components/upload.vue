@@ -126,9 +126,9 @@ export default {
   computed: {
     acceptTypesList() {
       if (this.accept) {
-        return this.accept.trim().split(/\s*,\s*/)
+        return this.accept.trim().split(/\s*,\s*/);
       } else {
-        return []
+        return [];
       }
     }
   },
@@ -171,7 +171,10 @@ export default {
         return;
       }
 
-      if (this.acceptTypesList.length > 0 && !this.acceptTypesList.includes(type)) {
+      if (
+        this.acceptTypesList.length > 0 &&
+        !this.acceptTypesList.includes(type)
+      ) {
         this.$events.emit("warning", {
           notify: this.$t("file_type_not_accepted", { filename: name })
         });
