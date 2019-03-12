@@ -27,7 +27,7 @@
     "prettier": "^1.16.3",
     "sass-loader": "^6.0.6",
     "vue-eslint-parser": "^5.0.0",
-    "vue-template-compiler": "^2.6.0"
+    "vue-template-compiler": "^2.6.8"
   },
   "dependencies": {
     "@directus/format-title": "^2.3.1",
@@ -46,7 +46,7 @@
     "shortid": "^2.2.12",
     "snarkdown": "^1.2.2",
     "v-tooltip": "^2.0.0-rc.33",
-    "vue": "^2.6.0",
+    "vue": "^2.6.8",
     "vue-i18n": "^7.8.1",
     "vue-meta": "^1.5.8",
     "vue-router": "^3.0.2",

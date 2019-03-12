@@ -4,9 +4,7 @@
     <nav :class="{ 'no-border': noBorder }">
       <ul>
         <li v-for="{ path, name, icon, color } in links" :key="path">
-          <router-link
-            :to="path"
-            :class="color || null">
+          <router-link :to="path" :class="color || null">
             <i v-if="icon" class="material-icons icon">{{ icon }}</i>
             <svg v-else class="icon" viewBox="0 0 17 18">
               <path
