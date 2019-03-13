@@ -286,6 +286,16 @@ export default {
 
     this.trySSOLogin();
   },
+  beforeRouteEnter(to, from, next) {
+    if (to.query.project) {
+      return next(vm => {
+        vm.selectedUrl = "other";
+        vm.url = atob(to.query.project);
+      });
+    }
+
+    return next();
+  },
   watch: {
     url() {
       this.exists = null;
