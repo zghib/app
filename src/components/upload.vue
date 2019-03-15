@@ -134,13 +134,41 @@ export default {
   },
   methods: {
     saveEmbed() {
+      const id = this.$helpers.shortid.generate();
+      const name = this.embedLink.substring(this.embedLink.lastIndexOf("/") + 1);
+      this.files = {
+        [id]: {
+          name,
+          size: null,
+          progress: 0,
+          type: null,
+          error: null
+        },
+        ...this.files
+      };
       this.$api
         .createItem("directus_files", {
           data: this.embedLink
         })
-        .then(res => {
+        .then(res => res.data)
+        .then(data => {
+          const { filesize: size, type, title: name } = data;
+          this.files = {
+            [id]: {
+              name,
+              size,
+              progress: 100,
+              type,
+              error: null
+            },
+            ...this.files
+          };
+          return data;
+        })
+        .then(data => {
           this.$emit("upload", {
-            data: res
+            ...this.files[id],
+            data
           });
         })
         .then(() => (this.embed = false))
