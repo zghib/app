@@ -87,6 +87,7 @@ export default {
         links.push({
           path: "/settings",
           name: this.$t("admin_settings"),
+          target: "_self",
           icon: "settings",
           color: "warning"
         });
@@ -95,6 +96,7 @@ export default {
       links.push({
         path: "https://docs.directus.io",
         name: this.$t("help_and_docs"),
+        target: "_blank",
         icon: "help"
       });
 
@@ -107,6 +109,7 @@ export default {
         links.push({
           path: "/files",
           name: this.$t("file_library"),
+          target: "_self",
           icon: "collections"
         });
       }
@@ -118,6 +121,7 @@ export default {
         links.push({
           path: "/users",
           name: this.$t("user_directory"),
+          target: "_self",
           icon: "person"
         });
       }
@@ -131,6 +135,7 @@ export default {
         links.push({
           path: "/activity",
           name: this.$t("my_activity"),
+          target: "_self",
           icon: "notifications"
         });
       }
@@ -138,6 +143,7 @@ export default {
       links.push({
         path: `/users/${this.currentUserID}`,
         name: this.$t("my_profile"),
+        target: "_self",
         icon: "person"
       });
 
