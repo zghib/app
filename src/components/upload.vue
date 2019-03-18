@@ -135,7 +135,9 @@ export default {
   methods: {
     saveEmbed() {
       const id = this.$helpers.shortid.generate();
-      const name = this.embedLink.substring(this.embedLink.lastIndexOf("/") + 1);
+      const name = this.embedLink.substring(
+        this.embedLink.lastIndexOf("/") + 1
+      );
       this.files = {
         [id]: {
           name,
