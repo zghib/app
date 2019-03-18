@@ -46,7 +46,7 @@
     <v-form
       v-if="fields && role"
       :fields="fields"
-      :values="role"
+      :values="{ ...role, ...roleEdits }"
       collection="directus_roles"
       @stage-value="stageValue"
     />
@@ -317,6 +317,7 @@ export default {
           this.$store.dispatch("loadingFinished", id);
           this.saving = false;
           this.$router.push("/settings/roles");
+          this.$store.dispatch("getCurrentUser");
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
