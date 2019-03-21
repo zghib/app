@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-menu">
+  <div class="nav-menu" v-if="links.length > 0">
     <h3 v-if="title" class="style-4">{{ title }}</h3>
     <nav :class="{ 'no-border': noBorder }">
       <ul>
@@ -16,7 +16,7 @@
               {{ name }}
             </a>
           </div>
-          <router-link v-else :to="path" :class="color || null">
+          <router-link v-else-if="path" :to="path" :class="color || null">
             <i v-if="icon" class="material-icons icon">{{ icon }}</i>
             <svg v-else class="icon" viewBox="0 0 17 18">
               <path

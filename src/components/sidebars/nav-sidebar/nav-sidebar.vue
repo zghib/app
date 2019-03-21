@@ -28,7 +28,7 @@
             <nav-menu
               v-else
               :title="section.title"
-              :links="section.links"
+              :links="section.links ? section.links : []"
               :no-border="index + 1 === navStructure.length"
             />
           </div>
