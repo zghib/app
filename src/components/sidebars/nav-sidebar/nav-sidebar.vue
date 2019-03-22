@@ -26,6 +26,18 @@
               :no-border="index + 1 === navStructure.length"
             />
             <nav-menu
+              v-else-if="section.include && section.include === 'collections'"
+              :title="$t('collections')"
+              :links="linksCollections"
+              :no-border="index + 1 === navStructure.length"
+            />
+            <nav-menu
+              v-else-if="section.include && section.include === 'extensions'"
+              :title="$t('extensions')"
+              :links="linksExtensions"
+              :no-border="index + 1 === navStructure.length"
+            />
+            <nav-menu
               v-else
               :title="section.title"
               :links="section.links ? section.links : []"
@@ -125,48 +137,7 @@ export default {
       const userRole = this.$store.state.currentUser.roles[0];
       const navOverride = userRole.nav_override;
 
-      let navStructure = navOverride || this.defaultNavStructure;
-
-      // Convert the `includes` in the nav structure to actual arrays of links
-      navStructure = navStructure.map(section => {
-        if (section.include) {
-          let links;
-
-          switch (section.include) {
-            case "collections":
-              links = this.linksCollections;
-              delete section.include;
-              break;
-            case "extensions":
-              links = this.linksExtensions;
-              delete section.include;
-              break;
-          }
-
-          section.links = links;
-        }
-
-        // Allow the section title to be translateable
-        if (section.title.startsWith("$t:")) {
-          section.title = this.$t(section.title.substring(3));
-        }
-
-        // Add unique ID to the section
-        section.id = this.$helpers.shortid.generate();
-
-        return section;
-      });
-
-      // Filter out the sections that have no links
-      navStructure = navStructure.filter(section => {
-        if (section.links) {
-          return section.links.length > 0;
-        }
-
-        return true;
-      });
-
-      return navStructure;
+      return navOverride || this.defaultNavStructure;
     },
 
     linksCollections() {
