@@ -212,10 +212,6 @@ export default {
     storeError() {
       return this.$store.state.auth.error;
     },
-    storeUrl() {
-      if (!this.$store.state.auth.url) return null;
-      return this.$store.state.auth.url + "/" + this.$store.state.auth.env;
-    },
     errorType() {
       if (!this.error && !this.SSOerror) return;
 
@@ -261,15 +257,17 @@ export default {
       return this.selectedUrl === "other";
     }
   },
+
+  mounted() {},
   created() {
     this.checkUrl = this.$lodash.debounce(this.checkUrl, 300);
 
     if (this.url) {
       this.checkUrl();
     }
-
-    let lastUsedURL =
-      this.storeUrl || Object.keys(window.__DirectusConfig__.api)[0];
+    let lastUsedURL = this.$store.state.auth.url
+      ? this.$store.state.auth.url
+      : Object.keys(window.__DirectusConfig__.api)[0];
 
     // Check if the last used URL is still a valid option before using it
     if (
