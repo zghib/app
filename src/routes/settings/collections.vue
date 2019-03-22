@@ -103,8 +103,6 @@
 </template>
 
 <script>
-import { defaultFull } from "../../store/modules/permissions/defaults";
-
 export default {
   name: "settings-collections",
   metaInfo() {
@@ -513,13 +511,7 @@ export default {
             // https://github.com/directus/api/issues/207
             fields: fieldsToDispatch
           });
-          this.$store.dispatch("addPermission", {
-            collection: this.newName,
-            permission: {
-              $create: defaultFull,
-              ...defaultFull
-            }
-          });
+          this.$store.dispatch("getPermissions");
           this.$router.push(`/settings/collections/${this.newName}`);
         })
         .catch(error => {
