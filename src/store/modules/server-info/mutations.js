@@ -5,5 +5,6 @@ export default {
     state.apiVersion = info.apiVersion;
     state.phpVersion = info.phpVersion;
     state.maxUploadSize = info.maxUploadSize;
+    state.databaseVendor = info.databaseVendor;
   }
 };

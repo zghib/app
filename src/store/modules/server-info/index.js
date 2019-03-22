@@ -5,9 +5,7 @@ const state = {
   apiVersion: null,
   phpVersion: null,
   maxUploadSize: null,
-
-  // This should be dynamic as soon as the API supports multiple database vendors
-  databaseVendor: "mysql"
+  databaseVendor: null
 };
 
 export default {

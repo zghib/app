@@ -123,6 +123,35 @@ export default {
       VARCHAR:
         "Une chaîne non binaire de longueur variable. La longueur peut être comprise entre 0 et 65 535 caractères (MySQL 5.0.3+).",
       YEAR: "Une année entre `1901` et `2155` ou `0000`"
+    },
+    pgsql: {
+      CHARACTER:
+        "Une chaîne non binaire de longueur fixe, complétée à droite avec des espaces. La longueur peut être comprise entre 0 et 255 caractères.",
+      "CHARACTER VARYING":
+        "Une chaîne non binaire de longueur variable. La longueur peut être comprise entre 0 et 65 535 caractères.",
+      TEXT: "Une chaîne d’une longueur infinie.",
+      JSON: "Une chaîne non binaire représentant un document JSON",
+      JSONB: "Une chaîne binaire représentant un document JSON",
+
+      BOOLEAN: "Vrai ou faux.",
+
+      SMALLINT: "Un nombre entier compris dans l’intervalle [-32 768,32 767].",
+      INTEGER:
+        "Un nombre entier compris dans l’intervalle [-2 147 483 648,2 147 483 647].",
+      BIGINT:
+        "Un nombre entier compris dans l’intervalle [-9 223 372 036 854 775 808,9 223 372 036 854 775 807].",
+
+      NUMERIC:
+        "Un nombre précis (ex: une devise), d’une longueur maximale de 131 072 chiffres (L) avec une partie décimale de maximum 16 383 chiffres (D). Format de longueur: `L,D`",
+      REAL:
+        "Un nombre décimal binaire approximatif de 4 octets avec une partie décimale à 6 chiffres.",
+      DOUBLE:
+        "Un nombre décimal binaire approximatif de 8 octets avec une partie décimale à 15 chiffres.",
+
+      DATE: "Une date entre 4713 av. J.-C. et 5874897 apr. J.-C.",
+      TIMESTAMP:
+        "Une date et une heure entre 4713 av. J.-C. et 5874897 apr. J.-C.",
+      TIME: "Une heure entre `00:00:00` et `24:00:00`."
     }
   },
   date_and_time: "Date & Heure",

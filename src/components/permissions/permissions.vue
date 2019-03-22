@@ -184,8 +184,9 @@ export default {
       border-top: 1px solid var(--lightest-gray);
     }
   }
-  ::v-deep .cell {
-    flex-basis: 44px;
+
+  /deep/ .cell {
+    flex-basis: 70px;
     &:first-child {
       flex-grow: 2;
     }

@@ -110,6 +110,9 @@
 </template>
 
 <script>
+import { defaultFull } from "../../store/modules/permissions/defaults";
+import mapping, { datatypes } from "../../type-map";
+
 export default {
   name: "SettingsCollections",
   metaInfo() {
@@ -134,6 +137,9 @@ export default {
     };
   },
   computed: {
+    databaseVendor() {
+      return this.$store.state.serverInfo.databaseVendor;
+    },
     items() {
       const collections = this.$store.state.collections || {};
 
@@ -159,6 +165,14 @@ export default {
     }
   },
   methods: {
+    columnDefaultDatatype(type) {
+      return mapping[type][this.databaseVendor].default;
+    },
+    columnDefaultLength(type) {
+      let defaultDataType =
+        datatypes[this.databaseVendor][this.columnDefaultDatatype(type)];
+      return defaultDataType.length ? defaultDataType.defaultLength : undefined;
+    },
     add() {
       this.adding = true;
 
@@ -168,8 +182,8 @@ export default {
       let fieldsToAdd = [
         {
           type: "integer",
-          datatype: "INT",
-          length: 15,
+          datatype: this.columnDefaultDatatype("integer"),
+          length: this.columnDefaultLength("integer"),
           field: "id",
           interface: "primary-key",
           auto_increment: true,
@@ -182,14 +196,14 @@ export default {
         id: {
           auto_increment: true,
           collection: this.newName,
-          datatype: "INT",
+          datatype: this.columnDefaultDatatype("integer"),
+          length: this.columnDefaultLength("integer"),
           default_value: null,
           field: "id",
           group: null,
           hidden_detail: true,
           hidden_browse: true,
           interface: "primary-key",
-          length: "10",
           locked: 0,
           note: "",
           options: null,
@@ -209,8 +223,8 @@ export default {
       if (this.status) {
         fieldsToAdd.push({
           type: "status",
-          datatype: "VARCHAR",
-          length: 20,
+          datatype: this.columnDefaultDatatype("status"),
+          length: this.columnDefaultLength("status"),
           field: "status",
           interface: "status",
           default_value: "draft",
@@ -250,7 +264,8 @@ export default {
         fieldsToDispatch.status = {
           collection: this.newName,
           field: "status",
-          datatype: "VARCHAR",
+          datatype: this.columnDefaultDatatype("status"),
+          length: this.columnDefaultLength("status"),
           unique: false,
           primary_key: false,
           auto_increment: false,
@@ -299,14 +314,14 @@ export default {
           readonly: false,
           width: "full",
           validation: null,
-          group: null,
-          length: "20"
+          group: null
         };
       }
       if (this.sort) {
         fieldsToAdd.push({
           type: "sort",
-          datatype: "INT",
+          datatype: this.columnDefaultDatatype("sort"),
+          length: this.columnDefaultLength("sort"),
           field: "sort",
           interface: "sort",
           hidden_detail: true,
@@ -316,7 +331,8 @@ export default {
         fieldsToDispatch.sort = {
           collection: this.newName,
           field: "sort",
-          datatype: "INT",
+          datatype: this.columnDefaultDatatype("sort"),
+          length: this.columnDefaultLength("sort"),
           unique: false,
           primary_key: false,
           auto_increment: false,
@@ -335,14 +351,14 @@ export default {
           readonly: false,
           width: "full",
           validation: null,
-          group: null,
-          length: "10"
+          group: null
         };
       }
       if (this.createdBy) {
         fieldsToAdd.push({
           type: "user_created",
-          datatype: "INT",
+          datatype: this.columnDefaultDatatype("user_created"),
+          length: this.columnDefaultLength("user_created"),
           field: "created_by",
           interface: "user-created",
           options: {
@@ -357,7 +373,8 @@ export default {
         fieldsToDispatch.created_by = {
           collection: this.newName,
           field: "created_by",
-          datatype: "INT",
+          datatype: this.columnDefaultDatatype("user_created"),
+          length: this.columnDefaultLength("user_created"),
           unique: false,
           primary_key: false,
           auto_increment: false,
@@ -379,14 +396,14 @@ export default {
           readonly: true,
           width: "full",
           validation: null,
-          group: null,
-          length: "10"
+          group: null
         };
       }
       if (this.createdOn) {
         fieldsToAdd.push({
           type: "datetime_created",
-          datatype: "DATETIME",
+          datatype: this.columnDefaultDatatype("datetime_created"),
+          length: this.columnDefaultLength("datetime_created"),
           field: "created_on",
           interface: "datetime-created",
           readonly: true,
@@ -397,7 +414,8 @@ export default {
         fieldsToDispatch.created_on = {
           collection: this.newName,
           field: "created_on",
-          datatype: "DATETIME",
+          datatype: this.columnDefaultDatatype("datetime_created"),
+          length: this.columnDefaultLength("datetime_created"),
           unique: false,
           primary_key: false,
           auto_increment: false,
@@ -416,14 +434,14 @@ export default {
           readonly: true,
           width: "full",
           validation: null,
-          group: null,
-          length: null
+          group: null
         };
       }
       if (this.modifiedBy) {
         fieldsToAdd.push({
           type: "user_updated",
-          datatype: "INT",
+          datatype: this.columnDefaultDatatype("user_updated"),
+          length: this.columnDefaultLength("user_updated"),
           field: "modified_by",
           interface: "user-updated",
           options: {
@@ -438,7 +456,8 @@ export default {
         fieldsToDispatch.modified_by = {
           collection: this.newName,
           field: "modified_by",
-          datatype: "INT",
+          datatype: this.columnDefaultDatatype("user_updated"),
+          length: this.columnDefaultLength("user_updated"),
           unique: false,
           primary_key: false,
           auto_increment: false,
@@ -460,14 +479,14 @@ export default {
           readonly: true,
           width: "full",
           validation: null,
-          group: null,
-          length: "10"
+          group: null
         };
       }
       if (this.modifiedOn) {
         fieldsToAdd.push({
           type: "datetime_updated",
-          datatype: "DATETIME",
+          datatype: this.columnDefaultDatatype("datetime_updated"),
+          length: this.columnDefaultLength("datetime_updated"),
           field: "modified_on",
           interface: "datetime-updated",
           readonly: true,
@@ -478,7 +497,8 @@ export default {
         fieldsToDispatch.modified_on = {
           collection: this.newName,
           field: "modified_on",
-          datatype: "DATETIME",
+          datatype: this.columnDefaultDatatype("datetime_updated"),
+          length: this.columnDefaultLength("datetime_updated"),
           unique: false,
           primary_key: false,
           auto_increment: false,
@@ -497,8 +517,7 @@ export default {
           readonly: true,
           width: "full",
           validation: null,
-          group: null,
-          length: null
+          group: null
         };
       }
 

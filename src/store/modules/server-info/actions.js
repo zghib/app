@@ -4,13 +4,14 @@ import { get } from "lodash";
 
 export function getServerInfo({ commit }) {
   api
-    .serverInfo()
+    .projectInfo()
     .then(res => res.data)
     .then(info => {
       commit(SET_SERVER_INFO, {
         apiVersion: get(info, "api.version"),
         phpVersion: get(info, "server.general.php_version"),
-        maxUploadSize: get(info, "server.max_upload_size")
+        maxUploadSize: get(info, "server.max_upload_size"),
+        databaseVendor: get(info, "api.database")
       });
     });
 }

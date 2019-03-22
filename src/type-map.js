@@ -123,6 +123,109 @@ export const datatypes = {
       description: "datatypes.mysql.YEAR",
       fallbackInterface: "numeric"
     }
+  },
+  pgsql: {
+    // Boolean based
+    // -------------------------------------------------------------------------
+    BOOLEAN: {
+      description: i18n.t("datatypes.pgsql.BOOLEAN"),
+      fallbackInterface: "toggle"
+    },
+
+    // String based
+    // -------------------------------------------------------------------------
+    CHARACTER: {
+      length: true,
+      defaultLength: 50,
+      maxLength: 255,
+      description: i18n.t("datatypes.pgsql.CHARACTER"),
+      fallbackInterface: "text-input"
+    },
+
+    "CHARACTER VARYING": {
+      length: true,
+      defaultLength: 255,
+      maxLength: 65535,
+      description: i18n.t("datatypes.pgsql.CHARACTER_VARYING"),
+      fallbackInterface: "text-input"
+    },
+
+    TEXT: {
+      description: i18n.t("datatypes.pgsql.TEXT"),
+      fallbackInterface: "textarea"
+    },
+
+    JSON: {
+      description: i18n.t("datatypes.pgsql.JSON"),
+      fallbackInterface: "textarea"
+    },
+
+    JSONB: {
+      description: i18n.t("datatypes.pgsql.JSONB"),
+      fallbackInterface: "textarea"
+    },
+
+    // Numeric
+    // -------------------------------------------------------------------------
+    SMALLINT: {
+      description: i18n.t("datatypes.pgsql.SMALLINT"),
+      fallbackInterface: "numeric"
+    },
+
+    INTEGER: {
+      description: i18n.t("datatypes.pgsql.INTEGER"),
+      fallbackInterface: "numeric"
+    },
+
+    BIGINT: {
+      description: i18n.t("datatypes.pgsql.BIGINT"),
+      fallbackInterface: "numeric"
+    },
+
+    // Decimal Numbers
+    // -------------------------------------------------------------------------
+    NUMERIC: {
+      decimal: true,
+      description: i18n.t("datatypes.pgsql.NUMERIC"),
+      defaultDigits: 10,
+      maxDigits: 65,
+      defaultDecimals: 10,
+      maxDecimals: 30,
+      fallbackInterface: "numeric"
+    },
+
+    REAL: {
+      decimal: true,
+      description: i18n.t("datatypes.pgsql.REAL"),
+      defaultDigits: 10,
+      defaultDecimals: 3,
+      fallbackInterface: "numeric"
+    },
+
+    "DOUBLE PRECISION": {
+      decimal: true,
+      description: i18n.t("datatypes.pgsql.DOUBLE_PRECISION"),
+      defaultDigits: 10,
+      defaultDecimals: 10,
+      fallbackInterface: "numeric"
+    },
+
+    // Date and Time
+    // -------------------------------------------------------------------------
+    DATE: {
+      description: i18n.t("datatypes.pgsql.DATE"),
+      fallbackInterface: "date"
+    },
+
+    TIME: {
+      description: i18n.t("datatypes.pgsql.TIME"),
+      fallbackInterface: "time"
+    },
+
+    TIMESTAMP: {
+      description: i18n.t("datatypes.pgsql.TIMESTAMP"),
+      fallbackInterface: "datetime"
+    }
   }
 };
 
@@ -132,6 +235,10 @@ export default {
     mysql: {
       datatypes: null,
       default: null
+    },
+    pgsql: {
+      datatypes: null,
+      default: null
     }
   },
   array: {
@@ -139,6 +246,10 @@ export default {
     mysql: {
       datatypes: ["VARCHAR"],
       default: "VARCHAR"
+    },
+    pgsql: {
+      datatypes: ["CHARACTER VARYING"],
+      default: "CHARACTER VARYING"
     }
   },
   boolean: {
@@ -146,11 +257,19 @@ export default {
     mysql: {
       datatypes: ["TINYINT"],
       default: "TINYINT"
+    },
+    pgsql: {
+      datatypes: ["BOOLEAN"],
+      default: "BOOLEAN"
     }
   },
   date: {
     description: "fieldtypes.date",
     mysql: {
+      datatypes: ["DATE"],
+      default: "DATE"
+    },
+    pgsql: {
       datatypes: ["DATE"],
       default: "DATE"
     }
@@ -160,6 +279,10 @@ export default {
     mysql: {
       datatypes: ["DATETIME"],
       default: "DATETIME"
+    },
+    pgsql: {
+      datatypes: ["TIMESTAMP"],
+      default: "TIMESTAMP"
     }
   },
   datetime_created: {
@@ -167,6 +290,10 @@ export default {
     mysql: {
       datatypes: ["DATETIME"],
       default: "DATETIME"
+    },
+    pgsql: {
+      datatypes: ["TIMESTAMP"],
+      default: "TIMESTAMP"
     }
   },
   datetime_updated: {
@@ -174,6 +301,10 @@ export default {
     mysql: {
       datatypes: ["DATETIME"],
       default: "DATETIME"
+    },
+    pgsql: {
+      datatypes: ["TIMESTAMP"],
+      default: "TIMESTAMP"
     }
   },
   decimal: {
@@ -181,11 +312,19 @@ export default {
     mysql: {
       datatypes: ["DECIMAL", "FLOAT", "DOUBLE"],
       default: "DECIMAL"
+    },
+    pgsql: {
+      datatypes: ["NUMERIC", "REAL", "DOUBLE PRECISION"],
+      default: "NUMERIC"
     }
   },
   time: {
     description: "fieldtypes.time",
     mysql: {
+      datatypes: ["TIME"],
+      default: "TIME"
+    },
+    pgsql: {
       datatypes: ["TIME"],
       default: "TIME"
     }
@@ -195,11 +334,19 @@ export default {
     mysql: {
       datatypes: ["INT"],
       default: "INT"
+    },
+    pgsql: {
+      datatypes: ["INTEGER"],
+      default: "INTEGER"
     }
   },
   group: {
     description: "fieldtypes.group",
     mysql: {
+      datatypes: null,
+      default: null
+    },
+    pgsql: {
       datatypes: null,
       default: null
     }
@@ -209,6 +356,10 @@ export default {
     mysql: {
       datatypes: ["TINYINT", "SMALLINT", "MEDIUMINT", "INT", "BIGINT"],
       default: "INT"
+    },
+    pgsql: {
+      datatypes: ["SMALLINT", "INTEGER", "BIGINT"],
+      default: "INTEGER"
     }
   },
   json: {
@@ -216,6 +367,10 @@ export default {
     mysql: {
       datatypes: ["VARCHAR", "TINYTEXT", "TEXT", "MEDIUMTEXT", "LONGTEXT"],
       default: "TEXT"
+    },
+    pgsql: {
+      datatypes: ["JSON", "JSONB", "CHARACTER VARYING", "TEXT"],
+      default: "JSONB"
     }
   },
   lang: {
@@ -223,6 +378,10 @@ export default {
     mysql: {
       datatypes: ["CHAR", "VARCHAR"],
       default: "CHAR"
+    },
+    pgsql: {
+      datatypes: ["CHARACTER", "CHARACTER VARYING"],
+      default: "CHARACTER"
     }
   },
   m2o: {
@@ -230,11 +389,19 @@ export default {
     mysql: {
       datatypes: ["CHAR", "VARCHAR", "INT"],
       default: "INT"
+    },
+    pgsql: {
+      datatypes: ["CHARACTER", "CHARACTER VARYING", "INTEGER"],
+      default: "INTEGER"
     }
   },
   o2m: {
     description: "fieldtypes.o2m",
     mysql: {
+      datatypes: null,
+      default: null
+    },
+    pgsql: {
       datatypes: null,
       default: null
     }
@@ -244,13 +411,21 @@ export default {
     mysql: {
       datatypes: ["TINYINT", "SMALLINT", "MEDIUMINT", "INT", "BIGINT"],
       default: "INT"
+    },
+    pgsql: {
+      datatypes: ["SMALLINT", "INTEGER", "BIGINT"],
+      default: "INTEGER"
     }
   },
   status: {
     description: "fieldtypes.status",
     mysql: {
-      datatypes: ["CHAR", "VARCHAR", "INT"],
+      datatypes: ["CHAR", "VARCHAR", "TEXT"],
       default: "VARCHAR"
+    },
+    pgsql: {
+      datatypes: ["CHARACTER", "CHARACTER VARYING", "TEXT"],
+      default: "CHARACTER VARYING"
     }
   },
   string: {
@@ -258,11 +433,19 @@ export default {
     mysql: {
       datatypes: ["CHAR", "VARCHAR", "TINYTEXT", "TEXT", "MEDIUMTEXT", "LONGTEXT"],
       default: "VARCHAR"
+    },
+    pgsql: {
+      datatypes: ["CHARACTER", "CHARACTER VARYING", "TEXT"],
+      default: "CHARACTER VARYING"
     }
   },
   translation: {
     description: "fieldtypes.translation",
     mysql: {
+      datatypes: null,
+      default: null
+    },
+    pgsql: {
       datatypes: null,
       default: null
     }
@@ -272,6 +455,10 @@ export default {
     mysql: {
       datatypes: ["VARCHAR"],
       default: "VARCHAR"
+    },
+    pgsql: {
+      datatypes: ["CHARACTER VARYING"],
+      default: "CHARACTER VARYING"
     }
   },
   user_created: {
@@ -279,6 +466,10 @@ export default {
     mysql: {
       datatypes: ["INT"],
       default: "INT"
+    },
+    pgsql: {
+      datatypes: ["INTEGER"],
+      default: "INTEGER"
     }
   },
   user_updated: {
@@ -286,6 +477,10 @@ export default {
     mysql: {
       datatypes: ["INT"],
       default: "INT"
+    },
+    pgsql: {
+      datatypes: ["INTEGER"],
+      default: "INTEGER"
     }
   }
 };
