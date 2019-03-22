@@ -1371,10 +1371,10 @@ export default {
       // Based on https://gist.github.com/mathewbyrne/1280286
       return string
         .toString()
-        .toLowerCase()
         .replace(/\s+/g, "_") // Replace spaces with _
         .replace(/[^\w_]+/g, "") // Remove all non-word chars
-        .replace(/__+/g, "_"); // Replace multiple _ with single _
+        .replace(/__+/g, "_") // Replace multiple _ with single _
+        .toLowerCase();
     },
     autoM2Msuggestion(collectionName, suffix) {
       return collectionName + "_" + suffix;
