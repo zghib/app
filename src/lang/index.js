@@ -37,8 +37,14 @@ function setI18nLanguage(lang) {
  * @returns {Promise<string>} The language that was passed
  */
 export function loadLanguageAsync(lang) {
+  if (typeof lang === "undefined") {
+    return;
+  }
   if (i18n.locale !== lang) {
     if (!loadedLanguages.includes(lang)) {
+      // route level code-splitting
+      // this generates a separate chunk (lang-[request].[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
       return import(/* webpackChunkName: "lang-[request]" */ `@/lang/locales/${lang}`).then(
         msgs => {
           i18n.setLocaleMessage(lang, msgs.default);

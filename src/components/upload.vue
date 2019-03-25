@@ -243,8 +243,14 @@ export default {
         })
         .catch(error => {
           this.files[id].error = error;
+          let message;
+          if (error.message) {
+            message = error.message;
+          } else {
+            message = this.$t("something_went_wrong_body");
+          }
           this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
+            notify: message,
             error
           });
         });
