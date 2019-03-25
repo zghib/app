@@ -119,7 +119,7 @@
       <div class="cell">
         <v-permissions-toggle
           :value="getCombinedVal('comment')"
-          :options="['none', 'read', 'create', 'update', 'full']"
+          :options="['none', 'create', 'update', 'full']"
           @input="setAllStatuses('comment', $event)"
         />
       </div>
