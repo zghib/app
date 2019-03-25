@@ -225,7 +225,19 @@ export default {
         }
       }
 
-      if (!previousUpdate) return null;
+      if (!previousUpdate) {
+        if (this.activityFiltered[index].action === "create") {
+          const data = revision.data;
+
+          return this.$lodash.mapValues(data, (value, field) => ({
+            before: null,
+            after: value,
+            field: field
+          }));
+        }
+
+        return null;
+      }
 
       const previousRevision = this.revisions[previousUpdate.id];
       const previousData = (previousRevision && previousRevision.data) || {};
