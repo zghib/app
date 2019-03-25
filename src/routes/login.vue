@@ -258,7 +258,6 @@ export default {
     }
   },
 
-  mounted() {},
   created() {
     this.checkUrl = this.$lodash.debounce(this.checkUrl, 300);
 
