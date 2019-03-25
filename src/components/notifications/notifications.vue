@@ -23,14 +23,25 @@ export default {
   }
 };
 </script>
-<style scoped>
+
+<style lang="scss" scoped>
 .notifications {
   position: fixed;
-  right: 10px;
   bottom: 0;
-  width: 300px;
   z-index: 999;
+  width: 100%;
+  left: 0;
+  right: 0;
+  padding: 0 10px;
+
+  @media (min-width: 800px) {
+    width: 300px;
+    right: 10px;
+    left: auto;
+    padding: 0;
+  }
 }
+
 .slide-fade-enter-active,
 .slide-fade-move {
   transition: all var(--medium) ease-out;
