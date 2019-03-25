@@ -25,8 +25,8 @@ import helpers from "./helpers";
 import notify from "./notifications";
 import events from "./events/";
 
-// Create a default config when the config file is missing. This allows the app
-// to work even when the configuration hasn't been set
+// Create a default config when the config file is missing.
+// This allows the app to work even when no configuration was set
 const defaultConfig = {
   api: {},
   allowOtherAPI: true,

@@ -17,6 +17,7 @@
     "docs:build": "vuepress build docs"
   },
   "devDependencies": {
+    "@babel/preset-env": "<7.4.0",
     "@vue/cli-plugin-babel": "^3.5.1",
     "@vue/cli-plugin-eslint": "^3.5.1",
     "@vue/cli-plugin-pwa": "^3.5.1",
@@ -29,8 +30,8 @@
     "sass-loader": "^6.0.6",
     "vue-eslint-parser": "^5.0.0",
     "vue-template-compiler": "^2.6.8",
-    "webpack-cli": "^3.3.0",
-    "webpack": "^4.29.6"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   },
   "dependencies": {
     "@directus/format-title": "^2.3.1",
@@ -39,6 +40,7 @@
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.6.1",
     "convert-range": "^1.1.0",
+    "core-js": "^2.6.5",
     "date-fns": "^1.29.0",
     "filesize": "^3.6.1",
     "idlejs": "^2.0.1",
