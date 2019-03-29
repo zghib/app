@@ -187,10 +187,12 @@ export default {
     },
     fields() {
       const fields = this.$store.state.collections[this.collection].fields;
-      return Object.values(fields).map(field => ({
-        ...field,
-        name: this.$helpers.formatTitle(field.field)
-      }));
+      return Object.values(fields)
+        .filter(field => field.datatype)
+        .map(field => ({
+          ...field,
+          name: this.$helpers.formatTitle(field.field)
+        }));
     },
     currentBookmark() {
       if (!this.preferences) return;
