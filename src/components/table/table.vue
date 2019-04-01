@@ -133,6 +133,7 @@
               <v-ext-display
                 v-else-if="useInterfaces && !$lodash.isNil(row[field])"
                 :interface-type="fieldInfo.interface"
+                :id="field"
                 :name="field"
                 :type="fieldInfo.type"
                 :datatype="fieldInfo.datatype"
@@ -177,6 +178,7 @@
               <v-ext-display
                 v-else-if="useInterfaces && !$lodash.isNil(row[field])"
                 :interface-type="fieldInfo.interface"
+                :id="field"
                 :name="field"
                 :type="fieldInfo.type"
                 :options="fieldInfo.options"

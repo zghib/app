@@ -1,6 +1,7 @@
 <template>
   <component
     :is="componentName"
+    :id="name"
     :name="name"
     :value="value"
     :type="type"
