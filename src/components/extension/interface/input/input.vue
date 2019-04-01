@@ -154,13 +154,21 @@ export default {
       // If component already exists, do nothing
       if (componentExists(this.componentName)) return;
 
-      const filePath = `${this.$api.url}/${this.interface.path.replace(
-        "meta.json",
-        "input.js"
-      )}`;
+      let component;
+
+      if (this.interface.core) {
+        component = import("@/interfaces/" + this.interface.id + "/input.vue");
+      } else {
+        const filePath = `${this.$api.url}/${this.interface.path.replace(
+          "meta.json",
+          "input.js"
+        )}`;
+
+        component = loadExtension(filePath);
+      }
 
       Vue.component(this.componentName, () => ({
-        component: loadExtension(filePath),
+        component: component,
         error: InputFallback,
         loading: InputLoading
       }));

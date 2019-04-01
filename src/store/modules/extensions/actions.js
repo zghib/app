@@ -1,8 +1,13 @@
+/* global require, module */
+
 import { forEach, mapKeys, isObject, mapValues } from "lodash";
 import api from "../../../api";
 import { i18n } from "../../../lang/";
 
 import * as mutationTypes from "../../mutation-types";
+
+// Used to make hot reload a bit more efficient
+const moduleCache = {};
 
 /**
  * Recursively loop over object values and replace each string value that starts with $t: with it's
@@ -43,6 +48,60 @@ function translateFields(meta, type, id) {
 }
 
 /**
+ * Read all the meta.json files of the provided extension type and return them
+ * as an object ready to be put into the store.
+ * @param  {String} type - Type of extension to read
+ * @return {Array}       - Meta information for all extensions of the given type
+ */
+function readCoreExtensions(type) {
+  let requireContext;
+
+  switch (type) {
+    case "interfaces":
+      requireContext = require.context("@/interfaces/", true, /meta.json$/);
+      break;
+    case "layouts":
+      requireContext = require.context("@/layouts/", true, /meta.json$/);
+      break;
+    case "pages":
+      requireContext = require.context("@/pages/", true, /meta.json$/);
+      break;
+  }
+
+  if (module.hot) {
+    module.hot.accept(requireContext.id, () => {
+      readCoreExtensions(type);
+    });
+  }
+
+  return requireContext.keys().map(readMeta);
+
+  function readMeta(fileName) {
+    const metaDefinition = requireContext(fileName);
+
+    // Skip the module during hot reload if it refers to the same module definition
+    // as the one we have cached
+    if (moduleCache[fileName] === metaDefinition) return;
+
+    // Update the module cache, so we don't re-require files that we already have
+    moduleCache[fileName] = metaDefinition;
+
+    const extensionId = fileName
+      .replace(/^\.\//, "") // remove the ./ from the beginning
+      .replace(/\.\w+$/, "") // remove the extension from the end
+      .split(/\//)[0];
+
+    return {
+      ...metaDefinition,
+      id: extensionId,
+      // Mark them as core interfaces so the app won't try to fetch them from
+      // the server
+      core: true
+    };
+  }
+}
+
+/**
  * Get extensions by type
  * @param  {Function} commit Vuex Commit function
  * @param  {String} type     Extension type to fetch records of
@@ -76,6 +135,8 @@ export function getExtensions({ commit }, type) {
       Prefix by type and id
     */
       .then(extensions => {
+        extensions = [...extensions, ...readCoreExtensions(type)];
+
         extensions.forEach(extension => {
           const { id, translation } = extension;
 

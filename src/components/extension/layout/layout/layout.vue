@@ -114,13 +114,21 @@ export default {
         return;
       }
 
-      const filePath = `${this.$api.url}/${this.layout.path.replace(
-        "meta.json",
-        "layout.js"
-      )}`;
+      let component;
+
+      if (this.layout.core) {
+        component = import("@/layouts/" + this.layout.id + "/layout.vue");
+      } else {
+        const filePath = `${this.$api.url}/${this.layout.path.replace(
+          "meta.json",
+          "layout.js"
+        )}`;
+
+        component = loadExtension(filePath);
+      }
 
       Vue.component(this.componentName, () => ({
-        component: loadExtension(filePath),
+        component: component,
         error: VExtLayoutFallback,
         loading: VExtLayoutLoading
       }));
