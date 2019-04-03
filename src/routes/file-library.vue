@@ -1,5 +1,5 @@
 <template>
-  <v-not-found v-if="notFound" />
+  <v-not-found v-if="notFound"/>
   <div class="route-file-library" v-else>
     <v-header info-toggle :breadcrumb="breadcrumb">
       <template slot="title">
@@ -9,19 +9,15 @@
           class="bookmark"
           @click="bookmarkModal = true"
         >
-          <i class="material-icons">
-            {{ currentBookmark ? "bookmark" : "bookmark_border" }}
-          </i>
+          <i class="material-icons">{{ currentBookmark ? "bookmark" : "bookmark_border" }}</i>
         </button>
-        <div v-if="currentBookmark" class="bookmark-name no-wrap">
-          ({{ currentBookmark.title }})
-        </div>
+        <div v-if="currentBookmark" class="bookmark-name no-wrap">({{ currentBookmark.title }})</div>
       </template>
       <v-search-filter
         v-show="selection.length === 0 && !emptyCollection"
         :filters="filters"
         :search-query="searchQuery"
-        :field-names="fieldNames"
+        :field-names="filterableFieldNames"
         :placeholder="resultCopy"
         @filter="updatePreferences('filters', $event)"
         @search="updatePreferences('search_query', $event)"
@@ -132,7 +128,7 @@
         @close="newModal = false"
       >
         <div class="modal-body">
-          <v-upload @upload="key = $helpers.shortid.generate()" />
+          <v-upload @upload="key = $helpers.shortid.generate()"/>
         </div>
       </v-modal>
     </portal>
@@ -188,7 +184,6 @@ export default {
     fields() {
       const fields = this.$store.state.collections[this.collection].fields;
       return Object.values(fields)
-        .filter(field => field.datatype)
         .map(field => ({
           ...field,
           name: this.$helpers.formatTitle(field.field)
@@ -269,8 +264,10 @@ export default {
             count: this.$n(this.meta.total_count)
           });
     },
-    fieldNames() {
-      return this.fields.map(field => field.field);
+    filterableFieldNames() {
+      return this.fields
+        .filter(field => field.datatype)
+        .map(field => field.field);
     },
     layoutNames() {
       if (!this.$store.state.extensions.layouts) return {};

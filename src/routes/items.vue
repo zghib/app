@@ -21,7 +21,7 @@
         v-show="selection && selection.length === 0 && !emptyCollection"
         :filters="filters"
         :search-query="searchQuery"
-        :field-names="fieldNames"
+        :field-names="filterableFieldNames"
         :placeholder="resultCopy"
         @filter="updatePreferences('filters', $event)"
         @search="updatePreferences('search_query', $event)"
@@ -318,8 +318,10 @@ export default {
             count: this.$n(this.meta.total_count)
           });
     },
-    fieldNames() {
-      return this.fields.map(field => field.field);
+    filterableFieldNames() {
+      return this.fields
+        .filter(field => field.datatype)
+        .map(field => field.field);
     },
     layoutNames() {
       if (!this.$store.state.extensions.layouts) return {};
