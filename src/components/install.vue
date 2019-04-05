@@ -115,7 +115,7 @@ export default {
         db_host: "localhost",
         db_port: 3306,
         db_name: "directus",
-        db_user: "root",
+        db_user: "",
         db_password: null,
         user_email: null,
         user_password: null,
