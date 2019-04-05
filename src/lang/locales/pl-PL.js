@@ -50,9 +50,11 @@ export default {
   change_project: "Zmień projekt",
   choose_one: "Wybierz jeden",
   choose_project: "Wybierz projekt",
-  choose_interface: "Zmień interfejs, za pomocą którego te dane będą zmieniane.",
+  choose_interface:
+    "Zmień interfejs, za pomocą którego te dane będą zmieniane.",
   clear: "Wyczyść",
-  click_to_toggle_all_none: "Kliknij, by przełączyć całą kolumnę w stan nie/aktywny",
+  click_to_toggle_all_none:
+    "Kliknij, by przełączyć całą kolumnę w stan nie/aktywny",
   connection: "Połączenie",
   collection: "Kolekcja",
   collections_and_fields: "Kolekcje i pola",
@@ -95,7 +97,8 @@ export default {
     alias:
       "Pola, które nie zapisują danych i/lub nie mają odpowiadających kolumn w bazie danych",
     array: "Standardowy format tablicowy zwracany przez API",
-    datetime: "Data i czas zapisana w formacie ISO, np.: 2018-09-19T14:00:43.381Z",
+    datetime:
+      "Data i czas zapisana w formacie ISO, np.: 2018-09-19T14:00:43.381Z",
     date: "Data, np.: 2018-09-19",
     time: "Czas, np.: 14:09:22",
     file: "Klucz obcy nawiązujący do directus_files.id",
@@ -107,7 +110,8 @@ export default {
     lang: "Charakterystyczne dla przekładów, przechowuje klucz języka",
     m2o: "Relacja wiele-do-jednego",
     o2m: "Relacja jeden-do-wielu",
-    sort: "Pole systemowe używane do zmiany kolejności elementów (w stylu przeciągnij i upuść)",
+    sort:
+      "Pole systemowe używane do zmiany kolejności elementów (w stylu przeciągnij i upuść)",
     status: "Pole systemowe używane do publikowania diagramów pracy",
     string:
       "Jakikolwiek tekst, liczba, spacja, lub symbol - zdefiniowany i ograniczany przez swoją długość (liczbę znaków)",
@@ -187,7 +191,8 @@ export default {
   dialog_beginning: "Początek okna dialogowego.",
   discard_changes: "Odrzuć zmiany.",
   display_name: "Wyświetlana nazwa",
-  drop_files: "Nie można upuścić plików | Upuść plik tutaj... | Upuść pliki tutaj...",
+  drop_files:
+    "Nie można upuścić plików | Upuść plik tutaj... | Upuść pliki tutaj...",
   dont_show: "Nie pokazuj",
   editing: "Edycja elementu: {collection}",
   editing_item: "Edycja elementu",
@@ -214,7 +219,8 @@ export default {
     107: "Użytkownik nie odnaleziony"
   },
   error_unknown: "Nastąpił nieznany błąd. Spróbuj ponownie później.",
-  esc_cancel: "Naciśnięcie klawisza escape spowoduje anulowanie i zamknięcie okna.",
+  esc_cancel:
+    "Naciśnięcie klawisza escape spowoduje anulowanie i zamknięcie okna.",
   equal_to: "Równe z",
   existing: "Istniejące",
   fetching_data: "Trwa pobieranie danych",
@@ -303,12 +309,14 @@ export default {
   no_results: "Brak wyników",
   no_results_body: "Żaden element kolekcji nie spełnia obecnych filtrów",
   no_collections: "Brak skonfigurowanych kolekcji",
-  no_collections_body: "Wygląda na to, że nie istnieje jeszcze żadna skonfigurowana kolekcja",
+  no_collections_body:
+    "Wygląda na to, że nie istnieje jeszcze żadna skonfigurowana kolekcja",
   no_fields: "Brak skonfigurowanych pól",
   no_fields_body:
     "Wygląda na to, że ta kolekcja nie posiada jeszcze żadnego skonfigurowanego pola",
   no_files: "Brak plików",
-  no_files_body: "Wygląda na to, że żaden plik nie został jeszcze wgrany na serwer",
+  no_files_body:
+    "Wygląda na to, że żaden plik nie został jeszcze wgrany na serwer",
   numeric: "Numeryczne",
   page_not_found: "Nie odnaleziono strony",
   page_not_found_body: "Strona, której poszukujesz, nie istnieje.",
@@ -337,8 +345,10 @@ export default {
   open_on_gh: "Otwórz na GitHubie",
   options: "Opcje",
   password: "Hasło",
-  password_reset_sent: "Email z instrukcją resetowania hasła został wysłany na adres {email}",
-  permissions_no_collections: "Ten projekt nie posiada jeszcze żadnej kolekcji.",
+  password_reset_sent:
+    "Email z instrukcją resetowania hasła został wysłany na adres {email}",
+  permissions_no_collections:
+    "Ten projekt nie posiada jeszcze żadnej kolekcji.",
   permissions_admin:
     "Admini mają domyślnie dostęp do wszystkich danych systemu.",
   permission_states: {
@@ -401,7 +411,8 @@ export default {
   search_interface: "Wyszukaj interfejs...",
   select_interface_below: "Wybierz interfejs poniżej",
   select_statuses: "Wybierz statusy",
-  select_statuses_copy: "Wybierz statusy, z których będzie mógł korzystać użytkownik",
+  select_statuses_copy:
+    "Wybierz statusy, z których będzie mógł korzystać użytkownik",
   settings: "Ustawienia",
   settings_project: "Ustawienia projektu",
   settings_global: "Ustawienia globalne",
@@ -415,8 +426,7 @@ export default {
   settings_saved: "Ustawienia zapisane",
   server_details: "Szczegółowe dane serwera",
   server_error: "Błąd serwera",
-  server_error_copy:
-    "Coś jest nie tak z tą instancją serwera lub bazy danych.",
+  server_error_copy: "Coś jest nie tak z tą instancją serwera lub bazy danych.",
   server_trouble: "Problem z serwerem",
   server_trouble_copy:
     "Spróbuj ponownie później lub zwróć się o pomoc do administracji systemu.",
