@@ -197,6 +197,7 @@ button[disabled] {
     left: 0;
     cursor: pointer;
     z-index: +2;
+    color: var(--black);
 
     &:hover:not([disabled]) + i {
       opacity: 1;
