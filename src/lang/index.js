@@ -68,6 +68,7 @@ export const availableLanguages = {
   "fr-FR": "French (France)",
   "de-DE": "German (Germany)",
   "it-IT": "Italian (Italy)",
+  "pl-PL": "Polish (Poland)",
   "pt-BR": "Portuguese (Brazil)",
   "ru-RU": "Russian (Russia)",
   "ms-MY": "Malay (Malaysia)"
