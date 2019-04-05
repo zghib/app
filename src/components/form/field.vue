@@ -24,10 +24,7 @@
               </label>
             </div>
           </template>
-          <small
-            v-if="!readonly && field.note"
-            v-html="$helpers.snarkdown(field.note)"
-          />
+          <small v-if="field.note" v-html="$helpers.snarkdown(field.note)" />
         </div>
         <div class="field-wrapper">
           <v-ext-input
