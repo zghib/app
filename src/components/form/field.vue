@@ -45,20 +45,16 @@
             :length="field.length"
             :new-item="newItem"
             @input="
-              readonly
-                ? null
-                : $emit('stage-value', {
-                    field: field.field,
-                    value: $event
-                  })
+              $emit('stage-value', {
+                field: field.field,
+                value: $event
+              })
             "
             @setfield="
-              readonly
-                ? null
-                : $emit('stage-value', {
-                    field: $event.field,
-                    value: $event.value
-                  })
+              $emit('stage-value', {
+                field: $event.field,
+                value: $event.value
+              })
             "
           />
           <div
