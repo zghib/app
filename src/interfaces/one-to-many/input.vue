@@ -31,7 +31,14 @@
             @click="editExisting = item"
           >
             <div v-for="column in columns" :key="column.field">
-              {{ item[column.field] }}
+              <v-ext-display
+                :interface-type="(column.fieldInfo || {}).interface || null"
+                :name="column.field"
+                :type="column.fieldInfo.type"
+                :datatype="column.fieldInfo.datatype"
+                :options="column.fieldInfo.options"
+                :value="item[column.field]"
+              />
             </div>
             <button
               type="button"
@@ -218,7 +225,8 @@ export default {
       if (this.relationSetup === false) return null;
       return this.visibleFields.map(field => ({
         field,
-        name: this.$helpers.formatTitle(field)
+        name: this.$helpers.formatTitle(field),
+        fieldInfo: this.relatedCollectionFields[field]
       }));
     },
     relatedDefaultValues() {

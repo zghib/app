@@ -594,7 +594,7 @@ export default {
 }
 
 button.select {
-  background-color: var(--accent);
+  background-color: var(--darker-gray);
   border-radius: var(--border-radius);
   height: var(--input-height);
   padding: 0 10px;
@@ -609,7 +609,7 @@ button.select {
 
   &:hover {
     transition: none;
-    background-color: var(--accent-dark);
+    background-color: var(--darkest-gray);
   }
 }
 
