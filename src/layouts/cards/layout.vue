@@ -6,7 +6,7 @@
       <div class="sort-select">
         <select @input="setSort($event.target.value)" :value="sortedOn">
           <option
-            v-for="(fieldInfo, name) in fields"
+            v-for="(fieldInfo, name) in sortableFields"
             :key="name"
             :value="name"
             >{{ $helpers.formatTitle(name) }}</option
@@ -60,14 +60,26 @@ export default {
   name: "layout-cards",
   mixins: [mixin],
   computed: {
+    sortableFields() {
+      return this.$lodash.pickBy(this.fields, field => field.datatype);
+    },
     sortedOn() {
       let fieldName;
-
-      if (this.viewQuery.sort) {
-        fieldName = this.viewQuery.sort;
-      } else {
+      const sortableFieldNames = Object.keys(this.sortableFields);
+      const viewQuerySort = this.viewQuery.sort;
+      if (
+        sortableFieldNames &&
+        viewQuerySort &&
+        sortableFieldNames.some(
+          sortableFieldName => sortableFieldName === viewQuerySort
+        )
+      ) {
+        fieldName = viewQuerySort;
+      } else if (sortableFieldNames && sortableFieldNames.length > 0) {
         // If the user didn't sort, default to the first field
-        fieldName = Object.keys(this.fields)[0];
+        fieldName = sortableFieldNames[0];
+      } else {
+        return null;
       }
 
       // If the sort viewQuery was already descending, remove the - so we don't
