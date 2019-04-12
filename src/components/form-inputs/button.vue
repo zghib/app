@@ -116,8 +116,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 20px;
-  height: 40px;
+  padding: 0 20px 1px;
+  height: 44px;
   min-width: var(--width-small);
   border: var(--input-border-width) solid var(--action);
 
@@ -137,8 +137,8 @@ button {
   }
 
   i {
-    vertical-align: -30%;
-    margin-right: 3px;
+    vertical-align: -6px;
+    margin-right: 6px;
   }
 }
 

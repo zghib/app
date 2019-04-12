@@ -247,7 +247,7 @@ export default {
     },
     rowHeight: {
       type: Number,
-      default: 40
+      default: 48
     },
     columnWidths: {
       type: Object,
@@ -462,19 +462,21 @@ export default {
 .row {
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  border-bottom: 1px solid var(--lightest-gray);
+  padding: 0;
+  border-bottom: 2px solid var(--off-white);
   box-sizing: content-box;
 }
 
 .toolbar {
   position: sticky;
-  height: var(--header-height);
+  height: 48px;
   left: 0;
   top: 0;
   z-index: +1;
   background-color: var(--white);
+  border-color: var(--lightest-gray);
   transition: box-shadow var(--fast) var(--transition-out);
+  padding-top: 12px;
 
   &.shadow {
     box-shadow: var(--box-shadow);
@@ -545,7 +547,7 @@ export default {
 }
 
 .sort.active {
-  color: var(--gray);
+  color: var(--dark-gray);
 }
 
 .cell {
@@ -580,7 +582,7 @@ export default {
 }
 
 .sort:hover {
-  color: var(--gray);
+  color: var(--darker-gray);
 }
 
 .sort > i {
@@ -655,7 +657,7 @@ export default {
 
 @keyframes bounce {
   from {
-    border-color: var(--lighter-gray);
+    border-color: var(--off-white);
   }
 
   to {

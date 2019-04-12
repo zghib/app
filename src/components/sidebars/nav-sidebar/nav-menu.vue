@@ -1,10 +1,9 @@
 <template>
   <div class="nav-menu" v-if="links.length > 0">
-    <h3 v-if="title" class="style-4">{{ title }}</h3>
-    <nav :class="{ 'no-border': noBorder }">
+    <nav>
       <ul>
         <li v-for="{ path, name, target, icon, color } in links" :key="path">
-          <div v-if="path.startsWith('http')" :class="color || null">
+          <template v-if="path.startsWith('http')">
             <a :href="path" :class="color || null" :target="target">
               <i v-if="icon" class="material-icons icon">{{ icon }}</i>
               <svg v-else class="icon" viewBox="0 0 17 18">
@@ -15,7 +14,7 @@
               </svg>
               {{ name }}
             </a>
-          </div>
+          </template>
           <router-link v-else-if="path" :to="path" :class="color || null">
             <i v-if="icon" class="material-icons icon">{{ icon }}</i>
             <svg v-else class="icon" viewBox="0 0 17 18">
@@ -43,10 +42,6 @@ export default {
     links: {
       type: Array,
       required: true
-    },
-    noBorder: {
-      type: Boolean,
-      default: false
     }
   }
 };
@@ -59,18 +54,17 @@ h3 {
 }
 
 .icon {
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  color: var(--light-gray);
-  fill: var(--light-gray);
+  width: 20px;
+  height: 22px;
+  margin-right: 15px;
+  color: var(--darker-gray);
+  fill: var(--darker-gray);
 
   /* Forces left-alignment of material-icons */
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  vertical-align: -5px;
+  vertical-align: -7px;
 }
 
 a {
@@ -80,25 +74,13 @@ a {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
-  &::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 3px;
-    background-color: currentColor;
-    left: -20px;
-    top: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: var(--medium) var(--transition-out);
-  }
 }
 
 a:hover,
 .content .router-link-active,
 .user-menu .router-link-exact-active {
-  color: var(--accent);
+  background-color: #dde3e6; // rgba(var(--lighter-gray), 0.5);
+  border-radius: var(--border-radius);
 
   .icon {
     color: currentColor;
@@ -120,17 +102,13 @@ ul {
 }
 
 nav > ul > li > * {
-  padding: 5px 0;
+  padding: 8px 0 8px 10px;
+  margin: 2px 0;
 }
 
 nav {
   padding-bottom: 10px;
   margin-bottom: 10px;
-  border-bottom: 1px solid var(--lightest-gray);
-
-  &.no-border {
-    border-bottom: 0;
-  }
 }
 
 .success {

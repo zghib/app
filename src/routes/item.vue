@@ -13,7 +13,7 @@
   </div>
 
   <div v-else-if="fields === null">
-    <v-header />
+    <v-header :icon-link="`/collections`" />
     <v-loader area="content" />
   </div>
 
@@ -21,13 +21,23 @@
     <v-header
       :breadcrumb="breadcrumb"
       :info-toggle="!newItem && !batch && !activityDetail"
+      :icon-link="singleItem ? null : `/collections/${collection}`"
+      :icon="singleItem ? collectionInfo.icon : 'arrow_back'"
       item-detail
     >
+      <template v-if="status" slot="title">
+        <span
+          class="status-indicator"
+          v-tooltip="statusName"
+          :style="{ backgroundColor: `var(--${statusColor})` }"
+        />
+      </template>
       <template slot="buttons">
         <v-header-button
           v-if="!newItem && !singleItem && permission.delete !== 'none'"
           icon="delete_outline"
-          color="danger"
+          color="gray"
+          hover-color="danger"
           :label="$t('delete')"
           @click="confirmRemove = true"
         />
@@ -49,11 +59,17 @@
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
-          :options="{
-            stay: $t('save_and_stay'),
-            add: $t('save_and_add'),
-            copy: $t('save_as_copy')
-          }"
+          :options="
+            !editing
+              ? {
+                  copy: $t('save_as_copy')
+                }
+              : {
+                  stay: $t('save_and_stay'),
+                  add: $t('save_and_add'),
+                  copy: $t('save_as_copy')
+                }
+          "
           icon="check"
           color="action"
           @click="singleItem ? save('stay') : save('leave')"
@@ -63,32 +79,10 @@
     </v-header>
 
     <v-info-sidebar v-if="!newItem && !batch" wide item-detail>
-      <div class="tabs">
-        <button
-          :class="{ active: activeTab === 'both' }"
-          @click="activeTab = 'both'"
-        >
-          {{ $t("both") }}
-        </button>
-        <button
-          v-if="permission.comment !== 'none'"
-          :class="{ active: activeTab === 'comments' }"
-          @click="activeTab = 'comments'"
-        >
-          {{ $t("comments") }}
-        </button>
-        <button
-          :class="{ active: activeTab === 'activity' }"
-          @click="activeTab = 'activity'"
-        >
-          {{ $t("activity") }}
-        </button>
-      </div>
       <v-activity
         :activity="activity"
         :revisions="revisions"
         :loading="activityLoading"
-        :show="activeTab"
         :comment-permission="permission.comment"
         @input="postComment"
         @revert="revertActivity = $event"
@@ -272,7 +266,6 @@ export default {
       confirmNavigation: false,
       leavingTo: "",
 
-      activeTab: "both",
       activityLoading: false,
       activity: [],
       revisions: {},
@@ -500,6 +493,35 @@ export default {
         ...field,
         name: formatTitle(field.field)
       }));
+    },
+
+    // Gets the configured color for the current status (this.status) of the item. This will be
+    // fetched out of this.fields
+    statusColor() {
+      if (this.statusField && this.status) {
+        const statusMapping = this.fields[this.statusField].options
+          .status_mapping;
+
+        if (!statusMapping) return null;
+
+        return statusMapping[this.status].background_color || null;
+      }
+
+      return null;
+    },
+
+    // The configured name of the current status.
+    statusName() {
+      if (this.statusField && this.status) {
+        const statusMapping = this.fields[this.statusField].options
+          .status_mapping;
+
+        if (!statusMapping) return null;
+
+        return statusMapping[this.status].name || null;
+      }
+
+      return null;
     }
   },
   created() {
@@ -585,8 +607,6 @@ export default {
         });
     },
     save(method) {
-      if (this.$store.getters.editing === false) return;
-
       this.saving = true;
 
       if (method === "copy") {
@@ -644,6 +664,8 @@ export default {
             });
           });
       }
+
+      if (this.$store.getters.editing === false) return;
 
       const id = this.$helpers.shortid.generate();
       this.$store.dispatch("loadingStart", { id });
@@ -715,7 +737,6 @@ export default {
     fetchActivity() {
       this.activity = [];
       this.revisions = {};
-      this.activeTab = "both";
       this.activityLoading = true;
 
       const id = shortid.generate();
@@ -933,7 +954,6 @@ export default {
     this.confirmNavigation = false;
     this.leavingTo = "";
 
-    this.activeTab = "both";
     this.activityLoading = false;
     this.activity = [];
     this.revisions = {};
@@ -1012,66 +1032,6 @@ export default {
   padding-bottom: var(--page-padding-bottom);
 }
 
-.tabs {
-  display: flex;
-  padding: 0;
-  list-style: none;
-  justify-content: center;
-  border-bottom: 1px solid var(--lightest-gray);
-  position: sticky;
-  top: -20px;
-  background-color: var(--white);
-  z-index: +1;
-  margin: -20px;
-  margin-bottom: 20px;
-
-  button {
-    flex-grow: 1;
-    flex-shrink: 1;
-    max-width: 120px;
-    flex-basis: 120px;
-    height: 50px;
-    position: relative;
-    color: var(--gray);
-
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 700;
-    position: relative;
-
-    &:hover {
-      color: var(--darker-gray);
-    }
-
-    &::after {
-      content: "";
-      display: block;
-      width: 100%;
-      position: absolute;
-      height: 3px;
-      bottom: -2px;
-      background-color: var(--accent);
-      transform: scaleY(0);
-      transition: transform var(--fast) var(--transition-out);
-    }
-
-    &.active {
-      color: var(--accent);
-
-      &::after {
-        transform: scaleY(1);
-        transition: transform var(--fast) var(--transition-in);
-      }
-    }
-
-    &[disabled] {
-      color: var(--lighter-gray);
-      cursor: not-allowed;
-    }
-  }
-}
-
 .revert {
   padding: 20px;
 
@@ -1081,5 +1041,13 @@ export default {
     border-bottom: 1px dotted var(--lighter-gray);
     color: var(--warning);
   }
+}
+
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  margin-left: 8px;
+  margin-top: 1px;
 }
 </style>

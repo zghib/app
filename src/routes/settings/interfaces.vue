@@ -1,6 +1,10 @@
 <template>
   <div class="interfaces">
-    <v-header :breadcrumb="links" />
+    <v-header
+      :breadcrumb="links"
+      :icon-link="`/settings`"
+      icon-color="warning"
+    />
     <v-table
       :columns="columns"
       :items="items"
@@ -22,8 +26,7 @@ export default {
       return [
         {
           name: this.$t("settings"),
-          path: "/settings",
-          color: "warning"
+          path: "/settings"
         },
         {
           name: this.$t("interfaces"),
@@ -56,3 +59,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.interfaces {
+  padding: 0 32px var(--page-padding-bottom);
+}
+</style>

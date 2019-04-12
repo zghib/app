@@ -145,6 +145,7 @@ input {
   }
 
   input:disabled + label {
+    cursor: not-allowed;
     color: var(--light-gray);
     &:before,
     &:after {

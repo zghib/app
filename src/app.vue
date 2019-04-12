@@ -64,7 +64,8 @@ export default {
   },
   computed: {
     ...mapState({
-      color: state => state.settings.values.color || "light-blue-600"
+      color: state => state.settings.values.color || "darkest-gray",
+      infoActive: state => state.sidebars.info
     }),
     publicRoute() {
       return this.$route.meta.publicRoute || false;
@@ -95,20 +96,9 @@ export default {
     $route() {
       this.bodyClass();
       this.$store.commit(TOGGLE_NAV, false);
-      this.infoActive = false;
     },
     infoActive(visible) {
-      const className =
-        this.$route.meta && this.$route.meta.infoSidebarWidth === "wide"
-          ? "info-wide-active"
-          : "info-active";
-
-      if (visible) {
-        document.body.classList.add(className);
-      } else {
-        document.body.classList.remove("info-wide-active");
-        document.body.classList.remove("info-active");
-      }
+      this.toggleInfoSidebarBodyClass(visible);
     },
     hydratingError(newVal) {
       if (newVal) {
@@ -126,6 +116,8 @@ export default {
       } else {
         document.body.classList.remove("no-padding");
       }
+
+      this.toggleInfoSidebarBodyClass();
     },
     keepEditing() {
       this.$router.push(
@@ -136,6 +128,22 @@ export default {
     },
     discardChanges() {
       this.$store.dispatch("discardChanges");
+    },
+
+    toggleInfoSidebarBodyClass(visible = null) {
+      if (visible === null) visible = this.infoActive;
+
+      const className =
+        this.$route.meta && this.$route.meta.infoSidebarWidth === "wide"
+          ? "info-wide-active"
+          : "info-active";
+
+      if (visible) {
+        document.body.classList.add(className);
+      } else {
+        document.body.classList.remove("info-wide-active");
+        document.body.classList.remove("info-active");
+      }
     }
   }
 };
@@ -148,6 +156,14 @@ body.no-padding {
   &::before {
     display: none;
   }
+}
+
+body.info-active {
+  padding-right: 284px;
+}
+
+body.info-active-wide {
+  padding-right: 316px;
 }
 </style>
 

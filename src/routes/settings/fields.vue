@@ -1,12 +1,17 @@
 <template>
   <not-found v-if="!collectionInfo" />
   <div class="settings-fields" v-else>
-    <v-header :breadcrumb="breadcrumb">
+    <v-header
+      :breadcrumb="breadcrumb"
+      :icon-link="`/settings/collections`"
+      icon-color="warning"
+    >
       <template slot="buttons">
         <v-header-button
           icon="delete_outline"
           key="delete"
-          color="danger"
+          color="gray"
+          hover-color="danger"
           :label="$t('delete')"
           @click="confirmRemove = true"
         />
@@ -225,8 +230,7 @@ export default {
       return [
         {
           name: this.$t("settings"),
-          path: "/settings",
-          color: "warning"
+          path: "/settings"
         },
         {
           name: this.$t("collections_and_fields"),
@@ -642,7 +646,7 @@ h2 {
     font-size: 10px;
     text-transform: uppercase;
     font-weight: 700;
-    border-bottom: 1px solid var(--lightest-gray);
+    border-bottom: 2px solid var(--lightest-gray);
     height: 60px;
     .row {
       height: 60px;
@@ -692,8 +696,8 @@ h2 {
     .row {
       cursor: pointer;
       position: relative;
-      height: 40px;
-      border-bottom: 1px solid var(--lightest-gray);
+      height: 48px;
+      border-bottom: 2px solid var(--off-white);
 
       &:last-of-type {
         border-bottom: none;
@@ -764,7 +768,7 @@ em.note {
   background-color: var(--warning);
   border-radius: var(--border-radius);
   color: var(--white);
-  padding: 3px 6px;
+  padding: 3px 6px 4px;
   text-transform: uppercase;
   font-size: 11px;
   font-weight: 600;
@@ -799,7 +803,7 @@ label.label {
     display: flex;
     align-items: center;
     padding: 5px;
-    color: var(--darker-gray);
+    color: var(--gray);
     width: 100%;
     height: 100%;
     transition: color var(--fast) var(--transition);
@@ -811,10 +815,10 @@ label.label {
       }
     }
     &:not(:disabled):not(&[disabled]):hover {
-      color: var(--accent);
+      color: var(--darkest-gray);
       transition: none;
       i {
-        color: var(--accent);
+        color: var(--darkest-gray);
         transition: none;
       }
     }

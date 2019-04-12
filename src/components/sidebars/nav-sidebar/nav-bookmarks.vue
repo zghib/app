@@ -1,12 +1,6 @@
 <template>
   <div class="nav-bookmarks">
-    <h3 v-if="bookmarks && bookmarks.length > 0" class="style-4">
-      {{ $t("bookmarks") }}
-    </h3>
-    <nav
-      v-if="bookmarks && bookmarks.length > 0"
-      :class="{ 'no-border': noBorder }"
-    >
+    <nav v-if="bookmarks && bookmarks.length > 0">
       <ul>
         <li v-for="bookmark in bookmarks" :key="bookmark.id" class="bookmark">
           <router-link
@@ -45,10 +39,6 @@ export default {
     bookmarks: {
       type: Array,
       required: true
-    },
-    noBorder: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -74,18 +64,17 @@ h3 {
 }
 
 .icon {
-  font-size: 18px;
-  width: 15px;
-  height: 18px;
-  margin-right: 10px;
-  color: var(--light-gray);
-  fill: var(--light-gray);
+  width: 20px;
+  height: 22px;
+  margin-right: 15px;
+  color: var(--darker-gray);
+  fill: var(--darker-gray);
 
   /* Forces left-alignment of material-icons */
   display: inline-flex;
   justify-content: flex-end;
   align-items: center;
-  vertical-align: -5px;
+  vertical-align: -7px;
 }
 
 i,
@@ -95,22 +84,13 @@ svg {
 
 .bookmark button:first-child:hover,
 .user-menu button:hover {
-  color: var(--accent);
+  background-color: #dde3e6; // rgba(var(--lighter-gray), 0.5);
+  border-radius: var(--border-radius);
 
   i,
   svg {
-    color: var(--accent);
-    fill: var(--accent);
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    height: 100%;
-    width: 3px;
-    background-color: var(--accent);
-    left: -20px;
-    top: 0;
+    color: var(--darker-gray);
+    fill: var(--darker-gray);
   }
 }
 
@@ -120,13 +100,8 @@ ul {
 }
 
 nav > ul > li > * {
-  padding: 5px 0;
-}
-
-nav:not(.no-border) {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid var(--lightest-gray);
+  padding: 8px 0 8px 10px;
+  margin: 2px 0;
 }
 
 .bookmark {
@@ -143,11 +118,8 @@ nav:not(.no-border) {
     text-decoration: none;
 
     &:hover {
-      color: var(--accent);
-
-      i {
-        color: var(--accent);
-      }
+      background-color: #dde3e6; // rgba(var(--lighter-gray), 0.5);
+      border-radius: var(--border-radius);
     }
   }
 
@@ -157,7 +129,6 @@ nav:not(.no-border) {
     display: flex;
 
     i {
-      font-size: 18px;
       vertical-align: baseline;
       color: var(--lighter-gray);
     }

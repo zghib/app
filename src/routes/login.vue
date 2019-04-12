@@ -292,9 +292,6 @@ export default {
     }
     return next();
   },
-  mounted() {
-    this.handleAutoFill();
-  },
   watch: {
     url() {
       this.exists = null;
@@ -319,23 +316,6 @@ export default {
     }
   },
   methods: {
-    handleAutoFill() {
-      var cls = "-webkit-autofill";
-      var el = this.$el.children[0].elements;
-      if (el.email.hasAttribute("class", cls)) {
-        el.email.className = "has-value";
-      }
-      if (el.password.hasAttribute("class", cls)) {
-        el.password.className = "has-value";
-      }
-      if (
-        el.email.className == "has-value" &&
-        el.password.className == "has-value" &&
-        el[3].hasAttribute("disabled")
-      ) {
-        el[3].removeAttribute("disabled");
-      }
-    },
     processForm() {
       if (this.resetMode) {
         this.loading = true;
@@ -662,6 +642,7 @@ select {
   }
 
   input:focus,
+  input:-webkit-autofill,
   input.has-value {
     & + label {
       transform: scale(0.8);

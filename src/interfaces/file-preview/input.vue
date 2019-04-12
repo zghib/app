@@ -1,6 +1,12 @@
 <template>
   <div>
-    <div v-if="isImage" class="image"><img id="image" :src="vUrl" /></div>
+    <div v-if="isImage" class="image">
+      <img id="image" :src="vUrl" @error="imgError = true" v-if="!imgError" />
+      <div class="broken-image" v-if="imgError">
+        <i class="material-icons">broken_image</i>
+      </div>
+    </div>
+
     <div v-else-if="isVideo" class="video">
       <video controls>
         <source :src="url" :type="values.type" />
@@ -113,6 +119,7 @@ export default {
   data() {
     return {
       editMode: null,
+      imgError: false,
       image: {
         version: 0, //To prevent the cacheing issue of image
         cropper: null, //cropper instance
@@ -305,7 +312,7 @@ export default {
 .video,
 .image {
   width: 100%;
-  background-color: var(--black);
+  background-color: var(--darker-gray);
   text-align: center;
   border-radius: var(--border-radius);
   overflow: hidden;
@@ -462,6 +469,18 @@ export default {
   .cropper-line {
     background-color: #000;
     opacity: 0.05;
+  }
+}
+.broken-image {
+  width: 100%;
+  padding: 70px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    color: var(--light-gray);
+    font-size: 48px;
   }
 }
 </style>

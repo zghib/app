@@ -194,19 +194,19 @@ export default {
     .col-1 {
       max-width: var(--width-small);
       flex-basis: var(--width-small);
-      margin-right: 20px;
+      margin-right: 32px;
     }
 
     .col-2 {
       max-width: var(--width-medium);
       flex-basis: var(--width-medium);
-      margin-right: 20px;
+      margin-right: 32px;
     }
 
     .col-3 {
       max-width: var(--width-large);
       flex-basis: var(--width-large);
-      margin-right: 20px;
+      margin-right: 32px;
     }
 
     .col-4 {

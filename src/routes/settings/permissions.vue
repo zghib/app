@@ -1,6 +1,6 @@
 <template>
   <div v-if="error">
-    <v-header />
+    <v-header :icon-link="`/settings/roles`" icon-color="warning" />
     <v-error
       v-if="error"
       icon="error_outline"
@@ -11,14 +11,19 @@
   </div>
 
   <div class="settings-permissions" v-else>
-    <v-header :breadcrumb="breadcrumb">
+    <v-header
+      :breadcrumb="breadcrumb"
+      icon-link="/settings/roles"
+      icon-color="warning"
+    >
       <template slot="buttons">
         <v-header-button
           v-if="!isNew && !isSystem"
           :loading="removing"
           :label="$t('delete')"
           icon="delete_outline"
-          color="danger"
+          color="gray"
+          hover-color="danger"
           @click="confirmRemove = true"
         />
         <v-header-button
@@ -125,7 +130,7 @@ export default {
       return this.$store.state.collections;
     },
     breadcrumb() {
-      if (!this.role) return [];
+      if (!this.role) return null;
 
       if (this.isNew) {
         return [
@@ -148,8 +153,7 @@ export default {
       return [
         {
           name: this.$t("settings"),
-          path: "/settings",
-          color: "warning"
+          path: "/settings"
         },
         {
           name: this.$t("roles"),

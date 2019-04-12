@@ -9,6 +9,7 @@
     }"
   >
     <div
+      class="content"
       :class="{
         slow: $store.getters.signalStrength === 1,
         disconnected: $store.getters.signalStrength === 0
@@ -16,7 +17,7 @@
       v-tooltip.left="{
         content:
           (!!$store.state.auth.url ? $store.state.auth.url : 'No connection') +
-          `<br>${$t('latency')}:${
+          `<br>${$t('latency')}: ${
             !!$store.state.auth.url
               ? $n(
                   Math.round(
@@ -34,7 +35,7 @@
         selectionName ? selectionName : $store.state.auth.projectName
       }}</span>
       <i v-if="Object.keys(urls).length > 1" class="material-icons chevron">
-        arrow_drop_down
+        expand_more
       </i>
       <select
         v-if="Object.keys(urls).length > 1"
@@ -105,51 +106,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.project-switcher {
-  .nav-login {
-    max-height: 0;
-    opacity: 0;
-    transition: max-height var(--fast) var(--transition),
-      opacity var(--slow) var(--transition);
-    background-color: var(--white);
-    z-index: 1;
+.project-switcher > div {
+  height: var(--header-height);
+  width: calc(100% + 40px);
+  display: flex;
+  align-items: center;
+  margin: 0 -20px 20px;
+  padding: 0 30px;
+  position: relative;
+  background-color: #dde3e6; // rgba(var(--lighter-gray), 0.5);
+
+  .content {
+    padding: 8px 0 8px 10px;
   }
 
-  > div {
-    height: calc(
-      var(--header-height) + 1px
-    ); /* Force border bottom to be aligned with listing headers */
-    width: 100%;
-    border-bottom: 1px solid var(--lightest-gray);
-    display: flex;
-    align-items: center;
-    color: var(--accent);
-    margin-bottom: 10px;
-    position: relative;
-    transition: border-bottom-width 0.15s ease-in-out;
-
-    span,
+  &.slow {
     svg {
       transition: color 0.25s ease-in-out, fill 0.25s ease-in-out;
     }
 
     &.slow {
-      color: var(--warning);
       svg {
         fill: var(--warning);
-      }
-      i {
-        color: var(--warning);
       }
     }
 
     &.disconnected {
-      color: var(--danger);
       svg {
         fill: var(--danger);
-      }
-      i {
-        color: var(--danger);
       }
     }
 
@@ -161,41 +145,41 @@ export default {
       color: var(--accent);
     }
 
-    span {
-      flex-grow: 1;
-      line-height: 24px;
-      text-align: left;
+    svg {
+      fill: var(--darker-gray);
     }
-  }
 
-  &.is-active {
-    .nav-login {
-      opacity: 1;
-      max-height: 260px;
-      border-bottom: 1px solid var(--lightest-gray);
-      margin-bottom: 20px;
-      margin-top: 20px;
+    i {
+      color: var(--light-gray);
     }
-  }
 
-  &.has-error {
-    > div {
-      svg {
-        fill: var(--red);
+    &.has-error {
+      > div {
+        svg {
+          fill: var(--red);
+        }
       }
-    }
-    span {
-      color: var(--red);
-      + i {
+      span {
         color: var(--red);
+        + i {
+          color: var(--red);
+        }
       }
     }
   }
 
   .icon {
-    width: 15px;
-    height: 18px;
-    margin-right: 10px;
+    width: 21px;
+    height: 24px;
+    margin-right: 15px;
+    color: var(--light-gray);
+    fill: var(--light-gray);
+  }
+
+  .chevron {
+    position: absolute;
+    right: 10px;
+    color: var(--light-gray);
   }
 
   select {

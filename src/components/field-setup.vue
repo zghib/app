@@ -72,18 +72,28 @@
               :disabled="existing"
           /></label>
           <label
-            >{{ $t("display_name") }}
+            >{{ $t("default_value") }}
             <v-input
               type="text"
-              disabled
-              :value="displayName"
-              :placeholder="$t('auto_generated')"
+              v-model="default_value"
+              placeholder="NULL"
+              :disabled="type === 'o2m' || type === 'translation'"
           /></label>
         </div>
         <label
           >{{ $t("note") }}
           <v-input type="text" v-model="note" :placeholder="$t('add_note')"
         /></label>
+
+        <div class="toggles">
+          <label class="toggle" v-if="type !== 'alias'"
+            ><v-toggle v-model="required" /> {{ $t("required") }}
+          </label>
+          <label class="toggle"
+            ><v-toggle v-model="readonly" /> {{ $t("readonly") }}
+          </label>
+        </div>
+
         <details class="advanced" :open="existing">
           <summary>{{ $t("advanced_options") }}</summary>
           <div class="advanced-form">
@@ -120,14 +130,6 @@
               }}</small>
             </label>
             <label
-              >{{ $t("default") }}
-              <v-input
-                type="text"
-                v-model="default_value"
-                placeholder="NULL"
-                :disabled="type === 'o2m' || type === 'translation'"
-            /></label>
-            <label
               >{{ $t("length") }}
               <v-input
                 :type="
@@ -149,12 +151,13 @@
                 v-model="validation"
                 :placeholder="$t('regex')"
             /></label>
-            <div />
-            <label class="toggle" v-if="type !== 'alias'"
-              ><v-toggle v-model="required" /> {{ $t("required") }}
-            </label>
-            <label class="toggle"
-              ><v-toggle v-model="readonly" /> {{ $t("readonly") }}
+            <label
+              class="toggle"
+              :class="{ disabled: primaryKeyDisabled }"
+              v-tooltip="primaryKeyTooltip"
+            >
+              <v-toggle v-model="primary_key" :disabled="primaryKeyDisabled" />
+              {{ $t("primary_key") }}
             </label>
             <label class="toggle"
               ><v-toggle v-model="unique" /> {{ $t("unique") }}</label
@@ -168,14 +171,6 @@
                 $t("hidden_browse")
               }}</label
             >
-            <label
-              class="toggle"
-              :class="{ disabled: primaryKeyDisabled }"
-              v-tooltip="primaryKeyTooltip"
-            >
-              <v-toggle v-model="primary_key" :disabled="primaryKeyDisabled" />
-              {{ $t("primary_key") }}
-            </label>
             <label class="toggle" v-if="isNumeric">
               <v-toggle v-model="signed" />
               {{ $t("signed") }}
@@ -491,7 +486,6 @@
           :key="optionID"
         >
           <label :for="optionID">{{ option.name }}</label>
-          <p class="note" v-html="$helpers.snarkdown(option.comment || '')" />
           <v-ext-input
             :id="option.interface"
             :name="optionID"
@@ -506,6 +500,7 @@
             :values="options"
             @input="$set(options, optionID, $event)"
           />
+          <p class="note" v-html="$helpers.snarkdown(option.comment || '')" />
         </div>
 
         <details
@@ -520,7 +515,6 @@
             :key="optionID"
           >
             <label :for="optionID">{{ option.name }}</label>
-            <p v-html="$helpers.snarkdown(option.comment || '')" class="note" />
             <v-ext-input
               :id="option.interface"
               :name="optionID"
@@ -535,6 +529,7 @@
               :values="options"
               @input="$set(options, optionID, $event)"
             />
+            <p v-html="$helpers.snarkdown(option.comment || '')" class="note" />
           </div>
         </details>
       </form>
@@ -575,7 +570,7 @@ export default {
       options: {},
       translation: {},
       readonly: false,
-      required: false,
+      required: true,
       unique: false,
       note: null,
       hidden_detail: false,
@@ -957,17 +952,15 @@ export default {
       }
 
       this.initRelation();
-
-      if (this.type === "status") {
-        this.required = true;
-      }
     },
     type(type) {
       if (this.existing) return;
 
       if (type) {
         this.datatype = mapping[type][this.databaseVendor].default;
-        // NOTE: this is to force string types that are longer than 255 characters into a TEXT mysql type. This should be refactored and cleaned up when this field-setup component is getting refactored.
+        // NOTE: this is to force string types that are longer than 255 characters into a TEXT mysql
+        // type. This should be refactored and cleaned up when this field-setup component is getting
+        // refactored.
         // Also, this is hardcoded for MySQL TEXT.
         // Fix for https://github.com/directus/app/issues/1149
         if (this.length > 255 && this.type.toLowerCase() === "string") {
@@ -1530,7 +1523,7 @@ export default {
 }
 
 p {
-  line-height: 2;
+  line-height: 1.3;
   max-width: 70%;
   &.subtext {
     max-width: 460px;
@@ -1563,7 +1556,6 @@ p {
   article {
     display: block;
     background-color: var(--white);
-    border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     flex-basis: 160px;
     flex-shrink: 0;
@@ -1573,6 +1565,7 @@ p {
 
     .header {
       background-color: var(--lighter-gray);
+      border-radius: var(--border-radius);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -1587,31 +1580,29 @@ p {
 
     &.active {
       .header {
-        background-color: var(--accent);
+        background-color: var(--darkest-gray);
         transition: background-color var(--fast) var(--transition-in);
       }
     }
 
+    &:hover {
+      .header {
+        background-color: var(--gray);
+      }
+    }
+
     .body {
-      padding: 10px;
+      padding-top: 8px;
     }
 
     h2 {
       margin: 0;
-      font-size: 13px;
+      // font-size: 14px;
     }
 
     p {
-      text-transform: uppercase;
-      font-weight: 700;
       color: var(--lighter-gray);
-      font-size: 11px;
-    }
-
-    &:hover {
-      box-shadow: var(--box-shadow-accent);
-      transform: translateY(-1px);
-      transition: box-shadow var(--fast) var(--transition-in);
+      font-size: 13px;
     }
   }
 }
@@ -1630,13 +1621,13 @@ form.schema {
 
   .name-input {
     font-family: "Roboto Mono", monospace;
-    font-weight: 600;
   }
 
   .advanced-form,
+  .toggles,
   .name {
     display: grid;
-    grid-gap: 30px 20px;
+    grid-gap: 32px 32px;
     grid-template-columns: 1fr 1fr;
 
     .description {
@@ -1673,6 +1664,9 @@ form.schema {
 }
 
 form.options {
+  label {
+    margin-bottom: 8px;
+  }
   div.options {
     margin-bottom: 30px;
     &:last-of-type {
@@ -1684,8 +1678,9 @@ form.options {
 details {
   position: relative;
   margin-top: 60px;
-  border-top: 1px solid var(--lighter-gray);
+  border-top: 2px solid var(--lightest-gray);
   padding-top: 40px;
+  padding-bottom: 32px;
   summary {
     position: absolute;
     left: 50%;
@@ -1716,6 +1711,15 @@ details {
       font-size: 18px;
       margin-left: 2px;
       vertical-align: -19%;
+      font-weight: normal;
+      font-style: normal;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      font-feature-settings: "liga";
     }
   }
 
@@ -1850,5 +1854,9 @@ details {
       grid-area: v;
     }
   }
+}
+
+.toggles {
+  margin-top: 32px;
 }
 </style>

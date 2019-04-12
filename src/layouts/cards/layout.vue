@@ -202,11 +202,11 @@ export default {
   top: 0;
   z-index: +1;
   height: var(--header-height);
-  padding: var(--page-padding);
+  padding: 28px var(--page-padding);
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  border-bottom: 1px solid var(--lightest-gray);
+  border-bottom: 2px solid var(--lightest-gray);
 }
 
 .sort-select {

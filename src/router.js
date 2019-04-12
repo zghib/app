@@ -59,7 +59,10 @@ const router = new Router({
     {
       path: "/collections/:collection/:primaryKey",
       props: true,
-      component: Item
+      component: Item,
+      meta: {
+        infoSidebarWidth: "wide"
+      }
     },
     {
       path: "/ext/:id",
@@ -132,7 +135,10 @@ const router = new Router({
     {
       path: "/collections/directus_files/:primaryKey",
       component: Item,
-      alias: "/files/:primaryKey"
+      alias: "/files/:primaryKey",
+      meta: {
+        infoSidebarWidth: "wide"
+      }
     },
     {
       path: "/collections/directus_users",
@@ -142,7 +148,10 @@ const router = new Router({
     {
       path: "/collections/directus_users/:primaryKey",
       component: Item,
-      alias: "/users/:primaryKey"
+      alias: "/users/:primaryKey",
+      meta: {
+        infoSidebarWidth: "wide"
+      }
     },
     {
       path: "/collections/directus_activity",

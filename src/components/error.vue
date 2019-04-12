@@ -47,7 +47,7 @@ export default {
 
   i {
     font-size: 48px;
-    background-color: var(--white);
+    border: 2px solid var(--lightest-gray);
     box-shadow: var(--box-shadow);
     color: var(--accent);
     border-radius: 50%;

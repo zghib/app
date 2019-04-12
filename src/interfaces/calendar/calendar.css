@@ -3,6 +3,8 @@
 	border-radius: var(--border-radius);
 	max-width: var(--width-medium);
 	width: var(--width-medium);
+	background: var(--lightest-gray);
+	overflow: hidden;
 }
 
 .flatpickr-rContainer {

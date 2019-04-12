@@ -1,7 +1,13 @@
 <template>
   <v-not-found v-if="notFound" />
   <div class="route-item-listing" v-else>
-    <v-header info-toggle :item-detail="false" :breadcrumb="breadcrumb">
+    <v-header
+      info-toggle
+      :item-detail="false"
+      :breadcrumb="breadcrumb"
+      :icon="collectionInfo.icon || 'box'"
+      :title="currentBookmark && currentBookmark.title"
+    >
       <template slot="title">
         <button
           :class="currentBookmark ? 'active' : null"
@@ -13,9 +19,6 @@
             {{ currentBookmark ? "bookmark" : "bookmark_border" }}
           </i>
         </button>
-        <div v-if="currentBookmark" class="bookmark-name no-wrap">
-          ({{ currentBookmark.title }})
-        </div>
       </template>
       <v-search-filter
         v-show="selection && selection.length === 0 && !emptyCollection"
@@ -32,7 +35,8 @@
           v-if="editButton && !activity"
           key="edit"
           icon="mode_edit"
-          color="warning"
+          color="gray"
+          hover-color="warning"
           :disabled="!editButtonEnabled"
           :label="$t('batch')"
           :to="batchURL"
@@ -41,7 +45,8 @@
           v-if="deleteButton && !activity"
           key="delete"
           icon="delete_outline"
-          color="danger"
+          color="gray"
+          hover-color="danger"
           :disabled="!deleteButtonEnabled"
           :label="$t('delete')"
           @click="confirmRemove = true"
@@ -178,15 +183,15 @@ export default {
         ];
       }
 
-      const breadcrumb = [];
-
       if (this.collection.startsWith("directus_")) {
-        breadcrumb.push({
-          name: this.$helpers.formatTitle(this.collection.substr(9)),
-          path: `/${this.collection.substring(9)}`
-        });
+        return [
+          {
+            name: this.$helpers.formatTitle(this.collection.substr(9)),
+            path: `/${this.collection.substring(9)}`
+          }
+        ];
       } else {
-        breadcrumb.push(
+        return [
           {
             name: this.$t("collections"),
             path: "/collections"
@@ -195,10 +200,8 @@ export default {
             name: this.$t(`collections-${this.collection}`),
             path: `/collections/${this.collection}`
           }
-        );
+        ];
       }
-
-      return breadcrumb;
     },
     fields() {
       const fields = this.$store.state.collections[this.collection].fields;
@@ -708,33 +711,30 @@ export default {
 label.style-4 {
   padding-bottom: 5px;
 }
+
 .bookmark {
-  margin-left: 10px;
-  opacity: 0.4;
-  transition: opacity var(--fast) var(--transition);
+  margin-left: 5px;
   position: relative;
-  &:hover {
-    opacity: 1;
-  }
+
   i {
+    transition: color var(--fast) var(--transition);
+    color: var(--light-gray);
     font-size: 24px;
     height: 20px;
-    transform: translateY(-3px); // Vertical alignment of icon
+    transform: translateY(-1px); // Vertical alignment of icon
+  }
+
+  &:hover {
+    i {
+      color: var(--darker-gray);
+    }
   }
 }
+
 .bookmark.active {
   opacity: 1;
   i {
     color: var(--accent);
   }
-}
-.bookmark-name {
-  color: var(--accent);
-  margin-left: 5px;
-  margin-top: 3px;
-  font-size: 0.67em;
-  line-height: 1.1;
-  font-weight: 700;
-  text-transform: uppercase;
 }
 </style>

@@ -66,7 +66,7 @@ export default {
 <style lang="scss" scoped>
 .v-logo {
   height: var(--header-height);
-  background-color: var(--accent);
+  background-color: var(--darkest-gray);
   padding: 12px;
   display: grid;
   position: relative;

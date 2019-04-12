@@ -36,7 +36,7 @@
           :title="$t('select_existing')"
           :buttons="{
             save: {
-              text: 'save',
+              text: 'Save',
               color: 'accent',
               loading: selectionSaving,
               disabled: newSelected === null
@@ -331,6 +331,7 @@ button {
 
 .search-input {
   border-bottom: 1px solid var(--lightest-gray);
+  padding: 12px;
 
   & >>> input {
     border-radius: 0;

@@ -237,6 +237,10 @@ export default {
   color: var(--darkest-gray);
   transform-origin: top;
   box-shadow: var(--box-shadow);
+  border-right: 2px solid var(--lighter-gray);
+  border-bottom: 2px solid var(--lighter-gray);
+  border-left: 2px solid var(--lighter-gray);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
 
   @media (min-width: 800px) {
     left: var(--nav-sidebar-width);
@@ -350,15 +354,15 @@ export default {
   }
 
   .search-filter {
-    margin-right: 10px;
+    // margin-right: 10px;
     position: relative;
 
     .search {
       width: 100%;
       height: var(--input-height);
-      border-radius: var(--border-radius);
+      border-radius: 20px;
       display: block;
-      border: 0;
+      border: 2px solid var(--lighter-gray);
       color: var(--gray);
       padding: 10px;
       line-height: 1.5;
@@ -374,12 +378,12 @@ export default {
 
       &:focus {
         color: var(--darker-gray);
-        border-color: var(--accent);
+        border-color: var(--gray);
         outline: 0;
       }
 
       &:focus + i {
-        color: var(--accent);
+        color: var(--darker-gray);
       }
 
       &:-webkit-autofill {
@@ -425,7 +429,7 @@ export default {
 
         &:hover,
         .user-is-tabbing &:focus {
-          color: var(--accent);
+          color: var(--darker-gray);
         }
 
         &::after {
@@ -436,9 +440,9 @@ export default {
           background-color: var(--warning);
           border-radius: 50%;
           position: absolute;
-          top: 5%;
-          right: 5%;
-          border: 1px solid var(--white);
+          top: -3%;
+          right: -3%;
+          border: 2px solid var(--white);
           transform: scale(0);
           transition: transform var(--fast) var(--transition-out);
         }
@@ -468,7 +472,7 @@ export default {
     &.open {
       .toggle {
         i {
-          color: var(--accent);
+          color: var(--darker-gray);
         }
       }
 
@@ -482,13 +486,13 @@ export default {
 
 @media (min-width: 1000px) {
   .search-filter {
-    width: 240px;
+    width: 200px;
 
     transition: width var(--slow) var(--transition);
 
     &.open,
     &:focus-within {
-      width: 340px;
+      width: 300px;
     }
   }
 }

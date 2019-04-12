@@ -74,8 +74,8 @@ export default {
     align-items: center;
     padding-left: 10px;
     color: var(--gray);
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 1.5;
     text-transform: none;
 

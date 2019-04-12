@@ -1,6 +1,10 @@
 <template>
   <div class="settings-roles">
-    <v-header :breadcrumb="breadcrumb">
+    <v-header
+      :breadcrumb="breadcrumb"
+      icon-link="/settings"
+      icon-color="warning"
+    >
       <template slot="buttons">
         <v-header-button
           icon="add"
@@ -56,8 +60,7 @@ export default {
       return [
         {
           name: this.$t("settings"),
-          path: "/settings",
-          color: "warning"
+          path: "/settings"
         },
         {
           name: this.$t("roles"),
@@ -131,3 +134,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.settings-roles {
+  padding: 0 32px var(--page-padding-bottom);
+}
+</style>

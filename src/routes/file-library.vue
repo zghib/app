@@ -1,7 +1,7 @@
 <template>
   <v-not-found v-if="notFound" />
   <div class="route-file-library" v-else>
-    <v-header info-toggle :breadcrumb="breadcrumb">
+    <v-header info-toggle :breadcrumb="breadcrumb" icon="photo_library">
       <template slot="title">
         <button
           :class="currentBookmark ? 'active' : null"

@@ -1,6 +1,10 @@
 <template>
   <div class="collections">
-    <v-header :breadcrumb="breadcrumb">
+    <v-header
+      :breadcrumb="breadcrumb"
+      icon-color="warning"
+      icon-link="/settings"
+    >
       <template slot="buttons">
         <v-header-button
           icon="add"
@@ -145,8 +149,7 @@ export default {
       return [
         {
           name: this.$t("settings"),
-          path: "/settings",
-          color: "warning"
+          path: "/settings"
         },
         {
           name: this.$t("collections_and_fields"),
@@ -592,7 +595,7 @@ export default {
 
 <style lang="scss" scoped>
 .collections {
-  padding-bottom: var(--page-padding-bottom);
+  padding: 0 32px var(--page-padding-bottom);
 }
 
 .table {
@@ -602,10 +605,9 @@ export default {
   .row {
     display: flex;
     align-items: center;
-    padding: 0 20px;
-    border-bottom: 1px solid var(--lightest-gray);
+    border-bottom: 2px solid var(--off-white);
     box-sizing: content-box;
-    height: 40px;
+    height: 48px;
   }
 
   .cell {
@@ -631,6 +633,7 @@ export default {
 
     .row {
       height: 100%;
+      border-bottom: 2px solid var(--lightest-gray);
     }
   }
 
@@ -646,7 +649,7 @@ export default {
     border-radius: var(--border-radius);
     padding: 5px 10px;
     position: absolute;
-    right: 20px;
+    right: 0;
 
     &.managed {
       background-color: var(--lightest-gray);

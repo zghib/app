@@ -20,7 +20,7 @@ export default {
   activity: "Activity",
   my_activity: "My Activity",
   activity_log: "Activity Log",
-  activity_outside_directus: "This item was created outside of Directus.",
+  activity_outside_directus: "Item created outside of Directus",
   admin_email: "Admin Email",
   admin_password: "Admin Password",
   additional_info: "Additional Info",
@@ -171,6 +171,7 @@ export default {
   db_updated: "Database successfully updated",
   db_update_failed: "The database couldn't be updated.",
   default: "Default",
+  default_value: "Default Value",
   delete: "Delete",
   delete_are_you_sure:
     "Are you sure you want to delete this item? This action can not be undone.",
@@ -258,8 +259,7 @@ export default {
   item_count: "No Items | One Item | {count} Items",
   event_count: "No Events | One Event | {count} Events",
   role_count: "No Roles | One Role | {count} Roles",
-  item_count_filter:
-    "No Filtered Items | One Filtered Item | {count} Filtered Items",
+  item_count_filter: "No Results | One Result | {count} Results",
   item_deleted: "Item Deleted",
   item_saved: "Item Saved | {count} Items Saved",
   junction_collection: "Junction Collection",
@@ -409,7 +409,7 @@ export default {
   settings_update_database: "Update Database",
   settings_update_database_subtext: "Run Script",
   settings_update_database_confirm:
-    "This will update the system fields in your database to the latest version of Directus. Please make sure to make a backup before you run this operation.",
+    "This will update your database schema to work with the latest version of Directus. Always create a database backup before running this operation.",
   settings_collections_fields: "Collections & Fields",
   settings_permissions: "Roles & Permissions",
   settings_extensions: "Extensions",

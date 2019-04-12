@@ -164,12 +164,6 @@ export default {
 </script>
 
 <style lang="scss">
-.interface-wysiwyg-container {
-  max-width: var(--width-x-large);
-}
-.material-icons {
-  font-size: 20px;
-}
 .ql-choose-existing {
   padding: 3px 5px;
   color: var(--light-gray);
@@ -202,5 +196,15 @@ export default {
       color: var(--gray);
     }
   }
+}
+</style>
+
+<style lang="scss" scoped>
+.interface-wysiwyg-container {
+  max-width: var(--width-x-large);
+}
+
+.material-icons {
+  font-size: 20px;
 }
 </style>

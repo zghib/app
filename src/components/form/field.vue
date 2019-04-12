@@ -7,11 +7,11 @@
             <div class="label">
               <component :is="fieldset ? 'legend' : 'label'" :for="field.field">
                 {{ field.name || $helpers.formatTitle(field.field)
-                }}<i
-                  v-tooltip="$t('required')"
-                  class="material-icons"
-                  v-if="field.required === true || field.required === '1'"
-                  >star</i
+                }}<span
+                  class="optional"
+                  v-if="field.required !== true || field.required === '0'"
+                >
+                  — Optional</span
                 >
               </component>
               <label v-if="batchMode" class="batch-label">
@@ -24,7 +24,6 @@
               </label>
             </div>
           </template>
-          <small v-if="field.note" v-html="$helpers.snarkdown(field.note)" />
         </div>
         <div class="field-wrapper">
           <v-ext-input
@@ -61,6 +60,7 @@
           />
         </div>
       </div>
+      <small v-if="field.note" v-html="$helpers.snarkdown(field.note)" />
     </component>
   </div>
 </template>
@@ -140,7 +140,7 @@ export default {
 
 <style lang="scss" scoped>
 .heading {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .field-wrapper {
   position: relative;
@@ -150,7 +150,7 @@ label,
 legend {
   text-transform: none;
   color: var(--darker-gray);
-  font-size: 1.2rem;
+  font-size: 16px;
   line-height: 1.1;
   font-weight: 400;
   text-overflow: ellipsis;
@@ -178,10 +178,8 @@ p {
 small {
   order: 2;
   display: block;
-  margin-top: 4px;
+  margin-top: 8px;
   font-style: italic;
-  font-size: 12px;
-  line-height: 1.5em;
   color: var(--light-gray);
 }
 
@@ -196,6 +194,10 @@ small {
     &:first-child {
       margin-right: 10px;
     }
+  }
+
+  .optional {
+    color: var(--lighter-gray);
   }
 
   i {

@@ -107,6 +107,8 @@ export default {
   max-width: calc(var(--width-small) - 50px);
 }
 .interface-file-size-units {
+  position: absolute;
+  top: 0;
   margin: 0;
   display: inline-block;
   width: 62px;

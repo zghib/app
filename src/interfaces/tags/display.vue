@@ -39,9 +39,11 @@ export default {
   span {
     margin: 2px;
     padding: 2px 4px 3px;
-    background-color: var(--gray);
-    color: var(--white);
+    background-color: var(--light-gray);
     border-radius: var(--border-radius);
+    color: var(--white);
+    font-weight: 500;
+    font-size: 13px;
   }
 }
 </style>

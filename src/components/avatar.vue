@@ -2,7 +2,7 @@
   <div class="v-avatar">
     <div
       :style="{
-        borderColor: `var(--${color})`,
+        // borderColor: `var(--${color})`,
         width: `${size}px`,
         height: `${size}px`
       }"
@@ -83,7 +83,8 @@ export default {
 
 .wrapper {
   border-radius: 50%;
-  border: 2px solid;
+  border: 2px solid var(--lighter-gray);
+  background-color: var(--white);
   height: 100%;
   width: 100%;
   position: relative;

@@ -1,6 +1,10 @@
 <template>
   <div class="interface-debugger">
-    <v-header :breadcrumb="links" />
+    <v-header
+      :breadcrumb="links"
+      :icon-link="`/settings/interfaces`"
+      icon-color="warning"
+    />
 
     <label>Dummy Label</label>
 
@@ -316,8 +320,7 @@ export default {
       return [
         {
           name: this.$t("settings"),
-          path: "/settings",
-          color: "warning"
+          path: "/settings"
         },
         {
           name: this.$t("interfaces"),

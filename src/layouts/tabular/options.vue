@@ -2,25 +2,29 @@
   <form @submit.prevent>
     <fieldset>
       <legend class="style-3">{{ $t("layouts-tabular-fields") }}</legend>
-      <draggable v-model="sortList" @end="sort">
-        <div class="draggable" v-for="field in sortList" :key="field.field">
+      <draggable v-model="sortList" @end="sort" handle=".handle">
+        <div
+          class="draggable"
+          v-for="field in sortList"
+          :key="'tabular-layout-options-field-' + field.field"
+        >
           <v-checkbox
             class="checkbox"
             :key="field.field"
-            :id="field.field"
+            :id="'tabular-layout-options-field-' + field.field"
             :label="field.name"
             :value="field.field"
             :checked="fieldsInUse.includes(field.field)"
             @change="toggleField(field.field)"
           ></v-checkbox>
-          <i class="material-icons">drag_handle</i>
+          <i class="material-icons handle">drag_handle</i>
         </div>
       </draggable>
     </fieldset>
     <label for="spacing" class="style-3">Spacing</label>
     <v-select
       id="spacing"
-      :value="viewOptions.spacing || 'cozy'"
+      :value="viewOptions.spacing || 'comfortable'"
       :options="{
         compact: 'Compact',
         cozy: 'Cozy',
@@ -126,9 +130,13 @@ label {
   align-items: center;
   justify-content: space-between;
   cursor: ns-resize;
+  padding: 2px 0;
 
   .checkbox {
     max-width: 125px;
+    label {
+      font-size: 14px;
+    }
   }
 
   i {

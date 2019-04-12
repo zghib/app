@@ -46,6 +46,7 @@ export default {
     > div {
       width: 100%;
       padding: 4px 20px 4px 4px;
+      font-size: 13px;
     }
   }
 

@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <v-header :breadcrumb="links" />
+    <v-header :breadcrumb="links" icon="settings" icon-color="warning" />
 
     <v-details :title="$t('settings_project')" type="break" open>
       <nav>
@@ -184,8 +184,7 @@ export default {
       return [
         {
           name: this.$t("settings"),
-          path: "/settings",
-          color: "warning"
+          path: "/settings"
         }
       ];
     }
