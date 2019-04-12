@@ -31,43 +31,53 @@
         !options.paletteOnly && options.input === 'rgb' && readonly === false
       "
     >
-      <label class="slider-label">R</label>
-      <v-slider
-        :min="0"
-        :max="256"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[0]"
-      ></v-slider
-      ><br />
-      <label class="slider-label">G</label>
-      <v-slider
-        :min="0"
-        :max="256"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[1]"
-      ></v-slider
-      ><br />
-      <label class="slider-label">B</label>
-      <v-slider
-        :min="0"
-        :max="256"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[2]"
-      ></v-slider
-      ><br />
-      <label class="slider-label" v-if="options.allowAlpha">A</label>
-      <v-slider
-        v-if="options.allowAlpha"
-        :min="0"
-        :max="1"
-        :step="0.01"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[3]"
-      ></v-slider>
+      <template v-for="(label, idx) in rgbLabels">
+        <label
+          class="slider-label"
+          :key="'label' + idx"
+          v-if="
+            rawValue[idx] ||
+              rawValue[idx] === 0 ||
+              (options.allowAlpha && rawValue[idx] === undefined)
+          "
+          >{{ label }}</label
+        >
+        <v-slider
+          v-if="
+            (rawValue[idx] && label !== 'A') ||
+              (rawValue[idx] === 0 && label !== 'A')
+          "
+          :key="idx"
+          :min="0"
+          :max="256"
+          :alwaysShowOutput="true"
+          class="slider"
+          v-model.lazy="rawValue[idx]"
+        ></v-slider>
+        <span
+          :key="'hidden-model-fix' + idx"
+          v-if="options.allowAlpha && label === 'A'"
+          style="display: none; visibility: hidden; opacity: 0"
+          >{{
+            rawValue[idx] === undefined ? (rawValue[idx] = 1) : rawValue[idx]
+          }}</span
+        >
+        <v-slider
+          v-if="
+            options.allowAlpha && label === 'A' && rawValue[idx] === undefined
+              ? (rawValue[idx] = 1)
+              : rawValue[idx]
+          "
+          :key="idx"
+          :min="0"
+          :max="1"
+          :step="0.01"
+          :alwaysShowOutput="true"
+          class="slider"
+          v-model.lazy="rawValue[idx]"
+        ></v-slider>
+        <br :key="'break-' + idx" />
+      </template>
     </div>
     <div
       class="sliders"
@@ -75,43 +85,49 @@
         !options.paletteOnly && options.input === 'hsl' && readonly === false
       "
     >
-      <label class="slider-label">H</label>
-      <v-slider
-        :min="0"
-        :max="360"
-        class="slider"
-        :alwaysShowOutput="true"
-        v-model="rawValue[0]"
-      ></v-slider
-      ><br />
-      <label class="slider-label">S</label>
-      <v-slider
-        :min="0"
-        :max="100"
-        class="slider"
-        :alwaysShowOutput="true"
-        v-model="rawValue[1]"
-      ></v-slider
-      ><br />
-      <label class="slider-label">L</label>
-      <v-slider
-        :min="0"
-        :max="100"
-        class="slider"
-        :alwaysShowOutput="true"
-        v-model="rawValue[2]"
-      ></v-slider
-      ><br />
-      <label class="slider-label" v-if="options.allowAlpha">A</label>
-      <v-slider
-        v-if="options.allowAlpha"
-        :min="0"
-        :max="1"
-        :step="0.01"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[3]"
-      ></v-slider>
+      <template v-for="(label, idx) in hslLabels">
+        <label
+          class="slider-label"
+          :key="'label' + idx"
+          v-if="
+            rawValue[idx] ||
+              rawValue[idx] === 0 ||
+              (options.allowAlpha && rawValue[idx] === undefined)
+          "
+          >{{ label }}</label
+        >
+        <v-slider
+          v-if="
+            (rawValue[idx] && label !== 'A') ||
+              (rawValue[idx] === 0 && label !== 'A')
+          "
+          :key="idx"
+          :min="0"
+          :max="idx < 1 ? 100 : 360"
+          :alwaysShowOutput="true"
+          class="slider"
+          v-model.lazy="rawValue[idx]"
+        ></v-slider>
+        <span
+          :key="'hidden-model-fix' + idx"
+          v-if="options.allowAlpha && label === 'A'"
+          style="display: none; visibility: hidden; opacity: 0"
+          >{{
+            rawValue[idx] === undefined ? (rawValue[idx] = 1) : rawValue[idx]
+          }}</span
+        >
+        <v-slider
+          v-if="options.allowAlpha && label === 'A'"
+          :key="idx"
+          :min="0"
+          :max="1"
+          :step="0.01"
+          :alwaysShowOutput="true"
+          class="slider"
+          v-model.lazy="rawValue[idx]"
+        ></v-slider>
+        <br :key="'break-' + idx" />
+      </template>
     </div>
     <div
       class="sliders"
@@ -119,52 +135,49 @@
         !options.paletteOnly && options.input === 'cmyk' && readonly === false
       "
     >
-      <label class="slider-label">C</label>
-      <v-slider
-        :min="0"
-        :max="100"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[0]"
-      ></v-slider
-      ><br />
-      <label class="slider-label">M</label>
-      <v-slider
-        :min="0"
-        :max="100"
-        class="slider"
-        :alwaysShowOutput="true"
-        v-model="rawValue[1]"
-      ></v-slider
-      ><br />
-      <label class="slider-label">Y</label>
-      <v-slider
-        :min="0"
-        :max="100"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[2]"
-      ></v-slider
-      ><br />
-      <label class="slider-label">K</label>
-      <v-slider
-        :min="0"
-        :max="100"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[3]"
-      ></v-slider
-      ><br />
-      <label class="slider-label" v-if="options.allowAlpha">A</label>
-      <v-slider
-        v-if="options.allowAlpha"
-        :min="0"
-        :max="1"
-        :step="0.01"
-        :alwaysShowOutput="true"
-        class="slider"
-        v-model="rawValue[4]"
-      ></v-slider>
+      <template v-for="(label, idx) in cmykLabels">
+        <label
+          class="slider-label"
+          :key="'label' + idx"
+          v-if="
+            rawValue[idx] ||
+              rawValue[idx] === 0 ||
+              (options.allowAlpha && rawValue[idx] === undefined)
+          "
+          >{{ label }}</label
+        >
+        <v-slider
+          v-if="
+            (rawValue[idx] && label !== 'A') ||
+              (rawValue[idx] === 0 && label !== 'A')
+          "
+          :key="idx"
+          :min="0"
+          :max="100"
+          :alwaysShowOutput="true"
+          class="slider"
+          v-model="rawValue[idx]"
+        ></v-slider>
+        <span
+          :key="'hidden-model-fix' + idx"
+          v-if="options.allowAlpha && label === 'A'"
+          style="display: none; visibility: hidden; opacity: 0"
+          >{{
+            rawValue[idx] === undefined ? (rawValue[idx] = 1) : rawValue[idx]
+          }}</span
+        >
+        <v-slider
+          v-if="options.allowAlpha && label === 'A'"
+          :key="idx"
+          :min="0"
+          :max="1"
+          :step="0.01"
+          :alwaysShowOutput="true"
+          class="slider"
+          v-model.lazy="rawValue[idx]"
+        ></v-slider>
+        <br :key="'break-' + idx" />
+      </template>
     </div>
     <div
       class="swatch"
@@ -174,8 +187,8 @@
     </div>
     <template v-if="readonly === false">
       <button
-        v-for="color in palette"
-        :key="color"
+        v-for="(color, idx) in palette"
+        :key="idx"
         :style="{ borderColor: color, color: color, backgroundColor: color }"
         @click="setRawValue(color)"
       >
@@ -194,6 +207,9 @@ export default {
   mixins: [mixin],
   data() {
     return {
+      rgbLabels: ["R", "G", "B", "A"],
+      hslLabels: ["H", "S", "L", "A"],
+      cmykLabels: ["C", "M", "Y", "K", "A"],
       rawValue: null
     };
   },
@@ -242,8 +258,9 @@ export default {
           return Math.round(num);
         });
       }
-
-      this.$emit("input", value);
+      if (value) {
+        this.$emit("input", value);
+      }
     },
     options: {
       deep: true,
