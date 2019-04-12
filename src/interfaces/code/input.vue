@@ -2,7 +2,7 @@
   <div class="interface-code">
     <codemirror
       ref="codemirrorEl"
-      :options="cmOptions"
+      :options="altOptions ? altOptions : cmOptions"
       :value="stringValue"
       @input="onInput"
     ></codemirror>
@@ -15,7 +15,7 @@
       <i class="material-icons">playlist_add</i>
     </button>
 
-    <small class="line-count">
+    <small class="line-count" v-if="language">
       {{
         $tc("interfaces-code-loc", lineCount, {
           count: lineCount,
@@ -66,6 +66,11 @@ export default {
   mixins: [mixin],
   components: {
     codemirror
+  },
+  props: {
+    altOptions: {
+      type: Object
+    }
   },
   data() {
     return {
