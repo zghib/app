@@ -1,13 +1,10 @@
-/* global require, module */
+/* global require */
 
 import { forEach, mapKeys, isObject, mapValues } from "lodash";
 import api from "../../../api";
 import { i18n } from "../../../lang/";
 
 import * as mutationTypes from "../../mutation-types";
-
-// Used to make hot reload a bit more efficient
-const moduleCache = {};
 
 /**
  * Recursively loop over object values and replace each string value that starts with $t: with it's
@@ -68,23 +65,10 @@ function readCoreExtensions(type) {
       break;
   }
 
-  if (module.hot) {
-    module.hot.accept(requireContext.id, () => {
-      readCoreExtensions(type);
-    });
-  }
-
   return requireContext.keys().map(readMeta);
 
   function readMeta(fileName) {
     const metaDefinition = requireContext(fileName);
-
-    // Skip the module during hot reload if it refers to the same module definition
-    // as the one we have cached
-    if (moduleCache[fileName] === metaDefinition) return;
-
-    // Update the module cache, so we don't re-require files that we already have
-    moduleCache[fileName] = metaDefinition;
 
     const extensionId = fileName
       .replace(/^\.\//, "") // remove the ./ from the beginning
