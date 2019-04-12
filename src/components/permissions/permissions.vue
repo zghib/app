@@ -172,7 +172,7 @@ export default {
     color: var(--light-gray);
   }
 
-  /deep/ .body .row {
+  >>> .body .row {
     display: flex;
     align-items: center;
     padding: 10px;
@@ -194,7 +194,7 @@ export default {
       border-top: 1px solid var(--lightest-gray);
     }
   }
-  /deep/ .cell {
+  >>> .cell {
     flex-basis: 70px;
     &:first-child {
       flex-grow: 2;

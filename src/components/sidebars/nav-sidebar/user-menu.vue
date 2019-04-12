@@ -241,7 +241,7 @@ export default {
   }
 }
 
-.menu /deep/ nav {
+.menu >>> nav {
   margin-bottom: 0;
 }
 

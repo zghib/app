@@ -6,7 +6,7 @@ import VueTimeago from "vue-timeago";
 import PortalVue from "portal-vue";
 import axios from "axios";
 import meta from "vue-meta";
-import en from "date-fns/locale/en/";
+import en from "date-fns/locale/en-US/";
 import VueTheMask from "vue-the-mask";
 
 import "./assets/global.scss";
