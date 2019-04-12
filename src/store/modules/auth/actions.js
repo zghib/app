@@ -97,6 +97,7 @@ export function loginSSO({ commit }, request_token) {
     .then(res => res.data)
     .then(({ token }) => {
       api.token = token;
+      api.localExp = new Date(Date.now() + 5 * 60000).getTime();
       commit(LOGIN_SUCCESS, {
         project: project,
         url,
