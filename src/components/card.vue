@@ -308,11 +308,15 @@ export default {
   }
 
   &.disabled {
-    opacity: 0.5;
     cursor: not-allowed;
 
     & .header {
       background-color: var(--lighter-gray) !important;
+
+      & .icon,
+      & .custom-icon {
+        opacity: 0.4;
+      }
     }
   }
 
