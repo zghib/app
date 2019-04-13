@@ -367,7 +367,7 @@ export default {
       padding: 10px;
       line-height: 1.5;
       transition: var(--fast) var(--transition);
-      transition-property: color, border-color, padding;
+      transition-property: color, border-color, padding, border-radius;
       height: var(--input-height);
       padding-left: 40px;
       padding-right: 40px;
