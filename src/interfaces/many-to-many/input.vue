@@ -75,7 +75,7 @@
         :title="$t('select_existing')"
         :buttons="{
           save: {
-            text: 'save',
+            text: 'Save',
             color: 'accent',
             loading: selectionSaving
           }
@@ -112,7 +112,7 @@
         :title="$t('editing_item')"
         :buttons="{
           save: {
-            text: 'save',
+            text: 'Save',
             color: 'accent',
             loading: selectionSaving
           }
@@ -135,7 +135,7 @@
         :title="$t('creating_item')"
         :buttons="{
           save: {
-            text: 'save',
+            text: 'Save',
             color: 'accent',
             loading: selectionSaving
           }

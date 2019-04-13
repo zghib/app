@@ -93,7 +93,7 @@
         :title="$t('editing_item')"
         :buttons="{
           save: {
-            text: 'save',
+            text: 'Save',
             color: 'accent',
             loading: selectionSaving
           }
