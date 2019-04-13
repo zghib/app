@@ -42,7 +42,7 @@
               </div>
               <div class="body">
                 <h2>{{ ext.name }}</h2>
-                <p>Directus Team</p>
+                <p>Core Interface</p>
               </div>
             </article>
           </div>
@@ -1550,7 +1550,7 @@ p {
 
 .interfaces {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
 
   article {
@@ -1597,7 +1597,9 @@ p {
 
     h2 {
       margin: 0;
-      // font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     p {
