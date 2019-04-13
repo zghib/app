@@ -50,7 +50,7 @@
                 <i
                   v-tooltip="$t('required')"
                   class="material-icons required"
-                  v-if="field.required === true || field.required === '1'"
+                  v-if="field.required !== true || field.required === '0'"
                   >star</i
                 >
                 <i
