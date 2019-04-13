@@ -642,8 +642,15 @@ select {
   }
 
   input:focus,
-  input:-webkit-autofill,
   input.has-value {
+    & + label {
+      transform: scale(0.8);
+      top: -10px;
+    }
+  }
+
+  input:-webkit-autofill {
+    /* Fixes FireFox: If any part of a selector is invalid, it invalidates the whole selector */
     & + label {
       transform: scale(0.8);
       top: -10px;
