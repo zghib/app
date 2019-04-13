@@ -360,7 +360,7 @@ export default {
     .search {
       width: 100%;
       height: var(--input-height);
-      border-radius: 20px;
+      border-radius: 22px;
       display: block;
       border: 2px solid var(--lighter-gray);
       color: var(--gray);
