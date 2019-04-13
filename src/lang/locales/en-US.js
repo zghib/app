@@ -235,7 +235,7 @@ export default {
   greater_than_equal: "Greater than or equal to",
   greater_than: "Greater than",
   help_and_docs: "Help & Docs",
-  keep_editing: "Keep editing",
+  keep_editing: "Keep Editing",
   hidden_detail: "Hidden on Detail",
   hidden_browse: "Hidden on Browse",
   host: "Host",
