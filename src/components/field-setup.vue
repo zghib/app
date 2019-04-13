@@ -22,10 +22,10 @@
       <p v-else class="subtext">{{ $t("select_interface_below") }}</p>
       <div>
         <v-details
-          v-for="(group, index) in interfacesGrouped"
+          v-for="group in interfacesGrouped"
           :title="group.title"
           :key="group.title"
-          :open="index === 0"
+          :open="1"
         >
           <div class="interfaces">
             <article
