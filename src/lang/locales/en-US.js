@@ -69,6 +69,7 @@ export default {
   comment: "Comment",
   comments: "Comments",
   coming_soon: "Coming Soon",
+  confirm: "Confirm",
   contains: "Contains",
   config_error: "Missing Config",
   config_error_copy:
