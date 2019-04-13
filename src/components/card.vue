@@ -311,11 +311,9 @@ export default {
     cursor: not-allowed;
 
     & .header {
-      background-color: var(--lighter-gray) !important;
-
       & .icon,
       & .custom-icon {
-        opacity: 0.4;
+        opacity: 0.3;
       }
     }
   }
