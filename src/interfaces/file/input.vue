@@ -34,7 +34,15 @@
     </v-button>
 
     <portal to="modal" v-if="newFile">
-      <v-modal :title="$t('file_upload')" @close="newFile = false">
+      <v-modal
+        :title="$t('file_upload')"
+        @close="newFile = false"
+        :buttons="{
+          done: {
+            text: $t('done')
+          }
+        }"
+      >
         <div class="body">
           <v-upload
             @upload="saveUpload"
