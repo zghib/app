@@ -1,8 +1,8 @@
 <template>
   <div class="header">
     <div class="row">
-      <div class="cell">{{ $t("collection") }}</div>
-      <div class="cell">
+      <div class="cell style-4">{{ $t("collection") }}</div>
+      <div class="cell style-4">
         <button
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
@@ -12,7 +12,7 @@
           {{ $t("create") }}
         </button>
       </div>
-      <div class="cell">
+      <div class="cell style-4">
         <button
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
@@ -22,7 +22,7 @@
           {{ $t("read") }}
         </button>
       </div>
-      <div class="cell">
+      <div class="cell style-4">
         <button
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
@@ -32,7 +32,7 @@
           {{ $t("update") }}
         </button>
       </div>
-      <div class="cell">
+      <div class="cell style-4">
         <button
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
@@ -42,7 +42,7 @@
           {{ $t("delete") }}
         </button>
       </div>
-      <div class="cell">
+      <div class="cell style-4">
         <button
           type="button"
           v-tooltip="$t('click_to_toggle_all_none')"
@@ -53,8 +53,8 @@
         </button>
       </div>
       <!-- <div class="cell">{{ $t("explain") }}</div> -->
-      <div class="cell">{{ $t("fields") }}</div>
-      <div class="cell">{{ $t("statuses") }}</div>
+      <div class="cell style-4">{{ $t("fields") }}</div>
+      <div class="cell style-4">{{ $t("statuses") }}</div>
     </div>
   </div>
 </template>
@@ -67,13 +67,6 @@
     align-items: center;
     padding: 10px;
     height: 60px;
-  }
-
-  .cell {
-    text-transform: uppercase;
-    font-size: 10px;
-    color: var(--gray);
-    font-weight: 700;
   }
 
   button {

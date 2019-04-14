@@ -163,7 +163,7 @@ export default {
   background-color: var(--white);
   border-radius: var(--border-radius);
   border: var(--input-border-width) solid var(--lighter-gray);
-  max-width: 1000px;
+  max-width: 800px;
   .no-collections-message {
     text-align: center;
     margin-top: 20px;
@@ -199,14 +199,18 @@ export default {
     &:first-child {
       flex-grow: 2;
     }
-    &:nth-last-child(3),
-    &:nth-last-child(2),
+    &:nth-last-child(3) {
+      flex-basis: 100px;
+    }
+    &:nth-last-child(2) {
+      flex-basis: 90px;
+    }
     &:last-child {
-      flex-grow: 1;
+      flex-basis: 110px;
     }
   }
   .border {
-    border-top: 1px solid var(--lighter-gray);
+    border-top: 1px solid var(--lightest-gray);
   }
   &.loading {
     padding: 300px 0;

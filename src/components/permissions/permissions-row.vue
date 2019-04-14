@@ -71,7 +71,7 @@
           {{ fieldState ? $t("limited") : $t("all") }}
         </button>
       </div>
-      <div class="cell"><span class="mixed">n/a</span></div>
+      <div class="cell"><span class="mixed">--</span></div>
     </div>
     <div v-else class="row">
       <div class="cell">
@@ -133,21 +133,18 @@
         </div>
       -->
       <div class="cell">
-        <button :class="{ mixed: fieldState }" @click="active = !active">
+        <button :class="{ limited: fieldState }" @click="active = !active">
           {{ fieldState ? $t("mixed") : $t("all") }}
         </button>
       </div>
       <div class="cell">
-        <button class="mixed" @click="active = !active">--</button>
+        <button class="mixed" @click="active = !active">Expand</button>
       </div>
     </div>
     <template v-if="active">
       <div class="sub row">
-        <div class="cell">
-          <span class="system"
-            >{{ $t("permission_states.create")
-            }}<i class="material-icons">star</i></span
-          >
+        <div class="cell" v-tooltip="'System Option'">
+          {{ $t("permission_states.on_create") }}
         </div>
         <div class="cell block"><i class="material-icons">block</i></div>
         <div class="cell block"><i class="material-icons">block</i></div>
@@ -182,7 +179,7 @@
             }}
           </button>
         </div>
-        <div class="cell" v-else><span class="mixed">n/a</span></div>
+        <div class="cell" v-else><span class="mixed">--</span></div>
       </div>
     </template>
     <template v-if="statuses && active">
@@ -641,7 +638,8 @@ export default {
 
 .set-all {
   opacity: 0;
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
   margin-left: 5px;
   color: var(--light-gray);
   transition: opacity var(--fast) var(--transition);
@@ -660,7 +658,7 @@ export default {
   }
 
   button:first-of-type:hover {
-    color: var(--action);
+    color: var(--success);
   }
 
   button:last-of-type:hover {
