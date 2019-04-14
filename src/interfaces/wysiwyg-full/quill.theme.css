@@ -530,7 +530,7 @@
   display: none;
   border-radius: var(--border-radius);
   border: var(--input-border-width) solid var(--lighter-gray);
-  font-size: 13px;
+  font-size: 14px;
   height: 26px;
   margin: 0px;
   padding: 3px 5px;

@@ -164,6 +164,10 @@ export default {
 </script>
 
 <style lang="scss">
+.ql-container {
+  font-size: 14px;
+}
+
 .ql-choose-existing {
   padding: 3px 5px;
   color: var(--light-gray);
