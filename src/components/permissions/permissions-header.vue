@@ -5,51 +5,51 @@
       <div class="cell style-4">
         <button
           type="button"
-          v-tooltip="$t('click_to_toggle_all_none')"
+          v-tooltip="$t('create')"
           class="cell"
           @click="$emit('toggle-all', 'create')"
         >
-          {{ $t("create") }}
+          <i class="material-icons">add_circle</i>
         </button>
       </div>
       <div class="cell style-4">
         <button
           type="button"
-          v-tooltip="$t('click_to_toggle_all_none')"
+          v-tooltip="$t('read')"
           class="cell"
           @click="$emit('toggle-all', 'read')"
         >
-          {{ $t("read") }}
+          <i class="material-icons">visibility</i>
         </button>
       </div>
       <div class="cell style-4">
         <button
           type="button"
-          v-tooltip="$t('click_to_toggle_all_none')"
+          v-tooltip="$t('update')"
           class="cell"
           @click="$emit('toggle-all', 'update')"
         >
-          {{ $t("update") }}
+          <i class="material-icons">edit</i>
         </button>
       </div>
       <div class="cell style-4">
         <button
           type="button"
-          v-tooltip="$t('click_to_toggle_all_none')"
+          v-tooltip="$t('delete')"
           class="cell"
           @click="$emit('toggle-all', 'delete')"
         >
-          {{ $t("delete") }}
+          <i class="material-icons">delete</i>
         </button>
       </div>
       <div class="cell style-4">
         <button
           type="button"
-          v-tooltip="$t('click_to_toggle_all_none')"
+          v-tooltip="$t('comment')"
           class="cell"
           @click="$emit('toggle-all', 'comment')"
         >
-          {{ $t("comment") }}
+          <i class="material-icons">comment</i>
         </button>
       </div>
       <!-- <div class="cell">{{ $t("explain") }}</div> -->
@@ -67,6 +67,9 @@
     align-items: center;
     padding: 10px;
     height: 60px;
+    .material-icons {
+      margin-left: -2px;
+    }
   }
 
   button {
