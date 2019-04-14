@@ -10,9 +10,13 @@
       <v-permissions-header @toggle-all="toggleAll" />
 
       <div class="body">
-        <p v-if="Object.keys(rows).length === 0" class="no-collections-message">
+        <v-notice
+          v-if="Object.keys(rows).length === 0"
+          color="gray"
+          class="no-collections-message"
+        >
           {{ $t("permissions_no_collections") }}
-        </p>
+        </v-notice>
 
         <v-permissions-row
           v-for="(permission, name) in rows"
@@ -163,13 +167,10 @@ export default {
   background-color: var(--white);
   border-radius: var(--border-radius);
   border: var(--input-border-width) solid var(--lighter-gray);
-  max-width: 800px;
+  max-width: 632px;
   .no-collections-message {
-    text-align: center;
     margin-top: 20px;
     margin-bottom: 40px;
-    font-size: 1.2em;
-    color: var(--light-gray);
   }
 
   ::v-deep .body .row {
@@ -195,18 +196,18 @@ export default {
     }
   }
   ::v-deep .cell {
-    flex-basis: 70px;
+    flex-basis: 44px;
     &:first-child {
       flex-grow: 2;
     }
     &:nth-last-child(3) {
-      flex-basis: 100px;
+      flex-basis: 50px;
     }
     &:nth-last-child(2) {
       flex-basis: 90px;
     }
     &:last-child {
-      flex-basis: 110px;
+      flex-basis: 100px;
     }
   }
   .border {
