@@ -38,7 +38,9 @@
     </v-header>
 
     <label>{{ $t("permissions") }}</label>
-    <p v-if="isAdmin" class="admin-note">{{ $t("permissions_admin") }}</p>
+    <v-notice v-if="isAdmin" color="warning" class="admin-note">
+      {{ $t("permissions_admin") }}
+    </v-notice>
     <v-permissions
       v-else
       :loading="!(permissions && statuses)"
@@ -578,10 +580,6 @@ h2 {
 }
 
 .admin-note {
-  color: var(--warning);
-  font-size: 1.2rem;
-  line-height: 1.1;
-  font-weight: 400;
   margin-bottom: 40px;
 }
 </style>
