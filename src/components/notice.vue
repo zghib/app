@@ -24,7 +24,7 @@ export default {
   position: relative;
   padding: 16px;
   border-radius: var(--border-radius);
-  max-width: 630px;
+  max-width: 632px;
   &.gray {
     background-color: var(--lightest-gray);
   }
