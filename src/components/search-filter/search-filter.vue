@@ -2,6 +2,7 @@
   <div :class="{ open }" ref="searchFilter" class="search-filter">
     <v-header-button
       class="toggle"
+      icon-color="lighter-gray"
       :alert="hasFilters"
       icon="filter_list"
       no-background
@@ -162,10 +163,7 @@ export default {
       };
     },
     hasFilters() {
-      if ((this.filters && this.filters.length > 0) || this.searchQuery)
-        return true;
-
-      return false;
+      return !!((this.filters && this.filters.length > 0) || this.searchQuery);
     },
     fields() {
       const fields = {};
@@ -237,9 +235,7 @@ export default {
   color: var(--darkest-gray);
   transform-origin: top;
   box-shadow: var(--box-shadow);
-  border-right: 2px solid var(--lighter-gray);
   border-bottom: 2px solid var(--lighter-gray);
-  border-left: 2px solid var(--lighter-gray);
   border-radius: 0 0 var(--border-radius) var(--border-radius);
 
   @media (min-width: 800px) {
@@ -248,6 +244,8 @@ export default {
   }
 
   @media (min-width: 1000px) {
+    border-left: 2px solid var(--lighter-gray);
+    border-right: 2px solid var(--lighter-gray);
     left: 0;
     width: 100%;
   }
@@ -364,13 +362,10 @@ export default {
       display: block;
       border: 2px solid var(--lighter-gray);
       color: var(--gray);
-      padding: 10px;
+      padding: 10px 40px 10px 40px;
       line-height: 1.5;
       transition: var(--fast) var(--transition);
       transition-property: color, border-color, padding, border-radius;
-      height: var(--input-height);
-      padding-left: 40px;
-      padding-right: 40px;
 
       &::placeholder {
         color: var(--light-gray);

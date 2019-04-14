@@ -133,8 +133,6 @@ button,
 a {
   position: relative;
   background-color: transparent;
-  appearance: none;
-  display: block;
   border: 0;
   display: flex;
   justify-content: center;
