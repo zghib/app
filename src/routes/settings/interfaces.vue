@@ -48,7 +48,7 @@ export default {
         },
         {
           field: "id",
-          name: "id"
+          name: "ID"
         },
         {
           field: "version",
