@@ -178,7 +178,7 @@ export default {
 <style lang="scss">
 .v-form {
   width: 100%;
-  max-width: 680px;
+  max-width: 632px;
 
   @media (min-width: 680px) {
     &.flex-group,
