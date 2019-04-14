@@ -96,7 +96,7 @@ export default {
 i {
   position: relative;
   top: -1px;
-  left: -0.5px;
+  left: 0px;
   font-size: 16px;
   color: var(--white);
 }
