@@ -27,17 +27,14 @@
       </template>
     </v-header>
 
-    <label class="label "
-      >{{ $t("fields") }}
-      <em class="notice">{{ $t("fields_are_saved_instantly") }}</em></label
-    >
-
+    <label class="label">{{ $t("fields") }}</label>
+    <v-notice color="warning">{{ $t("fields_are_saved_instantly") }}</v-notice>
     <div class="table">
       <div class="header">
         <div class="row">
           <div class="drag"><i class="material-icons">swap_vert</i></div>
-          <div>{{ $t("field") }}</div>
-          <div>{{ $t("interface") }}</div>
+          <div class="style-4">{{ $t("field") }}</div>
+          <div class="style-4">{{ $t("interface") }}</div>
         </div>
       </div>
       <div class="body" :class="{ dragging }">
@@ -638,14 +635,10 @@ h2 {
   border-radius: var(--border-radius);
   border-spacing: 0;
   width: 100%;
-  max-width: 1000px;
+  max-width: 632px;
   margin: 10px 0 20px;
 
   .header {
-    color: var(--gray);
-    font-size: 10px;
-    text-transform: uppercase;
-    font-weight: 700;
     border-bottom: 2px solid var(--lightest-gray);
     height: 60px;
     .row {
@@ -761,18 +754,6 @@ em.note {
   margin-top: 4px;
   margin-bottom: 40px;
   display: block;
-}
-
-.notice {
-  margin-left: 4px;
-  background-color: var(--warning);
-  border-radius: var(--border-radius);
-  color: var(--white);
-  padding: 3px 6px 4px;
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 600;
-  font-style: normal;
 }
 
 label.label {
