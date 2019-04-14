@@ -57,19 +57,19 @@
           />
 
           <v-card
-            :title="$t('about_directus')"
-            :subtitle="$t('learn_more')"
-            element="li"
-            href="https://directus.io"
-            icon="info_outline"
-          />
-
-          <v-card
             :title="$t('activity_log')"
             :subtitle="activityCount"
             element="li"
             to="/activity"
             icon="warning"
+          />
+
+          <v-card
+            :title="$t('about_directus')"
+            :subtitle="$t('learn_more')"
+            element="li"
+            href="https://directus.io"
+            icon="info_outline"
           />
 
           <v-card
