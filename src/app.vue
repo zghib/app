@@ -64,7 +64,11 @@ export default {
   },
   computed: {
     ...mapState({
-      color: state => state.settings.values.color || "darkest-gray",
+      color: state =>
+        state.settings.values.color ||
+        getComputedStyle(document.documentElement)
+          .getPropertyValue("--accent")
+          .trim(),
       infoActive: state => state.sidebars.info
     }),
     publicRoute() {
