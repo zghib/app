@@ -92,15 +92,16 @@ export default {
   position: relative;
   height: calc(var(--header-height) - 20px);
   width: calc(var(--header-height) - 20px);
+  min-width: calc(var(--header-height) - 20px);
   display: inline-block;
-  margin-left: 20px;
+  margin-left: 16px;
 }
 
 .button {
   transition: background-color var(--fast) var(--transition);
 }
 
-.button.has-bg:hover {
+.button.has-bg:hover:not([disabled]) {
   background-color: var(--hover-color) !important;
 }
 
