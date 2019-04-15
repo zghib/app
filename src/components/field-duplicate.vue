@@ -9,7 +9,6 @@
       <div class="options">
         <label>
           {{ $t("collection") }}
-          <v-icon name="star" v-tooltip="$t('required')" class="required" />
           <v-simple-select required v-model="selectedCollection">
             <option
               v-for="collection in Object.keys(this.collections)"
@@ -25,7 +24,6 @@
       <div class="options">
         <label>
           {{ $t("field") + " " + $t("name") }}
-          <v-icon name="star" v-tooltip="$t('required')" class="required" />
           <v-input
             required
             v-model="field"
