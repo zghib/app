@@ -49,6 +49,7 @@
           :label="$t('save')"
           icon="check"
           color="action"
+          hover-color="success"
           @click="confirmBatchSave = true"
         />
 
@@ -70,6 +71,7 @@
           "
           icon="check"
           color="action"
+          hover-color="success"
           @click="singleItem ? save('stay') : save('leave')"
           @input="save"
         />
