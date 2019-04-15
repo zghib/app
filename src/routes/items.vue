@@ -104,6 +104,13 @@
         @query="setViewQuery"
         @options="setViewOptions"
       />
+
+      <router-link to="/activity" class="notifications" v-if="canReadActivity">
+        <div class="preview">
+          <v-icon name="notifications" color="light-gray" />
+          <span>{{ $t("notifications") }}</span>
+        </div>
+      </router-link>
     </v-info-sidebar>
 
     <portal to="modal" v-if="confirmRemove">
@@ -374,8 +381,14 @@ export default {
       if (!this.fields) return null;
       return this.$lodash.find(this.fields, { primary_key: true }).field;
     },
+    permissions() {
+      return this.$store.state.permissions;
+    },
     permission() {
-      return this.$store.state.permissions[this.collection];
+      return this.permissions[this.collection];
+    },
+    canReadActivity() {
+      return this.permissions.directus_activity.read !== "none";
     },
     addButton() {
       if (this.$store.state.currentUser.admin) return true;
@@ -729,11 +742,13 @@ label.style-4 {
   }
 }
 
-.layout-picker {
+.layout-picker,
+.notifications {
   margin: -20px;
   padding: 20px;
   background-color: #dde3e6;
   position: relative;
+  display: block;
 
   .preview {
     display: flex;
@@ -754,5 +769,14 @@ label.style-4 {
     left: 0;
     cursor: pointer;
   }
+}
+
+.notifications {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  text-decoration: none;
 }
 </style>

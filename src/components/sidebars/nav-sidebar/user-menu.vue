@@ -108,15 +108,6 @@ export default {
         });
       }
 
-      if (this.permissions.directus_activity.read !== "none") {
-        links.push({
-          path: "/activity",
-          name: this.$t("my_activity"),
-          target: "_self",
-          icon: "notifications"
-        });
-      }
-
       links.push({
         path: `/users/${this.currentUserID}`,
         name: this.$t("my_profile"),
