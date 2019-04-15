@@ -33,27 +33,39 @@ export default {
       default: false
     }
   },
+  computed: {
+    valueText() {
+      return this.valueNames[this.value];
+    }
+  },
   data() {
     return {
-      valueText: ""
+      valueNames: {}
     };
   },
   methods: {
     stageValue(event) {
       this.$emit("input", event.target.value);
-      this.valueText = event.target.options[event.target.selectedIndex].text;
     },
-    getValueText() {
-      this.valueText = this.value;
+    getValueNames() {
+      const selectElement = this.$refs.selectElement;
+      const valueNames = {};
+
+      const children = Array.from(selectElement.children)
+        .filter(element => {
+          return element.tagName.toLowerCase() === "option";
+        })
+        .filter(element => element.value);
+
+      children.forEach(element => {
+        valueNames[element.value] = element.innerText;
+      });
+
+      this.valueNames = valueNames;
     }
   },
   mounted() {
-    this.getValueText();
-  },
-  watch: {
-    value() {
-      this.getValueText();
-    }
+    this.getValueNames();
   }
 };
 </script>

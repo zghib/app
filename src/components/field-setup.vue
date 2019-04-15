@@ -450,6 +450,16 @@
         <h1 class="style-0">{{ $t("almost_done_options") }}</h1>
         <p class="subtext">{{ $t("almost_done_copy") }}</p>
       </template>
+
+      <label for="__width">{{ $t("field_width") }}</label>
+      <v-simple-select v-model="width" name="__width">
+        <option value="half">Half</option>
+        <option value="full">Full</option>
+        <option value="fill">Fill the page</option>
+      </v-simple-select>
+
+      <hr />
+
       <form @submit.prevent v-if="selectedInterfaceInfo" class="options">
         <div v-for="(option, optionID) in interfaceOptions.regular" class="options" :key="optionID">
           <label :for="optionID">{{ option.name }}</label>
@@ -544,6 +554,7 @@ export default {
       hidden_browse: false,
       primary_key: false,
       signed: true,
+      width: "full",
 
       length: null,
       default_value: null,
@@ -1058,7 +1069,8 @@ export default {
         hidden_detail: this.hidden_detail,
         hidden_browse: this.hidden_browse,
         primary_key: this.primary_key,
-        validation: this.validation
+        validation: this.validation,
+        width: this.width
         // translation: this.translation, < Haven't implemented that yet
       };
 
@@ -1460,9 +1472,10 @@ p {
   margin-top: 4px;
   margin-bottom: 10px;
   font-style: italic;
-  font-size: 12px;
+  font-size: var(--size-3);
   line-height: 1.5em;
   color: var(--light-gray);
+  font-weight: var(--weight-bold);
 }
 
 .interfaces {
@@ -1772,5 +1785,16 @@ details {
 
 .toggles {
   margin-top: 32px;
+}
+
+label {
+  font-size: var(--size-2);
+  margin-bottom: 12px;
+}
+
+hr {
+  margin: 32px 0;
+  border: 0;
+  border-top: 2px solid var(--lightest-gray);
 }
 </style>
