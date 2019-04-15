@@ -4,9 +4,7 @@
       <div id="background" @click="close()"></div>
       <div id="popup">
         <div id="sidebar-header">
-          {{
-            $t("layouts-calendar-months." + $parent.monthNames[date.getMonth()])
-          }}
+          {{ $t("layouts-calendar-months." + $parent.monthNames[date.getMonth()]) }}
           {{ date.getFullYear() }}
         </div>
         <div id="sidebar" @wheel="scroll">
@@ -20,13 +18,7 @@
               >
                 <span class="dates-day">{{ weekname(day.date.getDay()) }}</span>
                 <span class="dates-date">{{ day.date.getDate() }}</span>
-                <div
-                  :class="
-                    getEventCount(day.date) > 0
-                      ? 'date-counter'
-                      : 'date-counter-hidden'
-                  "
-                >
+                <div :class="getEventCount(day.date) > 0 ? 'date-counter' : 'date-counter-hidden'">
                   {{ getEventCount(day.date) }}
                 </div>
               </div>
@@ -49,12 +41,13 @@
             <span>{{ event.time.substr(0, 5) }}</span>
           </div>
           <div v-if="getEventCount(date) == 0" id="events-none">
-            <span>{{ randomEmoji() }}</span
-            ><br /><br />
+            <span>{{ randomEmoji() }}</span>
+            <br />
+            <br />
             <span>{{ $t("layouts-calendar-noEvents") }}</span>
           </div>
         </div>
-        <a id="add" :href="addItemURL"> <v-icon name="add" /> </a>
+        <a id="add" :href="addItemURL"><v-icon name="add" /></a>
       </div>
     </div>
   </transition>
@@ -78,11 +71,7 @@ export default {
       var days = new Array();
 
       for (var i = -4; i <= 4; i++) {
-        var date = new Date(
-          this.date.getFullYear(),
-          this.date.getMonth(),
-          this.date.getDate() + i
-        );
+        var date = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate() + i);
         days.push({ date: date, index: i });
       }
       return days;
@@ -108,8 +97,7 @@ export default {
      */
     weekname(day) {
       return this.$t(
-        "layouts-calendar-weeks." +
-          this.$parent.weekNames[day == 0 ? 6 : day - 1]
+        "layouts-calendar-weeks." + this.$parent.weekNames[day == 0 ? 6 : day - 1]
       ).substr(0, 3);
     },
 

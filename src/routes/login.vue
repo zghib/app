@@ -29,8 +29,8 @@
             <option v-if="allowOther" value="other">{{ $t("other") }}</option>
           </select>
           {{ $t("to") }}
-          <span
-            >{{ urls[selectedUrl] || $t("choose_project") }}
+          <span>
+            {{ urls[selectedUrl] || $t("choose_project") }}
             <v-icon
               v-if="Object.keys(urls).length > 1 || allowOther"
               size="18"
@@ -86,19 +86,11 @@
             <label for="password">{{ $t("password") }}</label>
           </div>
           <div class="buttons">
-            <button
-              type="button"
-              class="forgot"
-              @click.prevent="resetMode = !resetMode"
-            >
+            <button type="button" class="forgot" @click.prevent="resetMode = !resetMode">
               {{ resetMode ? $t("sign_in") : $t("forgot_password") }}
             </button>
 
-            <button
-              class="style-btn"
-              type="submit"
-              :disabled="disabled || loading"
-            >
+            <button class="style-btn" type="submit" :disabled="disabled || loading">
               {{ resetMode ? $t("reset_password") : $t("sign_in") }}
             </button>
           </div>
@@ -126,19 +118,14 @@
             </span>
 
             <v-icon
-              v-else-if="
-                thirdPartyAuthProviders && !thirdPartyAuthProviders.length
-              "
+              v-else-if="thirdPartyAuthProviders && !thirdPartyAuthProviders.length"
               :name="loggedIn ? 'lock_open' : 'lock_outline'"
               key="lock"
               class="lock"
             />
 
             <ul v-else class="third-party-auth" key="third-party-auth">
-              <li
-                v-for="provider in thirdPartyAuthProviders"
-                :key="provider.name"
-              >
+              <li v-for="provider in thirdPartyAuthProviders" :key="provider.name">
                 <a
                   v-tooltip.bottom="$helpers.formatTitle(provider.name)"
                   :href="url + 'auth/sso/' + provider.name"
@@ -151,11 +138,9 @@
         </template>
       </form>
 
-      <small
-        v-tooltip="{ classes: ['inverted'], content: version }"
-        class="style-4"
-        >{{ $t("powered_by_directus") }}</small
-      >
+      <small v-tooltip="{ classes: ['inverted'], content: version }" class="style-4">
+        {{ $t("powered_by_directus") }}
+      </small>
     </div>
   </transition>
 </template>
@@ -173,8 +158,7 @@ export default {
   },
   data() {
     return {
-      selectedUrl:
-        this.$store.state.auth.url + "/" + this.$store.state.auth.env + "/",
+      selectedUrl: this.$store.state.auth.url + "/" + this.$store.state.auth.env + "/",
 
       url: null,
       email: null,
@@ -233,10 +217,7 @@ export default {
 
       const errorCode = (this.error && this.error.code) || this.SSOerror;
 
-      if (
-        this.localeMessages.errors &&
-        this.localeMessages.errors[errorCode] != null
-      ) {
+      if (this.localeMessages.errors && this.localeMessages.errors[errorCode] != null) {
         return this.$t(`errors[${errorCode}]`);
       }
 
@@ -271,14 +252,11 @@ export default {
       : Object.keys(window.__DirectusConfig__.api)[0];
 
     // Check if the last used URL is still a valid option before using it
-    if (
-      Object.keys(window.__DirectusConfig__.api).includes(lastUsedURL) === false
-    ) {
+    if (Object.keys(window.__DirectusConfig__.api).includes(lastUsedURL) === false) {
       lastUsedURL = null;
     }
 
-    this.url =
-      lastUsedURL || Object.keys(window.__DirectusConfig__.api)[0] || "";
+    this.url = lastUsedURL || Object.keys(window.__DirectusConfig__.api)[0] || "";
     this.selectedUrl = this.url;
 
     if (this.url.endsWith("/") === false) this.url = this.url + "/";
@@ -453,10 +431,7 @@ export default {
         return null;
       }
 
-      if (
-        queryParams.get("request_token") &&
-        queryParams.get("request_token").length > 0
-      ) {
+      if (queryParams.get("request_token") && queryParams.get("request_token").length > 0) {
         this.clearRequestToken();
         this.loading = true;
         this.$store

@@ -16,9 +16,7 @@ export default {
       type: String,
       default: "accent",
       validator(val) {
-        return ["accent", "secondary", "success", "warning", "danger"].includes(
-          val
-        );
+        return ["accent", "secondary", "success", "warning", "danger"].includes(val);
       }
     },
     icon: {

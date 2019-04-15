@@ -2,9 +2,7 @@
   <div
     class="project-switcher"
     :class="{
-      'is-active':
-        $store.state.auth.projectName !== selectionName ||
-        !$store.state.auth.project,
+      'is-active': $store.state.auth.projectName !== selectionName || !$store.state.auth.project,
       'has-error': !$store.state.auth.project
     }"
   >
@@ -19,31 +17,18 @@
           (!!$store.state.auth.url ? $store.state.auth.url : 'No connection') +
           `<br>${$t('latency')}: ${
             !!$store.state.auth.url
-              ? $n(
-                  Math.round(
-                    $store.state.latency[$store.state.latency.length - 1]
-                      .latency
-                  )
-                )
+              ? $n(Math.round($store.state.latency[$store.state.latency.length - 1].latency))
               : ' - '
           }ms`,
         boundariesElement: 'body'
       }"
     >
       <v-signal class="icon" />
-      <span class="no-wrap">{{
-        selectionName ? selectionName : $store.state.auth.projectName
-      }}</span>
-      <v-icon
-        v-if="Object.keys(urls).length > 1"
-        class="chevron"
-        name="expand_more"
-      />
-      <select
-        v-if="Object.keys(urls).length > 1"
-        :value="currentUrl"
-        @change.prevent="changeUrl"
-      >
+      <span class="no-wrap">
+        {{ selectionName ? selectionName : $store.state.auth.projectName }}
+      </span>
+      <v-icon v-if="Object.keys(urls).length > 1" class="chevron" name="expand_more" />
+      <select v-if="Object.keys(urls).length > 1" :value="currentUrl" @change.prevent="changeUrl">
         <option
           v-for="(name, url) in urls"
           :key="name + url"
@@ -81,9 +66,7 @@ export default {
       );
     },
     currentUrl() {
-      return (
-        this.$store.state.auth.url + "/" + this.$store.state.auth.project + "/"
-      );
+      return this.$store.state.auth.url + "/" + this.$store.state.auth.project + "/";
     }
   },
   methods: {

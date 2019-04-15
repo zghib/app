@@ -24,9 +24,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.input {
-  max-width: var(--width-small);
-}
 .launch {
   margin-top: 10px;
   .material-icons {

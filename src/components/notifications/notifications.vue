@@ -1,11 +1,7 @@
 <template>
   <div class="notifications">
     <transition-group name="slide-fade" tag="div">
-      <v-item
-        v-for="notification in notifications"
-        :key="notification.id"
-        :item="notification"
-      />
+      <v-item v-for="notification in notifications" :key="notification.id" :item="notification" />
     </transition-group>
   </div>
 </template>

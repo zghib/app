@@ -65,8 +65,9 @@
                 :loading="button.loading || false"
                 :disabled="button.disabled || false"
                 @click="$emit(id)"
-                >{{ button.text }}</v-button
               >
+                {{ button.text }}
+              </v-button>
             </div>
           </div>
         </aside>

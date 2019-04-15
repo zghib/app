@@ -30,11 +30,7 @@
       />
 
       <div class="content">
-        <details
-          v-if="
-            activity.action !== 'external' && activity.changes && activity.name
-          "
-        >
+        <details v-if="activity.action !== 'external' && activity.changes && activity.name">
           <summary class="title">
             <span class="name">{{ activity.name }}</span>
             <v-timeago
@@ -48,12 +44,7 @@
               :locale="$i18n.locale"
               class="date"
             />
-            <v-icon
-              class="chevron"
-              v-tooltip="'Rivision Details'"
-              name="chevron_left"
-              size="18"
-            />
+            <v-icon class="chevron" v-tooltip="'Rivision Details'" name="chevron_left" size="18" />
           </summary>
           <div v-if="activity.changes">
             <v-diff :changes="activity.changes" />
@@ -85,8 +76,7 @@
           v-if="activity.htmlcomment"
           v-html="activity.htmlcomment"
           :class="{
-            comment:
-              activity.action && activity.action.toLowerCase() === 'comment'
+            comment: activity.action && activity.action.toLowerCase() === 'comment'
           }"
         ></p>
       </div>
@@ -133,9 +123,7 @@ export default {
         revision: this.revisions[activity.id]
       }));
 
-      const lastItem =
-        activityWithChanges &&
-        activityWithChanges[activityWithChanges.length - 1];
+      const lastItem = activityWithChanges && activityWithChanges[activityWithChanges.length - 1];
 
       if (!lastItem) {
         activityWithChanges.push({

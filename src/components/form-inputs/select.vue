@@ -8,17 +8,14 @@
       @change="change($event.target.value)"
     >
       <optgroup :label="$t('values')">
-        <option
-          v-for="(key, value) in parsedOptions"
-          :key="value"
-          :value="value"
-          >{{ key }}</option
-        >
+        <option v-for="(key, value) in parsedOptions" :key="value" :value="value">
+          {{ key }}
+        </option>
       </optgroup>
       <optgroup :label="$t('other')">
-        <option :value="customValue || '__other'" :selected="otherActive">{{
-          customValue.length ? customValue : $t("enter_value")
-        }}</option>
+        <option :value="customValue || '__other'" :selected="otherActive">
+          {{ customValue.length ? customValue : $t("enter_value") }}
+        </option>
       </optgroup>
     </select>
     <select
@@ -37,8 +34,9 @@
         :key="optionValue"
         :value="optionValue"
         :selected="value == optionValue"
-        >{{ key }}</option
       >
+        {{ key }}
+      </option>
     </select>
     <input
       v-if="otherActive"
@@ -52,9 +50,7 @@
     />
     <div class="value">
       <v-icon :name="icon" v-if="icon" />
-      <span v-if="placeholder && !value" class="placeholder">{{
-        placeholder
-      }}</span>
+      <span v-if="placeholder && !value" class="placeholder">{{ placeholder }}</span>
       <span class="no-wrap">{{ parsedOptions[value] }}</span>
     </div>
     <v-icon class="chevron" name="arrow_drop_down" />

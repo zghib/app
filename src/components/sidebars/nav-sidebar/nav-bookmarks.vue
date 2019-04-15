@@ -3,10 +3,7 @@
     <nav v-if="bookmarks && bookmarks.length > 0">
       <ul>
         <li v-for="bookmark in bookmarks" :key="bookmark.id" class="bookmark">
-          <router-link
-            class="no-wrap"
-            :to="`/bookmarks/${bookmark.collection}/${bookmark.id}`"
-          >
+          <router-link class="no-wrap" :to="`/bookmarks/${bookmark.collection}/${bookmark.id}`">
             <v-icon name="bookmark_outline" class="icon" />
             {{ bookmark.title }}
           </router-link>

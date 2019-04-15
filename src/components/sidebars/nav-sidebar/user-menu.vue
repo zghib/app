@@ -1,12 +1,7 @@
 <template>
   <div class="user-menu">
     <header>
-      <v-avatar
-        :src="avatarURL"
-        :alt="fullName"
-        :indicator="true"
-        class="avatar"
-      />
+      <v-avatar :src="avatarURL" :alt="fullName" :indicator="true" class="avatar" />
       <span class="no-wrap">{{ fullName }}</span>
       <v-icon name="expand_more" />
     </header>
@@ -14,16 +9,15 @@
       <nav-menu :links="userLinks" class="menu" />
       <hr />
       <button class="sign-out" @click="confirmSignOut = true">
-        <v-icon name="exit_to_app" /> {{ $t("sign_out") }}
+        <v-icon name="exit_to_app" />
+        {{ $t("sign_out") }}
       </button>
     </div>
 
     <portal to="modal" v-if="confirmSignOut">
       <v-confirm
         :busy="confirmSignOutLoading"
-        :message="
-          editing ? $t('sign_out_confirm_edits') : $t('sign_out_confirm')
-        "
+        :message="editing ? $t('sign_out_confirm_edits') : $t('sign_out_confirm')"
         :confirm-text="$t('sign_out')"
         @cancel="confirmSignOut = false"
         @confirm="signOut"
@@ -61,18 +55,12 @@ export default {
       return this.$store.getters.editing;
     },
     email() {
-      return (
-        this.$store.state.currentUser && this.$store.state.currentUser.email
-      );
+      return this.$store.state.currentUser && this.$store.state.currentUser.email;
     },
     fullName() {
-      const firstName =
-        this.$store.state.currentUser &&
-        this.$store.state.currentUser.first_name;
+      const firstName = this.$store.state.currentUser && this.$store.state.currentUser.first_name;
 
-      const lastName =
-        this.$store.state.currentUser &&
-        this.$store.state.currentUser.last_name;
+      const lastName = this.$store.state.currentUser && this.$store.state.currentUser.last_name;
 
       return `${firstName} ${lastName}`;
     },

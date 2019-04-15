@@ -20,8 +20,9 @@
       :class="{
         'output-shown': alwaysShowOutput
       }"
-      >{{ valueOrDefault }} {{ unit }}</output
     >
+      {{ valueOrDefault }} {{ unit }}
+    </output>
   </div>
 </template>
 
@@ -72,11 +73,7 @@ export default {
       return this.value;
     },
     progress() {
-      return (
-        Math.round(
-          ((this.valueOrDefault - this.min) / (this.max - this.min)) * 100
-        ) / 100
-      );
+      return Math.round(((this.valueOrDefault - this.min) / (this.max - this.min)) * 100) / 100;
     }
   }
 };

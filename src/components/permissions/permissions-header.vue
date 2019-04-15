@@ -9,7 +9,7 @@
           class="cell"
           @click="$emit('toggle-all', 'create')"
         >
-          <i class="material-icons">add_circle</i>
+          <v-icon name="add_circle" />
         </button>
       </div>
       <div class="cell style-4">
@@ -19,7 +19,7 @@
           class="cell"
           @click="$emit('toggle-all', 'read')"
         >
-          <i class="material-icons">visibility</i>
+          <v-icon name="visibility" />
         </button>
       </div>
       <div class="cell style-4">
@@ -29,7 +29,7 @@
           class="cell"
           @click="$emit('toggle-all', 'update')"
         >
-          <i class="material-icons">edit</i>
+          <v-icon name="edit" />
         </button>
       </div>
       <div class="cell style-4">
@@ -39,7 +39,7 @@
           class="cell"
           @click="$emit('toggle-all', 'delete')"
         >
-          <i class="material-icons">delete</i>
+          <v-icon name="delete" />
         </button>
       </div>
       <div class="cell style-4">
@@ -49,7 +49,7 @@
           class="cell"
           @click="$emit('toggle-all', 'comment')"
         >
-          <i class="material-icons">comment</i>
+          <v-icon name="comment" />
         </button>
       </div>
       <!-- <div class="cell">{{ $t("explain") }}</div> -->

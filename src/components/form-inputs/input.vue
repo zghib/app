@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="{ 'icon-left': iconLeft, 'icon-right': iconRight }"
-    class="v-input"
-  >
+  <div :class="{ 'icon-left': iconLeft, 'icon-right': iconRight }" class="v-input">
     <!-- Far from ideal, but it does the trick -->
 
     <input

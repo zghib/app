@@ -235,19 +235,11 @@ export default {
     },
     viewQuery() {
       if (!this.preferences) return {};
-      return (
-        (this.preferences.view_query &&
-          this.preferences.view_query[this.viewType]) ||
-        {}
-      );
+      return (this.preferences.view_query && this.preferences.view_query[this.viewType]) || {};
     },
     viewOptions() {
       if (!this.preferences) return {};
-      return (
-        (this.preferences.view_options &&
-          this.preferences.view_options[this.viewType]) ||
-        {}
-      );
+      return (this.preferences.view_options && this.preferences.view_options[this.viewType]) || {};
     },
     resultCopy() {
       if (!this.meta || !this.preferences) return this.$t("loading");
@@ -266,9 +258,7 @@ export default {
           });
     },
     filterableFieldNames() {
-      return this.fields
-        .filter(field => field.datatype)
-        .map(field => field.field);
+      return this.fields.filter(field => field.datatype).map(field => field.field);
     },
     layoutNames() {
       if (!this.$store.state.extensions.layouts) return {};
@@ -429,10 +419,7 @@ export default {
 
     const collectionInfo = store.state.collections[collection] || null;
 
-    if (
-      collection.startsWith("directus_") === false &&
-      collectionInfo === null
-    ) {
+    if (collection.startsWith("directus_") === false && collectionInfo === null) {
       return next(vm => (vm.notFound = true));
     }
 
@@ -471,10 +458,7 @@ export default {
 
     const collectionInfo = this.$store.state.collections[collection] || null;
 
-    if (
-      collection.startsWith("directus_") === false &&
-      collectionInfo === null
-    ) {
+    if (collection.startsWith("directus_") === false && collectionInfo === null) {
       this.notFound = true;
       return next();
     }

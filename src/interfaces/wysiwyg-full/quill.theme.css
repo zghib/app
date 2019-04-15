@@ -603,3 +603,17 @@
 .ql-container.ql-snow:focus-within {
   border-color: var(--darkest-gray);
 }
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  font-feature-settings: "liga";
+  vertical-align: middle;
+}

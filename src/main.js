@@ -9,8 +9,7 @@ import meta from "vue-meta";
 import en from "date-fns/locale/en-US/";
 import VueTheMask from "vue-the-mask";
 
-import "./assets/global.scss";
-import "./assets/tooltip.scss";
+import "./design/main.scss";
 import "./globals";
 import "./helpers/handle-focus";
 import "./helpers/handle-drag";
@@ -72,7 +71,4 @@ new Vue({
   helpers
 }).$mount("#app");
 
-store.watch(
-  state => state.currentUser.locale,
-  locale => loadLanguageAsync(locale)
-);
+store.watch(state => state.currentUser.locale, locale => loadLanguageAsync(locale));

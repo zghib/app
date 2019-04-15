@@ -8,9 +8,7 @@
       @change="updateInput"
     />
     <label :for="id" class="no-wrap">
-      <v-icon
-        :name="shouldBeChecked ? 'check_box' : 'check_box_outline_blank'"
-      />
+      <v-icon :name="shouldBeChecked ? 'check_box' : 'check_box_outline_blank'" />
       {{ label }}
     </label>
   </span>

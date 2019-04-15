@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 export const dateTimeFormats = {
   short: {
     year: "numeric",
@@ -28,8 +30,7 @@ export default {
   add_field_filter: "Add a field filter",
   add_note: "Add a helpful note for users...",
   admin_settings: "Admin Settings",
-  almost_done_options:
-    "Almost Done! Now just review the interface options below.",
+  almost_done_options: "Almost Done! Now just review the interface options below.",
   almost_done_copy:
     "Every interface can be perfectly tailored to your needs. Below are the available options for this field, but only some are required.",
   all: "All",
@@ -59,8 +60,7 @@ export default {
   collection_invalid_name: "Invalid collection name",
   collection_updated: "{collection} Collection Updated",
   collection_removed: "{collection} Collection Removed",
-  collection_names_cannot_be_changed:
-    "Collection names cannot be edited at this time.",
+  collection_names_cannot_be_changed: "Collection names cannot be edited at this time.",
   collections: "Collections",
   collection_count: "No Collections | One Collection | {count} Collections",
   "collections-directus_files": "Files",
@@ -72,8 +72,7 @@ export default {
   confirm: "Confirm",
   contains: "Contains",
   config_error: "Missing Config",
-  config_error_copy:
-    "Make sure you've created the application's configuration file",
+  config_error_copy: "Make sure you've created the application's configuration file",
   collection_contains_items: "{collection} contains {count} items",
   currently_selected: "Currently selected: {thing}",
   create: "Create",
@@ -93,15 +92,13 @@ export default {
   embed: "Embed",
   embed_placeholder: "YouTube, Vimeo, or other link",
   fieldtypes: {
-    alias:
-      "Fields that do not save data or do not have corresponding database columns",
+    alias: "Fields that do not save data or do not have corresponding database columns",
     array: "Standard array format in API response",
     datetime: "A date and time in ISO format, eg: 2018-09-19T14:00:43.381Z",
     date: "Date, eg: 2018-09-19",
     time: "Time, eg: 14:09:22",
     file: "Foreign key to directus_files.id",
-    group:
-      "Groups fields together visually, children save group into directus_fields.group",
+    group: "Groups fields together visually, children save group into directus_fields.group",
     integer: "Whole number",
     decimal: "Number that includes a decimal",
     json: "Standard JSON format in API response",
@@ -112,17 +109,12 @@ export default {
     status: "System field used for publishing workflows",
     string:
       "Any text, numbers, spaces, or symbols; defined and limited by its length (number of characters)",
-    translation:
-      "Specific to translation interfaces, this o2m is stores multi-lingual content",
+    translation: "Specific to translation interfaces, this o2m is stores multi-lingual content",
     uuid: "A Universally Unique Identifier",
-    datetime_created:
-      "System field to track the datetime an item was created, used by revisions",
-    datetime_updated:
-      "System field to track the datetime an item was updated, used by revisions",
-    user_created:
-      "System field to track the user who created an item, used by revisions",
-    user_updated:
-      "System field to track the user who updated an item, used by revisions"
+    datetime_created: "System field to track the datetime an item was created, used by revisions",
+    datetime_updated: "System field to track the datetime an item was updated, used by revisions",
+    user_created: "System field to track the user who created an item, used by revisions",
+    user_updated: "System field to track the user who updated an item, used by revisions"
   },
   datatypes: {
     mysql: {
@@ -149,16 +141,12 @@ export default {
 
       DECIMAL:
         "An accurate number (eg: for currency), with 1 to 65 digits length (L) and 0 to 30 digits decimal (D). Length format: `L,D`",
-      FLOAT:
-        "An approximate binary number, 4 bytes with a floating decimal point.",
-      DOUBLE:
-        "An approximate binary number, 8 bytes with a floating decimal point.",
+      FLOAT: "An approximate binary number, 4 bytes with a floating decimal point.",
+      DOUBLE: "An approximate binary number, 8 bytes with a floating decimal point.",
 
       DATE: "A date. Allows `1000-01-01` to `9999-12-31`.",
-      DATETIME:
-        "A date and time. Allows `1000-01-01 00:00:00` to `9999-12-31 23:59:59`.",
-      TIMESTAMP:
-        "A date and time. Allows `1970-01-01 00:00:01` UTC to `2038-01-19 03:14:07` UTC.",
+      DATETIME: "A date and time. Allows `1000-01-01 00:00:00` to `9999-12-31 23:59:59`.",
+      TIMESTAMP: "A date and time. Allows `1970-01-01 00:00:01` UTC to `2038-01-19 03:14:07` UTC.",
       TIME: "A time. Allows `-838:59:59` to `838:59:59`.",
       YEAR: "A year. Allows `1901` to `2155` or `0000`"
     }
@@ -174,8 +162,7 @@ export default {
   default: "Default",
   default_value: "Default Value",
   delete: "Delete",
-  delete_are_you_sure:
-    "Are you sure you want to delete this item? This action can not be undone.",
+  delete_are_you_sure: "Are you sure you want to delete this item? This action can not be undone.",
   delete_collection_are_you_sure:
     "Are you sure you want to delete this collection? This action can not be undone.",
   delete_field_are_you_sure:
@@ -253,8 +240,7 @@ export default {
   interface_settings:
     "Every interface can be perfectly tailored to your needs. Below are the available options for this interface, but only some are required.",
   install: "Install",
-  install_copy:
-    "This API has not been setup yet. Would you like to install and configure it now?",
+  install_copy: "This API has not been setup yet. Would you like to install and configure it now?",
   is_empty: "Is empty",
   is_not_null: "Is not NULL",
   is_null: "Is NULL",
@@ -269,8 +255,7 @@ export default {
     "You can't disable primary key on an existing field. Remove this field instead.",
   extension_error: "There was a problem loading the {ext} extension.",
   extensions_missing: "No Extensions Found",
-  extensions_missing_copy:
-    "Make sure you have the system extensions installed.",
+  extensions_missing_copy: "Make sure you have the system extensions installed.",
   latency: "Latency",
   learn_more: "Learn More",
   leave_comment: "Leave a comment...",
@@ -296,20 +281,17 @@ export default {
   not_contains: "Doesn't contain",
   note: "Note",
   note_note: "An internal description...",
-  note_hidden:
-    "[Learn More](https://docs.directus.io/guides/collections.html#hidden)",
+  note_hidden: "[Learn More](https://docs.directus.io/guides/collections.html#hidden)",
   note_icon: "The icon shown in the App's navigation sidebar",
   note_managed:
     "[Learn More](https://docs.directus.io/guides/collections.html#managing-collections)",
-  note_single:
-    "[Learn More](https://docs.directus.io/guides/collections.html#single)",
+  note_single: "[Learn More](https://docs.directus.io/guides/collections.html#single)",
   no_results: "No Results",
   no_results_body: "The current filters do not match any collection items",
   no_collections: "No Collections Setup",
   no_collections_body: "It seems like there aren't any collections setup yet",
   no_fields: "No Fields Setup",
-  no_fields_body:
-    "It seems like this collection doesn't have any fields setup yet",
+  no_fields_body: "It seems like this collection doesn't have any fields setup yet",
   no_files: "No Files",
   no_files_body: "It seems like there haven't been any files uploaded yet",
   numeric: "Numeric",
@@ -339,11 +321,11 @@ export default {
   operator: "Operator",
   open_on_gh: "Open on GitHub",
   options: "Options",
+  optional: "Optional",
   password: "Password",
   password_reset_sent: "Password reset email sent to {email}",
   permissions_no_collections: "This project does not have any collections yet.",
-  permissions_admin:
-    "Admins have access to all managed data within the system by default.",
+  permissions_admin: "Admins have access to all managed data within the system by default.",
   permission_states: {
     none: "None",
     mine: "Mine Only",
@@ -374,8 +356,7 @@ export default {
   report_issue: "Report Issue",
   request_feature: "Request Feature",
   regex: "RegEx",
-  relation_setup:
-    "Since this is a relational field, we need to map-out the related fields.",
+  relation_setup: "Since this is a relational field, we need to map-out the related fields.",
   relation_setup_copy:
     "There are different types of relational data, this interface uses one called {relation}.",
   related_entries: "Has related entries",
@@ -418,28 +399,23 @@ export default {
   settings_saved: "Settings Saved",
   server_details: "Server Details",
   server_error: "Server Error",
-  server_error_copy:
-    "Something is wrong with this instance’s server or database.",
+  server_error_copy: "Something is wrong with this instance’s server or database.",
   server_trouble: "Server Trouble",
-  server_trouble_copy:
-    "Try again later or contact your system administrator help.",
+  server_trouble_copy: "Try again later or contact your system administrator help.",
   advanced_options: "Advanced options",
   show_directus_collections: "Show Directus System Collections",
   something_went_wrong: "Something went wrong.",
-  something_went_wrong_body:
-    "Trouble processing request. Try again after refreshing the page.",
+  something_went_wrong_body: "Trouble processing request. Try again after refreshing the page.",
   sort_by: "Sort By",
   sign_in: "Sign In",
   signing_in: "Signing In",
   sign_out: "Sign Out",
   sign_out_confirm: "Are you sure you want to sign out?",
-  sign_out_confirm_edits:
-    "Are you sure you want to sign out? All unsaved changes will be lost.",
+  sign_out_confirm_edits: "Are you sure you want to sign out? All unsaved changes will be lost.",
   text: "Text",
   this_collection: "This Collection",
   to: "To",
-  unsaved_changes_copy:
-    "You have unsaved changes! Are you sure you want to leave this page?",
+  unsaved_changes_copy: "You have unsaved changes! Are you sure you want to leave this page?",
   user_directory: "User Directory",
   update: "Update",
   update_confirm: "Are you sure you want to update {count} items?",

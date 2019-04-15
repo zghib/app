@@ -28,8 +28,7 @@ export default {
   add_field_filter: "Ajouter un champ de filtre",
   add_note: "Ajouter une note utile aux utilisateurs…",
   admin_settings: "Administration",
-  almost_done_options:
-    "Presque fini ! Vérifiez les options d’interface ci-dessous.",
+  almost_done_options: "Presque fini ! Vérifiez les options d’interface ci-dessous.",
   almost_done_copy:
     "Chaque interface peut être adaptée à vos besoins. Vous trouverez ci-dessous les options disponibles pour ce champ, mais seules certaines sont requises.",
   all: "Tout",
@@ -51,8 +50,7 @@ export default {
   choose_project: "Choisir un projet",
   choose_interface: "Choisir une interface pour la gestion de ces données.",
   clear: "Nettoyer",
-  click_to_toggle_all_none:
-    "Cliquer pour activer / désactiver la colonne entière",
+  click_to_toggle_all_none: "Cliquer pour activer / désactiver la colonne entière",
   connection: "Connexion",
   collection: "Collection",
   collections_and_fields: "Collection & Champs",
@@ -70,8 +68,7 @@ export default {
   coming_soon: "Bientôt",
   contains: "Contient",
   config_error: "Configuration manquante",
-  config_error_copy:
-    "Assurez-vous d’avoir créé le fichier de configuration de l’application.",
+  config_error_copy: "Assurez-vous d’avoir créé le fichier de configuration de l’application.",
   collection_contains_items: "{collection} contient {count} élément(s)",
   currently_selected: "Actuellement sélectionné : {thing}",
   create: "Créer",
@@ -93,8 +90,7 @@ export default {
       "Champs qui n’enregistrent pas de données ou pour lesquels il n’y a pas de colonnes associées",
     array: "Format de tableau standard dans la réponse de l’API",
     boolean: "Vrai ou faux",
-    datetime:
-      "Une date et une heure au format ISO, ex : 2018-09-19T14:00:43.381Z",
+    datetime: "Une date et une heure au format ISO, ex : 2018-09-19T14:00:43.381Z",
     date: "Date, ex : 2018-09-19",
     time: "heure, ex : 14:09:22",
     file: "Clé étrangère pour directus_files.id",
@@ -103,12 +99,10 @@ export default {
     integer: "Nombre entier",
     decimal: "Nombre décimal",
     json: "Format JSON standard dans la réponse de l’API",
-    lang:
-      "Spécifique aux interfaces de traduction, cela stocke la clé de la langue",
+    lang: "Spécifique aux interfaces de traduction, cela stocke la clé de la langue",
     m2o: "Relation Many-to-One",
     o2m: "Relation One-to-Many",
-    sort:
-      "Champ système utilisé dans la réorganisation d’éléments par glisser-déposer",
+    sort: "Champ système utilisé dans la réorganisation d’éléments par glisser-déposer",
     status: "Champ système utilisé pour la gestion de la publication",
     string:
       "Tout texte, chiffres, espaces ou symboles ; défini et limité par sa longueur (nombre de caractères)",
@@ -132,10 +126,8 @@ export default {
         "Une chaîne non binaire de longueur variable. La longueur peut être comprise entre 0 et 65 535 caractères (MySQL 5.0.3+).",
       TINYTEXT: "Une chaîne d’une longueur maximale de 255 caractères.",
       TEXT: "Une chaîne d’une longueur maximale de 65 535 caractères.",
-      MEDIUMTEXT:
-        "Une chaîne d’une longueur maximale de 16 777 215 caractères.",
-      LONGTEXT:
-        "Une chaîne d’une longueur maximale de 4 294 967 295 caractères.",
+      MEDIUMTEXT: "Une chaîne d’une longueur maximale de 16 777 215 caractères.",
+      LONGTEXT: "Une chaîne d’une longueur maximale de 4 294 967 295 caractères.",
       TINYINT:
         "Un nombre entier compris dans l’intervalle [-128,127] s’il est signé. Sinon, compris dans l’intervalle [0,255].",
       SMALLINT:
@@ -152,8 +144,7 @@ export default {
       DOUBLE: "Un nombre décimal binaire approximatif de 8 octets.",
 
       DATE: "Une date entre `1000-01-01` et `9999-12-31`.",
-      DATETIME:
-        "Une date et une heure entre `1000-01-01 00:00:00` et `9999-12-31 23:59:59`.",
+      DATETIME: "Une date et une heure entre `1000-01-01 00:00:00` et `9999-12-31 23:59:59`.",
       TIMESTAMP:
         "Une date et une heure entre `1970-01-01 00:00:01` UTC et `2038-01-19 03:14:07` UTC.",
       TIME: "Une heure entre `-838:59:59` et `838:59:59`.",
@@ -255,16 +246,13 @@ export default {
   item_count: "Aucun élément | Un élément | {count} éléments",
   event_count: "Aucun événement | Un événement | {count} événements",
   role_count: "Aucun rôle | Un rôle | {comte} rôles",
-  item_count_filter:
-    "Aucun élément filtré | Un élément filtré | {count} éléments filtrés",
+  item_count_filter: "Aucun élément filtré | Un élément filtré | {count} éléments filtrés",
   item_deleted: "Élément supprimé",
   item_saved: "Élément sauvegardé | {count} éléments sauvegardés",
   junction_collection: "Collection de jonction",
-  extension_error:
-    "Un problème est survenu lors du chargement de l’extension {ext}.",
+  extension_error: "Un problème est survenu lors du chargement de l’extension {ext}.",
   extensions_missing: "Aucune extension trouvée",
-  extensions_missing_copy:
-    "Assurez-vous que les extensions systèmes sont installées.",
+  extensions_missing_copy: "Assurez-vous que les extensions systèmes sont installées.",
   latency: "Latence",
   learn_more: "En savoir plus",
   leave_comment: "Laisser un commentaire…",
@@ -279,8 +267,7 @@ export default {
   m2o: "Many-to-One (M2O)",
   o2m: "One-to-Many (O2M)",
   name: "Nom",
-  name_field:
-    "Donnez un nom à ce champ {field} et ajoutez lui une note utile aux utilisateurs.",
+  name_field: "Donnez un nom à ce champ {field} et ajoutez lui une note utile aux utilisateurs.",
   navigate_changes:
     "Êtes-vous sûr de vouloir quitter cette page ? Les modifications que vous avez apportées seront perdues si vous quittez cette page.",
   new: "Nouveau",
@@ -290,17 +277,13 @@ export default {
   not_contains: "Ne contient pas",
   note: "Note",
   no_results: "Aucun résultats",
-  no_results_body:
-    "Les filtres actuels ne correspondent à aucun élément de collection",
+  no_results_body: "Les filtres actuels ne correspondent à aucun élément de collection",
   no_collections: "Aucune configuration de collections",
-  no_collections_body:
-    "Il semblerait qu’il n’y ait pas encore de configuration de collections",
+  no_collections_body: "Il semblerait qu’il n’y ait pas encore de configuration de collections",
   no_fields: "Aucune configuration de champs",
-  no_fields_body:
-    "Il semblerait qu’il n’y ait pas encore de configuration de champs",
+  no_fields_body: "Il semblerait qu’il n’y ait pas encore de configuration de champs",
   no_files: "Aucun fichiers",
-  no_files_body:
-    "Il semblerait qu’il n’y ait pas encore eu de fichiers téléversés",
+  no_files_body: "Il semblerait qu’il n’y ait pas encore eu de fichiers téléversés",
   numeric: "Numérique",
   page_not_found: "Page non trouvée",
   page_not_found_body: "La page que vous recherchez ne semble pas exister.",
@@ -311,8 +294,7 @@ export default {
   not_empty: "N’est pas vide",
   not_equal_to: "N’est pas égal à",
   not_in_list: "N’est pas contenu dans",
-  no_interface_error:
-    "Le champ « {champ} » n’a pas de configuration d’interface",
+  no_interface_error: "Le champ « {champ} » n’a pas de configuration d’interface",
   manage: "Gérer",
   max_size: "Taille max : {size}",
   dont_manage: "Ne pas gérer",
@@ -327,8 +309,7 @@ export default {
   open_on_gh: "Ouvrir sur GitHub",
   options: "Options",
   password: "Mot de passe",
-  password_reset_sent:
-    "Email de réinitialisation du mot de passe envoyé à « {email} ».",
+  password_reset_sent: "Email de réinitialisation du mot de passe envoyé à « {email} ».",
   permission_states: {
     none: "Aucun",
     mine: "Mien seulement",
@@ -388,8 +369,7 @@ export default {
   search_interface: "Rechercher une interface…",
   select_interface_below: "Sélectionner une interface ci-dessous",
   select_statuses: "Sélectionner les statuts",
-  select_statuses_copy:
-    "Sélectionner les statuts que l’utilisateur peut utiliser",
+  select_statuses_copy: "Sélectionner les statuts que l’utilisateur peut utiliser",
   settings: "Réglages",
   settings_project: "Paramètres du projet",
   settings_global: "Paramètres globaux",
@@ -401,8 +381,7 @@ export default {
   server_error_copy:
     "Quelque chose ne va pas avec le serveur ou la base de données de cette instance.",
   server_trouble: "Problème de serveur",
-  server_trouble_copy:
-    "Réessayez plus tard ou demandez l’aide de votre administrateur système.",
+  server_trouble_copy: "Réessayez plus tard ou demandez l’aide de votre administrateur système.",
   advanced_options: "Options avancées",
   show_directus_collections: "Afficher les collections systèmes de Directus",
   something_went_wrong: "Quelque chose s’est mal passé.",
@@ -433,8 +412,7 @@ export default {
   view_type: "Voir comme…",
   welcome: "Bienvenue",
   writable_fields: "Champs modifiables",
-  writable_fields_copy:
-    "Sélectionnez les champs que l’utilisateur peut modifier",
+  writable_fields_copy: "Sélectionnez les champs que l’utilisateur peut modifier",
   yes: "Oui",
   duplicating_field: "Champ en double",
   duplicate: "Dupliquer"

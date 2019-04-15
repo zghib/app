@@ -1,8 +1,6 @@
 <template>
   <div
-    :class="
-      options.theme ? `button-group-${options.theme}` : 'button-group-outline'
-    "
+    :class="options.theme ? `button-group-${options.theme}` : 'button-group-outline'"
     class="interface-button-group"
   >
     <div

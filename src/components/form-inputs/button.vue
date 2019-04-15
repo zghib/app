@@ -51,8 +51,7 @@ export default {
     bg: {
       type: String,
       default: "action",
-      validator: value =>
-        ["action", "secondary", "warning", "danger"].includes(value)
+      validator: value => ["action", "secondary", "warning", "danger"].includes(value)
     }
   }
 };
@@ -118,7 +117,7 @@ button {
   justify-content: center;
   padding: 0 20px 1px;
   height: 44px;
-  min-width: var(--width-small);
+  min-width: 136px;
   border: var(--input-border-width) solid var(--action);
 
   &:disabled:not(.loading) {

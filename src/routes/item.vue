@@ -53,9 +53,7 @@
         />
 
         <v-header-button
-          v-else-if="
-            isNew ? permission.create !== 'none' : permission.update !== 'none'
-          "
+          v-else-if="isNew ? permission.create !== 'none' : permission.update !== 'none'"
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
@@ -155,11 +153,7 @@
           <p class="notice">
             {{ $t("revert_copy", { date: $d(revertActivity.date, "long") }) }}
           </p>
-          <v-form
-            readonly
-            :values="revertActivity.revision.data"
-            :fields="fields"
-          />
+          <v-form readonly :values="revertActivity.revision.data" :fields="fields" />
         </div>
       </v-modal>
     </portal>
@@ -303,9 +297,7 @@ export default {
             path: "/files"
           },
           {
-            name: this.newItem
-              ? this.$t("creating_item")
-              : this.$t("editing_item"),
+            name: this.newItem ? this.$t("creating_item") : this.$t("editing_item"),
             path: this.$route.path
           }
         ];
@@ -354,9 +346,7 @@ export default {
         });
       } else {
         breadcrumb.push({
-          name: this.newItem
-            ? this.$t("creating_item")
-            : this.$t("editing_item"),
+          name: this.newItem ? this.$t("creating_item") : this.$t("editing_item"),
           path: this.$route.path
         });
       }
@@ -411,10 +401,9 @@ export default {
       if (!this.collectionInfo.status_mapping || !this.statusField) return null;
 
       const statusKeys = Object.keys(this.collectionInfo.status_mapping);
-      const index = this.$lodash.findIndex(
-        Object.values(this.collectionInfo.status_mapping),
-        { soft_delete: true }
-      );
+      const index = this.$lodash.findIndex(Object.values(this.collectionInfo.status_mapping), {
+        soft_delete: true
+      });
       return statusKeys[index];
     },
 
@@ -446,10 +435,7 @@ export default {
       if (this.batch) {
         if (this.statusField) {
           const statuses = this.savedValues.map(item => item[this.statusField]);
-          return this.$lodash.merge(
-            {},
-            ...statuses.map(status => permission.statuses[status])
-          );
+          return this.$lodash.merge({}, ...statuses.map(status => permission.statuses[status]));
         }
 
         return permission;
@@ -498,8 +484,7 @@ export default {
     // fetched out of this.fields
     statusColor() {
       if (this.statusField && this.status) {
-        const statusMapping = this.fields[this.statusField].options
-          .status_mapping;
+        const statusMapping = this.fields[this.statusField].options.status_mapping;
 
         if (!statusMapping) return null;
 
@@ -512,8 +497,7 @@ export default {
     // The configured name of the current status.
     statusName() {
       if (this.statusField && this.status) {
-        const statusMapping = this.fields[this.statusField].options
-          .status_mapping;
+        const statusMapping = this.fields[this.statusField].options.status_mapping;
 
         if (!statusMapping) return null;
 
@@ -538,9 +522,7 @@ export default {
     };
 
     this.$helpers.mousetrap.bind("mod+s", handler);
-    this.formtrap = this.$helpers
-      .mousetrap(this.$refs.form.$el)
-      .bind("mod+s", handler);
+    this.formtrap = this.$helpers.mousetrap(this.$refs.form.$el).bind("mod+s", handler);
   },
   beforeDestroy() {
     this.$helpers.mousetrap.unbind("mod+s");
@@ -558,9 +540,7 @@ export default {
   },
   methods: {
     stageDefaultValues() {
-      this.$lodash.forEach(this.defaultValues, (value, field) =>
-        this.stageValue({ field, value })
-      );
+      this.$lodash.forEach(this.defaultValues, (value, field) => this.stageValue({ field, value }));
     },
     stageValue({ field, value }) {
       this.$store.dispatch("stageValue", { field, value });
@@ -648,9 +628,7 @@ export default {
               iconMain: "check"
             });
             if (this.collection.startsWith("directus_")) {
-              return this.$router.push(
-                `/${this.collection.substring(9)}/${pk}`
-              );
+              return this.$router.push(`/${this.collection.substring(9)}/${pk}`);
             }
 
             return this.$router.push(`/collections/${this.collection}/${pk}`);
@@ -700,9 +678,7 @@ export default {
 
             if (this.newItem) {
               const primaryKey = savedValues[this.primaryKeyField];
-              return this.$router.push(
-                `/collections/${this.collection}/${primaryKey}`
-              );
+              return this.$router.push(`/collections/${this.collection}/${primaryKey}`);
             }
             this.$store.dispatch("startEditing", {
               collection: this.collection,
@@ -745,8 +721,7 @@ export default {
         this.$api.getActivity({
           "filter[collection][eq]": this.collection,
           "filter[item][eq]": this.primaryKey,
-          fields:
-            "id,action,action_on,comment,action_by.first_name,action_by.last_name",
+          fields: "id,action,action_on,comment,action_by.first_name,action_by.last_name",
           sort: "-action_on"
         }),
         this.activityDetail
@@ -798,9 +773,7 @@ export default {
     },
     checkOtherUsers() {
       const path = this.$router.currentRoute.path;
-      const date = this.$helpers.date.dateToSql(
-        new Date(new Date() - 5 * 60000)
-      );
+      const date = this.$helpers.date.dateToSql(new Date(new Date() - 5 * 60000));
 
       this.$api
         .getUsers({

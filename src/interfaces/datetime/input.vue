@@ -72,10 +72,7 @@ export default {
       if (value.length === 0) return this.$emit("input", null);
 
       if (value.length === 19) {
-        const dbValue = format(
-          parse(value, this.format),
-          "YYYY-MM-DD HH:mm:ss"
-        );
+        const dbValue = format(parse(value, this.format), "YYYY-MM-DD HH:mm:ss");
 
         if (dbValue !== "Invalid Date") return this.$emit("input", dbValue);
       }

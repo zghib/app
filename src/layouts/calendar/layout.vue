@@ -52,11 +52,7 @@
         ></Calendar>
       </transition>
     </div>
-    <Popup
-      :open="showPopup"
-      :date="popupDate"
-      @close="showPopup = false"
-    ></Popup>
+    <Popup :open="showPopup" :date="popupDate" @close="showPopup = false"></Popup>
   </div>
 </template>
 
@@ -99,15 +95,7 @@ export default {
         "november",
         "december"
       ],
-      weekNames: [
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday",
-        "sunday"
-      ]
+      weekNames: ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     };
   },
   mixins: [mixin],
@@ -116,11 +104,7 @@ export default {
     // has scrolled
     date() {
       var date = new Date();
-      date = new Date(
-        date.getFullYear(),
-        date.getMonth() + this.monthDistance,
-        1
-      );
+      date = new Date(date.getFullYear(), date.getMonth() + this.monthDistance, 1);
       return date;
     }
   },
@@ -292,7 +276,7 @@ export default {
 }
 .button {
   height: 40px;
-  width: var(--width-small);
+  width: 136px;
   border-radius: var(--border-radius);
   border: var(--input-border-width) solid var(--gray);
   cursor: pointer;

@@ -2,11 +2,9 @@
   <div class="v-permissions-row" :class="{ 'system-row': system }">
     <div v-if="!statuses" class="row">
       <div class="cell">
-        <span :class="{ system }" v-tooltip="permissionName">{{
-          $helpers.formatTitle(
-            system ? permissionName.substring(9) : permissionName
-          )
-        }}</span>
+        <span :class="{ system }" v-tooltip="permissionName">
+          {{ $helpers.formatTitle(system ? permissionName.substring(9) : permissionName) }}
+        </span>
         <span class="set-all">
           <button @click.prevent="setAll(true)" type="button">
             {{ $t("all") }}
@@ -73,9 +71,9 @@
     </div>
     <div v-else class="row">
       <div class="cell">
-        <span v-tooltip="permissionName">{{
-          $helpers.formatTitle(permissionName)
-        }}</span>
+        <span v-tooltip="permissionName">
+          {{ $helpers.formatTitle(permissionName) }}
+        </span>
         <span class="set-all">
           <button @click.prevent="setAll(true)" type="button">
             {{ $t("all") }}
@@ -152,13 +150,9 @@
         <div class="cell">
           <button
             :class="{ limited: getFieldSettingsPerStatus('$create') }"
-            @click="
-              fieldsSelect = { collection: permissionName, status: '$create' }
-            "
+            @click="fieldsSelect = { collection: permissionName, status: '$create' }"
           >
-            {{
-              getFieldSettingsPerStatus("$create") ? $t("limited") : $t("all")
-            }}
+            {{ getFieldSettingsPerStatus("$create") ? $t("limited") : $t("all") }}
           </button>
         </div>
         <div class="cell" v-if="statuses">
@@ -166,14 +160,10 @@
             :class="{
               limited: (permission.$create.status_blacklist || []).length !== 0
             }"
-            @click="
-              statusSelect = { collection: permissionName, status: '$create' }
-            "
+            @click="statusSelect = { collection: permissionName, status: '$create' }"
           >
             {{
-              (permission.$create.status_blacklist || []).length === 0
-                ? $t("all")
-                : $t("limited")
+              (permission.$create.status_blacklist || []).length === 0 ? $t("all") : $t("limited")
             }}
           </button>
         </div>
@@ -249,9 +239,7 @@
             @click="statusSelect = { collection: permissionName, status }"
           >
             {{
-              (permission[status].status_blacklist || []).length === 0
-                ? $t("all")
-                : $t("limited")
+              (permission[status].status_blacklist || []).length === 0 ? $t("all") : $t("limited")
             }}
           </button>
         </div>
@@ -312,11 +300,7 @@
               v-for="(status, name) in statuses"
               :key="`status-${name}`"
               :id="`status-${name}`"
-              :checked="
-                !(
-                  permission[statusSelect.status].status_blacklist || []
-                ).includes(name)
-              "
+              :checked="!(permission[statusSelect.status].status_blacklist || []).includes(name)"
               :label="status.name"
               :value="name"
               @change="toggleStatus(name)"
@@ -429,9 +413,7 @@ export default {
       );
     },
     permissionOptions() {
-      return this.userCreatedField
-        ? ["none", "mine", "role", "full"]
-        : ["none", "full"];
+      return this.userCreatedField ? ["none", "mine", "role", "full"] : ["none", "full"];
     }
   },
   methods: {
@@ -500,8 +482,7 @@ export default {
       let value = this.permission[Object.keys(this.statuses)[0]][field];
 
       this.$lodash.forEach(this.permission, (status, name) => {
-        if (name !== "$create" && status[field] !== value)
-          value = "indeterminate";
+        if (name !== "$create" && status[field] !== value) value = "indeterminate";
       });
 
       return value;
@@ -531,23 +512,13 @@ export default {
 
       const selectedFields = write ? this.blacklist.write : this.blacklist.read;
 
-      const permissionField = write
-        ? "write_field_blacklist"
-        : "read_field_blacklist";
+      const permissionField = write ? "write_field_blacklist" : "read_field_blacklist";
 
       if (selectedFields.includes(field)) {
-        return this.emitValue(
-          permissionField,
-          selectedFields.filter(f => f !== field),
-          status
-        );
+        return this.emitValue(permissionField, selectedFields.filter(f => f !== field), status);
       }
 
-      return this.emitValue(
-        permissionField,
-        [...selectedFields, field],
-        status
-      );
+      return this.emitValue(permissionField, [...selectedFields, field], status);
     },
     toggleStatus(status) {
       if (!this.statuses) return;
@@ -563,11 +534,7 @@ export default {
         );
       }
 
-      return this.emitValue(
-        "status_blacklist",
-        [...selectedStatuses, status],
-        parentStatus
-      );
+      return this.emitValue("status_blacklist", [...selectedStatuses, status], parentStatus);
     }
   }
 };

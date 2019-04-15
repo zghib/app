@@ -49,7 +49,8 @@
       <!-- Default Toolbar -->
       <div v-if="!editMode" class="original">
         <a class="file-link" :href="url" target="_blank">
-          <v-icon name="link" /> {{ url }}
+          <v-icon name="link" />
+          {{ url }}
         </a>
         <button
           v-if="isImage && options.edit.includes('image_editor')"
@@ -70,22 +71,14 @@
             <span>{{ image.cropRatioOptions[image.cropRatio] }}</span>
             <v-icon name="arrow_drop_down" />
             <select v-model="image.cropRatio" title="Select aspect ratio">
-              <option
-                v-for="(option, value) in image.cropRatioOptions"
-                :key="value"
-                :value="value"
-              >
+              <option v-for="(option, value) in image.cropRatioOptions" :key="value" :value="value">
                 {{ option }}
               </option>
             </select>
           </div>
         </li>
         <li>
-          <button
-            type="button"
-            title="Discard changes"
-            @click="cancelImageEdit()"
-          >
+          <button type="button" title="Discard changes" @click="cancelImageEdit()">
             <v-icon name="not_interested" />
           </button>
           <button type="button" title="Save changes" @click="saveImage()">
@@ -96,11 +89,7 @@
           <button type="button" title="Flip horizontally" @click="flipImage()">
             <v-icon name="flip" />
           </button>
-          <button
-            type="button"
-            title="Rotate counter-clockwise"
-            @click="rotateImage()"
-          >
+          <button type="button" title="Rotate counter-clockwise" @click="rotateImage()">
             <v-icon name="rotate_90_degrees_ccw" />
           </button>
         </li>

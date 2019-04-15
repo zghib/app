@@ -263,9 +263,7 @@ export default {
       if (!this.preferences) return {};
 
       const viewQuery =
-        (this.preferences.view_query &&
-          this.preferences.view_query[this.viewType]) ||
-        {};
+        (this.preferences.view_query && this.preferences.view_query[this.viewType]) || {};
 
       // Filter out the fieldnames of fields that don't exist anymore
       // Sorting / querying fields that don't exist anymore will return
@@ -297,11 +295,7 @@ export default {
     },
     viewOptions() {
       if (!this.preferences) return {};
-      return (
-        (this.preferences.view_options &&
-          this.preferences.view_options[this.viewType]) ||
-        {}
-      );
+      return (this.preferences.view_options && this.preferences.view_options[this.viewType]) || {};
     },
     resultCopy() {
       if (!this.meta || !this.preferences) return this.$t("loading");
@@ -320,9 +314,7 @@ export default {
           });
     },
     filterableFieldNames() {
-      return this.fields
-        .filter(field => field.datatype)
-        .map(field => field.field);
+      return this.fields.filter(field => field.datatype).map(field => field.field);
     },
     layoutNames() {
       if (!this.$store.state.extensions.layouts) return {};
@@ -349,10 +341,9 @@ export default {
       if (!this.collectionInfo.status_mapping || !this.statusField) return null;
 
       const statusKeys = Object.keys(this.collectionInfo.status_mapping);
-      const index = this.$lodash.findIndex(
-        Object.values(this.collectionInfo.status_mapping),
-        { soft_delete: true }
-      );
+      const index = this.$lodash.findIndex(Object.values(this.collectionInfo.status_mapping), {
+        soft_delete: true
+      });
       return statusKeys[index];
     },
 
@@ -398,9 +389,7 @@ export default {
 
       this.selection.forEach(item => {
         const status = this.statusField ? item[this.statusField] : null;
-        const permission = this.statusField
-          ? this.permission.statuses[status]
-          : this.permission;
+        const permission = this.statusField ? this.permission.statuses[status] : this.permission;
         const userID = item[this.userCreatedField];
 
         if (permission.delete === "none") {
@@ -438,9 +427,7 @@ export default {
 
       this.selection.forEach(item => {
         const status = this.statusField ? item[this.statusField] : null;
-        const permission = this.statusField
-          ? this.permission.statuses[status]
-          : this.permission;
+        const permission = this.statusField ? this.permission.statuses[status] : this.permission;
         const userID = item[this.userCreatedField];
 
         if (permission.update === "none") {
@@ -631,10 +618,7 @@ export default {
 
     const collectionInfo = store.state.collections[collection] || null;
 
-    if (
-      collection.startsWith("directus_") === false &&
-      collectionInfo === null
-    ) {
+    if (collection.startsWith("directus_") === false && collectionInfo === null) {
       return next(vm => (vm.notFound = true));
     }
 
@@ -671,10 +655,7 @@ export default {
 
     const collectionInfo = this.$store.state.collections[collection] || null;
 
-    if (
-      collection.startsWith("directus_") === false &&
-      collectionInfo === null
-    ) {
+    if (collection.startsWith("directus_") === false && collectionInfo === null) {
       this.notFound = true;
       return next();
     }

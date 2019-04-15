@@ -60,13 +60,10 @@
         </div>
       </div>
       <button type="button" class="style-btn select" @click="addNew = true">
-        <v-icon name="add" /> {{ $t("add_new") }}
+        <v-icon name="add" />
+        {{ $t("add_new") }}
       </button>
-      <button
-        type="button"
-        class="style-btn select"
-        @click="selectExisting = true"
-      >
+      <button type="button" class="style-btn select" @click="selectExisting = true">
         <v-icon name="playlist_add" />
         <span>{{ $t("select_existing") }}</span>
       </button>
@@ -245,10 +242,7 @@ export default {
       if (this.relationSetup === false) return null;
       if (!this.relatedCollectionFields) return null;
 
-      return this.$lodash.mapValues(
-        this.relatedCollectionFields,
-        field => field.default_value
-      );
+      return this.$lodash.mapValues(this.relatedCollectionFields, field => field.default_value);
     },
     relatedDefaultsWithEdits() {
       if (this.relationSetup === false) return null;
@@ -263,16 +257,13 @@ export default {
     filters() {
       if (this.relationSetup === false) return null;
       return [
-        ...((this.options.preferences && this.options.preferences.filters) ||
-          []),
+        ...((this.options.preferences && this.options.preferences.filters) || []),
         ...this.filtersOverride
       ];
     },
     viewOptions() {
       if (this.relationSetup === false) return null;
-      const viewOptions =
-        (this.options.preferences && this.options.preferences.viewOptions) ||
-        {};
+      const viewOptions = (this.options.preferences && this.options.preferences.viewOptions) || {};
       return {
         ...viewOptions,
         ...this.viewOptionsOverride
@@ -281,15 +272,11 @@ export default {
     viewType() {
       if (this.relationSetup === false) return null;
       if (this.viewTypeOverride) return this.viewTypeOverride;
-      return (
-        (this.options.preferences && this.options.preferences.viewType) ||
-        "tabular"
-      );
+      return (this.options.preferences && this.options.preferences.viewType) || "tabular";
     },
     viewQuery() {
       if (this.relationSetup === false) return null;
-      const viewQuery =
-        (this.options.preferences && this.options.preferences.viewQuery) || {};
+      const viewQuery = (this.options.preferences && this.options.preferences.viewQuery) || {};
       return {
         ...viewQuery,
         ...this.viewQueryOverride
@@ -360,9 +347,7 @@ export default {
 
       // Set $delete: true to all items that aren't selected anymore
       const newValue = (this.value || []).map(junctionRow => {
-        const relatedPK = (junctionRow[this.junctionRelatedKey] || {})[
-          this.relatedKey
-        ];
+        const relatedPK = (junctionRow[this.junctionRelatedKey] || {})[this.relatedKey];
 
         if (!relatedPK) return junctionRow;
 
@@ -385,9 +370,7 @@ export default {
       });
 
       // Fetch item values for all newly selected items
-      const newSelection = selectedPKs.filter(
-        pk => savedRelatedPKs.includes(pk) === false
-      );
+      const newSelection = selectedPKs.filter(pk => savedRelatedPKs.includes(pk) === false);
 
       (newSelection.length > 0
         ? this.$api.getItem(this.relatedCollection, newSelection.join(","))
@@ -491,10 +474,7 @@ export default {
         this.$emit(
           "input",
           (this.value || []).filter(val => {
-            return (
-              (val[this.junctionRelatedKey] || {})[this.relatedKey] !==
-              relatedKey
-            );
+            return (val[this.junctionRelatedKey] || {})[this.relatedKey] !== relatedKey;
           })
         );
       }

@@ -17,29 +17,13 @@
         :style="{ backgroundColor: `var(--${color})` }"
         class="header"
       >
-        <button
-          v-if="selectable"
-          type="button"
-          class="select"
-          @click.stop="$emit('select')"
-        >
+        <button v-if="selectable" type="button" class="select" @click.stop="$emit('select')">
           <v-icon :name="selectionIcon" />
         </button>
 
-        <img
-          v-if="src && !error"
-          :alt="title"
-          :src="src"
-          @error="onImageError"
-        />
+        <img v-if="src && !error" :alt="title" :src="src" @error="onImageError" />
 
-        <v-icon
-          v-if="error"
-          class="error icon"
-          name="broken_image"
-          size="48"
-          color="white"
-        />
+        <v-icon v-if="error" class="error icon" name="broken_image" size="48" color="white" />
 
         <v-icon
           v-if="icon"
@@ -54,25 +38,16 @@
 
         <span v-if="label" class="label">{{ label }}</span>
       </div>
-      <div
-        v-else
-        class="header small"
-        :style="{ backgroundColor: `var(--${color})` }"
-      >
-        <button
-          v-if="selectable"
-          type="button"
-          class="select"
-          @click.stop="$emit('select')"
-        >
+      <div v-else class="header small" :style="{ backgroundColor: `var(--${color})` }">
+        <button v-if="selectable" type="button" class="select" @click.stop="$emit('select')">
           <v-icon :name="selectionIcon" />
         </button>
       </div>
       <div class="body" :class="{ menu: options != null }">
         <div class="main">
-          <component :is="titleElement" class="title" v-tooltip="title">{{
-            title
-          }}</component>
+          <component :is="titleElement" class="title" v-tooltip="title">
+            {{ title }}
+          </component>
           <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
           <p v-if="body" class="content">{{ body }}</p>
         </div>
@@ -216,7 +191,7 @@ export default {
 
 <style lang="scss" scoped>
 .v-card {
-  width: var(--width-small);
+  width: 136px;
   overflow: hidden;
   transition: box-shadow var(--fast) var(--transition);
   cursor: pointer;
@@ -236,7 +211,7 @@ export default {
 
   .header {
     transition: all var(--fast) var(--transition);
-    height: var(--width-small);
+    height: 136px;
     border-radius: var(--border-radius);
     overflow: hidden;
     display: grid;
@@ -390,11 +365,7 @@ export default {
       left: 0;
       top: 0;
       opacity: 0;
-      background-image: linear-gradient(
-        -180deg,
-        #263238 4%,
-        rgba(38, 50, 56, 0) 100%
-      );
+      background-image: linear-gradient(-180deg, #263238 4%, rgba(38, 50, 56, 0) 100%);
       transition: opacity var(--fast) var(--transition);
     }
 
@@ -431,7 +402,7 @@ export default {
 .ctx-menu {
   list-style: none;
   padding: 0;
-  width: var(--width-small);
+  width: 136px;
 
   li {
     display: block;

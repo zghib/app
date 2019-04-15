@@ -1,11 +1,7 @@
 <template>
   <not-found v-if="!collectionInfo" />
   <div class="settings-fields" v-else>
-    <v-header
-      :breadcrumb="breadcrumb"
-      :icon-link="`/settings/collections`"
-      icon-color="warning"
-    >
+    <v-header :breadcrumb="breadcrumb" :icon-link="`/settings/collections`" icon-color="warning">
       <template slot="buttons">
         <v-header-button
           icon="delete_outline"
@@ -48,14 +44,16 @@
                   v-tooltip="$t('required')"
                   class="material-icons required"
                   v-if="field.required !== true || field.required === '0'"
-                  >star</i
                 >
+                  star
+                </i>
                 <i
                   v-tooltip="$t('primary_key')"
                   class="material-icons key"
                   v-if="field.primary_key"
-                  >vpn_key</i
                 >
+                  vpn_key
+                </i>
               </div>
               <div>
                 {{
@@ -93,7 +91,8 @@
                       type="button"
                       @click.stop="warnRemoveField(field.field)"
                     >
-                      <v-icon name="close" /> {{ $t("delete") }}
+                      <v-icon name="close" />
+                      {{ $t("delete") }}
                     </button>
                   </li>
                 </ul>
@@ -104,9 +103,9 @@
       </div>
     </div>
 
-    <v-button @click="startEditingField({})" class="new-field"
-      >New Field</v-button
-    >
+    <v-button @click="startEditingField({})" class="new-field">
+      New Field
+    </v-button>
 
     <v-form
       v-if="fields"
@@ -324,9 +323,7 @@ export default {
       this.$set(this.edits, field, value);
     },
     canDuplicate(fieldInterface) {
-      return (
-        this.duplicateInterfaceBlacklist.includes(fieldInterface) === false
-      );
+      return this.duplicateInterfaceBlacklist.includes(fieldInterface) === false;
     },
     duplicateFieldSettings({ fieldInfo, collection }) {
       const requests = [];
@@ -374,9 +371,9 @@ export default {
     setFieldSettings({ fieldInfo, relation }) {
       this.fieldSaving = true;
 
-      const existingField = this.$store.state.collections[
-        this.collection
-      ].fields.hasOwnProperty(fieldInfo.field);
+      const existingField = this.$store.state.collections[this.collection].fields.hasOwnProperty(
+        fieldInfo.field
+      );
 
       const requests = [];
 
@@ -384,9 +381,7 @@ export default {
       this.$store.dispatch("loadingStart", { id });
 
       if (existingField) {
-        requests.push(
-          this.$api.updateField(this.collection, fieldInfo.field, fieldInfo)
-        );
+        requests.push(this.$api.updateField(this.collection, fieldInfo.field, fieldInfo));
       } else {
         delete fieldInfo.id;
         fieldInfo.collection = this.collection;
@@ -768,7 +763,7 @@ label.label {
 .ctx-menu {
   list-style: none;
   padding: 0;
-  width: var(--width-small);
+  width: 136px;
 
   li {
     display: block;

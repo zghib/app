@@ -1,8 +1,6 @@
 <template>
   <v-modal
-    :title="
-      $t('duplicating_field') + ': ' + $helpers.formatTitle(fieldInfo.field)
-    "
+    :title="$t('duplicating_field') + ': ' + $helpers.formatTitle(fieldInfo.field)"
     :buttons="buttons"
     @save="saveField()"
     @close="$emit('close')"
@@ -85,21 +83,18 @@ export default {
     },
     isFieldValid() {
       let isValid = true;
-      Object.keys(this.collections[this.selectedCollection].fields).forEach(
-        field => {
-          if (field === this.field) {
-            isValid = false;
-          }
+      Object.keys(this.collections[this.selectedCollection].fields).forEach(field => {
+        if (field === this.field) {
+          isValid = false;
         }
-      );
+      });
       if (isValid) {
         return true;
       }
       return false;
     },
     collectionFieldCount() {
-      return Object.keys(this.collections[this.selectedCollection].fields)
-        .length;
+      return Object.keys(this.collections[this.selectedCollection].fields).length;
     },
     collections() {
       const collections = Object.assign({}, this.$store.state.collections);

@@ -50,6 +50,5 @@ export default {
   display: inline-block;
   margin-right: 5px;
   width: 100%;
-  max-width: var(--width-small);
 }
 </style>

@@ -7,7 +7,8 @@
       @change="updateValue($event.target.checked)"
     />
     <label :for="name">
-      <v-icon :name="icon" class="icon" /> {{ label }}
+      <v-icon :name="icon" class="icon" />
+      {{ label }}
     </label>
   </div>
 
@@ -19,7 +20,10 @@
       :checked="value"
       @change="updateValue($event.target.checked)"
     />
-    <label :for="name"><span></span>{{ label }}&nbsp;</label>
+    <label :for="name">
+      <span></span>
+      {{ label }}&nbsp;
+    </label>
   </div>
 </template>
 
@@ -127,8 +131,8 @@ input {
       height: 1.25rem;
       background-color: var(--lightest-gray);
       border-radius: 50%;
-      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.14),
-        0 2px 2px 0 rgba(0, 0, 0, 0.098), 0 1px 5px 0 rgba(0, 0, 0, 0.084);
+      box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.14), 0 2px 2px 0 rgba(0, 0, 0, 0.098),
+        0 1px 5px 0 rgba(0, 0, 0, 0.084);
     }
   }
 

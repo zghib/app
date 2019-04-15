@@ -7,9 +7,10 @@
       :readonly="readonly"
       :placeholder="options.placeholder"
       @input="calculateValue"
-    ></v-input
-    ><!--
-    --><v-select
+    ></v-input>
+    <!--
+    -->
+    <v-select
       v-model="units"
       class="interface-file-size-units"
       :readonly="readonly"
@@ -28,9 +29,7 @@
       :value="value"
       @input="$emit('input', $event)"
     ></v-input>
-    <span class="interface-file-size-formatted">
-      ({{ formatSize(value, true) }})
-    </span>
+    <span class="interface-file-size-formatted">({{ formatSize(value, true) }})</span>
   </div>
 </template>
 
@@ -104,7 +103,6 @@ export default {
 }
 .interface-file-size {
   display: inline-block;
-  max-width: calc(var(--width-small) - 50px);
 }
 .interface-file-size-units {
   position: absolute;

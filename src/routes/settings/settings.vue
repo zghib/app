@@ -15,9 +15,7 @@
 
           <v-card
             :title="$t('settings_collections_fields')"
-            :subtitle="
-              $tc('collection_count', collectionsNum, { count: collectionsNum })
-            "
+            :subtitle="$tc('collection_count', collectionsNum, { count: collectionsNum })"
             element="li"
             to="/settings/collections"
             icon="box"
@@ -47,9 +45,7 @@
         <ul>
           <v-card
             :title="$t('interfaces')"
-            :subtitle="
-              $tc('interface_count', interfaceCount, { count: interfaceCount })
-            "
+            :subtitle="$tc('interface_count', interfaceCount, { count: interfaceCount })"
             element="li"
             to="/settings/interfaces"
             icon="extension"
@@ -96,9 +92,7 @@
             :title="$t('connection')"
             :subtitle="
               `${$t('latency')}: ${$n(
-                Math.round(
-                  $store.state.latency[$store.state.latency.length - 1].latency
-                )
+                Math.round($store.state.latency[$store.state.latency.length - 1].latency)
               )}ms`
             "
             disabled
@@ -162,8 +156,7 @@ export default {
   },
   computed: {
     globalNum() {
-      return Object.keys(this.$store.state.collections.directus_settings.fields)
-        .length;
+      return Object.keys(this.$store.state.collections.directus_settings.fields).length;
     },
     collectionsNum() {
       return Object.keys(this.$store.state.collections).filter(

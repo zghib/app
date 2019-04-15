@@ -46,8 +46,7 @@ export default {
           return Math.pow((val + 0.055) / 1.055, 2.4);
         });
 
-      const lightness =
-        0.2126 * colors[0] + 0.7152 * colors[1] + 0.0722 * colors[2];
+      const lightness = 0.2126 * colors[0] + 0.7152 * colors[1] + 0.0722 * colors[2];
 
       return lightness > 0.25;
     }

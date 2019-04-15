@@ -29,9 +29,7 @@ export default {
   computed: {
     statusMapping() {
       if (typeof this.options.status_mapping === "string") {
-        return this.options.status_mapping
-          ? JSON.parse(this.status_mapping)
-          : {};
+        return this.options.status_mapping ? JSON.parse(this.status_mapping) : {};
       }
 
       return this.options.status_mapping || {};
@@ -58,9 +56,7 @@ export default {
         return this.$store.state.permissions[this.collection].$create;
       }
 
-      return this.$store.state.permissions[this.collection].statuses[
-        this.startStatus
-      ];
+      return this.$store.state.permissions[this.collection].statuses[this.startStatus];
     },
     collection() {
       return Object.values(this.fields)[0].collection;

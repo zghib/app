@@ -23,8 +23,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.input {
-  max-width: var(--width-small);
-}
-</style>
+<style lang="scss" scoped></style>

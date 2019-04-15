@@ -57,9 +57,7 @@ export default {
 
       if (this.viewQuery.fields === "") return [];
 
-      return this.viewQuery.fields
-        .split(",")
-        .filter(field => this.fields[field]);
+      return this.viewQuery.fields.split(",").filter(field => this.fields[field]);
     }
   },
   created() {

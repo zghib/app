@@ -1,20 +1,13 @@
 <template>
   <div class="v-permissions interface loading" v-if="loading">
-    <v-spinner
-      line-fg-color="var(--light-gray)"
-      line-bg-color="var(--lighter-gray)"
-    />
+    <v-spinner line-fg-color="var(--light-gray)" line-bg-color="var(--lighter-gray)" />
   </div>
   <div v-else class="interface">
     <div class="v-permissions">
       <v-permissions-header @toggle-all="toggleAll" />
 
       <div class="body">
-        <v-notice
-          v-if="Object.keys(rows).length === 0"
-          color="gray"
-          class="no-collections-message"
-        >
+        <v-notice v-if="Object.keys(rows).length === 0" color="gray" class="no-collections-message">
           {{ $t("permissions_no_collections") }}
         </v-notice>
 
@@ -43,11 +36,10 @@
         </template>
       </div>
     </div>
-    <label
-      ><v-toggle class="toggle" id="toggle-directus" v-model="showDirectus" />{{
-        $t("show_directus_collections")
-      }}</label
-    >
+    <label>
+      <v-toggle class="toggle" id="toggle-directus" v-model="showDirectus" />
+      {{ $t("show_directus_collections") }}
+    </label>
   </div>
 </template>
 
@@ -86,9 +78,8 @@ export default {
   },
   computed: {
     directusRows() {
-      const permissions = this.$lodash.pickBy(
-        this.permissions,
-        (permission, collection) => collection.startsWith("directus_")
+      const permissions = this.$lodash.pickBy(this.permissions, (permission, collection) =>
+        collection.startsWith("directus_")
       );
 
       return this.$lodash(permissions)
@@ -135,16 +126,14 @@ export default {
         if (collection.startsWith("directus_")) return;
 
         if (this.statuses[collection]) {
-          return Object.keys(this.statuses[collection].mapping).forEach(
-            status => {
-              changes.push({
-                collection,
-                status,
-                permission,
-                value: full ? "full" : "none"
-              });
-            }
-          );
+          return Object.keys(this.statuses[collection].mapping).forEach(status => {
+            changes.push({
+              collection,
+              status,
+              permission,
+              value: full ? "full" : "none"
+            });
+          });
         }
 
         changes.push({

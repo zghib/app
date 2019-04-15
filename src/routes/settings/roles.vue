@@ -1,10 +1,6 @@
 <template>
   <div class="settings-roles">
-    <v-header
-      :breadcrumb="breadcrumb"
-      icon-link="/settings"
-      icon-color="warning"
-    >
+    <v-header :breadcrumb="breadcrumb" icon-link="/settings" icon-color="warning">
       <template slot="buttons">
         <v-header-button
           icon="add"
@@ -15,12 +11,7 @@
         />
       </template>
     </v-header>
-    <v-table
-      :items="items"
-      :columns="fields"
-      primary-key-field="collection"
-      link="__link__"
-    />
+    <v-table :items="items" :columns="fields" primary-key-field="collection" link="__link__" />
 
     <portal to="modal" v-if="addNew">
       <v-prompt

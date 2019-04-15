@@ -258,14 +258,7 @@ export default {
   string: {
     description: i18n.t("fieldtypes.string"),
     mysql: {
-      datatypes: [
-        "CHAR",
-        "VARCHAR",
-        "TINYTEXT",
-        "TEXT",
-        "MEDIUMTEXT",
-        "LONGTEXT"
-      ],
+      datatypes: ["CHAR", "VARCHAR", "TINYTEXT", "TEXT", "MEDIUMTEXT", "LONGTEXT"],
       default: "VARCHAR"
     }
   },

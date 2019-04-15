@@ -2,7 +2,7 @@
   <div class="v-header-button">
     <div v-if="Object.keys(options).length > 0" class="options">
       <select v-model="choice" @change="emitChange">
-        <option disabled selected value=""> {{ $t("more_options") }} </option>
+        <option disabled selected value="">{{ $t("more_options") }}</option>
         <option v-for="(display, value) in options" :value="value" :key="value">
           {{ display }}
         </option>
@@ -22,12 +22,7 @@
       :to="to || null"
       @click="!to ? $emit('click', $event) : null"
     >
-      <v-spinner
-        v-if="loading"
-        :size="24"
-        line-fg-color="white"
-        line-bg-color="transparent"
-      />
+      <v-spinner v-if="loading" :size="24" line-fg-color="white" line-bg-color="transparent" />
       <v-icon v-else :style="{ color: `var(--${iconColor})` }" :name="icon" />
     </component>
   </div>

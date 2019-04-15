@@ -5,21 +5,15 @@
 
       <div class="sort-select">
         <select @input="setSort($event.target.value)" :value="sortedOn">
-          <option
-            v-for="(fieldInfo, name) in sortableFields"
-            :key="name"
-            :value="name"
-            >{{ $helpers.formatTitle(name) }}</option
-          >
+          <option v-for="(fieldInfo, name) in sortableFields" :key="name" :value="name">
+            {{ $helpers.formatTitle(name) }}
+          </option>
         </select>
         <v-icon class="icon" name="arrow_drop_down" />
       </div>
 
       <div class="sort-select">
-        <select
-          @input="setSortDirection($event.target.value)"
-          :value="sortDirection"
-        >
+        <select @input="setSortDirection($event.target.value)" :value="sortDirection">
           <option value="asc">ASC</option>
           <option value="desc">DESC</option>
         </select>
@@ -70,9 +64,7 @@ export default {
       if (
         sortableFieldNames &&
         viewQuerySort &&
-        sortableFieldNames.some(
-          sortableFieldName => sortableFieldName === viewQuerySort
-        )
+        sortableFieldNames.some(sortableFieldName => sortableFieldName === viewQuerySort)
       ) {
         fieldName = viewQuerySort;
       } else if (sortableFieldNames && sortableFieldNames.length > 0) {
@@ -114,10 +106,7 @@ export default {
       const srcField = this.viewOptions.src || null;
 
       if (srcField) {
-        if (
-          this.fields[srcField] &&
-          this.fields[srcField].type.toLowerCase() === "file"
-        ) {
+        if (this.fields[srcField] && this.fields[srcField].type.toLowerCase() === "file") {
           return (
             item[srcField] &&
             item[srcField].data &&
@@ -127,10 +116,7 @@ export default {
           );
         }
 
-        if (
-          srcField === "data" &&
-          this.fields[srcField].collection === "directus_files"
-        ) {
+        if (srcField === "data" && this.fields[srcField].collection === "directus_files") {
           return (
             item[srcField] &&
             item[srcField].thumbnails &&
@@ -247,7 +233,7 @@ export default {
   padding: var(--page-padding);
   padding-bottom: var(--page-padding-bottom);
   display: grid;
-  grid-template-columns: repeat(auto-fill, var(--width-small));
+  grid-template-columns: repeat(auto-fill, 136px);
   grid-gap: 30px 20px;
   justify-content: space-between;
   width: 100%;

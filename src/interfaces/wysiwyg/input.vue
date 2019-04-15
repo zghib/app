@@ -1,12 +1,6 @@
 <template>
-  <div
-    ref="input"
-    :class="[{ fullscreen: distractionFree }, 'interface-wysiwyg-container']"
-  >
-    <div
-      ref="editor"
-      :class="['interface-wysiwyg', readonly ? 'readonly' : '']"
-    ></div>
+  <div ref="input" :class="[{ fullscreen: distractionFree }, 'interface-wysiwyg-container']">
+    <div ref="editor" :class="['interface-wysiwyg', readonly ? 'readonly' : '']"></div>
     <button
       v-on:click="distractionFree = !distractionFree"
       type="button"
@@ -353,8 +347,7 @@ button.fullscreen-toggle {
   border-right: 1px solid var(--dark-gray);
   background-color: transparent;
   color: var(--white);
-  transition: background-color var(--fast) var(--transition),
-    color var(--fast) var(--transition);
+  transition: background-color var(--fast) var(--transition), color var(--fast) var(--transition);
 }
 
 .medium-editor-toolbar li button:hover {
@@ -384,8 +377,7 @@ button.fullscreen-toggle {
   padding-left: 20px;
 }
 
-.medium-editor-toolbar-form
-  .medium-editor-toolbar-input::-webkit-input-placeholder {
+.medium-editor-toolbar-form .medium-editor-toolbar-input::-webkit-input-placeholder {
   color: var(--white);
   color: rgba(255, 255, 255, 0.8);
 }
