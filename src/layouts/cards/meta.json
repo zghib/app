@@ -1,6 +1,6 @@
 {
   "name": "$t:cards",
-  "version": "1.0.1",
+  "icon": "crop_square",
   "translation": {
     "en-US": {
       "cards": "Cards",

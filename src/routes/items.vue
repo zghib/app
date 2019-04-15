@@ -79,13 +79,18 @@
 
     <v-info-sidebar v-if="preferences">
       <template slot="system">
-        <v-select
-          id="layout"
-          :options="layoutNames"
-          :value="viewType"
-          name="layout"
-          @input="updatePreferences('view_type', $event)"
-        />
+        <div class="layout-picker">
+          <select @input="updatePreferences('view_type', $event.target.value)" :value="viewType">
+            <option v-for="(name, val) in layoutNames" :value="val" :key="val">
+              {{ name }}
+            </option>
+          </select>
+          <div class="preview">
+            <v-icon :name="layoutIcons[viewType]" color="light-gray" />
+            <span>{{ layoutNames[viewType] }}</span>
+            <v-icon name="expand_more" color="light-gray" />
+          </div>
+        </div>
       </template>
       <v-ext-layout-options
         :key="`${collection}-${viewType}`"
@@ -323,6 +328,14 @@ export default {
         translatedNames[id] = this.$store.state.extensions.layouts[id].name;
       });
       return translatedNames;
+    },
+    layoutIcons() {
+      if (!this.$store.state.extensions.layouts) return {};
+      const icons = {};
+      Object.keys(this.$store.state.extensions.layouts).forEach(id => {
+        icons[id] = this.$store.state.extensions.layouts[id].icon;
+      });
+      return icons;
     },
     statusField() {
       if (!this.fields) return null;
@@ -713,6 +726,33 @@ label.style-4 {
   opacity: 1;
   i {
     color: var(--accent);
+  }
+}
+
+.layout-picker {
+  margin: -20px;
+  padding: 20px;
+  background-color: #dde3e6;
+  position: relative;
+
+  .preview {
+    display: flex;
+    align-items: center;
+
+    span {
+      flex-grow: 1;
+      margin-left: 10px;
+    }
+  }
+
+  select {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
   }
 }
 </style>

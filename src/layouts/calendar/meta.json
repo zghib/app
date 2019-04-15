@@ -1,6 +1,6 @@
 {
   "name": "$t:calendar",
-  "version": "1.0.0",
+  "icon": "calendar_today",
   "translation": {
     "en-US": {
       "calendar": "Calendar",
