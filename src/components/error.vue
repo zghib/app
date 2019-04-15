@@ -49,7 +49,7 @@ export default {
     font-size: 48px;
     border: 2px solid var(--lightest-gray);
     box-shadow: var(--box-shadow);
-    color: var(--accent);
+    color: var(--dark-gray);
     border-radius: 50%;
     padding: 20px;
     margin-bottom: 10px;
@@ -67,7 +67,7 @@ export default {
   }
 
   .accent {
-    color: var(--accent);
+    color: var(--dark-gray);
   }
 
   .secondary {

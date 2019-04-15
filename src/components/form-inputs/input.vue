@@ -278,7 +278,7 @@ export default {
     font-size: 24px;
 
     &.accent {
-      color: var(--accent);
+      color: var(--darkest-gray);
     }
 
     &.secondary {

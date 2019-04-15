@@ -104,7 +104,7 @@ export default {
   }
 
   select:focus + .preview {
-    border-color: var(--accent);
+    border-color: var(--dark-gray);
     color: var(--dark-gray);
   }
 

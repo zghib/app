@@ -118,7 +118,7 @@ Theme: Outline
 		*/
     &:checked {
       + .button-group-button {
-        background-color: var(--accent);
+        background-color: var(--darkest-gray);
         color: var(--white);
       }
     }
@@ -224,7 +224,7 @@ Theme: Solid | Default
       }
       &:checked {
         + .button-group-button {
-          background-color: var(--accent);
+          background-color: var(--darkest-gray);
         }
       }
       /**

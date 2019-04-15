@@ -674,10 +674,10 @@ h2 {
   .dragging .sortable-chosen,
   .sortable-chosen:active {
     background-color: var(--highlight) !important;
-    color: var(--accent);
+    color: var(--darkest-gray);
 
     .manual-sort {
-      color: var(--accent);
+      color: var(--darkest-gray);
     }
   }
 
@@ -701,7 +701,7 @@ h2 {
       }
 
       .required {
-        color: var(--accent);
+        color: var(--darkest-gray);
         vertical-align: super;
         font-size: 7px;
       }

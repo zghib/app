@@ -228,12 +228,12 @@ button.fullscreen-toggle {
 
     &:focus {
       color: var(--darker-gray);
-      border-color: var(--accent);
+      border-color: var(--darker-gray);
       outline: 0;
     }
 
     &:focus + i {
-      color: var(--accent);
+      color: var(--darkest-gray);
     }
   }
 
@@ -265,7 +265,7 @@ button.fullscreen-toggle {
   }
 
   a {
-    color: var(--accent);
+    color: var(--darkest-gray);
   }
 
   p {

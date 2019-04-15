@@ -533,7 +533,7 @@ label.style-4 {
   }
 }
 .bookmark-name {
-  color: var(--accent);
+  color: var(--darkest-gray);
   margin-left: 5px;
   margin-top: 3px;
   font-size: 0.77em;

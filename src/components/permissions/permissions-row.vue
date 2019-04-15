@@ -589,7 +589,7 @@ export default {
   }
 
   &:hover i {
-    color: var(--accent);
+    color: var(--darkest-gray);
   }
 }
 

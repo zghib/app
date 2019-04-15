@@ -201,7 +201,7 @@ small {
   }
 
   i {
-    color: var(--accent);
+    color: var(--darkest-gray);
     vertical-align: super;
     font-size: 7px;
   }

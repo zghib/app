@@ -138,11 +138,11 @@ export default {
     }
 
     svg {
-      fill: var(--accent);
+      fill: var(--darkest-gray);
     }
 
     i {
-      color: var(--accent);
+      color: var(--darkest-gray);
     }
 
     svg {

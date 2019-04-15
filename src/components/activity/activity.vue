@@ -336,7 +336,7 @@ export default {
         color: var(--lightest-gray);
       }
       &:hover {
-        background-color: var(--accent);
+        background-color: var(--dark-gray);
         i.material-icons {
           color: var(--white);
         }
@@ -365,10 +365,10 @@ export default {
         border-color: transparent transparent var(--lightest-gray) transparent;
       }
       a {
-        color: var(--accent);
+        color: var(--darker-gray);
         text-decoration: none;
         &:hover {
-          color: var(--accent-dark);
+          color: var(--darkest-gray);
         }
       }
       strong {
@@ -397,9 +397,9 @@ export default {
         font-size: 1.2em;
         font-weight: 400;
         margin: 20px 10px 20px 10px;
-        border-left: 2px solid var(--accent);
+        border-left: 2px solid var(--lighter-gray);
         padding-left: 10px;
-        color: var(--accent);
+        color: var(--darkest-gray);
         line-height: 1.4em;
       }
       hr {
@@ -439,10 +439,10 @@ export default {
     transition-property: color, opacity;
     opacity: 0;
 
-    color: var(--accent);
+    color: var(--darker-gray);
     cursor: pointer;
     &:hover {
-      color: var(--accent-dark);
+      color: var(--darkest-gray);
     }
 
     &[disabled] {
@@ -466,10 +466,10 @@ export default {
 <style lang="scss">
 .v-activity .content .comment {
   a {
-    color: var(--accent);
+    color: var(--darker-gray);
     text-decoration: none;
     &:hover {
-      color: var(--accent-dark);
+      color: var(--darkest-gray);
     }
   }
   strong {
@@ -499,9 +499,9 @@ export default {
     font-size: 1.2em;
     font-weight: 400;
     margin: 20px 10px 20px 10px;
-    border-left: 2px solid var(--accent);
+    border-left: 2px solid var(--lighter-gray);
     padding-left: 10px;
-    color: var(--accent);
+    color: var(--darkest-gray);
     line-height: 1.4em;
   }
   hr {

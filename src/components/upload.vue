@@ -324,7 +324,7 @@ export default {
         color: var(--white);
 
         &:hover {
-          background-color: var(--accent);
+          background-color: var(--darkest-gray);
           color: var(--white);
         }
       }

@@ -1650,7 +1650,7 @@ form.schema {
       width: max-content;
 
       &:not(.disabled):hover {
-        color: var(--accent);
+        color: var(--darkest-gray);
       }
 
       > *:first-child {
@@ -1735,7 +1735,7 @@ details {
 }
 
 .required {
-  color: var(--accent);
+  color: var(--darkest-gray);
   vertical-align: super;
   font-size: 7px;
 }

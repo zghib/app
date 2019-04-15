@@ -662,11 +662,11 @@ export default {
     }
 
     &.not-managed {
-      background-color: var(--accent);
+      background-color: var(--darker-gray);
       color: var(--white);
 
       &:hover {
-        background-color: var(--accent-dark);
+        background-color: var(--darkest-gray);
         color: var(--white);
       }
     }
@@ -691,7 +691,7 @@ export default {
       width: max-content;
 
       &:not(.disabled):hover {
-        color: var(--accent);
+        color: var(--darkest-gray);
       }
 
       > *:first-child {

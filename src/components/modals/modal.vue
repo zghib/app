@@ -294,16 +294,16 @@ export default {
       position: absolute;
       height: 2px;
       bottom: -2px;
-      background-color: var(--accent);
+      background-color: var(--darkest-gray);
       transform: scaleY(0);
       transition: transform var(--fast) var(--transition-out);
     }
 
     &.active {
-      color: var(--accent);
+      color: var(--darker-gray);
 
       &:hover {
-        color: var(--accent);
+        color: var(--darkest-gray);
       }
 
       &::after {

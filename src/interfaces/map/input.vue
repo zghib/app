@@ -400,7 +400,7 @@ export default {
   background: #fff;
 
   &:hover {
-    color: var(--accent);
+    color: var(--darkest-gray);
   }
 }
 
@@ -422,7 +422,7 @@ export default {
 
 .map-clear {
   text-transform: initial;
-  color: var(--accent);
+  color: var(--darkest-gray);
   font-style: italic;
   padding-right: 2px; // To avoid cropping
 }

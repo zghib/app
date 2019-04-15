@@ -73,7 +73,7 @@ input {
     color: var(--darker-gray);
   }
   input:checked + label {
-    color: var(--accent);
+    color: var(--darkest-gray);
   }
   input:disabled + label {
     color: var(--light-gray);
@@ -133,13 +133,13 @@ input {
   }
 
   input:checked + label {
-    color: var(--accent);
+    color: var(--darkest-gray);
     &:before {
-      background-color: var(--accent);
+      background-color: var(--darkest-gray);
       opacity: 0.4;
     }
     &:after {
-      background-color: var(--accent);
+      background-color: var(--darkest-gray);
       transform: translate(80%, -50%);
     }
   }

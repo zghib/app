@@ -69,13 +69,13 @@ input {
   }
 
   &.active::after {
-    background-color: var(--accent);
+    background-color: var(--darkest-gray);
     opacity: 0.5;
   }
 }
 
 .user-is-tabbing input:focus ~ .switch-track {
-  box-shadow: 0 0 0 6px var(--white), 0 0 0 8px var(--accent);
+  box-shadow: 0 0 0 6px var(--white), 0 0 0 8px var(--darkest-gray);
 }
 
 .switch-thumb {
@@ -91,7 +91,7 @@ input {
   transition: var(--fast) var(--transition);
 
   &.active {
-    background-color: var(--accent);
+    background-color: var(--darkest-gray);
     transform: translateX(16px);
   }
 }

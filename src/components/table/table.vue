@@ -613,7 +613,7 @@ export default {
   }
 
   &.active button {
-    color: var(--accent);
+    color: var(--darkest-gray);
   }
 }
 
@@ -635,10 +635,10 @@ export default {
 .dragging .sortable-chosen,
 .sortable-chosen:active {
   background-color: var(--highlight) !important;
-  color: var(--accent);
+  color: var(--darkest-gray);
 
   .manual-sort {
-    color: var(--accent);
+    color: var(--darkest-gray);
   }
 }
 

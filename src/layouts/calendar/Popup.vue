@@ -358,7 +358,7 @@ export default {
   line-height: 20px;
   border-radius: 50%;
   color: var(--white);
-  background-color: var(--accent);
+  background-color: var(--darkest-gray);
 }
 
 #events {
@@ -407,7 +407,7 @@ export default {
   height: 50px;
   box-shadow: 1px 1px 4px 0px gray;
   border-radius: 50%;
-  background-color: var(--accent);
+  background-color: var(--darkest-gray);
   text-decoration: none;
   color: var(--white);
   cursor: pointer;

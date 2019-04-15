@@ -273,7 +273,7 @@ export default {
 
     span {
       position: relative;
-      color: var(--accent);
+      color: var(--darkest-gray);
       margin-left: 5px;
       padding-right: 2em;
       flex-grow: 1;

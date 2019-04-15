@@ -192,7 +192,7 @@ export default {
   font-size: 13px;
 
   &:focus {
-    border-color: var(--accent);
+    border-color: var(--darker-gray);
   }
 }
 

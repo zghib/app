@@ -246,7 +246,7 @@ export default {
   input:hover:not(:disabled):focus + div,
   input:hover:not(:disabled):focus {
     color: var(--dark-gray);
-    border-color: var(--accent);
+    border-color: var(--dark-gray);
     outline: 0;
   }
 

@@ -446,11 +446,11 @@ export default {
     transition: color var(--fast) var(--transition);
 
     &:hover {
-      color: var(--accent);
+      color: var(--darkest-gray);
       transition: none;
 
       i {
-        color: var(--accent);
+        color: var(--darkest-gray);
         transition: none;
       }
     }
