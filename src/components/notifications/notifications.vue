@@ -37,7 +37,7 @@ export default {
   @media (min-width: 800px) {
     width: 300px;
     right: 32px;
-    bottom: 32px;
+    bottom: 20px;
     left: auto;
     padding: 0;
   }
