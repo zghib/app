@@ -31,12 +31,13 @@
           {{ $t("to") }}
           <span
             >{{ urls[selectedUrl] || $t("choose_project") }}
-            <i
+            <v-icon
               v-if="Object.keys(urls).length > 1 || allowOther"
-              class="material-icons"
-              >arrow_drop_down</i
-            ></span
-          >
+              size="18"
+              class="icon"
+              name="arrow_drop_down"
+            />
+          </span>
         </label>
 
         <div class="material-input" v-if="selectOther">
@@ -577,8 +578,7 @@ select {
     color: var(--darker-gray);
   }
 
-  i {
-    font-size: 18px;
+  .icon {
     width: 10px;
     height: 10px;
     vertical-align: top;
