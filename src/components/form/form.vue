@@ -96,7 +96,9 @@ export default {
     groupedFields() {
       const fieldsArray = Object.values(this.fields).filter(
         field =>
-          this.permissions.read_field_blacklist.includes(field.field) === false
+          (this.permissions.read_field_blacklist || []).includes(
+            field.field
+          ) === false
       );
 
       const result = fieldsArray
