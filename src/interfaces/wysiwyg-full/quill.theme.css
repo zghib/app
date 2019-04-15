@@ -601,7 +601,7 @@
 }
 
 .ql-container.ql-snow:focus-within {
-  border-color: var(--darkest-gray);
+  border-color: var(--dark-gray);
 }
 
 .material-icons {
