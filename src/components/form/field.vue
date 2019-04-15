@@ -113,7 +113,7 @@ export default {
 <style lang="scss" scoped>
 .name {
   font-size: var(--size-2);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   color: var(--darkest-gray);
 
   .optional {
