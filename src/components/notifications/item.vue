@@ -73,7 +73,7 @@ export default {
   width: 100%;
   border: var(--input-border-width) solid var(--lighter-gray);
   border-radius: 5px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   padding: 10px;
   background-color: var(--white);
 }

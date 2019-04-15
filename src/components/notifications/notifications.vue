@@ -32,11 +32,12 @@ export default {
   width: 100%;
   left: 0;
   right: 0;
-  padding: 0 10px;
+  padding: 0 8px;
 
   @media (min-width: 800px) {
     width: 300px;
-    right: 10px;
+    right: 32px;
+    bottom: 32px;
     left: auto;
     padding: 0;
   }
