@@ -44,7 +44,7 @@
                 delay: { show: 1500, hide: 100 }
               }"
               :auto-update="1"
-              :since="activity.date"
+              :datetime="activity.date"
               :locale="$i18n.locale"
               class="date"
             />
@@ -73,7 +73,7 @@
               delay: { show: 1500, hide: 100 }
             }"
             :auto-update="1"
-            :since="activity.date"
+            :datetime="activity.date"
             :locale="$i18n.locale"
             class="date"
           />
