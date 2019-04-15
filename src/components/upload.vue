@@ -12,7 +12,7 @@
 
     <div class="dropzone" :class="{ smaller: small }">
       <div class="icon">
-        <v-icon name="cloud_upload" />
+        <v-icon name="cloud_upload" size="48" />
       </div>
       <div class="info">
         <p class="name">{{ $tc("drop_files", multiple ? 2 : 1) }}</p>
@@ -341,7 +341,6 @@ input.select {
   .icon i {
     font-size: 100px;
     color: var(--lighter-gray);
-    margin-bottom: -6px;
   }
 
   p {
