@@ -260,13 +260,14 @@
   --highlight: #f5fafd;
 
   --accent-light: var(--light-blue-50);
-  --action-light: var(--blue-grey-50); // --light-blue-600
+  --action-light: var(--blue-grey-50);
   --success-light: var(--green-50);
   --warning-light: var(--orange-50);
   --danger-light: var(--red-50);
 
-  --accent: var(--light-blue-600);
-  --action: var(--blue-grey-800); // --light-blue-600
+  --brand: var(--darkest-gray);
+  --accent: var(--darkest-gray);
+  --action: var(--blue-grey-800);
   --success: var(--green);
   --warning: var(--orange);
   --danger: var(--red);
