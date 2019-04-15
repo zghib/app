@@ -288,6 +288,7 @@ export default {
   note_managed:
     "[Learn More](https://docs.directus.io/guides/collections.html#managing-collections)",
   note_single: "[Learn More](https://docs.directus.io/guides/collections.html#single)",
+  notifications: "Notifications",
   no_results: "No Results",
   no_results_body: "The current filters do not match any collection items",
   no_collections: "No Collections Setup",
