@@ -40,20 +40,7 @@
             <div class="inner row" @click.stop="startEditingField(field)">
               <div>
                 {{ $helpers.formatTitle(field.field) }}
-                <i
-                  v-tooltip="$t('required')"
-                  class="material-icons required"
-                  v-if="field.required !== true || field.required === '0'"
-                >
-                  star
-                </i>
-                <i
-                  v-tooltip="$t('primary_key')"
-                  class="material-icons key"
-                  v-if="field.primary_key"
-                >
-                  vpn_key
-                </i>
+                <span class="optional" v-if="field.required === false">— {{ $t("optional") }}</span>
               </div>
               <div>
                 {{
@@ -694,19 +681,6 @@ h2 {
       &:hover {
         background-color: var(--highlight);
       }
-
-      .required {
-        color: var(--darkest-gray);
-        vertical-align: super;
-        font-size: 7px;
-      }
-
-      .key {
-        color: var(--light-gray);
-        font-size: 16px;
-        vertical-align: -3px;
-        margin-left: 2px;
-      }
     }
 
     .drag {
@@ -799,5 +773,9 @@ label.label {
       }
     }
   }
+}
+
+.optional {
+  color: var(--lighter-gray);
 }
 </style>
