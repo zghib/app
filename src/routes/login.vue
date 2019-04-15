@@ -536,7 +536,7 @@ select {
   z-index: +1;
   left: 0;
   top: 0;
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
 }
 
@@ -611,7 +611,7 @@ select {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 400;
     transform-origin: left;
     transition: all var(--fast) var(--transition);
@@ -651,11 +651,12 @@ select {
 }
 
 button.style-btn {
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
   background-color: var(--darker-gray);
   width: 100%;
   display: block;
-  padding: 10px 0;
+  padding: 12px 0;
   border-radius: var(--border-radius);
   transition: background-color var(--fast) var(--transition);
   position: relative;
