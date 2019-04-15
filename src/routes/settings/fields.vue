@@ -91,7 +91,7 @@
     </div>
 
     <v-button @click="startEditingField({})" class="new-field">
-      New Field
+      {{ $t("new_field") }}
     </v-button>
 
     <v-form

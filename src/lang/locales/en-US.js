@@ -277,6 +277,7 @@ export default {
     "Are you sure you want to leave this page? The changes you made will be lost if you navigate away from this page.",
   new: "New",
   new_file: "New File",
+  new_field: "New Field",
   no_related_entries: "Has no related entries",
   not_between: "Not between",
   not_contains: "Doesn't contain",
