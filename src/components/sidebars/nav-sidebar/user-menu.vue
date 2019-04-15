@@ -8,13 +8,13 @@
         class="avatar"
       />
       <span class="no-wrap">{{ fullName }}</span>
-      <i class="material-icons">expand_more</i>
+      <v-icon name="expand_more" />
     </header>
     <div class="links">
       <nav-menu :links="userLinks" class="menu" />
       <hr />
       <button class="sign-out" @click="confirmSignOut = true">
-        <i class="material-icons icon">exit_to_app</i> {{ $t("sign_out") }}
+        <v-icon name="exit_to_app" /> {{ $t("sign_out") }}
       </button>
     </div>
 

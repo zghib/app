@@ -52,12 +52,9 @@
       @input="$emit('input', $event.target.value)"
     />
 
-    <i v-if="iconLeft" :class="iconLeftColor" class="material-icons">{{
-      iconLeft
-    }}</i>
-    <i v-if="iconRight" :class="iconRightColor" class="material-icons">{{
-      iconRight
-    }}</i>
+    <v-icon v-if="iconLeft" :name="iconLeft" :color="iconLeftColor" />
+    <v-icon v-if="iconRight" :name="iconRight" :color="iconRightColor" />
+
     <span v-if="charactercount">{{ charsRemaining }}</span>
   </div>
 </template>

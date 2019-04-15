@@ -24,7 +24,7 @@
           @change="$emit('input', subitem.value)"
         />
         <span class="button-group-button">
-          <i v-if="subitem.icon" class="material-icons">{{ subitem.icon }}</i>
+          <v-icon v-if="subitem.icon" />
           <span v-if="subitem.label">{{ subitem.label }}</span>
         </span>
       </label>

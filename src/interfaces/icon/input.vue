@@ -19,7 +19,7 @@
             :disabled="readonly"
             @click="$emit('input', value === icon ? null : icon)"
           >
-            <i class="material-icons">{{ icon }}</i>
+            <v-icon :name="icon" />
           </button>
         </div>
       </details>
@@ -34,7 +34,7 @@
         :disabled="readonly"
         @click="$emit('input', value === icon ? null : icon)"
       >
-        <i class="material-icons">{{ icon }}</i>
+        <v-icon :name="icon" />
       </button>
     </div>
   </div>

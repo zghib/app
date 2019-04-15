@@ -1,7 +1,7 @@
 <template>
   <header class="v-header" :class="{ scrolled }">
     <button :disabled="navActive" class="nav-toggle" @click="activateNav">
-      <i class="material-icons">menu</i>
+      <v-icon name="menu" />
     </button>
     <v-header-button
       class="back"

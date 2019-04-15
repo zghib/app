@@ -7,7 +7,7 @@
           {{ display }}
         </option>
       </select>
-      <i class="material-icons">more_vert</i>
+      <v-icon class="more-icon" name="more_vert"></v-icon>
     </div>
     <component
       :is="disabled ? 'button' : to ? 'router-link' : 'button'"
@@ -28,23 +28,7 @@
         line-fg-color="white"
         line-bg-color="transparent"
       />
-      <svg
-        v-else-if="icon === 'box'"
-        class="icon"
-        viewBox="0 0 17 18"
-        :style="{ fill: `var(--${iconColor})` }"
-      >
-        <path
-          d="M.4783 14.2777l7.676 3.5292a.7888.7888 0 0 0 .6913 0l7.6738-3.5292a.7661.7661 0 0 0 .4805-.748V4.3566a.8228.8228 0 0 0-.0147-.1474V4.165a.824.824 0 0 0-.0329-.1054l-.0113-.034a.8228.8228 0 0 0-.0669-.1246l-.0181-.0261a.824.824 0 0 0-.0726-.0873l-.0396-.026a.8228.8228 0 0 0-.0907-.0748l-.0227-.0159a.824.824 0 0 0-.111-.0623L8.8434.0794a.7888.7888 0 0 0-.6914 0L.4794 3.6086a.8228.8228 0 0 0-.111.0623l-.0227.0159a.824.824 0 0 0-.0907.0748l-.0283.0283a.824.824 0 0 0-.0726.0873l-.0181.026a.8228.8228 0 0 0-.0657.1247l-.0227.0317a.824.824 0 0 0-.034.1054v.043A.8228.8228 0 0 0 0 4.3567v9.1731c0 .3513.1587.6007.4783.748zm1.1684-8.6325L7.675 8.4218v7.3587l-6.0282-2.7778V5.644v.0012zM9.324 15.7794V8.4207l6.027-2.7767v7.3587l-6.027 2.7755v.0012zm-.825-14.051l5.7062 2.6293-5.7063 2.627-5.7052-2.6281 5.7052-2.6282z"
-          fill-rule="nonzero"
-        />
-      </svg>
-      <i
-        v-else
-        class="material-icons"
-        :style="{ color: `var(--${iconColor})` }"
-        >{{ icon }}</i
-      >
+      <v-icon v-else :style="{ color: `var(--${iconColor})` }" :name="icon" />
     </component>
   </div>
 </template>
@@ -123,10 +107,6 @@ export default {
 
 .button.has-bg:hover {
   background-color: var(--hover-color) !important;
-}
-
-.icon {
-  width: 18px;
 }
 
 button,
@@ -217,7 +197,7 @@ button[disabled] {
   right: -20px;
   z-index: +1;
 
-  i {
+  .more-icon {
     transition: color var(--fast) var(--transition);
   }
 
@@ -232,11 +212,11 @@ button[disabled] {
     z-index: +2;
     color: var(--black);
 
-    & + i {
+    & + .more-icon {
       color: var(--darker-gray);
     }
 
-    &:hover + i {
+    &:hover + .more-icon {
       color: var(--darkest-gray);
     }
   }

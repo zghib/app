@@ -2,7 +2,7 @@
   <div class="interface-many-to-one">
     <div v-if="relationSetup === false" class="notice">
       <p>
-        <i class="material-icons">warning</i>
+        <v-icon name="warning" />
         {{ $t("interfaces-many-to-many-relation_not_setup") }}
       </p>
     </div>

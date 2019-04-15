@@ -35,7 +35,7 @@
         </div>
         <div id="header">
           <span>{{ $t("layouts-calendar-events") }}</span>
-          <i class="material-icons" @click="close()">close</i>
+          <v-icon @click="close" name="close" />
         </div>
         <div id="events">
           <div
@@ -54,7 +54,7 @@
             <span>{{ $t("layouts-calendar-noEvents") }}</span>
           </div>
         </div>
-        <a id="add" :href="addItemURL"> <i class="material-icons">add</i> </a>
+        <a id="add" :href="addItemURL"> <v-icon name="add" /> </a>
       </div>
     </div>
   </transition>

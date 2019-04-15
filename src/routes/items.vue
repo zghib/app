@@ -15,9 +15,7 @@
           class="bookmark"
           @click="bookmarkModal = true"
         >
-          <i class="material-icons">
-            {{ currentBookmark ? "bookmark" : "bookmark_border" }}
-          </i>
+          <v-icon :name="currentBookmark ? 'bookmark' : 'bookmark_border'" />
         </button>
       </template>
       <v-search-filter

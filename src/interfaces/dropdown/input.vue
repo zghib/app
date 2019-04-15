@@ -1,6 +1,6 @@
 <template>
   <small v-if="parseError" class="notice">
-    <i class="material-icons">warning</i>
+    <v-icon name="warning" />
     <span>
       {{ $t("interfaces-dropdown-options_invalid") }}<br />
       {{ parseError }}

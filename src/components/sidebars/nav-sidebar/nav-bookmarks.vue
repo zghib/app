@@ -7,8 +7,8 @@
             class="no-wrap"
             :to="`/bookmarks/${bookmark.collection}/${bookmark.id}`"
           >
-            <i class="material-icons icon">bookmark_outline</i
-            >{{ bookmark.title }}
+            <v-icon name="bookmark_outline" class="icon" />
+            {{ bookmark.title }}
           </router-link>
           <button
             v-tooltip="$t('delete_bookmark')"
@@ -17,7 +17,7 @@
               toBeDeletedBookmark = bookmark.id;
             "
           >
-            <i class="material-icons">remove_circle_outline</i>
+            <v-icon name="remove_circle_outline" />
           </button>
         </li>
       </ul>

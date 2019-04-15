@@ -13,7 +13,7 @@
       class="fullscreen-toggle"
       v-tooltip="$t('interfaces-wysiwyg-distraction_free_mode')"
     >
-      <i class="material-icons">{{ fullscreenIcon }}</i>
+      <v-icon :name="fullscreenIcon" />
     </button>
   </div>
 </template>

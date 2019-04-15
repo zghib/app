@@ -12,7 +12,7 @@
       v-tooltip="$t('interfaces-code-fill_template')"
       @click="fillTemplate"
     >
-      <i class="material-icons">playlist_add</i>
+      <v-icon name="playlist_add" />
     </button>
 
     <small class="line-count" v-if="language">

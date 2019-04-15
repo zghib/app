@@ -121,17 +121,18 @@
               :class="errorType"
               @click="error = null"
             >
-              <i class="material-icons">{{ errorType }}</i> {{ errorMessage }}
+              <v-icon :name="errorType" />
+              {{ errorMessage }}
             </span>
 
-            <i
+            <v-icon
               v-else-if="
                 thirdPartyAuthProviders && !thirdPartyAuthProviders.length
               "
+              :name="loggedIn ? 'lock_open' : 'lock_outline'"
               key="lock"
-              class="material-icons lock"
-              >{{ loggedIn ? "lock_open" : "lock_outline" }}</i
-            >
+              class="lock"
+            />
 
             <ul v-else class="third-party-auth" key="third-party-auth">
               <li

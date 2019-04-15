@@ -23,7 +23,7 @@
           class="select"
           @click.stop="$emit('select')"
         >
-          <i class="material-icons">{{ selectionIcon }}</i>
+          <v-icon :name="selectionIcon" />
         </button>
 
         <img
@@ -33,14 +33,22 @@
           @error="onImageError"
         />
 
-        <i v-if="error" class="material-icons error icon">broken_image</i>
+        <v-icon
+          v-if="error"
+          class="error icon"
+          name="broken_image"
+          size="48"
+          color="white"
+        />
 
-        <i
+        <v-icon
           v-if="icon"
           :class="{ 'half-opacity': opacity === 'half' }"
-          class="material-icons icon"
-          >{{ icon }}</i
-        >
+          class="icon"
+          :name="icon"
+          size="48"
+          color="white"
+        />
 
         <div v-if="$slots.icon" class="custom-icon"><slot name="icon" /></div>
 
@@ -57,7 +65,7 @@
           class="select"
           @click.stop="$emit('select')"
         >
-          <i class="material-icons">{{ selectionIcon }}</i>
+          <v-icon :name="selectionIcon" />
         </button>
       </div>
       <div class="body" :class="{ menu: options != null }">
@@ -70,15 +78,14 @@
         </div>
         <v-popover placement="right-start" offset="2">
           <button v-if="options != null" type="button" class="menu-toggle">
-            <i class="material-icons">more_vert</i>
+            <v-icon name="more_vert" />
           </button>
 
           <template slot="popover">
             <ul class="ctx-menu">
               <li v-for="({ text, icon }, id) in options" :key="id">
                 <button type="button" @click="$emit(id)" v-close-popover>
-                  <i class="material-icons" v-if="icon">{{ icon }}</i>
-                  {{ text }}
+                  <v-icon v-if="icon" :name="icon" />
                 </button>
               </li>
             </ul>
@@ -282,8 +289,8 @@ export default {
     }
 
     .custom-icon {
-      width: 64px;
-      height: 64px;
+      width: 48px;
+      height: 48px;
     }
 
     img,

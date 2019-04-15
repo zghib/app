@@ -14,7 +14,9 @@
     />
 
     <div class="dropzone" :class="{ smaller: small }">
-      <div class="icon"><i class="material-icons">cloud_upload</i></div>
+      <div class="icon">
+        <v-icon name="cloud_upload" />
+      </div>
       <div class="info">
         <p class="name">{{ $tc("drop_files", multiple ? 2 : 1) }}</p>
         <p class="file-info no-wrap">

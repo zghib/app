@@ -1,7 +1,7 @@
 <template>
   <div v-if="error || !relation" class="translation error">
     <p>
-      <i class="material-icons">warning</i>
+      <v-icon name="warning" />
       {{ $t("interfaces-translation-translation_not_setup") }}
     </p>
   </div>
@@ -10,7 +10,7 @@
     class="translation error"
   >
     <p>
-      <i class="material-icons">warning</i>
+      <v-icon name="warning" />
       {{ $t("interfaces-translation-translation_no_languages") }}
     </p>
   </div>

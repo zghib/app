@@ -7,7 +7,7 @@
       @change="updateValue($event.target.checked)"
     />
     <label :for="name">
-      <i class="material-icons icon">{{ icon }}</i> {{ label }}
+      <v-icon :name="icon" class="icon" /> {{ label }}
     </label>
   </div>
 

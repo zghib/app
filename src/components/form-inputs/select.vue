@@ -51,13 +51,13 @@
       @input="changeCustom"
     />
     <div class="value">
-      <i v-if="icon" class="material-icons">{{ icon }}</i>
+      <v-icon :name="icon" v-if="icon" />
       <span v-if="placeholder && !value" class="placeholder">{{
         placeholder
       }}</span>
       <span class="no-wrap">{{ parsedOptions[value] }}</span>
     </div>
-    <i class="material-icons chevron">arrow_drop_down</i>
+    <v-icon class="chevron" name="arrow_drop_down" />
   </div>
 </template>
 

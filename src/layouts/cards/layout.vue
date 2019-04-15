@@ -12,7 +12,7 @@
             >{{ $helpers.formatTitle(name) }}</option
           >
         </select>
-        <i class="material-icons">arrow_drop_down</i>
+        <v-icon class="icon" name="arrow_drop_down" />
       </div>
 
       <div class="sort-select">
@@ -23,7 +23,7 @@
           <option value="asc">ASC</option>
           <option value="desc">DESC</option>
         </select>
-        <i class="material-icons">arrow_drop_down</i>
+        <v-icon class="icon" name="arrow_drop_down" />
       </div>
     </div>
 
@@ -235,7 +235,7 @@ export default {
     outline: 0;
   }
 
-  i {
+  .icon {
     position: absolute;
     right: 0;
     top: 50%;

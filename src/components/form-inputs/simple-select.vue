@@ -14,7 +14,7 @@
     <div class="preview">
       <template v-if="value">{{ valueText }}</template>
       <span class="placeholder" v-else>{{ placeholder || "--" }}</span>
-      <i class="material-icons">arrow_drop_down</i>
+      <v-icon class="icon" name="arrow_drop_down" />
     </div>
   </div>
 </template>
@@ -79,7 +79,7 @@ export default {
     line-height: 1.5;
     text-transform: none;
 
-    i {
+    .icon {
       position: absolute;
       right: 10px;
       top: 50%;

@@ -183,7 +183,7 @@
       class="swatch"
       :style="`background-color: ${color ? color.hex() : 'transparent'}`"
     >
-      <i class="material-icons">check</i>
+      <v-icon name="check" />
     </div>
     <template v-if="readonly === false">
       <button
@@ -192,7 +192,7 @@
         :style="{ borderColor: color, color: color, backgroundColor: color }"
         @click="setRawValue(color)"
       >
-        <i class="material-icons">colorize</i>
+        <v-icon name="colorize" />
       </button>
     </template>
   </div>

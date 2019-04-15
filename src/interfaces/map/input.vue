@@ -16,7 +16,7 @@
             placeholder="Enter address to geocode"
           ></v-input>
           <button v-if="isInteractive" @click="getCoordinatesforPlaceName()">
-            <i class="material-icons">add_location</i>
+            <v-icon name="add_location" />
           </button>
         </div>
 
@@ -25,7 +25,7 @@
           class="map-my-location"
           @click="locateMe()"
         >
-          <i class="material-icons">my_location</i>
+          <v-icon name="my_location" />
         </button>
       </div>
     </div>

@@ -1,15 +1,19 @@
 <template>
   <v-popover placement="right-start" offset="5">
     <button class="box" :class="[{ none: value === null }, value]">
-      <i v-if="value === 'none'" class="material-icons">close</i>
-      <i v-else-if="value === 'mine'" class="material-icons">person</i>
-      <i v-else-if="value === 'role'" class="material-icons">group</i>
-      <i v-else-if="value === 'full'" class="material-icons">check</i>
-      <i v-else-if="value === 'read'" class="material-icons">remove_red_eye</i>
-      <i v-else-if="value === 'create'" class="material-icons">add</i>
-      <i v-else-if="value === 'update'" class="material-icons">edit</i>
-      <i v-else-if="value === 'always'" class="material-icons">announcement</i>
-      <i v-else-if="value === 'indeterminate'" class="material-icons">remove</i>
+      <v-icon class="icon" v-if="value === 'none'" name="close" />
+      <v-icon class="icon" v-else-if="value === 'mine'" name="person" />
+      <v-icon class="icon" v-else-if="value === 'role'" name="group" />
+      <v-icon class="icon" v-else-if="value === 'full'" name="check" />
+      <v-icon class="icon" v-else-if="value === 'read'" name="remove_red_eye" />
+      <v-icon class="icon" v-else-if="value === 'create'" name="add" />
+      <v-icon class="icon" v-else-if="value === 'update'" name="edit" />
+      <v-icon class="icon" v-else-if="value === 'always'" name="announcement" />
+      <v-icon
+        class="icon"
+        v-else-if="value === 'indeterminate'"
+        name="remove"
+      />
     </button>
     <template slot="popover">
       <div class="popover-content">
@@ -20,18 +24,22 @@
           @click="$emit('input', option)"
         >
           <div class="box" :class="option">
-            <i v-if="option === 'none'" class="material-icons">close</i>
-            <i v-else-if="option === 'mine'" class="material-icons">person</i>
-            <i v-else-if="option === 'role'" class="material-icons">group</i>
-            <i v-else-if="option === 'full'" class="material-icons">check</i>
-            <i v-else-if="option === 'read'" class="material-icons"
-              >remove_red_eye</i
-            >
-            <i v-else-if="option === 'create'" class="material-icons">add</i>
-            <i v-else-if="option === 'update'" class="material-icons">edit</i>
-            <i v-else-if="option === 'always'" class="material-icons"
-              >announcement</i
-            >
+            <v-icon class="icon" v-if="option === 'none'" name="close" />
+            <v-icon class="icon" v-else-if="option === 'mine'" name="person" />
+            <v-icon class="icon" v-else-if="option === 'role'" name="group" />
+            <v-icon class="icon" v-else-if="option === 'full'" name="check" />
+            <v-icon
+              class="icon"
+              v-else-if="option === 'read'"
+              name="remove_red_eye"
+            />
+            <v-icon class="icon" v-else-if="option === 'create'" name="add" />
+            <v-icon class="icon" v-else-if="option === 'update'" name="edit" />
+            <v-icon
+              class="icon"
+              v-else-if="option === 'always'"
+              name="announcement"
+            />
           </div>
 
           <template v-if="option === 'none'">{{
@@ -93,7 +101,7 @@ export default {
   position: relative;
 }
 
-i {
+.icon {
   position: relative;
   top: -1px;
   left: 0px;

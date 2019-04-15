@@ -17,7 +17,7 @@
             :checked="fieldsInUse.includes(field.field)"
             @change="toggleField(field.field)"
           ></v-checkbox>
-          <i class="material-icons handle">drag_handle</i>
+          <v-icon class="handle" name="drag_handle" />
         </div>
       </draggable>
     </fieldset>

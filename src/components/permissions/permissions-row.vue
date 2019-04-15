@@ -144,11 +144,11 @@
         <div class="cell" v-tooltip="'System Option'">
           {{ $t("permission_states.on_create") }}
         </div>
-        <div class="cell block"><i class="material-icons">block</i></div>
-        <div class="cell block"><i class="material-icons">block</i></div>
-        <div class="cell block"><i class="material-icons">block</i></div>
-        <div class="cell block"><i class="material-icons">block</i></div>
-        <div class="cell block"><i class="material-icons">block</i></div>
+        <div class="cell block"><v-icon name="block" /></div>
+        <div class="cell block"><v-icon name="block" /></div>
+        <div class="cell block"><v-icon name="block" /></div>
+        <div class="cell block"><v-icon name="block" /></div>
+        <div class="cell block"><v-icon name="block" /></div>
         <div class="cell">
           <button
             :class="{ limited: getFieldSettingsPerStatus('$create') }"
@@ -258,7 +258,7 @@
       </div>
     </template>
     <button class="collapse" @click="active = !active">
-      <i class="material-icons">{{ active ? "unfold_less" : "unfold_more" }}</i>
+      <v-icon :name="active ? 'unfold_less' : 'unfold_more'" />
     </button>
     <portal v-if="fieldsSelect" to="modal">
       <v-modal
@@ -621,11 +621,6 @@ export default {
 
 .block {
   color: var(--lightest-gray);
-
-  i {
-    position: relative;
-    left: -3px;
-  }
 }
 
 .set-all {

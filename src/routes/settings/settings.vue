@@ -20,9 +20,8 @@
             "
             element="li"
             to="/settings/collections"
-          >
-            <img slot="icon" src="../../assets/icons/box.svg" alt="" />
-          </v-card>
+            icon="box"
+          />
 
           <v-card
             :title="$t('settings_permissions')"

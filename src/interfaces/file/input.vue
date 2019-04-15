@@ -27,10 +27,10 @@
     ></v-upload>
 
     <v-button type="button" :disabled="readonly" @click="newFile = true">
-      <i class="material-icons">add</i>{{ $t("new_file") }} </v-button
+      <v-icon name="add" /> {{ $t("new_file") }} </v-button
     ><!--
     --><v-button type="button" :disabled="readonly" @click="existing = true">
-      <i class="material-icons">playlist_add</i>{{ $t("existing") }}
+      <v-icon name="playlist_add" /> {{ $t("existing") }}
     </v-button>
 
     <portal to="modal" v-if="newFile">

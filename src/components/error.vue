@@ -1,7 +1,7 @@
 <template>
   <transition name="error">
     <div class="v-error">
-      <i :class="color" class="material-icons">{{ icon }}</i>
+      <v-icon class="icon" :name="icon" size="48" :color="color" />
       <h2 class="style-1">{{ title }}</h2>
       <p>{{ body }}</p>
     </div>
@@ -45,11 +45,8 @@ export default {
   flex-direction: column;
   margin: 100px 0;
 
-  i {
-    font-size: 48px;
+  .icon {
     border: 2px solid var(--lightest-gray);
-    box-shadow: var(--box-shadow);
-    color: var(--dark-gray);
     border-radius: 50%;
     padding: 20px;
     margin-bottom: 10px;

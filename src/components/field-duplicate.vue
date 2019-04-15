@@ -9,11 +9,9 @@
   >
     <form @submit.prevent class="options">
       <div class="options">
-        <label
-          >{{ $t("collection")
-          }}<i v-tooltip="$t('required')" class="material-icons required"
-            >star</i
-          >
+        <label>
+          {{ $t("collection") }}
+          <v-icon name="star" v-tooltip="$t('required')" class="required" />
           <v-simple-select required v-model="selectedCollection">
             <option
               v-for="collection in Object.keys(this.collections)"
@@ -27,11 +25,9 @@
         </label>
       </div>
       <div class="options">
-        <label
-          >{{ $t("field") + " " + $t("name")
-          }}<i v-tooltip="$t('required')" class="material-icons required"
-            >star</i
-          >
+        <label>
+          {{ $t("field") + " " + $t("name") }}
+          <v-icon name="star" v-tooltip="$t('required')" class="required" />
           <v-input
             required
             v-model="field"

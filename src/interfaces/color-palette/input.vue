@@ -10,9 +10,7 @@
       @click="$emit('input', color)"
     >
       <template v-if="value === color">
-        <i :class="{ dark: useDarkIconColor(color) }" class="material-icons"
-          >check</i
-        >
+        <v-icon name="check" :class="{ dark: useDarkIconColor(color) }" />
       </template>
     </button>
   </div>

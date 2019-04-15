@@ -24,7 +24,7 @@
             <header v-if="title">
               <h1 id="modal-title" class="style-1">{{ title }}</h1>
               <button v-if="!actionRequired" @click="$emit('close')">
-                <i class="material-icons">close</i>
+                <v-icon name="close" />
               </button>
             </header>
 

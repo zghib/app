@@ -48,10 +48,13 @@
               :locale="$i18n.locale"
               class="date"
             />
-            <i class="material-icons chevron" v-tooltip="'Revision Details'"
-              >chevron_left</i
-            ></summary
-          >
+            <v-icon
+              class="chevron"
+              v-tooltip="'Rivision Details'"
+              name="chevron_left"
+              size="18"
+            />
+          </summary>
           <div v-if="activity.changes">
             <v-diff :changes="activity.changes" />
             <button
@@ -60,7 +63,7 @@
               class="revert"
               @click="$emit('revert', activity)"
             >
-              <i class="material-icons">restore</i>
+              <v-icon name="restore" />
             </button>
           </div>
         </details>
@@ -262,15 +265,6 @@ export default {
     &.upload {
       background-color: var(--purple-500);
     }
-  }
-
-  i.material-icons {
-    width: 13px;
-    font-size: 24px;
-    transform: translateX(-6px);
-    height: 20px;
-    background-color: var(--lightest-gray);
-    color: var(--lighter-gray);
   }
 
   article {

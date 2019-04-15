@@ -6,7 +6,7 @@
     class="form-button style-btn"
     @click="$emit('click')"
   >
-    <i v-if="icon && !loading" class="material-icons">{{ icon }}</i>
+    <v-icon v-if="icon && !loading" :name="icon" class="icon" />
     <v-spinner
       v-if="loading"
       :line-size="2"
@@ -136,7 +136,7 @@ button {
     width: 100%;
   }
 
-  i {
+  .icon {
     vertical-align: -6px;
     margin-right: 6px;
   }

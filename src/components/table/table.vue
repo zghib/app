@@ -15,7 +15,7 @@
           v-tooltip="$t('enable_manual_sorting')"
           @click="startManualSorting"
         >
-          <i class="material-icons">sort</i>
+          <v-icon name="sort" />
         </button>
       </div>
       <div v-if="selectable" class="select cell">
@@ -48,10 +48,11 @@
           class="sort style-4 no-wrap"
           @click="updateSort(field)"
         >
-          {{ widths[field] > 40 ? name : null
-          }}<i v-if="sortVal.field === field" class="material-icons">{{
-            sortVal.asc ? "arrow_upward" : "arrow_downward"
-          }}</i>
+          {{ widths[field] > 40 ? name : null }}
+          <v-icon
+            class="sort-arrow"
+            :name="sortVal.asc ? 'arrow_upward' : 'arrow_downward'"
+          />
         </button>
 
         <span v-else class="style-4">{{
@@ -106,7 +107,7 @@
               class="manual-sort cell"
               :class="{ active: manualSorting }"
             >
-              <i class="material-icons">drag_handle</i>
+              <v-icon name="drag_handle" />
             </div>
             <div v-if="selectable" class="cell select" @click.stop>
               <v-checkbox
@@ -585,12 +586,17 @@ export default {
   color: var(--darker-gray);
 }
 
-.sort > i {
-  font-size: 12px;
+.sort-arrow {
+  opacity: 0;
+  font-size: 12px !important;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   margin-left: 5px;
+}
+
+.active .sort-arrow {
+  opacity: 1;
 }
 
 .select,
