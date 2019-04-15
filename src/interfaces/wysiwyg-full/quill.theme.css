@@ -485,6 +485,7 @@
   padding: 8px;
   border-radius: var(--border-radius) var(--border-radius) 0 0;
   border: var(--input-border-width) solid var(--lighter-gray);
+  background-color: var(--off-white);
 }
 .ql-toolbar.ql-snow .ql-formats {
   margin-right: 15px;
