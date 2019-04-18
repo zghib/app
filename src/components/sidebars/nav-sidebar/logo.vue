@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     customLogoExists() {
-      return Boolean(this.$store.state.settings.logo);
+      return Boolean(this.$store.state.settings.values.logo);
     },
     projectName() {
       return this.$store.state.auth.projectName;
@@ -34,18 +34,7 @@ export default {
   },
   created() {
     if (this.customLogoExists) {
-      const logoID = this.$store.state.settings.logo;
-      // NOTE: The api should return the logo relational from directus_settings. See directus/api#121
-      this.$api
-        .getItem("directus_files", logoID)
-        .then(res => res.data.storage.full_url)
-        .then(url => (this.customLogoPath = url))
-        .catch(error => {
-          this.$events.emit("error", {
-            notify: this.$t("something_went_wrong_body"),
-            error
-          });
-        });
+      this.customLogoPath = this.$store.state.settings.values.logo.data.full_url;
     }
   },
   methods: {
