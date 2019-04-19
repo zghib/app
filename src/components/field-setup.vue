@@ -846,7 +846,10 @@ export default {
         };
       }
 
-      if (this.interfaceName && Object.keys(this.selectedInterfaceInfo.options).length > 0) {
+      const interfaceOptions =
+        (this.selectedInterfaceInfo && this.selectedInterfaceInfo.options) || {};
+
+      if (this.interfaceName && Object.keys(interfaceOptions).length > 0) {
         let disabled = this.schemaDisabled === true || !this.field;
         tabs.options = {
           text: this.$t("options"),
@@ -857,8 +860,10 @@ export default {
       return tabs;
     },
     hasOptions() {
-      if (this.interfaceName && Object.keys(this.interfaces[this.interfaceName].options).length > 0)
-        return true;
+      const interfaceOptions =
+        (this.selectedInterfaceInfo && this.selectedInterfaceInfo.options) || {};
+
+      if (this.interfaceName && Object.keys(interfaceOptions).length > 0) return true;
 
       return false;
     },
