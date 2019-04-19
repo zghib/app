@@ -109,6 +109,21 @@ export default {
         return fieldInfo;
       });
 
+      // Change the class to half-right if the current element is preceded by another half width field
+      // this makes them align side by side
+      fields = fields.map((fieldInfo, index) => {
+        if (index === 0) return fieldInfo;
+
+        if (fieldInfo.width === "half") {
+          const prevField = fields[index - 1];
+
+          if (prevField.width === "half") {
+            fieldInfo.width = "half-right";
+          }
+        }
+        return fieldInfo;
+      });
+
       return fields;
     }
   },
@@ -154,8 +169,13 @@ export default {
   }
 }
 
-.form > .half {
+.form > .half,
+.form > .half-space {
   grid-column: start / half;
+}
+
+.form > .half-right {
+  grid-column: half / full;
 }
 
 .form > .full {
@@ -164,9 +184,5 @@ export default {
 
 .form > .fill {
   grid-column: start / fill;
-}
-
-.form > .half + .half:nth-of-type(even) {
-  grid-column: half / full;
 }
 </style>
