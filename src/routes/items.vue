@@ -86,7 +86,7 @@
             </option>
           </select>
           <div class="preview">
-            <v-icon :name="layoutIcons[viewType]" color="light-gray" />
+            <v-icon :name="layoutIcons[viewType]" color="darker-gray" />
             <span>{{ layoutNames[viewType] }}</span>
             <v-icon name="expand_more" color="light-gray" />
           </div>
@@ -747,6 +747,7 @@ label.style-4 {
   margin: -20px;
   padding: 20px;
   background-color: #dde3e6;
+  color: var(--darker-gray);
   position: relative;
   display: block;
 
