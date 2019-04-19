@@ -610,7 +610,7 @@ export default {
   },
   computed: {
     iconToShow() {
-      if (!this.field) {
+      if (!this.field || this.existing) {
         return { icon: null, color: null };
       }
       if (this.isFieldValid) {
@@ -806,7 +806,7 @@ export default {
       if (this.activeTab === "schema" && !this.field) {
         disabled = true;
       }
-      if (!this.isFieldValid) {
+      if (!this.isFieldValid && !this.existing) {
         disabled = true;
       }
 
