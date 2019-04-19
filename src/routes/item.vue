@@ -519,7 +519,10 @@ export default {
   },
   mounted() {
     const handler = () => {
-      this.save("stay");
+      if (this.editing) {
+        this.save("stay");
+      }
+
       return false;
     };
 
