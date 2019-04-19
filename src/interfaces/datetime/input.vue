@@ -28,6 +28,11 @@ export default {
   computed: {
     formattedValue() {
       if (!this.value) return null;
+
+      if (this.value.includes("+")) {
+        return format(new Date(this.value), this.format);
+      }
+
       return format(parse(this.value, "yyyy-MM-dd HH:mm:ss", new Date()), this.format);
     },
     placeholder() {
