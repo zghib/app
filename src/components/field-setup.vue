@@ -401,7 +401,7 @@
           @change="createM2Mjunction = !createM2Mjunction"
         />
 
-        <v-icon="arrow_backward" />
+        <v-icon name="arrow_backward" />
 
         <p>{{ $t("related_collection") }}</p>
 
