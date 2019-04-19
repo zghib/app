@@ -25,7 +25,7 @@
   <div
     v-else-if="!publicRoute"
     :style="{
-      '--accent': `var(--${color})`
+      '--brand': `var(--${color})`
     }"
   >
     <div v-if="hydrated" class="directus">
@@ -68,7 +68,7 @@ export default {
       color: state =>
         state.settings.values.color ||
         getComputedStyle(document.documentElement)
-          .getPropertyValue("--accent")
+          .getPropertyValue("--brand")
           .trim(),
       infoActive: state => state.sidebars.info
     }),
