@@ -24,7 +24,7 @@
       }"
     >
       <v-signal class="icon" />
-      <span class="no-wrap">
+      <span class="no-wrap project-name">
         {{ selectionName ? selectionName : $store.state.auth.projectName }}
       </span>
       <v-icon v-if="Object.keys(urls).length > 1" class="chevron" name="expand_more" />
@@ -154,11 +154,16 @@ export default {
   }
 
   .icon {
+    flex-shrink: 0;
     width: 21px;
     height: 24px;
-    margin-right: 15px;
+    margin-right: 21px;
     color: var(--light-gray);
     fill: var(--light-gray);
+  }
+
+  .project-name {
+    padding-right: 12px;
   }
 
   .chevron {

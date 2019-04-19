@@ -23,7 +23,7 @@
     />
   </svg>
 
-  <i v-else class="icon" :style="iconStyle">{{ name }}</i>
+  <i v-else :style="iconStyle">{{ name }}</i>
 </template>
 
 <script>
@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.icon {
+i {
   font-family: "Material Icons";
   font-weight: normal;
   font-style: normal;
