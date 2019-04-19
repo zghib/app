@@ -1,6 +1,6 @@
 {
   "name": "$t:tabular",
-  "icon": "view_list",
+  "icon": "view_headline",
   "translation": {
     "en-US": {
       "tabular": "Table",
