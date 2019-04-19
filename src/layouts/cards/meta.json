@@ -8,6 +8,13 @@
       "subtitle": "Subtitle",
       "src": "Image Source",
       "content": "Body Content"
+    },
+	"fr-FR": {
+      "cards": "Cartes",
+      "title": "Titre",
+      "subtitle": "Sous-titre",
+      "src": "Source d'image",
+      "content": "Contenu"
     }
   }
 }

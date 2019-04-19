@@ -8,7 +8,7 @@
       :key="key"
       :disabled="readonly"
       :model-value="String(value)"
-      :label="$t(options.name)"
+      :label="options.label"
       :checked="key == value"
       @change="$emit('input', $event)"
     ></v-radio>
@@ -31,8 +31,11 @@ export default {
       if (typeof this.options.status_mapping === "string") {
         return this.options.status_mapping ? JSON.parse(this.status_mapping) : {};
       }
-
-      return this.options.status_mapping || {};
+      if (!this.options.status_mapping) return {};
+      return this.$lodash.mapValues(this.options.status_mapping, mapping => ({
+        ...mapping,
+        label: this.$helpers.formatTitle(this.$t(mapping.name))
+      }));
     },
     optionValues() {
       const allStatuses = Object.keys(this.statusMapping);

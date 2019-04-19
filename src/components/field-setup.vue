@@ -21,7 +21,7 @@
           v-for="group in interfacesGrouped"
           :title="group.title"
           :key="group.title"
-          :open="1"
+          :open="true"
         >
           <div class="interfaces">
             <article
@@ -47,7 +47,7 @@
     <template slot="schema" v-if="interfaceName">
       <template v-if="!existing">
         <h1 class="style-0">
-          {{ $t("name_field", { field: $helpers.formatTitle(interfaceName) }) }}
+          {{ $t("name_field", { field: $helpers.formatTitle(interfaces[interfaceName].name) }) }}
         </h1>
         <p class="subtext">{{ $t("intelligent_defaults") }}</p>
       </template>
@@ -114,7 +114,11 @@
               <small class="description">{{ fieldTypeDescription }}</small>
             </label>
             <label>
-              {{ $t("db_datatype", { db: $helpers.formatTitle(databaseVendor) }) }}
+              {{
+                $t("db_datatype", {
+                  db: $helpers.formatTitle(databaseVendor)
+                })
+              }}
               <v-simple-select v-model="datatype">
                 <option
                   v-for="typeOption in availableDatatypes"
@@ -126,7 +130,7 @@
                 </option>
               </v-simple-select>
               <small class="description">
-                {{ selectedDatatypeInfo && selectedDatatypeInfo.description }}
+                {{ selectedDatatypeInfo && $t(selectedDatatypeInfo.description) }}
               </small>
             </label>
             <label>
@@ -771,7 +775,7 @@ export default {
     fieldTypeDescription() {
       if (!this.type) return null;
 
-      return mapping[this.type] && mapping[this.type].description;
+      return mapping[this.type] && this.$t(mapping[this.type].description);
     },
     lengthDisabled() {
       if (this.selectedDatatypeInfo && this.selectedDatatypeInfo.length === true) {
@@ -952,7 +956,7 @@ export default {
         return;
       }
 
-      if (this.selectedDatatypeInfo.length) {
+      if (this.selectedDatatypeInfo && this.selectedDatatypeInfo.length) {
         this.length = this.selectedDatatypeInfo.defaultLength;
 
         if (mapping[this.type][this.databaseVendor].length) {

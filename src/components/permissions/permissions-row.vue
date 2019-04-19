@@ -71,9 +71,7 @@
     </div>
     <div v-else class="row">
       <div class="cell">
-        <span v-tooltip="permissionName">
-          {{ $helpers.formatTitle(permissionName) }}
-        </span>
+        <span v-tooltip="permissionName">{{ $helpers.formatTitle(permissionName) }}</span>
         <span class="set-all">
           <button @click.prevent="setAll(true)" type="button">
             {{ $t("all") }}

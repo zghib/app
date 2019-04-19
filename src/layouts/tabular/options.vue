@@ -21,14 +21,14 @@
         </div>
       </draggable>
     </fieldset>
-    <label for="spacing" class="style-3">Spacing</label>
+    <label for="spacing" class="style-3">{{ $t("spacing") }}</label>
     <v-select
       id="spacing"
       :value="viewOptions.spacing || 'comfortable'"
       :options="{
-        compact: 'Compact',
-        cozy: 'Cozy',
-        comfortable: 'Comfortable'
+        compact: $t('compact'),
+        cozy: $t('cozy'),
+        comfortable: $t('comfortable')
       }"
       class="select"
       icon="reorder"

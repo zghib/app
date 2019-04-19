@@ -63,27 +63,27 @@
           <div class="advanced-form">
             <label class="toggle">
               <v-toggle v-model="status" />
-              {{ $t("Status") }}
+              {{ $t("status") }}
             </label>
             <label class="toggle">
               <v-toggle v-model="sort" />
-              {{ $t("Sort") }}
+              {{ $t("sort") }}
             </label>
             <label class="toggle">
               <v-toggle v-model="createdBy" :value="true" />
-              {{ $t("Created by") }}
+              {{ $t("created_by") }}
             </label>
             <label class="toggle">
               <v-toggle v-model="createdOn" :value="true" />
-              {{ $t("Created on") }}
+              {{ $t("created_on") }}
             </label>
             <label class="toggle">
               <v-toggle v-model="modifiedBy" />
-              {{ $t("Modified by") }}
+              {{ $t("modified_by") }}
             </label>
             <label class="toggle">
               <v-toggle v-model="modifiedOn" />
-              {{ $t("Modified on") }}
+              {{ $t("modified_on") }}
             </label>
           </div>
         </v-details>

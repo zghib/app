@@ -14,8 +14,8 @@
 
       <div class="sort-select">
         <select @input="setSortDirection($event.target.value)" :value="sortDirection">
-          <option value="asc">ASC</option>
-          <option value="desc">DESC</option>
+          <option value="asc">{{ $t("ASC") }}</option>
+          <option value="desc">{{ $t("DESC") }}</option>
         </select>
         <v-icon class="icon" name="arrow_drop_down" />
       </div>

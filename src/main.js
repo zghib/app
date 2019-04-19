@@ -6,7 +6,8 @@ import VueTimeago from "vue-timeago";
 import PortalVue from "portal-vue";
 import axios from "axios";
 import meta from "vue-meta";
-import en from "date-fns/locale/en-US/";
+import en from "vue-timeago/node_modules/date-fns/locale/en/";
+import fr from "vue-timeago/node_modules/date-fns/locale/fr/";
 import VueTheMask from "vue-the-mask";
 
 import "./design/main.scss";
@@ -54,7 +55,8 @@ Vue.use(VueTimeago, {
   name: "v-timeago",
   locale: "en-US",
   locales: {
-    en
+    "en-US": en,
+    "fr-FR": fr
   }
 });
 Vue.use(VueTheMask);

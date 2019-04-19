@@ -9,6 +9,10 @@
     "nl-NL": {
       "tabular": "Tabel",
       "fields": "Kolommen"
+    },
+	"fr-FR": {
+      "tabular": "Table",
+      "fields": "Champs"
     }
   }
 }
