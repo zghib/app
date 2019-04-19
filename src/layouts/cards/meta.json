@@ -1,6 +1,6 @@
 {
   "name": "$t:cards",
-  "icon": "crop_square",
+  "icon": "view_module",
   "translation": {
     "en-US": {
       "cards": "Cards",
