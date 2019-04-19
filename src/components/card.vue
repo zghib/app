@@ -61,6 +61,7 @@
               <li v-for="({ text, icon }, id) in options" :key="id">
                 <button type="button" @click="$emit(id)" v-close-popover>
                   <v-icon v-if="icon" :name="icon" />
+                  {{ $t("remove") }}
                 </button>
               </li>
             </ul>
