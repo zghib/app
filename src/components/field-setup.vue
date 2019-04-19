@@ -87,7 +87,7 @@
 
         <div class="toggles">
           <label class="toggle" v-if="type !== 'alias'">
-            <v-toggle v-model="required" />
+            <v-toggle v-model="required" :disabled="fieldInfo.primary_key" />
             {{ $t("required") }}
           </label>
           <label class="toggle">
