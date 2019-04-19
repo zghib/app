@@ -20,6 +20,7 @@
         :message="$t('create_role')"
         :placeholder="$t('enter_role_name')"
         :loading="adding"
+        required
         @cancel="addNew = false"
         @confirm="add"
       />
