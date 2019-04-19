@@ -1,5 +1,11 @@
 <template>
-  <div class="v-header-button">
+  <div
+    class="v-header-button"
+    v-tooltip="{
+      delay: { show: 750, hide: 100 },
+      content: label
+    }"
+  >
     <div v-if="Object.keys(options).length > 0" class="options">
       <select v-model="choice" @change="emitChange">
         <option disabled selected value="">{{ $t("more_options") }}</option>
@@ -71,6 +77,10 @@ export default {
     to: {
       type: String,
       default: null
+    },
+    label: {
+      type: String,
+      default: undefined
     }
   },
   data() {
