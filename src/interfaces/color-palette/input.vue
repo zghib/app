@@ -56,18 +56,17 @@ export default {
 
 <style lang="scss" scoped>
 .interface-color-picker {
-  position: relative;
   --swatch-size: 20px;
+
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   height: calc(var(--swatch-size) * 11);
-  width: calc(var(--swatch-size) * 18);
   margin-bottom: var(--swatch-size);
 
   button {
     flex-basis: var(--swatch-size);
-    width: var(--swatch-size);
     height: var(--swatch-size);
     display: block;
     transform: scale(1);

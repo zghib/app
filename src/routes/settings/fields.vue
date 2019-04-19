@@ -566,7 +566,7 @@ export default {
             directusFields.map(field => ({
               ...field,
               name: formatTitle(field.field),
-              note: vm.$t("note_" + field.field)
+              note: field.note
             })),
             "field"
           );
