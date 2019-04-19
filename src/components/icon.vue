@@ -107,4 +107,9 @@ i {
   font-feature-settings: "liga";
   vertical-align: middle;
 }
+
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
 </style>
