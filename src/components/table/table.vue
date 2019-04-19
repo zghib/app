@@ -44,9 +44,10 @@
           v-else
           class="style-4"
           v-tooltip="
-            columns[index].fieldInfo.type.toLowerCase() === 'o2m' ||
-            columns[index].fieldInfo.type.toLowerCase() === 'm2o' ||
-            columns[index].fieldInfo.type.toLowerCase() === 'translation'
+            (columns[index].fieldInfo && columns[index].fieldInfo.type.toLowerCase() === 'o2m') ||
+            (columns[index].fieldInfo && columns[index].fieldInfo.type.toLowerCase() === 'm2o') ||
+            (columns[index].fieldInfo &&
+              columns[index].fieldInfo.type.toLowerCase() === 'translation')
               ? $t('cant_sort_by_this_field')
               : undefined
           "
