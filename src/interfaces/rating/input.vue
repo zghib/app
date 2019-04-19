@@ -5,6 +5,7 @@
       :options="options"
       :rating.sync="rating"
       :readonly="readonly"
+      @update:rating="updateValue"
     ></stars>
     <div class="rating-value" v-if="options.display == 'number'">
       <v-input
