@@ -85,7 +85,7 @@ export default {
       const interfaceMeta = this.getInterfaceMeta(interfaceName);
 
       // In case the current field doesn't have an interface setup
-      if (!interfaceMeta) true;
+      if (!interfaceMeta) return;
 
       const hideLabel = interfaceMeta.hideLabel;
 
