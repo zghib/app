@@ -49,8 +49,13 @@
       @input="$emit('input', $event.target.value)"
     />
 
-    <v-icon v-if="iconLeft" :name="iconLeft" :color="iconLeftColor" />
-    <v-icon v-if="iconRight" :name="iconRight" :color="iconRightColor" />
+    <v-icon v-if="iconLeft" :name="iconLeft" :color="iconLeftColor" v-tooltip="iconLeftTooltip" />
+    <v-icon
+      v-if="iconRight"
+      :name="iconRight"
+      :color="iconRightColor"
+      v-tooltip="iconRightTooltip"
+    />
 
     <span v-if="charactercount">{{ charsRemaining }}</span>
   </div>
@@ -124,7 +129,6 @@ export default {
       type: [String, Number],
       default: 1
     },
-
     iconLeft: {
       type: String,
       default: ""
@@ -133,6 +137,10 @@ export default {
       type: String,
       default: null
     },
+    iconLeftTooltip: {
+      type: String,
+      default: ""
+    },
     iconRight: {
       type: String,
       default: ""
@@ -140,6 +148,10 @@ export default {
     iconRightColor: {
       type: String,
       default: null
+    },
+    iconRightTooltip: {
+      type: String,
+      default: ""
     },
     valid: {
       type: Boolean,

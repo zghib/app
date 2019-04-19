@@ -82,6 +82,7 @@ export default {
   equal_to: "Je rovno",
   existing: "Vybrat existující",
   field: "Sloupec",
+  field_already_exists: "{field} Již existuje",
   fields: "Sloupce",
   fields_are_saved_instantly: "Změny jsou ukládány okamžitě",
   file: "Soubor",

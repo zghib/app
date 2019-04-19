@@ -61,7 +61,14 @@
               :placeholder="$t('db_column_name')"
               class="name-input"
               :disabled="existing"
+              :icon-right="iconToShow.icon"
+              :icon-right-color="iconToShow.color"
+              :icon-right-tooltip="iconToShow.tooltip"
             />
+            <p class="small-text">
+              {{ $t("display_name") }}:
+              <b>{{ $helpers.formatTitle(field || "...") }}</b>
+            </p>
           </label>
           <label>
             {{ $t("default_value") }}
@@ -541,6 +548,7 @@ export default {
       sort: null,
 
       field: null,
+      isFieldValid: null,
       datatype: null,
       type: null,
       interfaceName: null,
@@ -597,6 +605,19 @@ export default {
     };
   },
   computed: {
+    iconToShow() {
+      if (!this.field) {
+        return { icon: null, color: null };
+      }
+      if (this.isFieldValid) {
+        return { icon: "done", color: "success" };
+      }
+      return {
+        icon: "error",
+        color: "danger",
+        tooltip: this.$t("field_already_exists", { field: "'" + this.field + "'" })
+      };
+    },
     collections() {
       return Object.assign({}, this.$store.state.collections);
     },
@@ -781,6 +802,9 @@ export default {
       if (this.activeTab === "schema" && !this.field) {
         disabled = true;
       }
+      if (!this.isFieldValid) {
+        disabled = true;
+      }
 
       let text = this.$t("next");
 
@@ -948,6 +972,8 @@ export default {
     },
     field(val) {
       this.field = this.validateFieldName(val);
+
+      this.isFieldValid = !Object.keys(this.collectionInfo.fields).includes(val);
 
       if (this.relation) {
         if (this.relation === "m2o") {
@@ -1465,6 +1491,17 @@ p {
 
 .currently-selected {
   margin-bottom: 40px;
+}
+
+.small-text {
+  margin-top: 4px;
+  font-style: italic;
+  font-size: 12px;
+  line-height: 1.5em;
+  color: var(--light-gray);
+  & b {
+    font-weight: 600;
+  }
 }
 
 .note {

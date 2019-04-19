@@ -134,6 +134,7 @@ export default {
   field_created: "Feld {field} erstellt",
   field_updated: "Feld {field} aktualisiert",
   field_removed: "Feld {field} gelöscht",
+  field_already_exists: "{field} Ist bereits vorhanden",
   fields: "Felder",
   fields_are_saved_automatically: "Feldeinstellungen werden automatisch gespeichert",
   file: "Datei",

@@ -199,6 +199,7 @@ export default {
   field_created: "{field} Veld Gecreëerd",
   field_updated: "{field} Veld Geüpdatet",
   field_removed: "{field} Veld Verwijderd",
+  field_already_exists: "{field} Bestaat al",
   fields: "Velden",
   fields_are_saved_instantly: "Wijzigingen worden meteen opgeslagen",
   file: "Bestand",

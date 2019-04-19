@@ -209,6 +209,7 @@ export default {
   field_created: "{field} Campo creato",
   field_updated: "{field} Field Updated",
   field_removed: "{field} Field Removed",
+  field_already_exists: "{field} Existe déjà",
   fields: "campi",
   fields_are_saved_instantly: "Modifiche salvate all'istante",
   file: "File",

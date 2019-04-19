@@ -214,6 +214,7 @@ export default {
   field_created: "{field} Utworzono pole",
   field_updated: "{field} Zaktualizowano pole",
   field_removed: "{field} Usunięto pole",
+  field_already_exists: "{field} Już istnieje",
   fields: "Pola",
   fields_are_saved_instantly: "Zmiany zapisane są natychmiastowo",
   file: "Plik",

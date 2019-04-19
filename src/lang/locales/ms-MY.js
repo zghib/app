@@ -220,6 +220,7 @@ export default {
   field_created: "{field} Medan Dicipta",
   field_updated: "{field} Medan Dikemaskini",
   field_removed: "{field} Medan Dibuang",
+  field_already_exists: "{field} Sudah wujud",
   fields: "Medan-medan",
   fields_are_saved_instantly: "Perubahan disimpan dengan serta-merta",
   file: "Fail",

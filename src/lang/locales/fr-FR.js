@@ -212,6 +212,7 @@ export default {
   field_created: "Champ {field} créé",
   field_updated: "Champ {field} mis à jour",
   field_removed: "Champ {field} supprimé",
+  field_already_exists: "{field} Existe déjà",
   fields: "Champs",
   fields_are_saved_instantly: "Enregistrement automatique des modifications",
   file: "Fichier",

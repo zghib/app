@@ -194,6 +194,7 @@ export default {
   field_created: "{field} 字段已创建",
   field_updated: "{field} 字段已更新",
   field_removed: "{field} 字段已移除",
+  field_already_exists: "{field} 已经存在",
   fields: "字段",
   fields_are_saved_instantly: "立即保存修改",
   file: "文件",

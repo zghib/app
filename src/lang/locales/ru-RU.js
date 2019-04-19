@@ -216,6 +216,7 @@ export default {
   field_created: "{field} Поле создано",
   field_updated: "{field} Поле обновлено",
   field_removed: "{field} Поле удалено",
+  field_already_exists: "{field} Уже существует",
   fields: "Поля",
   fields_are_saved_instantly: "Изменения сохраняются мгновенно",
   file: "Файл",

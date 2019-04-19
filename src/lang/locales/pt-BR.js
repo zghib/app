@@ -217,6 +217,7 @@ export default {
   field_created: "{field} Campo criado",
   field_updated: "{field} Campo Atualizado",
   field_removed: "{field} Campo Removido",
+  field_already_exists: "{field} Já existe",
   fields: "Campos",
   fields_are_saved_instantly: "Mudanças salvas instantaneamente",
   file: "Arquivo",

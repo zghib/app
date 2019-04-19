@@ -31,6 +31,7 @@
             :placeholder="fieldInfo.field"
             :icon-right="iconToShow.icon"
             :icon-right-color="iconToShow.color"
+            :icon-right-tooltip="iconToShow.tooltip"
           />
         </label>
         <p class="small-text">
@@ -77,7 +78,11 @@ export default {
       if (this.isFieldValid) {
         return { icon: "done", color: "success" };
       }
-      return { icon: "error", color: "danger" };
+      return {
+        icon: "error",
+        color: "danger",
+        tooltip: this.$t("field_already_exists", { field: "'" + this.field + "'" })
+      };
     },
     isFieldValid() {
       let isValid = true;
