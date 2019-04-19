@@ -263,6 +263,7 @@ export default {
   junction_collection: "Junction Collection",
   cant_disable_primary:
     "You can't disable primary key on an existing field. Remove this field instead.",
+  cant_sort_by_this_field: "You can't sort by this field",
   extension_error: "There was a problem loading the {ext} extension.",
   extensions_missing: "No Extensions Found",
   extensions_missing_copy: "Make sure you have the system extensions installed.",

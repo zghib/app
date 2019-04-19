@@ -40,7 +40,17 @@
           <v-icon class="sort-arrow" :name="sortVal.asc ? 'arrow_upward' : 'arrow_downward'" />
         </button>
 
-        <span v-else class="style-4">
+        <span
+          v-else
+          class="style-4"
+          v-tooltip="
+            columns[index].fieldInfo.type.toLowerCase() === 'o2m' ||
+            columns[index].fieldInfo.type.toLowerCase() === 'm2o' ||
+            columns[index].fieldInfo.type.toLowerCase() === 'translation'
+              ? $t('cant_sort_by_this_field')
+              : undefined
+          "
+        >
           {{ widths[field] > 40 ? name : null }}
         </span>
 
