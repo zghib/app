@@ -20,6 +20,7 @@
               <v-icon
                 v-if="sort.field === column.field"
                 :name="sort.asc ? 'arrow_downward' : 'arrow_upward'"
+                size="16"
               />
             </button>
           </div>
@@ -455,9 +456,9 @@ export default {
     }
 
     i {
-      font-size: 12px;
       vertical-align: top;
       color: var(--light-gray);
+      margin-top: -2px;
     }
   }
 
@@ -477,7 +478,7 @@ export default {
     height: 40px;
 
     & > button {
-      padding: 3px 5px;
+      padding: 3px 5px 2px;
       flex-basis: 200px;
     }
   }
