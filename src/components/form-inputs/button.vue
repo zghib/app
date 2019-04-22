@@ -51,7 +51,7 @@ export default {
     bg: {
       type: String,
       default: "action",
-      validator: value => ["action", "secondary", "warning", "danger"].includes(value)
+      validator: value => ["action", "warning", "danger"].includes(value)
     }
   }
 };
@@ -65,16 +65,6 @@ button.action {
   &:hover:not(:disabled) {
     background-color: var(--darkest-gray);
     border-color: var(--darkest-gray);
-  }
-}
-
-button.secondary {
-  background-color: var(--secondary);
-  border-color: var(--secondary);
-
-  &:hover:not(:disabled) {
-    background-color: var(--secondary-dark);
-    border-color: var(--secondary-dark);
   }
 }
 

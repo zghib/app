@@ -14,9 +14,9 @@ export default {
   props: {
     color: {
       type: String,
-      default: "accent",
+      default: "darker-gray",
       validator(val) {
-        return ["accent", "secondary", "success", "warning", "danger"].includes(val);
+        return ["darker-gray", "accent", "success", "warning", "danger"].includes(val);
       }
     },
     icon: {
@@ -59,26 +59,6 @@ export default {
     color: var(--light-gray);
     max-width: 200px;
     text-align: center;
-  }
-
-  .accent {
-    color: var(--dark-gray);
-  }
-
-  .secondary {
-    color: var(--secondary);
-  }
-
-  .success {
-    color: var(--success);
-  }
-
-  .warning {
-    color: var(--warning);
-  }
-
-  .danger {
-    color: var(--danger);
   }
 }
 

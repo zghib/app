@@ -287,10 +287,6 @@ export default {
       color: var(--darkest-gray);
     }
 
-    &.secondary {
-      color: var(--secondary);
-    }
-
     &.success {
       color: var(--success);
     }
