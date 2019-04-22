@@ -790,11 +790,6 @@ small {
   pointer-events: none;
   user-select: none;
 
-  h1::after {
-    content: "";
-    animation: ellipsis steps(3) 1s infinite;
-  }
-
   .material-input {
     input {
       transition: var(--fast) var(--transition);
@@ -811,24 +806,6 @@ small {
 
   .project-switcher i {
     display: none;
-  }
-}
-
-@keyframes ellipsis {
-  0% {
-    content: ".";
-  }
-
-  33% {
-    content: "..";
-  }
-
-  66% {
-    content: "...";
-  }
-
-  100% {
-    content: ".";
   }
 }
 
