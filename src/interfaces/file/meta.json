@@ -16,7 +16,7 @@
     "viewOptions": {
       "name": "$t:view_options",
       "comment": "$t:view_options_comment",
-      "interface": "code",
+      "interface": "json",
       "options": {
         "language": "application/json"
       },
@@ -30,7 +30,7 @@
     "viewQuery": {
       "name": "$t:view_query",
       "comment": "$t:view_query_comment",
-      "interface": "code",
+      "interface": "json",
       "options": {
         "language": "application/json"
       },
@@ -39,7 +39,7 @@
     "filters": {
       "name": "$t:filters",
       "comment": "$t:filters_comment",
-      "interface": "code",
+      "interface": "json",
       "options": {
         "language": "application/json"
       },

@@ -19,7 +19,7 @@
     "status_mapping": {
       "name": "$t:status_mapping",
       "comment": "$t:status_mapping_comment",
-      "interface": "code",
+      "interface": "json",
       "type": "JSON",
       "options": {
         "language": "application/json",
