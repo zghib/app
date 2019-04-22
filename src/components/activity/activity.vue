@@ -412,16 +412,14 @@ export default {
 
   button {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 0.875rem;
+    bottom: 8px;
+    right: 12px;
     transition: var(--fast) var(--transition);
     transition-property: color, opacity;
+    font-weight: var(--weight-bold);
     opacity: 0;
-
     color: var(--darker-gray);
+    background-color: var(--white);
     cursor: pointer;
     &:hover {
       color: var(--darkest-gray);
@@ -448,8 +446,8 @@ export default {
 <style lang="scss">
 .v-activity .content .comment {
   a {
-    color: var(--darker-gray);
-    text-decoration: none;
+    // color: var(--darker-gray);
+    // text-decoration: underline;
     &:hover {
       color: var(--darkest-gray);
     }

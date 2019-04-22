@@ -431,6 +431,7 @@ export default {
   sign_out_confirm_edits: "Are you sure you want to sign out? All unsaved changes will be lost.",
   status: "Status",
   statuses: "Statuses",
+  submit: "Submit",
   text: "Text",
   this_collection: "This Collection",
   to: "To",
