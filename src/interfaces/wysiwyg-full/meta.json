@@ -30,7 +30,7 @@
     "toolbarOptions": {
       "name": "$t:toolbar_options",
       "comment": "$t:toolbar_options_comment",
-      "interface": "code",
+      "interface": "json",
       "options": {
         "language": "application/json",
         "template": [

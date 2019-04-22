@@ -29,7 +29,7 @@
     "preferences": {
       "name": "$t:preferences",
       "comment": "$t:preferences_comment",
-      "interface": "code",
+      "interface": "json",
       "options": {
         "language": "application/json",
         "template": {
