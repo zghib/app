@@ -100,6 +100,7 @@ export default {
         const fieldName = fieldInfo.field;
 
         if (
+          this.readonly ||
           fieldInfo.readonly === true ||
           fieldInfo.readonly === "1" ||
           fieldInfo.readonly === 1 ||
