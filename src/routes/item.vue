@@ -162,7 +162,7 @@
           <v-notice color="warning">
             {{ $t("revert_copy", { date: $d(revertActivity.date, "long") }) }}
           </v-notice>
-          <v-form readonly :values="revertActivity.revision.data" :fields="fields" />
+          <v-form readonly :values="revertActivity.revision.data" :fields="fields" full-width />
         </div>
       </v-modal>
     </portal>
