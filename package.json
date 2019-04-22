@@ -29,6 +29,7 @@
     "flatpickr": "^4.5.7",
     "hex-rgb": "^4.0.0",
     "idlejs": "^2.0.1",
+    "jsonlint-mod": "^1.7.4",
     "leaflet": "^1.4.0",
     "lodash": "^4.17.11",
     "marked": "^0.6.2",

@@ -57,8 +57,6 @@ import "codemirror/addon/display/autorefresh.js";
 
 import "codemirror/keymap/sublime.js";
 
-import "./code.css";
-
 import mixin from "@directus/extension-toolkit/mixins/interface";
 
 export default {
