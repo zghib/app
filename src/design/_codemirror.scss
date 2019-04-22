@@ -109,13 +109,13 @@
 
 .CodeMirror-lint-tooltip {
   background-color: var(--white);
-  border: 1px solid var(--black);
+  border: 2px solid var(--lighter-gray);
   border-radius: var(--border-radius);
-  color: var(--black);
+  color: var(--darker-gray);
   font-family: var(--family-monospace);
   font-size: var(--size-3);
   overflow: hidden;
-  padding: 2px 5px;
+  padding: 12px 12px 12px 8px;
   position: fixed;
   white-space: pre;
   white-space: pre-wrap;
@@ -127,6 +127,15 @@
   -webkit-transition: opacity .4s;
   -o-transition: opacity .4s;
   -ms-transition: opacity .4s;
+}
+
+.CodeMirror-lint-tooltip {
+  .CodeMirror-lint-marker-error::before, .CodeMirror-lint-message-error::before {
+    vertical-align: middle;
+    margin-left: -18px;
+    margin-right: 6px;
+    margin-top: -2px;
+  }
 }
 
 .CodeMirror-lint-mark-error, .CodeMirror-lint-mark-warning {
