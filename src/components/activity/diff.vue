@@ -58,6 +58,7 @@ export default {
       top: 50%;
       transform: translateY(-50%);
       font-family: "Material Icons";
+      font-feature-settings: "liga";
       color: var(--danger);
       display: inline-block;
       vertical-align: middle;
@@ -76,6 +77,7 @@ export default {
       top: 50%;
       transform: translateY(-50%);
       font-family: "Material Icons";
+      font-feature-settings: "liga";
       color: var(--success);
       display: inline-block;
       vertical-align: middle;
@@ -84,8 +86,8 @@ export default {
   }
 
   .empty {
-    color: var(--gray);
-    background-color: var(--lightest-gray);
+    color: var(--lighter-gray);
+    background-color: var(--white);
     &:after {
       content: "block";
       position: absolute;
@@ -93,7 +95,8 @@ export default {
       top: 50%;
       transform: translateY(-50%);
       font-family: "Material Icons";
-      color: var(--gray);
+      font-feature-settings: "liga";
+      color: var(--lighter-gray);
       display: inline-block;
       vertical-align: middle;
       margin: 0 5px;
