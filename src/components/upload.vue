@@ -12,7 +12,7 @@
 
     <div class="dropzone" :class="{ smaller: small }">
       <div class="icon">
-        <v-icon name="cloud_upload" size="48" />
+        <v-icon name="cloud_upload" />
       </div>
       <div class="info">
         <p class="name">{{ $tc("drop_files", multiple ? 2 : 1) }}</p>
@@ -253,6 +253,7 @@ export default {
 
 .dropzone {
   position: relative;
+  padding: 100px 0;
 
   .buttons {
     position: absolute;
@@ -339,7 +340,7 @@ input.select {
   border-radius: var(--border-radius);
 
   .icon i {
-    font-size: 100px;
+    font-size: 100px !important;
     color: var(--lighter-gray);
   }
 
@@ -378,7 +379,7 @@ input.select {
 
   &.smaller {
     .icon i {
-      font-size: 60px;
+      font-size: 60px !important;
     }
 
     p {
