@@ -1,5 +1,5 @@
 <template>
-  <div class="notification" :class="item.type">
+  <div class="notification" :class="item.color">
     <div class="icon-main" :style="{ backgroundColor: ringColor }">
       <v-icon :color="iconColor" :name="item.iconMain" />
     </div>
@@ -28,9 +28,7 @@ export default {
       return this.item.details !== undefined ? this.$helpers.snarkdown(this.item.details) : "";
     },
     iconColor() {
-      return this.item.color !== undefined
-        ? `var(--${this.item.color}-500)`
-        : "var(--blue-gray-500)";
+      return this.item.color !== undefined ? `${this.item.color}-500` : "blue-gray-500";
     },
     ringColor() {
       return this.item.color !== undefined
@@ -67,11 +65,34 @@ export default {
   align-items: center;
   min-height: 64px;
   width: 100%;
-  border: var(--input-border-width) solid var(--lighter-gray);
+  border: var(--input-border-width) solid var(--lightest-gray);
   border-radius: 5px;
   margin-bottom: 12px;
   padding: 10px;
   background-color: var(--white);
+  &.red {
+    .title {
+      color: var(--red-500);
+    }
+  }
+
+  &.green {
+    .title {
+      color: var(--green-500);
+    }
+  }
+
+  &.amber {
+    .title {
+      color: var(--amber-500);
+    }
+  }
+
+  &.blue {
+    .title {
+      color: var(--blue-500);
+    }
+  }
 }
 
 .icon-main {
@@ -101,49 +122,13 @@ export default {
 .content {
   padding-left: 10px;
   padding-right: 10px;
-}
-
-.title {
-  font-weight: 700;
-}
-
-.details {
-  color: var(--light-gray);
-}
-
-.error {
-  .icon-main {
-    background-color: var(--red-100);
-    i {
-      color: var(--red-500);
-    }
+  .title {
+    font-size: var(--size-2);
+    color: var(--darker-gray);
   }
-}
 
-.success {
-  .icon-main {
-    background-color: var(--green-100);
-    i {
-      color: var(--green-500);
-    }
-  }
-}
-
-.warning {
-  .icon-main {
-    background-color: var(--amber-100);
-    i {
-      color: var(--amber-500);
-    }
-  }
-}
-
-.info {
-  .icon-main {
-    background-color: var(--blue-100);
-    i {
-      color: var(--blue-500);
-    }
+  .details {
+    color: var(--light-gray);
   }
 }
 </style>
