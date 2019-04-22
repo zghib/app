@@ -8,6 +8,7 @@
             {{ bookmark.title }}
           </router-link>
           <button
+            v-if="isUserAdmin || bookmark.user === userId"
             v-tooltip="$t('delete_bookmark')"
             @click="
               confirmRemove = true;
@@ -43,6 +44,14 @@ export default {
       confirmRemove: false,
       toBeDeletedBookmark: null
     };
+  },
+  computed: {
+    isUserAdmin() {
+      return this.$store.state.currentUser.admin;
+    },
+    userId() {
+      return this.$store.state.currentUser.id;
+    }
   },
   methods: {
     deleteBookmark() {
