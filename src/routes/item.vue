@@ -152,9 +152,9 @@
         @close="revertActivity = false"
       >
         <div class="revert">
-          <p class="notice">
+          <v-notice color="warning">
             {{ $t("revert_copy", { date: $d(revertActivity.date, "long") }) }}
-          </p>
+          </v-notice>
           <v-form readonly :values="revertActivity.revision.data" :fields="fields" />
         </div>
       </v-modal>
@@ -1012,11 +1012,8 @@ export default {
 .revert {
   padding: 20px;
 
-  p.notice {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px dotted var(--lighter-gray);
-    color: var(--warning);
+  .notice {
+    margin-bottom: 40px;
   }
 }
 

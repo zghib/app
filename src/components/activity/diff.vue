@@ -49,7 +49,8 @@ export default {
   .before {
     position: relative;
     color: var(--danger);
-    background-color: #fdefed;
+    background-color: var(--white);
+    border-bottom: 2px solid var(--lightest-gray);
     &:after {
       content: "close";
       position: absolute;
@@ -67,7 +68,7 @@ export default {
   .after {
     position: relative;
     color: var(--success);
-    background-color: #f6faf0;
+    background-color: var(--white);
     &:after {
       content: "check";
       position: absolute;

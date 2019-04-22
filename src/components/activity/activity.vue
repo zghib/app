@@ -304,12 +304,12 @@ export default {
 
     .revert {
       transition: all var(--fast) var(--transition);
-      background-color: var(--light-gray);
+      background-color: var(--lighter-gray);
       border-radius: var(--border-radius);
       padding: 4px;
       margin: 14px auto;
       width: 100%;
-      i.material-icons {
+      i {
         width: auto;
         height: auto;
         transform: translateX(0);
