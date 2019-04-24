@@ -256,7 +256,7 @@ export default {
 
 .dropzone {
   position: relative;
-  padding: 100px 0;
+  padding: 0;
 
   .buttons {
     position: absolute;
