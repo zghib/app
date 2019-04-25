@@ -442,14 +442,13 @@ export default {
 
 .toolbar {
   position: sticky;
-  height: 48px;
+  height: var(--header-height);
   left: 0;
   top: 0;
   z-index: +1;
   background-color: var(--white);
   border-color: var(--lightest-gray);
   transition: box-shadow var(--fast) var(--transition-out);
-  padding-top: 12px;
 
   &.shadow {
     box-shadow: var(--box-shadow);
