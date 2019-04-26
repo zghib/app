@@ -1,13 +1,13 @@
 <template>
   <div class="rating">
     <stars
-      v-if="options.display == 'star'"
+      v-if="options.display === 'star'"
       :options="options"
-      :rating.sync="rating"
+      :rating.sync="!!value ? value : rating"
       :readonly="readonly"
       @update:rating="updateValue"
     ></stars>
-    <div class="rating-value" v-if="options.display == 'number'">
+    <div class="rating-value" v-else-if="options.display === 'number'">
       <v-input
         class="rating-input"
         type="number"
@@ -18,7 +18,9 @@
         :value="String(value) || '0'"
         @input="updateValue"
       ></v-input>
-      <span>/ {{ options.max_stars }}</span>
+      <span>
+        {{ (!!value ? String(value) : "0") + "/" + options.max_stars }}
+      </span>
     </div>
   </div>
 </template>
@@ -30,6 +32,11 @@ import Stars from "./stars.vue";
 export default {
   name: "interface-rating",
   mixins: [mixin],
+  data() {
+    return {
+      rating: null
+    };
+  },
   components: {
     Stars
   },

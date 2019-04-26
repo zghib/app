@@ -40,7 +40,7 @@ export default {
     choices() {
       /**
        * We'll create an array of choices here.
-       * If the button-group has subgroups of choices & indivisual choice both,
+       * If the button-group has subgroups of choices & individual choice both,
        * We'll need to create a new subgroup with all individual items.
        */
       const choices = [];
