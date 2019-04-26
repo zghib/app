@@ -317,18 +317,23 @@ button {
   transform: translateY(-50%);
 }
 
-.search-input {
-  border-bottom: 1px solid var(--lightest-gray);
-  padding: 12px;
+.search {
+  position: sticky;
+  left: 0;
+  top: 0;
+  &-input {
+    border-bottom: 1px solid var(--lightest-gray);
+    padding: 12px;
 
-  & >>> input {
-    border-radius: 0;
-    border: none;
-    padding-left: var(--page-padding);
-    height: var(--header-height);
+    & >>> input {
+      border-radius: 0;
+      border: none;
+      padding-left: var(--page-padding);
+      height: var(--header-height);
 
-    &::placeholder {
-      color: var(--light-gray);
+      &::placeholder {
+        color: var(--light-gray);
+      }
     }
   }
 }
