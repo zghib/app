@@ -16,7 +16,7 @@
   "dependencies": {
     "@directus/extension-toolkit": "0.0.5",
     "@directus/format-title": "^2.3.1",
-    "@directus/sdk-js": "^5.2.1",
+    "@directus/sdk-js": "^5.3.0",
     "@rijk/jwt-payload": "^1.0.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^2.6.1",
