@@ -118,6 +118,8 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  -moz-font-feature-settings: "liga";
+  -moz-osx-font-smoothing: grayscale;
   &:after {
     font-family: "Material Icons";
     font-size: 36px;
