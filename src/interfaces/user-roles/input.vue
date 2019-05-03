@@ -28,7 +28,11 @@ export default {
       const options = {};
 
       this.roles
-        .filter(role => role.id !== 2) // 2 = public role
+        .filter(role => {
+          if (this.options.showPublic) return true;
+
+          return role.id !== 2;
+        }) // 2 = public role
         .forEach(role => {
           options[role.id] = role.name;
         });
