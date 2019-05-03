@@ -615,6 +615,8 @@ export default {
       return next(vm => (vm.notFound = true));
     }
 
+    if (collection === "directus_files") return next("/files");
+
     if (collectionInfo && collectionInfo.single) {
       return next(`/collections/${collection}/1`);
     }

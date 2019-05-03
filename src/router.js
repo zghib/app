@@ -118,10 +118,6 @@ const router = new Router({
       }
     },
     {
-      path: "/collections/directus_files",
-      redirect: "/files"
-    },
-    {
       path: "/files",
       component: FileLibrary
     },
