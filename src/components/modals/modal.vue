@@ -281,7 +281,7 @@ export default {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 500;
     position: relative;
 
     &:hover {
