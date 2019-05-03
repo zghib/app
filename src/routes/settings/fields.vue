@@ -24,7 +24,7 @@
     </v-header>
 
     <label class="label">{{ $t("fields") }}</label>
-    <v-notice color="warning">{{ $t("fields_are_saved_instantly") }}</v-notice>
+    <v-notice color="warning" icon="warning">{{ $t("fields_are_saved_instantly") }}</v-notice>
     <div class="table">
       <div class="header">
         <div class="row">
