@@ -253,7 +253,7 @@ router.beforeEach((to, from, next) => {
 });
 
 router.afterEach((to, from) => {
-  if (store.state.hydrating === false && from.path !== "/logout") {
+  if (store.state.hydrated && from.path !== "/logout") {
     store.dispatch("track", { page: to.path });
   }
 });
