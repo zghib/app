@@ -4,7 +4,7 @@
     :type="type"
     :disabled="disabled || loading"
     class="form-button style-btn"
-    @click="$emit('click')"
+    @click.prevent.stop="$emit('click')"
   >
     <v-icon v-if="icon && !loading" :name="icon" class="icon" />
     <v-spinner

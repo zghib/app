@@ -34,16 +34,22 @@
         >
           <div class="cell">{{ collection.name }}</div>
           <div class="cell note">{{ collection.note }}</div>
-          <button
+          <v-button
             v-if="collection.managed"
             class="managed"
-            @click.prevent.stop="toggleManage(collection)"
+            :loading="toManage.includes(collection.collection)"
+            @click="toggleManage(collection)"
           >
             {{ $t("dont_manage") }}
-          </button>
-          <button v-else class="not-managed" @click.prevent.stop="toggleManage(collection)">
+          </v-button>
+          <v-button
+            v-else
+            class="not-managed"
+            :loading="toManage.includes(collection.collection)"
+            @click="toggleManage(collection)"
+          >
             {{ $t("manage") }}
-          </button>
+          </v-button>
         </router-link>
       </div>
     </div>
@@ -96,6 +102,7 @@
         color="danger"
         :confirm-text="$t('dont_manage')"
         @cancel="dontManage = null"
+        :loading="toManage.includes(dontManage.collection.collection)"
         @confirm="stopManaging"
       />
     </portal>
@@ -122,7 +129,8 @@ export default {
       modifiedBy: false,
       modifiedOn: false,
 
-      dontManage: null
+      dontManage: null,
+      toManage: []
     };
   },
   computed: {
@@ -534,6 +542,7 @@ export default {
             managed: true
           })
           .then(() => {
+            this.toManage.push(collection.collection);
             return this.$store.dispatch("getCollections");
           })
           .then(() => {
@@ -550,10 +559,14 @@ export default {
               notify: this.$t("something_went_wrong_body"),
               error
             });
+          })
+          .then(() => {
+            this.toManage.splice(this.toManage.indexOf(collection.collection), 1);
           });
       }
     },
     stopManaging() {
+      this.toManage.push(this.dontManage.collection.collection);
       return this.$api
         .updateItem("directus_collections", this.dontManage.collection, {
           managed: false
@@ -577,6 +590,9 @@ export default {
             notify: this.$t("something_went_wrong_body"),
             error
           });
+        })
+        .then(() => {
+          this.toManage.splice(this.toManage.indexOf(this.dontManage.collection.collection), 1);
         });
     }
   }
@@ -640,6 +656,13 @@ export default {
     padding: 5px 10px;
     position: absolute;
     right: 0;
+
+    min-width: auto;
+    height: auto;
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 200;
+    border: 0;
 
     &.managed {
       background-color: var(--lightest-gray);

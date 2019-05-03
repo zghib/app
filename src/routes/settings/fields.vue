@@ -37,7 +37,11 @@
         <draggable v-model="fields" @start="startSort" @end="saveSort">
           <div class="row" v-for="field in fields" :key="field.field">
             <div class="drag"><v-icon name="drag_handle" /></div>
-            <div class="inner row" @click.stop="startEditingField(field)">
+            <div
+              class="inner row"
+              :style="{ cursor: field.interface ? 'inherit' : 'default' }"
+              @click.stop="field.interface ? startEditingField(field) : false"
+            >
               <div>
                 {{ $helpers.formatTitle(field.field) }}
                 <span class="optional" v-if="field.required === false && !field.primary_key">
@@ -46,10 +50,17 @@
               </div>
               <div>
                 {{
-                  ($store.state.extensions.interfaces[field.interface] &&
-                    $store.state.extensions.interfaces[field.interface].name) ||
-                    "--"
+                  $store.state.extensions.interfaces[field.interface] &&
+                    $store.state.extensions.interfaces[field.interface].name
                 }}
+                <v-button
+                  v-if="!field.interface"
+                  class="not-managed"
+                  @click="manageField(field)"
+                  :loading="toManage.includes(field.field)"
+                >
+                  {{ $t("manage") }}
+                </v-button>
               </div>
             </div>
             <v-popover
@@ -144,6 +155,7 @@
 </template>
 
 <script>
+import { datatypes } from "../../type-map";
 import { keyBy } from "lodash";
 import formatTitle from "@directus/format-title";
 import shortid from "shortid";
@@ -175,6 +187,7 @@ export default {
   },
   data() {
     return {
+      toManage: [],
       duplicateInterfaceBlacklist: [
         "primary-key",
         "many-to-many",
@@ -244,6 +257,25 @@ export default {
     }
   },
   methods: {
+    manageField(field) {
+      this.toManage.push(field.field);
+      const databaseVendor = this.$store.state.serverInfo.databaseVendor;
+      const suggestedInterface = datatypes[databaseVendor][field.datatype].fallbackInterface;
+      const fieldInfo = {
+        field: field.field,
+        sort: field.sort,
+        interface: suggestedInterface
+      };
+      const result = {
+        fieldInfo,
+        relation: null
+      };
+      this.setFieldSettings(result).then(async () => {
+        await this.$store.dispatch("getCollections");
+        field.interface = suggestedInterface;
+        this.toManage.splice(this.toManage.indexOf(field.field), 1);
+      });
+    },
     remove() {
       const id = this.$helpers.shortid.generate();
       this.$store.dispatch("loadingStart", { id });
@@ -312,6 +344,9 @@ export default {
       this.$set(this.edits, field, value);
     },
     canDuplicate(fieldInterface) {
+      if (!fieldInterface) {
+        return false;
+      }
       return this.duplicateInterfaceBlacklist.includes(fieldInterface) === false;
     },
     duplicateFieldSettings({ fieldInfo, collection }) {
@@ -773,6 +808,27 @@ label.label {
         color: var(--darkest-gray);
         transition: none;
       }
+    }
+  }
+}
+
+button {
+  &.not-managed {
+    padding: 5px 10px;
+    border-radius: var(--border-radius);
+    background-color: var(--darker-gray);
+    color: var(--white);
+
+    min-width: auto;
+    height: auto;
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 200;
+    border: 0;
+
+    &:hover {
+      background-color: var(--darkest-gray);
+      color: var(--white);
     }
   }
 }
