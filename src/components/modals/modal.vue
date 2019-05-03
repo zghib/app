@@ -213,7 +213,7 @@ export default {
   .body {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-    height: 70vh;
+    max-height: 70vh;
     position: relative;
     background-color: var(--body-background);
 
