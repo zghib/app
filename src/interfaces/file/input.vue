@@ -20,7 +20,7 @@
       v-else
       small
       :disabled="readonly"
-      class="dropzone"
+      class="uploader"
       @upload="saveUpload"
       :accept="options.accept"
       :multiple="false"
@@ -215,13 +215,13 @@ export default {
 
 <style lang="scss" scoped>
 .card,
-.dropzone {
+.uploader {
   margin-bottom: 20px;
   width: 100%;
   max-width: var(--width-x-large);
 }
 
-.dropzone {
+.uploader {
   height: 190px;
 }
 
