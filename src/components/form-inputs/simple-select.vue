@@ -50,12 +50,7 @@ export default {
     getValueNames() {
       const selectElement = this.$refs.selectElement;
       const valueNames = {};
-
-      const children = Array.from(selectElement.children)
-        .filter(element => {
-          return element.tagName.toLowerCase() === "option";
-        })
-        .filter(element => element.value);
+      const children = Array.from(selectElement.querySelectorAll("option"));
 
       children.forEach(element => {
         valueNames[element.value] = element.innerText;
@@ -66,6 +61,11 @@ export default {
   },
   mounted() {
     this.getValueNames();
+  },
+  watch: {
+    value() {
+      this.getValueNames();
+    }
   }
 };
 </script>
