@@ -13,6 +13,7 @@
         :id="name"
         :placeholder="options.placeholder || ''"
         :options="selectOptions"
+        :disabled="disabled || readonly"
         :value="valuePK"
         :icon="options.icon"
         @input="$emit('input', $event)"
