@@ -22,7 +22,7 @@
       :breadcrumb="breadcrumb"
       :info-toggle="!newItem && !batch && !activityDetail"
       :icon-link="singleItem ? null : `/collections/${collection}`"
-      :icon="singleItem ? collectionInfo.icon : 'arrow_back'"
+      :icon="singleItem ? collectionInfo.icon || 'box' : 'arrow_back'"
       item-detail
     >
       <template v-if="status" slot="title">
@@ -58,17 +58,7 @@
           :disabled="!editing"
           :loading="saving"
           :label="$t('save')"
-          :options="
-            !editing
-              ? {
-                  copy: $t('save_as_copy')
-                }
-              : {
-                  stay: $t('save_and_stay'),
-                  add: $t('save_and_add'),
-                  copy: $t('save_as_copy')
-                }
-          "
+          :options="saveOptions"
           icon="check"
           color="action"
           hover-color="success"
@@ -278,6 +268,23 @@ export default {
     };
   },
   computed: {
+    saveOptions() {
+      if (this.singleItem) {
+        return {};
+      }
+
+      if (this.editing) {
+        return {
+          stay: this.$t("save_and_stay"),
+          add: this.$t("save_and_add"),
+          copy: this.$t("save_as_copy")
+        };
+      }
+
+      return {
+        copy: this.$t("save_as_copy")
+      };
+    },
     breadcrumb() {
       if (this.collection === "directus_users") {
         let crumbName = this.$t("editing_item");
