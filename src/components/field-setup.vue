@@ -86,8 +86,11 @@
         </label>
 
         <div class="toggles">
-          <label class="toggle" v-if="type !== 'alias'">
-            <v-toggle v-model="required" :disabled="fieldInfo.primary_key" />
+          <label class="toggle">
+            <v-toggle
+              v-model="required"
+              :disabled="fieldInfo.primary_key || this.type === 'alias'"
+            />
             {{ $t("required") }}
           </label>
           <label class="toggle">
@@ -918,7 +921,12 @@ export default {
       if (this.existing) return;
 
       if (this.selectedInterfaceInfo && this.selectedInterfaceInfo.recommended) {
-        const { defaultValue, length, validation } = this.selectedInterfaceInfo.recommended;
+        const {
+          defaultValue,
+          length,
+          validation,
+          required
+        } = this.selectedInterfaceInfo.recommended;
 
         if (defaultValue) {
           this.default_value = defaultValue;
@@ -930,6 +938,10 @@ export default {
 
         if (validation) {
           this.validation = validation;
+        }
+
+        if (required !== undefined) {
+          this.required = required;
         }
       }
 
