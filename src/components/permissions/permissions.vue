@@ -82,7 +82,7 @@ export default {
         collection.startsWith("directus_")
       );
 
-      return this.$lodash(permissions)
+      return _(permissions)
         .toPairs()
         .sortBy(0)
         .fromPairs()
@@ -94,7 +94,7 @@ export default {
         (permission, collection) => collection.startsWith("directus_") === false
       );
 
-      return this.$lodash(permissions)
+      return _(permissions)
         .toPairs()
         .sortBy(0)
         .fromPairs()
