@@ -46,12 +46,7 @@
               type="button"
               class="remove-item"
               v-tooltip="$t('remove_related')"
-              @click.stop="
-                removeRelated({
-                  relatedKey: item[relatedKey],
-                  item
-                })
-              "
+              @click.stop="removeRelated(item[relatedKey])"
             >
               <v-icon name="close" />
             </button>
@@ -200,6 +195,9 @@ export default {
         primary_key: true
       }).field;
     },
+    relatedField() {
+      return this.relation.field_many.field;
+    },
 
     visibleFields() {
       if (this.relationSetup === false) return [];
@@ -329,7 +327,7 @@ export default {
       const selectedPKs = this.selection.map(item => item[this.relatedKey]);
 
       // Set $delete: true to all items that aren't selected anymore
-      const newValue = (this.value || []).map(item => {
+      let newValue = (this.value || []).map(item => {
         const relatedPK = item[this.relatedKey];
 
         if (!relatedPK) return item;
@@ -360,6 +358,15 @@ export default {
         }
       });
 
+      // Filter out copies of the current relational parent item
+      newValue = newValue.map(item => {
+        if (typeof item === "object" && item.hasOwnProperty(this.relatedField)) {
+          delete item[this.relatedField];
+        }
+
+        return item;
+      });
+
       this.$emit("input", newValue);
 
       this.selectExisting = false;
@@ -374,48 +381,82 @@ export default {
     },
     saveEdits() {
       this.$emit("input", [
-        ...(this.value || []).map(val => {
-          if (val.id === this.editExisting[this.relatedKey]) {
-            return {
-              ...val,
-              ...this.edits
-            };
-          }
+        ...(this.value || [])
+          .map(val => {
+            if (val.id === this.editExisting[this.relatedKey]) {
+              return {
+                ...val,
+                ...this.edits
+              };
+            }
 
-          return val;
-        })
+            return val;
+          })
+          // Filter out copies of the current relational parent item
+          .map(item => {
+            if (typeof item === "object" && item.hasOwnProperty(this.relatedField)) {
+              delete item[this.relatedField];
+            }
+
+            return item;
+          })
       ]);
 
       this.edits = {};
       this.editExisting = false;
     },
     addNewItem() {
-      this.$emit("input", [...(this.value || []), this.edits]);
+      this.$emit("input", [
+        ...(this.value || []).map(item => {
+          if (typeof item === "object" && item.hasOwnProperty(this.relatedField)) {
+            delete item[this.relatedField];
+          }
+
+          return item;
+        }),
+        this.edits
+      ]);
 
       this.edits = {};
       this.addNew = false;
     },
-    removeRelated({ relatedKey }) {
+    removeRelated(relatedKey) {
       if (relatedKey) {
         this.$emit(
           "input",
-          (this.value || []).map(val => {
-            if (val[this.relatedKey] === relatedKey) {
-              return {
-                [this.relatedKey]: val[this.relatedKey],
-                $delete: true
-              };
-            }
+          (this.value || [])
+            .map(val => {
+              if (val[this.relatedKey] === relatedKey) {
+                return {
+                  [this.relatedKey]: val[this.relatedKey],
+                  $delete: true
+                };
+              }
 
-            return val;
-          })
+              return val;
+            })
+            .map(item => {
+              if (typeof item === "object" && item.hasOwnProperty(this.relatedField)) {
+                delete item[this.relatedField];
+              }
+
+              return item;
+            })
         );
       } else {
         this.$emit(
           "input",
-          (this.value || []).filter(val => {
-            return val[this.relatedKey] !== relatedKey;
-          })
+          (this.value || [])
+            .filter(val => {
+              return val[this.relatedKey] !== relatedKey;
+            })
+            .map(item => {
+              if (typeof item === "object" && item.hasOwnProperty(this.relatedField)) {
+                delete item[this.relatedField];
+              }
+
+              return item;
+            })
         );
       }
     },
