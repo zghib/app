@@ -33,7 +33,7 @@ export default {
   advanced_options: "Advanced options",
   almost_done_options: "Almost Done! Now just review the interface options below.",
   almost_done_copy:
-    "Every interface can be perfectly tailored to your needs. Below are the available options for this field, but only some are required.",
+    "Every interface can be tailored to your needs. Below are the options available for this field.",
   all: "All",
   api_url: "API URL",
   api_installed: "API Successfully Installed",
