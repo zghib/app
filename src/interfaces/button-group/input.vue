@@ -80,8 +80,8 @@ Theme: Outline
   align-items: center;
   justify-content: center;
   padding: 0px 16px;
-  height: 40px;
-  line-height: 40px;
+  height: 44px;
+  line-height: 44px;
   white-space: nowrap;
   color: var(--gray);
   margin-bottom: 8px;
