@@ -196,7 +196,7 @@ export default {
       return this.relation.collection_many.fields;
     },
     relatedKey() {
-      return this.$lodash.find(this.relation.collection_many.fields, {
+      return _.find(this.relation.collection_many.fields, {
         primary_key: true
       }).field;
     },
@@ -214,7 +214,7 @@ export default {
     items() {
       if (this.relationSetup === false) return [];
 
-      return this.$lodash.orderBy(
+      return _.orderBy(
         (this.value || []).filter(val => !val.$delete),
         item => item[this.sort.field],
         this.sort.asc ? "asc" : "desc"
@@ -232,7 +232,7 @@ export default {
       if (this.relationSetup === false) return null;
       if (!this.relatedCollectionFields) return null;
 
-      return this.$lodash.mapValues(this.relatedCollectionFields, field => field.default_value);
+      return _.mapValues(this.relatedCollectionFields, field => field.default_value);
     },
     relatedDefaultsWithEdits() {
       if (this.relationSetup === false) return null;
@@ -279,7 +279,7 @@ export default {
       this.setSelection();
     }
 
-    this.onSearchInput = this.$lodash.debounce(this.onSearchInput, 200);
+    this.onSearchInput = _.debounce(this.onSearchInput, 200);
   },
   watch: {
     value() {

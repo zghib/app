@@ -744,8 +744,8 @@ export default {
     interfaceOptions() {
       if (!this.selectedInterfaceInfo) return null;
       const options = Object.assign({}, this.selectedInterfaceInfo.options);
-      const regular = this.$lodash.pickBy(options, opt => !opt.advanced);
-      const advanced = this.$lodash.pickBy(options, opt => opt.advanced === true);
+      const regular = _.pickBy(options, opt => !opt.advanced);
+      const advanced = _.pickBy(options, opt => opt.advanced === true);
 
       return { regular, advanced };
     },
@@ -872,12 +872,12 @@ export default {
       return false;
     },
     primaryKeyField() {
-      return this.$lodash.find(this.collectionInfo.fields, {
+      return _.find(this.collectionInfo.fields, {
         primary_key: true
       });
     },
     currentM2MIndex() {
-      const index = this.$lodash.findIndex(this.relationInfoM2M, info => {
+      const index = _.findIndex(this.relationInfoM2M, info => {
         return info.collection_one === this.collectionInfo.collection;
       });
 
@@ -907,7 +907,7 @@ export default {
           ...this.interfaceOptions.regular
         };
 
-        this.$lodash.forEach(options, (info, key) => {
+        _.forEach(options, (info, key) => {
           this.$set(this.options, key, info.default);
         });
       }
@@ -1167,7 +1167,7 @@ export default {
       // that way). +1 for future optimizations!
       const fieldName = this.fieldInfo.field;
       const collectionName = this.collectionInfo.collection;
-      const storeFieldCopy = this.$lodash.clone(
+      const storeFieldCopy = _.clone(
         this.$store.state.collections[collectionName].fields[fieldName]
       );
 
@@ -1192,7 +1192,7 @@ export default {
         const existingRelation = this.$store.getters.m2o(collection, field);
 
         if (existingRelation) {
-          this.$lodash.forEach(existingRelation, (val, key) => {
+          _.forEach(existingRelation, (val, key) => {
             if (key && val && key.startsWith("collection")) {
               return this.$set(this.relationInfo, key, val.collection);
             }
@@ -1211,7 +1211,7 @@ export default {
           this.relationInfo.collection_one = Object.values(
             this.$store.state.collections
           )[0].collection;
-          this.relationInfo.field_one = this.$lodash.find(
+          this.relationInfo.field_one = _.find(
             Object.values(this.$store.state.collections)[0].fields,
             { primary_key: true }
           ).field;
@@ -1220,7 +1220,7 @@ export default {
         const existingRelation = this.$store.getters.o2m(collection, field);
 
         if (existingRelation) {
-          this.$lodash.forEach(existingRelation, (val, key) => {
+          _.forEach(existingRelation, (val, key) => {
             if (key && val && key.startsWith("collection")) {
               return this.$set(this.relationInfo, key, val.collection);
             }
@@ -1241,7 +1241,7 @@ export default {
             this.$store.state.collections
           )[0].collection;
 
-          this.relationInfo.field_many = this.$lodash.find(
+          this.relationInfo.field_many = _.find(
             Object.values(this.$store.state.collections)[0].fields,
             { primary_key: true }
           ).field;
@@ -1334,7 +1334,7 @@ export default {
     },
     primaryKeyFieldByCollection(collection) {
       const fields = this.fields(collection);
-      return this.$lodash.find(fields, { primary_key: true });
+      return _.find(fields, { primary_key: true });
     },
     validateFieldName(string) {
       // Based on https://gist.github.com/mathewbyrne/1280286

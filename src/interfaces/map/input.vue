@@ -206,7 +206,7 @@ export default {
       // Handle drag event of marker.
       this.marker.on(
         "drag",
-        this.$lodash.debounce(e => {
+        _.debounce(e => {
           this.setValue(e.latlng);
         }, 100)
       );

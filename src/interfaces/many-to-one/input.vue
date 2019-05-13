@@ -98,12 +98,12 @@ export default {
       return true;
     },
     relatedPrimaryKeyField() {
-      return this.$lodash.find(this.relation.collection_one.fields, {
+      return _.find(this.relation.collection_one.fields, {
         primary_key: true
       }).field;
     },
     valuePK() {
-      if (this.$lodash.isObject(this.value)) return this.value[this.relatedPrimaryKeyField];
+      if (_.isObject(this.value)) return this.value[this.relatedPrimaryKeyField];
 
       return this.value;
     },
@@ -126,9 +126,8 @@ export default {
     selectOptions() {
       if (this.items.length === 0) return {};
 
-      return this.$lodash.mapValues(
-        this.$lodash.keyBy(this.items, this.relatedPrimaryKeyField),
-        item => this.render(item)
+      return _.mapValues(_.keyBy(this.items, this.relatedPrimaryKeyField), item =>
+        this.render(item)
       );
     },
     preferences() {
@@ -168,7 +167,7 @@ export default {
       this.fetchItems();
     }
 
-    this.onSearchInput = this.$lodash.debounce(this.onSearchInput, 200);
+    this.onSearchInput = _.debounce(this.onSearchInput, 200);
   },
   watch: {
     relation() {

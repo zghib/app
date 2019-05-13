@@ -184,7 +184,7 @@ export default {
         if (this.activity[index].action === "create") {
           const data = revision.data;
 
-          return this.$lodash.mapValues(data, (value, field) => ({
+          return _.mapValues(data, (value, field) => ({
             before: null,
             after: value,
             field: field
@@ -198,7 +198,7 @@ export default {
       const previousData = (previousRevision && previousRevision.data) || {};
       const currentDelta = revision.delta;
 
-      return this.$lodash.mapValues(currentDelta, (value, field) => ({
+      return _.mapValues(currentDelta, (value, field) => ({
         before: previousData[field],
         after: value,
         field
