@@ -566,9 +566,10 @@ export default {
       }
     },
     stopManaging() {
-      this.toManage.push(this.dontManage.collection.collection);
+      const dontManage = this.dontManage;
+      this.toManage.push(dontManage.collection.collection);
       return this.$api
-        .updateItem("directus_collections", this.dontManage.collection, {
+        .updateItem("directus_collections", dontManage.collection, {
           managed: false
         })
         .then(() => {
@@ -577,13 +578,11 @@ export default {
         .then(() => {
           this.$notify({
             title: this.$t("manage_stopped", {
-              collection: this.dontManage.collection
+              collection: dontManage.collection
             }),
             color: "green",
             iconMain: "check"
           });
-
-          this.dontManage = null;
         })
         .catch(error => {
           this.$events.emit("error", {
@@ -592,7 +591,8 @@ export default {
           });
         })
         .then(() => {
-          this.toManage.splice(this.toManage.indexOf(this.dontManage.collection.collection), 1);
+          this.toManage.splice(this.toManage.indexOf(dontManage.collection.collection), 1);
+          this.dontManage = null;
         });
     }
   }
