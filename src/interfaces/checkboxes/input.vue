@@ -83,7 +83,7 @@ export default {
 
       let combined = [];
 
-      if (selected[0].val === null || selected[0].val === "") {
+      if (selected.length > 0 && (selected[0].val === null || selected[0].val === "")) {
         combined = [...options];
       } else {
         combined = [...selected, ...options];
