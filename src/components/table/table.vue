@@ -116,11 +116,11 @@
               }"
               class="cell"
             >
-              <div v-if="row[field] === '' || $lodash.isNil(row[field])" class="empty">
+              <div v-if="row[field] === '' || isNil(row[field])" class="empty">
                 --
               </div>
               <v-ext-display
-                v-else-if="useInterfaces && !$lodash.isNil(row[field])"
+                v-else-if="useInterfaces && !isNil(row[field])"
                 :interface-type="fieldInfo.interface"
                 :id="field"
                 :name="field"
@@ -160,11 +160,11 @@
               }"
               class="cell"
             >
-              <div v-if="row[field] === '' || $lodash.isNil(row[field])" class="empty">
+              <div v-if="row[field] === '' || isNil(row[field])" class="empty">
                 --
               </div>
               <v-ext-display
-                v-else-if="useInterfaces && !$lodash.isNil(row[field])"
+                v-else-if="useInterfaces && !isNil(row[field])"
                 :interface-type="fieldInfo.interface"
                 :id="field"
                 :name="field"
@@ -309,6 +309,9 @@ export default {
     }
   },
   methods: {
+    isNil(val) {
+      return _.isNil(val)
+    },
     selectAll() {
       if (this.allSelected) {
         return this.$emit("select", []);
