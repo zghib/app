@@ -9,8 +9,8 @@
 
     <template v-else>
       <v-select
-        :name="name"
         :id="name"
+        :name="name"
         :placeholder="options.placeholder || ''"
         :options="selectOptions"
         :disabled="readonly"
@@ -28,7 +28,7 @@
         class="spinner"
       ></v-spinner>
 
-      <portal to="modal" v-if="showListing">
+      <portal v-if="showListing" to="modal">
         <v-modal
           :title="$t('select_existing')"
           :buttons="{
@@ -39,9 +39,9 @@
               disabled: newSelected === null
             }
           }"
+          action-required
           @close="dismissModal"
           @save="populateDropdown"
-          action-required
         >
           <div class="search">
             <v-input
@@ -73,7 +73,7 @@
 import mixin from "@directus/extension-toolkit/mixins/interface";
 
 export default {
-  name: "interface-many-to-one",
+  name: "InterfaceManyToOne",
   mixins: [mixin],
   data() {
     return {
@@ -162,19 +162,19 @@ export default {
       };
     }
   },
-  created() {
-    if (this.relationSetup) {
-      this.fetchItems();
-    }
-
-    this.onSearchInput = _.debounce(this.onSearchInput, 200);
-  },
   watch: {
     relation() {
       if (this.relationSetup) {
         this.fetchItems();
       }
     }
+  },
+  created() {
+    if (this.relationSetup) {
+      this.fetchItems();
+    }
+
+    this.onSearchInput = _.debounce(this.onSearchInput, 200);
   },
   methods: {
     emitValue(selection) {
@@ -321,6 +321,8 @@ button {
   position: sticky;
   left: 0;
   top: 0;
+  z-index: 2;
+  background-color: var(--white);
   &-input {
     border-bottom: 1px solid var(--lightest-gray);
     padding: 12px;
