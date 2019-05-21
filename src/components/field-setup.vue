@@ -1063,6 +1063,11 @@ export default {
   },
   methods: {
     nextTab() {
+      if (this.existing && this.activeTab === "interface") {
+        this.initRelation();
+        return;
+      }
+
       if (this.existing) {
         return this.saveField();
       }
