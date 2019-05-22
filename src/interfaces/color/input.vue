@@ -159,17 +159,23 @@
         <br :key="'break-' + idx" />
       </template>
     </div>
-    <div class="swatch" :style="`background-color: ${color ? color.hex() : 'transparent'}`">
-      <v-icon name="check" size="20" />
+    <div
+      v-if="isCustom"
+      class="swatch"
+      :class="{ light: tooLight(color.hex()) }"
+      :style="`background-color: ${color ? color.hex() : 'transparent'}`"
+    >
+      <v-icon name="check" size="18" />
     </div>
     <template v-if="readonly === false">
       <button
-        v-for="(color, idx) in palette"
+        v-for="(value, idx) in palette"
         :key="idx"
-        :style="{ backgroundColor: color, color: color }"
-        @click="setRawValue(color)"
+        :style="{ backgroundColor: value, color: value }"
+        :class="{ active: value == String(color), light: tooLight(value.hex()) }"
+        @click="setRawValue(value)"
       >
-        <v-icon name="check" size="20" />
+        <v-icon name="check" size="18" />
       </button>
     </template>
   </div>
@@ -191,6 +197,14 @@ export default {
     };
   },
   computed: {
+    isCustom() {
+      let custom = true;
+      const values = Object.values(this.palette);
+      for (const value of values) {
+        custom = String(value) == String(this.color) ? false : custom;
+      }
+      return custom;
+    },
     color() {
       try {
         if (this.options.input === "hex") {
@@ -247,6 +261,16 @@ export default {
     this.setDefault();
   },
   methods: {
+    tooLight(color) {
+      color = color.substring(1); // strip #
+      var rgb = parseInt(color, 16); // convert rrggbb to decimal
+      var r = (rgb >> 16) & 0xff; // extract red
+      var g = (rgb >> 8) & 0xff; // extract green
+      var b = (rgb >> 0) & 0xff; // extract blue
+
+      var luma = 0.2126 * r + 0.7152 * g + 0.0722 * b; // 0..255, where 0 is the darkest and 255 is the lightest — per ITU-R BT.709
+      return luma > 200 ? true : false;
+    },
     setDefault() {
       let savedColor = Color(this.value || "#263238");
       this.setRawValue(savedColor);
@@ -301,6 +325,13 @@ export default {
   margin-right: 4px;
   color: var(--white);
   text-align: center;
+  &.light {
+    border: 1px solid var(--light-gray);
+    color: var(--darkest-gray) !important;
+    i {
+      line-height: 22px;
+    }
+  }
   i {
     line-height: 24px;
   }
@@ -318,9 +349,22 @@ button {
   &:last-of-type {
     margin-right: 0;
   }
+  &.light {
+    border: 1px solid var(--light-gray);
+    i {
+      line-height: 22px;
+    }
+  }
+  &.active,
   &:hover {
     transition: none;
     color: var(--white) !important;
+    &.light {
+      color: var(--darkest-gray) !important;
+    }
+  }
+  i {
+    line-height: 24px;
   }
   i {
     line-height: 24px;
