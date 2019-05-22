@@ -17,7 +17,7 @@
     <v-loader area="content" />
   </div>
 
-  <div v-else class="edit" :key="`${collection}-${primaryKey}`">
+  <div v-else :key="`${collection}-${primaryKey}`" class="edit">
     <v-header
       :breadcrumb="breadcrumb"
       :info-toggle="!newItem && !batch && !activityDetail"
@@ -27,8 +27,8 @@
     >
       <template v-if="status" slot="title">
         <span
-          class="status-indicator"
           v-tooltip="statusName"
+          class="status-indicator"
           :style="{ backgroundColor: `var(--${statusColor})` }"
         />
       </template>
@@ -78,7 +78,7 @@
         @revert="revertActivity = $event"
       />
 
-      <router-link to="/activity" class="notifications" v-if="canReadActivity">
+      <router-link v-if="canReadActivity" to="/activity" class="notifications">
         <div class="preview">
           <v-icon name="notifications" color="light-gray" />
           <span>{{ $t("notifications") }}</span>
@@ -87,6 +87,7 @@
     </v-info-sidebar>
 
     <v-form
+      ref="form"
       :readonly="readonly"
       :fields="fields"
       :values="values"
@@ -94,12 +95,11 @@
       :batch-mode="batch"
       :permissions="permission"
       :new-item="newItem"
-      ref="form"
       @unstage-value="unstageValue"
       @stage-value="stageValue"
     />
 
-    <portal to="modal" v-if="confirmRemove">
+    <portal v-if="confirmRemove" to="modal">
       <v-confirm
         :message="
           batch
@@ -114,7 +114,7 @@
       />
     </portal>
 
-    <portal to="modal" v-if="confirmNavigation">
+    <portal v-if="confirmNavigation" to="modal">
       <v-confirm
         :message="$t('unsaved_changes_copy')"
         :confirm-text="$t('keep_editing')"
@@ -127,7 +127,7 @@
       />
     </portal>
 
-    <portal to="modal" v-if="confirmBatchSave">
+    <portal v-if="confirmBatchSave" to="modal">
       <v-confirm
         :message="$t('update_confirm', { count: primaryKey.split(',').length })"
         :confirm-text="$t('update')"
@@ -136,7 +136,7 @@
       />
     </portal>
 
-    <portal to="modal" v-if="revertActivity">
+    <portal v-if="revertActivity" to="modal">
       <v-modal
         :title="$t('preview_and_revert')"
         :buttons="{
@@ -203,7 +203,7 @@ function getFieldsQuery(collection) {
 }
 
 export default {
-  name: "edit",
+  name: "Edit",
   metaInfo() {
     const collection = this.collection.startsWith("directus_")
       ? this.$helpers.formatTitle(this.collection.substr(9))
@@ -375,7 +375,7 @@ export default {
     defaultValues() {
       return _.mapValues(this.fields, field => {
         if (field.type === "array") {
-          return [field.default_value];
+          return field.default_value ? [field.default_value] : [];
         }
 
         if (field.type === "boolean") {
@@ -529,6 +529,16 @@ export default {
       return null;
     }
   },
+  watch: {
+    $route() {
+      this.fetchActivity();
+    },
+    notFound(notFound) {
+      if (this.singleItem && notFound === true) {
+        this.$router.push(`/collections/${this.collection}/+`);
+      }
+    }
+  },
   created() {
     if (this.isNew) {
       this.stageDefaultValues();
@@ -552,16 +562,6 @@ export default {
   beforeDestroy() {
     this.$helpers.mousetrap.unbind("mod+s");
     this.formtrap.unbind("mod+s");
-  },
-  watch: {
-    $route() {
-      this.fetchActivity();
-    },
-    notFound(notFound) {
-      if (this.singleItem && notFound === true) {
-        this.$router.push(`/collections/${this.collection}/+`);
-      }
-    }
   },
   methods: {
     stageDefaultValues() {

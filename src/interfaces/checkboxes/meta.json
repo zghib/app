@@ -21,6 +21,12 @@
         "value8": "$t:option 8"
       }
     },
+    "allow_other": {
+      "name": "$t:allow_other",
+      "comment": "$t:allow_other_comment",
+      "interface": "toggle",
+      "default": false
+    },
     "draggable": {
       "name": "$t:draggable",
       "comment": "$t:draggable_comment",
@@ -65,8 +71,9 @@
       "single": "Single Column",
       "single_comment": "Display Checkboxes in single column",
       "draggable": "Draggable Checkboxes",
-      "draggable_comment": "Enable sorting by draggable checkboxes"
-
+      "draggable_comment": "Enable sorting by draggable checkboxes",
+      "allow_other": "Allow Other",
+      "allow_other_comment": "Allow an additional custom option"
     },
 	"fr-FR": {
       "checkboxes": "Cases à cocher",
