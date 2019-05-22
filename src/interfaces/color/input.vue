@@ -1,53 +1,53 @@
 <template>
   <div class="interface-color">
-    <div class="input" v-if="!options.paletteOnly && options.input === 'hex' && readonly === false">
+    <div v-if="!options.paletteOnly && options.input === 'hex' && readonly === false" class="input">
       <v-input
         v-if="options.allowAlpha"
+        v-model="rawValue"
         type="text"
         placeholder="#3498dbee"
         pattern="[#0-9a-fA-F]"
-        iconLeft="palette"
+        icon-left="palette"
         :maxlength="9"
-        v-model="rawValue"
       ></v-input>
       <v-input
         v-else
+        v-model="rawValue"
         type="text"
         placeholder="#3498db"
         pattern="[#0-9a-fA-F]"
-        iconLeft="palette"
+        icon-left="palette"
         :maxlength="7"
-        v-model="rawValue"
       ></v-input>
     </div>
     <div
-      class="sliders"
       v-else-if="!options.paletteOnly && options.input === 'rgb' && readonly === false"
+      class="sliders"
     >
       <template v-for="(label, idx) in rgbLabels">
         <label
-          class="slider-label"
-          :key="'label' + idx"
           v-if="
             rawValue[idx] ||
               rawValue[idx] === 0 ||
               (options.allowAlpha && rawValue[idx] === undefined)
           "
+          :key="'label' + idx"
+          class="slider-label"
         >
           {{ label }}
         </label>
         <v-slider
           v-if="(rawValue[idx] && label !== 'A') || (rawValue[idx] === 0 && label !== 'A')"
           :key="idx"
+          v-model.lazy="rawValue[idx]"
           :min="0"
           :max="256"
-          :alwaysShowOutput="true"
+          :always-show-output="true"
           class="slider"
-          v-model.lazy="rawValue[idx]"
         ></v-slider>
         <span
-          :key="'hidden-model-fix' + idx"
           v-if="options.allowAlpha && label === 'A'"
+          :key="'hidden-model-fix' + idx"
           style="display: none; visibility: hidden; opacity: 0"
         >
           {{ rawValue[idx] === undefined ? (rawValue[idx] = 1) : rawValue[idx] }}
@@ -59,44 +59,44 @@
               : rawValue[idx]
           "
           :key="idx"
+          v-model.lazy="rawValue[idx]"
           :min="0"
           :max="1"
           :step="0.01"
-          :alwaysShowOutput="true"
+          :always-show-output="true"
           class="slider"
-          v-model.lazy="rawValue[idx]"
         ></v-slider>
         <br :key="'break-' + idx" />
       </template>
     </div>
     <div
-      class="sliders"
       v-else-if="!options.paletteOnly && options.input === 'hsl' && readonly === false"
+      class="sliders"
     >
       <template v-for="(label, idx) in hslLabels">
         <label
-          class="slider-label"
-          :key="'label' + idx"
           v-if="
             rawValue[idx] ||
               rawValue[idx] === 0 ||
               (options.allowAlpha && rawValue[idx] === undefined)
           "
+          :key="'label' + idx"
+          class="slider-label"
         >
           {{ label }}
         </label>
         <v-slider
           v-if="(rawValue[idx] && label !== 'A') || (rawValue[idx] === 0 && label !== 'A')"
           :key="idx"
+          v-model.lazy="rawValue[idx]"
           :min="0"
           :max="idx < 1 ? 100 : 360"
-          :alwaysShowOutput="true"
+          :always-show-output="true"
           class="slider"
-          v-model.lazy="rawValue[idx]"
         ></v-slider>
         <span
-          :key="'hidden-model-fix' + idx"
           v-if="options.allowAlpha && label === 'A'"
+          :key="'hidden-model-fix' + idx"
           style="display: none; visibility: hidden; opacity: 0"
         >
           {{ rawValue[idx] === undefined ? (rawValue[idx] = 1) : rawValue[idx] }}
@@ -104,44 +104,44 @@
         <v-slider
           v-if="options.allowAlpha && label === 'A'"
           :key="idx"
+          v-model.lazy="rawValue[idx]"
           :min="0"
           :max="1"
           :step="0.01"
-          :alwaysShowOutput="true"
+          :always-show-output="true"
           class="slider"
-          v-model.lazy="rawValue[idx]"
         ></v-slider>
         <br :key="'break-' + idx" />
       </template>
     </div>
     <div
-      class="sliders"
       v-else-if="!options.paletteOnly && options.input === 'cmyk' && readonly === false"
+      class="sliders"
     >
       <template v-for="(label, idx) in cmykLabels">
         <label
-          class="slider-label"
-          :key="'label' + idx"
           v-if="
             rawValue[idx] ||
               rawValue[idx] === 0 ||
               (options.allowAlpha && rawValue[idx] === undefined)
           "
+          :key="'label' + idx"
+          class="slider-label"
         >
           {{ label }}
         </label>
         <v-slider
           v-if="(rawValue[idx] && label !== 'A') || (rawValue[idx] === 0 && label !== 'A')"
           :key="idx"
+          v-model="rawValue[idx]"
           :min="0"
           :max="100"
-          :alwaysShowOutput="true"
+          :always-show-output="true"
           class="slider"
-          v-model="rawValue[idx]"
         ></v-slider>
         <span
-          :key="'hidden-model-fix' + idx"
           v-if="options.allowAlpha && label === 'A'"
+          :key="'hidden-model-fix' + idx"
           style="display: none; visibility: hidden; opacity: 0"
         >
           {{ rawValue[idx] === undefined ? (rawValue[idx] = 1) : rawValue[idx] }}
@@ -149,27 +149,27 @@
         <v-slider
           v-if="options.allowAlpha && label === 'A'"
           :key="idx"
+          v-model.lazy="rawValue[idx]"
           :min="0"
           :max="1"
           :step="0.01"
-          :alwaysShowOutput="true"
+          :always-show-output="true"
           class="slider"
-          v-model.lazy="rawValue[idx]"
         ></v-slider>
         <br :key="'break-' + idx" />
       </template>
     </div>
     <div class="swatch" :style="`background-color: ${color ? color.hex() : 'transparent'}`">
-      <v-icon name="check" />
+      <v-icon name="check" size="20" />
     </div>
     <template v-if="readonly === false">
       <button
         v-for="(color, idx) in palette"
         :key="idx"
-        :style="{ borderColor: color, color: color, backgroundColor: color }"
+        :style="{ backgroundColor: color, color: color }"
         @click="setRawValue(color)"
       >
-        <v-icon name="colorize" />
+        <v-icon name="check" size="20" />
       </button>
     </template>
   </div>
@@ -180,7 +180,7 @@ import mixin from "@directus/extension-toolkit/mixins/interface";
 import Color from "color";
 
 export default {
-  name: "interface-color",
+  name: "InterfaceColor",
   mixins: [mixin],
   data() {
     return {
@@ -211,9 +211,6 @@ export default {
 
       return null;
     }
-  },
-  created() {
-    this.setDefault();
   },
   watch: {
     rawValue() {
@@ -246,6 +243,9 @@ export default {
       }
     }
   },
+  created() {
+    this.setDefault();
+  },
   methods: {
     setDefault() {
       let savedColor = Color(this.value || "#263238");
@@ -269,8 +269,9 @@ export default {
 <style scoped lang="scss">
 .input {
   display: inline-block;
-  margin-right: 8px;
+  margin-right: 16px;
   vertical-align: middle;
+  width: 130px;
 }
 
 .sliders {
@@ -293,15 +294,15 @@ export default {
 .swatch {
   transition: var(--fast) var(--transition);
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   border-radius: 100%;
   vertical-align: middle;
-  margin-right: 8px;
+  margin-right: 4px;
   color: var(--white);
   text-align: center;
   i {
-    line-height: 40px;
+    line-height: 24px;
   }
 }
 
@@ -309,30 +310,20 @@ button {
   transition: var(--fast) var(--transition);
   position: relative;
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 24px;
+  height: 24px;
   border-radius: 100%;
-  border: 2px solid var(--gray);
-  // background-color: var(--white);
-  margin-right: 8px;
-  margin-bottom: 8px;
-  &:first-of-type {
-    margin-left: 16px;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: -16px;
-      border-left: 1px solid var(--lighter-gray);
-    }
-  }
-  &:not(:hover) {
-    background-color: var(--white) !important;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  &:last-of-type {
+    margin-right: 0;
   }
   &:hover {
     transition: none;
     color: var(--white) !important;
+  }
+  i {
+    line-height: 24px;
   }
 }
 </style>
