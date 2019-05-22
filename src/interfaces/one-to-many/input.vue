@@ -53,14 +53,14 @@
           </div>
         </div>
       </div>
-      <button type="button" class="style-btn select" @click="addNew = true">
+      <v-button type="button" :disabled="readonly" @click="addNew = true">
         <v-icon name="add" />
         {{ $t("add_new") }}
-      </button>
-      <button type="button" class="style-btn select" @click="selectExisting = true">
+      </v-button>
+      <v-button type="button" :disabled="readonly" @click="selectExisting = true">
         <v-icon name="playlist_add" />
         <span>{{ $t("select_existing") }}</span>
-      </button>
+      </v-button>
     </template>
 
     <portal to="modal" v-if="selectExisting">
@@ -556,23 +556,11 @@ export default {
   }
 }
 
-button.select {
-  background-color: var(--darker-gray);
-  border-radius: var(--border-radius);
-  height: var(--input-height);
-  padding: 0 10px;
-  display: inline-flex;
-  align-items: center;
-  margin-right: 10px;
-  transition: background-color var(--fast) var(--transition);
-
-  i {
-    margin-right: 5px;
-  }
-
-  &:hover {
-    transition: none;
-    background-color: var(--darkest-gray);
+button {
+  display: inline-block;
+  margin-left: 20px;
+  &:first-of-type {
+    margin-left: 0;
   }
 }
 
