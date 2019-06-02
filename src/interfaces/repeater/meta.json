@@ -37,7 +37,7 @@
       "name": "$t:button_text",
       "comment": "$t:button_text_comment",
       "interface": "text-input",
-      "default": "Add Field",
+      "default": "Add Item",
       "type": "String"
     },
     "fields": {
@@ -46,6 +46,13 @@
       "type": "JSON",
       "options": {
         "fields": {
+          "field": {
+            "field": "field",
+            "interface": "text-input",
+            "type": "String",
+            "preview": true,
+            "index": true
+          },
           "interface": {
             "interface": "interfaces",
             "field": "interface",
@@ -79,17 +86,11 @@
             },
             "default": "string"
           },
-          "field": {
-            "field": "field",
-            "interface": "text-input",
-            "type": "String",
-            "preview": true,
-            "index": true
-          },
           "preview": {
             "field": "preview",
             "interface": "toggle",
             "type": "Boolean",
+            "width": "half",
             "options": {
               "checkbox": true,
               "labelOn": "Show in title",
@@ -101,6 +102,7 @@
             "field": "index",
             "interface": "toggle",
             "type": "Boolean",
+            "width": "half",
             "options": {
               "checkbox": true,
               "labelOn": "use as Key",

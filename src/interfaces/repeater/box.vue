@@ -2,7 +2,7 @@
   <div class="box" :class="{ closed: !open }">
     <div class="header" @click="$emit('open')">
       <div class="start">
-        <v-icon color="gray" name="drag_handle" />
+        <v-icon class="handle" name="drag_handle" />
         <v-ext-display
           v-for="(value, key) in headers"
           :key="key"
@@ -14,8 +14,10 @@
         ></v-ext-display>
       </div>
       <div class="end">
-        <v-icon color="gray" :name="open ? 'unfold_less' : 'unfold_more'" />
-        <button @click.stop="$emit('delete')"><v-icon color="gray" name="delete" /></button>
+        <v-icon :name="open ? 'unfold_less' : 'unfold_more'" />
+        <button class="delete" @click.stop="$emit('delete')">
+          <v-icon name="delete_outline" />
+        </button>
       </div>
     </div>
     <div class="container">
@@ -57,10 +59,16 @@ export default {
 
 <style lang="scss" scoped>
 .box {
+  transition: all var(--fast) var(--transition);
+  background-color: var(--off-white);
   border-radius: var(--border-radius);
   border: 2px solid var(--lighter-gray);
   overflow: hidden;
-  margin: 16px 0;
+  margin: 12px 0;
+
+  &:hover {
+    border-color: var(--light-gray);
+  }
 
   &.closed {
     height: calc(var(--input-height) + 4px);
@@ -77,6 +85,7 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 0 16px;
+    cursor: pointer;
 
     :after {
       content: "";
@@ -85,24 +94,43 @@ export default {
       left: 10px;
       width: calc(100% - 20px);
       height: 2px;
-      background-color: var(--lighter-gray);
+      background-color: var(--lightest-gray);
       opacity: 0.1;
     }
 
     .start {
       display: flex;
       align-items: center;
+      .handle {
+        color: var(--lighter-gray);
+        margin-right: 10px;
+        &:hover {
+          color: var(--gray);
+        }
+      }
 
       .v-ext-display {
         color: var(--darker-gray);
         font-size: 14px;
-        margin: 10px;
+        margin: 10px 10px 10px 0;
+      }
+    }
+    .end {
+      i {
+        transition: all var(--fast) var(--transition);
+        color: var(--lighter-gray);
+        &:hover {
+          color: var(--gray);
+        }
+      }
+      .delete i:hover {
+        color: var(--danger);
       }
     }
   }
 
   .container {
-    padding: 16px;
+    padding: 24px 16px 28px;
 
     .form {
       grid-template-columns:
