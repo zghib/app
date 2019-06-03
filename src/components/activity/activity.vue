@@ -283,7 +283,14 @@ export default {
     }
 
     summary {
+      position: relative;
+      width: 224px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding-right: 20px;
       cursor: pointer;
+      color: var(--light-gray);
 
       &:hover {
         .chevron {
@@ -292,7 +299,9 @@ export default {
       }
 
       .chevron {
-        float: right;
+        position: absolute;
+        top: 0;
+        right: 0;
         color: var(--lighter-gray);
         transition: all var(--fast) var(--transition);
       }
