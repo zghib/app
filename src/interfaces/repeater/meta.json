@@ -51,12 +51,16 @@
             "interface": "text-input",
             "type": "String",
             "preview": true,
-            "index": true
+            "index": true,
+            "options": {
+              "placeholder": "Choose a name for this field"
+            }
           },
           "interface": {
             "interface": "interfaces",
             "field": "interface",
             "type": "String",
+            "width": "half",
             "preview": true,
             "default": "text-input"
           },
@@ -64,7 +68,9 @@
             "field": "type",
             "interface": "dropdown",
             "type": "String",
+            "width": "half",
             "options": {
+              "placeholder": "Choose a data type",
               "choices": {
                 "JSON": "JSON",
                 "String": "String",
@@ -93,10 +99,10 @@
             "width": "half",
             "options": {
               "checkbox": true,
-              "labelOn": "Show in title",
-              "labelOff": "Show in title"
+              "labelOn": "Included in title",
+              "labelOff": "Not included in title"
             },
-            "default": false
+            "default": true
           },
           "index": {
             "field": "index",
@@ -105,8 +111,8 @@
             "width": "half",
             "options": {
               "checkbox": true,
-              "labelOn": "use as Key",
-              "labelOff": "use as Key"
+              "labelOn": "Used as key",
+              "labelOff": "Not used as key"
             },
             "default": false
           }
