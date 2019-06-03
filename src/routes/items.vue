@@ -97,7 +97,7 @@
         class="layout-options"
         :type="viewType"
         :collection="collection"
-        :fields="$lodash.keyBy(fields, 'field')"
+        :fields="keyBy(fields, 'field')"
         :view-options="viewOptions"
         :view-query="viewQuery"
         :selection="selection"
@@ -479,6 +479,7 @@ export default {
     }
   },
   methods: {
+    keyBy: _.keyBy,
     closeBookmark() {
       this.bookmarkModal = false;
     },

@@ -85,7 +85,7 @@
         :key="`${collection}-${viewType}`"
         :type="viewType"
         :collection="collection"
-        :fields="$lodash.keyBy(fields, 'field')"
+        :fields="keyBy(fields, 'field')"
         :view-options="viewOptions"
         :view-query="viewQuery"
         :selection="selection"
@@ -278,6 +278,7 @@ export default {
     }
   },
   methods: {
+    keyBy: _.keyBy,
     cancelBookmark() {
       this.bookmarkTitle = "";
       this.bookmarkModal = false;

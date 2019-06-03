@@ -19,7 +19,8 @@ export default {
   mixins: [mixin],
   computed: {
     safeValue() {
-      if (!this.value && (this.value !== 0 || this.options.minimum > 0)) return this.options.minimum;
+      if (!this.value && (this.value !== 0 || this.options.minimum > 0))
+        return this.options.minimum;
       return this.value;
     }
   }
