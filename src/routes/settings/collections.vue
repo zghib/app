@@ -213,6 +213,7 @@ export default {
           length: 20,
           field: "status",
           interface: "status",
+          default_value: "draft",
           width: "full",
           options: {
             status_mapping: {
@@ -228,7 +229,7 @@ export default {
               draft: {
                 name: "Draft",
                 text_color: "white",
-                background_color: "blue-grey-200",
+                background_color: "blue-grey-100",
                 browse_subdued: true,
                 browse_badge: true,
                 soft_delete: false,
@@ -253,7 +254,7 @@ export default {
           unique: false,
           primary_key: false,
           auto_increment: false,
-          default_value: null,
+          default_value: "draft",
           note: null,
           signed: true,
           type: "status",
@@ -276,7 +277,7 @@ export default {
               draft: {
                 name: "Draft",
                 text_color: "white",
-                background_color: "blue-grey-200",
+                background_color: "blue-grey-100",
                 browse_subdued: true,
                 browse_badge: true,
                 soft_delete: false,
@@ -308,6 +309,8 @@ export default {
           datatype: "INT",
           field: "sort",
           interface: "sort",
+          hidden_detail: true,
+          hidden_browse: true,
           width: "full"
         });
         fieldsToDispatch.sort = {
@@ -323,8 +326,8 @@ export default {
           type: "sort",
           sort: 0,
           interface: "sort",
-          hidden_detail: false,
-          hidden_browse: false,
+          hidden_detail: true,
+          hidden_browse: true,
           required: false,
           options: null,
           locked: false,
