@@ -53,15 +53,16 @@ export default {
 
     addTag(tag) {
       if (!tag) return;
-      let valueArrayCopy = this.valueArray.splice(0);
 
       // Remove any leading / trailing whitespace from the value
       tag = tag.trim();
 
+      // Convert the tag to lowercase
       if (this.options.lowercase) {
         tag = tag.toLowerCase();
       }
 
+      // Clean up the tag
       if (this.options.sanitize) {
         tag = tag
           // Replace all non alphanumeric characters with a hyphen
@@ -69,6 +70,24 @@ export default {
           // Remove leading / trailing hyphens and remove doubles
           .replace(/^-|-$/g, "");
       }
+
+      // If there is a validation regex option, only add if matches
+      if (this.options.validation) {
+        const regex = RegExp(this.options.validation);
+        let message = this.options.validationMessage
+          ? this.options.validationMessage
+          : this.$t("interfaces-tags-validation_message_default");
+        if (!regex.test(tag)) {
+          this.$notify({
+            title: message,
+            color: "amber",
+            iconMain: "local_offer"
+          });
+          return;
+        }
+      }
+
+      let valueArrayCopy = this.valueArray.splice(0);
 
       valueArrayCopy.push(tag);
 
