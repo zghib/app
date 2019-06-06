@@ -2,7 +2,21 @@
   <div>
     <div v-if="showLabel" class="name">
       {{ field.name || $helpers.formatTitle(field.field) }}
-      <span v-if="field.required === false" class="optional">— {{ $t("optional") }}</span>
+      <v-icon
+        v-if="field.required !== false"
+        name="star"
+        color="light-gray"
+        sup
+        class="material-icons"
+      />
+      <v-icon
+        v-if="field.note"
+        v-tooltip="$helpers.snarkdown(field.note)"
+        name="info"
+        size="18"
+        icon-style="outline"
+        class="note"
+      />
       <v-toggle
         v-if="batchMode"
         class="batch-toggle"
@@ -41,8 +55,6 @@
         "
       />
     </div>
-
-    <div v-if="field.note" class="note" v-html="$helpers.snarkdown(field.note)" />
   </div>
 </template>
 
@@ -124,18 +136,12 @@ export default {
   font-size: var(--size-2);
   margin-bottom: 10px;
   color: var(--darkest-gray);
-
-  .optional {
-    color: var(--gray);
-  }
 }
 
 .note {
-  margin-top: 8px;
-  font-style: italic;
-  font-size: var(--size-3);
-  font-weight: var(--weight-bold);
-  color: var(--light-gray);
+  color: var(--lighter-gray);
+  vertical-align: -4px;
+  cursor: help;
 }
 
 .batch-toggle {
