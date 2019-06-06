@@ -9,12 +9,13 @@
 
   ## Properties
 
-  | name  | description                            | default |
-  |-------|----------------------------------------|---------|
-  | name* | The name of the icon to render         | -       |
-  | size  | The size of the icon in px             | 24      |
-  | color | A color name out of the global pallete | -       |
+  | name      | description                            | default |
+  |-----------|----------------------------------------|---------|
+  | name*     | The name of the icon to render         | -       |
+  | size      | The size of the icon in px             | 24      |
+  | color     | A color name out of the global pallete | -       |
   | iconStyle | default or outline                     | -       |
+  | sup       | Render the icon as a superscript icon  | false   |
 </docs>
 
 <template>
@@ -24,7 +25,7 @@
     />
   </svg>
 
-  <i v-else :style="iconStyles" :class="iconStyle">{{ name }}</i>
+  <i v-else :style="iconStyles" :class="[iconStyle, { sup }]">{{ name }}</i>
 </template>
 
 <script>
@@ -67,6 +68,11 @@ export default {
     iconStyle: {
       type: String,
       default: ""
+    },
+
+    sup: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -117,6 +123,11 @@ i {
 
 i.outline {
   font-family: "Material Icons Outline";
+}
+
+i.sup {
+  font-size: 8px !important;
+  vertical-align: super;
 }
 
 svg {
