@@ -259,6 +259,7 @@ export default {
     "Advanced options lets you configure how data will be stored in the database and tweak additional app settings.",
   interface: "Interface",
   interface_count: "No Interfaces | One Interface | {count} Interfaces",
+  interface_has_no_options: "This interface doesn't have any options",
   interface_settings:
     "Every interface can be perfectly tailored to your needs. Below are the available options for this interface, but only some are required.",
   interfaces: "Interfaces",
@@ -402,6 +403,7 @@ export default {
   select_field: "Select a Field",
   select_fields: "Select Fields",
   select_from_device: "Select from device",
+  select_interface: "Select an interface",
   select_interface_below: "Select an interface below",
   select_statuses: "Select Statuses",
   select_statuses_copy: "Select the statuses the user can use",

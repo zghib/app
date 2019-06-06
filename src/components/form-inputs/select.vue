@@ -95,7 +95,7 @@ export default {
       default: ""
     },
     options: {
-      type: [Object, String],
+      type: [Object, String, Array],
       required: true
     },
     placeholder: {

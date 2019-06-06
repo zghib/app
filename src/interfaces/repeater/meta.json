@@ -64,6 +64,17 @@
             "preview": true,
             "default": "text-input"
           },
+          "options": {
+            "interface": "interface-options",
+            "field": "options",
+            "type": "String",
+            "width": "full",
+            "preview": false,
+            "default": {},
+            "options": {
+              "interfaceField": "interface"
+            }
+          },
           "type": {
             "field": "type",
             "interface": "dropdown",
