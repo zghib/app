@@ -4,6 +4,7 @@
       <div class="menu-toggle" :class="{ disabled }">
         {{ text }}
         <v-icon v-if="icon" :name="icon" />
+        <slot />
       </div>
 
       <template slot="popover">
