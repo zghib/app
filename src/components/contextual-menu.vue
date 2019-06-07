@@ -17,7 +17,7 @@
               :disabled="option.disabled"
               @click.stop="optionClicked(option, id)"
             >
-              <v-icon v-if="option.icon" :name="option.icon" size="18"></v-icon>
+              <v-icon v-if="option.icon" :name="option.icon" size="24"></v-icon>
               {{ option.text }}
             </button>
           </li>
@@ -99,32 +99,30 @@ export default {
   width: var(--width-small);
   li {
     display: block;
-
-    &:not(:last-of-type) {
-      border-bottom: 1px solid var(--lightest-gray);
-    }
   }
   i {
-    color: var(--light-gray);
+    color: var(--gray);
     margin-right: 8px;
     transition: color var(--fast) var(--transition);
   }
   button {
     display: flex;
     align-items: center;
-    padding: 8px 4px;
-    color: var(--darker-gray);
+    padding: 4px 8px;
+    color: var(--dark-gray);
     width: 100%;
     height: 100%;
     transition: color var(--fast) var(--transition);
 
     &.disabled {
       color: var(--lighter-gray);
+      cursor: not-allowed;
       i {
         color: var(--lighter-gray);
       }
 
       &:hover {
+        background-color: transparent;
         color: var(--lighter-gray);
         i {
           color: var(--lighter-gray);
@@ -133,10 +131,11 @@ export default {
     }
 
     &:hover {
-      color: var(--accent);
+      background-color: var(--highlight);
+      color: var(--darkest-gray);
       transition: none;
       i {
-        color: var(--accent);
+        color: var(--darkest-gray);
         transition: none;
       }
     }

@@ -148,7 +148,7 @@ export default {
       return {
         setNull: {
           text: this.$t("clear_value"),
-          icon: "delete",
+          icon: "delete_outline",
           disabled: this.value === null
         },
         reset: {
