@@ -18,7 +18,7 @@
         :value="valuePK"
         :icon="options.icon"
         @input="$emit('input', $event)"
-      ></v-select>
+      />
 
       <button v-if="count > options.threshold" type="button" @click="listingActive = true"></button>
 
@@ -178,8 +178,30 @@ export default {
     // value and close the modal
     closeListing() {
       this.$emit("input", this.stagedValue);
+
+      // Download a fresh copy of the data of the selected item so we can render the preview value in
+      // the dropdown
+      const collection = this.relation.collection_one.collection;
+
+      const params = {
+        fields: "*.*",
+        limit: 1
+      };
+
+      this.loading = true;
+
+      this.$api
+        .getItem(collection, this.stagedValue, params)
+        .then(res => res.data)
+        .then(item => (this.items = [...this.items, item]))
+        .catch(error => {
+          console.error(error); // eslint-disable-line
+          this.error = error;
+          this.loading = false;
+        })
+        .finally(() => (this.loading = false));
+
       this.stagedValue = null;
-      this.fetchItems();
       this.listingActive = false;
     },
 
