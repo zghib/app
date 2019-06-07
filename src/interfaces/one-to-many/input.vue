@@ -627,8 +627,13 @@ export default {
 }
 
 .edit-modal-body {
-  padding: 20px;
+  padding: 30px 30px 60px 30px;
   background-color: var(--body-background);
+  .form {
+    grid-template-columns:
+      [start] minmax(0, var(--column-width)) [half] minmax(0, var(--column-width))
+      [full];
+  }
 }
 
 .search {
