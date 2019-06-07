@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="currentStatus && currentStatus.browse_badge"
     v-tooltip="options.simpleBadge ? currentStatus.name : false"
     :class="['badge', 'no-wrap', { simple: options.simpleBadge }]"
     :style="style"

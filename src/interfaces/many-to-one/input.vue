@@ -10,6 +10,7 @@
     <template v-else>
       <v-select
         :id="name"
+        :class="{ 'select-loading': loading }"
         :name="name"
         :placeholder="options.placeholder || ''"
         :options="selectOptions"
@@ -19,7 +20,7 @@
         @input="$emit('input', $event)"
       ></v-select>
 
-      <button v-if="count > options.threshold" type="button" @click="showListing = true"></button>
+      <button v-if="count > options.threshold" type="button" @click="listingActive = true"></button>
 
       <v-spinner
         v-show="loading"
@@ -28,49 +29,24 @@
         class="spinner"
       ></v-spinner>
 
-      <portal v-if="showListing" to="modal">
-        <v-modal
-          :title="$t('select_existing')"
-          :buttons="{
-            save: {
-              text: 'Save',
-              color: 'accent',
-              loading: selectionSaving,
-              disabled: newSelected === null
-            }
-          }"
-          action-required
-          @close="dismissModal"
-          @save="populateDropdown"
-        >
-          <div class="search">
-            <v-input
-              type="search"
-              :placeholder="$t('search')"
-              class="search-input"
-              @input="onSearchInput"
-            />
-          </div>
-          <v-items
-            class="items"
-            :collection="relation.collection_one.collection"
-            :selection="selection"
-            :filters="filters"
-            :view-query="viewQuery"
-            :view-type="viewType"
-            :view-options="viewOptions"
-            @options="setViewOptions"
-            @query="setViewQuery"
-            @select="emitValue"
-          ></v-items>
-        </v-modal>
-      </portal>
+      <v-item-select
+        v-if="listingActive"
+        :collection="relation.collection_one.collection"
+        :fields="relatedFields"
+        :filters="[]"
+        single
+        :value="stagedValue || valuePK"
+        @input="stageValue"
+        @done="closeListing"
+        @cancel="cancelListing"
+      />
     </template>
   </div>
 </template>
 
 <script>
 import mixin from "@directus/extension-toolkit/mixins/interface";
+import getFieldsFromTemplate from "@/helpers/get-fields-from-template";
 
 export default {
   name: "InterfaceManyToOne",
@@ -82,84 +58,61 @@ export default {
       items: [],
       count: null,
 
-      showListing: false,
+      listingActive: false,
       selectionSaving: false,
       newSelected: null,
 
-      viewOptionsOverride: {},
-      viewTypeOverride: null,
-      viewQueryOverride: {},
-      filtersOverride: []
+      stagedValue: null
     };
   },
   computed: {
+    // If the relationship is fully setup. If not, we can stop everything else and prevent a bunch of
+    // js errors
     relationSetup() {
       if (!this.relation) return false;
       return true;
     },
+
+    // The name of the field that holds the primary key in the related collection
     relatedPrimaryKeyField() {
       return _.find(this.relation.collection_one.fields, {
         primary_key: true
       }).field;
     },
+
+    // The current value stripped down to the primary key. NOTE: the application will always fetch
+    // and therefore return the full populated object on initial load. The item select component
+    // expects a primary key. This will extract that. If the value is already a primary key, we return
+    // that.
     valuePK() {
       if (_.isObject(this.value)) return this.value[this.relatedPrimaryKeyField];
 
       return this.value;
     },
-    render() {
-      return this.$helpers.micromustache.compile(this.options.template);
-    },
-    selection() {
-      if (!this.value) return [];
 
-      if (this.newSelected) {
-        return [this.newSelected];
+    // The fields that will be fetched and rendered in the item select modal. Will be based on
+    // the visible_fields option in the interface settings. NOTE: if that settings hasn't been
+    // configured, it will fallback on the fields that are in the dropdown template option
+    relatedFields() {
+      let visibleFields = this.options.visible_fields;
+
+      // If the visible fields option hasn't been filled out, use the display template string instead
+      if (!visibleFields || visibleFields.length === 0) {
+        return getFieldsFromTemplate(this.options.template);
       }
 
-      if (this.valuePK) {
-        return [{ [this.relatedPrimaryKeyField]: this.valuePK }];
-      }
-
-      return [];
+      return visibleFields.split(",").map(f => f.trim());
     },
+
+    // Returns an object { [primaryKey]: [label] } for the items that can be passed on to a v-select
+    // component to render the dropdown
     selectOptions() {
       if (this.items.length === 0) return {};
+      const render = this.$helpers.micromustache.compile(this.options.template);
 
-      return _.mapValues(_.keyBy(this.items, this.relatedPrimaryKeyField), item =>
-        this.render(item)
-      );
-    },
-    preferences() {
-      return typeof this.options.preferences === "string"
-        ? JSON.parse(this.options.preferences)
-        : this.options.preferences;
-    },
-    filters() {
-      if (this.relationSetup === false) return null;
-      return [...((this.preferences && this.preferences.filters) || []), ...this.filtersOverride];
-    },
-    viewOptions() {
-      if (this.relationSetup === false) return null;
-
-      const viewOptions = (this.preferences && this.preferences.viewOptions) || {};
-      return {
-        ...viewOptions,
-        ...this.viewOptionsOverride
-      };
-    },
-    viewType() {
-      if (this.relationSetup === false) return null;
-      if (this.viewTypeOverride) return this.viewTypeOverride;
-      return (this.preferences && this.preferences.viewType) || "tabular";
-    },
-    viewQuery() {
-      if (this.relationSetup === false) return null;
-      const viewQuery = (this.preferences && this.preferences.viewQuery) || {};
-      return {
-        ...viewQuery,
-        ...this.viewQueryOverride
-      };
+      return _.mapValues(_.keyBy(this.items, this.relatedPrimaryKeyField), item => {
+        return render(item);
+      });
     }
   },
   watch: {
@@ -173,21 +126,20 @@ export default {
     if (this.relationSetup) {
       this.fetchItems();
     }
-
-    this.onSearchInput = _.debounce(this.onSearchInput, 200);
   },
   methods: {
-    emitValue(selection) {
-      if (selection.length === 1) {
-        this.newSelected = selection[0];
-      } else if (selection.length === 0) {
-        this.newSelected = null;
-      } else {
-        this.newSelected = selection[selection.length - 1];
-      }
-
-      this.$emit("input", this.newSelected);
+    // We keep a local to-be-actually-staged copy of the value that's selected in the item-select
+    // component. This means that we can ignore saving this and set this back to null once the user
+    // closes the modal without selecting everything
+    stageValue(primaryKey) {
+      this.stagedValue = primaryKey;
     },
+
+    // This interface stages only the primary key. The application doesn't differentiate between
+    // 'saved value' (eg what comes from the api) and 'staged value' (what this interface stages).
+    // That means that everytime we stage a value, the value passed through the value prop is now just
+    // a primary key, instead of the full nested object. In order to be able to render the preview of
+    // the selected item, we need to fetch it's data.
     fetchItems() {
       if (this.relation == null) return;
 
@@ -221,63 +173,20 @@ export default {
           this.loading = false;
         });
     },
-    populateDropdown() {
-      let exists = false;
-      this.selectionSaving = true;
 
-      this.items.forEach(item => {
-        if (item[this.relatedPrimaryKeyField] === this.newSelected[this.relatedPrimaryKeyField]) {
-          exists = true;
-        }
-      });
+    // Happens when the user clicks "done" in the item select modal. This will stage the pre-staged
+    // value and close the modal
+    closeListing() {
+      this.$emit("input", this.stagedValue);
+      this.stagedValue = null;
+      this.fetchItems();
+      this.listingActive = false;
+    },
 
-      if (exists === false) {
-        this.$api
-          .getItem(
-            this.relation.collection_one.collection,
-            this.newSelected[this.relatedPrimaryKeyField]
-          )
-          .then(res => res.data)
-          .then(item => {
-            this.$emit("input", this.newSelected);
-            this.items = [...this.items, item];
-            this.selectionSaving = false;
-            this.showListing = false;
-          })
-          .catch(error => {
-            console.error(error); // eslint-disable-line
-            this.$events.emit("error", {
-              notify: this.$t("something_went_wrong_body"),
-              error
-            });
-          });
-      } else {
-        this.$emit("input", this.newSelected);
-        this.selectionSaving = false;
-        this.showListing = false;
-      }
-    },
-    dismissModal() {
-      this.showListing = false;
-      this.selectionSaving = false;
-      this.newSelected = null;
-    },
-    setViewOptions(updates) {
-      this.viewOptionsOverride = {
-        ...this.viewOptionsOverride,
-        ...updates
-      };
-    },
-    setViewQuery(updates) {
-      this.viewQueryOverride = {
-        ...this.viewQueryOverride,
-        ...updates
-      };
-    },
-    onSearchInput(value) {
-      this.setViewQuery({
-        q: value
-      });
+    // Ignore the pre-staged value and close the modal. Don't stage any value
+    cancelListing() {
+      this.stagedValue = null;
+      this.listingActive = false;
     }
   }
 };
@@ -291,6 +200,10 @@ export default {
 
 .v-select {
   margin-top: 0;
+}
+
+.select-loading {
+  opacity: 0.5;
 }
 
 button {
@@ -312,7 +225,9 @@ button {
 
 .spinner {
   position: absolute;
-  right: -50px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   top: 50%;
   transform: translateY(-50%);
 }

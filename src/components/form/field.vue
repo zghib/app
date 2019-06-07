@@ -204,8 +204,12 @@ export default {
 }
 
 .field-action {
+  transition: all var(--fast) var(--transition);
   color: var(--light-gray);
   vertical-align: -4px;
+  &:hover {
+    color: var(--darker-gray);
+  }
 }
 
 .batch-toggle {
