@@ -70,12 +70,21 @@
         </draggable>
       </div>
 
+      <v-notice v-else>{{ $t("no_items_selected") }}</v-notice>
+
       <div class="buttons">
-        <v-button type="button" :disabled="readonly" icon="add" @click="addNew = true">
+        <v-button
+          v-if="options.allow_create"
+          type="button"
+          :disabled="readonly"
+          icon="add"
+          @click="addNew = true"
+        >
           {{ $t("add_new") }}
         </v-button>
 
         <v-button
+          v-if="options.allow_select"
           type="button"
           :disabled="readonly"
           icon="playlist_add"
@@ -603,6 +612,10 @@ export default {
       }
     }
   }
+}
+
+.buttons {
+  margin-top: 24px;
 }
 
 .buttons > * {

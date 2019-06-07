@@ -62,14 +62,30 @@
           </div>
         </div>
       </div>
-      <v-button type="button" :disabled="readonly" @click="addNew = true">
-        <v-icon name="add" />
-        {{ $t("add_new") }}
-      </v-button>
-      <v-button type="button" :disabled="readonly" @click="selectExisting = true">
-        <v-icon name="playlist_add" />
-        <span>{{ $t("select_existing") }}</span>
-      </v-button>
+
+      <v-notice v-else>{{ $t("no_items_selected") }}</v-notice>
+
+      <div class="buttons">
+        <v-button
+          v-if="options.allow_create"
+          type="button"
+          :disabled="readonly"
+          icon="add"
+          @click="addNew = true"
+        >
+          {{ $t("add_new") }}
+        </v-button>
+
+        <v-button
+          v-if="options.allow_select"
+          type="button"
+          :disabled="readonly"
+          icon="playlist_add"
+          @click="selectExisting = true"
+        >
+          {{ $t("select_existing") }}
+        </v-button>
+      </div>
     </template>
 
     <portal v-if="selectExisting" to="modal">
@@ -613,5 +629,9 @@ button {
 
 .items {
   height: calc(100% - var(--header-height) - 1px);
+}
+
+.buttons {
+  margin-top: 24px;
 }
 </style>

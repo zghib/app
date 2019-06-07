@@ -316,6 +316,7 @@ export default {
   no_files: "No Files",
   no_files_body: "It seems like there haven't been any files uploaded yet",
   no_interface_error: "Field {field} doesn't have an interface setup",
+  no_items_selected: "No items selected",
   no_related_entries: "Has no related entries",
   no_results: "No Results",
   no_results_body: "The current filters do not match any collection items",
