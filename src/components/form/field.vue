@@ -11,7 +11,7 @@
         color="darker-gray"
       />
       {{ field.name || $helpers.formatTitle(field.field) }}
-      <v-icon v-if="field.required !== false" name="star" color="light-gray" sup />
+      <v-icon v-if="field.required !== false" class="required" name="star" color="light-gray" sup />
       <v-contextual-menu
         v-if="field.readonly === false"
         class="options field-action"
@@ -196,7 +196,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .name {
   font-size: var(--size-2);
   margin-bottom: 10px;
@@ -217,5 +217,9 @@ export default {
 .options {
   display: inline-block;
   margin-left: -3px;
+}
+
+.required {
+  margin-left: -0.5ch;
 }
 </style>
