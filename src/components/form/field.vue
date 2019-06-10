@@ -7,7 +7,7 @@
         name="info"
         size="18"
         icon-style="outline"
-        class="field-action"
+        class="note field-action"
         color="darker-gray"
       />
       {{ field.name || $helpers.formatTitle(field.field) }}
@@ -210,6 +210,10 @@ export default {
   &:hover {
     color: var(--darker-gray);
   }
+}
+
+.note {
+  cursor: help;
 }
 
 .batch-toggle {
