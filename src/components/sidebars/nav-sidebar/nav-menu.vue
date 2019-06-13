@@ -80,7 +80,7 @@ ul {
 }
 
 nav > ul > li > * {
-  padding: 8px 0 8px 10px;
+  padding: 8px 4px 8px 10px;
   margin: 2px 0;
 }
 
