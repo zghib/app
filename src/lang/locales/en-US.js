@@ -151,7 +151,6 @@ export default {
         "An approximate binary number, 4 bytes with 6 decimal digits precision.",
       DOUBLE:
         "An approximate binary number, 8 bytes with 15 decimal digits precision.",
-
       DATE: "A date. From 4713 BC to 5874897 AD.",
       TIMESTAMP: "A date and time. From 4713 BC to 294276 AD",
       TIME: "A time. From `00:00:00` to `24:00:00`."

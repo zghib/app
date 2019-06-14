@@ -391,11 +391,12 @@ export default {
       return this.$store.state.collections[this.collection];
     },
     defaultValues() {
-      return this.$lodash.mapValues(this.fields, field => {
+      return _.mapValues(this.fields, field => {
         //BUGFIX if a default_value has been set on an auto_incremented field then it should not be explicitly forced by the app
         if (field.auto_increment === true) {
           return null;
         }
+
         if (field.type === "array") {
           return field.default_value ? [field.default_value] : [];
         }

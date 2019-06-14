@@ -2,6 +2,8 @@
  * The Grand Directus Types To Whatever Database Type Mapping™
  */
 
+import { i18n } from "@/lang/";
+
 export const datatypes = {
   mysql: {
     // String based

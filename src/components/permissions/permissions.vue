@@ -185,7 +185,7 @@ export default {
     }
   }
 
-  /deep/ .cell {
+  ::v-deep .cell {
     flex-basis: 70px;
     &:first-child {
       flex-grow: 2;
