@@ -303,6 +303,20 @@ export default {
   modified_by: "Geändert durch",
   modified_on: "Geändert am",
   more_options: "Weitere Optionen",
+  months: {
+    january: "Januar",
+    february: "Februar",
+    march: "März",
+    april: "April",
+    may: "Mai",
+    june: "Juni",
+    july: "Juli",
+    august: "August",
+    september: "September",
+    october: "Oktober",
+    november: "November",
+    december: "Dezember"
+  },
   my_activity: "Meine Aktivität",
   my_profile: "Mein Profil",
   name: "Name",
@@ -478,6 +492,15 @@ export default {
   view_type: "Ansehen als...",
   visible_all_users: "Für alle Benutzer sichtbar",
   welcome: "Willkommen",
+  weeks: {
+    monday: "Montag",
+    tuesday: "Dienstag",
+    wednesday: "Mittwoch",
+    thursday: "Donnerstag",
+    friday: "Freitag",
+    saturday: "Samstag",
+    sunday: "Sonntag"
+  },
   writable_fields: "Beschreibbare Felder",
   write_fields_copy: "Wähle die Felder aus, die der User bearbeiten darf.",
   yes: "Ja"

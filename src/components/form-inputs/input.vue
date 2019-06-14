@@ -15,6 +15,7 @@
       :min="min"
       :minlength="minlength"
       :name="name"
+      :pattern="pattern"
       :placeholder="placeholder"
       :required="required"
       :readonly="readonly || disabled"
@@ -38,6 +39,7 @@
       :min="min"
       :minlength="minlength"
       :name="name"
+      :pattern="pattern"
       :placeholder="placeholder"
       :required="required"
       :readonly="readonly || disabled"
@@ -96,6 +98,10 @@ export default {
     name: {
       type: String,
       default: ""
+    },
+    pattern: {
+      type: String,
+      default: ".*"
     },
     placeholder: {
       type: String,

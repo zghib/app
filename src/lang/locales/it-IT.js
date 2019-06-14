@@ -271,6 +271,20 @@ export default {
   max_size: "Max. Dimensioni: {size}",
   mixed: "Misto",
   more_options: "Più opzioni",
+  months: {
+    january: "Gennaio",
+    february: "Febbraio",
+    march: "Marzo",
+    april: "Aprile",
+    may: "Potrebbe",
+    june: "Giugno",
+    july: "luglio",
+    august: "Agosto",
+    september: "Settembre",
+    october: "Ottobre",
+    november: "Novembre",
+    december: "Dicembre"
+  },
   my_activity: "Le mie attività",
   my_profile: "Il mio profilo",
   name: "Nome",
@@ -422,6 +436,15 @@ export default {
   version_and_updates: "Versione e aggiornamenti",
   view_type: "Visualizza come...",
   welcome: "benvenuto",
+  weeks: {
+    monday: "Lunedi",
+    tuesday: "Martedì",
+    wednesday: "Mercoledì",
+    thursday: "Giovedi",
+    friday: "Venerdì",
+    saturday: "Sabato",
+    sunday: "Domenica"
+  },
   writable_fields: "Campi scrivibili",
   writable_fields_copy: "Seleziona i campi che l'utente può modificare",
   yes: "sì"

@@ -293,6 +293,20 @@ export default {
   modified_by: "Upravil/-a",
   modified_on: "Upraveno",
   more_options: "Více možností",
+  months: {
+    january: "Január",
+    february: "Február",
+    march: "Marec",
+    april: "Apríl",
+    may: "Smieť",
+    june: "Jún",
+    july: "Júl",
+    august: "August",
+    september: "Septembra",
+    october: "Október",
+    november: "November",
+    december: "December"
+  },
   my_activity: "Moje aktivity",
   my_profile: "Můj profil",
   name: "Jméno",
@@ -459,6 +473,15 @@ export default {
   view_type: "Zobrazit jako...",
   visible_all_users: "Zobrazit pro všechny uživatele",
   welcome: "Vítejte",
+  weeks: {
+    monday: "Pondelok",
+    tuesday: "Utorok",
+    wednesday: "Streda",
+    thursday: "Štvrtok",
+    friday: "Piatok",
+    saturday: "Sobota",
+    sunday: "Nedeľa"
+  },
   writable_fields: "Zapisovatelná pole",
   writable_fields_copy: "Vyberte pole, které uživatel může upravovat",
   yes: "Ano"
