@@ -151,11 +151,7 @@ export default {
       return "div";
     },
     link() {
-      if (this.to || this.href) {
-        return true;
-      }
-
-      return false;
+      return !!(this.to || this.href);
     },
     selectable() {
       return this.selected !== null;

@@ -1,41 +1,41 @@
 <template>
-  <div>
-    <div v-if="isImage" class="image">
-      <img v-if="!imgError" id="image" :src="vUrl" @error="imgError = true" />
-      <div v-if="imgError" class="broken-image">
+  <div class="file-preview">
+    <div v-if="isImage" class="preview image">
+      <img v-if="!imgError" ref="image" :src="vUrl" :alt="value.title" @error="imgError = true" />
+      <div v-else class="broken-image">
         <v-icon name="broken_image" />
       </div>
     </div>
 
-    <div v-else-if="isVideo" class="video">
+    <div v-else-if="isVideo" class="preview video">
       <video controls>
-        <source :src="url" :type="values.type" />
+        <source :src="url" :type="value.type" />
         I'm sorry; your browser doesn't support HTML5 video in this format.
       </video>
     </div>
-    <div v-else-if="isAudio" class="audio">
+    <div v-else-if="isAudio" class="preview audio">
       <audio controls>
-        <source :src="url" :type="values.type" />
+        <source :src="url" :type="value.type" />
         I'm sorry; your browser doesn't support HTML5 audio in this format.
       </audio>
     </div>
-    <div v-else-if="isYouTube" class="embed">
+    <div v-else-if="isYouTube" class="preview embed">
       <iframe
         width="620"
         height="349"
-        :src="'https://www.youtube.com/embed/' + values.embed"
+        :src="'https://www.youtube.com/embed/' + value.embed"
         frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen
       ></iframe>
     </div>
-    <div v-else-if="isVimeo" class="embed">
+    <div v-else-if="isVimeo" class="preview embed">
       <iframe
         width="620"
         height="349"
         :src="
           'https://player.vimeo.com/video/' +
-            values.embed +
+            value.embed +
             '?color=039be5&title=0&byline=0&portrait=0'
         "
         frameborder="0"
@@ -44,37 +44,41 @@
         allowfullscreen
       ></iframe>
     </div>
-    <div v-else class="file">{{ fileType }}</div>
+    <div v-else class="preview file">{{ fileType }}</div>
     <div class="toolbar">
       <!-- Default Toolbar -->
       <div v-if="!editMode" class="original">
-        <a class="file-link" :href="url" target="_blank">
-          <v-icon name="link" />
-          {{ url }}
-        </a>
-        <button
-          v-if="isImage && options.edit.includes('image_editor')"
-          type="button"
-          title="Edit image"
-          class="image-edit-start"
-          @click="initImageEdit()"
-        >
-          <v-icon name="crop_rotate" />
-        </button>
+        <div class="main">
+          <a v-tooltip="value.title" class="file-link" :href="url" target="_blank">
+            <v-icon name="link" />
+            <span>{{ value.title }}</span>
+          </a>
+          <p v-if="subtitle" class="subtitle">
+            {{ subtitle }}
+          </p>
+        </div>
+
+        <v-contextual-menu :options="moreOptions" @click="emitCtxEvent" />
       </div>
 
       <!-- Image Edit Toolbar -->
       <ul v-if="editMode" class="image-edit">
         <li>
           <div class="image-aspect-ratio">
-            <v-icon name="image_aspect_ratio" />
-            <span>{{ image.cropRatioOptions[image.cropRatio] }}</span>
-            <v-icon name="arrow_drop_down" />
-            <select v-model="image.cropRatio" title="Select aspect ratio">
-              <option v-for="(option, value) in image.cropRatioOptions" :key="value" :value="value">
-                {{ option }}
-              </option>
-            </select>
+            <label :for="componentId">
+              <v-icon name="image_aspect_ratio" />
+              <span>{{ image.cropRatioOptions[image.cropRatio] }}</span>
+              <v-icon name="arrow_drop_down" />
+              <select :id="componentId" v-model="image.cropRatio" :title="selectRatioTranslation">
+                <option
+                  v-for="(option, ratioValue) in image.cropRatioOptions"
+                  :key="ratioValue"
+                  :value="ratioValue"
+                >
+                  {{ option }}
+                </option>
+              </select>
+            </label>
           </div>
         </li>
         <li>
@@ -99,12 +103,37 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
 import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.min.css";
 
 export default {
-  mixins: [mixin],
+  name: "VFilePreview",
+  props: {
+    value: {
+      type: Object,
+      default: null
+    },
+    options: {
+      type: Object,
+      default: () => ({})
+    },
+    editor: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    title: {
+      type: String,
+      default: null
+    },
+    subtitle: {
+      type: String,
+      default: null
+    }
+  },
   data() {
     return {
       editMode: null,
@@ -123,7 +152,7 @@ export default {
         },
         initOptions: {
           background: false,
-          viewMode: 0,
+          viewMode: 1,
           autoCropArea: 1,
           zoomable: false
         }
@@ -131,8 +160,14 @@ export default {
     };
   },
   computed: {
+    componentId() {
+      return "file-preview-" + this.$helpers.shortid.generate();
+    },
+    selectRatioTranslation() {
+      return this.$t("select_aspect_ratio");
+    },
     isImage() {
-      switch (this.values.type) {
+      switch (this.value.type) {
         case "image/jpeg":
         case "image/gif":
         case "image/png":
@@ -144,7 +179,7 @@ export default {
       return false;
     },
     isVideo() {
-      switch (this.values.type) {
+      switch (this.value.type) {
         case "video/mp4":
         case "video/webm":
         case "video/ogg":
@@ -153,7 +188,7 @@ export default {
       return false;
     },
     isAudio() {
-      switch (this.values.type) {
+      switch (this.value.type) {
         case "audio/mpeg":
         case "audio/ogg":
         case "audio/wav":
@@ -162,25 +197,35 @@ export default {
       return false;
     },
     isYouTube() {
-      return this.values.type === "embed/youtube";
+      return this.value.type === "embed/youtube";
     },
     isVimeo() {
-      return this.values.type === "embed/vimeo";
+      return this.value.type === "embed/vimeo";
     },
     fileType() {
-      return this.values.type.split("/")[1];
+      return this.value.type.split("/")[1];
     },
     url() {
-      return this.values.data.full_url;
+      return this.value.data.full_url;
     },
     vUrl() {
       /**
        * Timestamp fetches the latest image from server
        * Version helps to refresh the image after crop
        */
-      return `${this.values.data.full_url}?v=${
-        this.image.version
-      }&timestamp=${new Date().getTime()}`;
+      return `${this.url}?v=${this.image.version}&timestamp=${new Date().getTime()}`;
+    },
+    moreOptions() {
+      const moreOptions = _.clone(this.options);
+
+      if (this.editor && this.isImage) {
+        moreOptions.editor = {
+          text: this.$t("edit"),
+          icon: "crop_rotate"
+        };
+      }
+
+      return moreOptions;
     }
   },
   watch: {
@@ -192,16 +237,22 @@ export default {
     initImageEdit() {
       this.editMode = "image";
       this.image.show = false;
-      const image = document.getElementById("image");
-      this.image.cropper = new Cropper(image, {
-        ...this.image.initOptions
-      });
+      const image = this.$refs.image;
+      this.image.cropper = new Cropper(image, this.image.initOptions);
 
       window.addEventListener("keydown", this.escapeEditImage);
     },
 
+    emitCtxEvent(id) {
+      if (id === "editor") {
+        this.initImageEdit();
+      }
+
+      this.$emit(id);
+    },
+
     escapeEditImage(event) {
-      if (this.editMode == "image" && event.key == "Escape") {
+      if (this.editMode === "image" && event.key === "Escape") {
         this.cancelImageEdit();
         window.removeEventListener("keydown", this.escapeEditImage);
       }
@@ -258,11 +309,11 @@ export default {
         .getCroppedCanvas({
           imageSmoothingQuality: "high"
         })
-        .toDataURL(this.values.type);
+        .toDataURL(this.value.type);
 
       //Saving the image via API
       this.$api
-        .patch(`/files/${this.values.id}`, {
+        .patch(`/files/${this.value.id}`, {
           data: imageBase64
         })
         .then(() => {
@@ -296,24 +347,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.preview {
+  border: var(--input-border-width) solid var(--lighter-gray);
+  border-radius: var(--border-radius);
+}
 .file,
 .audio,
 .video,
 .image {
   width: 100%;
-  background-color: var(--darker-gray);
+  background-color: var(--lightest-gray);
   text-align: center;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
   overflow: hidden;
-  img {
-    margin: 0 auto;
-    max-height: 414px;
-    max-width: 100%;
-    display: block;
-  }
+  img,
   video {
     margin: 0 auto;
-    max-height: 414px;
+    max-height: 424px;
+    width: 100%;
+    object-fit: contain;
     max-width: 100%;
     display: block;
   }
@@ -324,6 +376,11 @@ export default {
     display: block;
   }
 }
+.file,
+.audio,
+.video {
+  overflow: hidden;
+}
 .audio,
 .file {
   padding: 80px 40px;
@@ -333,27 +390,49 @@ export default {
   color: var(--lighter-gray);
 }
 .toolbar {
-  margin-top: 10px;
+  padding: 8px 16px;
+  background: var(--off-white);
+  border: solid var(--lighter-gray);
+  border-width: 0 var(--input-border-width) var(--input-border-width);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
   .original {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
+
+    a {
+      color: var(--dark-gray);
+      font-size: var(--size-3);
+      margin-bottom: -4px;
+    }
+  }
+  .subtitle {
+    font-size: var(--size-3);
+    color: var(--light-gray);
+  }
+  .main {
+    min-width: 0;
   }
 }
 .file-link {
-  transition: var(--fast) var(--transition);
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   text-decoration: none;
-  color: var(--gray);
-  &:hover {
-    color: var(--darker-gray);
-  }
   i {
     margin-right: 6px;
     color: var(--gray);
+    transition: var(--fast) var(--transition);
+    transition-property: color;
   }
   span {
     margin-right: 10px;
     vertical-align: middle;
+  }
+  &:hover i {
+    color: var(--darker-gray);
   }
 }
 .image-edit-start {
@@ -362,7 +441,6 @@ export default {
     color: var(--gray);
   }
 }
-
 .image-edit {
   display: flex;
   list-style: none;
@@ -388,7 +466,6 @@ export default {
     }
   }
 }
-
 .image-aspect-ratio {
   position: relative;
   display: inline-flex;
@@ -406,16 +483,42 @@ export default {
     opacity: 0;
   }
 }
+.menu-toggle {
+  width: 16px;
+  color: var(--lighter-gray);
+  transition: color var(--fast) var(--transition);
+
+  &:hover {
+    color: var(--darker-gray);
+    transition: none;
+  }
+}
+.broken-image {
+  width: 100%;
+  padding: 70px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  i {
+    color: var(--light-gray);
+    font-size: 48px;
+  }
+}
 </style>
 
 <style lang="scss">
 .image {
+  .cropper-modal {
+    background: var(--dark-gray);
+  }
   .cropper-point {
     background: #fff;
     height: 10px;
     width: 10px;
     border-radius: 50%;
     opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 2px 8px;
     &.point-n {
       top: -5px;
       margin-left: -5px;
@@ -453,23 +556,11 @@ export default {
     border-style: solid;
     border-color: #fff;
     opacity: 0.4;
-    box-shadow: 0 0px 0px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
   }
   .cropper-line {
     background-color: #000;
     opacity: 0.05;
-  }
-}
-.broken-image {
-  width: 100%;
-  padding: 70px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  i {
-    color: var(--light-gray);
-    font-size: 48px;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 {
   "name": "$t:file",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "types": ["file"],
   "icon": "insert_drive_file",
   "recommended": {
@@ -12,6 +12,16 @@
       "comment": "$t:view_type_comment",
       "default": "cards",
       "interface": "text-input"
+    },
+    "edit": {
+      "name": "$t:edit",
+      "interface": "checkboxes",
+      "default": ["image_editor"],
+      "options": {
+        "choices": {
+          "image_editor": "Image Editor"
+        }
+      }
     },
     "viewOptions": {
       "name": "$t:view_options",
@@ -63,7 +73,8 @@
       "filters": "Filters",
       "filters_comment": "What filters to use",
       "accept": "Accept File Types",
-      "accept_comment": "Set a list of MIME types that can be picked"
+      "accept_comment": "Set a list of MIME types that can be picked",
+      "edit": "Editing Options"
     },
 	"fr-FR": {
       "file": "Fichier",

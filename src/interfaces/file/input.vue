@@ -1,41 +1,26 @@
 <template>
   <div class="input-single-file">
-    <v-card
-      v-if="value"
-      class="card"
-      :title="value.title"
-      :subtitle="subtitle + subtitleExtra"
-      :src="src"
-      :icon="icon"
-      :href="href"
-      :options="{
-        remove: {
-          text: $t('delete'),
-          icon: 'delete'
-        }
-      }"
-      @remove="$emit('input', null)"
-    ></v-card>
-    <v-upload
-      v-else
-      small
-      :disabled="readonly"
-      class="uploader"
-      :accept="options.accept"
-      :multiple="false"
-      @upload="saveUpload"
-    ></v-upload>
-
-    <v-button type="button" :disabled="readonly" @click="newFile = true">
-      <v-icon name="add" />
-      {{ $t("new_file") }}
-    </v-button>
-    <!--
-    -->
-    <v-button type="button" :disabled="readonly" @click="existing = true">
-      <v-icon name="playlist_add" />
-      {{ $t("existing") }}
-    </v-button>
+    <template v-if="file">
+      <v-file-preview
+        :value="file"
+        :subtitle="subtitle + subtitleExtra"
+        :readonly="readonly"
+        :required="required"
+        :options="filePreviewOptions"
+        :editor="options.edit && options.edit.includes('image_editor')"
+        @remove="$emit('input', null)"
+      ></v-file-preview>
+    </template>
+    <template v-else>
+      <v-button type="button" :disabled="readonly" @click="newFile = true">
+        <v-icon name="add" />
+        {{ $t("new_file") }}
+      </v-button>
+      <v-button type="button" :disabled="readonly" @click="existing = true">
+        <v-icon name="playlist_add" />
+        {{ $t("existing") }}
+      </v-button>
+    </template>
 
     <portal v-if="newFile" to="modal">
       <v-modal
@@ -77,7 +62,7 @@
           class="items"
           collection="directus_files"
           :view-type="viewType"
-          :selection="value ? [value] : []"
+          :selection="file ? [file] : []"
           :filters="filters"
           :view-query="viewQuery"
           :view-options="viewOptions"
@@ -93,7 +78,6 @@
 <script>
 import mixin from "@directus/extension-toolkit/mixins/interface";
 import formatSize from "../file-size/format-size";
-import getIcon from "./get-icon";
 
 export default {
   mixins: [mixin],
@@ -109,41 +93,42 @@ export default {
     };
   },
   computed: {
+    file() {
+      // needed to overcome incompatibility between directus_files and normal collection detail view
+      // TODO: investigate why directus_files is still incompatible with normal collection view
+      if (this.value !== null) return this.value;
+      if (this.values !== null && this.values.filesize && this.values.filename) return this.values;
+      return null;
+    },
+    filePreviewOptions() {
+      if (!this.options || !this.options.edit) return {};
+      return {
+        remove: {
+          text: this.$t("delete"),
+          icon: "delete"
+        }
+      };
+    },
     subtitle() {
-      if (!this.value) return "";
+      if (!this.file) return "";
 
       return (
-        this.value.filename.split(".").pop() +
+        this.file.filename.split(".").pop() +
         " • " +
-        this.$d(new Date(this.value.uploaded_on), "short")
+        this.$d(new Date(this.file.uploaded_on), "short")
       );
     },
     subtitleExtra() {
       // Image ? -> display dimensions and formatted filesize
-      return this.value.type && this.value.type.startsWith("image")
+      return this.file.type && this.file.type.startsWith("image")
         ? " • " +
-            this.value.width +
+            this.file.width +
             " x " +
-            this.value.height +
+            this.file.height +
             " (" +
-            formatSize(this.value.filesize) +
+            formatSize(this.file.filesize) +
             ")"
-        : null;
-    },
-    src() {
-      return this.value.type && this.value.type.startsWith("image")
-        ? this.value.data.full_url
-        : null;
-    },
-    icon() {
-      return this.value.type && !this.value.type.startsWith("image")
-        ? getIcon(this.value.type)
-        : null;
-    },
-    href() {
-      return this.value.type && this.value.type === "application/pdf"
-        ? this.value.data.full_url
-        : null;
+        : "";
     },
     viewOptions() {
       const viewOptions = this.options.viewOptions;
@@ -163,9 +148,6 @@ export default {
         ...this.viewQueryOverride
       };
     },
-    filters() {
-      return [...this.options.filters, ...this.fileTypeFilters, ...this.filtersOverride];
-    },
     fileTypeFilters() {
       if (
         !this.options.accept ||
@@ -182,6 +164,9 @@ export default {
           value: this.options.accept.trim().split(/,\s*/)
         }
       ];
+    },
+    filters() {
+      return [...this.options.filters, ...this.fileTypeFilters, ...this.filtersOverride];
     }
   },
   created() {
@@ -214,15 +199,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.card,
-.uploader {
+.input-single-file {
   margin-bottom: 20px;
-  width: 100%;
   max-width: var(--width-x-large);
-}
-
-.uploader {
-  height: 190px;
 }
 
 button {
@@ -235,20 +214,6 @@ button {
 
 .body {
   padding: 20px;
-}
-
-.search-input {
-  border-bottom: 1px solid var(--lightest-gray);
-  & >>> input {
-    border-radius: 0;
-    border: none;
-    padding-left: var(--page-padding);
-    height: var(--header-height);
-
-    &::placeholder {
-      color: var(--light-gray);
-    }
-  }
 }
 
 .items {

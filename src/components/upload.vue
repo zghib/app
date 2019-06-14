@@ -88,7 +88,8 @@ export default {
   name: "VUpload",
   props: {
     accept: {
-      type: String
+      type: String,
+      default: ""
     },
     multiple: {
       type: Boolean,
@@ -209,8 +210,7 @@ export default {
 
       this.$api
         .uploadFiles(formData, ({ loaded, total }) => {
-          const progress = Math.round((loaded * 100) / total);
-          this.files[id].progress = progress;
+          this.files[id].progress = Math.round((loaded * 100) / total);
         })
         .then(res => res.data)
         .then(res => {
