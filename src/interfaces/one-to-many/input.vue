@@ -145,7 +145,7 @@
           <v-form
             new-item
             :fields="relatedCollectionFields"
-            :collection="collection"
+            :collection="relatedCollection"
             :values="relatedDefaultsWithEdits"
             @stage-value="stageValue"
           ></v-form>
