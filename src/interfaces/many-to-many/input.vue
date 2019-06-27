@@ -269,7 +269,9 @@ export default {
       this.sort.field = "$manual";
     } else {
       // Set the default sort column
-      this.sort.field = this.visibleFields[0].field;
+      if (this.visibleFields && this.visibleFields.length > 0) {
+        this.sort.field = this.visibleFields[0].field;
+      }
     }
 
     // Set the initial set of items. Filter out any broken junction records
