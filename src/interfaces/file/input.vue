@@ -3,7 +3,7 @@
     <v-card
       v-if="value"
       class="card"
-      :title="value.title"
+      :title="image.title"
       :subtitle="subtitle + subtitleExtra"
       :src="src"
       :icon="icon"
@@ -107,7 +107,7 @@ export default {
       viewTypeOverride: null,
       viewQueryOverride: {},
       filtersOverride: [],
-      image: this.value
+      image: _.cloneDeep(this.value)
     };
   },
   computed: {
@@ -181,7 +181,7 @@ export default {
         {
           field: "type",
           operator: "in",
-          value: this.options.accept.trim().split(/,\s*/)
+          value: (this.options.accept || "").trim().split(/,\s*/)
         }
       ];
     }
@@ -193,7 +193,7 @@ export default {
     saveUpload(fileInfo) {
       this.image = fileInfo;
       // We know that the primary key of directus_files is called `id`
-      this.$emit("input", fileInfo.data.id);
+      this.$emit("input", { id: fileInfo.data.id });
 
       this.newFile = false;
     },
@@ -217,7 +217,7 @@ export default {
     saveSelection(value) {
       const file = value[value.length - 1];
       this.image = file;
-      this.$emit("input", file.id);
+      this.$emit("input", { id: file.id });
     }
   }
 };
