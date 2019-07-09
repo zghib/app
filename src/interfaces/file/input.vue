@@ -102,7 +102,6 @@ export default {
     return {
       newFile: false,
       existing: false,
-
       viewOptionsOverride: {},
       viewTypeOverride: null,
       viewQueryOverride: {},
@@ -191,7 +190,7 @@ export default {
   },
   methods: {
     saveUpload(fileInfo) {
-      this.image = fileInfo;
+      this.image = fileInfo.data;
       // We know that the primary key of directus_files is called `id`
       this.$emit("input", { id: fileInfo.data.id });
 
