@@ -218,7 +218,6 @@ export default {
 
     &.big-image {
       height: 400px;
-      background-color: transparent !important;
     }
 
     &.small {
@@ -258,7 +257,7 @@ export default {
 
     &.big-image img {
       width: 100%;
-      height: auto;
+      height: 100%;
     }
 
     .icon {
