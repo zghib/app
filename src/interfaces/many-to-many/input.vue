@@ -37,7 +37,7 @@
         >
           <div
             v-for="item in itemsSorted"
-            :key="item[junctionRelatedKey][relatedPrimaryKeyField] || item.$tempKey"
+            :key="item[junctionRelatedKey][relatedPrimaryKeyField]"
             class="row"
             @click="startEdit(item[junctionPrimaryKey])"
           >
@@ -453,7 +453,10 @@ export default {
           }
 
           // If the junction item didn't exist before yet:
-          if (after[this.junctionPrimaryKey].startsWith("$temp_")) {
+          if (
+            typeof after[this.junctionPrimaryKey] === "string" &&
+            after[this.junctionPrimaryKey].startsWith("$temp_")
+          ) {
             delete after[this.junctionPrimaryKey];
           }
 

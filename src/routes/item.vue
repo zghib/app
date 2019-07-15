@@ -89,6 +89,7 @@
 
     <v-form
       ref="form"
+      :key="formKey"
       :readonly="readonly"
       :fields="fields"
       :values="values"
@@ -271,7 +272,9 @@ export default {
       revisions: {},
 
       revertActivity: null,
-      reverting: false
+      reverting: false,
+
+      formKey: shortid.generate()
     };
   },
   computed: {
@@ -724,11 +727,14 @@ export default {
               const primaryKey = savedValues[this.primaryKeyField];
               return this.$router.push(`/collections/${this.collection}/${primaryKey}`);
             }
+
             this.$store.dispatch("startEditing", {
               collection: this.collection,
               primaryKey: this.primaryKey,
               savedValues: savedValues
             });
+
+            this.formKey = shortid.generate();
           }
 
           if (method === "add") {
