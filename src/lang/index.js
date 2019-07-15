@@ -50,7 +50,7 @@ export async function loadLanguageAsync(lang) {
         /* webpackChunkName: "lang-[request]" */ `@/lang/${lang}/index.json`
       );
       const dateTimeFormats = await import(
-        /* webpackChunkName: "lang-[request]" */ `@/lang/${lang}/date-format.json`
+        /* webpackChunkName: "date-[request]" */ `@/lang/${lang}/date-format.json`
       );
       i18n.setLocaleMessage(lang, msgs);
       i18n.setDateTimeFormat(lang, dateTimeFormats);
