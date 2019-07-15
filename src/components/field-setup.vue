@@ -15,7 +15,6 @@
       <v-notice v-if="interfaceName" color="gray" class="currently-selected">
         {{ $t("currently_selected", { thing: interfaces[interfaceName].name }) }}
       </v-notice>
-      <!-- <p v-else class="subtext">{{ $t("select_interface_below") }}</p> -->
       <v-input
         v-else
         v-model="interfaceFilter"
@@ -559,6 +558,7 @@
 </template>
 
 <script>
+import formatTitle from "@directus/format-title";
 import mapping, { datatypes } from "../type-map";
 import { defaultFull } from "../store/modules/permissions/defaults";
 
@@ -693,7 +693,11 @@ export default {
     interfacesFiltered() {
       if (!this.interfaceFilter) return this.interfaces;
       return Object.keys(this.interfaces)
-        .filter(interfaceName => interfaceName.includes(this.interfaceFilter))
+        .filter(interfaceName => {
+          return formatTitle(interfaceName)
+            .toLowerCase()
+            .includes(this.interfaceFilter.toLowerCase());
+        })
         .map(interfaceName => ({ ...this.interfaces[interfaceName] }));
     },
     databaseVendor() {
