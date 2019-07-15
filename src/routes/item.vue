@@ -70,6 +70,7 @@
 
     <v-info-sidebar v-if="!newItem && !batch" wide item-detail>
       <v-activity
+        class="activity"
         :activity="activity"
         :revisions="revisions"
         :loading="activityLoading"
@@ -1063,12 +1064,15 @@ export default {
   margin-top: 1px;
 }
 
+.activity {
+  margin-bottom: 64px;
+}
+
 .notifications {
-  position: absolute;
+  position: fixed;
+  width: var(--info-sidebar-width);
   bottom: 0;
-  left: 0;
-  width: 100%;
-  margin: 0;
+  right: 0;
   text-decoration: none;
   padding: 20px;
   background-color: #dde3e6;
