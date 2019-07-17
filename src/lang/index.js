@@ -64,17 +64,33 @@ export async function loadLanguageAsync(lang) {
 
 // Array of available languages in the system
 export const availableLanguages = {
+  "af-ZA": "Afrikaans (South Africa)",
+  "ar-SA": "Arabic (Saudi Arabia)",
+  "ca-ES": "Catalan (Spain)",
   "zh-CN": "Chinese (Simplified)",
   "cs-CZ": "Czech (Czech Republic)",
+  "da-DK": "Danish (Denmark)",
   "nl-NL": "Dutch (Netherlands)",
   "en-US": "English (United States)",
+  "fi-FI": "Finnish (Finland)",
   "fr-FR": "French (France)",
   "de-DE": "German (Germany)",
+  "el-GR": "Greek (Greece)",
+  "he-IL": "Hebrew (Israel)",
+  "hu-HU": "Hungarian (Hungary)",
   "it-IT": "Italian (Italy)",
+  "ja-JP": "Japanese (Japan)",
+  "ko-KR": "Korean (Korea)",
+  "ms-MY": "Malay (Malaysia)",
+  "no-NO": "Norwegian (Norway)",
   "pl-PL": "Polish (Poland)",
   "pt-BR": "Portuguese (Brazil)",
-  "ru-RU": "Russian (Russia)",
-  "ms-MY": "Malay (Malaysia)"
+  "pt-PT": "Portuguese (Portugal)",
+  "es-ES": "Spanish (Spain)",
+  "zh-TW": "Taiwanese Mandarin (Taiwan)",
+  "tr-TR": "Turkish (Turkey)",
+  "uk-UA": "Ukrainian (Ukraine)",
+  "vi-VN": "Vietnamese (Vietnam)"
 };
 
 i18n.availableLanguages = availableLanguages;
