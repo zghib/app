@@ -270,8 +270,9 @@ export default {
     if (this.url) {
       this.checkUrl();
     }
+
     let lastUsedURL = this.$store.state.auth.url
-      ? this.$store.state.auth.url
+      ? `${this.$store.state.auth.url}/${this.$store.state.auth.project}/`
       : Object.keys(window.__DirectusConfig__.api)[0];
 
     // Check if the last used URL is still a valid option before using it

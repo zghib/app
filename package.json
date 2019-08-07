@@ -1,6 +1,6 @@
 {
   "name": "directus",
-  "version": "7.8.0",
+  "version": "7.9.0",
   "private": true,
   "description": "Directus is an Open-Source Headless CMS & API for Managing Custom Databases",
   "author": "Rijk van Zanten <rijk@rngr.org>",
@@ -32,7 +32,7 @@
     "jsonlint-mod": "^1.7.4",
     "leaflet": "^1.5.1",
     "lodash": "^4.17.14",
-    "marked": "^0.6.3",
+    "marked": "^0.7.0",
     "medium-editor": "^5.23.3",
     "micromustache": "^5.4.0",
     "mousetrap": "^1.6.3",

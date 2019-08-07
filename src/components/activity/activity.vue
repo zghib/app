@@ -86,6 +86,7 @@
 
 <script>
 import VDiff from "./diff.vue";
+import { diff } from "deep-object-diff";
 
 export default {
   name: "VActivity",
@@ -196,7 +197,15 @@ export default {
 
       const previousRevision = this.revisions[previousUpdate.id];
       const previousData = (previousRevision && previousRevision.data) || {};
+      const currentData = revision.data || {};
       const currentDelta = revision.delta;
+
+      // The API will save the delta no matter if it actually changed or not
+      const localDelta = diff(_.clone(previousData), _.clone(currentData));
+
+      const hasChanged = Object.keys(localDelta).length > 0;
+
+      if (hasChanged === false) return null;
 
       return _.mapValues(currentDelta, (value, field) => ({
         before: previousData[field],

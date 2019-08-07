@@ -49,6 +49,7 @@
         <div class="head">
           <!-- Checkboxes -->
           <span />
+          <span v-if="collection === 'directus_files'">{{ $t("file") }}</span>
           <span v-for="field in fields" :key="field">{{ $helpers.formatTitle(field) }}</span>
         </div>
 
@@ -72,6 +73,17 @@
               :name="isChecked(item[primaryKeyField]) ? 'check_box' : 'check_box_outline_blank'"
             />
           </div>
+
+          <span v-if="collection === 'directus_files'">
+            <v-ext-display
+              interface-type="file"
+              name="thumbnail"
+              collection="directus_files"
+              type="JSON"
+              datatype="TEXT"
+              :value="item"
+            />
+          </span>
 
           <span v-for="fieldInfo in fieldsWithInfo" :key="uid + '_' + fieldInfo.field">
             <v-ext-display
@@ -264,7 +276,9 @@ export default {
         params.filters = formatFilters(this.filters);
       }
 
-      if (this.fields.length > 0) {
+      if (this.collection === "directus_files") {
+        params.fields = ["*"];
+      } else if (this.fields.length > 0) {
         params.fields = _.clone(this.fields);
       }
 
@@ -284,6 +298,7 @@ export default {
           this.moreItemsAvailable = items.length === 200;
 
           if (options.replace) return (this.items = items);
+
           return (this.items = [...this.items, ...items]);
         })
         .catch(error => (this.error = error))

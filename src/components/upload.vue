@@ -42,7 +42,7 @@
       </div>
     </div>
     <transition-group tag="ol" name="list">
-      <li v-for="file in files" :key="file.name" class="list-item">
+      <li v-for="file in files" :key="file.id" class="list-item">
         <v-progress-ring
           class="icon"
           :progress="file.progress"
@@ -125,6 +125,7 @@ export default {
       const name = this.embedLink.substring(this.embedLink.lastIndexOf("/") + 1);
       this.files = {
         [id]: {
+          id,
           name,
           size: null,
           progress: 0,
@@ -142,6 +143,7 @@ export default {
           const { filesize: size, type, title: name } = data;
           this.files = {
             [id]: {
+              id,
               name,
               size,
               progress: 100,
@@ -198,6 +200,7 @@ export default {
 
       this.files = {
         [id]: {
+          id,
           name,
           size: filesize(size),
           type,

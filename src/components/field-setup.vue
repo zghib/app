@@ -113,10 +113,7 @@
 
         <div class="toggles">
           <label class="toggle">
-            <v-toggle
-              v-model="required"
-              :disabled="fieldInfo.primary_key || this.type === 'alias'"
-            />
+            <v-toggle v-model="required" :disabled="fieldInfo.primary_key || type === 'alias'" />
             {{ $t("required") }}
           </label>
           <label class="toggle">
@@ -304,7 +301,7 @@
 
         <v-simple-select v-model="relationInfo.field_many" class="select">
           <option
-            v-for="{ field } in fields(relationInfo.collection_many)"
+            v-for="{ field } in fieldsNonSystem(relationInfo.collection_many)"
             :key="field"
             :value="field"
           >
@@ -593,7 +590,7 @@ export default {
       options: {},
       translation: {},
       readonly: false,
-      required: true,
+      required: false,
       unique: false,
       note: null,
       hidden_detail: false,
@@ -1236,7 +1233,7 @@ export default {
 
           this.relationInfo.field_many = _.find(
             Object.values(_.cloneDeep(this.$store.state.collections))[0].fields,
-            { primary_key: true }
+            { primary_key: false }
           ).field;
 
           this.getM2OID();
@@ -1325,6 +1322,16 @@ export default {
       if (!collection) return {};
       return this.collections[collection].fields;
     },
+    fieldsNonSystem(collection) {
+      if (!collection) return {};
+      var fields = this.collections[collection].fields;
+      for (var key in fields) {
+        if (fields.hasOwnProperty(key) && fields[key].primary_key) {
+          delete fields[key];
+        }
+      }
+      return this.collections[collection].fields;
+    },
     primaryKeyFieldByCollection(collection) {
       const fields = this.fields(collection);
       return _.find(fields, { primary_key: true });
@@ -1396,7 +1403,7 @@ export default {
           options: null,
           primary_key: true,
           readonly: 0,
-          required: true,
+          required: false,
           signed: false,
           sort: 1,
           translation: null,

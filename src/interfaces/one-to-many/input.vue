@@ -130,6 +130,7 @@
 <script>
 import mixin from "@directus/extension-toolkit/mixins/interface";
 import shortid from "shortid";
+import { diff } from "deep-object-diff";
 
 export default {
   name: "InterfaceOneToMany",
@@ -424,7 +425,25 @@ export default {
           const before = this.initialValue.find(i => i[this.relatedPrimaryKeyField] === primaryKey);
 
           if (before) {
-            const delta = _.omitBy(after, (v, k) => before[k] === v);
+            const delta = diff(before, after);
+
+            // For every nested field, we only want to stage the changed values, hence the delta above
+            // HOWEVER, there is one field type where we _don't_ want to only save the changes: JSON
+            // For a nested JSON record, we want to save the whole new state of the object, instead of
+            // just the values that changed, seeing it will override the saved value with a new Object
+            // only containing the changes.
+            // In order to achieve that, we'll loop over every key in the delta, and use the "full"
+            // after value in case the delta field is a JSON type
+            _.forEach(delta, (value, key) => {
+              const fieldInfo = this.relatedCollectionFields[key];
+              if (!fieldInfo) return;
+
+              const type = fieldInfo.type.toLowerCase();
+
+              if (type === "json") {
+                delta[key] = after[key];
+              }
+            });
 
             if (Object.keys(delta).length > 0) {
               const newVal = {
