@@ -48,6 +48,13 @@ export default {
       }
     };
   },
+  watch: {
+    value(newValue) {
+      if (newValue !== this.editor.root.innerHTML) {
+        this.editor.setContents(this.editor.clipboard.convert(newValue));
+      }
+    }
+  },
   mounted() {
     this.init();
   },

@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "是否確定要刪除此角色 \"{name}\"? 此動作無法還原。",
   "desc": "降冪",
   "description": "描述說明",
+  "deselect": "Deselect",
   "dialog_beginning": "Beginning of dialog window.",
   "discard_changes": "放棄修改",
   "display_name": "顯示名稱",
@@ -156,6 +157,7 @@
     "103": "使用者已停用",
     "106": "錯誤的使用者名稱或密碼",
     "107": "找不到此使用者",
+    "112": "Wrong OTP",
     "-1": "無法連接API"
   },
   "esc_cancel": "Escape will cancel and close the window.",
@@ -318,6 +320,7 @@
   "optional": "非必填",
   "options": "選項",
   "other": "其它",
+  "otp": "One-Time Password",
   "page_not_found": "無法找到網頁",
   "page_not_found_body": "您在找的頁面不存在",
   "password": "密碼",

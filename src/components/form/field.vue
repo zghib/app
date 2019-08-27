@@ -1,27 +1,22 @@
 <template>
   <div :data-collection="collection" :data-field="field.field">
     <div v-if="showLabel" class="name">
-      <v-icon
-        v-if="field.note"
-        v-tooltip="$helpers.snarkdown(field.note)"
-        name="info"
-        size="18"
-        icon-style="outline"
-        class="note field-action"
-        color="darker-gray"
-      />
-      {{ field.name || $helpers.formatTitle(field.field) }}
-      <v-icon v-if="field.required !== false" class="required" name="star" color="light-gray" sup />
       <v-contextual-menu
         v-if="field.readonly === false"
-        class="options field-action"
-        placement="bottom-start"
+        class="field-action"
+        placement="right-start"
         :options="options"
         :icon="null"
         @click="emitChange"
       >
-        <v-icon name="arrow_drop_down" icon-style="outline" size="18" class="field-action" />
+        <span class="field-label">{{ field.name || $helpers.formatTitle(field.field) }}</span>
+        <v-icon v-if="field.required !== false" class="required" name="star" color="accent" sup />
+        <v-icon name="arrow_drop_down" icon-style="outline" size="18" class="dropdown" />
       </v-contextual-menu>
+      <span v-else class="field-static">
+        <span class="field-label">{{ field.name || $helpers.formatTitle(field.field) }}</span>
+        <v-icon v-if="field.required !== false" class="required" name="star" color="accent" sup />
+      </span>
       <v-toggle
         v-if="batchMode"
         class="batch-toggle"
@@ -60,6 +55,7 @@
         "
       />
     </div>
+    <div v-if="field.note" class="note" v-html="$helpers.snarkdown(field.note)"></div>
   </div>
 </template>
 
@@ -196,38 +192,46 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.note {
+  color: var(--light-gray);
+  margin-top: 4px;
+}
+
 .name {
   font-size: var(--size-2);
   margin-bottom: 10px;
   color: var(--darkest-gray);
 }
 
-.field-action {
-  transition: all var(--fast) var(--transition);
-  color: var(--light-gray);
-  vertical-align: -4px;
-  &:hover {
-    color: var(--darker-gray);
-  }
+.required {
+  display: inline-block;
+  margin-top: -8px;
+  margin-left: 2px;
 }
 
-.note {
-  cursor: help;
+.field-static {
+  display: inline-block;
+}
+
+.field-action {
+  display: inline-block;
+  transition: all var(--fast) var(--transition);
+  &:hover {
+    color: var(--accent);
+    .dropdown {
+      color: var(--accent);
+    }
+  }
+  .dropdown {
+    color: var(--lighter-gray);
+    vertical-align: -2px;
+  }
 }
 
 .batch-toggle {
   display: inline-block;
   vertical-align: -4px;
   margin-left: 4px;
-}
-
-.options {
-  display: inline-block;
-  margin-left: -3px;
-}
-
-.required {
-  margin-left: -0.5ch;
 }
 </style>

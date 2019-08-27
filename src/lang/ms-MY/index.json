@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "Adakah anda pasti ingin memadam peranan \"{name}\"? Tindakan ini tidak dapat dibatalkan.",
   "desc": "desc",
   "description": "Penerangan",
+  "deselect": "Deselect",
   "dialog_beginning": "Permulaan bagi tetingkap dialog",
   "discard_changes": "Buang Perubahan",
   "display_name": "Paparkan Nama",
@@ -156,6 +157,7 @@
     "103": "Pengguna tidak aktif",
     "106": "Nama pengguna dan/atau kata laluan salah",
     "107": "Pengguna tidak dijumpai",
+    "112": "Wrong OTP",
     "-1": "Tidak dapat mencapai API"
   },
   "esc_cancel": "Keluar akan membatalkan dan menutup tetingkap.",
@@ -318,6 +320,7 @@
   "optional": "Optional",
   "options": "Pilihan-pilihan",
   "other": "Lain-lain",
+  "otp": "One-Time Password",
   "page_not_found": "Halaman Tidak Dijumpai",
   "page_not_found_body": "Halaman yang anda cari tidak wujud",
   "password": "Katalaluan",

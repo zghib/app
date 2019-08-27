@@ -649,7 +649,6 @@ export default {
             case "user_created":
             case "user_updated":
             case "o2m":
-            case "m2o":
               delete values[fieldName];
               break;
           }

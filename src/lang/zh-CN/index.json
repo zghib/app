@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "您确定要删除角色 \"{name}\"? 此操作无法撤消。",
   "desc": "desc",
   "description": "描述",
+  "deselect": "Deselect",
   "dialog_beginning": "对话框窗口开始。",
   "discard_changes": "不保存修改并离开此页",
   "display_name": "显示名称",
@@ -156,6 +157,7 @@
     "103": "用户处于非活动状态",
     "106": "错误的用户名和/或密码",
     "107": "找不到用户",
+    "112": "Wrong OTP",
     "-1": "无法访问API"
   },
   "esc_cancel": "Escape 将取消并关闭窗口。",
@@ -318,6 +320,7 @@
   "optional": "Optional",
   "options": "选项",
   "other": "其他",
+  "otp": "One-Time Password",
   "page_not_found": "找不到页面",
   "page_not_found_body": "您正在寻找的页面似乎不存在。",
   "password": "密码",

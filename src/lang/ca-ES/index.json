@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "Are you sure to delete the role \"{name}\"? This action cannot be undone.",
   "desc": "desc",
   "description": "Description",
+  "deselect": "Deselect",
   "dialog_beginning": "Beginning of dialog window.",
   "discard_changes": "Discard Changes",
   "display_name": "Display Name",
@@ -156,6 +157,7 @@
     "103": "User inactive",
     "106": "Wrong username and/or password",
     "107": "User not found",
+    "112": "Wrong OTP",
     "-1": "Couldn't reach API"
   },
   "esc_cancel": "Escape will cancel and close the window.",
@@ -318,6 +320,7 @@
   "optional": "Optional",
   "options": "Options",
   "other": "Other",
+  "otp": "One-Time Password",
   "page_not_found": "Page Not Found",
   "page_not_found_body": "The page you are looking for doesn't seem to exist.",
   "password": "Password",

@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "Soll die Rolle \"{name}\" wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden.",
   "desc": "absteigend",
   "description": "Beschreibung",
+  "deselect": "Abwählen",
   "dialog_beginning": "Start des Dialogfensters.",
   "discard_changes": "Änderungen verwerfen",
   "display_name": "Anzeigename",
@@ -156,6 +157,7 @@
     "103": "Benutzer inaktiv",
     "106": "Falscher Benutzername und/oder Passwort",
     "107": "Benutzer nicht gefunden",
+    "112": "Falsches OTP",
     "-1": "API kann nicht erreicht werden"
   },
   "esc_cancel": "Escape: Abbrechen und Fenster schließen",
@@ -318,6 +320,7 @@
   "optional": "Optional",
   "options": "Optionen",
   "other": "Andere",
+  "otp": "Einmaliges Passwort",
   "page_not_found": "Seite nicht gefunden",
   "page_not_found_body": "Die Seite, nach der Du gesucht hast, wurde nicht gefunden.",
   "password": "Passwort",

@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "Êtes-vous sûr de vouloir supprimer le rôle « {name} » ? Cette action ne peut pas être annulée !",
   "desc": "descendant",
   "description": "Description",
+  "deselect": "Deselect",
   "dialog_beginning": "Début de la fenêtre de dialogue.",
   "discard_changes": "Annuler les modifications",
   "display_name": "Afficher le nom",
@@ -156,6 +157,7 @@
     "103": "Utilisateur inactif",
     "106": "Mauvais nom d’utilisateur et / ou mot de passe",
     "107": "Utilisateur non trouvé",
+    "112": "Wrong OTP",
     "-1": "Impossible d’atteindre l’API"
   },
   "esc_cancel": "Échap va annuler et fermer la fenêtre.",
@@ -318,6 +320,7 @@
   "optional": "Facultatif",
   "options": "Paramètres",
   "other": "Autre",
+  "otp": "One-Time Password",
   "page_not_found": "Page non trouvée",
   "page_not_found_body": "La page que vous recherchez ne semble pas exister.",
   "password": "Mot de passe",

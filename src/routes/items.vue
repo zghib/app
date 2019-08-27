@@ -372,8 +372,10 @@ export default {
       ).field;
     },
     primaryKeyField() {
-      if (!this.fields) return null;
-      return _.find(this.fields, { primary_key: true }).field;
+      const fields = this.$store.state.collections[this.collection].fields;
+      if (!fields) return null;
+      let fieldsObj = _.find(fields, { primary_key: true });
+      return fieldsObj && fieldsObj.field ? fieldsObj.field : null;
     },
     permissions() {
       return this.$store.state.permissions;
@@ -738,6 +740,7 @@ label.style-4 {
     top: 0;
     left: 0;
     cursor: pointer;
+    appearance: menulist-button;
   }
 }
 

@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "\"{name}\" rolünü silmek istediğinize emin misiniz? Bu işlem geri alınamaz.",
   "desc": "azalan",
   "description": "Açıklama",
+  "deselect": "Deselect",
   "dialog_beginning": "Diyalog Penceresi Başlangıcı (*)",
   "discard_changes": "Değişiklikleri İptal Et",
   "display_name": "Görünen İsim",
@@ -156,6 +157,7 @@
     "103": "Kullanıcı aktif değil",
     "106": "Yanlış kullanıcı adı ve/veya şifre",
     "107": "Kullanıcı bulunamadı",
+    "112": "Wrong OTP",
     "-1": "API'ye erişim sağlanamadı"
   },
   "esc_cancel": "Esc tuşu işlemi iptal edip pencereyi kapatacaktır.",
@@ -318,6 +320,7 @@
   "optional": "İsteğe Bağlı",
   "options": "Seçenekler",
   "other": "Diğer",
+  "otp": "One-Time Password",
   "page_not_found": "Sayfa Bulunamadı",
   "page_not_found_body": "Aradığınız sayfanın var olduğuna emin misiniz? Biz bulamadık da...",
   "password": "Şifre",

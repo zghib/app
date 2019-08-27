@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "Weet je zeker dat je de {role} rol wilt verwijderen? Dit kan niet ongedaan gemaakt worden.",
   "desc": "desc",
   "description": "Beschrijving",
+  "deselect": "Deselect",
   "dialog_beginning": "Start van het dialoog scherm.",
   "discard_changes": "Wijzigingen ongedaan maken",
   "display_name": "Getoonde naam",
@@ -156,6 +157,7 @@
     "103": "Gebruiker non-actief",
     "106": "Verkeerde gebruikersnaam of wachtwoord",
     "107": "Gebruiker niet gevonden",
+    "112": "Wrong OTP",
     "-1": "Kan API niet bereiken"
   },
   "esc_cancel": "Escape zal het scherm sluiten.",
@@ -318,6 +320,7 @@
   "optional": "Optioneel",
   "options": "Opties",
   "other": "Overige",
+  "otp": "One-Time Password",
   "page_not_found": "Pagina niet gevonden",
   "page_not_found_body": "Deze pagina of item bestaat niet of is recentelijk verwijderd.",
   "password": "Wachtwoord",

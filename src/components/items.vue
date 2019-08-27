@@ -393,7 +393,10 @@ export default {
       Object.assign(params, this.viewQuery);
 
       if (this.viewQuery && this.viewQuery.fields) {
-        params.fields = params.fields.split(",").map(field => `${field}.*`);
+        if (params.fields instanceof Array == false)
+          params.fields = params.fields.split(",");
+          
+        params.fields = params.fields.map(field => `${field}.*`);
 
         if (!params.fields.includes(this.primaryKeyField)) {
           params.fields.push(this.primaryKeyField);

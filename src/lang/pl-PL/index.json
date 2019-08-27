@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "Na pewno chcesz usunąć rolę \"{name}\"? Tej akcji nie będzie można cofnąć.",
   "desc": "desc",
   "description": "Opis",
+  "deselect": "Deselect",
   "dialog_beginning": "Początek okna dialogowego.",
   "discard_changes": "Odrzuć zmiany.",
   "display_name": "Wyświetlana nazwa",
@@ -156,6 +157,7 @@
     "103": "Użytkownik nieaktywny",
     "106": "Zły login i/lub hasło",
     "107": "Użytkownik nie odnaleziony",
+    "112": "Wrong OTP",
     "-1": "Nie udało połączyć się z API"
   },
   "esc_cancel": "Naciśnięcie klawisza escape spowoduje anulowanie i zamknięcie okna.",
@@ -318,6 +320,7 @@
   "optional": "Opcjonalne",
   "options": "Opcje",
   "other": "Inne",
+  "otp": "One-Time Password",
   "page_not_found": "Nie odnaleziono strony",
   "page_not_found_body": "Strona, której poszukujesz, nie istnieje.",
   "password": "Hasło",

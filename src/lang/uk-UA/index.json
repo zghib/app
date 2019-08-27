@@ -120,6 +120,7 @@
   "delete_role_are_you_sure": "Are you sure to delete the role \"{name}\"? This action cannot be undone.",
   "desc": "desc",
   "description": "Опис",
+  "deselect": "Deselect",
   "dialog_beginning": "Beginning of dialog window.",
   "discard_changes": "Discard Changes",
   "display_name": "Display Name",
@@ -156,6 +157,7 @@
     "103": "Неактивний користувач",
     "106": "Неправильне ім’я користувача або пароль",
     "107": "Користувача не знайдено",
+    "112": "Wrong OTP",
     "-1": "Не вдалося приєднатися до API"
   },
   "esc_cancel": "Escape will cancel and close the window.",
@@ -318,6 +320,7 @@
   "optional": "Необов'язковий",
   "options": "Параметри",
   "other": "Інше",
+  "otp": "One-Time Password",
   "page_not_found": "Сторінку не знайдено",
   "page_not_found_body": "Здається, сторінка яку ви шукаєте, не існує.",
   "password": "Пароль",
