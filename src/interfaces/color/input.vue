@@ -160,7 +160,7 @@
       </template>
     </div>
     <div
-      v-if="isCustom"
+      v-if="isCustom && color"
       class="swatch"
       :class="{ light: tooLight(color.hex()) }"
       :style="`background-color: ${color ? color.hex() : 'transparent'}`"
@@ -207,6 +207,7 @@ export default {
     },
     color() {
       try {
+        if (!this.rawValue) return null;
         if (this.options.input === "hex") {
           return Color(this.rawValue);
         }
@@ -272,7 +273,8 @@ export default {
       return luma > 200 ? true : false;
     },
     setDefault() {
-      let savedColor = Color(this.value || "#263238");
+      if (!this.value) return null;
+      let savedColor = Color(this.value);
       this.setRawValue(savedColor);
     },
     setRawValue(color) {

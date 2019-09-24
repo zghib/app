@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import { datatypes } from "../type-map";
 export default {
   name: "VFieldDuplicate",
   props: {
@@ -65,6 +66,23 @@ export default {
     };
   },
   computed: {
+    databaseVendor() {
+      return _.cloneDeep(this.$store.state.serverInfo.databaseVendor);
+    },
+    selectedDatatypeInfo() {
+      return datatypes[this.databaseVendor][this.fieldInfo.datatype];
+    },
+    lengthDisabled() {
+      if (this.selectedDatatypeInfo && this.selectedDatatypeInfo.length === true) {
+        return false;
+      }
+
+      if (this.selectedDatatypeInfo && this.selectedDatatypeInfo.decimal === true) {
+        return false;
+      }
+
+      return true;
+    },
     canDuplicate() {
       if (this.field && this.isFieldValid && this.selectedCollection) {
         return true;
@@ -138,6 +156,10 @@ export default {
       fieldInfo.sort = this.collectionFieldCount + 1;
       delete fieldInfo.id;
       delete fieldInfo.name;
+
+      if (this.lengthDisabled === true) {
+        delete fieldInfo.length;
+      }
 
       const result = {
         fieldInfo,

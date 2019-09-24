@@ -63,7 +63,7 @@ export default {
     return {
       // The differend animations for the sidebar.
       moveSidebar: "move-0",
-      date: '',
+      date: ""
     };
   },
   computed: {
@@ -94,8 +94,13 @@ export default {
       return "#" + url + "/+";
     }
   },
+  watch: {
+    parentdate(newValue) {
+      this.date = newValue;
+    }
+  },
   created() {
-    this.date = this.parentdate
+    this.date = this.parentdate;
     this.scroll = _.throttle(this.scroll, 150);
   },
   methods: {
@@ -138,7 +143,7 @@ export default {
         var eventDate = "";
 
         // datetime first
-        if (datetimeId !== "__none__") {
+        if (datetimeId && datetimeId !== "__none__") {
           eventDate = new Date(item[datetimeId]);
         } else {
           eventDate = new Date(item[dateId] + "T00:00:00");

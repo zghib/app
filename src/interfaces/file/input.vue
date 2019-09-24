@@ -192,7 +192,13 @@ export default {
       ];
     }
   },
-  created() {
+  async created() {
+    if (this.value && this.value.id) {
+      try {
+        let fileData = await this.$api.getItem("directus_files", this.value.id);
+        this.image = fileData.data;
+      } catch (e) {}
+    }
     this.onSearchInput = _.debounce(this.onSearchInput, 200);
   },
   methods: {

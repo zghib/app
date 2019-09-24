@@ -202,7 +202,7 @@
     "status": "Systemfeld, das für das Veröffentlichen von Datensätzen verwendet wird",
     "string": "Beliebiger Text, Zahlen, Leerzeichen oder Symbole; Eingeschränkt durch die Länge (Anzahl der Zeichen)",
     "time": "Uhrzeit, z.B.: 14:09:22",
-    "translation": "Spezifisch für Übersetzungen; dies speichert mehrsprachige Inhalte",
+    "translation": "Spezifisch für Übersetzungen; diese Eins-zu-Viele-Beziehung speichert mehrsprachige Inhalte",
     "user_created": "Systemfeld, um den Ersteller eines Elements zu verfolgen; wird für Revisionen verwendet",
     "user_updated": "Systemfeld, um den Bearbeiter eines Elements zu verfolgen; wird für Revisionen verwendet",
     "uuid": "Eine universell eindeutige ID"
@@ -331,7 +331,7 @@
     "full": "Alle",
     "mine": "Nur meine",
     "none": "Kein",
-    "on_create": "Auf Sammlung",
+    "on_create": "Beim Erstellen",
     "on_update": "Beim Aktualisieren",
     "read": "Lesezugriff",
     "role": "Nur für diese Rolle",

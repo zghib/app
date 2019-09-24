@@ -30,6 +30,14 @@
       />
       <template slot="buttons">
         <v-header-button
+          v-if="this.$store.state.currentUser.admin"
+          :label="$t('settings')"
+          icon="settings"
+          icon-color="lighter_gray"
+          no-background
+          @click="editCollection()"
+        />
+        <v-header-button
           v-if="editButton && !activity"
           key="edit"
           icon="mode_edit"
@@ -274,6 +282,13 @@ export default {
     viewQuery() {
       if (!this.preferences) return {};
 
+      // `Fields` computed property return the fields which need to displayed. Here we want all fields.
+      let fields = this.$store.state.collections[this.collection].fields;
+      fields = Object.values(fields).map(field => ({
+        ...field,
+        name: this.$helpers.formatTitle(field.field)
+      }));
+
       const viewQuery =
         (this.preferences.view_query && this.preferences.view_query[this.viewType]) || {};
 
@@ -281,7 +296,7 @@ export default {
       // Sorting / querying fields that don't exist anymore will return
       // a 422 in the API and brick the app
 
-      const collectionFieldNames = this.fields.map(f => f.field);
+      const collectionFieldNames = fields.map(f => f.field);
 
       if (viewQuery.fields) {
         viewQuery.fields = viewQuery.fields
@@ -487,6 +502,10 @@ export default {
   },
   methods: {
     keyBy: _.keyBy,
+    editCollection() {
+      if (!this.$store.state.currentUser.admin) return;
+      this.$router.push(`/settings/collections/${this.collection}`);
+    },
     closeBookmark() {
       this.bookmarkModal = false;
     },
@@ -687,7 +706,8 @@ label.style-4 {
   padding-bottom: 5px;
 }
 
-.bookmark {
+.bookmark,
+.settings {
   margin-left: 5px;
   position: relative;
 

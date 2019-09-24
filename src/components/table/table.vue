@@ -1,5 +1,11 @@
 <template>
-  <div ref="container" :style="{ minWidth: totalWidth + 'px' }" class="v-table" @scroll="onScroll">
+  <div
+    ref="container"
+    :style="{ minWidth: totalWidth + 'px' }"
+    class="v-table"
+    :class="{ loading }"
+    @scroll="onScroll"
+  >
     <div class="toolbar" :class="{ shadow: scrolled }">
       <div v-if="manualSortField" class="manual-sort cell" :class="{ active: manualSorting }">
         <button v-tooltip="$t('enable_manual_sorting')" @click="startManualSorting">
@@ -29,7 +35,8 @@
               !(
                 columns[index].fieldInfo.type.toLowerCase() === 'o2m' ||
                 columns[index].fieldInfo.type.toLowerCase() === 'm2o' ||
-                columns[index].fieldInfo.type.toLowerCase() === 'translation'
+                columns[index].fieldInfo.type.toLowerCase() === 'translation' ||
+                columns[index].fieldInfo.type.toLowerCase() === 'alias'
               )
           "
           :class="{ active: sortVal.field === field }"
@@ -45,6 +52,7 @@
           v-tooltip="
             (columns[index].fieldInfo && columns[index].fieldInfo.type.toLowerCase() === 'o2m') ||
             (columns[index].fieldInfo && columns[index].fieldInfo.type.toLowerCase() === 'm2o') ||
+            (columns[index].fieldInfo && columns[index].fieldInfo.type.toLowerCase() === 'alias') ||
             (columns[index].fieldInfo &&
               columns[index].fieldInfo.type.toLowerCase() === 'translation')
               ? $t('cant_sort_by_this_field')
@@ -439,6 +447,13 @@ export default {
   position: relative;
   max-height: calc(100vh - var(--header-height));
   padding-bottom: var(--page-padding-bottom);
+  &.loading {
+    overflow: hidden; //Avoids scrollbars when initially loading items.
+    .body {
+      transition: opacity var(--medium) var(--transition-in);
+      opacity: 0.4;
+    }
+  }
 }
 
 .toolbar,
@@ -473,11 +488,6 @@ export default {
   height: calc(100% - var(--header-height));
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-
-  &.loading {
-    transition: opacity var(--medium) var(--transition-in);
-    opacity: 0.4;
-  }
 }
 
 .drag-handle {

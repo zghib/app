@@ -1,22 +1,24 @@
 ---
+
 name: Feature request
 about: Suggest an idea for this project
 
 ---
 
 <!--
-1. Do not delete this template or the issue will be closed
-2. Ensure you're using the latest version of Directus
-3. Post to the correct repo:
-    App:  https://github.com/directus/app/issues (YOU ARE HERE)
-    API:  https://github.com/directus/api/issues
-    Docs: https://github.com/directus/docs/issues
+
+Hey there!
+
+
+Thanks for taking the time to open a discussion for a new feature in the platform.
+
+Please be as detailed as you possibly be can about the idea you have. Being able to understand what you mean exactly helps out others to respond adequately to your feature request. 
+
+Please make sure to also let everybody know _why_ this idea should be added, not just _what_ the idea is.
+
+
+Keep being awesome!
+
+✨🐰✨
+
 -->
-
-# Feature Request
-
-## What problem does this feature solve?
-
-## How do you think this should be implemented?
-
-## Would you be willing to work on this?

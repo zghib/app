@@ -202,7 +202,7 @@
     "status": "System field used for publishing workflows",
     "string": "Any text, numbers, spaces, or symbols; defined and limited by its length (number of characters)",
     "time": "Time, eg: 14:09:22",
-    "translation": "Specific to translation interfaces, this o2m is stores multi-lingual content",
+    "translation": "Specific to translation interfaces, this o2m stores multi-lingual content",
     "user_created": "System field to track the user who created an item, used by revisions",
     "user_updated": "System field to track the user who updated an item, used by revisions",
     "uuid": "A Universally Unique Identifier"

@@ -46,11 +46,22 @@
       </div>
       <div class="body" :class="{ menu: options != null }">
         <div class="main">
-          <component :is="titleElement" v-tooltip="title" class="title">
+          <div v-if="$slots.title" class="title">
+            <slot name="title"></slot>
+          </div>
+          <component :is="titleElement" v-else v-tooltip="title" class="title">
             {{ title }}
           </component>
-          <p v-if="subtitle" class="subtitle">{{ subtitle }}</p>
-          <p v-if="body" class="content">{{ body }}</p>
+
+          <div v-if="$slots.subtitle" class="subtitle">
+            <slot name="subtitle"></slot>
+          </div>
+          <p v-else-if="subtitle" class="subtitle">{{ subtitle }}</p>
+
+          <div v-if="$slots.content" class="content">
+            <slot name="content"></slot>
+          </div>
+          <p v-else-if="body" class="content">{{ body }}</p>
         </div>
         <v-contextual-menu
           :disabled="disabled"
@@ -88,7 +99,7 @@ export default {
     },
     title: {
       type: String,
-      required: true
+      default: null
     },
     subtitle: {
       type: String,

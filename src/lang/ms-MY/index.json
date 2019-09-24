@@ -202,7 +202,7 @@
     "status": "Medan sistem yang digunakan untuk menerbitkan aliran kerja",
     "string": "Apa-apa teks, nombor, ruang, atau simbol; ditakrifkan dan dihadkan oleh panjangnya (bilangan aksara)",
     "time": "Masa, contoh: 14:09:22",
-    "translation": "Khusus untuk antaramuka penterjemahan, o2m ini menyimpan kandungan pelbagai bahasa",
+    "translation": "Specific to translation interfaces, this o2m stores multi-lingual content",
     "user_created": "Medan sistem untuk menjejaki siapa yang mencipta setiap benda, digunakan untuk semakan",
     "user_updated": "Medan sistem untuk menjejaki siapa yang mengemaskini setiap benda, digunakan untuk semakan",
     "uuid": "Pengenal pasti unik universal"
