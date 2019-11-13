@@ -9,7 +9,11 @@
         <div class="header">
           <div class="row">
             <button v-if="sortable" class="sort-column" @click="toggleManualSort">
-              <v-icon name="sort" size="18" :color="manualSortActive ? 'action' : 'light-gray'" />
+              <v-icon
+                name="sort"
+                size="18"
+                :color="manualSortActive ? 'action' : 'blue-grey-300'"
+              />
             </button>
             <button
               v-for="field in visibleFields"
@@ -164,7 +168,19 @@ export default {
 
     visibleFields() {
       if (this.relationshipSetup === false) return [];
-      if (!this.options.fields) return [];
+
+      const relatedFields = this.relation.collection_many.fields;
+      const recursiveKey = this.relation.field_many.field;
+
+      if (!this.options.fields) {
+        return Object.values(relatedFields)
+          .filter(field => field.hidden_browse !== true)
+          .filter(field => {
+            if (recursiveKey && field.field === recursiveKey) return false;
+            return true;
+          })
+          .slice(0, 2);
+      }
 
       let visibleFieldNames;
 
@@ -173,9 +189,6 @@ export default {
       }
 
       visibleFieldNames = this.options.fields.split(",").map(val => val.trim());
-
-      const relatedFields = this.relation.collection_many.fields;
-      const recursiveKey = this.relation.field_many.field;
 
       return visibleFieldNames.map(name => {
         const fieldInfo = relatedFields[name];
@@ -453,7 +466,9 @@ export default {
 
               const type = fieldInfo.type.toLowerCase();
 
-              if (type === "json") {
+              if (type === "json" || type === "translation" || type === "array") {
+                delta[key] = after[key];
+              } else if (type === "translation") {
                 delta[key] = after[key];
               }
             });
@@ -507,7 +522,6 @@ export default {
           $delete: true
         };
       });
-
       this.$emit("input", [...newValue, ...deletedRows]);
     }
   }
@@ -516,8 +530,8 @@ export default {
 
 <style lang="scss" scoped>
 .table {
-  background-color: var(--white);
-  border: var(--input-border-width) solid var(--lighter-gray);
+  background-color: var(--input-background-color);
+  border: var(--input-border-width) solid var(--input-border-color);
   border-radius: var(--border-radius);
   border-spacing: 0;
   width: 100%;
@@ -525,7 +539,7 @@ export default {
 
   .header {
     height: var(--input-height);
-    border-bottom: 2px solid var(--lightest-gray);
+    border-bottom: 2px solid var(--input-border-color);
 
     button {
       text-align: left;
@@ -534,13 +548,13 @@ export default {
 
       &:hover {
         transition: none;
-        color: var(--darker-gray);
+        color: var(--blue-grey-800);
       }
     }
 
     i {
       vertical-align: top;
-      color: var(--light-gray);
+      color: var(--blue-grey-300);
     }
   }
 
@@ -576,7 +590,11 @@ export default {
       cursor: pointer;
       position: relative;
       height: 50px;
-      border-bottom: 2px solid var(--off-white);
+      border-bottom: 2px solid var(--input-background-color-alt);
+
+      &:last-of-type {
+        border-bottom: none;
+      }
 
       &:hover {
         background-color: var(--highlight);
@@ -587,7 +605,7 @@ export default {
       }
 
       button {
-        color: var(--lighter-gray);
+        color: var(--blue-grey-200);
         transition: color var(--fast) var(--transition);
 
         &:hover {
@@ -606,7 +624,7 @@ export default {
     flex-basis: 36px !important;
 
     &.disabled i {
-      color: var(--lightest-gray);
+      color: var(--blue-grey-50);
       cursor: not-allowed;
     }
   }
@@ -634,10 +652,10 @@ export default {
 
 .edit-modal-body {
   padding: 30px 30px 60px 30px;
-  background-color: var(--body-background);
+  background-color: var(--page-background-color);
   .form {
     grid-template-columns:
-      [start] minmax(0, var(--column-width)) [half] minmax(0, var(--column-width))
+      [start] minmax(0, var(--form-column-width)) [half] minmax(0, var(--form-column-width))
       [full];
   }
 }

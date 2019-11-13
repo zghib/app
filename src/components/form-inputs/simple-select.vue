@@ -76,13 +76,14 @@ export default {
 
   .preview {
     height: var(--input-height);
-    border: var(--input-border-width) solid var(--lighter-gray);
+    border: var(--input-border-width) solid var(--input-border-color);
     border-radius: var(--border-radius);
     background-color: var(--white);
     display: flex;
     align-items: center;
     padding-left: 10px;
-    color: var(--gray);
+    color: var(--input-text-color);
+    background-color: var(--input-background-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 1.5;
@@ -95,6 +96,7 @@ export default {
       transform: translateY(-50%);
       user-select: none;
       pointer-events: none;
+      color: var(--input-icon-color);
     }
   }
 
@@ -110,21 +112,18 @@ export default {
   }
 
   select:hover + .preview {
-    border-color: var(--light-gray);
+    border-color: var(--input-border-color-hover);
   }
 
   select:focus + .preview {
-    border-color: var(--dark-gray);
-    color: var(--dark-gray);
+    border-color: var(--input-border-color-focus);
   }
 
   select[disabled] {
     cursor: not-allowed;
 
     & + .preview {
-      background-color: var(--lightest-gray);
-      border-color: var(--lighter-gray);
-      color: var(--light-gray);
+      background-color: var(--input-background-color-disabled);
     }
   }
 }

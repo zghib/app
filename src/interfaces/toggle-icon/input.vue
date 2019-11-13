@@ -63,5 +63,9 @@ input[disabled] + label {
 label {
   cursor: pointer;
   display: inline-block;
+  span {
+    margin-left: 12px;
+    font-weight: var(--weight-bold);
+  }
 }
 </style>

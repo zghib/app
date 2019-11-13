@@ -72,9 +72,11 @@ label {
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: var(--input-text-color);
 }
 
 label::before {
+  transition: all var(--fast) var(--transition);
   content: "radio_button_unchecked";
   direction: ltr;
   display: inline-block;
@@ -90,23 +92,20 @@ label::before {
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
   margin-right: 5px;
+  color: var(--input-border-color);
 }
 
-input:hover + label {
-  color: var(--darker-gray);
+input:hover + label::before {
+  color: var(--blue-grey-600);
 }
 
 input:disabled + label {
-  color: var(--light-gray);
+  color: var(--blue-grey-300);
   cursor: not-allowed;
 }
 
 input:checked + label::before {
   content: "radio_button_checked";
-  color: var(--darkest-gray);
-}
-
-input:checked + label {
-  color: var(--darkest-gray);
+  color: var(--input-background-color-active);
 }
 </style>

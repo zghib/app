@@ -33,13 +33,12 @@
         <details v-if="activity.action !== 'external' && activity.changes && activity.name">
           <summary class="title">
             <span class="name">{{ activity.name }}</span>
-            <v-timeago
+            <v-time-ago
               v-if="activity.date"
               v-tooltip="{
                 content: $d(activity.date, 'long'),
                 delay: { show: 1500, hide: 100 }
               }"
-              :auto-update="1"
               :datetime="activity.date"
               :locale="$i18n.locale"
               class="date"
@@ -60,13 +59,12 @@
         </details>
         <div v-else-if="activity.name" class="title">
           <span class="name">{{ activity.name }}</span>
-          <v-timeago
+          <v-time-ago
             v-if="activity.date"
             v-tooltip="{
               content: $d(activity.date, 'long'),
               delay: { show: 1500, hide: 100 }
             }"
-            :auto-update="1"
             :datetime="activity.date"
             :locale="$i18n.locale"
             class="date"
@@ -228,11 +226,11 @@ export default {
   &::before {
     content: "";
     position: absolute;
-    left: 4px;
+    left: 0px;
     top: 80px;
     bottom: 8px;
     width: 2px;
-    background-color: var(--lighter-gray);
+    background-color: var(--input-border-color);
     z-index: -1;
   }
 
@@ -243,12 +241,12 @@ export default {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: var(--lighter-gray);
-    // box-shadow: 0 0 0 5px var(--lightest-gray);
+    background-color: var(--input-border-color);
+    // box-shadow: 0 0 0 2px var(--blue-grey-50);
     flex-shrink: 0;
 
     &.update {
-      background-color: var(--action);
+      background-color: var(--blue-grey-600);
     }
     &.delete {
       background-color: var(--danger);
@@ -257,7 +255,7 @@ export default {
       background-color: var(--success);
     }
     &.external {
-      background-color: var(--lighter-gray);
+      background-color: var(--input-border-color);
     }
     &.upload {
       background-color: var(--purple-500);
@@ -267,6 +265,7 @@ export default {
   article {
     display: flex;
     margin-bottom: 30px;
+    margin-left: -4px;
   }
 
   .content {
@@ -275,11 +274,11 @@ export default {
 
     .name {
       font-weight: 500;
-      color: var(--darkest-gray);
+      color: var(--heading-text-color);
     }
 
     .date {
-      color: var(--light-gray);
+      color: var(--note-text-color);
       margin-left: 8px;
     }
 
@@ -293,17 +292,16 @@ export default {
 
     summary {
       position: relative;
-      width: 224px;
+      width: 100%;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
       padding-right: 20px;
       cursor: pointer;
-      color: var(--light-gray);
 
       &:hover {
         .chevron {
-          color: var(--dark-gray);
+          color: var(--page-text-color);
         }
       }
 
@@ -311,7 +309,7 @@ export default {
         position: absolute;
         top: 0;
         right: 0;
-        color: var(--lighter-gray);
+        color: var(--note-text-color);
         transition: all var(--fast) var(--transition);
       }
     }
@@ -322,7 +320,7 @@ export default {
 
     .revert {
       transition: all var(--fast) var(--transition);
-      background-color: var(--lighter-gray);
+      background-color: var(--button-secondary-background-color);
       border-radius: var(--border-radius);
       padding: 4px;
       margin: 14px auto;
@@ -333,24 +331,22 @@ export default {
         transform: translateX(0);
         background-color: inherit;
         font-size: 24px;
-        color: var(--lightest-gray);
+        color: var(--button-secondary-text-color);
       }
       &:hover {
-        background-color: var(--dark-gray);
-        i.material-icons {
-          color: var(--white);
-        }
+        background-color: var(--button-secondary-background-color-hover);
       }
     }
 
     .comment {
       position: relative;
-      background-color: var(--white);
-      color: var(--dark-gray);
+      background-color: var(--page-background-color);
+      color: var(--sidebar-text-color-alt);
       border-radius: var(--border-radius);
       padding: 8px 10px;
       display: inline-block;
       min-width: 36px;
+      width: 100%;
 
       &:before {
         content: "";
@@ -362,51 +358,7 @@ export default {
         height: 0;
         border-style: solid;
         border-width: 0 8px 6px 8px;
-        border-color: transparent transparent var(--lightest-gray) transparent;
-      }
-      a {
-        color: var(--darker-gray);
-        text-decoration: none;
-        &:hover {
-          color: var(--darkest-gray);
-        }
-      }
-      strong {
-        font-weight: 600;
-      }
-      code {
-        font-family: "Roboto Mono";
-        color: var(--gray);
-        font-weight: 600;
-      }
-      pre {
-        font-family: "Roboto Mono";
-        color: var(--gray);
-        font-weight: 600;
-        background-color: var(--lighter-gray);
-        padding: 4px 6px;
-        border-radius: var(--border-radius);
-        margin: 4px 0;
-      }
-      ul,
-      ol {
-        margin: 4px 0;
-        padding-left: 25px;
-      }
-      blockquote {
-        font-size: 1.2em;
-        font-weight: 400;
-        margin: 20px 10px 20px 10px;
-        border-left: 2px solid var(--lighter-gray);
-        padding-left: 10px;
-        color: var(--darkest-gray);
-        line-height: 1.4em;
-      }
-      hr {
-        margin: 20px 0;
-        height: 1px;
-        border: none;
-        background-color: var(--lighter-gray);
+        border-color: transparent transparent var(--page-background-color) transparent;
       }
     }
   }
@@ -426,6 +378,7 @@ export default {
   .textarea {
     height: 100%;
     resize: none;
+    line-height: 20px;
   }
 
   button {
@@ -436,17 +389,13 @@ export default {
     transition-property: color, opacity;
     font-weight: var(--weight-bold);
     opacity: 0;
-    color: var(--darker-gray);
-    background-color: var(--white);
+    color: var(--input-background-color-active);
+    background-color: var(--input-background-color);
     cursor: pointer;
-    &:hover {
-      color: var(--darkest-gray);
-    }
 
     &[disabled] {
-      color: var(--lighter-gray);
+      color: var(--input-border-color);
       cursor: not-allowed;
-      background-color: var(--white);
     }
   }
 
@@ -464,27 +413,21 @@ export default {
 <style lang="scss">
 .v-activity .content .comment {
   a {
-    // color: var(--darker-gray);
-    // text-decoration: underline;
-    &:hover {
-      color: var(--darkest-gray);
-    }
+    text-decoration: underline;
   }
   strong {
     font-weight: 600;
-    color: var(--gray);
   }
   code {
     font-family: "Roboto Mono";
-    color: var(--gray);
-    font-weight: 600;
+    background-color: var(--sidebar-background-color);
+    padding: 2px 2px;
+    border-radius: var(--border-radius);
   }
   pre {
     font-family: "Roboto Mono";
-    color: var(--gray);
-    font-weight: 600;
-    background-color: var(--lighter-gray);
-    padding: 4px 6px;
+    background-color: var(--sidebar-background-color);
+    padding: 4px 8px;
     border-radius: var(--border-radius);
     margin: 10px 0;
   }
@@ -497,16 +440,15 @@ export default {
     font-size: 1.2em;
     font-weight: 400;
     margin: 20px 10px 20px 10px;
-    border-left: 2px solid var(--lighter-gray);
+    border-left: 2px solid var(--sidebar-background-color);
     padding-left: 10px;
-    color: var(--darkest-gray);
     line-height: 1.4em;
   }
   hr {
-    margin: 20px 0;
-    height: 1px;
+    margin: 16px 0;
+    height: 2px;
     border: none;
-    background-color: var(--lighter-gray);
+    background-color: var(--sidebar-background-color);
   }
 }
 </style>

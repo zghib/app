@@ -1,4 +1,52 @@
-:root {
+body {
+  // Other
+
+  --border-radius: 3px;
+  --box-shadow: 0;
+  --box-shadow-accent: 0;
+
+  --transition: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-in: cubic-bezier(0, 0, 0.2, 1);
+  --transition-out: cubic-bezier(0.4, 0, 1, 1);
+
+  --fast: 125ms;
+  --medium: 200ms;
+  --slow: 300ms;
+
+  --input-border-width: 2px;
+  --input-height: 44px;
+
+  --nav-sidebar-width: 284px;
+  --header-height: 64px;
+  --header-height-expanded: 76px; // 44px + 32px
+  --info-sidebar-width: 284px;
+
+  --page-padding-top: 48px;
+  --page-padding-top-table: 36px;
+  --page-padding: 32px;
+  --page-padding-bottom: 100px;
+
+  // Typography
+
+  --family-monospace: "Roboto Mono", monospace;
+  --family-serif: 'Merriweather', serif;
+  --family-icon: 'Material Icons', serif;
+  --family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+
+  --size-1: 22px;
+  --size-2: 16px;
+  --size-3: 14px;
+
+  --weight-normal: 400;
+  --weight-bold: 500;
+
+  --line-height: 1.3;
+  --line-height-more: 1.8;
+
+  // Colors
+
   --black: #000;
   --white: #fff;
 
@@ -218,27 +266,118 @@
   --blue-grey-800: #37474f;
   --blue-grey-900: #263238;
 
-  /* App used colors */
-  --darkest-gray: var(--blue-grey-900);
-  --darker-gray: var(--blue-grey-800);
-  --dark-gray: var(--blue-grey-600);
-  --gray: var(--blue-grey-400);
-  --light-gray: var(--blue-grey-300);
-  --lighter-gray: var(--blue-grey-200);
-  --lightest-gray: var(--blue-grey-50);
+  // App specific colors
 
-  --body-background: #fff;
-  --off-white: #f9fafa; // Milky
+  --page-text-color: var(--blue-grey-800);
+  --page-background-color: var(--white);
+
+  --sidebar-background-color: var(--blue-grey-50);
+  --sidebar-background-color-alt: #dde3e6; // rgba(var(--blue-grey-200), 0.5);
+  --sidebar-text-color: var(--blue-grey-800);
+  --sidebar-text-color-alt: var(--blue-grey-600);
+
+  // Main buttons, solid with background hover
+  --button-primary-background-color: var(--blue-grey-900);
+  --button-primary-text-color: var(--white);
+  --button-primary-background-color-hover: var(--blue-grey-800);
+  --button-primary-background-color-disabled: var(--blue-grey-50);
+  --button-primary-text-color-disabled: var(--blue-grey-300);
+
+  // Alternate buttons
+  --button-secondary-background-color: var(--blue-grey-100);
+  --button-secondary-text-color: var(--blue-grey-600);
+  --button-secondary-background-color-hover: var(--blue-grey-200);
+
+  // Used on Header/Cancel/Back buttons (outlined with text hover)
+  --button-tertiary-background-color: var(--blue-grey-50);
+  --button-tertiary-text-color: var(--blue-grey-400);
+  --button-tertiary-text-color-hover: var(--blue-grey-600);
+  --button-tertiary-background-color-disabled: var(--blue-grey-400);
+  --button-tertiary-text-color-disabled: var(--blue-grey-600);
+
+  --breadcrumb-text-color: var(--blue-grey-300);
+  --breadcrumb-glue-color: var(--blue-grey-100);
+
+  --modal-header-background-color: var(--blue-grey-50);
+  --modal-background-color: var(--white);
+  --modal-smoke-color: var(--blue-grey-900);
+  --modal-tab-text-color: var(--blue-grey-400);
+  --modal-tab-text-color-active: var(--blue-grey-900);
+  --modal-tab-text-color-disabled: var(--blue-grey-200);
+
+  --tooltip-background-color: var(--blue-grey-900);
+  --tooltip-text-color: var(--white);
+
+  --popover-background-color: var(--page-background-color);
+  --popover-text-color: var(--blue-grey-600);
+  --popover-text-color-hover: var(--blue-grey-900);
+  --popover-text-color-disabled: var(--blue-grey-300);
+
+  --card-background-color: var(--blue-grey-100);
+  --card-background-color-hover: var(--blue-grey-600);
+  --card-text-color: var(--white);
+  --card-text-color-disabled: var(--blue-grey-50);
+
+  --table-head-border-color: var(--blue-grey-50);
+  --table-row-border-color: var(--off-white);
+
+  --progress-background-color: var(--blue-grey-100);
+  --progress-background-color-accent: var(--blue-grey-900);
+
+  --loading-background-color: var(--blue-grey-200);
+  --loading-background-color-accent: var(--blue-grey-800);
+
+  --input-text-color: var(--blue-grey-800); // decrease?
+  --input-icon-color: var(--blue-grey-200);
+  --input-placeholder-color: var(--blue-grey-200);
+  --input-border-color: var(--blue-grey-100);
+  --input-border-color-hover: var(--blue-grey-300);
+  --input-border-color-focus: var(--blue-grey-600);
+  --input-background-color: var(--white);
+  --input-background-color-alt: var(--off-white);
+  --input-background-color-alt-hover: var(--blue-grey-100);
+  --input-background-color-disabled: var(--blue-grey-50);
+  --input-background-color-active: var(--blue-grey-800);
+  --input-text-color-active: var(--white);
+  --input-required-color: var(--blue-grey-200);
+
+  --heading-text-color: var(--blue-grey-800);
+  --note-text-color: var(--blue-grey-300);
+
+  --form-column-width: 300px;
+  --form-row-max-height: calc(var(--form-column-width) * 2);
+  --form-horizontal-gap: var(--page-padding);
+  --form-vertical-gap: 52px;
+  --form-vertical-gap-sidebar: 30px;
+
+  --input-label-margin: 8px;
+  --input-note-margin: 4px;
+
+  --empty-value: var(--blue-grey-100);
+  --off-white: #f9fafa;
   --highlight: var(--off-white);
 
-  --accent-light: var(--light-blue-50);
+  // Module bar is same for both themes
+
+  --module-background-color: var(--blue-grey-900);
+  --module-text-color: var(--blue-grey-400);
+  --module-background-color-active: #13181A;
+  --module-text-color-active: var(--white);
+
+  // Public pages are shared across light/dark themes
+
+  --project-background-color: var(--blue-grey-900);
+
+  // Directus Colors
+
+  --accent-light: var(--blue-50);
   --action-light: var(--blue-grey-50);
   --success-light: var(--green-50);
   --warning-light: var(--orange-50);
   --danger-light: var(--red-50);
 
-  --brand: var(--darkest-gray);
-  --accent: var(--light-blue-600);
+  --brand: var(--blue-grey-900);
+  --accent: var(--blue-500);
   --action: var(--blue-grey-800);
   --success: var(--green);
   --warning: var(--orange);
@@ -249,4 +388,14 @@
   --success-dark: var(--green-800);
   --warning-dark: var(--orange-800);
   --danger-dark: var(--red-800);
+
+  // Deprecated
+
+  --darkest-gray: var(--blue-grey-900);
+  --darker-gray: var(--blue-grey-800);
+  --dark-gray: var(--blue-grey-600);
+  --gray: var(--blue-grey-400);
+  --light-gray: var(--blue-grey-300);
+  --lighter-gray: var(--blue-grey-200);
+  --lightest-gray: var(--blue-grey-50);
 }

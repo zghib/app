@@ -5,9 +5,9 @@
       <aside :class="{ active }">
         <button class="a11y-close" @click="disableNav">Close nav</button>
 
-        <v-logo class="logo" />
+        <module-bar />
 
-        <section class="content">
+        <section class="main-bar">
           <project-switcher />
 
           <template v-for="section in navStructure">
@@ -21,7 +21,6 @@
               v-else-if="section.include && section.include === 'collections'"
               :key="section.id"
               class="menu-section"
-              :title="$t('collections')"
               :links="linksCollections"
             />
             <nav-menu
@@ -40,31 +39,30 @@
             />
           </template>
         </section>
-        <user-menu />
       </aside>
     </transition>
   </div>
 </template>
 <script>
-import VLogo from "./logo.vue";
 import ProjectSwitcher from "./project-switcher.vue";
 import NavMenu from "./nav-menu.vue";
-import UserMenu from "./user-menu.vue";
 import NavBookmarks from "./nav-bookmarks.vue";
 import VBlocker from "../../blocker.vue";
-import { TOGGLE_NAV } from "../../../store/mutation-types";
+import { TOGGLE_NAV } from "@/store/mutation-types";
+import { mapState } from "vuex";
+import ModuleBar from "./module-bar";
 
 export default {
   name: "NavSidebar",
   components: {
-    VLogo,
     ProjectSwitcher,
     NavMenu,
-    UserMenu,
     NavBookmarks,
-    VBlocker
+    VBlocker,
+    ModuleBar
   },
   computed: {
+    ...mapState(["currentProjectKey"]),
     permissions() {
       return this.$store.state.permissions;
     },
@@ -92,7 +90,7 @@ export default {
         });
     },
     projectName() {
-      return this.$store.state.auth.projectName;
+      return this.$store.getters.currentProject.project_name;
     },
     active() {
       return this.$store.state.sidebars.nav;
@@ -134,7 +132,7 @@ export default {
 
     linksCollections() {
       return this.collections.map(({ collection, icon }) => ({
-        path: `/collections/${collection}`,
+        path: `/${this.currentProjectKey}/collections/${collection}`,
         name: this.$t(`collections-${collection}`),
         icon
       }));
@@ -178,7 +176,7 @@ export default {
           }
         })
         .then(() => {
-          this.$router.push(`/collections/${collection}`);
+          this.$router.push(`/${this.currentProjectKey}/collections/${collection}`);
         });
     },
     disableNav() {
@@ -197,8 +195,9 @@ aside {
   z-index: 30;
   width: 100%;
   max-width: 80%;
-  background-color: var(--lightest-gray);
-  color: var(--darker-gray);
+  background-color: var(--sidebar-background-color);
+  color: var(--sidebar-text-color);
+  display: flex;
 
   transform: translateX(-100%);
   visibility: hidden;
@@ -240,17 +239,19 @@ aside {
   }
 }
 
-.content {
+.main-bar {
   position: relative;
   padding: 20px;
   padding-top: 0;
   height: calc(100% - var(--header-height) - var(--header-height));
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  flex-basis: 220px;
+  flex-shrink: 0;
 }
 
 .menu-section + .menu-section {
-  border-top: 2px solid var(--lighter-gray);
+  border-top: 2px solid var(--sidebar-background-color-alt);
   padding-top: 20px;
 }
 </style>

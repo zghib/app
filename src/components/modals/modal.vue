@@ -22,7 +22,7 @@
               {{ actionRequired ? null : $t("esc_cancel") }}
             </div>
             <header v-if="title">
-              <h1 id="modal-title" class="style-1">{{ title }}</h1>
+              <h1 id="modal-title" class="type-heading-small">{{ title }}</h1>
               <button v-if="!actionRequired" @click="$emit('close')">
                 <v-icon name="close" />
               </button>
@@ -133,7 +133,7 @@ export default {
 .v-modal {
   display: table;
   position: fixed;
-  z-index: 500;
+  z-index: 1500;
   top: 0;
   left: 0;
   width: 100%;
@@ -146,7 +146,7 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: var(--darkest-gray);
+  background-color: var(--modal-smoke-color);
   opacity: 0.9;
 
   &.pointer {
@@ -168,9 +168,8 @@ export default {
   margin: 0 auto;
   width: 90%;
   max-width: 690px;
-  background-color: var(--white);
+  background-color: var(--modal-background-color);
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
   transition: inherit;
   pointer-events: painted;
   cursor: default;
@@ -183,8 +182,7 @@ export default {
   }
 
   h1 {
-    color: var(--darker-gray);
-    line-height: 24px; /* match close icon */
+    line-height: 18px; /* match close icon */
   }
 
   header,
@@ -207,7 +205,7 @@ export default {
     position: sticky;
     top: 0;
     height: 64px;
-    background-color: var(--lightest-gray);
+    background-color: var(--modal-header-background-color);
   }
 
   .body {
@@ -215,7 +213,7 @@ export default {
     -webkit-overflow-scrolling: touch;
     max-height: 70vh;
     position: relative;
-    background-color: var(--body-background);
+    background-color: var(--modal-background-color);
 
     .tab {
       height: 100%;
@@ -224,16 +222,16 @@ export default {
   }
 
   .footer {
-    border-top: 2px solid var(--lightest-gray);
+    border-top: 2px solid var(--modal-header-background-color);
     height: 64px;
   }
 
   button:not(.confirm) {
     transition: var(--fast) var(--transition);
-    color: var(--light-gray);
+    color: var(--modal-tab-text-color);
 
     &:hover {
-      color: var(--dark-gray);
+      color: var(--modal-tab-text-color-active);
     }
   }
 }
@@ -263,10 +261,10 @@ export default {
   padding: 0;
   list-style: none;
   justify-content: center;
-  border-bottom: 2px solid var(--lightest-gray);
+  border-bottom: 2px solid var(--modal-header-background-color);
   position: sticky;
   top: 0;
-  background-color: var(--white);
+  background-color: var(--modal-background-color);
   z-index: +1;
 
   button {
@@ -276,8 +274,7 @@ export default {
     flex-basis: 120px;
     height: 48px;
     position: relative;
-    color: var(--gray);
-
+    color: var(--modal-tab-text-color);
     text-decoration: none;
     text-transform: uppercase;
     font-size: 12px;
@@ -285,7 +282,7 @@ export default {
     position: relative;
 
     &:hover {
-      color: var(--darker-gray);
+      color: var(--modal-tab-text-color-active);
     }
 
     &::after {
@@ -295,16 +292,16 @@ export default {
       position: absolute;
       height: 2px;
       bottom: -2px;
-      background-color: var(--darkest-gray);
+      background-color: var(--modal-tab-text-color-active);
       transform: scaleY(0);
       transition: transform var(--fast) var(--transition-out);
     }
 
     &.active {
-      color: var(--darker-gray);
+      color: var(--modal-tab-text-color-active);
 
       &:hover {
-        color: var(--darkest-gray);
+        color: var(--modal-tab-text-color-active);
       }
 
       &::after {
@@ -314,10 +311,10 @@ export default {
     }
 
     &[disabled] {
-      color: var(--lighter-gray);
+      color: var(--modal-tab-text-color-disabled);
       cursor: not-allowed;
       &:hover {
-        color: var(--lighter-gray);
+        color: var(--modal-tab-text-color-disabled);
       }
     }
   }

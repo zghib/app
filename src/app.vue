@@ -1,19 +1,18 @@
 <template>
-  <div v-if="hydratingError" class="error">
+  <div v-if="hydratingError" id="app" class="error">
     <v-error
       icon="warning"
       :title="$t('server_error')"
       :body="$t('server_error_copy')"
       color="danger"
     />
-    <p>
+    <p class="try-again">
       Try again later or
-      <router-link to="/logout">login to another instance</router-link>
-      .
+      <router-link to="/logout">login to a different project</router-link>
     </p>
   </div>
 
-  <div v-else-if="extensionError" class="error">
+  <div v-else-if="extensionError" id="app" class="error">
     <v-error
       icon="extension"
       :title="$t('extensions_missing')"
@@ -24,6 +23,7 @@
 
   <div
     v-else-if="!publicRoute"
+    id="app"
     :style="{
       '--brand': `var(--${color})`
     }"
@@ -40,7 +40,7 @@
     <v-notification />
   </div>
 
-  <div v-else class="public">
+  <div v-else id="app">
     <router-view />
     <v-notification />
   </div>
@@ -66,11 +66,13 @@ export default {
   computed: {
     ...mapState({
       color: state =>
-        state.settings.values.color ||
+        state.settings.values.project_color ||
         getComputedStyle(document.documentElement)
           .getPropertyValue("--brand")
           .trim(),
-      infoActive: state => state.sidebars.info
+      infoActive: state => state.sidebars.info,
+      projects: state => state.projects,
+      currentProjectKey: state => state.currentProjectKey
     }),
     publicRoute() {
       return this.$route.meta.publicRoute || false;
@@ -101,6 +103,8 @@ export default {
     $route() {
       this.bodyClass();
       this.$store.commit(TOGGLE_NAV, false);
+
+      this.preselectProject();
     },
     infoActive(visible) {
       this.toggleInfoSidebarBodyClass(visible);
@@ -118,15 +122,19 @@ export default {
     bodyClass() {
       if (this.publicRoute) {
         document.body.classList.add("no-padding");
+        document.body.classList.remove("private");
+        document.body.classList.add("public");
       } else {
         document.body.classList.remove("no-padding");
+        document.body.classList.add("private");
+        document.body.classList.remove("public");
       }
 
       this.toggleInfoSidebarBodyClass();
     },
     keepEditing() {
       this.$router.push(
-        `/collections/${this.$store.state.edits.collection}/${this.$store.state.edits.primaryKey}`
+        `/${this.currentProjectKey}/collections/${this.$store.state.edits.collection}/${this.$store.state.edits.primaryKey}`
       );
     },
     discardChanges() {
@@ -147,12 +155,36 @@ export default {
         document.body.classList.remove("info-wide-active");
         document.body.classList.remove("info-active");
       }
+    },
+
+    preselectProject() {
+      if (this.$route.query.project) {
+        let exists = false;
+
+        this.projects.forEach(p => {
+          if (p.key === this.$route.query.project) {
+            exists = true;
+          }
+        });
+
+        if (exists) {
+          this.$store.dispatch("setCurrentProject", this.$route.query.project);
+        }
+
+        const query = _.clone(this.$route.query);
+        delete query.project;
+        this.$router.replace({ query });
+      }
     }
   }
 };
 </script>
 
 <style lang="scss">
+body {
+  padding-right: 64px;
+}
+
 body.no-padding {
   padding: 0 !important;
 
@@ -168,11 +200,15 @@ body.info-active {
 body.info-wide-active {
   padding-right: 284px;
 }
+
+#app {
+  height: 100%;
+}
 </style>
 
 <style lang="scss" scoped>
 .page-root {
-  background-color: var(--white);
+  background-color: var(--page-background-color);
 }
 .error {
   position: fixed;
@@ -186,7 +222,8 @@ body.info-wide-active {
   align-items: center;
 }
 
-.public {
-  height: 100%;
+.try-again {
+  position: absolute;
+  bottom: 40px;
 }
 </style>

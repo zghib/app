@@ -7,16 +7,16 @@
       :size="28"
       :src="src"
       :alt="displayValue"
-      color="light-gray"
+      color="blue-grey-300"
     ></v-avatar>
-    <span v-if="options.display !== 'avatar'" class="label gray style-3">
+    <span v-if="options.display !== 'avatar'" class="label gray type-label">
       <div>{{ displayValue }}</div>
     </span>
   </div>
-  <div v-else-if="newItem" class="gray style-3">
+  <div v-else-if="newItem" class="gray type-label">
     {{ $t("interfaces-user-updated-you") }}
   </div>
-  <div v-else class="gray style-3">
+  <div v-else class="gray type-label">
     {{ $t("interfaces-user-updated-unknown") }}
   </div>
 </template>
@@ -57,13 +57,13 @@ export default {
 }
 .label {
   display: inline-block;
-  margin-left: 4px;
+  margin-left: 8px;
   height: 28px;
   div {
     margin-top: 6px;
   }
 }
 .gray {
-  color: var(--light-gray);
+  color: var(--blue-grey-300);
 }
 </style>

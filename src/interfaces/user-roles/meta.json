@@ -20,6 +20,7 @@
   "translation": {
     "en-US": {
       "user-roles": "User Role",
+      "choose_role": "Choose a role...",
       "relational": "Relational",
       "relational_comment": "Save as M2M value to directus_user_roles",
       "show_public": "Show public role"

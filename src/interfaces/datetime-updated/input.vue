@@ -1,5 +1,5 @@
 <template>
-  <div v-if="value" class="gray style-3">
+  <div v-if="value" class="gray type-label">
     <v-timeago
       v-if="options.showRelative"
       v-tooltip="displayValue"
@@ -10,10 +10,10 @@
     ></v-timeago>
     <div v-else>{{ displayValue }}</div>
   </div>
-  <div v-else-if="newItem" class="gray style-3">
+  <div v-else-if="newItem" class="gray type-label">
     {{ $t("interfaces-datetime-updated-now") }}
   </div>
-  <div v-else class="gray style-3">
+  <div v-else class="gray type-label">
     {{ $t("interfaces-datetime-updated-unknown") }}
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .gray {
-  color: var(--light-gray);
+  color: var(--blue-grey-300);
   text-transform: capitalize;
 }
 </style>

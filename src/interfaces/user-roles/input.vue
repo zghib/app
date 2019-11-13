@@ -3,7 +3,7 @@
     :id="name"
     icon="perm_identity"
     :name="name"
-    :placeholder="$t('choose_one')"
+    :placeholder="$t('interfaces-user-roles-choose_role')"
     :options="selectOptions"
     :value="currentRoleID"
     @input="emitValue"

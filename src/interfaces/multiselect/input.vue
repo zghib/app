@@ -2,6 +2,7 @@
   <select
     :id="name"
     :disabled="readonly"
+    :size="options.size"
     class="select"
     multiple
     @change="updateValue($event.target.options)"
@@ -59,34 +60,34 @@ export default {
 <style lang="scss" scoped>
 .select {
   transition: all var(--fast) var(--transition);
-  border: var(--input-border-width) solid var(--lighter-gray);
+  border: var(--input-border-width) solid var(--input-border-color);
   border-radius: var(--border-radius);
   width: 100%;
   max-width: var(--width-large);
-  font-family: "Roboto", sans-serif;
-  height: 130px;
+  background-color: var(--input-background-color);
 
   &:hover {
     transition: none;
-    border-color: var(--light-gray);
+    border-color: var(--input-border-color-hover);
   }
   &:focus {
-    border-color: var(--darker-gray);
-    option {
-      color: var(--dark-gray);
-    }
+    border-color: var(--input-border-color-focus);
   }
   option {
     transition: color var(--fast) var(--transition);
     padding: 5px 10px;
-    color: var(--gray);
     &:hover {
       transition: none;
-      color: var(--darker-gray);
+      background: var(--input-background-color-alt)
+        linear-gradient(
+          0deg,
+          var(--input-background-color-alt) 0%,
+          var(--input-background-color-alt) 100%
+        );
     }
     &:checked {
-      background: var(--darkest-gray)
-        linear-gradient(0deg, var(--darkest-gray) 0%, var(--darkest-gray) 100%);
+      background: var(--input-border-color)
+        linear-gradient(0deg, var(--input-border-color) 0%, var(--input-border-color) 100%);
       position: relative;
       color: var(--white);
       -webkit-text-fill-color: var(--white);
@@ -99,6 +100,7 @@ export default {
         right: 10px;
         top: 50%;
         transform: translateY(-54%);
+        font-feature-settings: "liga";
       }
     }
   }

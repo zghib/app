@@ -48,17 +48,27 @@ export default {
   border-radius: var(--border-radius);
   max-width: 632px;
   vertical-align: middle;
+  display: flex;
+  align-items: center;
   .icon {
     margin-right: 12px;
     line-height: 0;
     margin-top: -2px;
   }
   &.gray {
-    background-color: var(--lightest-gray);
+    background-color: var(--sidebar-background-color);
+  }
+  &.danger {
+    color: var(--danger);
+    background-color: var(--danger-light);
   }
   &.warning {
     color: var(--warning);
     background-color: var(--warning-light);
+  }
+  &.success {
+    color: var(--success);
+    background-color: var(--success-light);
   }
 }
 </style>

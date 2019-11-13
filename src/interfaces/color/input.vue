@@ -307,7 +307,7 @@ export default {
   vertical-align: middle;
   .slider-label {
     display: inline-block;
-    color: var(--light-gray);
+    color: var(--blue-grey-300);
     width: 14px;
     vertical-align: text-bottom;
   }
@@ -328,8 +328,8 @@ export default {
   color: var(--white);
   text-align: center;
   &.light {
-    border: 1px solid var(--light-gray);
-    color: var(--darkest-gray) !important;
+    border: 1px solid var(--blue-grey-300);
+    color: var(--blue-grey-900) !important;
     i {
       line-height: 22px;
     }
@@ -352,7 +352,7 @@ button {
     margin-right: 0;
   }
   &.light {
-    border: 1px solid var(--light-gray);
+    border: 1px solid var(--blue-grey-300);
     i {
       line-height: 22px;
     }
@@ -362,7 +362,7 @@ button {
     transition: none;
     color: var(--white) !important;
     &.light {
-      color: var(--darkest-gray) !important;
+      color: var(--blue-grey-900) !important;
     }
   }
   i {

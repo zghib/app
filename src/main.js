@@ -14,6 +14,7 @@ import "./design/main.scss";
 import "./globals";
 import "./helpers/handle-focus";
 import "./helpers/handle-drag";
+import { startPolling } from "@/latency";
 
 // import "./registerServiceWorker";
 import App from "./app.vue";
@@ -24,6 +25,12 @@ import api from "./api";
 import helpers from "./helpers";
 import notify from "./notifications";
 import events from "./events/";
+
+import allSettled from "promise.allsettled";
+
+// This is a polyfill for Promise.allSettled. Can be removed in the future when the browser support
+// is there
+allSettled.shim();
 
 Vue.config.productionTip = false;
 
@@ -75,4 +82,13 @@ new Vue({
   helpers
 }).$mount("#app");
 
-store.watch(state => state.currentUser.locale, locale => loadLanguageAsync(locale));
+store.watch(
+  state => state.currentUser.locale,
+  locale => loadLanguageAsync(locale)
+);
+store.watch(
+  state => state.currentProjectKey,
+  key => (api.config.project = key)
+);
+
+startPolling();

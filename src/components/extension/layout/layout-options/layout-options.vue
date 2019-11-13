@@ -48,6 +48,10 @@ export default {
     selection: {
       type: Array,
       default: () => []
+    },
+    primaryKeyField: {
+      type: String,
+      required: true
     }
   },
   computed: {
@@ -59,15 +63,6 @@ export default {
     },
     componentName() {
       return `layout-options-${this.type}`;
-    },
-    primaryKeyField() {
-      if (!this.fields) return null;
-
-      const primaryKeyField = _.find(this.fields, {
-        primary_key: true
-      });
-
-      return primaryKeyField ? primaryKeyField.field : null;
     }
   },
   watch: {

@@ -7,7 +7,7 @@
       :id="id"
       ref="input"
       v-mask="mask"
-      :class="{ charactercount }"
+      :class="{ charactercount, monospace }"
       :type="type"
       :autocomplete="autocomplete"
       :max="max"
@@ -31,7 +31,8 @@
       v-else
       :id="id"
       ref="input"
-      :class="{ charactercount }"
+      class="test"
+      :class="{ charactercount, monospace }"
       :type="type"
       :autocomplete="autocomplete"
       :max="max"
@@ -170,6 +171,10 @@ export default {
     mask: {
       type: [String, Array, Boolean],
       default: null
+    },
+    monospace: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -192,9 +197,10 @@ export default {
 
   input {
     width: 100%;
-    border: var(--input-border-width) solid var(--lighter-gray);
+    border: var(--input-border-width) solid var(--input-border-color);
     border-radius: var(--border-radius);
-    color: var(--gray);
+    color: var(--input-text-color);
+    background-color: var(--input-background-color);
     padding: 10px;
     font-size: 1rem;
     line-height: 1.5;
@@ -202,6 +208,10 @@ export default {
     transition: var(--fast) var(--transition);
     transition-property: color, border-color, padding;
     height: var(--input-height);
+
+    &.monospace {
+      font-family: var(--family-monospace);
+    }
 
     &[type="date"] {
       -webkit-appearance: none;
@@ -216,41 +226,40 @@ export default {
     }
 
     &::placeholder {
-      color: var(--lighter-gray);
+      color: var(--input-placeholder-color);
     }
 
     &:hover:not(:read-only) {
       transition: none;
-      border-color: var(--light-gray);
+      border-color: var(--input-border-color-hover);
     }
 
     &:focus:not(:read-only) {
-      color: var(--dark-gray);
-      border-color: var(--dark-gray);
+      border-color: var(--input-border-color-focus);
       outline: 0;
     }
 
     &:-webkit-autofill {
       box-shadow: inset 0 0 0 1000px var(--white) !important;
-      color: var(--dark-gray) !important;
-      -webkit-text-fill-color: var(--dark-gray) !important;
+      color: var(--input-text-color) !important;
+      -webkit-text-fill-color: var(--input-text-color) !important;
     }
 
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus {
-      border: var(--input-border-width) solid var(--lighter-gray);
+      border: var(--input-border-width) solid var(--input-border-color);
       background-color: var(--white);
       box-shadow: inset 0 0 0 2000px var(--white);
     }
 
     &:read-only {
-      background-color: var(--lightest-gray);
-      border-color: var(--lighter-gray);
+      background-color: var(--input-background-color-disabled);
+      border-color: var(--input-border-color);
       cursor: not-allowed;
+      outline: none;
       &:focus {
-        color: var(--gray);
-        border-color: var(--lighter-gray);
+        border-color: var(--input-border-color);
       }
     }
   }
@@ -262,7 +271,9 @@ export default {
     transform: translateY(-50%);
     opacity: 0;
     transition: var(--fast) var(--transition);
-    color: var(--light-gray);
+    color: var(--input-icon-color);
+    padding-left: 4px;
+    background-color: var(--input-background-color);
   }
 
   input.charactercount:focus {
@@ -285,12 +296,12 @@ export default {
   &.icon-right i {
     position: absolute;
     top: 50%;
-    color: var(--lighter-gray);
+    color: var(--input-icon-color);
     transform: translateY(-50%);
     font-size: 24px;
 
     &.accent {
-      color: var(--darkest-gray);
+      color: var(--input-background-color-active);
     }
 
     &.success {
