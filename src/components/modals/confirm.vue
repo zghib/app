@@ -71,15 +71,14 @@ export default {
   align-items: center;
   justify-content: center;
   padding: 0 20px 1px;
-  height: 44px;
-  min-width: 136px;
+  height: var(--button-height);
+  min-width: 160px;
   border: var(--input-border-width) solid var(--button-tertiary-background-color);
   // background-color: var(--button-secondary-background-color);
   color: var(--button-tertiary-text-color);
   margin-right: 20px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 19px;
+  font-weight: var(--weight-bold);
+  font-size: var(--button-font-size);
   transition: color var(--fast) var(--transition);
 
   &:hover {

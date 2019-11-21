@@ -43,8 +43,8 @@ h3 {
 }
 
 .icon {
-  margin-right: 15px;
-  vertical-align: -8px;
+  margin-right: 12px;
+  vertical-align: -7px;
 }
 
 a {
@@ -57,22 +57,14 @@ a {
 }
 
 a:hover,
-.content .router-link-active,
-.user-menu .router-link-exact-active {
+.nav-menu .router-link-active,
+.nav-menu .router-link-exact-active {
   background-color: var(--sidebar-background-color-alt);
   border-radius: var(--border-radius);
 
   .icon {
     color: currentColor;
     fill: currentColor;
-  }
-}
-
-.content .router-link-active,
-.user-menu .router-link-exact-active {
-  &::before {
-    transform: scaleX(1);
-    transition: var(--medium) var(--transition-in);
   }
 }
 
@@ -83,7 +75,7 @@ ul {
 
 nav > ul > li > * {
   padding: 8px 4px 8px 10px;
-  margin: 2px 0;
+  margin: 4px 0;
 }
 
 nav {

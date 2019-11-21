@@ -84,6 +84,9 @@ export default {
 .interface-status {
   max-width: var(--width-x-large);
   margin-bottom: -12px;
+  padding-top: calc(
+    (var(--input-height) - 24px) / 2
+  ); // [input height] - 24px (icon height) / 2 (top padding)
   .v-radio {
     display: inline-block;
     margin-right: 40px;

@@ -80,6 +80,7 @@ export default {
     border-bottom: none;
     background-color: var(--input-background-color-alt);
     width: 100%;
+    font-size: var(--input-font-size);
     span {
       transition: color var(--fast) var(--transition);
       cursor: pointer;
@@ -98,7 +99,7 @@ export default {
         z-index: 1;
       }
       i {
-        margin-right: 0px;
+        margin-right: 4px;
         margin-top: -2px;
       }
     }

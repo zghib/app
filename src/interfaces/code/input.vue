@@ -15,7 +15,7 @@
       <v-icon name="playlist_add" />
     </button>
 
-    <small v-if="language" class="line-count">
+    <small v-if="language" class="line-count type-note">
       {{
         $tc("interfaces-code-loc", lineCount, {
           count: lineCount,
@@ -183,7 +183,7 @@ export default {
   max-width: var(--width-x-large);
   // border: var(--input-border-width) solid var(--input-border-color);
   // border-radius: var(--border-radius);
-  font-size: 13px;
+  font-size: var(--input-font-size);
 
   &:focus {
     border-color: var(--blue-grey-800);
@@ -196,7 +196,6 @@ small {
   bottom: -20px;
   font-style: italic;
   text-align: right;
-  color: var(--blue-grey-300);
 }
 
 button {

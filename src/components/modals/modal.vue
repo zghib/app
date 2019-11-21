@@ -40,7 +40,7 @@
               </button>
             </div>
 
-            <div ref="tabsBody" class="body">
+            <div class="body">
               <template v-if="tabs">
                 <div
                   v-for="(info, id) in tabs"
@@ -105,19 +105,6 @@ export default {
     fullSize: {
       type: Boolean,
       default: false
-    }
-  },
-  watch: {
-    /*
-     * Focus on the first input in the currently rendered tab on change of tab
-     * Improves keyboard navigation greatly
-     */
-    activeTab() {
-      // A timeout is needed to allow the browser to render the dom first before
-      // firing the focus method
-      setTimeout(() => {
-        this.$refs.tabsBody.querySelector("input").focus();
-      }, 0);
     }
   },
   mounted() {
@@ -223,7 +210,7 @@ export default {
 
   .footer {
     border-top: 2px solid var(--modal-header-background-color);
-    height: 64px;
+    height: 76px;
   }
 
   button:not(.confirm) {

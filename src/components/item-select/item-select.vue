@@ -112,8 +112,6 @@
       <v-button
         v-if="moreItemsAvailable && !hydrating"
         class="more"
-        bg="gray"
-        color="black"
         :loading="loading"
         @click="loadMore"
       >
@@ -327,7 +325,10 @@ export default {
       }
 
       if (this.value.includes(primaryKey)) {
-        this.$emit("input", this.value.filter(pk => pk !== primaryKey));
+        this.$emit(
+          "input",
+          this.value.filter(pk => pk !== primaryKey)
+        );
       } else {
         this.$emit("input", [...this.value, primaryKey]);
       }
@@ -361,7 +362,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .items {
   display: table;
   min-width: 100%;

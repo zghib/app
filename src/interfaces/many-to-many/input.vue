@@ -71,7 +71,7 @@
         </draggable>
       </div>
 
-      <v-notice v-else>{{ $t("no_items_selected") }}</v-notice>
+      <v-notice v-else color="gray-subdued" icon="info">{{ $t("no_items_selected") }}</v-notice>
 
       <div v-if="!readonly" class="buttons">
         <v-button

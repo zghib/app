@@ -7,12 +7,7 @@
         to complete setup.
       </p>
       <v-spinner v-if="!tfa_secret" />
-      <qr-code
-        v-else
-        class="qr"
-        :value="'otpauth://totp/Directus?secret=' + tfa_secret"
-        :options="{ width: 340 }"
-      />
+      <qr-code v-else class="qr" :value="totpUrl" :options="{ width: 340 }" />
       <otp-input @input="save2faSecret" />
     </template>
     <template v-if="finished === true && !fetchingData">
@@ -54,7 +49,10 @@ export default {
     };
   },
   computed: {
-    ...mapState(["apiRootPath", "currentProjectKey"])
+    ...mapState(["apiRootPath", "currentProjectKey"]),
+    totpUrl() {
+      return `otpauth://totp/Directus:${this.$store.state.currentUser.email}?secret=${this.tfa_secret}&issuer=Directus`;
+    }
   },
   created() {
     this.fetch2faSecret();

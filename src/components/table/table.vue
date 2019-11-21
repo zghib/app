@@ -30,15 +30,7 @@
         class="cell"
       >
         <button
-          v-if="
-            sortable &&
-              !(
-                columns[index].fieldInfo.type.toLowerCase() === 'o2m' ||
-                columns[index].fieldInfo.type.toLowerCase() === 'm2o' ||
-                columns[index].fieldInfo.type.toLowerCase() === 'translation' ||
-                columns[index].fieldInfo.type.toLowerCase() === 'alias'
-              )
-          "
+          v-if="sortable && !isRelational(columns[index].fieldInfo)"
           :class="{ active: sortVal.field === field }"
           class="sort type-table-head no-wrap"
           @click="updateSort(field)"
@@ -54,13 +46,7 @@
         <span
           v-else
           v-tooltip="
-            (columns[index].fieldInfo && columns[index].fieldInfo.type.toLowerCase() === 'o2m') ||
-            (columns[index].fieldInfo && columns[index].fieldInfo.type.toLowerCase() === 'm2o') ||
-            (columns[index].fieldInfo && columns[index].fieldInfo.type.toLowerCase() === 'alias') ||
-            (columns[index].fieldInfo &&
-              columns[index].fieldInfo.type.toLowerCase() === 'translation')
-              ? $t('cant_sort_by_this_field')
-              : undefined
+            isRelational(columns[index].fieldInfo) ? $t('cant_sort_by_this_field') : undefined
           "
           class="type-table-head"
         >
@@ -143,6 +129,7 @@
                 :options="fieldInfo.options"
                 :value="row[field]"
                 :relation="fieldInfo.relation"
+                class="ellipsis"
               />
               <template v-else>
                 {{ row[field] }}
@@ -204,6 +191,8 @@
 </template>
 
 <script>
+import isRelational from "@/helpers/is-relational";
+
 export default {
   name: "VTable",
   props: {
@@ -328,6 +317,7 @@ export default {
     }
   },
   methods: {
+    isRelational: isRelational,
     isNil(val) {
       return _.isNil(val);
     },
@@ -687,5 +677,11 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

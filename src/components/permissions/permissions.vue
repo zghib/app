@@ -23,9 +23,8 @@
 
         <template v-if="showDirectus">
           <v-permissions-row
-            v-for="(permission, name, i) in directusRows"
+            v-for="(permission, name) in directusRows"
             :key="name"
-            :class="{ border: i === 0 }"
             :permission="permission"
             :permission-name="name"
             :statuses="(statuses[name] || {}).mapping"
@@ -203,9 +202,6 @@ export default {
     &:last-child {
       flex-basis: 100px;
     }
-  }
-  .border {
-    border-top: var(--input-border-width) solid var(--table-row-border-color);
   }
   &.loading {
     padding: 300px 0;

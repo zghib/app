@@ -57,10 +57,12 @@
             {{ title }}
           </component>
 
-          <div v-if="$slots.subtitle" class="subtitle">
+          <div v-if="$slots.subtitle" class="subtitle type-note">
             <slot name="subtitle"></slot>
           </div>
-          <p v-else-if="subtitle" class="subtitle">{{ subtitle }}</p>
+          <p v-else-if="subtitle" class="subtitle type-note">
+            {{ subtitle }}
+          </p>
 
           <div v-if="$slots.content" class="content">
             <slot name="content"></slot>
@@ -209,7 +211,7 @@ export default {
 
 <style lang="scss" scoped>
 .v-card {
-  width: 136px;
+  width: var(--card-size);
   overflow: hidden;
   transition: box-shadow var(--fast) var(--transition);
   cursor: pointer;
@@ -245,7 +247,7 @@ export default {
 
   .header {
     transition: all var(--fast) var(--transition);
-    height: 136px;
+    height: var(--card-size);
     border-radius: var(--border-radius);
     background-color: var(--card-background-color);
     overflow: hidden;
@@ -379,13 +381,12 @@ export default {
     color: var(--note-text-color);
     font-size: 13px;
   }
-
   .content {
     font-size: 11px;
     color: var(--note-text-color);
     max-height: 114px; // 8 lines of text
     overflow: hidden;
-    margin-top: 10px;
+    margin-top: 8px;
   }
 
   .error {

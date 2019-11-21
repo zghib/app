@@ -637,9 +637,9 @@ h2 {
 
   .header {
     border-bottom: 2px solid var(--table-head-border-color);
-    height: 60px;
+    height: calc(var(--input-height) - 2px); // -2px, border on container
     .row {
-      height: 60px;
+      height: calc(var(--input-height) - 2px); // -2px, border on container
     }
   }
 
@@ -681,7 +681,7 @@ h2 {
     .row {
       cursor: pointer;
       position: relative;
-      height: 48px;
+      height: calc(var(--input-height) - 2px); // -2px, border on container
       border-bottom: 2px solid var(--table-row-border-color);
 
       &.inner,
@@ -752,14 +752,14 @@ label.type-label {
 
   i {
     color: var(--blue-grey-300);
-    margin-right: 5px;
+    margin-right: 8px;
     transition: color var(--fast) var(--transition);
   }
 
   button {
     display: flex;
     align-items: center;
-    padding: 5px;
+    padding: 4px;
     color: var(--blue-grey-400);
     width: 100%;
     height: 100%;
@@ -784,21 +784,18 @@ label.type-label {
 
 button {
   &.not-managed {
-    padding: 5px 10px;
+    padding: 4px 8px;
     border-radius: var(--border-radius);
-    background-color: var(--blue-grey-800);
-    color: var(--white);
+    background-color: var(--button-primary-background-color);
+    color: var(--button-primary-text-color);
 
     min-width: auto;
     height: auto;
-    font-size: 14px;
-    line-height: 1.3;
-    font-weight: 200;
     border: 0;
 
     &:hover {
-      background-color: var(--blue-grey-900);
-      color: var(--white);
+      background-color: var(--button-primary-background-color-hover);
+      color: var(--button-primary-text-color);
     }
   }
 }

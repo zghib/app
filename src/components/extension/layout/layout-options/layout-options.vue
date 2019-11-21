@@ -93,7 +93,10 @@ export default {
       if (this.layout.core) {
         component = import("@/layouts/" + this.layout.id + "/options.vue");
       } else {
-        const filePath = `${this.$api.url}/${this.layout.path.replace("meta.json", "options.js")}`;
+        const filePath = `${this.$store.state.apiRootPath}${this.layout.path.replace(
+          "meta.json",
+          "options.js"
+        )}`;
 
         component = loadExtension(filePath);
       }

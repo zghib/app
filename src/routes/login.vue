@@ -8,6 +8,12 @@
         <p>{{ currentProject.project_name }}</p>
       </template>
 
+      <!-- the getProjects action will set the currentProject on load. When currentProject doesn't exist
+        it means that the store doesn't have any projects that can be used loaded-->
+      <template v-else-if="!currentProject">
+        {{ $t("no_public_projects") }}
+      </template>
+
       <template v-else-if="currentProject.status === 'failed'">
         Something is wrong with this project
         <!-- TODO: use v-error here -->
@@ -33,7 +39,7 @@
           </div>
         </div>
         <template v-else>
-          <input ref="main" v-model="email" type="email" :placeholder="$t('email')" required />
+          <input v-model="email" v-focus type="email" :placeholder="$t('email')" required />
           <input
             ref="password"
             v-model="password"
@@ -102,9 +108,9 @@ export default {
   },
   computed: {
     ...mapGetters(["currentProject"]),
-    ...mapState(["currentProjectKey", "apiRootPath"]),
+    ...mapState(["currentProjectKey", "apiRootPath", "projects"]),
     readableError() {
-      if (this.currentProject.status !== "failed") return null;
+      if (this.currentProject?.status !== "failed") return null;
       return (
         this.currentProject.error.response?.data?.error?.message ||
         this.currentProject.error.message
@@ -112,33 +118,21 @@ export default {
     }
   },
   watch: {
-    currentProjectKey: {
+    currentProject: {
       deep: true,
       handler() {
-        if (this.currentProject.data.authenticated === true) {
-          this.fetchAuthenticatedUser();
-        } else {
-          this.fetchSSOProviders();
-        }
+        this.handleLoad();
       }
     }
   },
   created() {
-    if (
-      this.currentProject.status === "successful" &&
-      this.currentProject.data.authenticated === true
-    ) {
-      this.fetchAuthenticatedUser();
-    } else {
-      this.fetchSSOProviders();
-    }
-
+    this.handleLoad();
     this.checkForErrorQueryParam();
   },
   methods: {
     ...mapMutations([UPDATE_PROJECT]),
     onSubmit() {
-      if (this.currentProject.data.authenticated) {
+      if (this.currentProject?.data?.authenticated) {
         return this.enterApp();
       } else {
         return this.login();
@@ -276,6 +270,7 @@ export default {
       });
     },
     async fetchAuthenticatedUser() {
+      if (!this.currentProject) return;
       this.firstName = null;
       this.lastName = null;
       const { data } = await this.$api.getMe({ fields: ["first_name", "last_name"] });
@@ -283,6 +278,7 @@ export default {
       this.lastName = data.last_name;
     },
     async fetchSSOProviders() {
+      if (!this.currentProject) return;
       this.ssoProviders = [];
       const { data } = await this.$api.getThirdPartyAuthProviders();
       this.ssoProviders = data;
@@ -305,10 +301,16 @@ export default {
         delete query.code;
         this.$router.replace({ query });
       }
+    },
+    handleLoad() {
+      if (this.currentProject?.status === "successful") {
+        if (this.currentProject?.data?.authenticated === true) {
+          this.fetchAuthenticatedUser();
+        } else {
+          this.fetchSSOProviders();
+        }
+      }
     }
-  },
-  mounted() {
-    this.$refs?.main?.focus();
   }
 };
 </script>

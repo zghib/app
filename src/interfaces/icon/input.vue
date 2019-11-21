@@ -5,6 +5,7 @@
       :placeholder="$t('interfaces-icon-search_placeholder')"
       :readonly="readonly"
       :icon-right="value"
+      icon-right-color="input-background-color-active"
       icon-left="search"
     ></v-input>
     <div v-show="searchText.length === 0" class="icons-view">
@@ -102,7 +103,7 @@ export default {
     max-width: 37px;
 
     &.active {
-      color: var(--input-text-color);
+      color: var(--input-background-color-active);
     }
 
     &:hover {

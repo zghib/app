@@ -51,6 +51,9 @@ export default {
   mounted() {
     this.getValueNames();
   },
+  updated() {
+    this.getValueNames();
+  },
   methods: {
     stageValue(event) {
       this.$emit("input", event.target.value);
@@ -61,10 +64,12 @@ export default {
       const children = Array.from(selectElement.querySelectorAll("option"));
 
       children.forEach(element => {
-        valueNames[element.value] = element.innerText;
+        valueNames[element.value.trim()] = element.innerText.trim();
       });
 
-      this.valueNames = valueNames;
+      if (!_.isEqual(valueNames, this.valueNames)) {
+        this.valueNames = valueNames;
+      }
     }
   }
 };
@@ -84,9 +89,7 @@ export default {
     padding-left: 10px;
     color: var(--input-text-color);
     background-color: var(--input-background-color);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.5;
+    font-size: var(--input-font-size);
     text-transform: none;
 
     .icon {

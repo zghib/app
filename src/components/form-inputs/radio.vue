@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 input {
   opacity: 0;
   position: absolute;
@@ -73,6 +73,7 @@ label {
   align-items: center;
   cursor: pointer;
   color: var(--input-text-color);
+  font-size: var(--input-font-size);
 }
 
 label::before {
@@ -91,16 +92,16 @@ label::before {
   word-wrap: normal;
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
-  margin-right: 5px;
+  margin-right: 8px;
   color: var(--input-border-color);
 }
 
 input:hover + label::before {
-  color: var(--blue-grey-600);
+  color: var(--input-border-color-hover);
 }
 
 input:disabled + label {
-  color: var(--blue-grey-300);
+  color: var(--input-border-color-hover);
   cursor: not-allowed;
 }
 

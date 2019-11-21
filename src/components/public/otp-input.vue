@@ -1,6 +1,6 @@
 <template>
   <the-mask
-    ref="main"
+    v-focus
     type="text"
     class="otp-input"
     :value="value"
@@ -19,9 +19,6 @@ export default {
       type: String,
       default: ""
     }
-  },
-  mounted() {
-    this.$refs.main.$el.focus();
   },
   methods: {
     onInput(value) {

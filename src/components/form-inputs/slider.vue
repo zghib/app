@@ -200,6 +200,7 @@ export default {
     color: var(--input-text-color);
     background-color: var(--input-background-color-alt);
     border-radius: var(--border-radius);
+    font-size: var(--input-font-size);
     padding: 4px 8px;
     opacity: 0;
     user-select: none;

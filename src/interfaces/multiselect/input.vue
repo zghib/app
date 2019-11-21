@@ -65,6 +65,7 @@ export default {
   width: 100%;
   max-width: var(--width-large);
   background-color: var(--input-background-color);
+  font-size: var(--input-font-size);
 
   &:hover {
     transition: none;
@@ -86,11 +87,15 @@ export default {
         );
     }
     &:checked {
-      background: var(--input-border-color)
-        linear-gradient(0deg, var(--input-border-color) 0%, var(--input-border-color) 100%);
+      background: var(--input-background-color-active)
+        linear-gradient(
+          0deg,
+          var(--input-background-color-active) 0%,
+          var(--input-background-color-active) 100%
+        );
       position: relative;
-      color: var(--white);
-      -webkit-text-fill-color: var(--white);
+      color: var(--input-text-color-active);
+      -webkit-text-fill-color: var(--input-text-color-active);
 
       &::after {
         content: "check";

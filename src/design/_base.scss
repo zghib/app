@@ -11,11 +11,12 @@
   font-weight: inherit;
   color: inherit;
   margin: 0;
+  user-select: none;
   box-sizing: border-box;
 }
 
 html {
-  font-size: 14px;
+  font-size: 15px;
   height: 100%;
 }
 
@@ -36,40 +37,45 @@ body {
   }
 }
 
+.selectable {
+  user-select: text;
+}
+
 // Type Style Classes
 
 // Currently only used for page/modal titles
 .type-title {
-  font-size: 22px;
+  font-size: var(--type-title-size);
   color: var(--heading-text-color);
 }
 
 .type-heading-large {
-  font-size: 48px;
-  line-height: 52px;
+  font-size: var(--type-heading-large-size);
+  line-height: var(--type-heading-large-line-height);
+  color: var(--heading-text-color);
   font-weight: 300;
   letter-spacing: -1px;
-  color: var(--heading-text-color);
 }
 
 .type-heading-medium {
-  font-size: 28px;
-  font-weight: 300;
+  font-size: var(--type-heading-medium-size);
   color: var(--heading-text-color);
+  font-weight: 300;
 }
 
 // Currently only used as modal/error heading
 .type-heading-small {
-  font-size: 18px;
+  font-size: var(--type-heading-small-size);
   color: var(--heading-text-color);
 }
 
 .type-label {
-  font-size: 16px;
+  font-size: var(--type-label-size);
   color: var(--heading-text-color);
 }
 
 .type-note {
+  font-size: var(--type-note-size);
   font-style: italic;
   color: var(--note-text-color);
 }
@@ -80,14 +86,14 @@ body {
 
 .type-body-serif {
   font-family: var(--family-serif);
-  font-size: 16px;
-  line-height: 32px;
+  font-size: var(--type-body-serif-size);
+  line-height: var(--type-body-serif-line-height);
 }
 
 .type-body-sans {
   font-family: var(--family-sans-serif);
-  font-size: 14px;
-  line-height: 26px;
+  font-size: var(--type-body-sans-size);
+  line-height: var(--type-body-sans-line-height);
 }
 
 // Tags

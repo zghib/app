@@ -1,8 +1,10 @@
 <template>
   <div v-if="userInfo">
-    <span class="label">
-      <div>{{ displayValue }}</div>
-    </span>
+    <v-user-popover :id="this.value.id" placement="top">
+      <span class="label">
+        <div>{{ displayValue }}</div>
+      </span>
+    </v-user-popover>
   </div>
 </template>
 

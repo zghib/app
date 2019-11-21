@@ -84,14 +84,26 @@ const mutations = {
 
   [UPDATE_PROJECT](state, { key, data, error }) {
     const index = state.projects.findIndex(p => p.key === key);
-    Vue.set(state.projects, index, {
-      ...state.projects[index],
-      data: {
-        ...state.projects[index].data,
-        ...(data || {})
-      },
-      error: error || null
-    });
+
+    if (index !== -1) {
+      Vue.set(state.projects, index, {
+        ...state.projects[index],
+        data: {
+          ...state.projects[index].data,
+          ...(data || {})
+        },
+        error: error || null
+      });
+    } else {
+      state.projects = [
+        ...state.projects,
+        {
+          key,
+          data,
+          error
+        }
+      ];
+    }
   },
 
   [SET_PROJECT_STATUS](state, { key, status }) {

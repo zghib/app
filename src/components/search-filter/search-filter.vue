@@ -340,7 +340,7 @@ export default {
 
     .search {
       width: 100%;
-      height: var(--input-height);
+      height: 44px;
       border-radius: 22px;
       display: block;
       border: 2px solid var(--input-border-color);

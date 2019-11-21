@@ -118,7 +118,7 @@ fieldset {
 }
 
 .type-label {
-  margin-top: var(--form-vertical-gap-sidebar);
+  margin-top: var(--form-vertical-gap);
   margin-bottom: var(--input-label-margin);
   &:first-of-type {
     margin-top: 0;

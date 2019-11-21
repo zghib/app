@@ -58,7 +58,7 @@ const router = new Router({
       }
     },
     {
-      path: "/ext/:id",
+      path: "/:project/ext/:id",
       props: true,
       component: PageExtension
     },
@@ -250,7 +250,7 @@ router.beforeEach(async (to, from, next) => {
     return next();
   }
 
-  const loggedIn = store.getters.currentProject.data.authenticated;
+  const loggedIn = store.getters.currentProject?.data?.authenticated || false;
 
   // Make sure the project reloads when the user manually changes the project in the URL
   // This will also happen when a user clicks a link from an external source

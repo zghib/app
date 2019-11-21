@@ -537,7 +537,11 @@ export default {
       const permissionField = write ? "write_field_blacklist" : "read_field_blacklist";
 
       if (selectedFields.includes(field)) {
-        return this.emitValue(permissionField, selectedFields.filter(f => f !== field), status);
+        return this.emitValue(
+          permissionField,
+          selectedFields.filter(f => f !== field),
+          status
+        );
       }
 
       return this.emitValue(permissionField, [...selectedFields, field], status);
@@ -661,7 +665,6 @@ fieldset {
 }
 
 .system-row {
-  color: var(--blue-grey-300);
-  background-color: var(--off-white);
+  color: var(--input-placeholder-color);
 }
 </style>

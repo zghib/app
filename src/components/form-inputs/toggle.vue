@@ -59,13 +59,17 @@ input {
   &::after {
     content: "";
     display: block;
-    height: 16px;
-    width: 32px;
+    height: 20px;
+    width: 40px;
     background-color: transparent;
     border-radius: 12px;
     cursor: pointer;
-    border: 2px solid var(--input-border-color);
+    border: var(--input-border-width) solid var(--input-border-color);
     transition: all var(--fast) var(--transition);
+  }
+
+  &:hover::after {
+    border-color: var(--input-border-color-hover);
   }
 
   &.active::after {
@@ -79,15 +83,15 @@ input {
   top: 7px;
   left: 7px;
   display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
   background-color: var(--input-border-color);
   transition: transform var(--fast) var(--transition);
 
   &.active {
     background-color: var(--input-text-color-active);
-    transform: translateX(16px);
+    transform: translateX(20px);
   }
 }
 

@@ -95,6 +95,7 @@ textarea {
   border: var(--input-border-width) solid var(--input-border-color);
   border-radius: var(--border-radius);
   color: var(--input-text-color);
+  font-size: var(--input-font-size);
   background-color: var(--input-background-color);
   transition: var(--fast) var(--transition);
   transition-property: color, border-color;

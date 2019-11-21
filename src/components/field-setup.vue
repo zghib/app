@@ -22,6 +22,7 @@
         placeholder="Find an interface..."
         class="interface-filter"
         icon-left="search"
+        autofocus
       />
       <div v-if="!interfaceFilter">
         <v-details
@@ -83,6 +84,7 @@
             <v-icon class="required" name="star" color="input-required-color" sup />
             <v-input
               v-model="field"
+              autofocus
               type="text"
               :placeholder="$t('db_column_name')"
               class="name-input"
@@ -778,11 +780,21 @@ export default {
       if (!this.selectedInterfaceInfo) return null;
       if (!this.selectedInterfaceInfo.relation) return null;
 
+      const relationsThatDontNeedSetup = ["file", "user"];
+
+      let relation;
+
       if (typeof this.selectedInterfaceInfo.relation === "string") {
-        return this.selectedInterfaceInfo.relation;
+        relation = this.selectedInterfaceInfo.relation;
+      } else {
+        relation = this.selectedInterfaceInfo.relation.type;
       }
 
-      return this.selectedInterfaceInfo.relation.type;
+      if (relationsThatDontNeedSetup.includes(relation)) {
+        relation = null;
+      }
+
+      return relation;
     },
     buttons() {
       let disabled = false;
@@ -1504,19 +1516,6 @@ export default {
   margin-bottom: 30px;
 }
 
-p {
-  line-height: 1.3;
-  max-width: 70%;
-  &.subtext {
-    max-width: 460px;
-    font-size: 16px;
-    color: var(--blue-grey-300);
-    line-height: 26px;
-    font-weight: 400;
-    margin-bottom: 40px;
-  }
-}
-
 .currently-selected {
   margin-bottom: 40px;
 }
@@ -1596,6 +1595,10 @@ p {
 
     p {
       color: var(--note-text-color);
+      font-size: 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }

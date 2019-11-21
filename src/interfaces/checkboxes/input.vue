@@ -125,6 +125,9 @@ export default {
 .interface-checkboxes {
   display: grid;
   grid-gap: 12px;
+  padding-top: calc(
+    (var(--input-height) - 24px) / 2
+  ); // [input height] - 24px (icon height) / 2 (top padding)
 }
 
 .cols {
@@ -141,6 +144,7 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: var(--input-font-size);
 
   .form-checkbox {
     width: 100%;

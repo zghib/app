@@ -32,7 +32,9 @@
       <div class="content">
         <details v-if="activity.action !== 'external' && activity.changes && activity.name">
           <summary class="title">
-            <span class="name">{{ activity.name }}</span>
+            <v-user-popover :id="activity.action_by" placement="top">
+              <span class="name">{{ activity.name }}</span>
+            </v-user-popover>
             <v-time-ago
               v-if="activity.date"
               v-tooltip="{
@@ -58,7 +60,9 @@
           </div>
         </details>
         <div v-else-if="activity.name" class="title">
-          <span class="name">{{ activity.name }}</span>
+          <v-user-popover :id="activity.action_by" placement="top">
+            <span class="name">{{ activity.name }}</span>
+          </v-user-popover>
           <v-time-ago
             v-if="activity.date"
             v-tooltip="{
@@ -72,6 +76,7 @@
         </div>
         <p
           v-if="activity.htmlcomment"
+          class="selectable"
           :class="{
             comment: activity.action && activity.action.toLowerCase() === 'comment'
           }"
@@ -241,12 +246,12 @@ export default {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: var(--input-border-color);
+    background-color: var(--input-border-color-hover);
     // box-shadow: 0 0 0 2px var(--blue-grey-50);
     flex-shrink: 0;
 
     &.update {
-      background-color: var(--blue-grey-600);
+      background-color: var(--input-border-color-hover);
     }
     &.delete {
       background-color: var(--danger);
@@ -255,7 +260,7 @@ export default {
       background-color: var(--success);
     }
     &.external {
-      background-color: var(--input-border-color);
+      background-color: var(--input-border-color-hover);
     }
     &.upload {
       background-color: var(--purple-500);
@@ -275,6 +280,7 @@ export default {
     .name {
       font-weight: 500;
       color: var(--heading-text-color);
+      cursor: pointer;
     }
 
     .date {
@@ -371,7 +377,7 @@ export default {
 
 .new-comment {
   position: relative;
-  height: var(--input-height);
+  height: 44px;
   transition: height var(--slow) var(--transition);
   margin-bottom: 30px;
 

@@ -18,9 +18,9 @@
           :loading="removing"
           :label="$t('delete')"
           icon="delete_outline"
-          background-color="button-primary-background-color"
-          icon-color="button-primary-text-color"
-          hover-color="danger"
+          icon-color="white"
+          background-color="danger"
+          hover-color="danger-dark"
           @click="confirmRemove = true"
         />
         <v-header-button

@@ -107,7 +107,7 @@
 
     <portal v-if="dontManage" to="modal">
       <v-confirm
-        :message="$t('dont_manage_copy', { collection: dontManage.name })"
+        :message="$t('dont_manage_copy')"
         color="danger"
         :confirm-text="$t('dont_manage')"
         :loading="toManage.includes(dontManage.collection.collection)"
@@ -230,6 +230,7 @@ export default {
           interface: "status",
           default_value: "draft",
           width: "full",
+          required: true,
           options: {
             status_mapping: {
               published: {
@@ -283,7 +284,7 @@ export default {
           interface: "status",
           hidden_detail: false,
           hidden_browse: false,
-          required: false,
+          required: true,
           options: {
             status_mapping: {
               published: {
@@ -580,9 +581,7 @@ export default {
           })
           .then(() => {
             this.$notify({
-              title: this.$t("manage_started", {
-                collection: collection.collection
-              }),
+              title: this.$t("manage_started"),
               color: "green",
               iconMain: "check"
             });
@@ -610,9 +609,7 @@ export default {
         })
         .then(() => {
           this.$notify({
-            title: this.$t("manage_stopped", {
-              collection: dontManage.collection
-            }),
+            title: this.$t("manage_stopped"),
             color: "green",
             iconMain: "check"
           });
@@ -671,7 +668,7 @@ export default {
   .header {
     position: relative;
     top: 0;
-    height: var(--header-height);
+    height: var(--input-height);
 
     .row {
       height: 100%;
@@ -689,7 +686,7 @@ export default {
 
   button {
     border-radius: var(--border-radius);
-    padding: 5px 10px;
+    padding: 4px 8px;
     position: absolute;
     right: 0;
     min-width: auto;

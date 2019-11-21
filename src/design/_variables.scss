@@ -1,54 +1,9 @@
 body {
-  // Other
-
-  --border-radius: 3px;
-  --box-shadow: 0;
-  --box-shadow-accent: 0;
-
-  --transition: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-in: cubic-bezier(0, 0, 0.2, 1);
-  --transition-out: cubic-bezier(0.4, 0, 1, 1);
-
-  --fast: 125ms;
-  --medium: 200ms;
-  --slow: 300ms;
-
-  --input-border-width: 2px;
-  --input-height: 44px;
-
-  --nav-sidebar-width: 284px;
-  --header-height: 64px;
-  --header-height-expanded: 76px; // 44px + 32px
-  --info-sidebar-width: 284px;
-
-  --page-padding-top: 48px;
-  --page-padding-top-table: 36px;
-  --page-padding: 32px;
-  --page-padding-bottom: 100px;
-
-  // Typography
-
-  --family-monospace: "Roboto Mono", monospace;
-  --family-serif: 'Merriweather', serif;
-  --family-icon: 'Material Icons', serif;
-  --family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol";
-
-  --size-1: 22px;
-  --size-2: 16px;
-  --size-3: 14px;
-
-  --weight-normal: 400;
-  --weight-bold: 500;
-
-  --line-height: 1.3;
-  --line-height-more: 1.8;
-
   // Colors
 
   --black: #000;
   --white: #fff;
+  --off-white: #f9fafa; // custom
 
   --red: #f44336;
   --red-50: #ffebee;
@@ -266,108 +221,6 @@ body {
   --blue-grey-800: #37474f;
   --blue-grey-900: #263238;
 
-  // App specific colors
-
-  --page-text-color: var(--blue-grey-800);
-  --page-background-color: var(--white);
-
-  --sidebar-background-color: var(--blue-grey-50);
-  --sidebar-background-color-alt: #dde3e6; // rgba(var(--blue-grey-200), 0.5);
-  --sidebar-text-color: var(--blue-grey-800);
-  --sidebar-text-color-alt: var(--blue-grey-600);
-
-  // Main buttons, solid with background hover
-  --button-primary-background-color: var(--blue-grey-900);
-  --button-primary-text-color: var(--white);
-  --button-primary-background-color-hover: var(--blue-grey-800);
-  --button-primary-background-color-disabled: var(--blue-grey-50);
-  --button-primary-text-color-disabled: var(--blue-grey-300);
-
-  // Alternate buttons
-  --button-secondary-background-color: var(--blue-grey-100);
-  --button-secondary-text-color: var(--blue-grey-600);
-  --button-secondary-background-color-hover: var(--blue-grey-200);
-
-  // Used on Header/Cancel/Back buttons (outlined with text hover)
-  --button-tertiary-background-color: var(--blue-grey-50);
-  --button-tertiary-text-color: var(--blue-grey-400);
-  --button-tertiary-text-color-hover: var(--blue-grey-600);
-  --button-tertiary-background-color-disabled: var(--blue-grey-400);
-  --button-tertiary-text-color-disabled: var(--blue-grey-600);
-
-  --breadcrumb-text-color: var(--blue-grey-300);
-  --breadcrumb-glue-color: var(--blue-grey-100);
-
-  --modal-header-background-color: var(--blue-grey-50);
-  --modal-background-color: var(--white);
-  --modal-smoke-color: var(--blue-grey-900);
-  --modal-tab-text-color: var(--blue-grey-400);
-  --modal-tab-text-color-active: var(--blue-grey-900);
-  --modal-tab-text-color-disabled: var(--blue-grey-200);
-
-  --tooltip-background-color: var(--blue-grey-900);
-  --tooltip-text-color: var(--white);
-
-  --popover-background-color: var(--page-background-color);
-  --popover-text-color: var(--blue-grey-600);
-  --popover-text-color-hover: var(--blue-grey-900);
-  --popover-text-color-disabled: var(--blue-grey-300);
-
-  --card-background-color: var(--blue-grey-100);
-  --card-background-color-hover: var(--blue-grey-600);
-  --card-text-color: var(--white);
-  --card-text-color-disabled: var(--blue-grey-50);
-
-  --table-head-border-color: var(--blue-grey-50);
-  --table-row-border-color: var(--off-white);
-
-  --progress-background-color: var(--blue-grey-100);
-  --progress-background-color-accent: var(--blue-grey-900);
-
-  --loading-background-color: var(--blue-grey-200);
-  --loading-background-color-accent: var(--blue-grey-800);
-
-  --input-text-color: var(--blue-grey-800); // decrease?
-  --input-icon-color: var(--blue-grey-200);
-  --input-placeholder-color: var(--blue-grey-200);
-  --input-border-color: var(--blue-grey-100);
-  --input-border-color-hover: var(--blue-grey-300);
-  --input-border-color-focus: var(--blue-grey-600);
-  --input-background-color: var(--white);
-  --input-background-color-alt: var(--off-white);
-  --input-background-color-alt-hover: var(--blue-grey-100);
-  --input-background-color-disabled: var(--blue-grey-50);
-  --input-background-color-active: var(--blue-grey-800);
-  --input-text-color-active: var(--white);
-  --input-required-color: var(--blue-grey-200);
-
-  --heading-text-color: var(--blue-grey-800);
-  --note-text-color: var(--blue-grey-300);
-
-  --form-column-width: 300px;
-  --form-row-max-height: calc(var(--form-column-width) * 2);
-  --form-horizontal-gap: var(--page-padding);
-  --form-vertical-gap: 52px;
-  --form-vertical-gap-sidebar: 30px;
-
-  --input-label-margin: 8px;
-  --input-note-margin: 4px;
-
-  --empty-value: var(--blue-grey-100);
-  --off-white: #f9fafa;
-  --highlight: var(--off-white);
-
-  // Module bar is same for both themes
-
-  --module-background-color: var(--blue-grey-900);
-  --module-text-color: var(--blue-grey-400);
-  --module-background-color-active: #13181A;
-  --module-text-color-active: var(--white);
-
-  // Public pages are shared across light/dark themes
-
-  --project-background-color: var(--blue-grey-900);
-
   // Directus Colors
 
   --accent-light: var(--blue-50);
@@ -389,7 +242,7 @@ body {
   --warning-dark: var(--orange-800);
   --danger-dark: var(--red-800);
 
-  // Deprecated
+  // Directus Colors — Deprecated
 
   --darkest-gray: var(--blue-grey-900);
   --darker-gray: var(--blue-grey-800);
@@ -398,4 +251,182 @@ body {
   --light-gray: var(--blue-grey-300);
   --lighter-gray: var(--blue-grey-200);
   --lightest-gray: var(--blue-grey-50);
+
+  // App specific colors
+
+  // Module bar (Global, not based on theme)
+
+  --module-background-color: var(--blue-grey-900);
+  --module-text-color: var(--blue-grey-400);
+  --module-background-color-active: #13181A;
+  --module-text-color-active: var(--white);
+
+  --sidebar-background-color: var(--blue-grey-50);
+  --sidebar-background-color-alt: #dde3e6; // rgba(var(--blue-grey-200), 0.5);
+  --sidebar-text-color: var(--blue-grey-800);
+  --sidebar-text-color-alt: var(--blue-grey-600);
+
+  --page-text-color: var(--blue-grey-800);
+  --page-background-color: var(--white);
+
+  --heading-text-color: var(--blue-grey-800);
+  --note-text-color: var(--blue-grey-300);
+
+  --breadcrumb-text-color: var(--blue-grey-300);
+  --breadcrumb-glue-color: var(--blue-grey-100);
+
+  --modal-header-background-color: var(--blue-grey-50);
+  --modal-background-color: var(--white);
+  --modal-smoke-color: var(--blue-grey-900);
+  --modal-tab-text-color: var(--blue-grey-400);
+  --modal-tab-text-color-active: var(--blue-grey-900);
+  --modal-tab-text-color-disabled: var(--blue-grey-200);
+
+  --notice-text-color: var(--page-text-color);
+  --notice-text-color-alt: var(--blue-grey-400);
+  --notice-background-color: var(--blue-grey-50);
+
+  --tooltip-background-color: var(--blue-grey-900);
+  --tooltip-text-color: var(--white);
+
+  --popover-background-color: var(--page-background-color);
+  --popover-text-color: var(--blue-grey-600);
+  --popover-text-color-hover: var(--blue-grey-900);
+  --popover-text-color-disabled: var(--blue-grey-300);
+
+  --card-background-color: var(--blue-grey-100);
+  --card-background-color-hover: var(--blue-grey-600);
+  --card-text-color: var(--white);
+  --card-text-color-disabled: var(--blue-grey-50);
+
+  --progress-background-color: var(--blue-grey-100);
+  --progress-background-color-accent: var(--blue-grey-900);
+
+  --loading-background-color: var(--blue-grey-200);
+  --loading-background-color-accent: var(--blue-grey-800);
+
+  --input-text-color: var(--blue-grey-800); // decrease?
+  --input-icon-color: var(--blue-grey-200);
+  --input-placeholder-color: var(--blue-grey-200);
+  --input-border-color: var(--blue-grey-100);
+  --input-border-color-hover: var(--blue-grey-300);
+  --input-border-color-focus: var(--blue-grey-600);
+  --input-background-color: var(--white);
+  --input-background-color-alt: var(--off-white);
+  --input-background-color-alt-hover: var(--blue-grey-100);
+  --input-background-color-disabled: var(--blue-grey-50);
+  --input-background-color-active: var(--blue-grey-800);
+  --input-text-color-active: var(--white);
+  --input-required-color: var(--blue-grey-200);
+
+  // Main buttons, solid with background hover
+
+  --button-primary-background-color: var(--blue-grey-900);
+  --button-primary-text-color: var(--white);
+  --button-primary-background-color-hover: var(--blue-grey-800);
+  --button-primary-background-color-disabled: var(--blue-grey-50);
+  --button-primary-text-color-disabled: var(--blue-grey-300);
+
+  // Alternate buttons
+
+  --button-secondary-background-color: var(--blue-grey-100);
+  --button-secondary-text-color: var(--blue-grey-600);
+  --button-secondary-background-color-hover: var(--blue-grey-200);
+
+  // Used on Header/Cancel/Back buttons (outlined with text hover)
+
+  --button-tertiary-background-color: var(--blue-grey-50);
+  --button-tertiary-text-color: var(--blue-grey-400);
+  --button-tertiary-text-color-hover: var(--blue-grey-600);
+  --button-tertiary-background-color-disabled: var(--blue-grey-400);
+  --button-tertiary-text-color-disabled: var(--blue-grey-600);
+
+  // Table
+
+  --table-head-border-color: var(--blue-grey-50);
+  --table-row-border-color: var(--off-white);
+
+  --empty-value: var(--blue-grey-100);
+  --highlight: var(--off-white);
+
+  // Public pages are shared across light/dark themes
+
+  --project-background-color: var(--blue-grey-900);
+
+  // Global Variables
+
+  --border-radius: 3px;
+  --box-shadow: 0;
+  --box-shadow-accent: 0;
+
+  --transition: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-in: cubic-bezier(0, 0, 0.2, 1);
+  --transition-out: cubic-bezier(0.4, 0, 1, 1);
+
+  --fast: 125ms;
+  --medium: 200ms;
+  --slow: 300ms;
+
+  --input-border-width: 2px;
+  --input-height: 52px; // 44px
+  --input-font-size: 16px; // 14px
+  --input-padding: 12px;
+
+  --button-height: 52px; // 44px
+  --button-font-size: 16px; // 16px
+
+  --card-size: 160px;
+  --card-vertical-gap: 30px;
+  --card-horizontal-gap: 20px;
+
+  --nav-sidebar-width: 284px;
+  --header-height: 64px;
+  --header-height-expanded: 76px; // 44px + 32px
+  --info-sidebar-width: 284px;
+
+  --page-padding-top: 48px;
+  --page-padding-top-table: 36px;
+  --page-padding: 32px;
+  --page-padding-bottom: 100px;
+
+  // Typography
+
+  --family-monospace: "Roboto Mono", monospace;
+  --family-serif: 'Merriweather', serif;
+  --family-icon: 'Material Icons', serif;
+  --family-sans-serif: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+
+  --type-title-size: 22px;
+  --type-heading-large-size: 48px;
+  --type-heading-large-line-height: 52px;
+  --type-heading-medium-size: 28px;
+  --type-heading-small-size: 18px;
+  --type-label-size: 18px;
+  --type-note-size: 14px;
+  --type-body-serif-size: 16px;
+  --type-body-serif-line-height: 32px;
+  --type-body-sans-size: 14px;
+  --type-body-sans-line-height: 26px;
+
+  --weight-normal: 400;
+  --weight-bold: 500;
+
+  --line-height: 1.3;
+  --line-height-more: 1.8;
+
+  --form-column-width: 300px;
+  --form-row-max-height: calc(var(--form-column-width) * 2);
+  --form-horizontal-gap: var(--page-padding);
+  --form-vertical-gap: 52px;
+
+  --input-label-margin: 8px;
+  --input-note-margin: 4px;
+
+  // Deprecated
+
+  --size-2: 16px;
+  --size-3: 14px;
+
 }

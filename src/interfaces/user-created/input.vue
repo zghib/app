@@ -1,26 +1,30 @@
 <template>
-  <div v-if="userInfo" class="user-created" :class="{ 'icon-right': iconRight }">
+  <div v-if="userInfo" class="user-created">
     <v-avatar
       v-if="options.display !== 'name'"
       v-tooltip="options.display === 'avatar' ? displayValue : null"
-      class="display-user"
+      class="avatar"
       :size="32"
       :src="src"
       :alt="displayValue"
     ></v-avatar>
-    <span v-if="options.display !== 'avatar'" class="label">
+    <span v-if="options.display !== 'avatar'" class="name">
       {{ displayValue }}
     </span>
-    <v-icon v-if="iconRight" :name="iconRight" />
+    <v-icon name="account_box" />
   </div>
-  <div v-else-if="newItem" class="user-created placeholder" :class="{ 'icon-right': iconRight }">
-    {{ $t("interfaces-user-created-you") }}
-    <v-icon v-if="iconRight" :name="iconRight" />
-  </div>
-  <div v-else class="user-created placeholder" :class="{ 'icon-right': iconRight }">
-    {{ $t("interfaces-user-created-unknown") }}
-    <v-icon v-if="iconRight" :name="iconRight" />
-  </div>
+  <v-input
+    v-else-if="newItem"
+    :readonly="true"
+    :placeholder="$t('interfaces-user-created-you')"
+    icon-right="account_box"
+  />
+  <v-input
+    v-else
+    :readonly="true"
+    :placeholder="$t('interfaces-user-created-unknown')"
+    icon-right="account_box"
+  />
 </template>
 
 <script>
@@ -28,12 +32,6 @@ import mixin from "@directus/extension-toolkit/mixins/interface";
 
 export default {
   mixins: [mixin],
-  props: {
-    iconRight: {
-      type: String,
-      default: "account_box"
-    }
-  },
   computed: {
     userInfo() {
       if (!this.value) return null;
@@ -62,29 +60,27 @@ export default {
   position: relative;
   border: var(--input-border-width) solid var(--input-border-color);
   border-radius: var(--border-radius);
-  height: 44px;
+  height: var(--input-height);
+  font-size: var(--input-font-size);
   padding: 4px 10px;
   display: flex;
   align-items: center;
   background-color: var(--input-background-color-disabled);
+  i {
+    position: absolute;
+    top: 50%;
+    color: var(--input-icon-color);
+    transform: translateY(-50%);
+    font-size: 24px;
+    right: 10px;
+  }
 }
-.display-user {
+.avatar {
   width: max-content;
   display: inline-block;
+  margin-right: 12px;
 }
-.label {
+.name {
   display: inline-block;
-  margin-left: 12px;
-}
-.placeholder {
-  color: var(--input-placeholder-color);
-}
-.icon-right i {
-  position: absolute;
-  top: 50%;
-  color: var(--input-icon-color);
-  transform: translateY(-50%);
-  font-size: 24px;
-  right: 10px;
 }
 </style>

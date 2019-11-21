@@ -52,6 +52,7 @@ import VError from "./components/error.vue";
 import { TOGGLE_NAV } from "./store/mutation-types";
 import VNavSidebar from "./components/sidebars/nav-sidebar/nav-sidebar.vue";
 import VNotification from "./components/notifications/notifications.vue";
+import isCloudProject from "@/helpers/is-cloud-project";
 
 export default {
   name: "Directus",
@@ -130,6 +131,10 @@ export default {
         document.body.classList.remove("public");
       }
 
+      if (["auto", "light", "dark"].indexOf(this.$store.state.currentUser.theme) !== -1) {
+        document.body.classList.add(this.$store.state.currentUser.theme);
+      }
+
       this.toggleInfoSidebarBodyClass();
     },
     keepEditing() {
@@ -159,16 +164,11 @@ export default {
 
     preselectProject() {
       if (this.$route.query.project) {
-        let exists = false;
+        this.$store.dispatch("setCurrentProject", this.$route.query.project);
 
-        this.projects.forEach(p => {
-          if (p.key === this.$route.query.project) {
-            exists = true;
-          }
-        });
-
-        if (exists) {
-          this.$store.dispatch("setCurrentProject", this.$route.query.project);
+        // CLOUD
+        if (isCloudProject(this.$route.query.project)) {
+          this.$store.dispatch("getProjects");
         }
 
         const query = _.clone(this.$route.query);

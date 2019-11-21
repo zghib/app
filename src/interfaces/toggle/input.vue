@@ -90,8 +90,8 @@ input {
   height: 44px;
 
   span {
-    margin-left: 4px;
-    // font-weight: var(--weight-bold);
+    margin-left: 8px;
+    font-size: var(--input-font-size);
   }
 
   &.on span {

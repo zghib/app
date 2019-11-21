@@ -1,5 +1,5 @@
 <template>
-  <div v-if="projects.length > 1" class="project-chooser">
+  <div v-if="projects && projects.length > 1" class="project-chooser">
     <span v-tooltip.right="{ classes: ['inverted'], content: 'API URL' }" class="preview">
       <v-signal class="signal" />
       <template v-if="currentProject.status === 'successful'">

@@ -24,8 +24,8 @@
               password to continue.
             </p>
             <input
-              ref="input"
               v-model="super_admin_token"
+              v-focus
               placeholder="Super-Admin Password..."
               type="text"
             />
@@ -51,8 +51,8 @@
             <label class="type-label" for="project_name">{{ $t("project_name") }}</label>
             <input
               id="project_name"
-              ref="input"
               v-model="project_name"
+              v-focus
               name="project_name"
               type="text"
               required
@@ -101,7 +101,7 @@
         <div class="field-grid">
           <div class="field">
             <label class="type-label" for="db_host">{{ $t("host") }}</label>
-            <input id="db_host" ref="input" v-model="db_host" name="db_host" type="text" required />
+            <input id="db_host" v-model="db_host" v-focus name="db_host" type="text" required />
           </div>
           <div class="field">
             <label class="type-label" for="db_port">{{ $t("port") }}</label>
@@ -290,7 +290,7 @@ export default {
           this.super_admin_token = this.generateMasterPassword();
         }
 
-        await axios.post(this.apiRootPath + "projects", {
+        await axios.post(this.apiRootPath + "server/projects", {
           project_name,
           project,
           user_email,
@@ -332,7 +332,7 @@ export default {
       this.project = value;
     },
     async goToLogin() {
-      await this.getProjects();
+      await this.getProjects(true);
 
       this.$router.push("/login", { query: { project: this.project } });
     }

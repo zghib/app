@@ -128,8 +128,8 @@ export default {
 
       return {
         key: "directusVersion",
-        success: this.serverInfo.directus === this.lastTag,
-        value: this.$t("directus_version") + ": " + this.serverInfo.directus
+        success: "v" + this.serverInfo.directus === this.lastTag,
+        value: this.$t("directus_version") + ": v" + this.serverInfo.directus
       };
     }
   },
@@ -160,9 +160,9 @@ export default {
 
       try {
         const githubVersionResponse = await axios.get(
-          "https://api.github.com/repos/directus/directus/releases/latest"
+          "https://api.github.com/repos/directus/directus/tags"
         );
-        this.lastTag = githubVersionResponse.data.tag_name;
+        this.lastTag = githubVersionResponse.data[0].name;
       } catch {}
 
       this.fetchingRequirements = false;

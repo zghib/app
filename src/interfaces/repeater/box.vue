@@ -93,7 +93,7 @@ export default {
       left: 10px;
       width: calc(100% - 20px);
       height: 2px;
-      background-color: var(--blue-grey-50);
+      background-color: var(--input-border-color);
       opacity: 0.1;
     }
 
@@ -102,25 +102,25 @@ export default {
       align-items: center;
       .handle {
         cursor: pointer;
-        color: var(--blue-grey-200);
-        margin-right: 10px;
+        color: var(--input-icon-color);
+        margin-right: 12px;
         &:hover {
-          color: var(--blue-grey-400);
+          color: var(--input-text-color);
         }
       }
 
       .v-ext-display {
-        color: var(--blue-grey-800);
-        font-size: 14px;
+        color: var(--page-text-color);
+        font-size: var(--input-font-size);
         margin: 10px 10px 10px 0;
       }
     }
     .end {
       i {
         transition: all var(--fast) var(--transition);
-        color: var(--blue-grey-200);
+        color: var(--input-icon-color);
         &:hover {
-          color: var(--blue-grey-400);
+          color: var(--input-text-color);
         }
       }
       .delete i:hover {

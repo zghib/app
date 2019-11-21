@@ -39,6 +39,7 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     color: var(--note-text-color);
+    font-size: var(--input-font-size);
     max-width: 560px;
   }
   hr {
@@ -64,6 +65,7 @@ export default {
     color: var(--note-text-color);
     max-width: 560px;
     margin-top: 12px;
+    font-size: var(--input-font-size);
   }
   hr {
     border: 0;
@@ -86,6 +88,7 @@ export default {
   }
   p {
     color: var(--note-text-color);
+    font-size: var(--input-font-size);
     max-width: 560px;
     margin-top: 16px;
   }

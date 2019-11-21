@@ -124,7 +124,7 @@ export default {
     // nav override or the default structure above if it isn't set
     // It will also replace the `includes` with links for the actual sections
     navStructure() {
-      const userRole = this.$store.state.currentUser.roles[0];
+      const userRole = this.$store.state.currentUser.role;
       const navOverride = userRole.nav_override;
 
       return navOverride || this.defaultNavStructure;
@@ -144,7 +144,7 @@ export default {
 
       _.forEach(pages, (info, key) => {
         links.push({
-          path: `/ext/${key}`,
+          path: `/${this.currentProjectKey}/ext/${key}`,
           name: info.name,
           icon: info.icon
         });
@@ -193,8 +193,7 @@ aside {
   left: 0;
   height: 100%;
   z-index: 30;
-  width: 100%;
-  max-width: 80%;
+  width: var(--nav-sidebar-width);
   background-color: var(--sidebar-background-color);
   color: var(--sidebar-text-color);
   display: flex;
@@ -214,7 +213,7 @@ aside {
     transform: translateX(0);
     transition: none;
     visibility: visible;
-    max-width: var(--nav-sidebar-width);
+    width: var(--nav-sidebar-width);
   }
 
   > div {
@@ -241,9 +240,9 @@ aside {
 
 .main-bar {
   position: relative;
-  padding: 20px;
+  padding: 12px;
   padding-top: 0;
-  height: calc(100% - var(--header-height) - var(--header-height));
+  height: 100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   flex-basis: 220px;

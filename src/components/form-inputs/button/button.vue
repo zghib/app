@@ -123,11 +123,10 @@ button {
   align-items: center;
   justify-content: center;
   color: var(--white);
-  font-size: 16px;
-  line-height: 19px;
-  font-weight: 500;
+  font-size: var(--button-font-size);
+  font-weight: var(--weight-bold);
   padding: 0 20px 1px;
-  height: 44px;
+  height: var(--button-height);
   min-width: 136px;
   border: var(--input-border-width) solid var(--action);
 

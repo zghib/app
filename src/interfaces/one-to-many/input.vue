@@ -538,23 +538,20 @@ export default {
   margin: 16px 0 24px;
 
   .header {
-    height: var(--input-height);
-    border-bottom: 2px solid var(--input-border-color);
+    height: calc(var(--input-height) - 2px); // -2px since top border is on caontainer
+    border-bottom: var(--input-border-width) solid var(--input-border-color);
+    display: flex;
+    align-items: center;
 
     button {
       text-align: left;
       font-weight: 500;
       transition: color var(--fast) var(--transition);
-
-      &:hover {
-        transition: none;
-        color: var(--blue-grey-800);
-      }
     }
 
     i {
       vertical-align: top;
-      color: var(--blue-grey-300);
+      color: var(--input-icon-color);
     }
   }
 
@@ -562,6 +559,7 @@ export default {
     display: flex;
     align-items: center;
     padding: 0 5px;
+    width: 100%;
 
     > div {
       padding: 3px 5px;
@@ -590,7 +588,7 @@ export default {
       cursor: pointer;
       position: relative;
       height: 50px;
-      border-bottom: 2px solid var(--input-background-color-alt);
+      border-bottom: var(--input-border-width) solid var(--input-background-color-alt);
 
       &:last-of-type {
         border-bottom: none;

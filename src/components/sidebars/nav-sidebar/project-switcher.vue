@@ -90,11 +90,11 @@ export default {
 <style lang="scss" scoped>
 .project-switcher > div {
   height: var(--header-height);
-  width: calc(100% + 40px);
+  width: calc(100% + 24px);
   display: flex;
   align-items: center;
-  margin: 0 -20px 20px;
-  padding: 0 30px;
+  margin: 0 -12px 12px;
+  padding: 0 22px;
   position: relative;
   background-color: var(--sidebar-background-color-alt);
 

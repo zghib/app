@@ -3,12 +3,7 @@
     <v-notice v-if="tfa_secret" icon="info" class="qr-info">
       {{ $t("scan_in_authenticator") }}
     </v-notice>
-    <qr-code
-      v-if="tfa_secret"
-      class="qr"
-      :value="'otpauth://totp/Directus?secret=' + tfa_secret"
-      :options="{ width: 200 }"
-    />
+    <qr-code v-if="tfa_secret" class="qr" :value="totpUrl" :options="{ width: 200 }" />
 
     <v-button v-if="!value" :loading="loading" @click="getToken">Enable 2FA</v-button>
     <v-button v-if="value" @click="removeValue">Disable 2FA</v-button>
@@ -31,6 +26,11 @@ export default {
       error: null,
       tfa_secret: null
     };
+  },
+  computed: {
+    totpUrl() {
+      return `otpauth://totp/Directus:${this.$store.state.currentUser.email}?secret=${this.tfa_secret}&issuer=Directus`;
+    }
   },
   methods: {
     getToken() {

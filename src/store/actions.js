@@ -3,6 +3,7 @@ import axios from "axios";
 import router from "@/router";
 import hydrateStore from "@/hydrate";
 import { loadLanguageAsync } from "@/lang/";
+import isCloudProject from "@/helpers/is-cloud-project";
 
 import {
   RESET,
@@ -62,16 +63,16 @@ export function getCurrentUser({ commit }) {
         "first_name",
         "last_name",
         "locale",
-        "roles.*.*",
-        "last_page"
+        "role.*",
+        "last_page",
+        "theme"
       ]
     })
     .then(res => res.data)
     .then(userInfo => {
       return {
         ...userInfo,
-        roles: userInfo.roles.map(obj => obj.role),
-        admin: !!userInfo.roles.map(obj => obj.role).find(obj => obj.id === 1)
+        admin: userInfo.role.id === 1
       };
     })
     .then(data => commit(SET_CURRENT_USER, data));
@@ -126,8 +127,19 @@ export function loadingFinished({ commit }, id) {
 }
 
 export async function setCurrentProject({ commit, dispatch, state, getters }, key) {
+  let newProject = state.projects.find(p => p.key === key);
+
+  // If the project we're trying to switch to doesn't exist in the projects array, there is a
+  // chance it's a hidden project. We're attempting to fetch the project info for the new key
+  // regardless to make sure you can login to private projects too. If the project doesn't exist,
+  // the user will see a "something is wrong with the project" error on the login screen, as the status
+  // of the project will be "failed"
+  if (!newProject) {
+    await dispatch("updateProjectInfo", key);
+    newProject = state.projects.find(p => p.key === key);
+  }
+
   commit(SET_CURRENT_PROJECT, key);
-  const newProject = state.projects.find(p => p.key === key);
 
   const authenticated = newProject.data?.authenticated || false;
   const privateRoute = router.currentRoute.meta.publicRoute !== true;
@@ -198,17 +210,55 @@ export async function updateProjectInfo({ commit, state }, key) {
   }
 }
 
-export async function getProjects({ state, dispatch, commit }) {
-  try {
-    let projects;
+export async function getProjects({ state, dispatch, commit }, force) {
+  const currentProjectKey = state.currentProjectKey;
+  const apiRootPath = state.apiRootPath;
 
-    if (state.projects === null || state.projects === false) {
-      const apiRootPath = state.apiRootPath;
-      const url = apiRootPath + "server/projects";
+  if (force === true || state.projects === null || state.projects === false) {
+    const url = apiRootPath + "server/projects";
+
+    try {
       const response = await axios.get(url);
       const projectKeys = response.data.data;
 
-      projects = projectKeys.map(key => ({
+      const projects = projectKeys.map(key => ({
+        key,
+        status: null,
+        data: null,
+        error: null
+      }));
+
+      // If a currentProjectKey is set that doesn't exist in the projects returned by the project endpoint
+      // it's most likely because there is a private project with this key.
+      if (currentProjectKey && projectKeys.includes(currentProjectKey) === false) {
+        projects.push({
+          key: currentProjectKey,
+          status: null,
+          data: null,
+          error: null
+        });
+      }
+
+      commit(INIT_PROJECTS, projects);
+    } catch (error) {
+      const errorCode = error.response?.data.error.code;
+
+      if (errorCode === 14) {
+        commit(INIT_PROJECTS, false);
+      }
+    }
+  }
+
+  // CLOUD
+  // If the project is a Directus Cloud project, fetch the project keys from the Cloud API instead
+  if (isCloudProject(currentProjectKey)) {
+    console.log("[Cloud] Using cloud projects");
+    const url = `https://cloud-api.directus.cloud/projects/${currentProjectKey}/related`;
+    try {
+      const response = await axios.get(url);
+      const projectKeys = response.data.data;
+
+      const projects = projectKeys.map(key => ({
         key,
         status: null,
         data: null,
@@ -216,30 +266,23 @@ export async function getProjects({ state, dispatch, commit }) {
       }));
 
       commit(INIT_PROJECTS, projects);
+    } catch (error) {
+      // If the response failed, it means that the project key doesn't exist in cloud
+      console.log(error);
     }
+  }
 
-    if (state.projects.length > 0 && state.currentProjectKey === null) {
-      dispatch("setCurrentProject", state.projects[0].key);
-    }
+  // If there's no pre-selected project, default to the first available one in the projects array
+  if (state.projects?.length > 0 && currentProjectKey === null) {
+    dispatch("setCurrentProject", state.projects[0].key);
+  }
 
-    // If the project that the user last logged into no longer exists, reset to the first possible project
-    if (
-      state.projects.length > 0 &&
-      state.projects.map(p => p.key).includes(state.currentProjectKey) === false
-    ) {
-      dispatch("setCurrentProject", state.projects[0].key);
-    }
-
+  if (state.projects !== null && state.projects !== false) {
+    // Fetch the detailed information for each project asynchronously.
     return Promise.allSettled(
       state.projects.map(p => p.key).map(key => dispatch("updateProjectInfo", key))
     );
-  } catch (error) {
-    const errorCode = error.response?.data.error.code;
-
-    if (errorCode === 14) {
-      return commit(INIT_PROJECTS, false);
-    }
-
-    console.error(error);
   }
+
+  return Promise.resolve();
 }

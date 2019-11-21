@@ -83,7 +83,6 @@ export default {
   top: 0;
   height: 100%;
   z-index: 30;
-  width: 90%;
   background-color: var(--sidebar-background-color);
   transform: translateX(220px);
   transition: transform var(--fast) var(--transition);
@@ -93,13 +92,21 @@ export default {
   }
 
   & .system:not(:empty) {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
+    padding-bottom: var(--form-vertical-gap);
+    border-bottom: var(--input-border-width) solid var(--input-border-color);
+    margin-bottom: var(--form-vertical-gap);
   }
 
   @media (min-width: 800px) {
     max-width: var(--info-sidebar-width);
   }
+
+  // Overrides for more compressed form
+  --form-vertical-gap: 24px;
+  --type-label-size: 15px;
+  --input-height: 44px;
+  --input-font-size: 14px;
+  --input-label-margin: 4px;
 }
 
 .blocker-info {

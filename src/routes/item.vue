@@ -198,7 +198,6 @@ function getFieldsQuery(collection) {
       }
 
       if (
-        (fieldInfo.type && fieldInfo.type.toLowerCase()) === "m2o" ||
         (fieldInfo.type && fieldInfo.type.toLowerCase()) === "o2m" ||
         (fieldInfo.type && fieldInfo.type.toLowerCase()) === "m2m" ||
         (fieldInfo.type && fieldInfo.type.toLowerCase()) === "translation" ||
@@ -830,7 +829,8 @@ export default {
         this.$api.getActivity({
           "filter[collection][eq]": this.collection,
           "filter[item][eq]": this.primaryKey,
-          fields: "id,action,action_on,comment,action_by.first_name,action_by.last_name",
+          fields:
+            "id,action,action_on,comment,action_by.id,action_by.first_name,action_by.last_name",
           sort: "-action_on"
         }),
         this.activityDetail
@@ -860,6 +860,7 @@ export default {
                 id: act.id,
                 date,
                 name,
+                action_by: act.action_by.id,
                 action: act.action.toLowerCase(),
                 comment: act.comment
               };

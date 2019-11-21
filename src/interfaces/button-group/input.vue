@@ -62,9 +62,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.interface-button-group {
-  font-weight: 500;
-}
 /*
 Theme: Outline
 */
@@ -75,7 +72,7 @@ Theme: Outline
 }
 
 .button-group-button {
-  border: var(--input-border-width) solid var(--blue-grey-400);
+  border: var(--input-border-width) solid var(--input-border-color);
   cursor: pointer;
   transition: var(--fast) var(--transition);
   transition-property: border-color, background-color, color;
@@ -83,19 +80,18 @@ Theme: Outline
   align-items: center;
   justify-content: center;
   padding: 0px 16px;
-  height: 44px;
-  line-height: 44px;
+  height: var(--input-height);
   white-space: nowrap;
-  color: var(--blue-grey-400);
+  color: var(--input-icon-color);
+  font-size: var(--input-font-size);
   margin-bottom: 8px;
 
   &:hover {
-    background-color: var(--blue-grey-50);
+    background-color: var(--input-border-color);
+    color: var(--input-text-color);
   }
 
   i {
-    font-size: 18px;
-
     + span {
       margin-left: 4px;
     }
@@ -120,8 +116,9 @@ Theme: Outline
 		*/
     &:checked {
       + .button-group-button {
-        background-color: var(--blue-grey-400);
-        color: var(--white);
+        background-color: var(--input-background-color-active);
+        border-color: var(--input-background-color-active);
+        color: var(--input-text-color-active);
       }
     }
     /**

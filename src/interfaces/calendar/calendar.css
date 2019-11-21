@@ -8,7 +8,7 @@
   animation: none;
   direction: ltr;
   border: 0;
-  font-size: 14px;
+  font-size: var(--input-font-size);
   line-height: 24px;
   position: absolute;
   box-sizing: border-box;

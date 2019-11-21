@@ -8,26 +8,35 @@
     @show="fetchUser"
   >
     <slot />
-
-    <div slot="popover">
+    <router-link slot="popover" class="popover" :to="`/${currentProjectKey}/users/${id}`">
       <v-spinner v-if="loading" />
-      <template v-else>
+      <template v-else-if="data">
         <v-avatar
-          v-if="data.avatar"
           :src="data.avatar"
           :alt="`${data.first_name} ${data.last_name}`"
+          class="avatar"
+          :size="64"
         />
-        <div v-else class="avatar-fallback">
-          <v-icon name="person" />
+        <div class="info">
+          <div class="primary type-label">{{ data.first_name }} {{ data.last_name }}</div>
+          <div class="secondary">
+            <!-- <v-icon class="icon" name="flag" size="16" /> -->
+            {{ data.title || "No Title" }}
+          </div>
+          <div class="secondary">
+            <!-- <v-icon class="icon" name="room" size="16" /> -->
+            {{ data.company || "No Company" }}
+          </div>
         </div>
-
-        <p class="name">{{ data.first_name }} {{ data.last_name }} ({{ data.role }})</p>
+        <v-icon class="arrow" color="input-icon-color" name="open_in_new" size="24" />
       </template>
-    </div>
+    </router-link>
   </v-popover>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "UserPopover",
   props: {
@@ -56,7 +65,7 @@ export default {
           "left-end"
         ].includes(value);
       },
-      default: "auto"
+      default: "top"
     }
   },
   data() {
@@ -67,6 +76,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(["currentProjectKey"]),
     boundariesElement() {
       return document.body;
     }
@@ -78,11 +88,17 @@ export default {
 
       try {
         let { data } = await this.$api.getUser(this.id, {
-          fields: ["avatar.data.thumbnails", "first_name", "last_name", "roles.role.name"]
+          fields: [
+            "avatar.data.thumbnails",
+            "first_name",
+            "last_name",
+            "title",
+            "company",
+            "role.name"
+          ]
         });
-        data.role = data.roles[0]?.role?.name;
-        data.avatar = data.avatar.data.thumbnails[0].url;
-        delete data.roles;
+        data.role = data.role?.name;
+        data.avatar = data?.avatar?.data?.thumbnails?.[0].url;
         this.data = data;
       } catch (error) {
         this.error = error;
@@ -97,5 +113,62 @@ export default {
 <style lang="scss" scoped>
 .user-popover {
   width: max-content;
+  display: inline-block;
+}
+.popover-inner {
+  padding: 0;
+}
+
+.popover {
+  padding: 6px 12px;
+  width: 280px;
+  color: var(--page-text-color);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  // This fills the gap between the target and popover, so it doesn't lose focus on hover
+  &:before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    bottom: -12px;
+    left: 0;
+    right: 0;
+  }
+  &:hover .arrow {
+    color: var(--blue) !important;
+  }
+  .avatar {
+    margin-right: 12px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+  }
+  .info {
+    line-height: 1.4;
+    flex-grow: 1;
+    max-width: 148px;
+    .primary {
+      font-weight: var(--weight-bold);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .secondary {
+      color: var(--note-text-color);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      .icon {
+        margin-top: -2px;
+        margin-left: -2px;
+        margin-right: 4px;
+      }
+    }
+  }
+  .arrow {
+    flex-basis: 24px;
+    width: 24px;
+    margin-left: 8px;
+  }
 }
 </style>

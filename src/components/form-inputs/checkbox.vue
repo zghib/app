@@ -107,7 +107,7 @@ label {
   }
 
   span {
-    margin-left: 4px;
+    margin-left: 8px;
   }
 }
 

@@ -3,7 +3,7 @@
     <form v-if="resetMode === false && requestSent === false" @submit.prevent="onRequest">
       <project-chooser />
 
-      <input ref="main" v-model="email" type="email" :placeholder="$t('email')" required />
+      <input v-model="email" v-focus type="email" :placeholder="$t('email')" required />
       <div class="buttons">
         <button type="submit">{{ $t("reset") }}</button>
         <router-link to="/login" class="secondary">{{ $t("sign_in") }}</router-link>
@@ -75,9 +75,6 @@ export default {
     resetMode() {
       return this.$route.query.token !== undefined;
     }
-  },
-  mounted() {
-    this.$refs.main.focus();
   },
   methods: {
     async onRequest() {
