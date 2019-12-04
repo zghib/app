@@ -11,6 +11,8 @@ import * as dateFns from "date-fns";
 import date from "./date";
 import componentExists from "./component-exists";
 import formatFilters from "./format-filters";
+import formatField from "./format-field";
+import formatCollection from "./format-collection";
 
 const helpers = {
   formatTitle,
@@ -25,7 +27,9 @@ const helpers = {
   disableBodyScroll,
   snarkdown,
   mousetrap,
-  dateFns
+  dateFns,
+  formatField,
+  formatCollection
 };
 
 const helpersPlugin = {

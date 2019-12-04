@@ -20,6 +20,7 @@
         :filters="filters"
         :search-query="searchQuery"
         :field-names="filterableFieldNames"
+        collection-name="directus_files"
         :placeholder="resultCopy"
         @filter="updatePreferences('filters', $event)"
         @search="updatePreferences('search_query', $event)"
@@ -197,7 +198,7 @@ export default {
       const fields = this.$store.state.collections[this.collection].fields;
       return Object.values(fields).map(field => ({
         ...field,
-        name: this.$helpers.formatTitle(field.field)
+        name: this.$helpers.formatField(field.field, field.collection)
       }));
     },
     currentBookmark() {

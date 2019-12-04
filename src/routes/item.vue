@@ -402,7 +402,7 @@ export default {
             path: `/${this.currentProjectKey}/collections`
           },
           {
-            name: this.$t(`collections-${this.collection}`),
+            name: this.$helpers.formatCollection(this.collection),
             path: `/${this.currentProjectKey}/collections/${this.collection}`
           }
         );
@@ -429,7 +429,11 @@ export default {
     defaultValues() {
       return _.mapValues(this.fields, field => {
         if (field.type === "array") {
-          return field.default_value ? [field.default_value] : [];
+          if (field.default_value.includes(",")) {
+            return field.default_value.split(",");
+          } else {
+            return field.default_value ? [field.default_value] : [];
+          }
         }
 
         if (field.type === "boolean") {
@@ -591,9 +595,7 @@ export default {
     }
   },
   created() {
-    if (this.isNew) {
-      this.stageDefaultValues();
-    } else {
+    if (this.isNew === false) {
       this.fetchActivity();
       this.checkOtherUsers();
     }
@@ -615,9 +617,6 @@ export default {
     this.formtrap.unbind("mod+s");
   },
   methods: {
-    stageDefaultValues() {
-      _.forEach(this.defaultValues, (value, field) => this.stageValue({ field, value }));
-    },
     stageValue({ field, value }) {
       this.$store.dispatch("stageValue", { field, value });
     },
@@ -651,7 +650,14 @@ export default {
           });
           this.confirmRemoveLoading = false;
           this.confirmRemove = false;
-          this.$router.push(`/${this.currentProjectKey}/collections/${this.collection}`);
+
+          let linkTo = `/${this.currentProjectKey}/collections/${this.collection}`;
+
+          if (this.collection.startsWith("directus_") === true) {
+            linkTo = `/${this.currentProjectKey}/${this.collection.substring(9)}`;
+          }
+
+          this.$router.push(linkTo);
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);

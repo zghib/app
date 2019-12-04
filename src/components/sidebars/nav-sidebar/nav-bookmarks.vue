@@ -71,14 +71,12 @@ export default {
 
 <style lang="scss" scoped>
 h3 {
-  margin-bottom: 5px;
-  margin-top: 15px;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 
 .icon {
-  width: 20px;
-  height: 22px;
-  margin-right: 15px;
+  margin-right: 12px;
   color: var(--sidebar-text-color);
   fill: var(--sidebar-text-color);
 
@@ -111,9 +109,16 @@ ul {
   padding: 0;
 }
 
+nav > ul > li {
+  margin: 4px 0;
+}
+
 nav > ul > li > * {
-  padding: 8px 0 8px 10px;
-  margin: 2px 0;
+  padding: 8px 4px 8px 10px;
+}
+
+nav {
+  padding-bottom: 16px;
 }
 
 .bookmark {

@@ -8,10 +8,29 @@ import {
   UPDATE_FIELDS,
   REMOVE_FIELD
 } from "../../mutation-types";
-import { i18n, availableLanguages } from "../../../lang/";
-import formatTitle from "@directus/format-title";
+import { i18n } from "../../../lang/";
 import _ from "lodash";
 import api from "../../../api";
+
+function updateTranslations(collection) {
+  if (_.isEmpty(collection.translation) === false) {
+    collection.translation.forEach(({ translation, locale }) => {
+      i18n.mergeLocaleMessage(locale, {
+        [`collections-${collection.collection}`]: translation
+      });
+    });
+  }
+
+  _.forEach(collection.fields, (fieldInfo, fieldKey) => {
+    if (_.isEmpty(fieldInfo.translation) === false) {
+      fieldInfo.translation.forEach(({ translation, locale }) => {
+        i18n.mergeLocaleMessage(locale, {
+          [`fields-${collection.collection}-${fieldKey}`]: translation
+        });
+      });
+    }
+  });
+}
 
 export function addField({ commit }, { collection, field }) {
   commit(ADD_FIELD, { collection, field });
@@ -32,32 +51,8 @@ export function removeField({ commit }, { collection, field }) {
 export async function getCollections({ commit }) {
   let { data: collections } = await api.getCollections();
 
-  /*
-   * We're using vue-i18n to provide the translations for collections /
-   * extensions / fields and all other user generated content as well.
-   * In order to make this work, the collection names need to be scoped.
-   * The loop below will go over all collections to check if they have a
-   * translation object setup. If so, that's being injected into the vue-i18n
-   * messages so the app can render it based on the current language with the
-   * regular $t() function eg $t('collections-about')
-   */
-
-  _.forEach(collections, collection => {
-    if (_.isEmpty(collection.translation)) {
-      // If translations haven't been setup, we're using the title formatter
-      // Languages fall back to en-US when strings are missing, so we only have to generate the locale
-      // messages into en-US.
-      i18n.mergeLocaleMessage("en-US", {
-        [`collections-${collection.collection}`]: formatTitle(collection.collection)
-      });
-    } else {
-      _.forEach(collection.translation, (value, locale) => {
-        i18n.mergeLocaleMessage(locale, {
-          [`collections-${collection.collection}`]: value
-        });
-      });
-    }
-  });
+  // Add the custom translations for user collections and fields to the i18n messages pool
+  _.forEach(collections, updateTranslations);
 
   /*
    * directus_settings uses a different format for the values. Instead of
@@ -73,26 +68,13 @@ export async function getCollections({ commit }) {
   const { data: settingsFields } = await api.getSettingsFields();
 
   collections = _.keyBy(collections, "collection");
-
   collections.directus_settings.fields = _.keyBy(settingsFields, "field");
 
   commit(SET_COLLECTIONS, collections);
 }
 
 export function addCollection({ commit }, collection) {
-  if (!_.isEmpty(collection.translation)) {
-    // Languages fall back to en-US when strings are missing, so we only have to generate the locale
-    // messages into en-US.
-    i18n.mergeLocaleMessage("en-US", {
-      [`collections-${collection.collection}`]: formatTitle(collection.collection)
-    });
-  } else {
-    Object.keys(availableLanguages).forEach(locale => {
-      i18n.mergeLocaleMessage(locale, {
-        [`collections-${collection.collection}`]: formatTitle(collection.collection)
-      });
-    });
-  }
+  updateTranslations(collection);
   commit(ADD_COLLECTION, collection);
 }
 
@@ -100,6 +82,8 @@ export function removeCollection({ commit }, collection) {
   commit(DELETE_COLLECTION, collection);
 }
 
-export function updateCollection({ commit }, { collection, edits }) {
+export function updateCollection({ state, commit }, { collection, edits }) {
+  const collectionInfo = _.clone(state[collection]);
+  updateTranslations(_.merge({}, collectionInfo, edits));
   commit(UPDATE_COLLECTION, { collection, edits });
 }

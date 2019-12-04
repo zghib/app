@@ -22,7 +22,7 @@
         <div class="select">
           <select v-model="sortField">
             <option v-for="field in fields" :key="field" :value="field">
-              {{ $helpers.formatTitle(field) }}
+              {{ $helpers.formatField(field, collection) }}
             </option>
           </select>
           <v-icon name="arrow_drop_down" color="input-icon-color" />
@@ -50,7 +50,9 @@
           <!-- Checkboxes -->
           <span />
           <span v-if="collection === 'directus_files'">{{ $t("file") }}</span>
-          <span v-for="field in fields" :key="field">{{ $helpers.formatTitle(field) }}</span>
+          <span v-for="field in fields" :key="field">
+            {{ $helpers.formatField(field, collection) }}
+          </span>
         </div>
 
         <label v-for="item in items" :key="uid + '_' + item[primaryKeyField]">

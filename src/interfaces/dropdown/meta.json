@@ -10,26 +10,19 @@
     "choices": {
       "name": "$t:choices",
       "comment": "$t:choices_comment",
-      "interface": "repeater",
+      "interface": "key-value",
       "type": "JSON",
       "options": {
-        "dataType": "value",
-        "fields": {
-          "name": {
-            "interface": "text-input",
-            "type": "String",
-            "preview": true
-          },
-          "value": {
-            "interface": "text-input",
-            "type": "String",
-            "index": true
-          }
+        "keyInterface": "text-input",
+        "keyType": "string",
+        "keyOptions": {
+          "monospace": true
+        },
+        "valueInterface": "text-input",
+        "valueType": "string",
+        "valueOptions": {
+          "monospace": true
         }
-      },
-      "default": {
-        "value1": "$t:option 1",
-        "value2": "$t:option 2"
       }
     },
     "placeholder": {

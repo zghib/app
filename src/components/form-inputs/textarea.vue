@@ -115,9 +115,6 @@ textarea {
   &:read-only {
     background-color: var(--input-background-color-disabled);
     cursor: not-allowed;
-    &:focus {
-      border-color: var(--input-border-color-focus);
-    }
   }
 
   &:hover:not(:read-only) {

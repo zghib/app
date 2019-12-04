@@ -103,7 +103,9 @@ export default {
 
     .title {
       margin-bottom: 4px;
-      text-transform: capitalize; // For activity
+      &::first-letter {
+        text-transform: uppercase;
+      }
     }
 
     .content {

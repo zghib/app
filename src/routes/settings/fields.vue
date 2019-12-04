@@ -49,7 +49,7 @@
               @click.stop="field.interface ? startEditingField(field) : false"
             >
               <div>
-                {{ $helpers.formatTitle(field.field) }}
+                {{ $helpers.formatField(field.field, field.collection) }}
               </div>
               <div>
                 {{
@@ -215,7 +215,7 @@ export default {
           path: `/${this.currentProjectKey}/settings/collections`
         },
         {
-          name: this.$t(`collections-${this.collection}`),
+          name: this.$helpers.formatCollection(this.collection),
           path: `/${this.currentProjectKey}/settings/collections/${this.collection}`
         }
       ];
@@ -350,7 +350,7 @@ export default {
           });
           this.$notify({
             title: this.$t("field_created", {
-              field: this.$helpers.formatTitle(fieldInfo.field)
+              field: this.$helpers.formatField(fieldInfo.field, fieldInfo.collection)
             }),
             color: "green",
             iconMain: "check"
@@ -393,9 +393,7 @@ export default {
           });
 
           this.$notify({
-            title: this.$t("field_updated", {
-              field: this.$helpers.formatTitle(fieldInfo.field)
-            }),
+            title: this.$t("field_updated"),
             color: "green",
             iconMain: "check"
           });
@@ -405,9 +403,7 @@ export default {
           this.fields = [...this.fields, savedFieldInfo];
 
           this.$notify({
-            title: this.$t("field_created", {
-              field: this.$helpers.formatTitle(fieldInfo.field)
-            }),
+            title: this.$t("field_created"),
             color: "green",
             iconMain: "check"
           });
@@ -504,9 +500,7 @@ export default {
           this.fieldToBeRemoved = null;
           this.confirmFieldRemove = false;
           this.$notify({
-            title: this.$t("field_removed", {
-              field: this.$helpers.formatTitle(fieldName)
-            }),
+            title: this.$t("field_removed"),
             color: "green",
             iconMain: "check"
           });
@@ -528,6 +522,7 @@ export default {
     },
     saveSort() {
       this.dragging = false;
+
       const fieldUpdates = this.fieldsWithSort.map(field => ({
         field: field.field,
         sort: field.sort

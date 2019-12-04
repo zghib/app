@@ -2,6 +2,7 @@
   <div class="v-activity">
     <form
       v-show="commentPermission !== 'none' && commentPermission !== 'read'"
+      ref="commentArea"
       class="new-comment"
       @submit.prevent="postComment"
     >
@@ -90,6 +91,7 @@
 <script>
 import VDiff from "./diff.vue";
 import { diff } from "deep-object-diff";
+import Mousetrap from "mousetrap";
 
 export default {
   name: "VActivity",
@@ -165,6 +167,14 @@ export default {
       }));
     }
   },
+  mounted() {
+    this.mousetrap = new Mousetrap(this.$refs.commentArea).bind("mod+enter", () => {
+      this.postComment();
+    });
+  },
+  beforeDestroy() {
+    this.mousetrap.unbind("mod+enter");
+  },
   methods: {
     getChanges(activityID, index) {
       const revision = this.revisions[activityID];
@@ -217,6 +227,9 @@ export default {
       }));
     },
     postComment() {
+      // Don't post an empty comment
+      if (this.comment.length === 0) return;
+
       this.$emit("input", this.comment);
       this.comment = "";
     }

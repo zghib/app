@@ -11,7 +11,7 @@
       <!-- the getProjects action will set the currentProject on load. When currentProject doesn't exist
         it means that the store doesn't have any projects that can be used loaded-->
       <template v-else-if="!currentProject">
-        {{ $t("no_public_projects") }}
+        <v-notice icon="info" color="warning">{{ $t("no_public_projects") }}</v-notice>
       </template>
 
       <template v-else-if="currentProject.status === 'failed'">
@@ -39,12 +39,20 @@
           </div>
         </div>
         <template v-else>
-          <input v-model="email" v-focus type="email" :placeholder="$t('email')" required />
+          <input
+            v-model="email"
+            v-focus
+            type="email"
+            :placeholder="$t('email')"
+            required
+            autocomplete="username"
+          />
           <input
             ref="password"
             v-model="password"
             type="password"
             :placeholder="$t('password')"
+            autocomplete="current-password"
             required
           />
           <div class="buttons">

@@ -8,17 +8,19 @@
     "choices": {
       "name": "$t:choices",
       "comment": "$t:choices_comment",
-      "interface": "json",
+      "interface": "key-value",
       "type": "JSON",
-      "default": {
-        "value1": "$t:option 1",
-        "value2": "$t:option 2",
-        "value3": "$t:option 3",
-        "value4": "$t:option 4",
-        "value5": "$t:option 5",
-        "value6": "$t:option 6",
-        "value7": "$t:option 7",
-        "value8": "$t:option 8"
+      "options": {
+        "keyInterface": "text-input",
+        "keyType": "string",
+        "keyOptions": {
+          "monospace": true
+        },
+        "valueInterface": "text-input",
+        "valueType": "string",
+        "valueOptions": {
+          "monospace": true
+        }
       }
     },
     "allow_other": {
@@ -59,7 +61,7 @@
   "translation": {
     "en-US": {
       "checkboxes": "Checkboxes",
-      "choices": "choices",
+      "choices": "Choices",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "wrap": "Wrap with Delimiter",
       "wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",

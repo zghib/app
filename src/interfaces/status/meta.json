@@ -22,54 +22,63 @@
       "interface": "repeater",
       "type": "JSON",
       "options": {
-        "fields": {
-          "name": {
+        "structure": "object",
+        "structure_key": "value",
+        "template": "{{name}} ({{value}})",
+        "fields": [
+          {
+            "field": "name",
             "interface": "text-input",
-            "type": "String",
-            "preview": true
+            "type": "String"
           },
-          "value": {
+          {
+            "field": "value",
             "interface": "text-input",
-            "type": "String",
-            "index": true
+            "type": "String"
           },
-          "text_color": {
+          {
+            "field": "text_color",
             "interface": "color-palette",
             "type": "String"
           },
-          "background_color": {
+          {
+            "field": "background_color",
             "interface": "color-palette",
-            "type": "String",
-            "preview": true
+            "type": "String"
           },
-          "browse_subdued": {
+          {
+            "field": "browse_subdued",
             "interface": "toggle",
             "type": "boolean"
           },
-          "browse_badge": {
+          {
+            "field": "browse_badge",
             "interface": "toggle",
             "type": "boolean"
           },
-          "soft_delete": {
+          {
+            "field": "soft_delete",
             "interface": "toggle",
             "type": "boolean"
           },
-          "required_fields": {
+          {
+            "field": "required_fields",
             "interface": "toggle",
             "type": "boolean"
           },
-          "published": {
+          {
+            "field": "published",
             "interface": "toggle",
             "type": "boolean"
           }
-        }
+        ]
       },
       "default": {
         "published": {
           "name": "$t:published",
           "value": "published",
-          "text_color": "white",
-          "background_color": "accent",
+          "text_color": "blue-100",
+          "background_color": "blue",
           "browse_subdued": false,
           "browse_badge": true,
           "soft_delete": false,
@@ -79,8 +88,8 @@
         "draft": {
           "name": "$t:draft",
           "value": "draft",
-          "text_color": "white",
-          "background_color": "blue-grey-200",
+          "text_color": "blue-grey-100",
+          "background_color": "blue-grey",
           "browse_subdued": true,
           "browse_badge": true,
           "soft_delete": false,
@@ -90,7 +99,7 @@
         "deleted": {
           "name": "$t:deleted",
           "value": "deleted",
-          "text_color": "white",
+          "text_color": "red-100",
           "background_color": "red",
           "browse_subdued": true,
           "browse_badge": true,
@@ -128,4 +137,4 @@
     }
   }
 }
-    
+

@@ -9,9 +9,9 @@
     @close="$emit('close')"
   >
     <template slot="interface">
-      <template v-if="!existing">
-        <h1 class="type-heading-medium">{{ $t("choose_interface") }}</h1>
-      </template>
+      <h1 v-if="!existing" class="type-heading-medium">
+        {{ $t("field_setup_interface") }}
+      </h1>
       <v-notice v-if="interfaceName" color="gray" class="currently-selected">
         {{ $t("currently_selected", { thing: interfaces[interfaceName].name }) }}
       </v-notice>
@@ -72,11 +72,9 @@
     </template>
 
     <template v-if="interfaceName" slot="schema">
-      <template v-if="!existing">
-        <h1 class="type-heading-medium">
-          {{ $t("name_field", { field: $helpers.formatTitle(interfaces[interfaceName].name) }) }}
-        </h1>
-      </template>
+      <h1 v-if="!existing" class="type-heading-medium">
+        {{ $t("field_setup_schema") }}
+      </h1>
       <form class="schema" @submit.prevent>
         <div class="name">
           <label>
@@ -201,18 +199,50 @@
               <v-toggle v-model="signed" />
               {{ $t("signed") }}
             </label>
+            <label class="translation">
+              <span class="type-label">{{ $t("translation") }}</span>
+              <v-ext-input
+                id="repeater"
+                v-model="translation"
+                name="translation"
+                type="json"
+                width="full"
+                :options="{
+                  fields: [
+                    {
+                      field: 'locale',
+                      type: 'string',
+                      interface: 'language',
+                      options: {
+                        limit: true
+                      },
+                      width: 'half'
+                    },
+                    {
+                      field: 'translation',
+                      type: 'string',
+                      interface: 'text-input',
+                      options: {
+                        placeholder: $t('translated_field_name')
+                      },
+                      width: 'half'
+                    }
+                  ]
+                }"
+              />
+            </label>
           </div>
         </details>
       </form>
     </template>
 
     <template v-if="selectedInterfaceInfo && relation" slot="relation">
-      <template v-if="!existing">
-        <h1 class="type-heading-medium">{{ $t("relation_setup", { relation: $t(relation) }) }}</h1>
-      </template>
+      <h1 v-if="!existing" class="type-heading-medium">
+        {{ $t("field_setup_relation") }}
+      </h1>
 
       <form v-if="relation === 'm2o'" class="single">
-        <p>{{ $t("this_collection") }}</p>
+        <span class="type-label">{{ $t("this_collection") }}</span>
 
         <v-simple-select class="select" :value="relationInfo.collection_many" disabled>
           <option selected :value="collectionInfo.collection">
@@ -226,7 +256,7 @@
 
         <v-icon name="arrow_backward" />
 
-        <p>{{ $t("related_collection") }}</p>
+        <span class="type-label">{{ $t("related_collection") }}</span>
 
         <v-simple-select v-model="relationInfo.collection_one" class="select">
           <optgroup :label="$t('collections')">
@@ -261,7 +291,7 @@
       </form>
 
       <form v-if="relation === 'o2m'" class="single">
-        <p>{{ $t("this_collection") }}</p>
+        <span class="type-label">{{ $t("this_collection") }}</span>
 
         <v-simple-select class="select" :value="collectionInfo.collection" disabled>
           <option selected :value="collectionInfo.collection">
@@ -277,7 +307,7 @@
 
         <v-icon name="arrow_forward" size="24" />
 
-        <p>{{ $t("related_collection") }}</p>
+        <span class="type-label">{{ $t("related_collection") }}</span>
 
         <v-simple-select v-model="relationInfo.collection_many" class="select">
           <optgroup :label="$t('collections')">
@@ -312,7 +342,7 @@
       </form>
 
       <form v-if="relation === 'm2m'" class="full">
-        <p>{{ $t("this_collection") }}</p>
+        <p class="type-label">{{ $t("this_collection") }}</p>
 
         <v-simple-select class="select" :value="collectionInfo.collection" disabled>
           <option selected :value="collectionInfo.collection">
@@ -326,9 +356,9 @@
           </option>
         </v-simple-select>
 
-        <v-icon name="arrow_forward" size="20" />
+        <v-icon name="arrow_forward" size="24" />
 
-        <p>{{ $t("junction_collection") }}</p>
+        <p class="type-label">{{ $t("junction_collection") }}</p>
 
         <v-simple-select
           v-if="!createM2Mjunction"
@@ -421,6 +451,7 @@
         />
 
         <v-checkbox
+          v-if="!existing"
           id="createM2Mjunction"
           value="m2mjunction"
           :label="$t('auto_generate')"
@@ -428,9 +459,9 @@
           @change="createM2Mjunction = !createM2Mjunction"
         />
 
-        <v-icon name="arrow_backward" />
+        <v-icon name="arrow_backward" size="24" />
 
-        <p>{{ $t("related_collection") }}</p>
+        <p class="type-label">{{ $t("related_collection") }}</p>
 
         <v-simple-select
           v-model="relationInfoM2M[currentM2MIndex == 0 ? 1 : 0].collection_one"
@@ -484,9 +515,9 @@
     </template>
 
     <template slot="options">
-      <template v-if="!existing">
-        <h1 class="type-heading-medium">{{ $t("almost_done_options") }}</h1>
-      </template>
+      <h1 v-if="!existing" class="type-heading-medium">
+        {{ $t("field_setup_options") }}
+      </h1>
 
       <label for="__width" class="type-label">{{ $t("field_width") }}</label>
       <v-simple-select v-model="width" name="__width">
@@ -981,8 +1012,6 @@ export default {
       }
     },
     field(val) {
-      this.field = this.validateFieldName(val);
-
       this.isFieldValid = !Object.keys(this.collectionInfo.fields).includes(val);
 
       if (this.relation) {
@@ -1053,7 +1082,7 @@ export default {
     this.useFieldInfo();
     this.initRelation();
 
-    this.activeTab = this.existing ? "schema" : "interface";
+    this.activeTab = this.existing ? "options" : "interface";
   },
   methods: {
     interfaceSubtitles(ext) {
@@ -1064,11 +1093,6 @@ export default {
       }
     },
     nextTab() {
-      if (this.existing && this.activeTab === "interface") {
-        this.initRelation();
-        return;
-      }
-
       if (this.existing) {
         return this.saveField();
       }
@@ -1104,7 +1128,10 @@ export default {
     },
     setInterface(id) {
       this.interfaceName = id;
-      this.nextTab();
+
+      if (!this.existing) {
+        this.nextTab();
+      }
     },
     saveField() {
       const fieldInfo = {
@@ -1124,8 +1151,8 @@ export default {
         hidden_browse: this.hidden_browse,
         primary_key: this.primary_key,
         validation: this.validation,
-        width: this.width
-        // translation: this.translation, < Haven't implemented that yet
+        width: this.width,
+        translation: this.translation
       };
 
       if (this.lengthDisabled === false) {
@@ -1512,7 +1539,7 @@ export default {
 
 <style lang="scss" scoped>
 .type-heading-medium {
-  max-width: 80%;
+  // max-width: 80%;
   margin-bottom: 30px;
 }
 
@@ -1604,11 +1631,9 @@ export default {
 }
 
 form.schema {
-  label:not(.toggle) {
-    > .v-simple-select,
-    > .v-input {
-      margin-top: 10px;
-    }
+  .type-label {
+    margin-bottom: var(--input-label-margin);
+    display: inline-block;
   }
 
   .name {
@@ -1643,6 +1668,10 @@ form.schema {
         margin-right: 10px;
       }
     }
+
+    .translation {
+      grid-column: 1 / span 2;
+    }
   }
 }
 
@@ -1664,7 +1693,6 @@ details {
   margin-top: 60px;
   border-top: 2px solid var(--input-border-color);
   padding-top: 40px;
-  padding-bottom: 32px;
   summary {
     font-size: 18px;
     color: var(--note-text-color);
@@ -1736,11 +1764,11 @@ details {
   justify-content: center;
   align-items: center;
 
-  p:first-of-type {
+  span:first-of-type {
     grid-area: a;
   }
 
-  p:last-of-type {
+  span:last-of-type {
     grid-area: b;
   }
 
@@ -1764,8 +1792,8 @@ details {
 
   i {
     grid-area: f;
-    font-size: 20px;
-    color: var(--blue-grey-300);
+    color: var(--input-border-color);
+    transform: translateX(-2px);
   }
 }
 
@@ -1827,8 +1855,8 @@ details {
 
   i {
     grid-area: l;
-    font-size: 20px;
-    color: var(--blue-grey-300);
+    color: var(--input-border-color);
+    transform: translateX(-2px);
 
     &:last-of-type {
       grid-area: s;

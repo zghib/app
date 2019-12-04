@@ -6,6 +6,7 @@
       class="interface-file-size"
       :readonly="readonly"
       :placeholder="options.placeholder"
+      monospace
       @input="calculateValue"
     ></v-input>
     <!--

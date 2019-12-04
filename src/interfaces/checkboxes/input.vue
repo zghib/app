@@ -53,6 +53,10 @@ export default {
         if (this.initialized !== true) return;
         let newValue = val.filter(choice => choice.checked).map(choice => choice.key);
 
+        if (_.isEqual(this.value, newValue)) {
+          return;
+        }
+
         if (this.options.wrap) {
           newValue = ["", ...newValue, ""];
         }

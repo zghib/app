@@ -35,11 +35,17 @@
           class="sort type-table-head no-wrap"
           @click="updateSort(field)"
         >
-          {{ widths[field] > 40 ? name : null }}
+          {{
+            widths[field] > 40
+              ? $helpers.formatField(field, columns[index].fieldInfo.collection)
+              : null
+          }}
           <v-icon
-            class="sort-arrow"
-            size="12"
-            :name="sortVal.asc ? 'arrow_upward' : 'arrow_downward'"
+            class="sort-icon"
+            color="input-border-color-hover"
+            size="24"
+            name="sort"
+            :class="sortVal.asc ? 'asc' : 'desc'"
           />
         </button>
 
@@ -573,15 +579,19 @@ export default {
   }
 }
 
-.sort-arrow {
+.sort-icon {
   opacity: 0;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   margin-left: 4px;
+  &.asc {
+    transform-origin: center 6px;
+    transform: scaleY(-1);
+  }
 }
 
-.active .sort-arrow {
+.active .sort-icon {
   opacity: 1;
 }
 

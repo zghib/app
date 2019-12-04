@@ -3,7 +3,7 @@
     <img v-if="imageUrl && !error" :src="imageUrl" @error="handleImageError" />
     <v-icon v-else-if="error" name="broken_image" />
     <span v-else-if="!value">--</span>
-    <v-icon v-else v-tooltip.right="value && value.filename" :name="icon" />
+    <v-icon v-else v-tooltip.right="value && value.filename_disk" :name="icon" />
   </div>
 </template>
 

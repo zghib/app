@@ -12,36 +12,25 @@
 import mixin from "@directus/extension-toolkit/mixins/interface";
 
 export default {
+  name: "DisplayRepeater",
   mixins: [mixin],
   computed: {
-    valueFields() {
-      return _.chain(this.options.fields)
-        .pickBy(value => {
-          return value.hasOwnProperty("preview") && value.preview;
-        })
-        .keys()
-        .value();
-    },
     itemCount() {
       return this.$tc("item_count", (this.value || []).length, {
         count: (this.value || []).length
       });
     },
     menuOptions() {
-      var options = [];
+      const options = [];
       _.forEach(this.value, value => {
         options.push({
-          text: value[this.valueFields[0]]
+          text: this.$helpers.micromustache.render(this.options.template, value)
         });
       });
-      return options;
+      return options.length ? options : null;
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
-.v-ext-display {
-  display: flex;
-}
-</style>
+<style lang="scss" scoped></style>

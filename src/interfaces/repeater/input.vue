@@ -1,144 +1,206 @@
 <template>
-  <div class="status-mapping">
-    <div class="boxes">
-      <draggable v-model="boxes" handle=".handle">
-        <Box
-          v-for="(value, index) in boxes"
-          :id="index"
-          :key="index"
-          :headers="headers"
-          :fields="formFields"
-          :data="value"
-          :open="index == open"
-          @stage-value="stageValue"
-          @open="openBox(index)"
-          @delete="deleteBox(index)"
-        ></Box>
-      </draggable>
+  <div class="interface-repeater">
+    <draggable
+      v-model="rows"
+      handle=".drag-handle"
+      class="row-container"
+      :class="{ dragging }"
+      @start="dragging = true"
+      @end="endDrag"
+    >
+      <repeater-row
+        v-for="(row, index) in rows"
+        :key="row.__key"
+        :row="row"
+        :fields="repeaterFields"
+        :inline="inline"
+        :template="options.template"
+        :open="open === index"
+        :placeholder="options.placeholder"
+        @open="toggleOpen(index)"
+        @input="updateRow(index, $event)"
+        @remove="removeRow(index)"
+      />
+    </draggable>
+    <div v-if="addButtonVisible" class="add-new" @click="addRow">
+      <v-icon name="add" color="input-icon-color" />
+      {{ options.createItemText }}
     </div>
-    <v-button v-if="!(limit > 0 && boxCount >= limit)" icon="add" @click="addBox">
-      {{ buttonText }}
-    </v-button>
   </div>
 </template>
 
 <script>
 import mixin from "@directus/extension-toolkit/mixins/interface";
-import Box from "./box.vue";
+import RepeaterRow from "./row";
+import shortid from "shortid";
 
 export default {
+  name: "Repeater",
   components: {
-    Box
+    RepeaterRow
   },
   mixins: [mixin],
   data() {
     return {
+      rows: [],
+      dragging: false,
       open: null
     };
   },
   computed: {
-    headers() {
-      return _.pickBy(this.options.fields, value => {
-        return value.hasOwnProperty("preview") && value.preview;
-      });
-    },
-    formFields() {
-      var fields = this.options.fields;
-      _.forOwn(fields, (value, key) => {
-        fields[key].hidden_detail = false;
-        if (!fields[key].hasOwnProperty("field")) fields[key].field = key;
-      });
-      return fields;
-    },
-    buttonText() {
-      return this.options.buttonText || "Add Field";
-    },
-    limit() {
-      return this.options.limit || 0;
-    },
-    boxCount() {
-      return this.boxes.length;
-    },
-    indexType() {
-      var field = _.find(this.options.fields, { index: true });
-      if (field && field.field) {
-        return field.field;
-      } else {
-        return null;
+    // If the interface is able to display the fields inline
+    inline() {
+      // Only render inline when there are 1 or two fields
+      if (this.repeaterFields.length > 2) {
+        return false;
       }
-    },
-    dataType() {
-      return this.options.dataType || "object";
-    },
-    boxes: {
-      get() {
-        if (this.dataType == "value") {
-          var boxes = [];
-          var fields = _.keys(this.options.fields);
-          _.forOwn(this.value, (value, key) => {
-            boxes.push({ [fields[0]]: value, [fields[1]]: key });
-          });
-          return boxes;
-        } else {
-          return _.values(_.cloneDeep(this.value)) || [];
-        }
-      },
-      set(values) {
-        let obj = {};
-        for (var i = 0; i < values.length; i++) {
-          var value = null;
-          if (this.dataType == "value") {
-            var fields = _.chain(this.options.fields)
-              .pickBy(b => {
-                return !b.hasOwnProperty("index") || !b.index;
-              })
-              .keys()
-              .value();
-            value = values[i][fields[0]];
-          } else {
-            value = values[i];
-          }
 
-          if (this.indexType) {
-            obj[values[i][this.indexType]] = value;
-          } else {
-            obj[i] = value;
-          }
-        }
-        this.$emit("input", obj);
+      // If there's only 1 field, render it regardless of size
+      if (this.repeaterFields.length === 1) {
+        return true;
       }
+
+      // Only render inline if there's enough space in the parent
+      // We want to prevent the two interfaces being squashed togt
+      if (["full", "fill"].includes(this.width) === false) {
+        return false;
+      }
+
+      // Only render inline if every field is configured to be half width
+      return this.repeaterFields.every(field => field.width === "half");
+    },
+    addButtonVisible() {
+      if (!this.options.limit || this.options.limit === 0) return true;
+      if (this.rows.length < this.options.limit) return true;
+
+      return false;
+    },
+
+    // This makes sure that the fields are always an array of fields. It makes sure the interface
+    // is backwards compatible for people who have their repeater setup in an object structure
+    repeaterFields() {
+      if (Array.isArray(this.options.fields)) {
+        return this.options.fields;
+      }
+
+      return Object.keys(this.options.fields).map(key => {
+        return {
+          ...this.options.fields[key],
+          field: key
+        };
+      });
     }
   },
+  created() {
+    this.setRows();
+  },
   methods: {
-    addBox() {
-      var box = {};
-      _.forOwn(this.options.fields, (value, key) => {
-        box[key] = null;
+    addRow() {
+      this.rows = [...this.rows, this.getNewRow()];
+      this.open = this.rows.length - 1;
+      this.emitValue();
+    },
+    updateRow(index, { field, value }) {
+      const rows = _.clone(this.rows);
+      const currentRow = rows[index];
+      const newRow = {
+        ...currentRow,
+        [field]: value
+      };
+
+      rows[index] = newRow;
+
+      this.rows = rows;
+      this.emitValue();
+    },
+    removeRow(index) {
+      const newRows = _.clone(this.rows);
+      newRows.splice(index, 1);
+      this.rows = newRows;
+      this.emitValue();
+    },
+
+    emitValue() {
+      const value = _.clone(this.rows).map(row => {
+        delete row.__key;
+        return row;
       });
 
-      this.open = this.boxes.length;
-      this.boxes.push(box);
-      this.boxes = this.boxes;
+      if (this.options.structure === "object") {
+        this.$emit("input", _.keyBy(value, this.options.structure_key));
+      } else {
+        this.$emit("input", value);
+      }
     },
-    deleteBox(key) {
-      _.remove(this.boxes, (value, index) => {
-        return index == key;
+    getNewRow() {
+      const row = {
+        __key: shortid.generate()
+      };
+
+      this.repeaterFields.forEach(field => {
+        row[field.field] = field.default;
       });
-      this.boxes = this.boxes;
+
+      return row;
     },
-    stageValue({ id, data }) {
-      this.$set(this.boxes[id], data.field, data.value);
-      this.boxes = this.boxes;
+    // There's two different structures in which the interface value can be saved
+    // This method makes sure we're always using the same structure in the interface itself
+    setRows() {
+      if (this.value === null) {
+        this.rows = [];
+        return;
+      }
+
+      if (Array.isArray(this.value)) {
+        this.rows = this.value;
+      } else if (typeof this.value === "string") {
+        try {
+          this.rows = JSON.parse(this.value);
+        } catch {
+          console.warn("Invalid JSON passed to repeater");
+        }
+      } else {
+        this.rows = Object.values(this.value);
+      }
     },
-    openBox(id) {
-      if (this.open == id) {
+    endDrag() {
+      this.dragging = false;
+      this.emitValue();
+    },
+    toggleOpen(index) {
+      if (this.open === index) {
         this.open = null;
       } else {
-        this.open = id;
+        this.open = index;
       }
     }
   }
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.notice {
+  margin-bottom: 12px;
+}
+
+.add-new {
+  display: flex;
+  align-items: center;
+  padding: var(--input-padding);
+  border: var(--input-border-width) dotted var(--input-border-color);
+  border-radius: var(--border-radius);
+  color: var(--input-text-color);
+  transition: var(--fast) var(--transition);
+  transition-property: color, border-color, padding;
+  min-height: var(--input-height);
+  font-size: var(--input-font-size);
+  padding: var(--input-padding);
+  cursor: pointer;
+  &:hover {
+    border-color: var(--input-border-color-hover);
+  }
+  i {
+    margin-right: 8px;
+  }
+}
+</style>

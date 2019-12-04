@@ -37,7 +37,7 @@ body {
   }
 }
 
-.selectable {
+input, textarea, [contenteditable], .selectable {
   user-select: text;
 }
 

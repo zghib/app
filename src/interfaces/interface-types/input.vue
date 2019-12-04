@@ -1,6 +1,8 @@
 <template>
   <v-simple-select :value="value" @input="$emit('input', $event)">
-    <option v-for="type in availableTypes" :key="type">{{ type }}</option>
+    <option v-for="type in availableTypes" :key="type" :value="type">
+      {{ $helpers.formatTitle(type) }}
+    </option>
   </v-simple-select>
 </template>
 

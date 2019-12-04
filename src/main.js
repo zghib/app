@@ -57,6 +57,7 @@ Vue.use(VTooltip, {
     show: 500
   },
   defaultOffset: 2,
+  defaultBoundariesElement: document.body,
   autoHide: false
 });
 Vue.use(PortalVue);
@@ -73,7 +74,7 @@ Vue.use(meta);
 Vue.component("draggable", VueDraggable);
 
 /* eslint-disable no-new */
-new Vue({
+const app = new Vue({
   render: h => h(App),
   router,
   i18n,
@@ -92,3 +93,5 @@ store.watch(
 );
 
 startPolling();
+
+export default app;

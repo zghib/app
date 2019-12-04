@@ -1,5 +1,5 @@
 <template>
-  <div :data-collection="collection" :data-field="field.field">
+  <div :data-collection="collection" :data-field="field.field" :class="width">
     <div v-if="showLabel" class="type-label">
       <v-contextual-menu
         v-if="field.readonly === false"
@@ -9,9 +9,9 @@
         :icon="null"
         @click="emitChange"
       >
-        <span class="field-label">{{ field.name || $helpers.formatTitle(field.field) }}</span>
+        <span class="field-label">{{ $helpers.formatField(field.field, field.collection) }}</span>
         <v-icon
-          v-if="field.required !== false"
+          v-if="field.required === true"
           class="required"
           name="star"
           color="input-required-color"
@@ -20,9 +20,9 @@
         <v-icon name="arrow_drop_down" icon-style="outline" size="18" class="dropdown" />
       </v-contextual-menu>
       <span v-else class="field-static">
-        <span class="field-label">{{ field.name || $helpers.formatTitle(field.field) }}</span>
+        <span class="field-label">{{ $helpers.formatField(field.field, field.collection) }}</span>
         <v-icon
-          v-if="field.required !== false"
+          v-if="field.required === true"
           class="required"
           name="star"
           color="blue-grey-200"
@@ -54,6 +54,7 @@
         :values="values"
         :length="field.length"
         :new-item="newItem"
+        :width="width"
         @input="
           $emit('stage-value', {
             field: field.field,
@@ -107,6 +108,13 @@ export default {
     newItem: {
       type: Boolean,
       default: false
+    },
+    width: {
+      type: String,
+      default: null,
+      validator(val) {
+        return ["half", "half-left", "half-right", "full", "fill"].includes(val);
+      }
     }
   },
 

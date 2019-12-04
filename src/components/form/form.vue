@@ -3,10 +3,10 @@
     <v-field
       v-for="field in filteredFields"
       :key="uniqueID + '-' + field.field"
-      :class="field.width || 'full'"
+      :width="field.width || 'full'"
       :name="uniqueID + '-' + field.field"
       :field="field"
-      :fields="fields"
+      :fields="fieldsFormatted"
       :values="values"
       :collection="collection"
       :blocked="batchMode && !activeFields.includes(field.field)"
@@ -30,7 +30,7 @@ export default {
   },
   props: {
     fields: {
-      type: Object,
+      type: [Array, Object],
       required: true
     },
     values: {
@@ -76,12 +76,24 @@ export default {
       return this.$helpers.shortid.generate();
     },
 
+    // NOTE:
+    // We want to move to a setup where everything is an array instead of a keyed object. This is an
+    // in-between patch that allows us to use the array style already while we're refactoring the
+    // rest of the app to use it as well
+    fieldsFormatted() {
+      if (Array.isArray(this.fields)) {
+        return _.keyBy(this.fields, "field");
+      }
+
+      return this.fields;
+    },
+
     // Not all fields in a collection are allowed to be used. This will contain an array of all the
     // fields that the user can interact with, in the correct order
     filteredFields() {
       const readFieldBlacklist = this.permissions.read_field_blacklist || [];
       const writeFieldBlacklist = this.permissions.write_field_blacklist || [];
-      let fields = Object.values(_.cloneDeep(this.fields));
+      let fields = Object.values(_.cloneDeep(this.fieldsFormatted));
 
       // Filter out all the fields that are listed in the field read blacklist
       fields = fields.filter(fieldInfo => {
@@ -92,6 +104,8 @@ export default {
       // Filter out the fields that are marked hidden on detail
       fields = fields.filter(fieldInfo => {
         const hiddenDetail = fieldInfo.hidden_detail;
+
+        if (hiddenDetail === undefined) return true;
 
         // NOTE: non strict equal on the 0 cause it might be a number or a string
         return hiddenDetail == "0" || hiddenDetail === false;

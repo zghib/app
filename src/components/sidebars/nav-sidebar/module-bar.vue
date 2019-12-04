@@ -3,41 +3,42 @@
     <v-logo class="logo" />
     <template v-for="singleModule in modules">
       <a
-        v-if="singleModule.url.startsWith('http')"
-        :key="singleModule.url"
+        v-if="singleModule.link.startsWith('http')"
+        :key="singleModule.link"
         v-tooltip.left="{
           content: singleModule.name,
           boundariesElement: 'body'
         }"
         class="link"
         :class="singleModule.class"
-        :href="singleModule.url"
+        :href="singleModule.link"
         target="__blank"
       >
         <v-icon
           class="icon"
-          :name="singleModule.icon"
+          :name="singleModule.icon || 'box'"
           :color="singleModule.color || 'blue-grey-400'"
         />
       </a>
       <router-link
         v-else
-        :key="singleModule.url"
+        :key="singleModule.link"
         v-tooltip.left="{
           content: singleModule.name,
           boundariesElement: 'body'
         }"
         class="link"
         :class="singleModule.class"
-        :to="singleModule.url"
+        :to="singleModule.link"
       >
         <v-icon
           class="icon"
-          :name="singleModule.icon"
+          :name="singleModule.icon || 'box'"
           :color="singleModule.color || 'blue-grey-400'"
         />
       </router-link>
     </template>
+
     <div class="spacer" />
 
     <router-link
@@ -46,6 +47,7 @@
         boundariesElement: 'body'
       }"
       class="edit-user"
+      :class="{ smoke: avatarURL }"
       :to="`/${currentProjectKey}/users/${currentUser.id}`"
     >
       <v-avatar
@@ -106,42 +108,20 @@ export default {
     ...mapState(["permissions", "currentUser", "currentProjectKey"]),
     ...mapGetters(["editing"]),
     modules() {
-      const modules = [];
-
-      modules.push({
-        url: `/${this.currentProjectKey}/collections`,
-        name: this.$t("collections"),
-        icon: "box"
-      });
+      let modules = [];
 
       if (
-        this.permissions.directus_users.read !== "none" ||
-        this.permissions.directus_users.read !== "mine"
+        Array.isArray(this.currentUser.role?.module_listing) &&
+        this.currentUser.role?.module_listing.length > 0
       ) {
-        modules.push({
-          url: `/${this.currentProjectKey}/users`,
-          name: this.$t("user_directory"),
-          icon: "people"
-        });
+        modules = _.clone(this.currentUser.role.module_listing);
+      } else {
+        modules = this.getDefaultModules();
       }
-
-      if (this.permissions.directus_files.read !== "none") {
-        modules.push({
-          url: `/${this.currentProjectKey}/files`,
-          name: this.$t("file_library"),
-          icon: "collections"
-        });
-      }
-
-      modules.push({
-        url: "https://docs.directus.io",
-        name: this.$t("help_and_docs"),
-        icon: "help"
-      });
 
       if (this.$store.state.currentUser.admin === true) {
         modules.push({
-          url: `/${this.currentProjectKey}/settings`,
+          link: `/${this.currentProjectKey}/settings`,
           name: this.$t("admin_settings"),
           icon: "settings",
           class: "settings"
@@ -173,6 +153,53 @@ export default {
       await this.$store.dispatch("getProjects");
       this.$router.push("/login");
       this.confirmSignOutLoading = false;
+    },
+
+    getDefaultModules() {
+      const modules = [];
+
+      modules.push({
+        link: `/${this.currentProjectKey}/collections`,
+        name: this.$t("collections"),
+        icon: "box"
+      });
+
+      if (
+        this.permissions.directus_users.read !== "none" ||
+        this.permissions.directus_users.read !== "mine"
+      ) {
+        modules.push({
+          link: `/${this.currentProjectKey}/users`,
+          name: this.$t("user_directory"),
+          icon: "people"
+        });
+      }
+
+      if (this.permissions.directus_files.read !== "none") {
+        modules.push({
+          link: `/${this.currentProjectKey}/files`,
+          name: this.$t("file_library"),
+          icon: "collections"
+        });
+      }
+
+      modules.push({
+        link: "https://docs.directus.io",
+        name: this.$t("help_and_docs"),
+        icon: "help"
+      });
+
+      const moduleExtensions = this.$store.state.extensions.modules;
+
+      _.forEach(moduleExtensions, (info, key) => {
+        modules.push({
+          link: `/${this.currentProjectKey}/ext/${key}`,
+          name: info.name,
+          icon: info.icon
+        });
+      });
+
+      return modules;
     }
   }
 };
@@ -253,19 +280,21 @@ export default {
   text-decoration: none;
   z-index: 2;
 
-  // Overlay
-  &::after {
-    transition: all var(--fast) var(--transition);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: "";
-    background-color: var(--module-background-color);
-    opacity: 0.5;
-    z-index: 1;
-    pointer-events: none;
+  &.smoke {
+    // Overlay
+    &::after {
+      transition: all var(--fast) var(--transition);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      content: "";
+      background-color: var(--module-background-color);
+      opacity: 0.5;
+      z-index: 1;
+      pointer-events: none;
+    }
   }
 
   &:hover {

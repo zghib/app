@@ -7,68 +7,83 @@
     "length": 200
   },
   "options": {
-    "dataType": {
-      "name": "$t:data_type",
-      "comment": "$t:data_type_comment",
-      "interface": "button-group",
-      "default": "object",
-      "type": "JSON",
-      "options": {
-        "choices": [
-          {
-            "label": "Object",
-            "value": "object"
-          },
-          {
-            "label": "Value",
-            "value": "value"
-          }
-        ]
-      }
-    },
-    "limit": {
-      "name": "$t:limit",
-      "comment": "$t:limit_comment",
-      "interface": "numeric",
-      "default": 0,
-      "type": "Number"
-    },
-    "buttonText": {
-      "name": "$t:button_text",
-      "comment": "$t:button_text_comment",
+    "template": {
+      "name": "$t:template",
+      "comment": "$t:template_comment",
       "interface": "text-input",
-      "default": "Add Item",
-      "type": "string"
+      "options": {
+        "placeholder": "$t:template_placeholder",
+        "monospace": true
+      }
     },
     "fields": {
       "name": "$t:fields",
       "interface": "repeater",
       "type": "JSON",
       "options": {
-        "fields": {
-          "field": {
+        "template": "{{field}} - {{interface}}",
+        "datatype": "array",
+        "fields": [
+          {
             "field": "field",
             "interface": "text-input",
             "type": "string",
-            "preview": true,
-            "index": true,
+            "width": "half",
             "options": {
-              "placeholder": "Choose a name for this field"
+              "placeholder": "Choose a name for this field",
+              "monospace": true,
+              "formatValue": true
+            },
+            "required": true
+          },
+          {
+            "field": "width",
+            "interface": "dropdown",
+            "type": "string",
+            "width": "half",
+            "default": "half",
+            "options": {
+              "choices": {
+                "half": "Half Width (Wraps)",
+                "half-left": "Half Width (Left Only)",
+                "half-right": "Half Width (Right Only)",
+                "full": "Full Width"
+              }
             }
           },
-          "interface": {
+          {
             "interface": "interfaces",
             "field": "interface",
             "type": "string",
             "width": "half",
-            "preview": true,
             "default": "text-input",
             "options": {
               "relational": false,
               "status": false
             }
           },
-          "options": {
+          {
+            "field": "type",
+            "interface": "interface-types",
+            "width": "half",
+            "type": "string",
+            "options": {
+              "interfaceField": "interface"
+            }
+          },
+          {
+            "field": "default",
+            "interface": "text-input",
+            "width": "half",
+            "type": "string"
+          },
+          {
+            "field": "note",
+            "interface": "text-input",
+            "width": "half",
+            "type": "string"
+          },
+          {
             "interface": "interface-options",
             "field": "options",
             "type": "string",
@@ -78,54 +93,71 @@
             "options": {
               "interfaceField": "interface"
             }
-          },
-          "type": {
-            "field": "type",
-            "interface": "interface-types",
-            "width": "half",
-            "type": "string",
-            "options": {
-              "interfaceField": "interface"
-            }
-          },
-          "preview": {
-            "field": "preview",
-            "interface": "toggle",
-            "type": "Boolean",
-            "width": "half",
-            "options": {
-              "checkbox": true,
-              "labelOn": "Included in title",
-              "labelOff": "Not included in title"
-            },
-            "default": true
-          },
-          "index": {
-            "field": "index",
-            "interface": "toggle",
-            "type": "Boolean",
-            "width": "half",
-            "options": {
-              "checkbox": true,
-              "labelOn": "Used as key",
-              "labelOff": "Not used as key"
-            },
-            "default": false
           }
+        ]
+      }
+    },
+    "placeholder": {
+      "name": "Placeholder",
+      "comment": "The value that shows up instead of the template if there's no value entered yet",
+      "interface": "text-input",
+      "type": "string",
+      "default": "New Item...",
+      "advanced": true
+    },
+    "createItemText": {
+      "name": "Create Item Text",
+      "comment": "Text that's displayed in the button that adds a new row to the repeater",
+      "interface": "text-input",
+      "type": "string",
+      "default": "Create Item",
+      "advanced": true
+    },
+    "limit": {
+      "name": "$t:limit",
+      "comment": "$t:limit_comment",
+      "interface": "numeric",
+      "default": null,
+      "advanced": true
+    },
+    "structure": {
+      "name": "$t:structure",
+      "comment": "$t:structure_comment",
+      "interface": "dropdown",
+      "default": "array",
+      "type": "JSON",
+      "options": {
+        "choices": {
+          "array": "Array",
+          "object": "Object"
         }
+      },
+      "advanced": true
+    },
+    "structure_key": {
+      "name": "$t:structure_key",
+      "comment": "$t:structure_key_comment",
+      "interface": "text-input",
+      "advanced": true,
+      "options": {
+        "monospace": true
       }
     }
   },
   "translation": {
     "en-US": {
       "repeater": "Repeater",
+      "template": "Display Template",
+      "template_comment": "How to format value on the item browse display and inline preview",
+      "template_placeholder": "{{title}} — ({{author}})",
       "fields": "Fields",
-      "data_type": "Data Type",
-      "data_type_comment": "Sets if data gets saved as an Object or only a single value of the Object",
+      "fields_comment": "What fields to show in each repeated row",
       "limit": "Limit",
-      "limit_comment": "Limits the amount of items",
-      "button_text": "Button Text",
-      "button_text_comment": "Sets the text displayed in the add button"
+      "limit_comment": "Maximum amount of rows the user can add",
+      "structure": "Structure",
+      "structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
+      "structure_key": "Structure Key Field",
+      "structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values"
     }
   }
 }

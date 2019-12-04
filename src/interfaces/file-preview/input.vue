@@ -1,12 +1,17 @@
 <template>
-  <div>
+  <v-notice v-if="hasAllRequiredFields === false">
+    File preview can only be used on directus_fields.
+  </v-notice>
+  <div v-else>
     <div v-if="isImage" class="image">
-      <img v-if="!imgError" id="image" :key="image.hash" :src="vUrl" @error="imgError = true" />
+      <img v-if="!imgError" id="image" :key="image.hash" :src="url" @error="imgError = true" />
       <div v-if="imgError" class="broken-image">
         <v-icon name="broken_image" />
       </div>
       <button
-        v-if="!imgError && !editMode && isImage && options.edit.includes('image_editor')"
+        v-if="
+          canBeEdited && !imgError && !editMode && isImage && options.edit.includes('image_editor')
+        "
         type="button"
         title="Edit image"
         class="image-edit-start"
@@ -56,7 +61,7 @@
     <div v-else class="file">{{ fileType }}</div>
     <div class="toolbar">
       <!-- Default Toolbar -->
-      <div v-if="!editMode" class="original">
+      <div v-if="canBeEdited === false || !editMode" class="original">
         <a class="file-link" :href="url" target="_blank">
           <v-icon name="link" />
           {{ url }}
@@ -64,7 +69,7 @@
       </div>
 
       <!-- Image Edit Toolbar -->
-      <ul v-if="editMode" class="image-edit">
+      <ul v-if="canBeEdited && editMode" class="image-edit">
         <li>
           <div class="image-aspect-ratio">
             <v-icon name="image_aspect_ratio" />
@@ -132,8 +137,21 @@ export default {
     };
   },
   computed: {
+    hasAllRequiredFields() {
+      const requiredFields = ["type", "filesize", "data", "id"];
+      let valid = true;
+      requiredFields.forEach(field => {
+        if (_.has(this.values, field) === false) {
+          valid = false;
+        }
+      });
+      return valid;
+    },
+    canBeEdited() {
+      return this.values?.filesize <= 1000000 && this.isImage;
+    },
     isImage() {
-      switch (this.values.type) {
+      switch (this.values?.type) {
         case "image/jpeg":
         case "image/gif":
         case "image/png":
@@ -145,7 +163,7 @@ export default {
       return false;
     },
     isVideo() {
-      switch (this.values.type) {
+      switch (this.values?.type) {
         case "video/mp4":
         case "video/webm":
         case "video/ogg":
@@ -154,7 +172,7 @@ export default {
       return false;
     },
     isAudio() {
-      switch (this.values.type) {
+      switch (this.values?.type) {
         case "audio/mpeg":
         case "audio/ogg":
         case "audio/wav":
@@ -163,23 +181,16 @@ export default {
       return false;
     },
     isYouTube() {
-      return this.values.type === "embed/youtube";
+      return this.values?.type === "embed/youtube";
     },
     isVimeo() {
-      return this.values.type === "embed/vimeo";
+      return this.values?.type === "embed/vimeo";
     },
     fileType() {
-      return this.values.type.split("/")[1];
+      return this.values?.type.split("/")[1];
     },
     url() {
-      return this.values.data.full_url;
-    },
-    vUrl() {
-      /**
-       * Timestamp fetches the latest image from server
-       * hash helps to refresh the image after crop
-       */
-      return `${this.values.data.full_url}?${this.image.hash}&timestamp=${new Date().getTime()}`;
+      return this.values?.data.full_url;
     }
   },
   watch: {
@@ -238,11 +249,6 @@ export default {
 
     rotateImage() {
       this.image.cropper.rotate(-90);
-      //TODO: Fix the image rotation issue
-      /**
-       * White rotating the image, the sides are getting cut of
-       * due to limitations of the cropper.js plugin
-       */
     },
 
     async saveImage() {
@@ -257,10 +263,10 @@ export default {
         .getCroppedCanvas({
           imageSmoothingQuality: "high"
         })
-        .toDataURL(this.values.type);
+        .toDataURL(this.values?.type);
 
       try {
-        await this.$api.api.patch(`/files/${this.values.id}`, {
+        await this.$api.api.patch(`/files/${this.values?.id}`, {
           data: imageBase64
         });
 
@@ -269,16 +275,9 @@ export default {
         });
 
         this.image.hash = shortid.generate();
-        /**
-         * This will wait for new cropped image to load from server
-         * & then destroy the cropper instance
-         * This prevents flickering between old and new image
-         */
-        const img = new Image();
-        img.src = this.vUrl;
-        img.onload = () => {
-          this.cancelImageEdit();
-        };
+        this.editMode = null;
+        this.image.cropRatio = "free";
+        this.image.cropper.destroy();
       } catch (err) {
         this.$events.emit("error", {
           notify: "There was an error while saving the image",

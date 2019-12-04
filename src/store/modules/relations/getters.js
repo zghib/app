@@ -27,30 +27,23 @@ export function o2m(state, getters, { collections }) {
     );
 
     const result = results ? results[results.length - 1] : null;
-
-    if (result && result.junction_field != null) {
-      const junction = getters.m2o(result.collection_many, result.junction_field);
-
-      return {
-        id: result.id,
-        collection_many: collections[result.collection_many],
-        collection_one: collections[result.collection_one],
-        field_many: collections[result.collection_many].fields[result.field_many],
-        field_one: collections[result.collection_one].fields[result.field_one],
-        junction
-      };
-    }
-
     if (result) {
-      return {
-        id: result.id,
-        collection_many: collections[result.collection_many],
-        collection_one: collections[result.collection_one],
-        field_many: collections[result.collection_many].fields[result.field_many],
-        field_one: collections[result.collection_one].fields[result.field_one]
-      };
-    }
+      if (result.junction_field != null) {
+        result.junction = getters.m2o(result.collection_many, result.junction_field);
+      }
 
+      try {
+        return {
+          ...result,
+          collection_many: collections[result.collection_many],
+          collection_one: collections[result.collection_one],
+          field_many: collections[result.collection_many].fields[result.field_many],
+          field_one: collections[result.collection_one].fields[result.field_one]
+        };
+      } catch {
+        return null;
+      }
+    }
     return null;
   };
 }

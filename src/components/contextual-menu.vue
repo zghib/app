@@ -1,30 +1,34 @@
 <template>
-  <div v-if="options !== null">
-    <v-popover :placement="placement" offset="2" :trigger="trigger" :disabled="disabled">
-      <div class="menu-toggle" :class="{ disabled }">
-        {{ text }}
-        <v-icon v-if="icon" :name="icon" />
-        <slot />
-      </div>
+  <v-popover
+    :placement="placement"
+    offset="2"
+    :trigger="trigger"
+    :disabled="disabled"
+    :boundaries-element="body"
+  >
+    <div class="menu-toggle" :class="{ disabled }">
+      {{ text }}
+      <v-icon v-if="icon" :name="icon" />
+      <slot />
+    </div>
 
-      <template slot="popover">
-        <ul class="ctx-menu">
-          <li v-for="(option, id) in options" :key="id">
-            <button
-              v-close-popover
-              type="button"
-              :class="{ disabled: option.disabled }"
-              :disabled="option.disabled"
-              @click.stop="optionClicked(option, id)"
-            >
-              <v-icon v-if="option.icon" :name="option.icon" size="24"></v-icon>
-              {{ option.text }}
-            </button>
-          </li>
-        </ul>
-      </template>
-    </v-popover>
-  </div>
+    <template v-if="options !== null" slot="popover">
+      <ul class="ctx-menu">
+        <li v-for="(option, id) in options" :key="id">
+          <button
+            v-close-popover
+            type="button"
+            :class="{ disabled: option.disabled }"
+            :disabled="option.disabled"
+            @click.stop="optionClicked(option, id)"
+          >
+            <v-icon v-if="option.icon" :name="option.icon" size="24"></v-icon>
+            {{ option.text }}
+          </button>
+        </li>
+      </ul>
+    </template>
+  </v-popover>
 </template>
 
 <script>
@@ -49,11 +53,16 @@ export default {
     },
     placement: {
       type: String,
-      default: "right-start"
+      default: "left-start"
     },
     disabled: {
       type: Boolean,
       default: false
+    }
+  },
+  computed: {
+    body() {
+      return document.body;
     }
   },
   methods: {

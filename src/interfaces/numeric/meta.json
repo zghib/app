@@ -30,6 +30,12 @@
       "comment": "$t:icon_right_comment",
       "interface": "icon",
       "advanced": true
+    },
+    "monospace": {
+      "name": "$t:monospace",
+      "comment": "$t:monospace_comment",
+      "interface": "toggle",
+      "default": false
     }
   },
   "translation": {
@@ -42,7 +48,9 @@
       "icon_left": "Icon Left",
       "icon_left_comment": "Choose an optional icon to display on the left of the input",
       "icon_right": "Icon Right",
-      "icon_right_comment": "Choose an optional icon to display on the right of the input"
+      "icon_right_comment": "Choose an optional icon to display on the right of the input",
+      "monospace": "Monospace",
+      "monospace_comment": "Use a monospace font"
     },
 	"fr-FR": {
       "numeric": "Numérique",

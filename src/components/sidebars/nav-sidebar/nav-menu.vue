@@ -1,16 +1,16 @@
 <template>
   <div v-if="links.length > 0" class="nav-menu">
-    <h3 v-if="title" class="style-4">{{ title }}</h3>
+    <h3 v-if="title">{{ titleTranslated }}</h3>
     <nav>
       <ul>
-        <li v-for="{ path, name, target, icon, color } in links" :key="path">
-          <template v-if="path.startsWith('http')">
-            <a :href="path" :class="color || null" :target="target">
+        <li v-for="{ link, name, icon, color } in links" :key="link">
+          <template v-if="link.startsWith('http')">
+            <a :href="link" :class="color || null" target="_blank" rel="noopener noreferrer">
               <v-icon class="icon" :name="icon || 'box'" color="sidebar-text-color" />
               {{ name }}
             </a>
           </template>
-          <router-link v-else-if="path" :to="path" :class="color || null">
+          <router-link v-else-if="link" :to="link" :class="color || null">
             <v-icon class="icon" :name="icon || 'box'" color="sidebar-text-color" />
             {{ name }}
           </router-link>
@@ -32,14 +32,31 @@ export default {
       type: Array,
       required: true
     }
+  },
+  computed: {
+    titleTranslated() {
+      if (this.title.startsWith("$t:")) {
+        return this.$t(this.title.substring(3));
+      }
+
+      return this.title;
+    }
   }
 };
 </script>
 
 <style lang="scss" scoped>
 h3 {
-  margin-bottom: 5px;
-  margin-top: 15px;
+  margin-bottom: 8px;
+  margin-top: 16px;
+  color: var(--sidebar-text-color-alt);
+  font-size: var(--type-note-size);
+}
+
+.menu-section + .menu-section {
+  h3 {
+    margin-top: 8px;
+  }
 }
 
 .icon {
@@ -73,14 +90,16 @@ ul {
   padding: 0;
 }
 
-nav > ul > li > * {
-  padding: 8px 4px 8px 10px;
+nav > ul > li {
   margin: 4px 0;
 }
 
+nav > ul > li > * {
+  padding: 8px 4px 8px 10px;
+}
+
 nav {
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  padding-bottom: 16px;
 }
 
 .success {

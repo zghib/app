@@ -15,18 +15,20 @@
       "type": "JSON",
       "options": {
         "dataType": "value",
-        "fields": {
-          "name": {
+        "fields": [
+          {
+            "field": "name",
             "interface": "text-input",
             "type": "String",
             "preview": true
           },
-          "value": {
+          {
+            "field": "value",
             "interface": "text-input",
             "type": "String",
             "index": true
           }
-        }
+        ]
       },
       "default": {
         "value1": "$t:option 1",

@@ -1,7 +1,7 @@
 <template>
   <component
     :is="componentName"
-    :id="name"
+    :id="currentInterface.id"
     :name="name"
     :input-name="id"
     :value="value"
@@ -13,10 +13,11 @@
     :options="optionsWithDefaults"
     :new-item="newItem"
     :relation="relation"
-    :fields="fields"
+    :fields="fieldsFormatted"
     :collection="collection"
     :values="values"
-    class="v-ext-input"
+    :width="width"
+    class="v-ext-input selectable"
     @input="$emit('input', $event)"
     @setfield="$emit('setfield', $event)"
   >
@@ -76,7 +77,7 @@ export default {
       default: false
     },
     options: {
-      type: Object,
+      type: [Object, Array],
       default: () => ({})
     },
     newItem: {
@@ -88,20 +89,28 @@ export default {
       default: null
     },
     fields: {
-      type: Object,
+      type: [Array, Object],
       default: null
     },
     values: {
       type: Object,
       default: null
+    },
+    width: {
+      type: String,
+      default: null,
+      validator(val) {
+        return ["half", "half-left", "half-right", "full", "fill"].includes(val);
+      }
     }
   },
   computed: {
     interfaces() {
       return this.$store.state.extensions.interfaces;
     },
-    interface() {
+    currentInterface() {
       if (this.id === null) return this.interfaceFallback;
+      if (this.interfaces[this.id] === undefined) return this.interfaceFallback;
       return this.interfaces && this.interfaces[this.id];
     },
     databaseVendor() {
@@ -112,18 +121,35 @@ export default {
       return `input-${this.id}`;
     },
     typeOrDefault() {
-      if (!this.interface) return null;
-      return this.type ? this.type : this.interface && this.interface.types[0];
+      if (!this.currentInterface) return null;
+      return this.type ? this.type : this.currentInterface && this.currentInterface.types[0];
     },
     optionsWithDefaults() {
-      if (!this.interface) return {};
+      if (!this.currentInterface) return {};
 
-      const defaults = _.mapValues(this.interface.options, settings => settings.default || null);
+      // The API sometimes defaults to an empty array instead of a value
+      if (Array.isArray(this.options)) return {};
+
+      const defaults = _.mapValues(
+        this.currentInterface.options,
+        settings => settings.default || null
+      );
 
       return {
         ...defaults,
         ...this.options
       };
+    },
+    // NOTE:
+    // We want to move to a setup where everything is an array instead of a keyed object. This is an
+    // in-between patch that allows us to use the array style already while we're refactoring the
+    // rest of the app to use it as well
+    fieldsFormatted() {
+      if (Array.isArray(this.fields)) {
+        return _.keyBy(this.fields, "field");
+      }
+
+      return this.fields;
     },
     componentNameFallback() {
       return `input-${this.interfaceFallback.id}`;
@@ -157,10 +183,10 @@ export default {
 
       let component;
 
-      if (this.interface.core) {
-        component = import("@/interfaces/" + this.interface.id + "/input.vue");
+      if (this.currentInterface.core) {
+        component = import("@/interfaces/" + this.currentInterface.id + "/input.vue");
       } else {
-        const filePath = `${this.$store.state.apiRootPath}${this.interface.path.replace(
+        const filePath = `${this.$store.state.apiRootPath}${this.currentInterface.path.replace(
           "meta.json",
           "input.js"
         )}`;

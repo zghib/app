@@ -11,17 +11,37 @@
       @onUndo="updateValue"
       @onRedo="updateValue"
     />
-    <v-item-select
-      v-if="selectExisting"
-      collection="directus_files"
-      :fields="['title', 'filename']"
-      :filters="[]"
-      single
-      :value="selectedFile"
-      @input="selectedFile = $event"
+    <v-modal
+      v-if="newInlineFile"
+      :title="$t('file_upload')"
+      :buttons="{
+        done: {
+          text: $t('done')
+        }
+      }"
+      @close="newInlineFile = false"
       @done="selectCallback"
-      @cancel="() => {}"
-    />
+    >
+      <div class="body">
+        <v-ext-input
+          id="file"
+          name="file"
+          :required="false"
+          :readonly="false"
+          :options="fileInputOptions"
+          type="file"
+          datatype="INT"
+          :value="selectedFile"
+          :relation="relation"
+          :fields="null"
+          collection="directus_files"
+          :values="null"
+          :length="10"
+          :new-item="newItem"
+          @input="selectedFile = $event"
+        />
+      </div>
+    </v-modal>
   </div>
 </template>
 
@@ -35,6 +55,7 @@ import "tinymce/plugins/table/plugin";
 import "tinymce/plugins/hr/plugin";
 import "tinymce/plugins/lists/plugin";
 import "tinymce/plugins/image/plugin";
+import "tinymce/plugins/imagetools/plugin";
 import "tinymce/plugins/link/plugin";
 import "tinymce/plugins/pagebreak/plugin";
 import "tinymce/plugins/code/plugin";
@@ -56,12 +77,23 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      selectExisting: false,
+      newInlineFile: false,
       selectedFile: null,
       selectCallback: () => {}
     };
   },
   computed: {
+    fileInputOptions() {
+      return {
+        viewOptions: {
+          content: "description",
+          src: "data",
+          subtitle: "type",
+          title: "title"
+        },
+        viewType: "cards"
+      };
+    },
     initOptions() {
       const styleFormats = this.getStyleFormats();
       let toolbarString = this.options.toolbar.join(" ");
@@ -200,6 +232,7 @@ export default {
         img {
           max-width: 100%;
           border-radius: 3px;
+          height: auto;
         }
         hr {
           border: 0;
@@ -251,13 +284,17 @@ export default {
       return null;
     },
     selectFile(callback) {
-      this.selectExisting = true;
+      this.newInlineFile = true;
       this.selectCallback = async () => {
-        const { data: file } = await this.$api.getItem("directus_files", this.selectedFile);
-        this.selectExisting = false;
+        const { data: file } = await this.$api.getItem("directus_files", this.selectedFile.id);
+        this.newInlineFile = false;
+
         // TODO: Make sure it returns the correct keys for non-image type files. See
         // https://www.tiny.cloud/docs/configure/file-image-upload/#example for an example
         callback(file.data.full_url, { alt: file.title });
+
+        // Empty the selectedfile so the file isn't selected again when you add an additional file
+        this.selectedFile = null;
       };
     }
   }
@@ -265,6 +302,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.body {
+  padding: 20px;
+}
+
 // The content CSS is not scoped, but is also not needed.
 // The CSS below can be referenced for other core editor
 // styles we might want to include in our override.
