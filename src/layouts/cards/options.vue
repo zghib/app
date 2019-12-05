@@ -25,7 +25,7 @@
     <label for="title" class="type-label">{{ $t("layouts-cards-title") }}</label>
     <v-select
       id="title"
-      :value="viewOptions.title || this.primaryKeyField"
+      :value="viewOptions.title || primaryKeyField"
       :options="titleFieldOptions"
       icon="title"
       @input="setOption('title', $event === '__none__' ? null : $event)"

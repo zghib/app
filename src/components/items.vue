@@ -403,7 +403,10 @@ export default {
           this.items.error = error;
         });
     },
+
     formatParams() {
+      const availableFields = Object.keys(this.fields);
+
       let params = {
         meta: "total_count,result_count",
         limit: this.$store.state.settings.values.default_limit,
@@ -415,17 +418,29 @@ export default {
       if (this.viewQuery && this.viewQuery.fields) {
         if (params.fields instanceof Array == false) params.fields = params.fields.split(",");
 
+        // Make sure we don't try to fetch non-existing fields
+        params.fields = params.fields.filter(field => {
+          return availableFields.includes(field);
+        });
+
         params.fields = params.fields.map(field => `${field}.*`);
 
+        // Make sure to always fetch the primary key. This is needed to generate the links to the
+        // detail pages
         if (!params.fields.includes(this.primaryKeyField)) {
           params.fields.push(this.primaryKeyField);
+        }
+
+        // Make sure to always fetch the status values. These are needed for permissions.
+        if (this.statusField && !params.fields.includes(this.primaryKeyField)) {
+          params.fields.push(this.statusField);
         }
 
         /*
           For non-admin users if created_at and status field is available in
           collection fetch it from API even if it is set hidden from info sidebar.
           Because for checking role_only and mine permissions while batch updating
-          or deleting data this fields are required.
+          or deleting data these fields are required.
           Fix 2123
         */
         if (!this.$store.state.currentUser.admin) {
@@ -443,6 +458,22 @@ export default {
         params.fields = params.fields.join(",");
       } else {
         params.fields = "*.*";
+      }
+
+      if (params.sort) {
+        const sortFields = params.sort.split(",");
+
+        params.sort = sortFields
+          .filter(field => {
+            if (field.startsWith("-")) {
+              field = field.substring(1);
+            }
+
+            return availableFields.includes(field);
+          })
+          .join(",");
+
+        if (params.sort.length === 0) delete params.sort;
       }
 
       if (this.searchQuery) {

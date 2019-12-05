@@ -1,6 +1,6 @@
 <template>
   <div class="settings-roles">
-    <v-header :breadcrumb="breadcrumb" :icon-link="`/${this.currentProjectKey}/settings`" settings>
+    <v-header :breadcrumb="breadcrumb" :icon-link="`/${currentProjectKey}/settings`" settings>
       <template slot="buttons">
         <v-header-button
           key="add"

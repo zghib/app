@@ -393,10 +393,10 @@ export default {
       return icons;
     },
     statusField() {
-      if (!this.fields) return null;
-      return (
-        _.find(Object.values(this.fields), field => field.type.toLowerCase() === "status") || {}
-      ).field;
+      const fields = this.$store.state.collections[this.collection].fields;
+      if (!fields) return null;
+      let fieldsObj = _.find(fields, { type: "status" });
+      return fieldsObj && fieldsObj.field ? fieldsObj.field : null;
     },
 
     // Get the status name of the value that's marked as soft delete

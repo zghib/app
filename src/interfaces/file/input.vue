@@ -159,13 +159,13 @@ export default {
       };
     },
     filters() {
-      return [...this.options.filters, ...this.fileTypeFilters, ...this.filtersOverride];
+      return [...(this.options.filters || []), ...this.fileTypeFilters, ...this.filtersOverride];
     },
     fileTypeFilters() {
       if (
         !this.options.accept ||
         this.filtersOverride.length > 0 ||
-        this.options.filters.some(filter => filter.field === "type")
+        (this.options.filters || []).some(filter => filter.field === "type")
       ) {
         return [];
       }
