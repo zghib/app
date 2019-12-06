@@ -22,6 +22,18 @@
       @input="setOption('src', $event === '__none__' ? null : $event)"
     ></v-select>
 
+    <label for="fit" class="type-label">{{ $t("layouts-cards-fit") }}</label>
+    <v-select
+      id="fit"
+      :value="viewOptions.fit || 'crop'"
+      :options="{
+        crop: 'Crop',
+        contain: 'Contain'
+      }"
+      :icon="viewOptions.fit === 'crop' ? 'crop' : 'crop_free'"
+      @input="setOption('fit', $event)"
+    ></v-select>
+
     <label for="title" class="type-label">{{ $t("layouts-cards-title") }}</label>
     <v-select
       id="title"

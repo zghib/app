@@ -1,4 +1,4 @@
-import { SDK } from "@directus/sdk-js";
+import { SDK } from "@directus/sdk-js/dist/esm/index.js";
 
 const path = window.location.pathname;
 const parts = path.split("/");

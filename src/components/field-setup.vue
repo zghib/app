@@ -81,7 +81,6 @@
             <span class="type-label">{{ $t("name") }}</span>
             <v-icon class="required" name="star" color="input-required-color" sup />
             <v-input
-              v-model="field"
               autofocus
               type="text"
               :placeholder="$t('db_column_name')"
@@ -90,6 +89,8 @@
               :icon-right="iconToShow.icon"
               :icon-right-color="iconToShow.color"
               :icon-right-tooltip="iconToShow.tooltip"
+              :value="field"
+              @input="field = slug($event, { replacement: '_', lower: true }).trim()"
             />
             <p class="type-note">
               {{ $t("display_name") }}:
@@ -587,6 +588,7 @@
 import formatTitle from "@directus/format-title";
 import mapping, { datatypes } from "../type-map";
 import { defaultFull } from "../store/modules/permissions/defaults";
+import slug from "slug";
 
 export default {
   name: "VFieldSetup",
@@ -1085,6 +1087,7 @@ export default {
     this.activeTab = this.existing ? "options" : "interface";
   },
   methods: {
+    slug,
     interfaceSubtitles(ext) {
       if (ext.types) {
         return this.$helpers.formatTitle(ext.types[0]);

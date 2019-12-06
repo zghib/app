@@ -7,7 +7,8 @@
       "title": "Title",
       "subtitle": "Subtitle",
       "src": "Image Source",
-      "content": "Body Content"
+      "content": "Body Content",
+      "fit": "Fit"
     },
 	"fr-FR": {
       "cards": "Cartes",

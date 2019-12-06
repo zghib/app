@@ -530,7 +530,6 @@ export default {
   margin: 16px 0 24px;
 
   .header {
-    height: var(--input-height);
     border-bottom: 2px solid var(--input-border-color);
 
     button {

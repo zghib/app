@@ -461,7 +461,7 @@ export default {
 .row {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 0 12px;
   border-bottom: 2px solid var(--table-row-border-color);
   box-sizing: content-box;
 }

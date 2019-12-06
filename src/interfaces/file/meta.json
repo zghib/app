@@ -8,6 +8,11 @@
     "length": 10
   },
   "options": {
+    "crop": {
+      "name": "Crop Preview Images",
+      "default": true,
+      "interface": "toggle"
+    },
     "viewType": {
       "name": "$t:view_type",
       "comment": "$t:view_type_comment",

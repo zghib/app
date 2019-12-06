@@ -54,11 +54,13 @@
 
 <script>
 import mixin from "@directus/extension-toolkit/mixins/layout";
+import { mapState } from "vuex";
 
 export default {
   name: "LayoutCards",
   mixins: [mixin],
   computed: {
+    ...mapState(["currentProjectKey"]),
     title() {
       return this.viewOptions.title || this.primaryKeyField;
     },
@@ -74,26 +76,26 @@ export default {
       const srcField = this.viewOptions.src || null;
 
       if (srcField) {
+        let privateHash = null;
+
         if (this.fields[srcField] && this.fields[srcField].type.toLowerCase() === "file") {
-          return (
-            item[srcField] &&
-            item[srcField].data &&
-            item[srcField].data.thumbnails &&
-            item[srcField].data.thumbnails[0] &&
-            item[srcField].data.thumbnails[0].url
-          );
+          privateHash = item[srcField]?.private_hash;
         }
 
         if (srcField === "data" && this.fields[srcField].collection === "directus_files") {
-          return (
-            item[srcField] &&
-            item[srcField].thumbnails &&
-            item[srcField].thumbnails[0] &&
-            item[srcField].thumbnails[0].url
-          );
+          if (item.type.startsWith("image") === false) return null;
+
+          if (item.type === "image/svg+xml") {
+            return item.data.url;
+          }
+          privateHash = item?.private_hash;
         }
 
-        return item[srcField] || null;
+        if (!privateHash) return null;
+
+        const fit = this.viewOptions.fit || "crop";
+
+        return `/${this.currentProjectKey}/assets/${privateHash}?key=directus-medium-${fit}`;
       }
 
       return null;

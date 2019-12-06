@@ -174,7 +174,7 @@
   text-decoration: none;
   cursor: pointer;
   position: absolute;
-  top: 0px;
+  top: 4px;
   line-height: 16px;
   height: 28px;
   padding: 10px;
@@ -445,7 +445,7 @@ span.flatpickr-weekday {
 }
 
 .dayContainer {
-  padding: 0;
+  padding: 6px;
   outline: 0;
   text-align: left;
   min-width: 307.875px;
@@ -798,6 +798,7 @@ span.flatpickr-weekday {
 .flatpickr-days,
 .dayContainer {
   width: 100%;
+  height: 232px;
   min-width: 100%;
   max-width: 100%;
 }
@@ -818,7 +819,7 @@ span.flatpickr-weekday {
 }
 
 .flatpickr-months .flatpickr-month {
-  height: var(--input-height);
+  height: 36px;
 }
 
 .flatpickr-current-month input.cur-year[disabled], .flatpickr-current-month input.cur-year[disabled]:hover {

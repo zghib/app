@@ -12,7 +12,6 @@
         :subtitle="subtitle + subtitleExtra"
         :src="src"
         :icon="icon"
-        :href="href"
         text-background
         color="black"
         :options="{
@@ -25,7 +24,9 @@
             icon: 'delete'
           }
         }"
-        medium-image
+        :medium-image="width.startsWith('half')"
+        :big-image="width === 'full'"
+        :only-show-on-hover="isImage"
         @deselect="$emit('input', null)"
         @remove="removeFile"
       ></v-card>
@@ -90,6 +91,7 @@
 import mixin from "@directus/extension-toolkit/mixins/interface";
 import formatSize from "../file-size/format-size";
 import getIcon from "./get-icon";
+import { mapState } from "vuex";
 
 export default {
   mixins: [mixin],
@@ -104,6 +106,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(["currentProjectKey"]),
     noFileAccess() {
       return this.value && typeof this.value !== "object";
     },
@@ -123,21 +126,28 @@ export default {
       // Image ? -> display dimensions and formatted filesize
       return this.image.type && this.image.type.startsWith("image")
         ? " • " + formatSize(this.image.filesize)
-        : null;
+        : "";
     },
     src() {
-      return this.image.type && this.image.type.startsWith("image")
-        ? this.image.data.full_url
-        : null;
+      if (!this.image.type || !this.image.type.startsWith("image")) {
+        return null;
+      }
+
+      if (this.image.type === "image/svg+xml") {
+        return this.image.data.url;
+      }
+
+      const size = this.width === "full" ? "large" : "medium";
+      const fit = this.options.crop ? "crop" : "contain";
+
+      return `/${this.currentProjectKey}/assets/${this.image.private_hash}?key=directus-${size}-${fit}`;
+    },
+    isImage() {
+      return this.image.type && this.image.type.startsWith("image");
     },
     icon() {
       return this.image.type && !this.image.type.startsWith("image")
         ? getIcon(this.image.type)
-        : null;
-    },
-    href() {
-      return this.image.type && this.image.type === "application/pdf"
-        ? this.image.data.full_url
         : null;
     },
     viewOptions() {
@@ -189,10 +199,10 @@ export default {
     this.onSearchInput = _.debounce(this.onSearchInput, 200);
   },
   methods: {
-    saveUpload(fileInfo) {
-      this.image = fileInfo.data;
+    saveUpload(response) {
+      this.image = response.data.data;
       // We know that the primary key of directus_files is called `id`
-      this.$emit("input", { id: fileInfo.data.id });
+      this.$emit("input", { id: this.image.id });
     },
     setViewOptions(updates) {
       this.viewOptionsOverride = {

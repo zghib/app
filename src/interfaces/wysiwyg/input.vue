@@ -38,6 +38,7 @@
           :values="null"
           :length="10"
           :new-item="newItem"
+          width="full"
           @input="selectedFile = $event"
         />
       </div>

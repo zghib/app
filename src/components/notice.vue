@@ -16,7 +16,7 @@
 </docs>
 
 <template>
-  <p class="notice" :class="color">
+  <p class="notice selectable" :class="color">
     <v-icon v-if="icon" class="icon" :name="icon" />
     <slot />
   </p>
