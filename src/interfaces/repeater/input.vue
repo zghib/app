@@ -121,10 +121,14 @@ export default {
     },
 
     emitValue() {
-      const value = _.clone(this.rows).map(row => {
+      let value = _.clone(this.rows).map(row => {
         delete row.__key;
         return row;
       });
+
+      if (value.length === 0) {
+        return this.$emit("input", null);
+      }
 
       if (this.options.structure === "object") {
         this.$emit("input", _.keyBy(value, this.options.structure_key));

@@ -113,7 +113,6 @@
               class="password"
               name="db_password"
               type="password"
-              required
             />
           </div>
           <div class="field">

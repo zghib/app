@@ -100,7 +100,7 @@ export default {
       return collectionListing.map(group => {
         return {
           title: group.group_name,
-          links: group.collections.map(({ collection }) => {
+          links: (group.collections || []).map(({ collection }) => {
             const collectionInfo = this.collections.find(c => c.collection === collection);
 
             return {

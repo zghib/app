@@ -185,6 +185,7 @@ export async function updateProjectInfo({ commit, state }, key) {
       project_color,
       project_background,
       project_logo,
+      project_public_note,
       telemetry,
       default_locale
     } = response.data.data.api;
@@ -198,6 +199,7 @@ export async function updateProjectInfo({ commit, state }, key) {
         project_color,
         project_background,
         project_logo,
+        project_public_note,
         telemetry,
         default_locale,
         authenticated

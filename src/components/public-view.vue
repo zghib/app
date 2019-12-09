@@ -21,6 +21,7 @@
         :src="project_foreground.full_url"
         :alt="project_name"
       />
+      <div v-if="project_public_note" class="public-note selectable" v-html="project_public_note" />
     </div>
   </div>
 </template>
@@ -28,12 +29,14 @@
 <script>
 import { version } from "../../package.json";
 import { mapGetters } from "vuex";
+import marked from "marked";
 
 const defaults = {
   project_color: "project-background-color",
   project_background: { full_url: null },
   project_foreground: { full_url: null },
-  project_name: "Directus"
+  project_name: "Directus",
+  project_public_note: null
 };
 
 export default {
@@ -72,6 +75,12 @@ export default {
     },
     project_name() {
       return this.currentProject?.data?.project_name || defaults.project_name;
+    },
+    project_public_note() {
+      const publicNote =
+        this.currentProject?.data?.project_public_note || defaults.project_public_note;
+
+      return publicNote ? marked(publicNote) : null;
     },
     version() {
       return `Directus v${version}`;
@@ -140,6 +149,48 @@ export default {
     width: 100%;
     max-width: 200px;
     height: auto;
+  }
+
+  .public-note {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    color: var(--white);
+    padding: var(--input-padding);
+    border-radius: var(--border-radius);
+    max-width: 340px;
+
+    ::v-deep {
+      > * + * {
+        margin-top: 8px;
+      }
+
+      code {
+        font-family: var(--family-monospace);
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: var(--border-radius);
+        padding: 0 2px 2px;
+      }
+
+      strong {
+        font-weight: var(--weight-bold);
+      }
+
+      table {
+        border-collapse: collapse;
+
+        th,
+        td {
+          padding: 2px 16px 2px 0;
+        }
+
+        th {
+          text-align: left;
+        }
+      }
+    }
   }
 }
 </style>

@@ -81,7 +81,7 @@ export default {
   computed: {
     displayValue() {
       if (!this.template) {
-        return null;
+        return this.row[this.fields[0].field];
       }
 
       let preview = this.$helpers.micromustache.render(this.template, this.row);
@@ -89,7 +89,11 @@ export default {
       return preview;
     },
     showPlaceholder() {
-      const fields = getFieldsFromTemplate(this.template);
+      let fields = [this.fields[0].field];
+
+      if (this.template) {
+        fields = getFieldsFromTemplate(this.template);
+      }
 
       const fieldsHaveValue = fields.every(field => {
         return this.row[field] !== null && this.row[field]?.length > 0;
