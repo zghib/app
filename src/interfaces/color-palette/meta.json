@@ -6,13 +6,5 @@
   "recommended": {
     "length": 20
   },
-  "options": {},
-  "translation": {
-    "en-US": {
-      "color-picker": "Color Picker"
-    },
-	"fr-FR": {
-      "color-picker": "Pipette à couleurs"
-    }
-  }
+  "options": {}
 }

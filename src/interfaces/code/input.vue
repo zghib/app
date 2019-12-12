@@ -9,7 +9,7 @@
 
     <button
       v-if="options.template"
-      v-tooltip="$t('interfaces-code-fill_template')"
+      v-tooltip="$t('interfaces.code.fill_template')"
       @click="fillTemplate"
     >
       <v-icon name="playlist_add" />
@@ -17,7 +17,7 @@
 
     <small v-if="language" class="line-count type-note">
       {{
-        $tc("interfaces-code-loc", lineCount, {
+        $tc("interfaces.code.loc", lineCount, {
           count: lineCount,
           lang: language
         })

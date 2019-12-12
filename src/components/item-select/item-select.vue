@@ -294,6 +294,8 @@ export default {
         params.fields = []; // ISSUE#1865 Fixed Define the blank fields array to push the data.
       }
 
+      params.fields = params.fields.map(f => `${f}.*`);
+
       let sortString = "";
       if (this.sortDirection === "desc") sortString += "-";
       if (this.sortField) sortString += this.sortField;

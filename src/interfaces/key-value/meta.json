@@ -5,7 +5,7 @@
   "types": ["json"],
   "options": {
     "keyInterface": {
-      "name": "Key Interface",
+      "name": "$t:key_interface",
       "interface": "interfaces",
       "default": "text-input",
       "options": {
@@ -13,23 +13,21 @@
       }
     },
     "keyType": {
-      "name": "Key Data Type",
+      "name": "$t:key_data_type",
       "interface": "interface-types",
       "options": {
         "interfaceField": "keyInterface"
       }
     },
     "keyOptions": {
-      "name": "Key Interface Options",
-      "comment": "The options to use for the key field interface",
+      "name": "$t:key_options",
       "interface": "interface-options",
       "options": {
         "interfaceField": "keyInterface"
       }
     },
     "valueInterface": {
-      "name": "Value Interface",
-      "comment": "What interface to use for the value field",
+      "name": "$t:value_interface",
       "interface": "interfaces",
       "default": "text-input",
       "options": {
@@ -37,15 +35,14 @@
       }
     },
     "valueType": {
-      "name": "Value Data Type",
+      "name": "$t:value_data_type",
       "interface": "interface-types",
       "options": {
         "interfaceField": "valueInterface"
       }
     },
     "valueOptions": {
-      "name": "Value Interface Options",
-      "comment": "The options to use for the value field interface",
+      "name": "$t:value_options",
       "interface": "interface-options",
       "options": {
         "interfaceField": "valueInterface"

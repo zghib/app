@@ -27,7 +27,7 @@ export default {
           </tr>
         </table>`;
       } else {
-        _tooltip = this.$t("interfaces-map-no_location");
+        _tooltip = this.$t("interfaces.map.no_location");
       }
       return _tooltip;
     }

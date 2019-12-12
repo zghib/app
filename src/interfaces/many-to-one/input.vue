@@ -3,7 +3,7 @@
     <div v-if="relationSetup === false" class="notice">
       <p>
         <v-icon name="warning" />
-        {{ $t("interfaces-many-to-many-relation_not_setup") }}
+        {{ $t("interfaces.many-to-many.relation_not_setup") }}
       </p>
     </div>
 

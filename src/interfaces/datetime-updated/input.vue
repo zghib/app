@@ -14,13 +14,13 @@
   <v-input
     v-else-if="newItem"
     :readonly="true"
-    :placeholder="$t('interfaces-datetime-updated-now')"
+    :placeholder="$t('interfaces.datetime.updated-now')"
     icon-right="today"
   />
   <v-input
     v-else
     :readonly="true"
-    :placeholder="$t('interfaces-datetime-updated-unknown')"
+    :placeholder="$t('interfaces.datetime.updated-unknown')"
     icon-right="today"
   />
 </template>

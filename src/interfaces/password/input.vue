@@ -19,7 +19,7 @@
       v-model="confirmValue"
       class="password second"
       :type="inputType"
-      :placeholder="$t('interfaces-password-confirm_placeholder')"
+      :placeholder="$t('interfaces.password.confirm_placeholder')"
       :icon-right="confirmIcon"
       :icon-right-color="confirmColor"
     ></v-input>

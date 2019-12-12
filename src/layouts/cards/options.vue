@@ -13,7 +13,7 @@
       <option value="desc">{{ $t("DESC") }}</option>
     </v-simple-select>
 
-    <label for="src" class="type-label">{{ $t("layouts-cards-src") }}</label>
+    <label for="src" class="type-label">{{ $t("layouts.cards.src") }}</label>
     <v-select
       id="src"
       :value="viewOptions.src || '__none__'"
@@ -22,7 +22,7 @@
       @input="setOption('src', $event === '__none__' ? null : $event)"
     ></v-select>
 
-    <label for="fit" class="type-label">{{ $t("layouts-cards-fit") }}</label>
+    <label for="fit" class="type-label">{{ $t("layouts.cards.fit") }}</label>
     <v-select
       id="fit"
       :value="viewOptions.fit || 'crop'"
@@ -34,7 +34,7 @@
       @input="setOption('fit', $event)"
     ></v-select>
 
-    <label for="title" class="type-label">{{ $t("layouts-cards-title") }}</label>
+    <label for="title" class="type-label">{{ $t("layouts.cards.title") }}</label>
     <v-select
       id="title"
       :value="viewOptions.title || primaryKeyField"
@@ -44,7 +44,7 @@
     ></v-select>
 
     <label for="subtitle" class="type-label">
-      {{ $t("layouts-cards-subtitle") }}
+      {{ $t("layouts.cards.subtitle") }}
     </label>
     <v-select
       id="subtitle"

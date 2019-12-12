@@ -3,7 +3,7 @@
     <v-input
       class="input"
       type="text"
-      :placeholder="options.placeholder || $t('interfaces-tags-placeholder_text')"
+      :placeholder="options.placeholder || $t('interfaces.tags.placeholder_text')"
       :icon-left="options.iconLeft"
       :icon-right="options.iconRight"
       :icon-right-color="null"
@@ -76,7 +76,7 @@ export default {
         const regex = RegExp(this.options.validation);
         let message = this.options.validationMessage
           ? this.options.validationMessage
-          : this.$t("interfaces-tags-validation_message_default");
+          : this.$t("interfaces.tags.validation_message_default");
         if (!regex.test(tag)) {
           this.$notify({
             title: message,

@@ -28,7 +28,7 @@ export default {
       } else if (this.options.showHash) {
         return this.originalValue;
       } else {
-        return this.$t("interfaces-hashed-secured");
+        return this.$t("interfaces.hashed.secured");
       }
     },
     valueChanged() {

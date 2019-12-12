@@ -1,14 +1,9 @@
 {
-  "name": "2FA Secret",
+  "name": "$t:2fa-secret",
   "version": "1.0.0",
   "types": ["string"],
   "recommended": {
     "length": 16
   },
-  "icon": "settings",
-  "translation": {
-    "en-US": {
-      "2fa-secret": "2FA Secret"
-    }
-  }
+  "icon": "settings"
 }

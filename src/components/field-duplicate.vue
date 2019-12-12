@@ -10,7 +10,7 @@
     <form class="options" @submit.prevent>
       <div class="options">
         <label>
-          {{ $t("collection") }}
+          {{ $tc("collection", 1) }}
           <v-simple-select v-model="selectedCollection" required>
             <option
               v-for="collection in Object.keys(this.collections)"
@@ -25,7 +25,7 @@
       </div>
       <div class="options">
         <label>
-          {{ $t("field") + " " + $t("name") }}
+          {{ $tc("field", 1) + " " + $t("name") }}
           <v-input
             v-model="field"
             required

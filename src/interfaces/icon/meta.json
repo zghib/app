@@ -6,19 +6,5 @@
   "recommended": {
     "length": 20
   },
-  "options": {},
-  "translation": {
-    "en-US": {
-      "icon": "Icon",
-      "search_placeholder": "Search for an icon..."
-    },
-	"fr-FR": {
-      "icon": "Icone",
-      "search_placeholder": "Rechercher une icone"
-    },
-    "ru-RU": {
-      "icon": "Иконка",
-      "search_placeholder": "Найти иконку..."
-    }
-  }
+  "options": {}
 }

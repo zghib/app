@@ -1,6 +1,6 @@
 <template>
   <v-button class="launch" :disabled="required && disabled" @click="preview">
-    {{ $t("interfaces-preview-preview_item") }}
+    {{ $t("interfaces.preview.preview_item") }}
     <v-icon name="launch" />
   </v-button>
 </template>

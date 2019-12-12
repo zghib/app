@@ -1,5 +1,5 @@
 <template>
-  <div class="interface-radio-buttons">
+  <div class="interface-radio-buttons subgrid">
     <v-radio
       v-for="(display, val) in choices"
       :id="`${name}-${val}`"
@@ -39,9 +39,6 @@ export default {
 <style lang="scss" scoped>
 .interface-radio-buttons {
   max-width: var(--width-x-large);
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(4, 1fr);
   padding-top: calc(
     (var(--input-height) - 24px) / 2
   ); // [input height] - 24px (icon height) / 2 (top padding)

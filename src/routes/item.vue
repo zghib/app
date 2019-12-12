@@ -376,7 +376,7 @@ export default {
       if (this.singleItem) {
         return [
           {
-            name: this.$t("collections"),
+            name: this.$tc("collection", 2),
             path: `/${this.currentProjectKey}/collections`
           },
           {
@@ -398,7 +398,7 @@ export default {
       } else {
         breadcrumb.push(
           {
-            name: this.$t("collections"),
+            name: this.$tc("collection", 2),
             path: `/${this.currentProjectKey}/collections`
           },
           {

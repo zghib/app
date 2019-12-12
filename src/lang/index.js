@@ -1,7 +1,9 @@
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 
-import enUS from "./en-US/index.json";
+import enUSBase from "./en-US/index.json";
+import enUSInterfaces from "./en-US/interfaces.json";
+import enUSLayouts from "./en-US/layouts.json";
 import dateTimeFormats from "./en-US/date-format.json";
 
 Vue.use(VueI18n);
@@ -10,7 +12,7 @@ export const i18n = new VueI18n({
   locale: "en-US",
   fallbackLocale: "en-US",
   messages: {
-    "en-US": enUS
+    "en-US": _.merge(enUSBase, enUSInterfaces, enUSLayouts)
   },
   dateTimeFormats: {
     "en-US": dateTimeFormats
@@ -65,7 +67,6 @@ export const availableLanguages = {
 };
 
 i18n.availableLanguages = availableLanguages;
-window.i18n = i18n;
 
 /**
  * Load a new language file (if it hasn't been loaded yet) and change the system language
@@ -80,12 +81,27 @@ export async function loadLanguageAsync(lang) {
 
   if (i18n.locale !== lang) {
     if (!loadedLanguages.includes(lang)) {
-      // route level code-splitting
-      // this generates a separate chunk (lang-[request].[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      // this generates a separate chunk (lang-[request].[hash].js) for this file
+      // which is lazy-loaded when the file is needed
       try {
         const msgs = await import(
           /* webpackChunkName: "lang-[request]" */ `@/lang/${lang}/index.json`
+        );
+
+        i18n.mergeLocaleMessage(lang, msgs);
+      } catch {}
+
+      try {
+        const msgs = await import(
+          /* webpackChunkName: "lang-interfaces-[request]" */ `@/lang/${lang}/interfaces.json`
+        );
+
+        i18n.mergeLocaleMessage(lang, msgs);
+      } catch {}
+
+      try {
+        const msgs = await import(
+          /* webpackChunkName: "lang-interfaces-[request]" */ `@/lang/${lang}/layouts.json`
         );
 
         i18n.mergeLocaleMessage(lang, msgs);

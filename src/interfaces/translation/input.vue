@@ -2,20 +2,20 @@
   <div v-if="error || !relation" class="translation error">
     <p>
       <v-icon name="warning" />
-      {{ $t("interfaces-translation-translation_not_setup") }}
+      {{ $t("interfaces.translation.translation_not_setup") }}
     </p>
   </div>
   <div v-else-if="!languages || languages.length === 0" class="translation error">
     <p>
       <v-icon name="warning" />
-      {{ $t("interfaces-translation-translation_no_languages") }}
+      {{ $t("interfaces.translation.translation_no_languages") }}
     </p>
   </div>
   <div v-else-if="activeLanguage != null" class="translation">
     <v-simple-select
       v-model="activeLanguage"
       class="language-select"
-      :placeholder="$t('interfaces-translation-choose_language')"
+      :placeholder="$t('interfaces.translation.choose_language')"
     >
       <option v-for="language in languages" :key="language.code" :value="language.code">
         {{ language.name }}

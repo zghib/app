@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent>
-    <label class="type-label">{{ $t("layouts-tabular-fields") }}</label>
+    <label class="type-label">{{ $t("layouts.tabular.fields") }}</label>
     <draggable v-model="sortList" direction="vertical" @end="sort">
       <div
         v-for="field in sortList"

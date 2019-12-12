@@ -26,7 +26,7 @@
           </transition>
         </div>
         <div id="header">
-          <span>{{ $t("layouts-calendar-events") }}</span>
+          <span>{{ $t("layouts.calendar.events") }}</span>
           <button @click="close">
             <v-icon name="close" />
           </button>
@@ -46,7 +46,7 @@
             <span>{{ randomEmoji() }}</span>
             <br />
             <br />
-            <span>{{ $t("layouts-calendar-noEvents") }}</span>
+            <span>{{ $t("layouts.calendar.noEvents") }}</span>
           </div>
         </div>
         <a id="add" :href="addItemURL"><v-icon name="add" /></a>

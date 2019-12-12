@@ -13,21 +13,5 @@
       "interface": "toggle",
       "default": true
     }
-  },
-  "translation": {
-    "en-US": {
-      "primary_key": "Primary Key",
-      "immutable": "Can not be changed",
-      "monospace": "Monospace",
-      "monospace_comment": "Use a monospace font"
-    },
-	"fr-FR": {
-      "primary_key": "Clef primaire",
-      "immutable": "Ne peut être modifié"
-    },
-    "ru-RU": {
-      "primary_key": "Первичный ключ",
-      "immutable": "Не может быть изменен"
-    }
   }
 }

@@ -340,7 +340,7 @@ export default {
         ...this.items,
         {
           [this.junctionPrimaryKey]: tempKey,
-          [this.junctionRelatedKey]: fileInfo.data
+          [this.junctionRelatedKey]: fileInfo.data.data
         }
       ];
     },

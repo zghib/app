@@ -62,56 +62,5 @@
         ]
       }
     }
-  },
-  "translation": {
-    "en-US": {
-      "button_group": "Button Group",
-      "choices": "Choices",
-      "choices_comment":
-        "Enter JSON key value pairs with the saved value and text displayed.",
-      "theme": "Interface Theme",
-      "theme_comment": "Set the UI of interface if supported",
-      "value": "Value",
-      "flight": "Flight",
-      "cruise": "Cruise",
-      "run": "Run",
-      "bus": "Bus",
-      "bike": "Bike",
-      "train": "Train",
-      "car": "Car",
-      "other": "Other"
-    },
-	"fr-FR": {
-      "button_group": "Groupe de boutons",
-      "choices": "choix",
-      "choices_comment":
-        "Saisir des pairs de clefs et valeurs en JSON avec la valeur enregistrée et le texte affiché",
-      "theme": "Thème d'interface",
-      "theme_comment": "Sélectionne l'interface utilisateur si supporté",
-      "value": "Valeur",
-      "car": "Voiture",
-      "bike": "Vélo",
-      "bus": "Bus",
-      "train": "Train",
-      "flight": "Vol",
-      "cruise": "Croisière",
-      "other": "Autre"
-    },
-    "tr-TR": {
-      "button_group": "Düğme Grubu",
-      "choices": "seçenekler",
-      "choices_comment":
-        "JSON anahtar-değer ikililerini, kaydedilecek değer ve gösterilecek yazı olarak girin",
-      "theme": "Arayüz Teması",
-      "theme_comment": "Arayüzün nasıl görüntüleneceğini ayarlayın - eğer destekleniyorsa",
-      "value": "Değer",
-      "car": "Araba",
-      "bike": "Bisiklet",
-      "bus": "Otobüs",
-      "train": "Tren",
-      "flight": "Uçuş",
-      "cruise": "Cruise",
-      "other": "Diğer"
-    }
   }
 }

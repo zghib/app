@@ -8,6 +8,7 @@
     :length="length"
     :values="values"
     :collection="collection"
+    :relation="relation"
     :readonly="readonly"
     :required="required"
     :loading="loading"
@@ -65,6 +66,10 @@ export default {
     readonly: {
       type: Boolean,
       default: false
+    },
+    relation: {
+      type: Object,
+      default: null
     },
     required: {
       type: Boolean,

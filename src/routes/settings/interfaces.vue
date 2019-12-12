@@ -26,7 +26,7 @@ export default {
           path: `/${this.currentProjectKey}/settings`
         },
         {
-          name: this.$t("interfaces"),
+          name: this.$tc("interface", 2),
           path: `/${this.currentProjectKey}/settings/interfaces`
         }
       ];

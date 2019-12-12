@@ -1,21 +1,4 @@
 {
   "name": "$t:cards",
-  "icon": "view_module",
-  "translation": {
-    "en-US": {
-      "cards": "Cards",
-      "title": "Title",
-      "subtitle": "Subtitle",
-      "src": "Image Source",
-      "content": "Body Content",
-      "fit": "Fit"
-    },
-	"fr-FR": {
-      "cards": "Cartes",
-      "title": "Titre",
-      "subtitle": "Sous-titre",
-      "src": "Source d'image",
-      "content": "Contenu"
-    }
-  }
+  "icon": "view_module"
 }

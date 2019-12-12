@@ -1,6 +1,6 @@
 /* global require */
 
-import { forEach, mapKeys, isObject, mapValues } from "lodash";
+import { forEach, isObject, mapValues } from "lodash";
 import api from "../../../api";
 import { i18n } from "../../../lang/";
 
@@ -23,7 +23,7 @@ function translateFields(meta, type, id) {
       //   like $t:option $t:or $t:value
       return value
         .split(" ")
-        .map(word => (word.startsWith("$t:") ? i18n.t(`${type}-${id}-${word.substring(3)}`) : word))
+        .map(word => (word.startsWith("$t:") ? i18n.t(`${type}.${id}.${word.substring(3)}`) : word))
         .join(" ");
     }
 
@@ -120,14 +120,31 @@ export function getExtensions({ commit }, type) {
         extensions.forEach(extension => {
           const { id, translation } = extension;
 
-          if (translation) {
-            forEach(translation, (messages, locale) => {
-              i18n.mergeLocaleMessage(
-                locale,
-                mapKeys(messages, (value, key) => `${type}-${id}-${key}`)
-              );
-            });
-          }
+          if (!translation) return;
+
+          const translations = {};
+
+          // Translations are in the following format
+          //
+          // {
+          //   [locale]: {
+          //     [key]: value
+          //   }
+          // }
+          //
+          // we have to scope them to [type].[interface].key before merging
+          // them into the global i18n messages pool
+          forEach(translation, (messages, locale) => {
+            translations[locale] = {
+              [type]: {
+                [id]: messages
+              }
+            };
+          });
+
+          Object.keys(translations).forEach(locale => {
+            i18n.mergeLocaleMessage(locale, translations[locale]);
+          });
         });
 
         return extensions;

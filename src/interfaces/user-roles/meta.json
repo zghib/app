@@ -16,19 +16,5 @@
       "interface": "toggle",
       "default": false
     }
-  },
-  "translation": {
-    "en-US": {
-      "user-roles": "User Role",
-      "choose_role": "Choose a role...",
-      "relational": "Relational",
-      "relational_comment": "Save as a relational record",
-      "show_public": "Show public role"
-    },
-    "fr-FR": {
-      "user-roles": "Rôle utilisateur",
-      "relational": "Relationel",
-      "relational_comment": "Enregistre en tant que valeur plusieurs-à-plusieurs (M2M) dans directus_user_roles"
-    }
   }
 }

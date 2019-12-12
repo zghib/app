@@ -45,7 +45,7 @@
           :class="{ hidden: monthDistance == 0 }"
           @click="resetMonth()"
         >
-          {{ $t("layouts-calendar-today") }}
+          {{ $t("layouts.calendar.today") }}
         </div>
       </div>
     </div>

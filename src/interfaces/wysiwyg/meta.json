@@ -8,8 +8,8 @@
   },
   "options": {
     "toolbar": {
-      "name": "Toolbar Options",
-      "comment": "Show, hide and reorder toolbar options",
+      "name": "$t:toolbar",
+      "comment": "$t:toolbar_options",
       "interface": "checkboxes",
       "default": [
         "bold",
@@ -76,16 +76,19 @@
       }
     },
     "custom_formats": {
-      "name": "Custom Formats",
-      "comment": "Custom HTML wrappers for content",
+      "name": "$t:custom_formats",
+      "comment": "$t:custom_formats_comment",
       "interface": "json",
-      "default": [{
-        "title": "My Custom Format",
-        "inline": "span",
-        "classes": "custom-wrapper",
-        "styles": { "color": "#00ff00", "font-size": "20px" },
-        "attributes": { "title": "My Custom Wrapper" }
-      }]
+      "default": null,
+      "options": {
+        "template": [{
+          "title": "My Custom Format",
+          "inline": "span",
+          "classes": "custom-wrapper",
+          "styles": { "color": "#00ff00", "font-size": "20px" },
+          "attributes": { "title": "My Custom Wrapper" }
+        }]
+      }
     }
   }
 }

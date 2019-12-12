@@ -160,7 +160,7 @@ export default {
 
       modules.push({
         link: `/${this.currentProjectKey}/collections`,
-        name: this.$t("collections"),
+        name: this.$tc("collection", 2),
         icon: "box"
       });
 

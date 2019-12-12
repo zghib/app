@@ -1,5 +1,5 @@
 <template>
-  <div class="interface-checkbox-relational">
+  <div class="interface-checkbox-relational subgrid">
     <v-checkbox
       v-for="item in items"
       :id="uid(item)"
@@ -162,12 +162,11 @@ export default {
 
 <style lang="scss">
 .interface-checkbox-relational {
-  max-width: var(--width-medium);
-  display: flex;
-  flex-wrap: wrap;
-  margin: -4px;
+  padding-top: calc(
+    (var(--input-height) - 24px) / 2
+  ); // [input height] - 24px (icon height) / 2 (top padding)
+
   .form-checkbox {
-    padding: 4px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

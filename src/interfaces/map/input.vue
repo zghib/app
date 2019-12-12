@@ -10,7 +10,7 @@
           <v-input v-model="placeName" placeholder="Enter address to geocode"></v-input>
           <button
             v-if="isInteractive"
-            v-tooltip="$t('interfaces-map-address_location')"
+            v-tooltip="$t('interfaces.map.address_location')"
             @click="getCoordinatesforPlaceName()"
           >
             <v-icon name="search" />
@@ -19,7 +19,7 @@
 
         <button
           v-if="isInteractive"
-          v-tooltip="$t('interfaces-map-my_location')"
+          v-tooltip="$t('interfaces.map.my_location')"
           class="map-my-location"
           @click="locateMe()"
         >
@@ -28,7 +28,7 @@
 
         <button
           v-if="isInteractive"
-          v-tooltip="$t('interfaces-map-clear_location')"
+          v-tooltip="$t('interfaces.map.clear_location')"
           class="clear-location"
           @click="setValue()"
         >
@@ -256,8 +256,8 @@ export default {
           notify:
             //This error codes are returned from leaflet library.
             result.code == 1
-              ? this.$t("interfaces-map-user_location_error_blocked")
-              : this.$t("interfaces-map-user_location_error"),
+              ? this.$t("interfaces.map.user_location_error_blocked")
+              : this.$t("interfaces.map.user_location_error"),
           error: result
         });
         this.isLocating ? this.$store.dispatch("loadingFinished", this.isLocating) : "";
@@ -305,7 +305,7 @@ export default {
           if (response.status === 200) {
             if (!response.data.features[0]) {
               this.$events.emit("error", {
-                notify: this.$t("interfaces-map-address_to_code_error"),
+                notify: this.$t("interfaces.map.address_to_code_error"),
                 error: "result"
               });
             } else {

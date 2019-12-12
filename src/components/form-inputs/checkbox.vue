@@ -4,6 +4,7 @@
       :id="id"
       :checked="shouldBeChecked"
       :value="value"
+      :disabled="disabled"
       type="checkbox"
       @change="updateInput"
     />
@@ -47,6 +48,10 @@ export default {
       default: false
     },
     checked: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }
@@ -95,11 +100,6 @@ label {
   display: flex;
   align-items: center;
 
-  &:hover:not(:disabled) .checkbox,
-  .user-is-tabbing &:focus {
-    color: var(--input-border-color-hover);
-  }
-
   .checkbox {
     transition: all var(--fast) var(--transition);
     color: var(--input-border-color);
@@ -111,8 +111,18 @@ label {
   }
 }
 
+input:not([disabled]):hover + label .checkbox {
+  color: var(--input-border-color-hover);
+}
+
+input[disabled] + label {
+  color: var(--input-border-color-hover);
+  cursor: not-allowed;
+}
+
 input:checked + label .checkbox,
-input:checked + label:hover:not(:disabled) .checkbox {
+input:checked + label:hover .checkbox,
+input:checked:hover + label .checkbox {
   color: var(--input-background-color-active);
 }
 </style>

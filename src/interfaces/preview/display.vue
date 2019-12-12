@@ -1,6 +1,6 @@
 <template>
   <a :href="url" class="no-wrap" target="_blank">
-    {{ $t("interfaces-preview-preview_item") }}
+    {{ $t("interfaces.preview.preview_item") }}
   </a>
 </template>
 

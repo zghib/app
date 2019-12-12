@@ -20,25 +20,5 @@
       "interface": "text-input",
       "default": "Choose a User"
     }
-  },
-  "translation": {
-    "en-US": {
-      "user": "User",
-      "avatar": "Avatar",
-      "name": "Name",
-      "template": "Template",
-      "template_comment": "How to format the users in the dropdown",
-      "placeholder": "Placeholder",
-      "placeholder_comment": "Add a placeholder"
-    },
-	"fr-FR": {
-      "user": "Utilisateur",
-      "avatar": "Avatar",
-      "name": "Nom",
-      "template": "Modèle",
-      "template_comment": "Mode d'affichage des utilisateurs dans le menu déroulant",
-      "placeholder": "Paramètre fictif",
-      "placeholder_comment": "Texte statique qui est affiché avant la sélection d'une valeur"
-    }
   }
 }

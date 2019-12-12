@@ -23,23 +23,5 @@
       "interface": "toggle",
       "default": true
     }
-  },
-  "translation": {
-    "en-US": {
-      "interfaces": "Interfaces",
-      "placeholder": "Placeholder",
-      "placeholder_comment": "Static text that shown before a value is selected",
-      "placeholder_default": "Choose an interface",
-      "option": "Option",
-      "relational": "Include relational interfaces",
-      "include_status": "Include the status interfaces"
-    },
-	"fr-FR": {
-      "interfaces": "Interfaces",
-      "placeholder": "Paramètre fictif",
-      "placeholder_comment": "Texte statique qui est affiché avant la sélection d'une valeur",
-      "placeholder_default": "Choisir une interface",
-      "option": "Option"
-    }
   }
 }

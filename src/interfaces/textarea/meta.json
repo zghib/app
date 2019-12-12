@@ -33,25 +33,5 @@
         "labelOff": "Sans-Serif Font"
       }
     }
-  },
-  "translation": {
-    "en-US": {
-      "textarea": "Text-Area",
-      "rows": "Rows",
-      "rows_comment": "The number of text rows available for the input before scrolling",
-      "placeholder": "Placeholder",
-      "placeholder_comment": "Enter placeholder text",
-      "serif": "Serif Font",
-      "serif_comment": "Use a larger, serif typeface"
-    },
-    "fr-FR": {
-      "textarea": "Saisie de long texte",
-      "rows": "Lignes",
-      "rows_comment": "Le nombre de lignes de texte disponibles avant de proposer un ascenseur sur l'entrée",
-      "placeholder": "Paramètre fictif",
-      "placeholder_comment": "Texte statique qui est affiché avant la sélection d'une valeur",
-      "serif": "Serif Font",
-      "serif_comment": "Use a larger, serif typeface"
-    }
   }
 }

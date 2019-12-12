@@ -11,7 +11,7 @@ export default function formatField(field, collection) {
     return fallback;
   }
 
-  const i18nKey = `fields-${collection}-${field}`;
+  const i18nKey = `fields.${collection}.${field}`;
 
   if (Vue.$te(i18nKey)) {
     return Vue.$t(i18nKey);

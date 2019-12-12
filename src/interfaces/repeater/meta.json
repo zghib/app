@@ -98,16 +98,16 @@
       }
     },
     "placeholder": {
-      "name": "Placeholder",
-      "comment": "The value that shows up instead of the template if there's no value entered yet",
+      "name": "$t:placeholder",
+      "comment": "$t:placeholder_comment",
       "interface": "text-input",
       "type": "string",
       "default": "New Item...",
       "advanced": true
     },
     "createItemText": {
-      "name": "Create Item Text",
-      "comment": "Text that's displayed in the button that adds a new row to the repeater",
+      "name": "$t:create_item_text",
+      "comment": "$t:create_item_text_comment",
       "interface": "text-input",
       "type": "string",
       "default": "Create Item",
@@ -142,22 +142,6 @@
       "options": {
         "monospace": true
       }
-    }
-  },
-  "translation": {
-    "en-US": {
-      "repeater": "Repeater",
-      "template": "Display Template",
-      "template_comment": "How to format value on the item browse display and inline preview",
-      "template_placeholder": "{{title}} — ({{author}})",
-      "fields": "Fields",
-      "fields_comment": "What fields to show in each repeated row",
-      "limit": "Limit",
-      "limit_comment": "Maximum amount of rows the user can add",
-      "structure": "Structure",
-      "structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
-      "structure_key": "Structure Key Field",
-      "structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values"
     }
   }
 }

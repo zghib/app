@@ -18,11 +18,11 @@
     <div v-if="options.tabbed" class="toolbar">
       <span :class="{ active: !preview }" @click="preview = false">
         <v-icon name="code" size="24" />
-        {{ $t("interfaces-markdown-edit") }}
+        {{ $t("interfaces.markdown.edit") }}
       </span>
       <span :class="{ active: preview }" @click="preview = true">
         <v-icon name="visibility" size="24" />
-        {{ $t("interfaces-markdown-preview") }}
+        {{ $t("interfaces.markdown.preview") }}
       </span>
     </div>
   </div>

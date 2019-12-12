@@ -231,7 +231,7 @@ export default {
       } else {
         return [
           {
-            name: this.$t("collections"),
+            name: this.$tc("collection", 2),
             path: `/${this.currentProjectKey}/collections`
           },
           {

@@ -32,7 +32,7 @@ export default {
       return this.availableTypes[this.options.language];
     },
     tooltipCopy() {
-      return this.$tc("interfaces-code-loc", this.lineCount, {
+      return this.$tc("interfaces.code.loc", this.lineCount, {
         count: this.lineCount,
         lang: this.language
       });

@@ -6,13 +6,5 @@
   "recommended": {
     "length": 10
   },
-  "options": {},
-  "translation": {
-    "en-US": {
-      "sort": "Sort"
-    },
-	"fr-FR": {
-      "sort": "Triage"
-    }
-  }
+  "options": {}
 }

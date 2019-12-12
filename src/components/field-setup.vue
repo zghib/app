@@ -260,7 +260,7 @@
         <span class="type-label">{{ $t("related_collection") }}</span>
 
         <v-simple-select v-model="relationInfo.collection_one" class="select">
-          <optgroup :label="$t('collections')">
+          <optgroup :label="$tc('collection', 2)">
             <option
               v-for="collection in collectionsGrouped.user"
               :key="collection"
@@ -311,7 +311,7 @@
         <span class="type-label">{{ $t("related_collection") }}</span>
 
         <v-simple-select v-model="relationInfo.collection_many" class="select">
-          <optgroup :label="$t('collections')">
+          <optgroup :label="$tc('collection', 2)">
             <option
               v-for="collection in collectionsGrouped.user"
               :key="collection"
@@ -372,7 +372,7 @@
             }
           "
         >
-          <optgroup :label="$t('collections')">
+          <optgroup :label="$tc('collection', 2)">
             <option
               v-for="collection in collectionsGrouped.user"
               :key="collection"
@@ -468,7 +468,7 @@
           v-model="relationInfoM2M[currentM2MIndex == 0 ? 1 : 0].collection_one"
           class="select"
         >
-          <optgroup :label="$t('collections')">
+          <optgroup :label="$tc('collection', 2)">
             <option
               v-for="collection in collectionsGrouped.user"
               :key="collection"
@@ -862,7 +862,7 @@ export default {
     tabs() {
       const tabs = {
         interface: {
-          text: this.$t("interface")
+          text: this.$tc("interface", 1)
         },
         schema: {
           text: this.$t("schema"),

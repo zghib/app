@@ -48,45 +48,5 @@
       "interface": "toggle",
       "default": false
     }
-  },
-  "translation": {
-    "en-US": {
-      "input": "Text Input",
-      "placeholder": "Placeholder",
-      "trim": "Trim",
-      "trim_comment": "Trim surrounding whitespace from the value before saving",
-      "char_count": "Show Character Count",
-      "char_count_comment": "Show the remaining characters available",
-      "icon_left": "Icon Left",
-      "icon_left_comment": "Choose an optional icon to display on the left of the input",
-      "icon_right": "Icon Right",
-      "icon_right_comment": "Choose an optional icon to display on the right of the input",
-      "format": "Pretty Output",
-      "format_comment": "Convert the value to title case",
-      "monospace": "Monospace",
-      "monospace_comment": "Use a monospace font",
-      "auto": "Automatic",
-      "small": "Small",
-      "medium": "Medium",
-      "large": "Large"
-    },
-	"fr-FR": {
-      "input": "Saisie de libellé",
-      "placeholder": "Paramètre fictif",
-      "trim": "Rognage",
-      "trim_comment": "Supprime les espaces en début et fin de texte avant enregistrement",
-      "char_count": "Montrer le nombre de caractères",
-      "char_count_comment": "Affiche le nombre de caractères restants disponibles à côté de l'entrée",
-      "icon_left": "Icon Left",
-      "icon_left_comment": "Choose an optional icon to display on the left of the input",
-      "icon_right": "Icon Right",
-      "icon_right_comment": "Choose an optional icon to display on the right of the input",
-      "format": "Embellir la sortie",
-      "format_comment": "Convertir la sortie en majuscules",
-      "auto": "Automatique",
-      "small": "Petit",
-      "medium": "Moyen",
-      "large": "Grand"
-    }
   }
 }

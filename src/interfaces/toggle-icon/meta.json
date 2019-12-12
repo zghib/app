@@ -44,41 +44,5 @@
       "default": "pink-500",
       "interface": "color-palette"
     }
-  },
-  "translation": {
-    "en-US": {
-      "toggle-icon": "Toggle Icon",
-      "text-inactive-name": "Inactive Text",
-      "text-inactive-comment": "Text next to the inactive icon",
-      "text-inactive-placeholder": "Enter your text here",
-      "icon-inactive-name": "Inactive Icon",
-      "icon-inactive-comment": "Choose an inactive icon",
-      "color-inactive-name": "Inactive Color",
-      "color-inactive-comment": "Choose the inactive color",
-      "text-active-name": "Active Text",
-      "text-active-comment": "Text next to the active icon",
-      "text-active-placeholder": "Enter your text here",
-      "icon-active-name": "Active Icon",
-      "icon-active-comment": "Choose an active icon",
-      "color-active-name": "Active Color",
-      "color-active-comment": "Choose the active color"
-    },
-	"fr-FR": {
-      "toggle-icon": "Icone de bascule",
-      "text-inactive-name": "Texte d'inactivité",
-      "text-inactive-comment": "Texte à côté de l'icone d'inactivité",
-      "text-inactive-placeholder": "Saisir le texte ici",
-      "icon-inactive-name": "Icone d'inactivité",
-      "icon-inactive-comment": "Choisir l'icone d'inactivité",
-      "color-inactive-name": "Couleur d'inactivité",
-      "color-inactive-comment": "Choisir la couleur d'inactivité",
-      "text-active-name": "Texte d'activité",
-      "text-active-comment": "Texte à côté de l'icone d'activité",
-      "text-active-placeholder": "Saisir le texte ici",
-      "icon-active-name": "Icone d'activité",
-      "icon-active-comment": "Choisir l'icone d'activité",
-      "color-active-name": "Couleur d'activité",
-      "color-active-comment": "Choisir la couleur d'activité"
-    }
   }
 }

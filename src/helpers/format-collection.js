@@ -8,7 +8,7 @@ export default function formatCollection(collection) {
     return fallback;
   }
 
-  const i18nKey = `collections-${collection}`;
+  const i18nKey = `collections.${collection}`;
 
   if (Vue.$te(i18nKey)) {
     return Vue.$t(i18nKey);

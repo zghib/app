@@ -2,7 +2,7 @@
   <div class="interface-icon">
     <v-input
       v-model="searchText"
-      :placeholder="$t('interfaces-icon-search_placeholder')"
+      :placeholder="$t('interfaces.icon.search_placeholder')"
       :readonly="readonly"
       :icon-right="value"
       icon-right-color="input-background-color-active"

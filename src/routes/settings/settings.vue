@@ -44,7 +44,7 @@
       <nav>
         <ul>
           <v-card
-            :title="$t('interfaces')"
+            :title="$tc('interface', 2)"
             :subtitle="$tc('interface_count', interfaceCount, { count: interfaceCount })"
             element="li"
             :to="`/${currentProjectKey}/settings/interfaces`"

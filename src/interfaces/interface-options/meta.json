@@ -11,13 +11,5 @@
       "default": "$t:placeholder-default",
       "length": 200
     }
-  },
-  "translation": {
-    "en-US": {
-      "interface-options": "Interface Options",
-      "interface-field": "Interface Field",
-      "placeholder-comment": "The field that holds the name of the interface",
-      "placeholder-default": "Enter a field name..."
-    }
   }
 }

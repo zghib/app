@@ -219,4 +219,25 @@ export default {
 .form.full-width > .fill {
   grid-column: start / full;
 }
+
+.form > .half ::v-deep .subgrid,
+.form > .half-left ::v-deep .subgrid,
+.form > .half-space ::v-deep .subgrid,
+.form > .half-right ::v-deep .subgrid {
+  display: grid;
+  grid-template-columns: 134px 134px;
+  grid-gap: 32px;
+}
+
+.form > .full ::v-deep .subgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 134px);
+  grid-gap: 32px;
+}
+
+.form > .fill ::v-deep .subgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 134px);
+  grid-gap: 32px;
+}
 </style>

@@ -75,7 +75,7 @@ export default {
         events = events.slice(0, space - 1);
         events.push({
           id: -1,
-          title: this.$t("layouts-calendar-moreEvents", {
+          title: this.$t("layouts.calendar.moreEvents", {
             amount: this.events.length - space + 1
           }),
           time: ""

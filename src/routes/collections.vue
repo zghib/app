@@ -3,7 +3,7 @@
     <v-header
       :breadcrumb="[
         {
-          name: $t('collections'),
+          name: $tc('collection', 2),
           path: `/${currentProjectKey}/collections`
         }
       ]"
@@ -38,7 +38,7 @@ export default {
   name: "Collections",
   metaInfo() {
     return {
-      title: this.$t("collections")
+      title: this.$tc("collection", 2)
     };
   },
   components: {
@@ -76,7 +76,7 @@ export default {
       return [
         {
           field: "collection",
-          name: this.$t("collection")
+          name: this.$tc("collection", 1)
         },
         {
           field: "note",

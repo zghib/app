@@ -54,6 +54,7 @@
                 :name="field.field"
                 :type="field.type"
                 :collection="field.collection"
+                :relation="field.relation"
                 :datatype="field.datatype"
                 :options="field.options"
                 :value="String(item[field.field]).startsWith('$temp_') ? null : item[field.field]"
@@ -197,6 +198,22 @@ export default {
           fieldInfo.readonly = true;
         }
 
+        let relation = null;
+
+        if (fieldInfo.type.toLowerCase() === "m2o") {
+          relation = this.$store.getters.m2o(fieldInfo.collection, fieldInfo.field);
+        }
+
+        if (fieldInfo.type.toLowerCase() === "o2m") {
+          relation = this.$store.getters.o2m(fieldInfo.collection, fieldInfo.field);
+        }
+
+        if (fieldInfo.type.toLowerCase() === "translation") {
+          relation = this.$store.getters.o2m(fieldInfo.collection, fieldInfo.field);
+        }
+
+        fieldInfo.relation = relation;
+
         return fieldInfo;
       });
     },
@@ -236,6 +253,7 @@ export default {
 
       // Disable editing the many to one that points to this one to many
       const manyToManyField = this.relation.field_many && this.relation.field_many.field;
+
       return _.mapValues(relatedCollectionFields, field => {
         const clone = _.clone(field);
 

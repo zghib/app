@@ -16,13 +16,13 @@
   <v-input
     v-else-if="newItem"
     :readonly="true"
-    :placeholder="$t('interfaces-user-updated-you')"
+    :placeholder="$t('interfaces.user.updated-you')"
     icon-right="account_box"
   />
   <v-input
     v-else
     :readonly="true"
-    :placeholder="$t('interfaces-user-updated-unknown')"
+    :placeholder="$t('interfaces.user.updated-unknown')"
     icon-right="account_box"
   />
 </template>

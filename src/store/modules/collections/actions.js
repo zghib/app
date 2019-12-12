@@ -16,7 +16,9 @@ function updateTranslations(collection) {
   if (_.isEmpty(collection.translation) === false) {
     collection.translation.forEach(({ translation, locale }) => {
       i18n.mergeLocaleMessage(locale, {
-        [`collections-${collection.collection}`]: translation
+        collections: {
+          [collection.collection]: translation
+        }
       });
     });
   }
@@ -25,7 +27,11 @@ function updateTranslations(collection) {
     if (_.isEmpty(fieldInfo.translation) === false) {
       fieldInfo.translation.forEach(({ translation, locale }) => {
         i18n.mergeLocaleMessage(locale, {
-          [`fields-${collection.collection}-${fieldKey}`]: translation
+          fields: {
+            [collection.collection]: {
+              [fieldKey]: translation
+            }
+          }
         });
       });
     }
