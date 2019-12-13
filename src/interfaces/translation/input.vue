@@ -11,6 +11,7 @@
 
     <div v-if="loading === false && initialValues !== null" class="body">
       <v-form
+        :key="currentLanguage"
         full-width
         :fields="translatedFields"
         :values="currentLanguageValues"
