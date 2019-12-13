@@ -26,7 +26,6 @@
             <v-icon name="box" size="24" color="input-icon-color" />
           </div>
           <div class="cell type-table-head">{{ $tc("collection", 2) }}</div>
-          <div class="cell note type-table-head">{{ $t("note") }}</div>
         </div>
       </div>
       <div class="body">
@@ -40,8 +39,10 @@
           <div class="cell icon">
             <v-icon :name="collection.icon || 'box'" size="24" color="input-icon-color" />
           </div>
-          <div class="cell name monospace">{{ collection.collection }}</div>
-          <div class="cell note">{{ collection.note }}</div>
+          <div class="cell name">
+            {{ collection.collection }}
+            <span v-if="collection.note" class="note">({{ collection.note }})</span>
+          </div>
           <v-button
             v-if="collection.managed"
             class="managed"
@@ -651,8 +652,7 @@ export default {
 
   .cell {
     flex-shrink: 0;
-    flex-basis: 240px;
-    padding-right: 20px;
+    padding-left: 12px;
     position: relative;
     overflow: hidden;
     max-height: 100%;
@@ -660,19 +660,18 @@ export default {
       flex-basis: 40px;
     }
     &.name {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    &.note {
-      flex-grow: 1;
-      padding-right: 120px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    &.monospace {
       font-family: "Roboto Mono", monospace;
+      max-width: calc(100% - 140px);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .note {
+      // transition: opacity var(--fast) var(--transition);
+      padding-left: 20px;
+      opacity: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -692,14 +691,17 @@ export default {
 
     &:hover {
       background-color: var(--highlight);
+      .note {
+        opacity: 1;
+      }
     }
   }
 
   button {
     border-radius: var(--border-radius);
-    padding: 4px 8px;
+    padding: 4px 8px 3px;
     position: absolute;
-    right: 0;
+    right: 12px;
     min-width: auto;
     height: auto;
     border: 0;
