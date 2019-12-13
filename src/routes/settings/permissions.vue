@@ -439,7 +439,7 @@ export default {
         .then(() => {
           this.$store.dispatch("loadingFinished", id);
           this.removing = false;
-          this.$router.push(`${this.currentProjectKey}/settings/roles`);
+          this.$router.push(`/${this.currentProjectKey}/settings/roles`);
         })
         .catch(error => {
           this.$store.dispatch("loadingFinished", id);
