@@ -9,7 +9,7 @@
   "options": {
     "toolbar": {
       "name": "$t:toolbar",
-      "comment": "$t:toolbar_options",
+      "comment": "$t:toolbar_comment",
       "interface": "checkboxes",
       "default": [
         "bold",
