@@ -16,9 +16,19 @@
     "languages": {
       "name": "$t:languages",
       "interface": "key-value",
+      "default": {
+        "en": "English",
+        "es": "Spanish",
+        "de": "German",
+        "fr": "French",
+        "pt": "Portuguese",
+        "zh": "Chinese",
+        "ru": "Russian"
+      },
       "options": {
         "keyOptions": {
-          "placeholder": "Code (en-US)"
+          "placeholder": "Code (en-US)",
+          "monospace": true
         },
         "valueOptions": {
           "placeholder": "Name (English)"

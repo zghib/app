@@ -584,7 +584,7 @@
       "languages": "Languages",
       "template": "Display Template",
       "template_comment": "Choose how to display values on the item layouts",
-      "template_placeholder": "{{movie.name}} — {{member.first_name}}"
+      "template_placeholder": "{{title}} — {{body}}"
     },
     "user": {
       "user": "User",
