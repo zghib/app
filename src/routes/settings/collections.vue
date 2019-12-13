@@ -662,6 +662,7 @@ export default {
     &.name {
       font-family: "Roboto Mono", monospace;
       max-width: calc(100% - 140px);
+      padding-bottom: 2px; // Optical vertical alignment
       white-space: nowrap;
       overflow: hidden;
     }
