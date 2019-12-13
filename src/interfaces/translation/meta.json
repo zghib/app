@@ -24,6 +24,14 @@
           "placeholder": "Name (English)"
         }
       }
+    },
+    "template": {
+      "name": "$t:template",
+      "comment": "$t:template_comment",
+      "interface": "text-input",
+      "options": {
+        "placeholder": "$t:template_placeholder"
+      }
     }
   }
 }
