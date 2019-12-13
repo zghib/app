@@ -34,6 +34,7 @@
           v-for="collection in items"
           :key="collection.collection"
           class="row"
+          :class="collection.hidden ? 'subdue' : null"
           :to="collection.__link__"
         >
           <div class="cell icon">
@@ -643,6 +644,9 @@ export default {
     border-bottom: 2px solid var(--table-row-border-color);
     box-sizing: content-box;
     height: 48px;
+    &.subdue {
+      color: var(--note-text-color);
+    }
   }
 
   .cell {
