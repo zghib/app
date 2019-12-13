@@ -97,7 +97,7 @@ export default {
     },
 
     prepareItem(item) {
-      return { [this.junctionFieldOfRelated]: item };
+      return { [this.junctionFieldOfRelated]: { [this.relatedPk]: item[this.relatedPk] } };
     },
 
     /**
