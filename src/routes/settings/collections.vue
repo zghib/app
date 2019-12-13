@@ -40,7 +40,7 @@
           <div class="cell icon">
             <v-icon :name="collection.icon || 'box'" size="24" color="input-icon-color" />
           </div>
-          <div class="cell monospace">{{ collection.collection }}</div>
+          <div class="cell name monospace">{{ collection.collection }}</div>
           <div class="cell note">{{ collection.note }}</div>
           <v-button
             v-if="collection.managed"
@@ -651,7 +651,7 @@ export default {
 
   .cell {
     flex-shrink: 0;
-    flex-basis: 200px;
+    flex-basis: 240px;
     padding-right: 20px;
     position: relative;
     overflow: hidden;
@@ -668,6 +668,9 @@ export default {
     }
     &.monospace {
       font-family: "Roboto Mono", monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
