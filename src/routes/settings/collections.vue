@@ -659,6 +659,11 @@ export default {
     &.icon {
       flex-basis: 40px;
     }
+    &.name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
     &.note {
       flex-grow: 1;
       padding-right: 120px;
@@ -668,9 +673,6 @@ export default {
     }
     &.monospace {
       font-family: "Roboto Mono", monospace;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   }
 
