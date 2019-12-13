@@ -1,15 +1,15 @@
 <h1>
-  <img src="https://user-images.githubusercontent.com/522079/43096167-3a1b1118-8e86-11e8-9fb2-7b4e3b1368bc.png" width="40" alt="Directus Logo"/>&nbsp;&nbsp;Directus App</h1>
+  <img src="https://user-images.githubusercontent.com/522079/43096167-3a1b1118-8e86-11e8-9fb2-7b4e3b1368bc.png" width="40" alt="Directus Logo"/>&nbsp;&nbsp;Directus Admin Application</h1>
 
-> Looking for the full Directus suite? Checkout [the `directus/directus` repo](https://github.com/directus/directus)!
+> **IMPORTANT:** You do not install this App directly, it is included in the Directus Suite, located here: [`directus/directus`](https://github.com/directus/directus). This repository is only used to organize the Admin Application's code.
 
 ## Description
 
-The Directus App is a Vue.js powered SPA designed to work with the Directus API to let the user manage all the data in the connected project. It's the GUI of working with the data in a Directus installation. 
+The Directus Admin Application is a Vue.js powered SPA designed to work with the Directus API to let the user manage all the data in the connected project. It's the GUI of working with the data in a Directus installation. 
 
 ## Installation / Usage
 
-**NOTE:** When using Directus, the admin app is included out of the box. You only have to install the app separately if you want to contribute to the project.
+**IMPORTANT:** The Admin App is included in the Directus Suite out-of-the-box. You only have to install this app separately if you want to contribute to the project's development.
 
 1. Clone the repo
 2. Install the depencencies using `npm` / `yarn`
