@@ -9,7 +9,7 @@ The Directus Admin Application is a Vue.js powered SPA designed to work with the
 
 ## Installation / Usage
 
-**IMPORTANT:** Unless you're contributing to the project, you shouldn't build the App from source. Use [`directus/directus`](/directus/directus) instead.
+**IMPORTANT:** Unless contributing to the project, you shouldn't build the App from source. Use [`directus/directus`](/directus/directus) instead.
 
 1. Clone the repo
 2. Install the depencencies using `npm` / `yarn`
