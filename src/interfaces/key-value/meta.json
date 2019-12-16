@@ -15,6 +15,7 @@
     "keyType": {
       "name": "$t:key_data_type",
       "interface": "interface-types",
+      "default": "string",
       "options": {
         "interfaceField": "keyInterface"
       }
@@ -22,6 +23,9 @@
     "keyOptions": {
       "name": "$t:key_options",
       "interface": "interface-options",
+      "default": {
+        "placeholder": "Key"
+      },
       "options": {
         "interfaceField": "keyInterface"
       }
@@ -37,6 +41,7 @@
     "valueType": {
       "name": "$t:value_data_type",
       "interface": "interface-types",
+      "default": "string",
       "options": {
         "interfaceField": "valueInterface"
       }
@@ -44,6 +49,9 @@
     "valueOptions": {
       "name": "$t:value_options",
       "interface": "interface-options",
+      "default": {
+        "placeholder": "Value"
+      },
       "options": {
         "interfaceField": "valueInterface"
       }

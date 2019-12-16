@@ -1,40 +1,30 @@
 <template>
-  <div v-if="error || !relation" class="translation error">
-    <p>
-      <v-icon name="warning" />
-      {{ $t("interfaces.translation.translation_not_setup") }}
-    </p>
-  </div>
-  <div v-else-if="!languages || languages.length === 0" class="translation error">
-    <p>
-      <v-icon name="warning" />
-      {{ $t("interfaces.translation.translation_no_languages") }}
-    </p>
-  </div>
-  <div v-else-if="activeLanguage != null" class="translation">
-    <v-simple-select
-      v-model="activeLanguage"
-      class="language-select"
-      :placeholder="$t('interfaces.translation.choose_language')"
-    >
-      <option v-for="language in languages" :key="language.code" :value="language.code">
-        {{ language.name }}
-      </option>
-    </v-simple-select>
+  <v-sheet v-if="relationshipSetup">
+    <v-select
+      v-model="currentLanguage"
+      class="language-picker"
+      :options="options.languages"
+      icon="translate"
+    />
 
     <hr />
 
-    <v-form
-      :key="activeLanguage"
-      ref="form"
-      class="form"
-      :fields="relatedFields"
-      :values="langValue"
-      :collection="relation.collection_many.collection"
-      :new-item="isNew"
-      @stage-value="stageValue"
-    />
-  </div>
+    <div v-if="loading === false && initialValues !== null" class="body">
+      <v-form
+        :key="currentLanguage"
+        full-width
+        :fields="translatedFields"
+        :values="currentLanguageValues"
+        @stage-value="saveLanguage"
+      />
+    </div>
+
+    <v-spinner v-else />
+  </v-sheet>
+
+  <v-notice v-else color="warning" icon="warning">
+    {{ $t("relationship_not_setup") }}
+  </v-notice>
 </template>
 
 <script>
@@ -44,184 +34,140 @@ export default {
   mixins: [mixin],
   data() {
     return {
-      activeLanguage: null,
-      languages: null
+      currentLanguage: Object.keys(this.options.languages)[0],
+      loading: false,
+      initialValues: null,
+      relationalChanges: []
     };
   },
   computed: {
-    error() {
-      if (!this.options.languagesCollection || !this.options.translationLanguageField) return true;
-      return false;
-    },
-    primaryKeyField() {
-      return _.find(this.fields, { primary_key: true }).field;
-    },
-    primaryKey() {
-      return this.values[this.primaryKeyField];
-    },
-    relatedFields() {
-      if (!this.relation) return null;
-      return this.relation.collection_many.fields;
-    },
-    languageFields() {
-      if (!this.options.languagesCollection) return null;
-      return this.$store.state.collections[this.options.languagesCollection].fields;
-    },
-    langValue() {
-      if (!this.languages || !this.activeLanguage) return {};
-      if (!this.value) return {};
+    translatedFields() {
+      if (this.relationshipSetup === false) {
+        return;
+      }
 
-      return this.valuesByLang[this.activeLanguage] || {};
-    },
-    isNew() {
-      return this.valuesByLang[this.activeLanguage] !== undefined;
-    },
-    valuesByLang() {
-      if (!this.value) return {};
+      return _.mapValues(this.relation.collection_many.fields, field => {
+        field = _.clone(field); // remove vue reactivity
 
-      let firstKey = this.options.translationLanguageField;
-      let secondKey = this.options.languagesPrimaryKeyField;
-      return _(this.value)
-        .map(v => {
-          v[firstKey] = v[firstKey][secondKey] || v[firstKey];
-          return v;
-        })
-        .keyBy(this.options.translationLanguageField)
-        .value();
+        // Prevent updating the recursive relational key
+        if (field.field === this.relation.field_many.field) {
+          field.readonly = true;
+        }
+
+        return field;
+      });
     },
-    fieldManyName() {
-      return this.relation.field_many.field;
+    defaults() {
+      return _.mapValues(_.clone(this.translatedFields), f => f.default_value);
+    },
+    existing() {
+      return _.find(this.initialValues, { [this.options.languageField]: this.currentLanguage });
+    },
+    currentLanguageValues() {
+      const existingChanges = _.find(this.relationalChanges, {
+        [this.options.languageField]: this.currentLanguage
+      });
+
+      return _.merge({}, this.existing || this.defaults, existingChanges);
+    },
+    relationshipSetup() {
+      return !!this.relation?.collection_many;
+    },
+    currentPrimaryKey() {
+      const { field } = _.find(this.fields, { primary_key: true });
+      return this.values[field];
+    }
+  },
+  watch: {
+    relationalChanges: {
+      deep: true,
+      handler(value) {
+        if (value) {
+          this.$emit("input", value);
+        }
+      }
     }
   },
   created() {
-    this.fetchLanguages();
+    this.fetchInitial();
   },
   methods: {
-    fetchLanguages() {
-      if (!this.options.languagesCollection || !this.options.translationLanguageField) return null;
-      this.$api
-        .getItems(this.options.languagesCollection, { limit: -1 })
-        .then(res => res.data)
-        .then(languages => {
-          if (languages.length === 0) return;
-
-          const primaryKeyField = this.options.languagesPrimaryKeyField;
-          const nameField = this.options.languagesNameField;
-
-          this.languages = languages.map(language => {
-            return {
-              code: language[primaryKeyField],
-              name: language[nameField]
-            };
-          });
-          /*
-            When no default translation language is selected,display the placeholder and
-            when updating item if translation is added, display it otherwise display
-            the placeholder.
-            Fix 2099
-          */
-          if (this.values.translation == null) {
-            this.activeLanguage = this.options.defaultLanguage ? this.options.defaultLanguage : 0;
-          } else {
-            this.activeLanguage =
-              languages[0][
-                _.find(this.languageFields, {
-                  primary_key: true
-                }).field
-              ];
-          }
-        });
-    },
-    stageValue({ field, value }) {
-      let newValue;
-
-      if (!this.valuesByLang[this.activeLanguage]) {
-        newValue = this.newItem
-          ? [
-              ...(this.value || []),
-              {
-                [this.options.translationLanguageField]: this.activeLanguage,
-                [field]: value
-              }
-            ]
-          : [
-              ...(this.value || []),
-              {
-                [this.relation.field_many.field]: this.primaryKey,
-                [this.options.translationLanguageField]: this.activeLanguage,
-                [field]: value
-              }
-            ];
-      } else {
-        newValue = this.value.map(translation => {
-          let language = translation[this.options.translationLanguageField];
-          if (
-            language == this.activeLanguage ||
-            language[this.options.languagesPrimaryKeyField] == this.activeLanguage
-          ) {
-            return {
-              ...translation,
-              [field]: value
-            };
-          }
-
-          return translation;
-        });
-      }
-
-      newValue = newValue.map(values => {
-        const valuesCopy = Object.assign({}, values);
-        delete valuesCopy[this.fieldManyName];
-        return valuesCopy;
+    saveLanguage({ field, value }) {
+      const existingChanges = _.find(this.relationalChanges, {
+        [this.options.languageField]: this.currentLanguage
       });
 
-      return this.$emit("input", newValue);
+      if (existingChanges) {
+        this.relationalChanges = this.relationalChanges.map(update => {
+          if (update[this.options.languageField] === this.currentLanguage) {
+            return _.merge({}, update, { [field]: value });
+          }
+
+          return update;
+        });
+      } else {
+        const update = {
+          [field]: value,
+          [this.options.languageField]: this.currentLanguage
+        };
+
+        if (this.existing) {
+          const primaryKeyField = _.find(this.translatedFields, { primary_key: true }).field;
+          const relatedPrimaryKey = this.existing[primaryKeyField];
+          update[primaryKeyField] = relatedPrimaryKey;
+        }
+
+        this.relationalChanges = [...this.relationalChanges, update];
+      }
+    },
+    async fetchInitial() {
+      if (this.relationshipSetup === false) {
+        return;
+      }
+
+      if (this.newItem) {
+        this.initialValues = [];
+        return;
+      }
+
+      this.loading = true;
+      const { collection } = this.relation.collection_many;
+      const { field } = this.relation.field_many;
+
+      const { data } = await this.$api.getItems(collection, {
+        filter: {
+          [field]: {
+            eq: this.currentPrimaryKey
+          }
+        }
+      });
+
+      this.initialValues = data;
+      this.loading = false;
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.translation {
-  width: 100%;
-  padding: var(--page-padding);
-  border: var(--input-border-width) solid var(--input-border-color);
-  border-radius: var(--border-radius);
-
-  &.disabled {
-    position: relative;
-
-    .language-select,
-    hr,
-    .form {
-      user-select: none;
-      pointer-events: none;
-      opacity: 0.2;
-    }
-
-    p {
-      top: 0;
-      left: 0;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+.language-picker {
+  margin-bottom: 24px;
 }
 
 hr {
-  margin: 20px 0;
-  border: 0;
-  border-bottom: 1px dashed var(--blue-grey-200);
+  border: none;
+  border-bottom: 2px solid var(--input-border-color);
+  border-radius: 1px;
+  margin-bottom: 24px;
 }
 
-.form {
-  grid-template-columns:
-    [start] minmax(0, var(--form-column-width)) [half] minmax(0, var(--form-column-width))
-    [full];
+.body {
+  --form-vertical-gap: 24px;
+  --form-horizontal-gap: 12px;
+  --type-label-size: 15px;
+  --input-height: 44px;
+  --input-font-size: 14px;
+  --input-label-margin: 4px;
+  --input-background-color-alt: var(--input-background-color);
 }
 </style>

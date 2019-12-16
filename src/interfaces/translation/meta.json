@@ -5,46 +5,42 @@
   "relation": "o2m",
   "icon": "translate",
   "options": {
-    "languagesCollection": {
-      "name": "$t:languages_collection",
-      "comment": "$t:languages_collection_comment",
-      "interface": "collections",
-      "required": true
-    },
-    "languagesPrimaryKeyField": {
-      "name": "$t:languages_primary",
-      "comment": "$t:languages_primary_comment",
+    "languageField": {
+      "name": "$t:language_field",
+      "comment": "$t:language_field_comment",
       "interface": "text-input",
-      "required": true,
       "options": {
-        "placeholder": "code"
+        "monospace": true
       }
     },
-    "languagesNameField": {
-      "name": "$t:languages_name",
-      "comment": "$t:languages_name_comment",
-      "interface": "text-input",
-      "required": true,
+    "languages": {
+      "name": "$t:languages",
+      "interface": "key-value",
+      "default": {
+        "en": "English",
+        "es": "Spanish",
+        "de": "German",
+        "fr": "French",
+        "pt": "Portuguese",
+        "zh": "Chinese",
+        "ru": "Russian"
+      },
       "options": {
-        "placeholder": "name"
+        "keyOptions": {
+          "placeholder": "Code (en-US)",
+          "monospace": true
+        },
+        "valueOptions": {
+          "placeholder": "Name (English)"
+        }
       }
     },
-    "translationLanguageField": {
-      "name": "$t:translation_language",
-      "comment": "$t:translation_language_comment",
+    "template": {
+      "name": "$t:template",
+      "comment": "$t:template_comment",
       "interface": "text-input",
-      "required": true,
       "options": {
-        "placeholder": "language_code"
-      }
-    },
-    "defaultLanguage": {
-      "name": "$t:default_language",
-      "comment": "$t:default_language_comment",
-      "interface": "text-input",
-      "required": true,
-      "options": {
-        "placeholder": "nl-NL"
+        "placeholder": "$t:template_placeholder"
       }
     }
   }
