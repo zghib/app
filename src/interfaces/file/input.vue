@@ -163,7 +163,9 @@ export default {
     },
     viewQuery() {
       const viewQuery = this.options.viewQuery;
+
       return {
+        sort: "-id",
         ...viewQuery,
         ...this.viewQueryOverride
       };
