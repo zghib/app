@@ -40,7 +40,7 @@
       "comment": "$t:template_comment",
       "interface": "text-input",
       "options": {
-        "placeholder": "$t:template_placeholder"
+        "placeholder": "{{title}} — {{summary}}"
       }
     }
   }
