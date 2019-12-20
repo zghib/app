@@ -12,11 +12,11 @@
       "value": "Wert",
       "flight": "Flight",
       "cruise": "Cruise",
-      "run": "Run",
+      "run": "Ausführen",
       "bus": "Bus",
-      "bike": "Bike",
-      "train": "Train",
-      "car": "Car",
+      "bike": "Fahrrad",
+      "train": "Zug",
+      "car": "Auto",
       "other": "Andere"
     },
     "calendar": {
@@ -25,7 +25,7 @@
       "min_comment": "Minimum date that can be chosen by the user",
       "max": "Maximum Date",
       "max_comment": "Maximum date that can be chosen by the user",
-      "formatting": "Date Format",
+      "formatting": "Datumsformat",
       "formatting_comment": "If left blank, a relative date will be used"
     },
     "checkboxes": {
@@ -63,9 +63,9 @@
       "template_comment": "Provide a template the user can use to get started with",
       "language": "Language",
       "language_comment": "Set the programming language to use",
-      "lineNumber": "Line Number",
-      "lineNumber_comment": "Show line numbers",
-      "loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
+      "lineNumber": "Zeilennummer",
+      "lineNumber_comment": "Zeilennummern anzeigen",
+      "loc": "Keine Zeilen von {lang} | Eine Zeile von {lang} | {count} Zeilen von {lang}",
       "fill_template": "Fill with Template"
     },
     "collections": {
@@ -95,7 +95,7 @@
       "min_comment": "Minimum date that can be chosen by the user",
       "max": "Maximum date",
       "max_comment": "Maximum date that can be chosen by the user",
-      "localized": "Localized",
+      "localized": "Lokalisiert",
       "localized_comment": "Show the date localized in the output",
       "relative": "Show relative date",
       "relative_comment": "Show the date relatively (eg 2 days ago)",
@@ -110,7 +110,7 @@
       "min_comment": "Minimum time that can be chosen by the user",
       "max": "Maximum time",
       "max_comment": "Maximum time that can be chosen by the user",
-      "localized": "Localized",
+      "localized": "Lokalisiert",
       "localized_comment": "Show the date localized in the output",
       "relative": "Show relative time",
       "relative_comment": "Show the time relatively (eg 50 minutes ago)",
@@ -151,8 +151,8 @@
       "desc-comment": "Add here a description",
       "hr-name": "HR",
       "hr-comment": "Display a horizontal rule?",
-      "margin-name": "Extra Margin",
-      "margin-comment": "Add extra margin above interface"
+      "margin-name": "Zusätzlicher Abstand",
+      "margin-comment": "Zusätzlicher Abstand oberhalb der Benutzeroberfläche hinzufügen"
     },
     "dropdown": {
       "dropdown": "Dropdown",
@@ -163,14 +163,14 @@
       "option": "Option",
       "formatting": "Show display text",
       "formatting_comment": "Render the values as the display values",
-      "placeholder_default": "Choose an option...",
+      "placeholder_default": "Wählen Sie eine Option...",
       "icon": "Symbol",
       "icon_comment": "Choose an optional icon to display on the left of the input",
       "options_invalid": "The JSON options provided for the dropdown are invalid:"
     },
     "file": {
       "file": "Datei",
-      "view_type": "View Type",
+      "view_type": "Ansicht",
       "view_type_comment": "Select in what way you want to view the files",
       "view_options": "View Options",
       "view_options_comment": "Set the view options to use for the files",
@@ -228,10 +228,10 @@
       "width": "Size",
       "width_comment": "Set what width to use for the input",
       "auto": "Automatic",
-      "small": "Small",
-      "medium": "Medium",
-      "large": "Large",
-      "secured": "Value Secured"
+      "small": "Klein",
+      "medium": "Mittel",
+      "large": "Groß",
+      "secured": "Verschlüsselt"
     },
     "icon": {
       "icon": "Symbol",
@@ -367,7 +367,7 @@
       "numeric": "Numerisch",
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
-      "localized": "Localized",
+      "localized": "Lokalisiert",
       "localized_comment": "Localize the output to the user's locale",
       "icon_left": "Icon Left",
       "icon_left_comment": "Choose an optional icon to display on the left of the input",
@@ -529,9 +529,9 @@
       "monospace": "Monospace",
       "monospace_comment": "Use a monospace font",
       "auto": "Automatic",
-      "small": "Small",
-      "medium": "Medium",
-      "large": "Large"
+      "small": "Klein",
+      "medium": "Mittel",
+      "large": "Groß"
     },
     "textarea": {
       "textarea": "Text-Area",
@@ -577,19 +577,12 @@
     },
     "translation": {
       "translation": "Übersetzung",
-      "languages_collection": "Languages Collection",
-      "languages_collection_comment": "Collection that stores the language options",
-      "languages_primary": "Languages Primary Key Field",
-      "languages_primary_comment": "Field that holds the language primary key on the languages collection",
-      "languages_name": "Languages Name Field",
-      "languages_name_comment": "Field that holds the language's name on the languages collection",
-      "translation_language": "Translation Language Field",
-      "translation_language_comment": "The field that stores the language primary key in the related translations collection",
-      "translation_not_setup": "Interface not configured correctly",
-      "translation_no_languages": "There are no languages in the languages collection",
-      "default_language": "Default Language",
-      "default_language_comment": "Add the primary key of the item in the languages collection to use as the default language",
-      "choose_language": "Choose Language..."
+      "language_field": "Language Field",
+      "language_field_comment": "The field that holds the language code in the related collection",
+      "languages": "Languages",
+      "template": "Display Template",
+      "template_comment": "Choose how to display values on the item layouts",
+      "template_placeholder": "{{title}} — {{body}}"
     },
     "user": {
       "user": "User",
