@@ -8,7 +8,7 @@
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
       "date": "Date",
-      "datetime": "Datetime",
+      "datetime": "日期时间",
       "time": "Time",
       "title": "Title",
       "color": "Color"
