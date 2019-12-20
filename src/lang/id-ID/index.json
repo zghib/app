@@ -266,7 +266,7 @@
     "string": "Any text, numbers, spaces, or symbols; limited by its number of characters",
     "time": "Waktu, mis: 14:09:22",
     "translation": "Hanya pada antarmuka terjemahan, one-to-many yang menyimpan konten multibahasa",
-    "user_created": "Bidang sistem untuk melacak pengguna yang membuat suatu item, digunakan dalam revisi",
+    "owner": "Bidang sistem untuk melacak pengguna yang membuat suatu item, digunakan dalam revisi",
     "user_updated": "Bidang sistem untuk melacak pengguna yang memperbarui suatu item, digunakan dalam revisi",
     "uuid": "Pengidentifikasi Unik Universal (UUID)"
   },

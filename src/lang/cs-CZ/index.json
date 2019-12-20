@@ -266,7 +266,7 @@
     "string": "Jakýkoli text, čísla, mezery nebo symboly, omezené délkou (počtem znaků)",
     "time": "Čas, např.: 14:09:22",
     "translation": "Specifické pro překladové rozhraní, relace 1:N ukládá vícejazyčný obsah",
-    "user_created": "Systémové pole pro sledování uživatele, který vytvořil položku, používáno pro revize",
+    "owner": "Systémové pole pro sledování uživatele, který vytvořil položku, používáno pro revize",
     "user_updated": "Systémové pole pro sledování uživatele, který aktualizoval položku, používáno pro revize",
     "uuid": "Univerzálně jedinečný identifikátor"
   },

@@ -593,8 +593,8 @@
       "placeholder": "Placeholder",
       "placeholder_comment": "Add a placeholder"
     },
-    "user-created": {
-      "user_created": "User Created",
+    "owner": {
+      "owner": "User Created",
       "avatar": "Avatar",
       "name": "Namn",
       "template": "Mall",

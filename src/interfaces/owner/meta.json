@@ -1,7 +1,7 @@
 {
-  "name": "$t:user_created",
+  "name": "$t:owner",
   "version": "1.0.0",
-  "types": ["user_created"],
+  "types": ["owner"],
   "icon": "account_circle",
   "relation": "user",
   "recommended": {

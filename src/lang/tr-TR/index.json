@@ -266,7 +266,7 @@
     "string": "Any text, numbers, spaces, or symbols; limited by its number of characters",
     "time": "Zaman, örn: 14:09:22",
     "translation": "Specific to translation interfaces, this o2m stores multi-lingual content",
-    "user_created": "Revizyonlar tarafından kullanılan, ögeyi yaratan kullanıcı bilgisini tutan alan.",
+    "owner": "Revizyonlar tarafından kullanılan, ögeyi yaratan kullanıcı bilgisini tutan alan.",
     "user_updated": "Revizyonlar tarafından kullanılan, ögeyi son güncelleyen kullanıcı bilgisini tutan alan.",
     "uuid": "Evrensel Benzersiz Tanımlayıcı"
   },

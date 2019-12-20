@@ -367,10 +367,10 @@ export default {
       }
       if (this.createdBy) {
         fieldsToAdd.push({
-          type: "user_created",
+          type: "owner",
           datatype: "INT",
           field: "created_by",
-          interface: "user-created",
+          interface: "owner",
           options: {
             template: "{{first_name}} {{last_name}}",
             display: "both"
@@ -390,9 +390,9 @@ export default {
           default_value: null,
           note: null,
           signed: false,
-          type: "user_created",
+          type: "owner",
           sort: 0,
-          interface: "user-created",
+          interface: "owner",
           hidden_detail: true,
           hidden_browse: true,
           required: false,

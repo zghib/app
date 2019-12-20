@@ -1,5 +1,5 @@
 <template>
-  <div v-if="userInfo" class="user-created">
+  <div v-if="userInfo" class="owner">
     <v-avatar
       v-if="options.display !== 'name'"
       v-tooltip="options.display === 'avatar' ? displayValue : null"
@@ -8,9 +8,7 @@
       :src="src"
       :alt="displayValue"
     ></v-avatar>
-    <span v-if="options.display !== 'avatar'" class="name">
-      {{ displayValue }}
-    </span>
+    <span v-if="options.display !== 'avatar'" class="name">{{ displayValue }}</span>
     <v-icon name="account_box" />
   </div>
   <v-input
@@ -56,7 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.user-created {
+.owner {
   position: relative;
   border: var(--input-border-width) solid var(--input-border-color);
   border-radius: var(--border-radius);

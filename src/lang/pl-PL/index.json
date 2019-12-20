@@ -266,7 +266,7 @@
     "string": "Jakikolwiek tekst, liczba, spacja, lub symbol - zdefiniowany i ograniczany przez swoją długość (liczbę znaków)",
     "time": "Czas, np.: 14:09:22",
     "translation": "Specific to translation interfaces, this o2m stores multi-lingual content",
-    "user_created": "Pole systemowe do przetrzymywania informacji o autorze elementu, wykorzystywane przez rewizje",
+    "owner": "Pole systemowe do przetrzymywania informacji o autorze elementu, wykorzystywane przez rewizje",
     "user_updated": "Pole systemowe do przetrzymywania informacji o użytkowniku, który aktualizował element, wykorzystywane przez rewizje",
     "uuid": "Universally Unique Identifier"
   },

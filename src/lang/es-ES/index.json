@@ -266,7 +266,7 @@
     "string": "Cualquier texto, numero, espacio o símbolo; limitado por su número de caracteres",
     "time": "Hora, por ejemplo: 14:09:22",
     "translation": "Específico de las interfaces de traducción, este o2m almacena contenido multi-lenguage",
-    "user_created": "Campo del sistema que sigue al usuario quien creo la entrada, usado en las revisiones",
+    "owner": "Campo del sistema que sigue al usuario quien creo la entrada, usado en las revisiones",
     "user_updated": "Campo del sistema para seguir al usuario que actualizo la entrada, usado en las revisiones",
     "uuid": "Un identificador universalmente único"
   },
