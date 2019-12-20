@@ -594,7 +594,7 @@
       "placeholder_comment": "Add a placeholder"
     },
     "owner": {
-      "owner": "User Created",
+      "owner": "Owner",
       "avatar": "Avatar",
       "name": "Име",
       "template": "Template",
