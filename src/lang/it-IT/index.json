@@ -24,7 +24,7 @@
   "batch_delete": "Eliminare batch",
   "batch_delete_confirm": "Nessun elemento è stato selezionato | Sei sicuro di voler eliminare questo articolo? Questa azione non può essere annullata. | Sei sicuro di voler eliminare questi {count} elementi? Questa azione non può essere annullata.",
   "batch_edit": "Elementi di modifica batch: {collection}",
-  "batch_edit_field": "Batch Edit Field",
+  "batch_edit_field": "Modifica campo batch",
   "between": "Fra",
   "bookmark_global": "Globale: Salva per tutti gli utenti",
   "bookmark_personal": "Personale: Salva per me",
@@ -79,7 +79,7 @@
       "uploaded_on": "Caricato il",
       "uploaded_by": "Caricato da",
       "width": "Larghezza",
-      "height": "Height",
+      "height": "Altezza",
       "duration": "Durata",
       "filesize": "Dimensione file",
       "metadata": "Metadati"
@@ -132,7 +132,7 @@
   "datatype": "Tipo di dati",
   "datatypes": {
     "mysql": {
-      "BIGINT": "An integer. When signed (allows negative) length is -9e18 to 9e18, otherwise the max is 18e18.",
+      "BIGINT": "Un numero intero. Quando l'intero ha un segno (il negativo è consentito) la lunghezza è -9e18 a 9e18, altrimenti il massimo è 18e18.",
       "BOOLEAN": "Vero o falso. Viene salvato come 1 o 0 rispettivamente.",
       "CHAR": "Una stringa non binaria a lunghezza fissa riempita a destra di spazi. La lunghezza può essere compresa tra 0 e 255 caratteri.",
       "DATE": "Una data. Consente `1000-01-01` a` 9999-12-31`.",
@@ -500,6 +500,7 @@
   "text": "Testo",
   "translation": "Traduzione",
   "translated_field_name": "Nome del campo tradotto...",
+  "not_translated_in_language": "Not Translated in {language}",
   "this_item_is_not_available": "Questo elemento non è disponibile.",
   "this_collection": "Questa collezione",
   "to": "A",
