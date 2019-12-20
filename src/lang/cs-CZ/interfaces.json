@@ -1,18 +1,18 @@
 {
   "interfaces": {
     "2fa-secret": {
-      "2fa-secret": "2FA Secret"
+      "2fa-secret": "Tajný 2FA"
     },
     "button-group": {
-      "button_group": "Button Group",
-      "choices": "Choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-      "theme": "Interface Theme",
-      "theme_comment": "Set the UI of interface if supported",
+      "button_group": "Skupina tlačítek",
+      "choices": "Volby",
+      "choices_comment": "Zadejte hodnoty JSON s uloženou hodnotou a zobrazeným textem.",
+      "theme": "Šablona rozhraní",
+      "theme_comment": "Nastavení uživatelského rozhraní pokud je podporováno",
       "value": "Hodnota",
       "flight": "Flight",
       "cruise": "Cruise",
-      "run": "Run",
+      "run": "Spustit",
       "bus": "Bus",
       "bike": "Bike",
       "train": "Train",
@@ -22,16 +22,16 @@
     "calendar": {
       "calendar": "Calendar",
       "min": "Minimum Date",
-      "min_comment": "Minimum date that can be chosen by the user",
-      "max": "Maximum Date",
-      "max_comment": "Maximum date that can be chosen by the user",
-      "formatting": "Date Format",
+      "min_comment": "Minimální datum, které může uživatel vybrat",
+      "max": "Maximální datum",
+      "max_comment": "Maximální datum, které může uživatel vybrat",
+      "formatting": "Formát data",
       "formatting_comment": "If left blank, a relative date will be used"
     },
     "checkboxes": {
       "checkboxes": "Checkboxes",
-      "choices": "Choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+      "choices": "Volby",
+      "choices_comment": "Zadejte hodnoty JSON s uloženou hodnotou a zobrazeným textem.",
       "wrap": "Wrap with Delimiter",
       "wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",
       "formatting": "Show display text",
@@ -61,11 +61,11 @@
       "code": "Code",
       "template": "Template",
       "template_comment": "Provide a template the user can use to get started with",
-      "language": "Language",
-      "language_comment": "Set the programming language to use",
-      "lineNumber": "Line Number",
+      "language": "Jazyk",
+      "language_comment": "Nastavte programovací jazyk, který chcete použít",
+      "lineNumber": "Číslo řádku",
       "lineNumber_comment": "Show line numbers",
-      "loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
+      "loc": "Žádné řádky {lang} | Jeden řádek z {lang} | {count} řádků z {lang}",
       "fill_template": "Fill with Template"
     },
     "collections": {
@@ -74,27 +74,27 @@
       "placeholder_comment": "Static text that shown before a value is selected",
       "placeholder_default": "Choose a collection...",
       "option": "Option",
-      "include_system": "Include System",
-      "include_system_comment": "Include system collections in the options"
+      "include_system": "Zahrnout systém",
+      "include_system_comment": "Zahrnout do možností systémové kolekce"
     },
     "color": {
-      "color": "Color",
-      "format": "Output Format",
-      "format_comment": "In what data format to save the value",
-      "palette": "Palette",
+      "color": "Barva",
+      "format": "Výstupní formát",
+      "format_comment": "V jakém datovém formátu chcete uložit hodnotu",
+      "palette": "Paleta",
       "palette_comment": "Add color options as hex values",
-      "palette_only": "Palette Only",
+      "palette_only": "Pouze paleta",
       "palette_only_comment": "Only allow the user to pick from the palette"
     },
     "color-palette": {
-      "color-picker": "Color Picker"
+      "color-picker": "Výběr barvy"
     },
     "date": {
-      "date": "Date",
+      "date": "Datum",
       "min": "Minimum date",
-      "min_comment": "Minimum date that can be chosen by the user",
+      "min_comment": "Minimální datum, které může uživatel vybrat",
       "max": "Maximum date",
-      "max_comment": "Maximum date that can be chosen by the user",
+      "max_comment": "Maximální datum, které může uživatel vybrat",
       "localized": "Localized",
       "localized_comment": "Show the date localized in the output",
       "relative": "Show relative date",
@@ -156,8 +156,8 @@
     },
     "dropdown": {
       "dropdown": "Dropdown",
-      "choices": "Choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+      "choices": "Volby",
+      "choices_comment": "Zadejte hodnoty JSON s uloženou hodnotou a zobrazeným textem.",
       "placeholder": "Placeholder",
       "placeholder_comment": "Static text that shown before a value is selected",
       "option": "Option",
@@ -271,7 +271,7 @@
       "value_options": "Key Interface Options"
     },
     "language": {
-      "input": "Language",
+      "input": "Jazyk",
       "select_language": "Select a language...",
       "limit": "Limit to Directus Availability",
       "limit_comment": "Only show languages that are available as translations in Directus"
@@ -313,9 +313,9 @@
     "map": {
       "map": "Map",
       "choices": "choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-      "theme": "Interface Theme",
-      "theme_comment": "Set the UI of interface if supported",
+      "choices_comment": "Zadejte hodnoty JSON s uloženou hodnotou a zobrazeným textem.",
+      "theme": "Šablona rozhraní",
+      "theme_comment": "Nastavení uživatelského rozhraní pokud je podporováno",
       "value": "Hodnota",
       "map_lat": "Default Latitude",
       "map_lat_comment": "Map will be centered at this latitude",
@@ -351,7 +351,7 @@
     },
     "multiselect": {
       "multiselect": "Multi-Select",
-      "choices": "Choices",
+      "choices": "Volby",
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
@@ -422,8 +422,8 @@
     },
     "radio-buttons": {
       "radio": "Radio Buttons",
-      "choices": "Choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+      "choices": "Volby",
+      "choices_comment": "Zadejte hodnoty JSON s uloženou hodnotou a zobrazeným textem.",
       "option": "Option",
       "format": "Browse Format",
       "format_comment": "The output format on the Browse Items page"
@@ -577,19 +577,12 @@
     },
     "translation": {
       "translation": "Překlad",
-      "languages_collection": "Languages Collection",
-      "languages_collection_comment": "Collection that stores the language options",
-      "languages_primary": "Languages Primary Key Field",
-      "languages_primary_comment": "Field that holds the language primary key on the languages collection",
-      "languages_name": "Languages Name Field",
-      "languages_name_comment": "Field that holds the language's name on the languages collection",
-      "translation_language": "Translation Language Field",
-      "translation_language_comment": "The field that stores the language primary key in the related translations collection",
-      "translation_not_setup": "Interface not configured correctly",
-      "translation_no_languages": "There are no languages in the languages collection",
-      "default_language": "Default Language",
-      "default_language_comment": "Add the primary key of the item in the languages collection to use as the default language",
-      "choose_language": "Choose Language..."
+      "language_field": "Language Field",
+      "language_field_comment": "The field that holds the language code in the related collection",
+      "languages": "Languages",
+      "template": "Display Template",
+      "template_comment": "Choose how to display values on the item layouts",
+      "template_placeholder": "{{title}} — {{body}}"
     },
     "user": {
       "user": "User",

@@ -7,11 +7,11 @@
       "events": "Activiteiten",
       "moreEvents": "en {amount} meer...",
       "noEvents": "nog geen activiteiten!",
-      "date": "Datum",
-      "datetime": "Datum/tijd",
-      "time": "Tijd",
+      "date": "Date",
+      "datetime": "Datetime",
+      "time": "Time",
       "title": "Titel",
-      "color": "Kleur"
+      "color": "Color"
     },
     "cards": {
       "cards": "Kaarten",

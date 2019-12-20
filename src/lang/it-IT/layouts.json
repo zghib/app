@@ -7,11 +7,11 @@
       "events": "Eventi",
       "moreEvents": "e altri {amount}...",
       "noEvents": "nessun evento!",
-      "date": "Date",
-      "datetime": "Datetime",
-      "time": "Time",
+      "date": "Data",
+      "datetime": "Data e ora",
+      "time": "Ora",
       "title": "Titolo",
-      "color": "Color"
+      "color": "Colore"
     },
     "cards": {
       "cards": "Schede",
@@ -32,10 +32,10 @@
       "events": "Eventi",
       "moreEvents": "e altri {amount}...",
       "noEvents": "nessun evento!",
-      "date": "Date",
+      "date": "Data",
       "content": "Contenuto",
       "title": "Titolo",
-      "color": "Color"
+      "color": "Colore"
     }
   }
 }

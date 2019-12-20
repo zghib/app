@@ -485,10 +485,10 @@
       "status_mapping_comment": "Enter JSON status options",
       "simple_badge": "Simple Badge",
       "simple_badge_comment": "Displays a colored dot on the item listing page.",
-      "published": "Published",
+      "published": "Yayınlandı",
       "under_review": "Under Review",
-      "draft": "Draft",
-      "deleted": "Deleted"
+      "draft": "Taslak",
+      "deleted": "Silindi"
     },
     "tags": {
       "tags": "Tags",
@@ -576,20 +576,13 @@
       "color-active-comment": "Choose the active color"
     },
     "translation": {
-      "translation": "Translation",
-      "languages_collection": "Languages Collection",
-      "languages_collection_comment": "Collection that stores the language options",
-      "languages_primary": "Languages Primary Key Field",
-      "languages_primary_comment": "Field that holds the language primary key on the languages collection",
-      "languages_name": "Languages Name Field",
-      "languages_name_comment": "Field that holds the language's name on the languages collection",
-      "translation_language": "Translation Language Field",
-      "translation_language_comment": "The field that stores the language primary key in the related translations collection",
-      "translation_not_setup": "Interface not configured correctly",
-      "translation_no_languages": "There are no languages in the languages collection",
-      "default_language": "Default Language",
-      "default_language_comment": "Add the primary key of the item in the languages collection to use as the default language",
-      "choose_language": "Choose Language..."
+      "translation": "Çeviri",
+      "language_field": "Language Field",
+      "language_field_comment": "The field that holds the language code in the related collection",
+      "languages": "Languages",
+      "template": "Display Template",
+      "template_comment": "Choose how to display values on the item layouts",
+      "template_placeholder": "{{title}} — {{body}}"
     },
     "user": {
       "user": "User",
@@ -612,7 +605,7 @@
       "unknown": "Unknown"
     },
     "user-roles": {
-      "user-roles": "User Role",
+      "user-roles": "Kullanıcı Rolü",
       "choose_role": "Choose a role...",
       "relational": "İlişkisel",
       "relational_comment": "Save as a relational record",

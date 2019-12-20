@@ -68,7 +68,7 @@
       "comment": "Commentaire"
     },
     "directus_files": {
-      "title": "Title",
+      "title": "Titre",
       "tags": "Tags",
       "location": "Location",
       "description": "Description",
@@ -93,7 +93,7 @@
       "password": "Mot de passe",
       "role": "Role",
       "company": "Company",
-      "title": "Title",
+      "title": "Titre",
       "timezone": "Timezone",
       "locale": "Locale",
       "avatar": "Avatar",
@@ -500,6 +500,7 @@
   "text": "Texte",
   "translation": "Traduction",
   "translated_field_name": "Nom du champ traduit...",
+  "not_translated_in_language": "Not Translated in {language}",
   "this_item_is_not_available": "Cet élément n'est pas disponible.",
   "this_collection": "Cette collection",
   "to": "À",

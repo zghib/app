@@ -500,6 +500,7 @@
   "text": "Text",
   "translation": "Translation",
   "translated_field_name": "Translated field name...",
+  "not_translated_in_language": "Not Translated in {language}",
   "this_item_is_not_available": "This item is not available.",
   "this_collection": "Aquesta col·lecció",
   "to": "Per a",

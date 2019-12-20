@@ -5,7 +5,7 @@
     },
     "button-group": {
       "button_group": "Button Group",
-      "choices": "Choices",
+      "choices": "Alternativ",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "theme": "Interface Theme",
       "theme_comment": "Set the UI of interface if supported",
@@ -17,28 +17,28 @@
       "bike": "Bike",
       "train": "Train",
       "car": "Car",
-      "other": "Other"
+      "other": "Övrigt"
     },
     "calendar": {
-      "calendar": "Calendar",
+      "calendar": "Kalender",
       "min": "Minimum Date",
       "min_comment": "Minimum date that can be chosen by the user",
       "max": "Maximum Date",
       "max_comment": "Maximum date that can be chosen by the user",
-      "formatting": "Date Format",
+      "formatting": "Datumformat",
       "formatting_comment": "If left blank, a relative date will be used"
     },
     "checkboxes": {
-      "checkboxes": "Checkboxes",
-      "choices": "Choices",
+      "checkboxes": "Kryssrutor",
+      "choices": "Alternativ",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "wrap": "Wrap with Delimiter",
       "wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",
       "formatting": "Show display text",
       "formatting_comment": "Render the values as the display values",
-      "display_text": "Display Text",
+      "display_text": "Visa text",
       "value": "Värde",
-      "option": "Option",
+      "option": "Alternativ",
       "single": "Single Column",
       "single_comment": "Display Checkboxes in single column",
       "draggable": "Draggable Checkboxes",
@@ -58,12 +58,12 @@
       "listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
     },
     "code": {
-      "code": "Code",
-      "template": "Template",
+      "code": "Kod",
+      "template": "Mall",
       "template_comment": "Provide a template the user can use to get started with",
-      "language": "Language",
+      "language": "Språk",
       "language_comment": "Set the programming language to use",
-      "lineNumber": "Line Number",
+      "lineNumber": "Radnummer",
       "lineNumber_comment": "Show line numbers",
       "loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
       "fill_template": "Fill with Template"
@@ -73,7 +73,7 @@
       "placeholder": "Placeholder",
       "placeholder_comment": "Static text that shown before a value is selected",
       "placeholder_default": "Choose a collection...",
-      "option": "Option",
+      "option": "Alternativ",
       "include_system": "Include System",
       "include_system_comment": "Include system collections in the options"
     },
@@ -87,10 +87,10 @@
       "palette_only_comment": "Only allow the user to pick from the palette"
     },
     "color-palette": {
-      "color-picker": "Color Picker"
+      "color-picker": "Färgväljare"
     },
     "date": {
-      "date": "Date",
+      "date": "Datum",
       "min": "Minimum date",
       "min_comment": "Minimum date that can be chosen by the user",
       "max": "Maximum date",
@@ -105,7 +105,7 @@
       "icon_right_comment": "Choose an optional icon to display on the right of the input"
     },
     "datetime": {
-      "datetime": "Datetime",
+      "datetime": "Datum och tid",
       "min": "Minimum time",
       "min_comment": "Minimum time that can be chosen by the user",
       "max": "Maximum time",
@@ -140,13 +140,13 @@
       "unknown": "Unknown"
     },
     "divider": {
-      "divider": "Divider",
+      "divider": "Avdelare",
       "style-name": "Divider style",
       "style-comment": "Change the style of the Divider",
       "weight-name": "Thickness of the line",
       "weight-comment": "Change the thickness of the line",
       "input-name": "Divider text",
-      "input-comment": "Type your text here",
+      "input-comment": "Skriv din text här",
       "desc-name": "Divider description",
       "desc-comment": "Add here a description",
       "hr-name": "HR",
@@ -155,15 +155,15 @@
       "margin-comment": "Add extra margin above interface"
     },
     "dropdown": {
-      "dropdown": "Dropdown",
-      "choices": "Choices",
+      "dropdown": "Rullgardinsmeny",
+      "choices": "Alternativ",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "placeholder": "Placeholder",
       "placeholder_comment": "Static text that shown before a value is selected",
-      "option": "Option",
+      "option": "Alternativ",
       "formatting": "Show display text",
       "formatting_comment": "Render the values as the display values",
-      "placeholder_default": "Choose an option...",
+      "placeholder_default": "Välj ett alternativ...",
       "icon": "Ikon",
       "icon_comment": "Choose an optional icon to display on the left of the input",
       "options_invalid": "The JSON options provided for the dropdown are invalid:"
@@ -254,12 +254,12 @@
       "placeholder": "Placeholder",
       "placeholder_comment": "Static text that shown before a value is selected",
       "placeholder_default": "Choose an interface",
-      "option": "Option",
+      "option": "Alternativ",
       "relational": "Include relational interfaces",
       "include_status": "Include the status interfaces"
     },
     "json": {
-      "template": "Template",
+      "template": "Mall",
       "template_comment": "Provide a template the user can use to get started with"
     },
     "key-value": {
@@ -271,7 +271,7 @@
       "value_options": "Key Interface Options"
     },
     "language": {
-      "input": "Language",
+      "input": "Språk",
       "select_language": "Select a language...",
       "limit": "Limit to Directus Availability",
       "limit_comment": "Only show languages that are available as translations in Directus"
@@ -351,20 +351,20 @@
     },
     "multiselect": {
       "multiselect": "Multi-Select",
-      "choices": "Choices",
+      "choices": "Alternativ",
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
       "size": "Size",
       "size_comment": "Number of options visible before scrolling",
-      "option": "Option",
+      "option": "Alternativ",
       "wrap": "Wrap with Delimiter",
       "wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
       "format": "Browse Format",
       "format_comment": "The output format on the Browse Items page"
     },
     "numeric": {
-      "numeric": "Numeric",
+      "numeric": "Numerisk",
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
       "localized": "Localized",
@@ -415,16 +415,16 @@
       "preview_item": "Preview this item"
     },
     "primary-key": {
-      "primary_key": "Primary Key",
+      "primary_key": "Primärnyckel",
       "immutable": "Can not be changed",
       "monospace": "Monospace",
       "monospace_comment": "Use a monospace font"
     },
     "radio-buttons": {
       "radio": "Radio Buttons",
-      "choices": "Choices",
+      "choices": "Alternativ",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-      "option": "Option",
+      "option": "Alternativ",
       "format": "Browse Format",
       "format_comment": "The output format on the Browse Items page"
     },
@@ -577,25 +577,18 @@
     },
     "translation": {
       "translation": "Translation",
-      "languages_collection": "Languages Collection",
-      "languages_collection_comment": "Collection that stores the language options",
-      "languages_primary": "Languages Primary Key Field",
-      "languages_primary_comment": "Field that holds the language primary key on the languages collection",
-      "languages_name": "Languages Name Field",
-      "languages_name_comment": "Field that holds the language's name on the languages collection",
-      "translation_language": "Translation Language Field",
-      "translation_language_comment": "The field that stores the language primary key in the related translations collection",
-      "translation_not_setup": "Interface not configured correctly",
-      "translation_no_languages": "There are no languages in the languages collection",
-      "default_language": "Default Language",
-      "default_language_comment": "Add the primary key of the item in the languages collection to use as the default language",
-      "choose_language": "Choose Language..."
+      "language_field": "Language Field",
+      "language_field_comment": "The field that holds the language code in the related collection",
+      "languages": "Languages",
+      "template": "Display Template",
+      "template_comment": "Choose how to display values on the item layouts",
+      "template_placeholder": "{{title}} — {{body}}"
     },
     "user": {
       "user": "User",
       "avatar": "Avatar",
-      "name": "Name",
-      "template": "Template",
+      "name": "Namn",
+      "template": "Mall",
       "template_comment": "How to format the users in the dropdown",
       "placeholder": "Placeholder",
       "placeholder_comment": "Add a placeholder"
@@ -603,8 +596,8 @@
     "user-created": {
       "user_created": "User Created",
       "avatar": "Avatar",
-      "name": "Name",
-      "template": "Template",
+      "name": "Namn",
+      "template": "Mall",
       "template_comment": "How to display the user on the item detail page",
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
@@ -621,8 +614,8 @@
     "user-updated": {
       "user_updated": "User Updated",
       "avatar": "Avatar",
-      "name": "Name",
-      "template": "Template",
+      "name": "Namn",
+      "template": "Mall",
       "template_comment": "How to display the user on the item detail page",
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",

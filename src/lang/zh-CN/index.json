@@ -51,7 +51,7 @@
   "collections_and_fields": "集合与字段",
   "collections": {
     "directus_activity": "活动",
-    "directus_files": "文件",
+    "directus_files": "多个文件",
     "directus_users": "用户"
   },
   "fields": {
@@ -500,6 +500,7 @@
   "text": "文字",
   "translation": "翻译",
   "translated_field_name": "已翻译的字段名称...",
+  "not_translated_in_language": "Not Translated in {language}",
   "this_item_is_not_available": "此项目不可用。",
   "this_collection": "此集合",
   "to": "到",

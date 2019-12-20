@@ -500,6 +500,7 @@
   "text": "نص",
   "translation": "الترجمة",
   "translated_field_name": "اسم حقل الترجمة...",
+  "not_translated_in_language": "Not Translated in {language}",
   "this_item_is_not_available": "هذا البند غير متوفر.",
   "this_collection": "هذه المجموعة",
   "to": "إلى",
