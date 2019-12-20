@@ -1,14 +1,14 @@
 {
   "layouts": {
     "calendar": {
-      "calendar": "Calendar",
+      "calendar": "Kalender",
       "fields": "Fält",
       "today": "today",
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
-      "date": "Date",
-      "datetime": "Datetime",
+      "date": "Datum",
+      "datetime": "Datum och tid",
       "time": "Time",
       "title": "Title",
       "color": "Color"
@@ -32,7 +32,7 @@
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
-      "date": "Date",
+      "date": "Datum",
       "content": "Content",
       "title": "Title",
       "color": "Color"
