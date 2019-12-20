@@ -7,11 +7,11 @@
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
-      "date": "Date",
+      "date": "Datum",
       "datetime": "Datetime",
       "time": "Time",
       "title": "Title",
-      "color": "Color"
+      "color": "Barva"
     },
     "cards": {
       "cards": "Cards",
@@ -32,10 +32,10 @@
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
-      "date": "Date",
+      "date": "Datum",
       "content": "Content",
       "title": "Title",
-      "color": "Color"
+      "color": "Barva"
     }
   }
 }
