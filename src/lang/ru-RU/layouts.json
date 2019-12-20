@@ -1,41 +1,41 @@
 {
   "layouts": {
     "calendar": {
-      "calendar": "Calendar",
+      "calendar": "Календарь",
       "fields": "Поля",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
-      "date": "Date",
-      "datetime": "Datetime",
-      "time": "Time",
-      "title": "Title",
-      "color": "Color"
+      "today": "сегодня",
+      "events": "События",
+      "moreEvents": "и еще {amount}...",
+      "noEvents": "событий пока нет!",
+      "date": "Дата",
+      "datetime": "Дата и время",
+      "time": "Время",
+      "title": "Заголовок",
+      "color": "Цвет"
     },
     "cards": {
-      "cards": "Cards",
-      "title": "Title",
-      "subtitle": "Subtitle",
-      "src": "Image Source",
-      "content": "Body Content",
-      "fit": "Fit"
+      "cards": "Карты",
+      "title": "Заголовок",
+      "subtitle": "Субтитры",
+      "src": "Источник изображения",
+      "content": "Содержание тела",
+      "fit": "По размеру"
     },
     "tabular": {
-      "tabular": "Table",
+      "tabular": "Таблица",
       "fields": "Поля"
     },
     "timeline": {
-      "timeline": "Timeline",
+      "timeline": "Хронология",
       "fields": "Поля",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
-      "date": "Date",
-      "content": "Content",
-      "title": "Title",
-      "color": "Color"
+      "today": "сегодня",
+      "events": "События",
+      "moreEvents": "и еще {amount}...",
+      "noEvents": "событий пока нет!",
+      "date": "Дата",
+      "content": "Содержание",
+      "title": "Заголовок",
+      "color": "Цвет"
     }
   }
 }
