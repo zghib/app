@@ -1,7 +1,7 @@
 {
   "name": "$t:slug",
   "version": "1.0.2",
-  "types": ["string"],
+  "types": ["slug"],
   "icon": "link",
   "recommended": {
     "length": 200
