@@ -577,12 +577,12 @@
     },
     "translation": {
       "translation": "Çeviri",
-      "language_field": "Language Field",
-      "language_field_comment": "The field that holds the language code in the related collection",
-      "languages": "Languages",
+      "language_field": "Dil Alanı",
+      "language_field_comment": "İlgili koleksiyonda dil kodunu tutan alan",
+      "languages": "Diller",
       "template": "Display Template",
       "template_comment": "Choose how to display values on the item layouts",
-      "template_placeholder": "{{title}} — {{body}}"
+      "template_placeholder": "{{title}} — {{body}}"
     },
     "user": {
       "user": "User",
