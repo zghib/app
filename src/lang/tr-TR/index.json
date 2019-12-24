@@ -207,7 +207,7 @@
   "equal_to": "Eşittir",
   "error_unknown": "Bilinmeyen Hata. Daha sonra tekrar deneyin.",
   "errors": {
-    "11": "Can Not Reach Database",
+    "11": "Veritabanına Ulaşılamıyor",
     "100": "Incorrect Email/Password",
     "101": "Logged-out from Inactivity",
     "102": "Logged-out from Inactivity",
