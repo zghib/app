@@ -95,7 +95,7 @@
       "company": "Şirket",
       "title": "Ünvan",
       "timezone": "Zaman Dilimi",
-      "locale": "Locale",
+      "locale": "Dil (Ülke)",
       "avatar": "Avatar",
       "theme": "Tema",
       "2fa_secret": "İki Faktörlü Kimlik Doğrulama"
@@ -113,7 +113,7 @@
   "connection": "Bağlantı",
   "contains": "Şunu içerir",
   "continue": "Devam",
-  "continue_as": "<b>{name}</b> is already authenticated for this project. If you recognize this account, please press continue.",
+  "continue_as": "<b>{name}</b> bu projede oturum açmış durumda. Bu hesabı tanıyorsanız lütfen Devam butonuna basınız.",
   "cozy": "Normal",
   "create": "Oluştur",
   "create_collection": "Koleksiyon Oluştur",
@@ -122,7 +122,7 @@
   "created_by": "Oluşturan",
   "created_on": "Oluşturulma tarihi",
   "create_new_project": "Yeni Proje Oluştur",
-  "create_new_project_copy": "Make sure you have your database information handy, then enter your API's Super-Admin password to continue.",
+  "create_new_project_copy": "Veritabanı bilgilerinizin hazır olduğundan emin olun, ardından devam etmek için API'nızın Süper Yönetici şifresini girin.",
   "creating_item": "Öge Oluştur",
   "creating_item_page_title": "Öge Oluşturuluyor: {collection}",
   "creating_role": "Rol Oluştur",
@@ -218,7 +218,7 @@
     "112": "Yanlış Tek Kullanımlık Şifre",
     "114": "Incorrect Email/Password",
     "115": "Tek-Oturum-Açma 2 Aşamalı Doğrulama etkin iken kullanılamaz",
-    "-1": "API'ye Erişim Sağlanamadı"
+    "-1": "API'a Erişim Sağlanamadı"
   },
   "esc_cancel": "Esc tuşu işlemi iptal edip pencereyi kapatacaktır.",
   "event_count": "Etkinlik Yok | 1 Etkinlik | {count} Etkinlik",
