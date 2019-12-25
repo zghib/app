@@ -11,10 +11,10 @@
     v-else
     :id="name"
     :value="value"
-    :disabled="readonly"
     :options="choices"
     :placeholder="options.placeholder"
     :icon="options.icon"
+    :other="options.allow_other"
     @input="$emit('input', $event)"
   ></v-select>
 </template>
@@ -32,9 +32,7 @@ export default {
   computed: {
     choices() {
       let choices = this.options.choices;
-
       if (!choices) return {};
-
       if (typeof this.options.choices === "string") {
         try {
           choices = JSON.parse(this.options.choices);
@@ -42,7 +40,6 @@ export default {
           this.parseError = error.toString(); // eslint-disable-line
         }
       }
-
       return choices;
     }
   }

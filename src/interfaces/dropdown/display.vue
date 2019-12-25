@@ -15,9 +15,12 @@ export default {
     },
     displayValue() {
       if (this.options.formatting) {
-        return this.choices[this.value];
+        if (this.choices[this.value]) {
+          return this.choices[this.value];
+        } else {
+          return this.value;
+        }
       }
-
       return this.value;
     }
   }

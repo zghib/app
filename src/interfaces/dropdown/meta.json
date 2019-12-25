@@ -7,6 +7,12 @@
     "length": 100
   },
   "options": {
+    "allow_other": {
+      "name": "$t:allow_other",
+      "comment": "$t:allow_other_comment",
+      "interface": "toggle",
+      "default": false
+    },
     "choices": {
       "name": "$t:choices",
       "comment": "$t:choices_comment",

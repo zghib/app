@@ -51,7 +51,8 @@
     <div class="value">
       <v-icon v-if="icon" :name="icon" />
       <span v-if="placeholder && !value" class="placeholder">{{ placeholder }}</span>
-      <span class="no-wrap">{{ parsedOptions[value] }}</span>
+      <span v-if="parsedOptions[value]" class="no-wrap">{{ parsedOptions[value] }}</span>
+      <span v-else class="no-wrap">{{ value }}</span>
     </div>
     <v-icon class="chevron" name="arrow_drop_down" />
   </div>
@@ -203,7 +204,7 @@ export default {
     width: calc(100% - 40px);
     border-left: 0;
     border-right: 0;
-    z-index: +1;
+    //z-index: +1;
 
     &::placeholder {
       color: var(--input-placeholder-color);
