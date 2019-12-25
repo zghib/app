@@ -50,16 +50,16 @@
       "checkboxes_relational": "Checkboxes Relational",
       "grid": "Grid",
       "grid_comment": "Bir satırda gösterilen öğe sayısı",
-      "item_template": "Item Template",
+      "item_template": "Öğe Şablonu",
       "item_template_comment": "How to display values on the single item layouts",
       "item_template_placeholder": "{{name}} — {{first_name}}",
-      "listing_template": "Listing Template",
+      "listing_template": "Listeleme Şablonu",
       "listing_template_comment": "How to display values on the listing layouts.<br>You'll need to prepend the collection name",
-      "listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
+      "listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
     },
     "code": {
       "code": "Kod",
-      "template": "Template",
+      "template": "Şablon",
       "template_comment": "Provide a template the user can use to get started with",
       "language": "Dil",
       "language_comment": "Set the programming language to use",
@@ -70,24 +70,24 @@
     },
     "collections": {
       "collections": "Koleksiyonlar",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Static text that shown before a value is selected",
-      "placeholder_default": "Choose a collection...",
+      "placeholder_default": "Bir koleksiyon seçiniz...",
       "option": "Seçenek",
       "include_system": "Include System",
       "include_system_comment": "Include system collections in the options"
     },
     "color": {
-      "color": "Color",
+      "color": "Renk",
       "format": "Output Format",
       "format_comment": "In what data format to save the value",
-      "palette": "Palette",
+      "palette": "Palet",
       "palette_comment": "Add color options as hex values",
       "palette_only": "Palette Only",
       "palette_only_comment": "Only allow the user to pick from the palette"
     },
     "color-palette": {
-      "color-picker": "Color Picker"
+      "color-picker": "Renk Seçici"
     },
     "date": {
       "date": "Tarih",
@@ -158,7 +158,7 @@
       "dropdown": "Dropdown",
       "choices": "Seçenekler",
       "choices_comment": "Kaydedilen değer ve görüntülenen metinden oluşan JSON anahtar - değer çiftlerini giriniz.",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Static text that shown before a value is selected",
       "option": "Seçenek",
       "formatting": "Show display text",
@@ -187,7 +187,7 @@
     },
     "file-size": {
       "file_size": "File Size",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Enter placeholder text",
       "format": "Format value",
       "format_comment": "Show the value in a human readable way (e.g. 10MB)",
@@ -206,7 +206,7 @@
       "relation_not_setup": "The relationship hasn't been configured correctly",
       "template": "Display Template",
       "template_comment": "Choose how to display values on the item layouts",
-      "template_placeholder": "{{movie.name}} — {{member.first_name}}",
+      "template_placeholder": "{{movie.name}} — {{member.first_name}}",
       "allow_create": "Allow Create",
       "allow_create_comment": "Allow the user to create a new item from this interface",
       "allow_select": "Allow Select",
@@ -219,7 +219,7 @@
       "hashed": "Hashed",
       "hide": "Hide Value",
       "hide_comment": "Display dots instead of the characters you enter",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Enter placeholder text",
       "show_hash": "Show the hashed output",
       "show_hash_comment": "Display the saved hash",
@@ -251,7 +251,7 @@
     },
     "interfaces": {
       "interfaces": "Arayüzler",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Static text that shown before a value is selected",
       "placeholder_default": "Choose an interface",
       "option": "Seçenek",
@@ -259,7 +259,7 @@
       "include_status": "Include the status interfaces"
     },
     "json": {
-      "template": "Template",
+      "template": "Şablon",
       "template_comment": "Provide a template the user can use to get started with"
     },
     "key-value": {
@@ -285,7 +285,7 @@
       "relation_not_setup": "The relationship hasn't been configured correctly",
       "template": "Display Template",
       "template_comment": "Choose how to display values on the item layouts",
-      "template_placeholder": "{{movie.name}} — {{member.first_name}}",
+      "template_placeholder": "{{movie.name}} — {{member.first_name}}",
       "allow_create": "Allow Create",
       "allow_create_comment": "Allow the user to create a new item from this interface",
       "allow_select": "Allow Select",
@@ -299,7 +299,7 @@
       "visible_fields_placeholder": "title,author",
       "visible_fields_note": "CSV of fields visible when selecting an item in the modal",
       "template_placeholder": "{{title}} — {{author}}",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Enter placeholder text",
       "preferences": "Listing View Preferences",
       "preferences_comment": "Set what options to use for the modal",
@@ -346,14 +346,14 @@
       "tabbed_preview_off": "Side-by-side Preview",
       "rows": "Rows",
       "rows_comment": "The starting number of text rows available",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Enter placeholder text"
     },
     "multiselect": {
       "multiselect": "Multi-Select",
       "choices": "Seçenekler",
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Enter placeholder text",
       "size": "Size",
       "size_comment": "Number of options visible before scrolling",
@@ -365,7 +365,7 @@
     },
     "numeric": {
       "numeric": "Sayısal",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Enter placeholder text",
       "localized": "Yerelleştirilmiş",
       "localized_comment": "Localize the output to the user's locale",
@@ -400,7 +400,7 @@
       "password": "Şifre",
       "hide": "Hide Value",
       "hide_comment": "Display dots instead of the characters you enter",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Enter placeholder text",
       "confirm_placeholder": "Confirm password...",
       "show_hash": "Show the hashed output",
@@ -451,7 +451,7 @@
       "structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
       "structure_key": "Structure Key Field",
       "structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "The value that shows up instead of the template if there's no value entered yet",
       "create_item_text": "Create Item Text",
       "create_item_text_comment": "Text that's displayed in the button that adds a new row to the repeater"
@@ -469,7 +469,7 @@
     },
     "slug": {
       "slug": "Slug",
-      "placeholder_name": "Placeholder",
+      "placeholder_name": "Yertutucu",
       "placeholder_comment": "The placeholder text to show",
       "force_lowercase": "Force Lowercase",
       "force_lowercase_comment": "Makes sure the slug is in lowercase",
@@ -515,7 +515,7 @@
     },
     "text-input": {
       "input": "Text Input",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "trim": "Trim",
       "trim_comment": "Trim surrounding whitespace from the value before saving",
       "char_count": "Show Character Count",
@@ -537,7 +537,7 @@
       "textarea": "Text-Area",
       "rows": "Rows",
       "rows_comment": "The number of text rows available for the input before scrolling",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Enter placeholder text",
       "serif": "Serif Font",
       "serif_comment": "Use a larger, serif typeface"
@@ -588,16 +588,16 @@
       "user": "User",
       "avatar": "Avatar",
       "name": "İsim",
-      "template": "Template",
+      "template": "Şablon",
       "template_comment": "How to format the users in the dropdown",
-      "placeholder": "Placeholder",
+      "placeholder": "Yertutucu",
       "placeholder_comment": "Add a placeholder"
     },
     "user-created": {
       "user_created": "User Created",
       "avatar": "Avatar",
       "name": "İsim",
-      "template": "Template",
+      "template": "Şablon",
       "template_comment": "How to display the user on the item detail page",
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
@@ -615,7 +615,7 @@
       "user_updated": "User Updated",
       "avatar": "Avatar",
       "name": "İsim",
-      "template": "Template",
+      "template": "Şablon",
       "template_comment": "How to display the user on the item detail page",
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
