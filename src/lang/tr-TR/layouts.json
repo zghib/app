@@ -11,7 +11,7 @@
       "datetime": "Datetime",
       "time": "Time",
       "title": "Ünvan",
-      "color": "Color"
+      "color": "Renk"
     },
     "cards": {
       "cards": "Kartlar",
@@ -35,7 +35,7 @@
       "date": "Tarih",
       "content": "İçerik",
       "title": "Ünvan",
-      "color": "Color"
+      "color": "Renk"
     }
   }
 }
