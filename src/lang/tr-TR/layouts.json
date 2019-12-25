@@ -1,13 +1,13 @@
 {
   "layouts": {
     "calendar": {
-      "calendar": "Calendar",
+      "calendar": "Takvim",
       "fields": "Alanlar",
       "today": "bugün",
       "events": "Etkinlikler",
       "moreEvents": "ve {amount} daha fazla...",
       "noEvents": "henüz bir etkinlik yok!",
-      "date": "Date",
+      "date": "Tarih",
       "datetime": "Datetime",
       "time": "Time",
       "title": "Ünvan",
@@ -32,7 +32,7 @@
       "events": "Etkinlikler",
       "moreEvents": "ve {amount} daha fazla...",
       "noEvents": "henüz bir etkinlik yok!",
-      "date": "Date",
+      "date": "Tarih",
       "content": "İçerik",
       "title": "Ünvan",
       "color": "Color"
