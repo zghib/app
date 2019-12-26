@@ -53,25 +53,25 @@
       "item_template": "Plantilla de Ítem",
       "item_template_comment": "Como mostrar valores en plantillas de ítem único",
       "item_template_placeholder": "{{name}} — {{first_name}}",
-      "listing_template": "Listing Template",
-      "listing_template_comment": "How to display values on the listing layouts.<br>You'll need to prepend the collection name",
+      "listing_template": "Plantilla de Listado",
+      "listing_template_comment": "Como mostrar los valores en las plantillas de listados.<br>Necesitara añadir el nombre de la colección",
       "listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
     },
     "code": {
-      "code": "Code",
-      "template": "Template",
-      "template_comment": "Provide a template the user can use to get started with",
-      "language": "Language",
-      "language_comment": "Set the programming language to use",
-      "lineNumber": "Line Number",
-      "lineNumber_comment": "Show line numbers",
-      "loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
-      "fill_template": "Fill with Template"
+      "code": "Código",
+      "template": "Plantilla",
+      "template_comment": "Proporcione una plantilla que el usuario puede utilizar para empezar con",
+      "language": "Idioma",
+      "language_comment": "Establecer el lenguaje de programación a usar",
+      "lineNumber": "Número de línea",
+      "lineNumber_comment": "Mostrar números de línea",
+      "loc": "No hay líneas de {lang} | Una línea de {lang} | {count} líneas de {lang}",
+      "fill_template": "Rellenar con la Plantilla"
     },
     "collections": {
       "collections": "Colecciones",
-      "placeholder": "Placeholder",
-      "placeholder_comment": "Static text that shown before a value is selected",
+      "placeholder": "Texto de Ejemplo",
+      "placeholder_comment": "Texto estático que se muestra antes de que un valor es seleccionado",
       "placeholder_default": "Choose a collection...",
       "option": "Opción",
       "include_system": "Include System",
@@ -158,8 +158,8 @@
       "dropdown": "Dropdown",
       "choices": "Opciones",
       "choices_comment": "Introduzca los pares de valores de la clave JSON con el valor guardado y el texto mostrado.",
-      "placeholder": "Placeholder",
-      "placeholder_comment": "Static text that shown before a value is selected",
+      "placeholder": "Texto de Ejemplo",
+      "placeholder_comment": "Texto estático que se muestra antes de que un valor es seleccionado",
       "option": "Opción",
       "formatting": "Mostrar texto en pantalla",
       "formatting_comment": "Procesar los valores como valores de visualización",
@@ -187,7 +187,7 @@
     },
     "file-size": {
       "file_size": "File Size",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Enter placeholder text",
       "format": "Format value",
       "format_comment": "Show the value in a human readable way (e.g. 10MB)",
@@ -219,7 +219,7 @@
       "hashed": "Hashed",
       "hide": "Hide Value",
       "hide_comment": "Display dots instead of the characters you enter",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Enter placeholder text",
       "show_hash": "Show the hashed output",
       "show_hash_comment": "Display the saved hash",
@@ -251,16 +251,16 @@
     },
     "interfaces": {
       "interfaces": "Interfaces",
-      "placeholder": "Placeholder",
-      "placeholder_comment": "Static text that shown before a value is selected",
+      "placeholder": "Texto de Ejemplo",
+      "placeholder_comment": "Texto estático que se muestra antes de que un valor es seleccionado",
       "placeholder_default": "Elija una interfaz",
       "option": "Opción",
       "relational": "Incluye interfaces relacionales",
       "include_status": "Incluye las interfaces de estado"
     },
     "json": {
-      "template": "Template",
-      "template_comment": "Provide a template the user can use to get started with"
+      "template": "Plantilla",
+      "template_comment": "Proporcione una plantilla que el usuario puede utilizar para empezar con"
     },
     "key-value": {
       "key_interface": "Clave de la Interfaz",
@@ -271,7 +271,7 @@
       "value_options": "Clave de las Opciones de Interfaz"
     },
     "language": {
-      "input": "Language",
+      "input": "Idioma",
       "select_language": "Seleccione un idioma...",
       "limit": "Limitar la Disponibilidad de Directus",
       "limit_comment": "Mostrar solo idiomas disponibles como traducciones en Directus"
@@ -299,7 +299,7 @@
       "visible_fields_placeholder": "title,author",
       "visible_fields_note": "CSV of fields visible when selecting an item in the modal",
       "template_placeholder": "{{title}} — {{author}}",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Enter placeholder text",
       "preferences": "Listing View Preferences",
       "preferences_comment": "Set what options to use for the modal",
@@ -346,14 +346,14 @@
       "tabbed_preview_off": "Side-by-side Preview",
       "rows": "Rows",
       "rows_comment": "The starting number of text rows available",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Enter placeholder text"
     },
     "multiselect": {
       "multiselect": "Multi-Select",
       "choices": "Opciones",
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Enter placeholder text",
       "size": "Tamaño",
       "size_comment": "Number of options visible before scrolling",
@@ -365,7 +365,7 @@
     },
     "numeric": {
       "numeric": "Numérico",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Enter placeholder text",
       "localized": "Localized",
       "localized_comment": "Localize the output to the user's locale",
@@ -400,7 +400,7 @@
       "password": "Contraseña",
       "hide": "Hide Value",
       "hide_comment": "Display dots instead of the characters you enter",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Enter placeholder text",
       "confirm_placeholder": "Confirm password...",
       "show_hash": "Show the hashed output",
@@ -451,7 +451,7 @@
       "structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
       "structure_key": "Structure Key Field",
       "structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "The value that shows up instead of the template if there's no value entered yet",
       "create_item_text": "Create Item Text",
       "create_item_text_comment": "Text that's displayed in the button that adds a new row to the repeater"
@@ -469,7 +469,7 @@
     },
     "slug": {
       "slug": "Slug",
-      "placeholder_name": "Placeholder",
+      "placeholder_name": "Texto de Ejemplo",
       "placeholder_comment": "Texto ejemplo a mostrar",
       "force_lowercase": "Cambiar a minúsculas",
       "force_lowercase_comment": "Asegúrese de que el slug está en minúsculas",
@@ -515,7 +515,7 @@
     },
     "text-input": {
       "input": "Control de Texto",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "trim": "Eliminar Espacios en Blanco",
       "trim_comment": "Eliminar los espacios en blanco del inicio y final del valor antes de guardarlo",
       "char_count": "Mostrar el Número de Caracteres",
@@ -537,7 +537,7 @@
       "textarea": "Cuadro de Texto",
       "rows": "Rows",
       "rows_comment": "El número de filas de texto disponibles para el control antes de desplazarse",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Enter placeholder text",
       "serif": "Fuente Serif",
       "serif_comment": "Usar una fuente grande, tipo Serif"
@@ -556,7 +556,7 @@
       "label_off": "Label (Off)",
       "label_off_comment": "Label to show next to the toggle when the toggle is off",
       "checkbox": "Show as Checkbox",
-      "checkbox_comment": "Display a checkbox instead of the default switch"
+      "checkbox_comment": "Mostrar una casilla de verificación en vez de interruptor predeterminado"
     },
     "toggle-icon": {
       "toggle-icon": "Intercambiar Icono",
@@ -588,16 +588,16 @@
       "user": "Usuario",
       "avatar": "Avatar",
       "name": "Nombre",
-      "template": "Template",
+      "template": "Plantilla",
       "template_comment": "Cómo dar formato a los usuarios en le menú desplegable",
-      "placeholder": "Placeholder",
+      "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Añadir un texto de ejemplo"
     },
     "user-created": {
       "user_created": "Creado por el usuario",
       "avatar": "Avatar",
       "name": "Nombre",
-      "template": "Template",
+      "template": "Plantilla",
       "template_comment": "Como mostrar el usuario en la página de detalles del ítem",
       "display": "Mostrar",
       "display_comment": "Como mostrar el usuario en la pagina de navegación del ítem",
@@ -615,7 +615,7 @@
       "user_updated": "Usuario actualizado",
       "avatar": "Avatar",
       "name": "Nombre",
-      "template": "Template",
+      "template": "Plantilla",
       "template_comment": "Como mostrar el usuario en la página de detalles del ítem",
       "display": "Mostrar",
       "display_comment": "Como mostrar el usuario en la pagina de navegación del ítem",
