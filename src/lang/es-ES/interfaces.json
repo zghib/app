@@ -508,10 +508,10 @@
       "icon_right": "Icono Derecho",
       "icon_right_comment": "Elija un icono opcional para mostrar a la derecha del control",
       "validation": "Validación",
-      "validation_comment": "A RegEx to check each individual value against",
-      "validation_message": "Validation Message",
-      "validation_message_comment": "A short message to show users if tag validation fails",
-      "validation_message_default": "Please enter a valid tag"
+      "validation_comment": "Una Expresión Regular para comprobar individualmente cada valor contra",
+      "validation_message": "Mensaje de Validación",
+      "validation_message_comment": "Un mensaje corto para mostrar a los usuarios si la validación de la etiqueta falla",
+      "validation_message_default": "Por favor, introduzca una etiqueta válida"
     },
     "text-input": {
       "input": "Control de Texto",
@@ -545,15 +545,15 @@
     "time": {
       "time": "Hora",
       "include_seconds": "Incluye segundos",
-      "include_seconds_comment": "Include seconds in the interface",
-      "24hour": "Display 24 hour clock",
-      "24hour_comment": "Show the time in 24-hour format (eg.: 15:30)"
+      "include_seconds_comment": "Incluye segundos en la interfaz",
+      "24hour": "Mostrar reloj de 24 horas",
+      "24hour_comment": "Mostrar la hora en formato de 24 horas (por ejemplo: 15:30)"
     },
     "toggle": {
-      "toggle": "Toggle",
-      "label_on": "Label (On)",
-      "label_on_comment": "Label to show next to the toggle when the toggle is on",
-      "label_off": "Label (Off)",
+      "toggle": "Alternar",
+      "label_on": "Etiqueta (Activado)",
+      "label_on_comment": "Etiqueta a mostrar al lado del interruptor cuando el interruptor está activado",
+      "label_off": "Etiqueta (Desactivado)",
       "label_off_comment": "Label to show next to the toggle when the toggle is off",
       "checkbox": "Show as Checkbox",
       "checkbox_comment": "Mostrar una casilla de verificación en vez de interruptor predeterminado"
