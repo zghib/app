@@ -576,7 +576,7 @@
       "color-active-comment": "Choose the active color"
     },
     "translation": {
-      "translation": "Translation",
+      "translation": "Traduccion",
       "language_field": "Language Field",
       "language_field_comment": "The field that holds the language code in the related collection",
       "languages": "Languages",
