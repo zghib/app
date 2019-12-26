@@ -514,11 +514,11 @@
       "validation_message_default": "Please enter a valid tag"
     },
     "text-input": {
-      "input": "Text Input",
+      "input": "Metin Girişi",
       "placeholder": "Yertutucu",
-      "trim": "Trim",
+      "trim": "Kırp",
       "trim_comment": "Trim surrounding whitespace from the value before saving",
-      "char_count": "Show Character Count",
+      "char_count": "Karakter Sayısını Göster",
       "char_count_comment": "Show the remaining characters available",
       "icon_left": "Icon Left",
       "icon_left_comment": "Choose an optional icon to display on the left of the input",
@@ -543,7 +543,7 @@
       "serif_comment": "Use a larger, serif typeface"
     },
     "time": {
-      "time": "Time",
+      "time": "Zaman",
       "include_seconds": "Include seconds",
       "include_seconds_comment": "Include seconds in the interface",
       "24hour": "Display 24 hour clock",
@@ -589,7 +589,7 @@
       "avatar": "Avatar",
       "name": "İsim",
       "template": "Şablon",
-      "template_comment": "How to format the users in the dropdown",
+      "template_comment": "Açılır menüdeki kullanıcılar nasıl biçimlendirilir",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu ekle"
     },
@@ -598,9 +598,9 @@
       "avatar": "Avatar",
       "name": "İsim",
       "template": "Şablon",
-      "template_comment": "How to display the user on the item detail page",
+      "template_comment": "Kullanıcı, öğe detay sayfasında nasıl görüntülenir",
       "display": "Display",
-      "display_comment": "How to display the user on the item browse page",
+      "display_comment": "Kullanıcı, öğe göz atma sayfasında nasıl görüntülenir",
       "you": "Oluşturan siz olacaksınız",
       "unknown": "Bilinmeyen"
     },
@@ -616,9 +616,9 @@
       "avatar": "Avatar",
       "name": "İsim",
       "template": "Şablon",
-      "template_comment": "How to display the user on the item detail page",
+      "template_comment": "Kullanıcı, öğe detay sayfasında nasıl görüntülenir",
       "display": "Display",
-      "display_comment": "How to display the user on the item browse page",
+      "display_comment": "Kullanıcı, öğe göz atma sayfasında nasıl görüntülenir",
       "you": "Güncelleyen siz olacaksınız",
       "unknown": "Bilinmeyen"
     },
