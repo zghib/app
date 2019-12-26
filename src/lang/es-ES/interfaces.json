@@ -559,21 +559,21 @@
       "checkbox_comment": "Display a checkbox instead of the default switch"
     },
     "toggle-icon": {
-      "toggle-icon": "Toggle Icon",
-      "text-inactive-name": "Inactive Text",
-      "text-inactive-comment": "Text next to the inactive icon",
-      "text-inactive-placeholder": "Enter your text here",
-      "icon-inactive-name": "Inactive Icon",
-      "icon-inactive-comment": "Choose an inactive icon",
-      "color-inactive-name": "Inactive Color",
-      "color-inactive-comment": "Choose the inactive color",
-      "text-active-name": "Active Text",
-      "text-active-comment": "Text next to the active icon",
-      "text-active-placeholder": "Enter your text here",
-      "icon-active-name": "Active Icon",
-      "icon-active-comment": "Choose an active icon",
+      "toggle-icon": "Intercambiar Icono",
+      "text-inactive-name": "Texto inactivo",
+      "text-inactive-comment": "Texto junto al icono inactivo",
+      "text-inactive-placeholder": "Introduce tu texto aquí",
+      "icon-inactive-name": "Icono inactivo",
+      "icon-inactive-comment": "Elegir un icono inactivo",
+      "color-inactive-name": "Color inactivo",
+      "color-inactive-comment": "Elegir el color inactivo",
+      "text-active-name": "Texto activo",
+      "text-active-comment": "Texto junto al icono activo",
+      "text-active-placeholder": "Introduce tu texto aquí",
+      "icon-active-name": "Icono activo",
+      "icon-active-comment": "Elegir un icono inactivo",
       "color-active-name": "Color activo",
-      "color-active-comment": "Choose the active color"
+      "color-active-comment": "Elegir el color activo"
     },
     "translation": {
       "translation": "Traduccion",
@@ -598,35 +598,35 @@
       "avatar": "Avatar",
       "name": "Nombre",
       "template": "Template",
-      "template_comment": "How to display the user on the item detail page",
+      "template_comment": "Como mostrar el usuario en la página de detalles del ítem",
       "display": "Mostrar",
-      "display_comment": "How to display the user on the item browse page",
-      "you": "You will be the creator",
+      "display_comment": "Como mostrar el usuario en la pagina de navegación del ítem",
+      "you": "Serás el creador",
       "unknown": "Unknown"
     },
     "user-roles": {
       "user-roles": "Rol de usuario",
       "choose_role": "Seleccione un rol...",
       "relational": "Relacional",
-      "relational_comment": "Save as a relational record",
-      "show_public": "Show public role"
+      "relational_comment": "Guardar como un registro relacional",
+      "show_public": "Ver el rol público"
     },
     "user-updated": {
-      "user_updated": "User Updated",
+      "user_updated": "Usuario actualizado",
       "avatar": "Avatar",
       "name": "Nombre",
       "template": "Template",
-      "template_comment": "How to display the user on the item detail page",
+      "template_comment": "Como mostrar el usuario en la página de detalles del ítem",
       "display": "Mostrar",
-      "display_comment": "How to display the user on the item browse page",
-      "you": "You will be the updater",
+      "display_comment": "Como mostrar el usuario en la pagina de navegación del ítem",
+      "you": "Serás el creador",
       "unknown": "Unknown"
     },
     "wysiwyg": {
-      "toolbar": "Toolbar Options",
-      "toolbar_comment": "Show, hide, and reorder toolbar options",
-      "custom_formats": "Custom Formats",
-      "custom_formats_comment": "Custom HTML wrappers for content"
+      "toolbar": "Opciones de la barra de herramientas",
+      "toolbar_comment": "Mostrar, ocultar, y re-ordenar las opciones de la barra de herramientas",
+      "custom_formats": "Formatos Personalizados",
+      "custom_formats_comment": "Envolturas HTML personalizadas para el contenido"
     }
   }
 }
