@@ -577,9 +577,9 @@
     },
     "translation": {
       "translation": "翻译",
-      "language_field": "Language Field",
-      "language_field_comment": "The field that holds the language code in the related collection",
-      "languages": "Languages",
+      "language_field": "语言字段",
+      "language_field_comment": "保存相关集合语言代码的字段",
+      "languages": "语言",
       "template": "Display Template",
       "template_comment": "Choose how to display values on the item layouts",
       "template_placeholder": "{{title}} — {{body}}"
