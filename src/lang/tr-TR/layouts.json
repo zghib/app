@@ -8,7 +8,7 @@
       "moreEvents": "ve {amount} daha fazla...",
       "noEvents": "henüz bir etkinlik yok!",
       "date": "Tarih",
-      "datetime": "Datetime",
+      "datetime": "Tarih/Saat",
       "time": "Time",
       "title": "Ünvan",
       "color": "Renk"
