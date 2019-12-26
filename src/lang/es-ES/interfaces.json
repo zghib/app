@@ -589,7 +589,7 @@
       "avatar": "Avatar",
       "name": "Nombre",
       "template": "Template",
-      "template_comment": "How to format the users in the dropdown",
+      "template_comment": "Cómo dar formato a los usuarios en le menú desplegable",
       "placeholder": "Placeholder",
       "placeholder_comment": "Añadir un texto de ejemplo"
     },
