@@ -4,8 +4,8 @@
       "2fa-secret": "Autenticación Secreta de 2 Factores"
     },
     "button-group": {
-      "button_group": "Button Group",
-      "choices": "Choices",
+      "button_group": "Grupo de botones",
+      "choices": "Opciones",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "theme": "Interface Theme",
       "theme_comment": "Set the UI of interface if supported",
@@ -30,7 +30,7 @@
     },
     "checkboxes": {
       "checkboxes": "Checkboxes",
-      "choices": "Choices",
+      "choices": "Opciones",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "wrap": "Wrap with Delimiter",
       "wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",
@@ -156,7 +156,7 @@
     },
     "dropdown": {
       "dropdown": "Dropdown",
-      "choices": "Choices",
+      "choices": "Opciones",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "placeholder": "Placeholder",
       "placeholder_comment": "Static text that shown before a value is selected",
@@ -351,7 +351,7 @@
     },
     "multiselect": {
       "multiselect": "Multi-Select",
-      "choices": "Choices",
+      "choices": "Opciones",
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
@@ -422,7 +422,7 @@
     },
     "radio-buttons": {
       "radio": "Radio Buttons",
-      "choices": "Choices",
+      "choices": "Opciones",
       "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "option": "Option",
       "format": "Browse Format",
