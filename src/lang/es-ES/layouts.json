@@ -14,12 +14,12 @@
       "color": "Color"
     },
     "cards": {
-      "cards": "Cards",
+      "cards": "Tarjetas",
       "title": "Título",
       "subtitle": "Subtítulo",
       "src": "Orígen de la imágen",
       "content": "Contenido del cuerpo",
-      "fit": "Fit"
+      "fit": "Ajuste"
     },
     "tabular": {
       "tabular": "Tabla",
