@@ -1,7 +1,7 @@
 {
   "interfaces": {
     "2fa-secret": {
-      "2fa-secret": "2FA Secret"
+      "2fa-secret": "Autenticación Secreta de 2 Factores"
     },
     "button-group": {
       "button_group": "Button Group",
