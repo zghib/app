@@ -273,11 +273,11 @@
     "language": {
       "input": "Language",
       "select_language": "Seleccione un idioma...",
-      "limit": "Limit to Directus Availability",
-      "limit_comment": "Only show languages that are available as translations in Directus"
+      "limit": "Limitar la Disponibilidad de Directus",
+      "limit_comment": "Mostrar solo idiomas disponibles como traducciones en Directus"
     },
     "many-to-many": {
-      "m2m": "Many to Many",
+      "m2m": "Muchos a Muchos",
       "visible_columns": "Visible Columns",
       "visible_columns_comment": "Add a CSV of columns you want to display as preview",
       "preferences": "Listing View Preferences",
@@ -292,8 +292,8 @@
       "allow_select_comment": "Allow the user to select an existing item"
     },
     "many-to-one": {
-      "m2o": "Many to One",
-      "template": "Dropdown Template",
+      "m2o": "Muchos a Uno",
+      "template": "Plantilla del Control Desplegable",
       "template_comment": "How to format the dropdown options",
       "visible_fields": "Visible Fields",
       "visible_fields_placeholder": "title,author",
