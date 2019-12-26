@@ -213,7 +213,7 @@
       "allow_select_comment": "Allow the user to select an existing item",
       "accept": "Accept File Types",
       "accept_comment": "Set a list of MIME types that can be picked",
-      "edit_item": "Edit"
+      "edit_item": "Editar"
     },
     "hashed": {
       "hashed": "Hashed",
@@ -225,54 +225,54 @@
       "show_hash_comment": "Display the saved hash",
       "hashing_type": "Hashing Type",
       "hashing_type_comment": "What method of hashing to use",
-      "width": "Size",
+      "width": "Tamaño",
       "width_comment": "Set what width to use for the input",
-      "auto": "Automatic",
-      "small": "Small",
-      "medium": "Medium",
-      "large": "Large",
-      "secured": "Value Secured"
+      "auto": "Automático",
+      "small": "Pequeño",
+      "medium": "Mediano",
+      "large": "Grande",
+      "secured": "Valor asegurado"
     },
     "icon": {
       "icon": "Icono",
-      "search_placeholder": "Search for an icon..."
+      "search_placeholder": "Buscar un icono..."
     },
     "interface-options": {
-      "interface-options": "Interface Options",
-      "interface-field": "Interface Field",
+      "interface-options": "Opciones de Interfaz",
+      "interface-field": "Campo de interfaz",
       "placeholder-comment": "The field that holds the name of the interface",
-      "placeholder-default": "Enter a field name..."
+      "placeholder-default": "Introduzca un nombre de campo..."
     },
     "interface-types": {
-      "interface-types": "Interface types",
-      "interface-field": "Interface Field",
+      "interface-types": "Tipos de interfaz",
+      "interface-field": "Campo de interfaz",
       "placeholder-comment": "The field that holds the name of the interface",
-      "placeholder-default": "Enter a field name..."
+      "placeholder-default": "Introduzca un nombre de campo..."
     },
     "interfaces": {
       "interfaces": "Interfaces",
       "placeholder": "Placeholder",
       "placeholder_comment": "Static text that shown before a value is selected",
-      "placeholder_default": "Choose an interface",
+      "placeholder_default": "Elija una interfaz",
       "option": "Opción",
-      "relational": "Include relational interfaces",
-      "include_status": "Include the status interfaces"
+      "relational": "Incluye interfaces relacionales",
+      "include_status": "Incluye las interfaces de estado"
     },
     "json": {
       "template": "Template",
       "template_comment": "Provide a template the user can use to get started with"
     },
     "key-value": {
-      "key_interface": "Key Interface",
-      "key_data_type": "Key Data Type",
-      "key_options": "Key Interface Options",
-      "value_interface": "Key Interface",
-      "value_data_type": "Key Data Type",
-      "value_options": "Key Interface Options"
+      "key_interface": "Clave de la Interfaz",
+      "key_data_type": "Clave del Tipo de Dato",
+      "key_options": "Clave de las Opciones de Interfaz",
+      "value_interface": "Clave de la Interfaz",
+      "value_data_type": "Clave del Tipo de Dato",
+      "value_options": "Clave de las Opciones de Interfaz"
     },
     "language": {
       "input": "Language",
-      "select_language": "Select a language...",
+      "select_language": "Seleccione un idioma...",
       "limit": "Limit to Directus Availability",
       "limit_comment": "Only show languages that are available as translations in Directus"
     },
@@ -338,7 +338,7 @@
     },
     "markdown": {
       "markdown": "Markdown",
-      "edit": "Edit",
+      "edit": "Editar",
       "preview": "Preview",
       "tabbed_preview": "Tabbed Preview",
       "tabbed_preview_comment": "How to display the editor and preview",
@@ -355,7 +355,7 @@
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
-      "size": "Size",
+      "size": "Tamaño",
       "size_comment": "Number of options visible before scrolling",
       "option": "Opción",
       "wrap": "Delimitar con delimitador",
@@ -462,19 +462,19 @@
       "min_comment": "El valor mínimo válido",
       "max": "Máximo",
       "max_comment": "El valor máximo válido",
-      "step": "Step",
-      "step_comment": "Increments at which the value can be set",
-      "unit": "Unit",
+      "step": "Incremento",
+      "step_comment": "Incrementos en los que se puede establecer el valor",
+      "unit": "Unidad",
       "unit_comment": "Show an unit next to the slider value, e.g. 15 Pounds"
     },
     "slug": {
       "slug": "Slug",
       "placeholder_name": "Placeholder",
-      "placeholder_comment": "The placeholder text to show",
-      "force_lowercase": "Force Lowercase",
-      "force_lowercase_comment": "Makes sure the slug is in lowercase",
-      "mirrored_field": "Mirrored Field",
-      "mirrored_field_comment": "Keep the slug up to date with another (text) field"
+      "placeholder_comment": "Texto ejemplo a mostrar",
+      "force_lowercase": "Cambiar a minúsculas",
+      "force_lowercase_comment": "Asegúrese de que el slug está en minúsculas",
+      "mirrored_field": "Campo Espejado",
+      "mirrored_field_comment": "Mantener el slug actualizado con otro campo (de texto)"
     },
     "sort": {
       "sort": "Ordenar"
@@ -485,16 +485,16 @@
       "status_mapping_comment": "Enter JSON status options",
       "simple_badge": "Simple Badge",
       "simple_badge_comment": "Displays a colored dot on the item listing page.",
-      "published": "Published",
-      "under_review": "Under Review",
-      "draft": "Draft",
-      "deleted": "Deleted"
+      "published": "Publicado",
+      "under_review": "En Revisión",
+      "draft": "Borrador",
+      "deleted": "Eliminado"
     },
     "tags": {
-      "tags": "Tags",
+      "tags": "Etiquetas",
       "alphabetize": "Alphabetize tags",
       "alphabetize_comment": "Will rearrange tags to be alphabetical",
-      "lowercase": "Force Lowercase",
+      "lowercase": "Cambiar a minúsculas",
       "lowercase_comment": "Convert all tags to lowercase",
       "wrap": "Wrap with delimiter",
       "wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
@@ -528,10 +528,10 @@
       "format_comment": "Convert the value to title case",
       "monospace": "Monospace",
       "monospace_comment": "Use a monospace font",
-      "auto": "Automatic",
-      "small": "Small",
-      "medium": "Medium",
-      "large": "Large"
+      "auto": "Automático",
+      "small": "Pequeño",
+      "medium": "Mediano",
+      "large": "Grande"
     },
     "textarea": {
       "textarea": "Text-Area",
