@@ -69,7 +69,7 @@
     },
     "directus_files": {
       "title": "Título",
-      "tags": "Tags",
+      "tags": "Etiquetas",
       "location": "Ubicación",
       "description": "Descripción",
       "filename_download": "Nombre del Archivo a Descargar",
