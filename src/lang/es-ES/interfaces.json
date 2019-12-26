@@ -517,15 +517,15 @@
       "input": "Control de Texto",
       "placeholder": "Placeholder",
       "trim": "Eliminar Espacios en Blanco",
-      "trim_comment": "Trim surrounding whitespace from the value before saving",
-      "char_count": "Show Character Count",
-      "char_count_comment": "Show the remaining characters available",
+      "trim_comment": "Eliminar los espacios en blanco del inicio y final del valor antes de guardarlo",
+      "char_count": "Mostrar el Número de Caracteres",
+      "char_count_comment": "Mostrar la cantidad restantes de caracteres disponibles",
       "icon_left": "Icon Left",
       "icon_left_comment": "Choose an optional icon to display on the left of the input",
       "icon_right": "Icon Right",
       "icon_right_comment": "Choose an optional icon to display on the right of the input",
-      "format": "Pretty Output",
-      "format_comment": "Convert the value to title case",
+      "format": "Mejorar la Salida",
+      "format_comment": "Convertir el valor a una capitalización tipo titulo",
       "monospace": "Monospace",
       "monospace_comment": "Use a monospace font",
       "auto": "Automático",
@@ -540,11 +540,11 @@
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
       "serif": "Fuente Serif",
-      "serif_comment": "Use a larger, serif typeface"
+      "serif_comment": "Usar una fuente grande, tipo Serif"
     },
     "time": {
-      "time": "Time",
-      "include_seconds": "Include seconds",
+      "time": "Hora",
+      "include_seconds": "Incluye segundos",
       "include_seconds_comment": "Include seconds in the interface",
       "24hour": "Display 24 hour clock",
       "24hour_comment": "Show the time in 24-hour format (eg.: 15:30)"
@@ -585,16 +585,16 @@
       "template_placeholder": "{{title}} — {{body}}"
     },
     "user": {
-      "user": "User",
+      "user": "Usuario",
       "avatar": "Avatar",
       "name": "Nombre",
       "template": "Template",
       "template_comment": "How to format the users in the dropdown",
       "placeholder": "Placeholder",
-      "placeholder_comment": "Add a placeholder"
+      "placeholder_comment": "Añadir un texto de ejemplo"
     },
     "user-created": {
-      "user_created": "User Created",
+      "user_created": "Creado por el usuario",
       "avatar": "Avatar",
       "name": "Nombre",
       "template": "Template",
@@ -605,8 +605,8 @@
       "unknown": "Unknown"
     },
     "user-roles": {
-      "user-roles": "User Role",
-      "choose_role": "Choose a role...",
+      "user-roles": "Rol de usuario",
+      "choose_role": "Seleccione un rol...",
       "relational": "Relacional",
       "relational_comment": "Save as a relational record",
       "show_public": "Show public role"
