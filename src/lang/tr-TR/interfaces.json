@@ -48,7 +48,7 @@
     },
     "checkboxes-relational": {
       "checkboxes_relational": "Checkboxes Relational",
-      "grid": "Grid",
+      "grid": "Kılavuz",
       "grid_comment": "Bir satırda gösterilen öğe sayısı",
       "item_template": "Öğe Şablonu",
       "item_template_comment": "How to display values on the single item layouts",
@@ -105,14 +105,14 @@
       "icon_right_comment": "Choose an optional icon to display on the right of the input"
     },
     "datetime": {
-      "datetime": "Datetime",
-      "min": "Minimum time",
+      "datetime": "Tarih/Saat",
+      "min": "Minimum zaman",
       "min_comment": "Minimum time that can be chosen by the user",
-      "max": "Maximum time",
+      "max": "Maksimum zaman",
       "max_comment": "Maximum time that can be chosen by the user",
       "localized": "Yerelleştirilmiş",
       "localized_comment": "Show the date localized in the output",
-      "relative": "Show relative time",
+      "relative": "Göreli zaman göster",
       "relative_comment": "Show the time relatively (eg 50 minutes ago)",
       "icon_left": "Icon Left",
       "icon_left_comment": "Choose an optional icon to display on the left of the input",
@@ -122,22 +122,22 @@
       "utc_comment": "Save to and display from UTC",
       "default_to_current_datetime": "Default to current datetime",
       "default_to_current_datetime_comment": "Varsayılan zamanı şu anki tarih-saat olarak ayarla",
-      "format": "Format",
+      "format": "Biçim",
       "format_comment": "The DateTime format to use for the input"
     },
     "datetime-created": {
       "datetime_created": "Datetime Created",
-      "relative": "Show relative time",
+      "relative": "Göreli zaman göster",
       "relative_comment": "Show the time relatively (eg 50 minutes ago)",
       "now": "You are creating this now",
-      "unknown": "Unknown"
+      "unknown": "Bilinmeyen"
     },
     "datetime-updated": {
       "datetime_updated": "Datetime Updated",
-      "relative": "Show relative time",
+      "relative": "Göreli zaman göster",
       "relative_comment": "Show the time relatively (eg 50 minutes ago)",
       "now": "You are creating this now",
-      "unknown": "Unknown"
+      "unknown": "Bilinmeyen"
     },
     "divider": {
       "divider": "Divider",
@@ -149,7 +149,7 @@
       "input-comment": "Type your text here",
       "desc-name": "Divider description",
       "desc-comment": "Add here a description",
-      "hr-name": "HR",
+      "hr-name": "Yatay",
       "hr-comment": "Display a horizontal rule?",
       "margin-name": "Extra Margin",
       "margin-comment": "Add extra margin above interface"
@@ -163,7 +163,7 @@
       "option": "Seçenek",
       "formatting": "Show display text",
       "formatting_comment": "Render the values as the display values",
-      "placeholder_default": "Choose an option...",
+      "placeholder_default": "Bir seçenek seçiniz...",
       "icon": "İkon",
       "icon_comment": "Choose an optional icon to display on the left of the input",
       "options_invalid": "The JSON options provided for the dropdown are invalid:"
@@ -176,7 +176,7 @@
       "view_options_comment": "Set the view options to use for the files",
       "view_query": "View Query",
       "view_query_comment": "Set the view query to use for the files",
-      "filters": "Filters",
+      "filters": "Filtreler",
       "filters_comment": "What filters to use",
       "accept": "Accept File Types",
       "accept_comment": "Set a list of MIME types that can be picked"
@@ -186,9 +186,9 @@
       "edit": "Editing Options"
     },
     "file-size": {
-      "file_size": "File Size",
+      "file_size": "Dosya Boyutu",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Enter placeholder text",
+      "placeholder_comment": "Yer tutucu metni girin",
       "format": "Format value",
       "format_comment": "Show the value in a human readable way (e.g. 10MB)",
       "format_input": "Format input",
@@ -220,7 +220,7 @@
       "hide": "Hide Value",
       "hide_comment": "Display dots instead of the characters you enter",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Enter placeholder text",
+      "placeholder_comment": "Yer tutucu metni girin",
       "show_hash": "Show the hashed output",
       "show_hash_comment": "Display the saved hash",
       "hashing_type": "Hashing Type",
@@ -300,7 +300,7 @@
       "visible_fields_note": "CSV of fields visible when selecting an item in the modal",
       "template_placeholder": "{{title}} — {{author}}",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Enter placeholder text",
+      "placeholder_comment": "Yer tutucu metni girin",
       "preferences": "Listing View Preferences",
       "preferences_comment": "Set what options to use for the modal",
       "relationship_not_setup": "The relationship hasn't been configured correctly",
@@ -347,14 +347,14 @@
       "rows": "Rows",
       "rows_comment": "The starting number of text rows available",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Enter placeholder text"
+      "placeholder_comment": "Yer tutucu metni girin"
     },
     "multiselect": {
       "multiselect": "Multi-Select",
       "choices": "Seçenekler",
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Enter placeholder text",
+      "placeholder_comment": "Yer tutucu metni girin",
       "size": "Size",
       "size_comment": "Number of options visible before scrolling",
       "option": "Seçenek",
@@ -366,7 +366,7 @@
     "numeric": {
       "numeric": "Sayısal",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Enter placeholder text",
+      "placeholder_comment": "Yer tutucu metni girin",
       "localized": "Yerelleştirilmiş",
       "localized_comment": "Localize the output to the user's locale",
       "icon_left": "Icon Left",
@@ -401,7 +401,7 @@
       "hide": "Hide Value",
       "hide_comment": "Display dots instead of the characters you enter",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Enter placeholder text",
+      "placeholder_comment": "Yer tutucu metni girin",
       "confirm_placeholder": "Confirm password...",
       "show_hash": "Show the hashed output",
       "show_hash_comment": "Display the saved hash",
@@ -538,7 +538,7 @@
       "rows": "Rows",
       "rows_comment": "The number of text rows available for the input before scrolling",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Enter placeholder text",
+      "placeholder_comment": "Yer tutucu metni girin",
       "serif": "Serif Font",
       "serif_comment": "Use a larger, serif typeface"
     },
@@ -602,7 +602,7 @@
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
       "you": "You will be the creator",
-      "unknown": "Unknown"
+      "unknown": "Bilinmeyen"
     },
     "user-roles": {
       "user-roles": "Kullanıcı Rolü",
@@ -620,7 +620,7 @@
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
       "you": "You will be the updater",
-      "unknown": "Unknown"
+      "unknown": "Bilinmeyen"
     },
     "wysiwyg": {
       "toolbar": "Toolbar Options",
