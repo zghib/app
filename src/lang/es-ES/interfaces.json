@@ -32,7 +32,7 @@
       "checkboxes": "Casillas De Selección",
       "choices": "Opciones",
       "choices_comment": "Introduzca los pares de valores de la clave JSON con el valor guardado y el texto mostrado.",
-      "wrap": "Delimitar con delimitador",
+      "wrap": "Delimitar con Delimitador",
       "wrap_comment": "Delimitar el valor guardado dentro de delimitadores (mejora la capacidad de búsqueda).",
       "formatting": "Mostrar texto en pantalla",
       "formatting_comment": "Procesar los valores como valores de visualización",
@@ -358,7 +358,7 @@
       "size": "Tamaño",
       "size_comment": "Número de opciones visibles antes de desplazarse",
       "option": "Opción",
-      "wrap": "Delimitar con delimitador",
+      "wrap": "Delimitar con Delimitador",
       "wrap_comment": "Envolver los valores con un par de delimitadores para permitir la búsqueda estricta de un solo valor",
       "format": "Formato de Navegación",
       "format_comment": "El formato de salida en la página de Navegación de los Ítemes"
@@ -452,9 +452,9 @@
       "structure_key": "Campo Clave de la Estructura",
       "structure_key_comment": "Cuando se utiliza un objeto para la estructura JSON, este valor controla qué campo usar para los valores de clave",
       "placeholder": "Texto de Ejemplo",
-      "placeholder_comment": "The value that shows up instead of the template if there's no value entered yet",
+      "placeholder_comment": "El valor que aparece en lugar del de la plantilla, si no hay ningún valor ingresado aún",
       "create_item_text": "Crear Ítem de Texto",
-      "create_item_text_comment": "Text that's displayed in the button that adds a new row to the repeater"
+      "create_item_text_comment": "Texto que se muestra en el botón que añade una nueva fila al repetidor"
     },
     "slider": {
       "slider": "Deslizador",
@@ -465,7 +465,7 @@
       "step": "Incremento",
       "step_comment": "Incrementos en los que se puede establecer el valor",
       "unit": "Unidad",
-      "unit_comment": "Show an unit next to the slider value, e.g. 15 Pounds"
+      "unit_comment": "Mostrar una unidad junto al valor del deslizador, por ejemplo: 15 Libras"
     },
     "slug": {
       "slug": "Slug",
@@ -493,10 +493,10 @@
     "tags": {
       "tags": "Etiquetas",
       "alphabetize": "Alfabetizar etiquetas",
-      "alphabetize_comment": "Will rearrange tags to be alphabetical",
+      "alphabetize_comment": "Reorganizará etiquetas de modo alfabético",
       "lowercase": "Cambiar a minúsculas",
-      "lowercase_comment": "Convert all tags to lowercase",
-      "wrap": "Wrap with delimiter",
+      "lowercase_comment": "Convertir todas las etiquetas a minúsculas",
+      "wrap": "Delimitar con Delimitador",
       "wrap_comment": "Envolver los valores con un par de delimitadores para permitir la búsqueda estricta de un solo valor",
       "format": "Valor del Formato",
       "format_comment": "Convierte las etiquetas a Capitalizado Tipo Titulo cuando se muestra el valor",
