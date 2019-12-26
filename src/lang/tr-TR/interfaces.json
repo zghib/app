@@ -43,7 +43,7 @@
       "single_comment": "Display Checkboxes in single column",
       "draggable": "Draggable Checkboxes",
       "draggable_comment": "Enable sorting by draggable checkboxes",
-      "allow_other": "Allow Other",
+      "allow_other": "Diğerlerine İzin Ver",
       "allow_other_comment": "Allow an additional custom option"
     },
     "checkboxes-relational": {
@@ -118,10 +118,10 @@
       "icon_left_comment": "Choose an optional icon to display on the left of the input",
       "icon_right": "Icon Right",
       "icon_right_comment": "Choose an optional icon to display on the right of the input",
-      "utc": "Save as UTC",
+      "utc": "UTC olarak kaydet",
       "utc_comment": "Save to and display from UTC",
       "default_to_current_datetime": "Default to current datetime",
-      "default_to_current_datetime_comment": "Sets the default value to current datetime",
+      "default_to_current_datetime_comment": "Varsayılan zamanı şu anki tarih-saat olarak ayarla",
       "format": "Format",
       "format_comment": "The DateTime format to use for the input"
     },
