@@ -155,7 +155,7 @@
       "margin-comment": "Add extra margin above interface"
     },
     "dropdown": {
-      "dropdown": "Dropdown",
+      "dropdown": "Açılır Liste",
       "choices": "Seçenekler",
       "choices_comment": "Kaydedilen değer ve görüntülenen metinden oluşan JSON anahtar - değer çiftlerini giriniz.",
       "placeholder": "Yertutucu",
@@ -193,13 +193,13 @@
       "format_comment": "Show the value in a human readable way (e.g. 10MB)",
       "format_input": "Format input",
       "format_input_comment": "Enter the value using a dropdown for units",
-      "decimal": "Decimal",
+      "decimal": "Ondalık",
       "decimal_comment": "Show the value in decimal counting (10MB vs 10MiB)",
       "crop_preview": "Crop Preview Images"
     },
     "files": {
       "files": "Dosyalar",
-      "visible_columns": "Visible Columns",
+      "visible_columns": "Görünür Sütunlar",
       "visible_columns_comment": "Add a CSV of columns you want to display as preview",
       "preferences": "Listing View Preferences",
       "preferences_comment": "Set what options to use for the modal",
@@ -213,11 +213,11 @@
       "allow_select_comment": "Allow the user to select an existing item",
       "accept": "Accept File Types",
       "accept_comment": "Set a list of MIME types that can be picked",
-      "edit_item": "Edit"
+      "edit_item": "Düzenle"
     },
     "hashed": {
       "hashed": "Hashed",
-      "hide": "Hide Value",
+      "hide": "Değeri Gizle",
       "hide_comment": "Display dots instead of the characters you enter",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
@@ -238,13 +238,13 @@
       "search_placeholder": "Search for an icon..."
     },
     "interface-options": {
-      "interface-options": "Interface Options",
+      "interface-options": "Arayüz Ayarları",
       "interface-field": "Interface Field",
       "placeholder-comment": "The field that holds the name of the interface",
       "placeholder-default": "Enter a field name..."
     },
     "interface-types": {
-      "interface-types": "Interface types",
+      "interface-types": "Arayüz türleri",
       "interface-field": "Interface Field",
       "placeholder-comment": "The field that holds the name of the interface",
       "placeholder-default": "Enter a field name..."
@@ -253,7 +253,7 @@
       "interfaces": "Arayüzler",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Static text that shown before a value is selected",
-      "placeholder_default": "Choose an interface",
+      "placeholder_default": "Bir arayüz seçiniz",
       "option": "Seçenek",
       "relational": "Include relational interfaces",
       "include_status": "Include the status interfaces"
@@ -272,13 +272,13 @@
     },
     "language": {
       "input": "Dil",
-      "select_language": "Select a language...",
+      "select_language": "Bir dil seçiniz...",
       "limit": "Limit to Directus Availability",
       "limit_comment": "Only show languages that are available as translations in Directus"
     },
     "many-to-many": {
       "m2m": "Many to Many",
-      "visible_columns": "Visible Columns",
+      "visible_columns": "Görünür Sütunlar",
       "visible_columns_comment": "Add a CSV of columns you want to display as preview",
       "preferences": "Listing View Preferences",
       "preferences_comment": "Set what options to use for the modal",
@@ -293,12 +293,12 @@
     },
     "many-to-one": {
       "m2o": "Many to One",
-      "template": "Dropdown Template",
+      "template": "Açılır Liste Şeması",
       "template_comment": "How to format the dropdown options",
       "visible_fields": "Visible Fields",
-      "visible_fields_placeholder": "title,author",
+      "visible_fields_placeholder": "başlık,yazar",
       "visible_fields_note": "CSV of fields visible when selecting an item in the modal",
-      "template_placeholder": "{{title}} — {{author}}",
+      "template_placeholder": "{{title}} — {{author}}",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
       "preferences": "Listing View Preferences",
@@ -306,45 +306,45 @@
       "relationship_not_setup": "The relationship hasn't been configured correctly",
       "icon": "İkon",
       "icon_comment": "Choose an optional icon to display on the left of the input",
-      "select_one": "Select one",
-      "threshold": "Threshold",
+      "select_one": "Birini seçin",
+      "threshold": "Eşik",
       "threshold_comment": "The number of items after which a modal will be used instead of a dropdown"
     },
     "map": {
-      "map": "Map",
+      "map": "Harita",
       "choices": "choices",
       "choices_comment": "Kaydedilen değer ve görüntülenen metinden oluşan JSON anahtar - değer çiftlerini giriniz.",
       "theme": "Arayüz Teması",
       "theme_comment": "Destekleniyorsa arayüzün Kullanıcı Arayüzünü (UI) ayarlayın",
       "value": "Değer",
-      "map_lat": "Default Latitude",
+      "map_lat": "Varsayılan Enlem",
       "map_lat_comment": "Map will be centered at this latitude",
-      "map_lng": "Default Longitude",
+      "map_lng": "Varsayılan Boylam",
       "map_lng_comment": "Map will be centered at this longitude",
-      "height": "Height",
-      "default_zoom": "Default Zoom",
+      "height": "Yükseklik",
+      "default_zoom": "Varsayılan Yakınlaştırma",
       "default_zoom_comment": "Default zoom level of the map",
-      "max_zoom": "Max Zoom",
+      "max_zoom": "Maksimum Yakınlaştırma",
       "max_zoom_comment": "Maximum zoom allowed in the map",
-      "no_location": "No location found",
+      "no_location": "Konum bulunamadı",
       "user_location_error_blocked": "You've disabled the location access. Kindly enable it from the browser addressbar to auto detect your location.",
       "user_location_error": "There was an error while trying to get your location. Plese try again.",
       "address_to_code": "Address Input",
       "address_to_code_comment": "Add an input field to automatically get the geocodes from an address. Uses <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Please check their usage policy.",
       "address_to_code_error": "No geocode found for this address",
-      "clear_location": "Clear Location",
+      "clear_location": "Konumu Temizle",
       "my_location": "Set My Location",
       "address_location": "Set Address Location"
     },
     "markdown": {
       "markdown": "Markdown",
-      "edit": "Edit",
-      "preview": "Preview",
+      "edit": "Düzenle",
+      "preview": "Önizle",
       "tabbed_preview": "Tabbed Preview",
       "tabbed_preview_comment": "How to display the editor and preview",
       "tabbed_preview_on": "Tabbed Preview",
       "tabbed_preview_off": "Side-by-side Preview",
-      "rows": "Rows",
+      "rows": "Satırlar",
       "rows_comment": "The starting number of text rows available",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin"
@@ -380,13 +380,13 @@
       "o2m": "One to Many",
       "select_items": "Select the items",
       "relation_not_setup": "The relationship hasn't been configured correctly",
-      "visible_columns": "Visible Columns",
+      "visible_columns": "Görünür Sütunlar",
       "visible_columns_comment": "Add a CSV of columns you want to display as preview",
       "preferences": "Listing View Preferences",
       "preferences_comment": "Set what options to use for the modal",
       "template": "Display Template",
       "template_comment": "How to format value on the item browse display",
-      "template_placeholder": "{{title}} — {{author}}",
+      "template_placeholder": "{{title}} — {{author}}",
       "allow_create": "Allow Create",
       "allow_create_comment": "Allow the user to create a new item from this interface",
       "allow_select": "Allow Select",
@@ -398,7 +398,7 @@
     },
     "password": {
       "password": "Şifre",
-      "hide": "Hide Value",
+      "hide": "Değeri Gizle",
       "hide_comment": "Display dots instead of the characters you enter",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
@@ -409,7 +409,7 @@
       "hashing_type_comment": "What method of hashing to use"
     },
     "preview": {
-      "preview": "Preview",
+      "preview": "Önizle",
       "url_template": "URL Template",
       "url_template_comment": "A mustache template for a URL to preview content",
       "preview_item": "Preview this item"
@@ -535,7 +535,7 @@
     },
     "textarea": {
       "textarea": "Text-Area",
-      "rows": "Rows",
+      "rows": "Satırlar",
       "rows_comment": "The number of text rows available for the input before scrolling",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
@@ -585,47 +585,47 @@
       "template_placeholder": "{{title}} — {{body}}"
     },
     "user": {
-      "user": "User",
+      "user": "Kullanıcı",
       "avatar": "Avatar",
       "name": "İsim",
       "template": "Şablon",
       "template_comment": "How to format the users in the dropdown",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Add a placeholder"
+      "placeholder_comment": "Yer tutucu ekle"
     },
     "user-created": {
-      "user_created": "User Created",
+      "user_created": "Kullanıcı Oluşturuldu",
       "avatar": "Avatar",
       "name": "İsim",
       "template": "Şablon",
       "template_comment": "How to display the user on the item detail page",
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
-      "you": "You will be the creator",
+      "you": "Oluşturan siz olacaksınız",
       "unknown": "Bilinmeyen"
     },
     "user-roles": {
       "user-roles": "Kullanıcı Rolü",
-      "choose_role": "Choose a role...",
+      "choose_role": "Rol seçin...",
       "relational": "İlişkisel",
-      "relational_comment": "Save as a relational record",
-      "show_public": "Show public role"
+      "relational_comment": "İlişkisel kayıt olarak kaydet",
+      "show_public": "Herkese açık rolü göster"
     },
     "user-updated": {
-      "user_updated": "User Updated",
+      "user_updated": "Kullanıcı Güncellendi",
       "avatar": "Avatar",
       "name": "İsim",
       "template": "Şablon",
       "template_comment": "How to display the user on the item detail page",
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
-      "you": "You will be the updater",
+      "you": "Güncelleyen siz olacaksınız",
       "unknown": "Bilinmeyen"
     },
     "wysiwyg": {
-      "toolbar": "Toolbar Options",
-      "toolbar_comment": "Show, hide, and reorder toolbar options",
-      "custom_formats": "Custom Formats",
+      "toolbar": "Araç Çubuğu Seçenekleri",
+      "toolbar_comment": "Araç çubuğu seçeneklerini göster, gizle ve yeniden sırala",
+      "custom_formats": "Özel Biçimler",
       "custom_formats_comment": "Custom HTML wrappers for content"
     }
   }
