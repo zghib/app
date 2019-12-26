@@ -321,10 +321,10 @@
       "map_lat_comment": "Map will be centered at this latitude",
       "map_lng": "Default Longitude",
       "map_lng_comment": "Map will be centered at this longitude",
-      "height": "Height",
-      "default_zoom": "Default Zoom",
+      "height": "Altura",
+      "default_zoom": "Zoom predeterminado",
       "default_zoom_comment": "Default zoom level of the map",
-      "max_zoom": "Max Zoom",
+      "max_zoom": "Zoom Máximo",
       "max_zoom_comment": "Maximum zoom allowed in the map",
       "no_location": "No location found",
       "user_location_error_blocked": "You've disabled the location access. Kindly enable it from the browser addressbar to auto detect your location.",
@@ -429,14 +429,14 @@
       "format_comment": "The output format on the Browse Items page"
     },
     "rating": {
-      "rating": "Rating",
+      "rating": "Valoración",
       "value": "Valor",
-      "active_color": "Active Color",
+      "active_color": "Color activo",
       "active_color_comment": "Active color of selected stars",
-      "max_stars": "Max Stars",
+      "max_stars": "Estrellas Máximas",
       "max_stars_comment": "Number of maximum rating allowed",
-      "display": "Display",
-      "display_comment": "How to display rating values"
+      "display": "Mostrar",
+      "display_comment": "Cómo mostrar los valores de valoración"
     },
     "repeater": {
       "repeater": "Repeater",
@@ -445,8 +445,8 @@
       "template_placeholder": "{{title}} — ({{author}})",
       "fields": "Campos",
       "fields_comment": "What fields to show in each repeated row",
-      "limit": "Limit",
-      "limit_comment": "Maximum amount of rows the user can add",
+      "limit": "Límite",
+      "limit_comment": "Cantidad máxima de filas que el usuario puede añadir",
       "structure": "Estructura",
       "structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
       "structure_key": "Structure Key Field",
@@ -514,9 +514,9 @@
       "validation_message_default": "Please enter a valid tag"
     },
     "text-input": {
-      "input": "Text Input",
+      "input": "Control de Texto",
       "placeholder": "Placeholder",
-      "trim": "Trim",
+      "trim": "Eliminar Espacios en Blanco",
       "trim_comment": "Trim surrounding whitespace from the value before saving",
       "char_count": "Show Character Count",
       "char_count_comment": "Show the remaining characters available",
@@ -534,12 +534,12 @@
       "large": "Grande"
     },
     "textarea": {
-      "textarea": "Text-Area",
+      "textarea": "Cuadro de Texto",
       "rows": "Rows",
-      "rows_comment": "The number of text rows available for the input before scrolling",
+      "rows_comment": "El número de filas de texto disponibles para el control antes de desplazarse",
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
-      "serif": "Serif Font",
+      "serif": "Fuente Serif",
       "serif_comment": "Use a larger, serif typeface"
     },
     "time": {
@@ -572,7 +572,7 @@
       "text-active-placeholder": "Enter your text here",
       "icon-active-name": "Active Icon",
       "icon-active-comment": "Choose an active icon",
-      "color-active-name": "Active Color",
+      "color-active-name": "Color activo",
       "color-active-comment": "Choose the active color"
     },
     "translation": {
@@ -599,7 +599,7 @@
       "name": "Nombre",
       "template": "Template",
       "template_comment": "How to display the user on the item detail page",
-      "display": "Display",
+      "display": "Mostrar",
       "display_comment": "How to display the user on the item browse page",
       "you": "You will be the creator",
       "unknown": "Unknown"
@@ -617,7 +617,7 @@
       "name": "Nombre",
       "template": "Template",
       "template_comment": "How to display the user on the item detail page",
-      "display": "Display",
+      "display": "Mostrar",
       "display_comment": "How to display the user on the item browse page",
       "you": "You will be the updater",
       "unknown": "Unknown"
