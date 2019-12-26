@@ -356,12 +356,12 @@
       "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Ingresar el texto de ejemplo",
       "size": "Tamaño",
-      "size_comment": "Number of options visible before scrolling",
+      "size_comment": "Número de opciones visibles antes de desplazarse",
       "option": "Opción",
       "wrap": "Delimitar con delimitador",
       "wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
-      "format": "Browse Format",
-      "format_comment": "The output format on the Browse Items page"
+      "format": "Formato de Navegación",
+      "format_comment": "El formato de salida en la página de Navegación de los Ítemes"
     },
     "numeric": {
       "numeric": "Numérico",
@@ -425,8 +425,8 @@
       "choices": "Opciones",
       "choices_comment": "Introduzca los pares de valores de la clave JSON con el valor guardado y el texto mostrado.",
       "option": "Opción",
-      "format": "Browse Format",
-      "format_comment": "The output format on the Browse Items page"
+      "format": "Formato de Navegación",
+      "format_comment": "El formato de salida en la página de Navegación de los Ítemes"
     },
     "rating": {
       "rating": "Valoración",
@@ -441,7 +441,7 @@
     "repeater": {
       "repeater": "Repeater",
       "template": "Mostrar Plantilla",
-      "template_comment": "How to format value on the item browse display and inline preview",
+      "template_comment": "Como dar formato al valor en un ítem de navegación mostrado y su vista previa en línea",
       "template_placeholder": "{{title}} — ({{author}})",
       "fields": "Campos",
       "fields_comment": "What fields to show in each repeated row",
