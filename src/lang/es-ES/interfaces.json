@@ -166,7 +166,7 @@
       "placeholder_default": "Elija una opción...",
       "icon": "Icono",
       "icon_comment": "Elija un icono opcional para mostrar a la izquierda del control",
-      "options_invalid": "The JSON options provided for the dropdown are invalid:"
+      "options_invalid": "Las opciones JSON provistas para el desplegable son inválidas:"
     },
     "file": {
       "file": "Archivo",
