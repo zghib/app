@@ -536,30 +536,30 @@
     "textarea": {
       "textarea": "Metin Alanı",
       "rows": "Satırlar",
-      "rows_comment": "The number of text rows available for the input before scrolling",
+      "rows_comment": "Kaydırma işleminden önce giriş için kullanılabilir metin satırı sayısı",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
-      "serif": "Serif Font",
-      "serif_comment": "Use a larger, serif typeface"
+      "serif": "Serif Yazı Tipi",
+      "serif_comment": "Daha büyük, serif yazı tipi kullanın"
     },
     "time": {
       "time": "Zaman",
-      "include_seconds": "Include seconds",
-      "include_seconds_comment": "Include seconds in the interface",
+      "include_seconds": "Saniyeleri içer",
+      "include_seconds_comment": "Arayüze saniyeleri ekle",
       "24hour": "24 Saatlik saati göster",
       "24hour_comment": "Zamanı 24 saat formatında göster (örneğin: 15:30)"
     },
     "toggle": {
       "toggle": "Anahtar",
-      "label_on": "Label (On)",
-      "label_on_comment": "Label to show next to the toggle when the toggle is on",
-      "label_off": "Label (Off)",
-      "label_off_comment": "Label to show next to the toggle when the toggle is off",
-      "checkbox": "Show as Checkbox",
-      "checkbox_comment": "Display a checkbox instead of the default switch"
+      "label_on": "Etiket (Açık)",
+      "label_on_comment": "Anahtar açıkken anahtarın yanında gösterilecek etiket",
+      "label_off": "Etiket (Kapalı)",
+      "label_off_comment": "Anahtar kapalıyken anahtarın yanında gösterilecek etiket",
+      "checkbox": "Onay Kutusu Olarak Göster",
+      "checkbox_comment": "Varsayılan anahtar yerine bir onay kutusu görüntüle"
     },
     "toggle-icon": {
-      "toggle-icon": "Toggle Icon",
+      "toggle-icon": "Anahtar İkonu",
       "text-inactive-name": "İnaktif Yazı",
       "text-inactive-comment": "İnaktif ikonun yanındaki metin",
       "text-inactive-placeholder": "Metninizi buraya girin",
