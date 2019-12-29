@@ -295,7 +295,7 @@
       "m2o": "Many to One",
       "template": "Açılır Liste Şeması",
       "template_comment": "How to format the dropdown options",
-      "visible_fields": "Visible Fields",
+      "visible_fields": "Görünür Alanlar",
       "visible_fields_placeholder": "başlık,yazar",
       "visible_fields_note": "CSV of fields visible when selecting an item in the modal",
       "template_placeholder": "{{title}} — {{author}}",
@@ -312,15 +312,15 @@
     },
     "map": {
       "map": "Harita",
-      "choices": "choices",
+      "choices": "seçenekler",
       "choices_comment": "Kaydedilen değer ve görüntülenen metinden oluşan JSON anahtar - değer çiftlerini giriniz.",
       "theme": "Arayüz Teması",
       "theme_comment": "Destekleniyorsa arayüzün Kullanıcı Arayüzünü (UI) ayarlayın",
       "value": "Değer",
       "map_lat": "Varsayılan Enlem",
-      "map_lat_comment": "Map will be centered at this latitude",
+      "map_lat_comment": "Harita bu enleme ortalanacak",
       "map_lng": "Varsayılan Boylam",
-      "map_lng_comment": "Map will be centered at this longitude",
+      "map_lng_comment": "Harita bu boylama ortalanacak",
       "height": "Yükseklik",
       "default_zoom": "Varsayılan Yakınlaştırma",
       "default_zoom_comment": "Default zoom level of the map",
@@ -333,7 +333,7 @@
       "address_to_code_comment": "Add an input field to automatically get the geocodes from an address. Uses <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Please check their usage policy.",
       "address_to_code_error": "No geocode found for this address",
       "clear_location": "Konumu Temizle",
-      "my_location": "Set My Location",
+      "my_location": "Konumumu Ayarla",
       "address_location": "Set Address Location"
     },
     "markdown": {
@@ -350,7 +350,7 @@
       "placeholder_comment": "Yer tutucu metni girin"
     },
     "multiselect": {
-      "multiselect": "Multi-Select",
+      "multiselect": "Çoklu Seçim",
       "choices": "Seçenekler",
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
       "placeholder": "Yertutucu",
@@ -374,11 +374,11 @@
       "icon_right": "Icon Right",
       "icon_right_comment": "Choose an optional icon to display on the right of the input",
       "monospace": "Monospace",
-      "monospace_comment": "Use a monospace font"
+      "monospace_comment": "Monospace font kullan"
     },
     "one-to-many": {
-      "o2m": "One to Many",
-      "select_items": "Select the items",
+      "o2m": "Bire Çok",
+      "select_items": "Öğeleri seç",
       "relation_not_setup": "The relationship hasn't been configured correctly",
       "visible_columns": "Görünür Sütunlar",
       "visible_columns_comment": "Add a CSV of columns you want to display as preview",
@@ -418,7 +418,7 @@
       "primary_key": "Birincil Anahtar (Primary Key)",
       "immutable": "Can not be changed",
       "monospace": "Monospace",
-      "monospace_comment": "Use a monospace font"
+      "monospace_comment": "Monospace font kullan"
     },
     "radio-buttons": {
       "radio": "Radio Buttons",
@@ -429,13 +429,13 @@
       "format_comment": "The output format on the Browse Items page"
     },
     "rating": {
-      "rating": "Rating",
+      "rating": "Puanlama",
       "value": "Değer",
-      "active_color": "Active Color",
+      "active_color": "Etkin Renk",
       "active_color_comment": "Active color of selected stars",
       "max_stars": "Max Stars",
       "max_stars_comment": "Number of maximum rating allowed",
-      "display": "Display",
+      "display": "Göster",
       "display_comment": "How to display rating values"
     },
     "repeater": {
@@ -459,12 +459,12 @@
     "slider": {
       "slider": "Slider",
       "min": "Minimum",
-      "min_comment": "The minimum valid value",
-      "max": "Maximum",
-      "max_comment": "The maximum valid value",
-      "step": "Step",
+      "min_comment": "Geçerli minimum değer",
+      "max": "Maksimum",
+      "max_comment": "Geçerli maksimum değer",
+      "step": "Adım",
       "step_comment": "Increments at which the value can be set",
-      "unit": "Unit",
+      "unit": "Birim",
       "unit_comment": "Show an unit next to the slider value, e.g. 15 Pounds"
     },
     "slug": {
@@ -491,7 +491,7 @@
       "deleted": "Silindi"
     },
     "tags": {
-      "tags": "Tags",
+      "tags": "Etiketler",
       "alphabetize": "Alphabetize tags",
       "alphabetize_comment": "Will rearrange tags to be alphabetical",
       "lowercase": "Force Lowercase",
@@ -527,14 +527,14 @@
       "format": "Pretty Output",
       "format_comment": "Convert the value to title case",
       "monospace": "Monospace",
-      "monospace_comment": "Use a monospace font",
+      "monospace_comment": "Monospace font kullan",
       "auto": "Automatic",
       "small": "Small",
       "medium": "Medium",
       "large": "Large"
     },
     "textarea": {
-      "textarea": "Text-Area",
+      "textarea": "Metin Alanı",
       "rows": "Satırlar",
       "rows_comment": "The number of text rows available for the input before scrolling",
       "placeholder": "Yertutucu",
@@ -572,7 +572,7 @@
       "text-active-placeholder": "Enter your text here",
       "icon-active-name": "Active Icon",
       "icon-active-comment": "Choose an active icon",
-      "color-active-name": "Active Color",
+      "color-active-name": "Etkin Renk",
       "color-active-comment": "Choose the active color"
     },
     "translation": {
@@ -599,7 +599,7 @@
       "name": "İsim",
       "template": "Şablon",
       "template_comment": "Kullanıcı, öğe detay sayfasında nasıl görüntülenir",
-      "display": "Display",
+      "display": "Göster",
       "display_comment": "Kullanıcı, öğe göz atma sayfasında nasıl görüntülenir",
       "you": "Oluşturan siz olacaksınız",
       "unknown": "Bilinmeyen"
@@ -617,7 +617,7 @@
       "name": "İsim",
       "template": "Şablon",
       "template_comment": "Kullanıcı, öğe detay sayfasında nasıl görüntülenir",
-      "display": "Display",
+      "display": "Göster",
       "display_comment": "Kullanıcı, öğe göz atma sayfasında nasıl görüntülenir",
       "you": "Güncelleyen siz olacaksınız",
       "unknown": "Bilinmeyen"
