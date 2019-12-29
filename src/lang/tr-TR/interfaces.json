@@ -263,21 +263,21 @@
       "template_comment": "Provide a template the user can use to get started with"
     },
     "key-value": {
-      "key_interface": "Key Interface",
-      "key_data_type": "Key Data Type",
-      "key_options": "Key Interface Options",
-      "value_interface": "Key Interface",
-      "value_data_type": "Key Data Type",
-      "value_options": "Key Interface Options"
+      "key_interface": "Anahtar Arayüz",
+      "key_data_type": "Anahtar Veri Tipi",
+      "key_options": "Anahtar Arayüz Seçenekleri",
+      "value_interface": "Anahtar Arayüz",
+      "value_data_type": "Anahtar Veri Tipi",
+      "value_options": "Anahtar Arayüz Seçenekleri"
     },
     "language": {
       "input": "Dil",
       "select_language": "Bir dil seçiniz...",
-      "limit": "Limit to Directus Availability",
-      "limit_comment": "Only show languages that are available as translations in Directus"
+      "limit": "Directus Kullanılabilirliği Sınırı",
+      "limit_comment": "Yalnızca Directus'ta çeviri olarak kullanılabilen dilleri göster"
     },
     "many-to-many": {
-      "m2m": "Many to Many",
+      "m2m": "Çoktan Çoka",
       "visible_columns": "Görünür Sütunlar",
       "visible_columns_comment": "Önizleme olarak görüntülemek istediğiniz sütunların CSV'sini ekleyin",
       "preferences": "Liste Görünümü Tercihleri",
@@ -292,12 +292,12 @@
       "allow_select_comment": "Kullanıcının mevcut bir öğeyi seçmesine izin ver"
     },
     "many-to-one": {
-      "m2o": "Many to One",
+      "m2o": "Çoktan Bire",
       "template": "Açılır Liste Şeması",
-      "template_comment": "How to format the dropdown options",
+      "template_comment": "Açılır seçenekler nasıl biçimlendirilir",
       "visible_fields": "Görünür Alanlar",
       "visible_fields_placeholder": "başlık,yazar",
-      "visible_fields_note": "CSV of fields visible when selecting an item in the modal",
+      "visible_fields_note": "Bir öğe seçerken görünen alanların CSV'si",
       "template_placeholder": "{{title}} — {{author}}",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
@@ -308,7 +308,7 @@
       "icon_comment": "Choose an optional icon to display on the left of the input",
       "select_one": "Birini seçin",
       "threshold": "Eşik",
-      "threshold_comment": "The number of items after which a modal will be used instead of a dropdown"
+      "threshold_comment": "Açılır menü yerine modalın kullanılacağı öğe sayısı"
     },
     "map": {
       "map": "Harita",
@@ -323,26 +323,26 @@
       "map_lng_comment": "Harita bu boylama ortalanacak",
       "height": "Yükseklik",
       "default_zoom": "Varsayılan Yakınlaştırma",
-      "default_zoom_comment": "Default zoom level of the map",
+      "default_zoom_comment": "Haritanın varsayılan yakınlaştırma düzeyi",
       "max_zoom": "Maksimum Yakınlaştırma",
-      "max_zoom_comment": "Maximum zoom allowed in the map",
+      "max_zoom_comment": "Haritada izin verilen maksimum yakınlaştırma",
       "no_location": "Konum bulunamadı",
-      "user_location_error_blocked": "You've disabled the location access. Kindly enable it from the browser addressbar to auto detect your location.",
-      "user_location_error": "There was an error while trying to get your location. Plese try again.",
-      "address_to_code": "Address Input",
-      "address_to_code_comment": "Add an input field to automatically get the geocodes from an address. Uses <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Please check their usage policy.",
-      "address_to_code_error": "No geocode found for this address",
+      "user_location_error_blocked": "Konum erişimini devre dışı bıraktınız. Konumunuzu otomatik olarak algılamak için tarayıcı adres çubuğundan etkinleştirin.",
+      "user_location_error": "Konumunuz alınmaya çalışılırken bir hata oluştu. Lütfen tekrar deneyin.",
+      "address_to_code": "Adres Girişi",
+      "address_to_code_comment": "Coğrafi kodları bir adresten otomatik olarak almak için bir giriş alanı ekleyin. <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\"> Nominatim </a> 'i kullanır. Lütfen kullanım politikalarını kontrol edin.",
+      "address_to_code_error": "Bu adres için coğrafi kod bulunamadı",
       "clear_location": "Konumu Temizle",
       "my_location": "Konumumu Ayarla",
-      "address_location": "Set Address Location"
+      "address_location": "Adres Konumunu Ayarla"
     },
     "markdown": {
       "markdown": "Markdown",
       "edit": "Düzenle",
       "preview": "Önizle",
-      "tabbed_preview": "Tabbed Preview",
+      "tabbed_preview": "Sekmeli Önizleme",
       "tabbed_preview_comment": "Düzenleyici ve önizleme nasıl görüntülenir",
-      "tabbed_preview_on": "Tabbed Preview",
+      "tabbed_preview_on": "Sekmeli Önizleme",
       "tabbed_preview_off": "Yan Yana Önizleme",
       "rows": "Satırlar",
       "rows_comment": "Kullanılabilir metin satırlarının başlangıç sayısı",
