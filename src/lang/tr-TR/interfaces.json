@@ -209,8 +209,8 @@
       "template_placeholder": "{{movie.name}} — {{member.first_name}}",
       "allow_create": "Oluşturmaya İzin Ver",
       "allow_create_comment": "Kullanıcının bu arayüzden yeni bir öğe oluşturmasına izin ver",
-      "allow_select": "Allow Select",
-      "allow_select_comment": "Allow the user to select an existing item",
+      "allow_select": "Seçime İzin Ver",
+      "allow_select_comment": "Kullanıcının mevcut bir öğeyi seçmesine izin ver",
       "accept": "Accept File Types",
       "accept_comment": "Set a list of MIME types that can be picked",
       "edit_item": "Düzenle"
@@ -218,36 +218,36 @@
     "hashed": {
       "hashed": "Hashed",
       "hide": "Değeri Gizle",
-      "hide_comment": "Display dots instead of the characters you enter",
+      "hide_comment": "Girdiğiniz karakterler yerine noktaları göster",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
-      "show_hash": "Show the hashed output",
-      "show_hash_comment": "Display the saved hash",
-      "hashing_type": "Hashing Type",
-      "hashing_type_comment": "What method of hashing to use",
-      "width": "Size",
-      "width_comment": "Set what width to use for the input",
-      "auto": "Automatic",
-      "small": "Small",
-      "medium": "Medium",
-      "large": "Large",
-      "secured": "Value Secured"
+      "show_hash": "Hashed çıktıyı göster",
+      "show_hash_comment": "Kaydedilen hashi görüntüle",
+      "hashing_type": "Hashing Türü",
+      "hashing_type_comment": "Hangi hashing yöntemi kullanmalı",
+      "width": "Boyut",
+      "width_comment": "Giriş için hangi genişliği kullanacağınızı ayarlama",
+      "auto": "Otomatik",
+      "small": "Küçük",
+      "medium": "Orta",
+      "large": "Büyük",
+      "secured": "Güvence Altına Alınan Değer"
     },
     "icon": {
       "icon": "İkon",
-      "search_placeholder": "Search for an icon..."
+      "search_placeholder": "Bir ikon arayın..."
     },
     "interface-options": {
       "interface-options": "Arayüz Ayarları",
-      "interface-field": "Interface Field",
-      "placeholder-comment": "The field that holds the name of the interface",
-      "placeholder-default": "Enter a field name..."
+      "interface-field": "Arayüz Alanı",
+      "placeholder-comment": "Arayüzün adını tutan alan",
+      "placeholder-default": "Bir arayüz adı girin..."
     },
     "interface-types": {
       "interface-types": "Arayüz türleri",
-      "interface-field": "Interface Field",
-      "placeholder-comment": "The field that holds the name of the interface",
-      "placeholder-default": "Enter a field name..."
+      "interface-field": "Arayüz Alanı",
+      "placeholder-comment": "Arayüzün adını tutan alan",
+      "placeholder-default": "Bir arayüz adı girin..."
     },
     "interfaces": {
       "interfaces": "Arayüzler",
@@ -255,8 +255,8 @@
       "placeholder_comment": "Static text that shown before a value is selected",
       "placeholder_default": "Bir arayüz seçiniz",
       "option": "Seçenek",
-      "relational": "Include relational interfaces",
-      "include_status": "Include the status interfaces"
+      "relational": "İlişkisel arayüzleri dahil et",
+      "include_status": "Durum arayüzlerini dahil et"
     },
     "json": {
       "template": "Şablon",
@@ -288,8 +288,8 @@
       "template_placeholder": "{{movie.name}} — {{member.first_name}}",
       "allow_create": "Oluşturmaya İzin Ver",
       "allow_create_comment": "Kullanıcının bu arayüzden yeni bir öğe oluşturmasına izin ver",
-      "allow_select": "Allow Select",
-      "allow_select_comment": "Allow the user to select an existing item"
+      "allow_select": "Seçime İzin Ver",
+      "allow_select_comment": "Kullanıcının mevcut bir öğeyi seçmesine izin ver"
     },
     "many-to-one": {
       "m2o": "Many to One",
@@ -355,7 +355,7 @@
       "choices_comment": "Kaydedilen değer ve görüntülenen metinden oluşan JSON anahtar - değer çiftlerini giriniz",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
-      "size": "Size",
+      "size": "Boyut",
       "size_comment": "Kaydırma işleminden önce görünen seçenek sayısı",
       "option": "Seçenek",
       "wrap": "Sınırlayıcı ile sarın",
@@ -389,8 +389,8 @@
       "template_placeholder": "{{title}} — {{author}}",
       "allow_create": "Oluşturmaya İzin Ver",
       "allow_create_comment": "Kullanıcının bu arayüzden yeni bir öğe oluşturmasına izin ver",
-      "allow_select": "Allow Select",
-      "allow_select_comment": "Allow the user to select an existing item",
+      "allow_select": "Seçime İzin Ver",
+      "allow_select_comment": "Kullanıcının mevcut bir öğeyi seçmesine izin ver",
       "delete_mode": "Silme modu",
       "delete_mode_comment": "Kullanıcı bir öğenin seçimini kaldırdığında ne yapmalı",
       "sort_field": "Sıralama Alanı",
@@ -399,14 +399,14 @@
     "password": {
       "password": "Şifre",
       "hide": "Değeri Gizle",
-      "hide_comment": "Display dots instead of the characters you enter",
+      "hide_comment": "Girdiğiniz karakterler yerine noktaları göster",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
       "confirm_placeholder": "Şifreyi Onayla...",
-      "show_hash": "Show the hashed output",
-      "show_hash_comment": "Display the saved hash",
-      "hashing_type": "Hashing Type",
-      "hashing_type_comment": "What method of hashing to use"
+      "show_hash": "Hashed çıktıyı göster",
+      "show_hash_comment": "Kaydedilen hashi görüntüle",
+      "hashing_type": "Hashing Türü",
+      "hashing_type_comment": "Hangi hashing yöntemi kullanmalı"
     },
     "preview": {
       "preview": "Önizle",
@@ -528,10 +528,10 @@
       "format_comment": "Değeri başlık büyüklüğüne dönüştür",
       "monospace": "Monospace",
       "monospace_comment": "Monospace font kullan",
-      "auto": "Automatic",
-      "small": "Small",
-      "medium": "Medium",
-      "large": "Large"
+      "auto": "Otomatik",
+      "small": "Küçük",
+      "medium": "Orta",
+      "large": "Büyük"
     },
     "textarea": {
       "textarea": "Metin Alanı",
