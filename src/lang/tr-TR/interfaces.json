@@ -546,11 +546,11 @@
       "time": "Zaman",
       "include_seconds": "Include seconds",
       "include_seconds_comment": "Include seconds in the interface",
-      "24hour": "Display 24 hour clock",
-      "24hour_comment": "Show the time in 24-hour format (eg.: 15:30)"
+      "24hour": "24 Saatlik saati göster",
+      "24hour_comment": "Zamanı 24 saat formatında göster (örneğin: 15:30)"
     },
     "toggle": {
-      "toggle": "Toggle",
+      "toggle": "Anahtar",
       "label_on": "Label (On)",
       "label_on_comment": "Label to show next to the toggle when the toggle is on",
       "label_off": "Label (Off)",
@@ -568,12 +568,12 @@
       "color-inactive-name": "Inactive Color",
       "color-inactive-comment": "Choose the inactive color",
       "text-active-name": "Active Text",
-      "text-active-comment": "Text next to the active icon",
+      "text-active-comment": "Etkin ikonun yanındaki metin",
       "text-active-placeholder": "Enter your text here",
-      "icon-active-name": "Active Icon",
-      "icon-active-comment": "Choose an active icon",
+      "icon-active-name": "Etkin İkon",
+      "icon-active-comment": "Etkin ikonu seç",
       "color-active-name": "Etkin Renk",
-      "color-active-comment": "Choose the active color"
+      "color-active-comment": "Etkin rengi seç"
     },
     "translation": {
       "translation": "Çeviri",
@@ -626,7 +626,7 @@
       "toolbar": "Araç Çubuğu Seçenekleri",
       "toolbar_comment": "Araç çubuğu seçeneklerini göster, gizle ve yeniden sırala",
       "custom_formats": "Özel Biçimler",
-      "custom_formats_comment": "Custom HTML wrappers for content"
+      "custom_formats_comment": "İçerik için özel HTML sarmalayıcıları"
     }
   }
 }
