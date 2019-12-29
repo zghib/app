@@ -69,7 +69,7 @@
     },
     "directus_files": {
       "title": "Ünvan",
-      "tags": "Tags",
+      "tags": "Etiketler",
       "location": "Konum",
       "description": "Açıklama",
       "filename_download": "Dosya Adı İndir",
