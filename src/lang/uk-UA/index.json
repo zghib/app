@@ -41,7 +41,7 @@
   "clear": "Очистити",
   "clear_value": "Очистити значення",
   "click_to_toggle_all_none": "Клацніть, щоб увімкнути / вимкнути всю колонку",
-  "collection": "Collection | Collections",
+  "collection": "Колекція | Колекції",
   "collection_count": "Немає колекцій | Одна колекція | {count} колекцій",
   "collection_contains_items": "Елементів у колекції {collection}: {count}",
   "collection_invalid_name": "Неправильна назва колекції",
@@ -52,37 +52,37 @@
   "collections": {
     "directus_activity": "Активність",
     "directus_files": "Файли",
-    "directus_users": "Users"
+    "directus_users": "Користувачі"
   },
   "fields": {
     "directus_activity": {
       "action": "Action",
-      "collection": "Collection",
+      "collection": "Колекція",
       "item": "Item Primary Key",
       "action_by": "Action By",
       "action_on": "Action On",
-      "edited_on": "Edited On",
-      "comment_deleted_on": "Comment Deleted On",
-      "ip": "IP Address",
-      "user_agent": "User Agent",
+      "edited_on": "Змінено",
+      "comment_deleted_on": "Коментар видалено",
+      "ip": "IP адреса",
+      "user_agent": "Ідентифікатор браузера",
       "comment": "Коментар"
     },
     "directus_files": {
       "title": "Title",
       "tags": "Tags",
-      "location": "Location",
+      "location": "Розташування",
       "description": "Опис",
       "filename_download": "Filename Download",
       "filename_disk": "Filename Disk",
-      "private_hash": "Private Hash",
-      "checksum": "Checksum",
-      "uploaded_on": "Uploaded On",
+      "private_hash": "Приватний хеш",
+      "checksum": "Контрольна сума",
+      "uploaded_on": "Завантажено",
       "uploaded_by": "Uploaded By",
-      "width": "Width",
+      "width": "Ширина",
       "height": "Height",
-      "duration": "Duration",
-      "filesize": "Filesize",
-      "metadata": "Metadata"
+      "duration": "Тривалість",
+      "filesize": "Розмір файлу",
+      "metadata": "Метадані"
     },
     "directus_users": {
       "status": "Статус",
