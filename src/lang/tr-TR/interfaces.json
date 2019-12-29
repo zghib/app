@@ -1,7 +1,7 @@
 {
   "interfaces": {
     "2fa-secret": {
-      "2fa-secret": "2FA Secret"
+      "2fa-secret": "2FA Sırrı"
     },
     "button-group": {
       "button_group": "Buton Grubu",
@@ -12,7 +12,7 @@
       "value": "Değer",
       "flight": "Uçuş",
       "cruise": "Gemi gezisi",
-      "run": "Run",
+      "run": "Çalıştır",
       "bus": "Otobüs",
       "bike": "Bisiklet",
       "train": "Tren",
@@ -40,49 +40,49 @@
       "value": "Değer",
       "option": "Seçenek",
       "single": "Tek Sütun",
-      "single_comment": "Display Checkboxes in single column",
-      "draggable": "Draggable Checkboxes",
-      "draggable_comment": "Enable sorting by draggable checkboxes",
+      "single_comment": "Onay kutularını tek bir sütunda göster",
+      "draggable": "Sürüklenebilir Onay Kutuları",
+      "draggable_comment": "Sürüklenebilir onay kutularına göre sıralamayı etkinleştir",
       "allow_other": "Diğerlerine İzin Ver",
-      "allow_other_comment": "Allow an additional custom option"
+      "allow_other_comment": "Ek özel seçeneğe izin ver"
     },
     "checkboxes-relational": {
-      "checkboxes_relational": "Checkboxes Relational",
+      "checkboxes_relational": "İlişkisel Onay Kutuları",
       "grid": "Kılavuz",
       "grid_comment": "Bir satırda gösterilen öğe sayısı",
       "item_template": "Öğe Şablonu",
-      "item_template_comment": "How to display values on the single item layouts",
+      "item_template_comment": "Tek öğe düzenlerinde değerler nasıl görüntülenir",
       "item_template_placeholder": "{{name}} — {{first_name}}",
       "listing_template": "Listeleme Şablonu",
-      "listing_template_comment": "How to display values on the listing layouts.<br>You'll need to prepend the collection name",
+      "listing_template_comment": "Listeleme düzenlerinde değerler nasıl görüntülenir. <br> Koleksiyon adının başına başlamanız gerekir",
       "listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
     },
     "code": {
       "code": "Kod",
       "template": "Şablon",
-      "template_comment": "Provide a template the user can use to get started with",
+      "template_comment": "Kullanıcının kullanmaya başlayabileceği bir şablon sağlayın",
       "language": "Dil",
-      "language_comment": "Set the programming language to use",
+      "language_comment": "Kullanılacak programlama dilini ayarla",
       "lineNumber": "Satır Numarası",
       "lineNumber_comment": "Satır numaralarını göster",
-      "loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
-      "fill_template": "Fill with Template"
+      "loc": "{lang} satırı yok | Bir satır {lang} | {count} satır {lang}",
+      "fill_template": "Şablonla Doldur"
     },
     "collections": {
       "collections": "Koleksiyonlar",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Static text that shown before a value is selected",
+      "placeholder_comment": "Bir değer seçilmeden önce gösterilen statik metin",
       "placeholder_default": "Bir koleksiyon seçiniz...",
       "option": "Seçenek",
-      "include_system": "Include System",
-      "include_system_comment": "Include system collections in the options"
+      "include_system": "Sistemi dahil et",
+      "include_system_comment": "Sistem koleksiyonlarını seçeneklere dahil et"
     },
     "color": {
       "color": "Renk",
-      "format": "Output Format",
-      "format_comment": "In what data format to save the value",
+      "format": "Çıktı Formatı",
+      "format_comment": "Hangi veri tipinde değerin kaydedileceği",
       "palette": "Palet",
-      "palette_comment": "Add color options as hex values",
+      "palette_comment": "Onaltılık değerler olarak renk seçenekleri ekle",
       "palette_only": "Palette Only",
       "palette_only_comment": "Only allow the user to pick from the palette"
     },
@@ -159,7 +159,7 @@
       "choices": "Seçenekler",
       "choices_comment": "Kaydedilen değer ve görüntülenen metinden oluşan JSON anahtar - değer çiftlerini giriniz.",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Static text that shown before a value is selected",
+      "placeholder_comment": "Bir değer seçilmeden önce gösterilen statik metin",
       "option": "Seçenek",
       "formatting": "Ekran metnini göster",
       "formatting_comment": "Değerleri, görüntüleme değeri olarak kullan",
@@ -252,7 +252,7 @@
     "interfaces": {
       "interfaces": "Arayüzler",
       "placeholder": "Yertutucu",
-      "placeholder_comment": "Static text that shown before a value is selected",
+      "placeholder_comment": "Bir değer seçilmeden önce gösterilen statik metin",
       "placeholder_default": "Bir arayüz seçiniz",
       "option": "Seçenek",
       "relational": "İlişkisel arayüzleri dahil et",
@@ -260,7 +260,7 @@
     },
     "json": {
       "template": "Şablon",
-      "template_comment": "Provide a template the user can use to get started with"
+      "template_comment": "Kullanıcının kullanmaya başlayabileceği bir şablon sağlayın"
     },
     "key-value": {
       "key_interface": "Anahtar Arayüz",
