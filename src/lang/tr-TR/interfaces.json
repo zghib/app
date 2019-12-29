@@ -83,8 +83,8 @@
       "format_comment": "Hangi veri tipinde değerin kaydedileceği",
       "palette": "Palet",
       "palette_comment": "Onaltılık değerler olarak renk seçenekleri ekle",
-      "palette_only": "Palette Only",
-      "palette_only_comment": "Only allow the user to pick from the palette"
+      "palette_only": "Yalnızca Palet",
+      "palette_only_comment": "Kullanıcının yalnızca paletten seçim yapmasına izin ver"
     },
     "color-palette": {
       "color-picker": "Renk Seçici"
@@ -96,9 +96,9 @@
       "max": "Maksimum tarih",
       "max_comment": "Kullanıcı tarafından seçilebilecek maksimum tarih",
       "localized": "Yerelleştirilmiş",
-      "localized_comment": "Show the date localized in the output",
+      "localized_comment": "Çıktıda yerelleştirilmiş tarihi göster",
       "relative": "Göreli tarih göster",
-      "relative_comment": "Show the date relatively (eg 2 days ago)",
+      "relative_comment": "Tarihi göreceli olarak göster (ör. 2 gün önce)",
       "icon_left": "İkon Sol",
       "icon_left_comment": "Choose an optional icon to display on the left of the input",
       "icon_right": "İkon Sağ",
@@ -111,7 +111,7 @@
       "max": "Maksimum zaman",
       "max_comment": "Maximum time that can be chosen by the user",
       "localized": "Yerelleştirilmiş",
-      "localized_comment": "Show the date localized in the output",
+      "localized_comment": "Çıktıda yerelleştirilmiş tarihi göster",
       "relative": "Göreli zaman göster",
       "relative_comment": "Show the time relatively (eg 50 minutes ago)",
       "icon_left": "İkon Sol",
