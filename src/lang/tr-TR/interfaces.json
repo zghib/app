@@ -100,43 +100,43 @@
       "relative": "Göreli tarih göster",
       "relative_comment": "Tarihi göreceli olarak göster (ör. 2 gün önce)",
       "icon_left": "İkon Sol",
-      "icon_left_comment": "Choose an optional icon to display on the left of the input",
+      "icon_left_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
       "icon_right": "İkon Sağ",
-      "icon_right_comment": "Choose an optional icon to display on the right of the input"
+      "icon_right_comment": "Girişin sağında görüntülenecek isteğe bağlı bir ikon seçin"
     },
     "datetime": {
       "datetime": "Tarih/Saat",
       "min": "Minimum zaman",
-      "min_comment": "Minimum time that can be chosen by the user",
+      "min_comment": "Kullanıcı tarafından seçilebilecek minimum zaman",
       "max": "Maksimum zaman",
-      "max_comment": "Maximum time that can be chosen by the user",
+      "max_comment": "Kullanıcı tarafından seçilebilecek maksimum zaman",
       "localized": "Yerelleştirilmiş",
       "localized_comment": "Çıktıda yerelleştirilmiş tarihi göster",
       "relative": "Göreli zaman göster",
-      "relative_comment": "Show the time relatively (eg 50 minutes ago)",
+      "relative_comment": "Zamanı göreceli göster (örneğin 50 dakika önce)",
       "icon_left": "İkon Sol",
-      "icon_left_comment": "Choose an optional icon to display on the left of the input",
+      "icon_left_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
       "icon_right": "İkon Sağ",
-      "icon_right_comment": "Choose an optional icon to display on the right of the input",
+      "icon_right_comment": "Girişin sağında görüntülenecek isteğe bağlı bir ikon seçin",
       "utc": "UTC olarak kaydet",
-      "utc_comment": "Save to and display from UTC",
-      "default_to_current_datetime": "Default to current datetime",
+      "utc_comment": "UTC'ye kaydetme ve UTC'den görüntüleme",
+      "default_to_current_datetime": "Geçerli tarih saat için varsayılan",
       "default_to_current_datetime_comment": "Varsayılan zamanı şu anki tarih-saat olarak ayarla",
       "format": "Biçim",
-      "format_comment": "The DateTime format to use for the input"
+      "format_comment": "Giriş için kullanılacak Tarih-Saat biçimi"
     },
     "datetime-created": {
       "datetime_created": "Tarih/Saat Oluşturuldu",
       "relative": "Göreli zaman göster",
-      "relative_comment": "Show the time relatively (eg 50 minutes ago)",
-      "now": "You are creating this now",
+      "relative_comment": "Zamanı göreceli göster (örneğin 50 dakika önce)",
+      "now": "Şuan bunu oluşturuyorsunuz",
       "unknown": "Bilinmeyen"
     },
     "datetime-updated": {
       "datetime_updated": "Tarih/Saat Güncellendi",
       "relative": "Göreli zaman göster",
-      "relative_comment": "Show the time relatively (eg 50 minutes ago)",
-      "now": "You are creating this now",
+      "relative_comment": "Zamanı göreceli göster (örneğin 50 dakika önce)",
+      "now": "Şuan bunu oluşturuyorsunuz",
       "unknown": "Bilinmeyen"
     },
     "divider": {
@@ -151,8 +151,8 @@
       "desc-comment": "Buraya bir açıklama ekleyin",
       "hr-name": "Yatay",
       "hr-comment": "Yatay bir kural gösterilsin mi?",
-      "margin-name": "Extra Margin",
-      "margin-comment": "Add extra margin above interface"
+      "margin-name": "Ekstra Kenar Boşluğu",
+      "margin-comment": "Arayüzün üstüne ekstra kenar boşluğu ekle"
     },
     "dropdown": {
       "dropdown": "Açılır Liste",
@@ -165,34 +165,34 @@
       "formatting_comment": "Değerleri, görüntüleme değeri olarak kullan",
       "placeholder_default": "Bir seçenek seçiniz...",
       "icon": "İkon",
-      "icon_comment": "Choose an optional icon to display on the left of the input",
-      "options_invalid": "The JSON options provided for the dropdown are invalid:"
+      "icon_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
+      "options_invalid": "Açılır menü için sağlanan JSON seçenekleri geçersiz:"
     },
     "file": {
       "file": "Dosya",
-      "view_type": "View Type",
-      "view_type_comment": "Select in what way you want to view the files",
-      "view_options": "View Options",
-      "view_options_comment": "Set the view options to use for the files",
-      "view_query": "View Query",
-      "view_query_comment": "Set the view query to use for the files",
+      "view_type": "Görünüm Tipi",
+      "view_type_comment": "Dosyaları hangi yolla görüntülemek istediğinizi seçin",
+      "view_options": "Görünüm Seçenekleri",
+      "view_options_comment": "Dosyalar için kullanılacak görünüm seçeneklerini ayarlayın",
+      "view_query": "Görünüm Sorgusu",
+      "view_query_comment": "Dosyalar için kullanılacak görünüm sorgusunu ayarlayın",
       "filters": "Filtreler",
-      "filters_comment": "What filters to use",
-      "accept": "Accept File Types",
-      "accept_comment": "Set a list of MIME types that can be picked"
+      "filters_comment": "Hangi filtreler kullanılacak",
+      "accept": "Dosya Türlerini Kabul Et",
+      "accept_comment": "Seçilebilecek MIME türlerinin bir listesini ayarlayın"
     },
     "file-preview": {
-      "file_preview": "File Preview",
-      "edit": "Editing Options"
+      "file_preview": "Dosya Önizleme",
+      "edit": "Düzenleme Seçenekleri"
     },
     "file-size": {
       "file_size": "Dosya Boyutu",
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu metni girin",
-      "format": "Format value",
-      "format_comment": "Show the value in a human readable way (e.g. 10MB)",
-      "format_input": "Format input",
-      "format_input_comment": "Enter the value using a dropdown for units",
+      "format": "Biçim değeri",
+      "format_comment": "Değeri insan tarafından okunabilir bir şekilde gösterin (ör. 10 MB)",
+      "format_input": "Biçim Girişi",
+      "format_input_comment": "Birimler için açılır menü kullanarak değeri girin",
       "decimal": "Ondalık",
       "decimal_comment": "Değeri ondalık sayımda göster (10 MB ve 10 MiB)",
       "crop_preview": "Önizleme Resimlerini Kırp"
@@ -211,8 +211,8 @@
       "allow_create_comment": "Kullanıcının bu arayüzden yeni bir öğe oluşturmasına izin ver",
       "allow_select": "Seçime İzin Ver",
       "allow_select_comment": "Kullanıcının mevcut bir öğeyi seçmesine izin ver",
-      "accept": "Accept File Types",
-      "accept_comment": "Set a list of MIME types that can be picked",
+      "accept": "Dosya Türlerini Kabul Et",
+      "accept_comment": "Seçilebilecek MIME türlerinin bir listesini ayarlayın",
       "edit_item": "Düzenle"
     },
     "hashed": {
@@ -305,7 +305,7 @@
       "preferences_comment": "Hangi seçenekleri kullanacağınızı ayarlama",
       "relationship_not_setup": "İlişki doğru bir şekilde konfigüre edilmedi",
       "icon": "İkon",
-      "icon_comment": "Choose an optional icon to display on the left of the input",
+      "icon_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
       "select_one": "Birini seçin",
       "threshold": "Eşik",
       "threshold_comment": "Açılır menü yerine modalın kullanılacağı öğe sayısı"
@@ -370,9 +370,9 @@
       "localized": "Yerelleştirilmiş",
       "localized_comment": "Çıktıyı kullanıcının yerel ayarına göre yerelleştirin",
       "icon_left": "İkon Sol",
-      "icon_left_comment": "Choose an optional icon to display on the left of the input",
+      "icon_left_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
       "icon_right": "İkon Sağ",
-      "icon_right_comment": "Choose an optional icon to display on the right of the input",
+      "icon_right_comment": "Girişin sağında görüntülenecek isteğe bağlı bir ikon seçin",
       "monospace": "Monospace",
       "monospace_comment": "Monospace font kullan"
     },
@@ -504,9 +504,9 @@
       "sanitize_comment": "Alfasayısal olmayan karakterleri kaldırır ve boşlukları tireye dönüştürür",
       "placeholder_text": "Bir etiket girip Enter'a basın ya da virgül...",
       "icon_left": "İkon Sol",
-      "icon_left_comment": "Choose an optional icon to display on the left of the input",
+      "icon_left_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
       "icon_right": "İkon Sağ",
-      "icon_right_comment": "Choose an optional icon to display on the right of the input",
+      "icon_right_comment": "Girişin sağında görüntülenecek isteğe bağlı bir ikon seçin",
       "validation": "Doğrulama",
       "validation_comment": "Her bir değeri kontrol etmek için bir RegEx",
       "validation_message": "Doğrulama Mesajı",
@@ -521,9 +521,9 @@
       "char_count": "Karakter Sayısını Göster",
       "char_count_comment": "Kullanılabilir kalan karakterleri göster",
       "icon_left": "İkon Sol",
-      "icon_left_comment": "Choose an optional icon to display on the left of the input",
+      "icon_left_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
       "icon_right": "İkon Sağ",
-      "icon_right_comment": "Choose an optional icon to display on the right of the input",
+      "icon_right_comment": "Girişin sağında görüntülenecek isteğe bağlı bir ikon seçin",
       "format": "Güzel Çıktı",
       "format_comment": "Değeri başlık büyüklüğüne dönüştür",
       "monospace": "Monospace",
