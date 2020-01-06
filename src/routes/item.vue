@@ -381,7 +381,7 @@ export default {
           },
           {
             name: this.$t("editing_single", {
-              collection: this.$helpers.formatTitle(this.collection)
+              collection: this.$helpers.formatCollection(this.collection)
             }),
             path: this.$route.path
           }
