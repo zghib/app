@@ -120,6 +120,7 @@
   "create_field": "新建欄位",
   "create_role": "新建角色",
   "created_by": "建立者",
+  "owner": "Owner",
   "created_on": "建立於",
   "create_new_project": "Create New Project",
   "create_new_project_copy": "Make sure you have your database information handy, then enter your API's Super-Admin password to continue.",
@@ -266,7 +267,7 @@
     "string": "Any text, numbers, spaces, or symbols; limited by its number of characters",
     "time": "時間，例如: 14:09:22",
     "translation": "Specific to translation interfaces, this o2m stores multi-lingual content",
-    "user_created": "記錄新增項目的使用者的系統欄位，用於版本",
+    "owner": "記錄新增項目的使用者的系統欄位，用於版本",
     "user_updated": "記錄更新項目的使用者的系統欄位，用於版本",
     "uuid": "A Universally Unique Identifier"
   },
