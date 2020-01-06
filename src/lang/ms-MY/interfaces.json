@@ -166,7 +166,9 @@
       "placeholder_default": "Choose an option...",
       "icon": "Icon",
       "icon_comment": "Choose an optional icon to display on the left of the input",
-      "options_invalid": "The JSON options provided for the dropdown are invalid:"
+      "options_invalid": "The JSON options provided for the dropdown are invalid:",
+      "allow_other": "Allow Other",
+      "allow_other_comment": "Allow the user to add their own value"
     },
     "file": {
       "file": "Fail",
