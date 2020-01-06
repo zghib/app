@@ -3,22 +3,22 @@
     "calendar": {
       "calendar": "Kalender",
       "fields": "Fält",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
+      "today": "idag",
+      "events": "Händelser",
+      "moreEvents": "och {amount} andra...",
+      "noEvents": "inga händelser ännu!",
       "date": "Datum",
       "datetime": "Datum och tid",
       "time": "Time",
-      "title": "Title",
+      "title": "Rubrik",
       "color": "Color"
     },
     "cards": {
-      "cards": "Cards",
-      "title": "Title",
-      "subtitle": "Subtitle",
-      "src": "Image Source",
-      "content": "Body Content",
+      "cards": "Kort",
+      "title": "Rubrik",
+      "subtitle": "Underrubrik",
+      "src": "Bildkälla",
+      "content": "Innehåll",
       "fit": "Fit"
     },
     "tabular": {
@@ -28,13 +28,13 @@
     "timeline": {
       "timeline": "Timeline",
       "fields": "Fält",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
+      "today": "idag",
+      "events": "Händelser",
+      "moreEvents": "och {amount} andra...",
+      "noEvents": "inga händelser ännu!",
       "date": "Datum",
       "content": "Content",
-      "title": "Title",
+      "title": "Rubrik",
       "color": "Color"
     }
   }
