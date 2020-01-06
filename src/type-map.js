@@ -260,6 +260,13 @@ export default {
       default: "VARCHAR"
     }
   },
+  slug: {
+    description: "fieldtypes.slug",
+    mysql: {
+      datatypes: ["CHAR", "VARCHAR", "TINYTEXT", "TEXT", "MEDIUMTEXT", "LONGTEXT"],
+      default: "VARCHAR"
+    }
+  },
   translation: {
     description: "fieldtypes.translation",
     mysql: {
