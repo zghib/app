@@ -19,21 +19,21 @@
       "subtitle": "Underrubrik",
       "src": "Bildkälla",
       "content": "Innehåll",
-      "fit": "Fit"
+      "fit": "Passa"
     },
     "tabular": {
-      "tabular": "Table",
+      "tabular": "Tabell",
       "fields": "Fält"
     },
     "timeline": {
-      "timeline": "Timeline",
+      "timeline": "Tidslinje",
       "fields": "Fält",
       "today": "idag",
       "events": "Händelser",
       "moreEvents": "och {amount} andra...",
       "noEvents": "inga händelser ännu!",
       "date": "Datum",
-      "content": "Content",
+      "content": "Innehåll",
       "title": "Rubrik",
       "color": "Color"
     }
