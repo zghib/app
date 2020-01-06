@@ -120,6 +120,7 @@
   "create_field": "Створити поле",
   "create_role": "Створити роль",
   "created_by": "Автор",
+  "owner": "Owner",
   "created_on": "Створено",
   "create_new_project": "Створити новий проект",
   "create_new_project_copy": "Make sure you have your database information handy, then enter your API's Super-Admin password to continue.",

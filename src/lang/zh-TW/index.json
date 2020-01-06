@@ -120,6 +120,7 @@
   "create_field": "新建欄位",
   "create_role": "新建角色",
   "created_by": "建立者",
+  "owner": "Owner",
   "created_on": "建立於",
   "create_new_project": "Create New Project",
   "create_new_project_copy": "Make sure you have your database information handy, then enter your API's Super-Admin password to continue.",

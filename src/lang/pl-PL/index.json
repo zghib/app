@@ -120,6 +120,7 @@
   "create_field": "Stwórz pole",
   "create_role": "Stwórz rolę",
   "created_by": "Stworzone przez",
+  "owner": "Owner",
   "created_on": "Stworzony dnia",
   "create_new_project": "Utwórz nowy projekt",
   "create_new_project_copy": "Upewnij się, że masz pod ręką informacje o bazie danych, a następnie wprowadź hasło swojego Super-Admina API, aby kontynuować.",

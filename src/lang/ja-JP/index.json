@@ -120,6 +120,7 @@
   "create_field": "入力欄作成",
   "create_role": "権限作成",
   "created_by": "作成者",
+  "owner": "Owner",
   "created_on": "作成日時",
   "create_new_project": "新規プロジェクト作成",
   "create_new_project_copy": "データベース情報が手元にあることを確認して、APIの最高管理者パスワードを入力してください。",

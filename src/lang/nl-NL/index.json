@@ -120,6 +120,7 @@
   "create_field": "Maak veld",
   "create_role": "Maak rol",
   "created_by": "Aangemaakt door",
+  "owner": "Owner",
   "created_on": "Aangemaakt op",
   "create_new_project": "Nieuw project maken",
   "create_new_project_copy": "Zorg dat je je databasegegevens bij de hand hebt en voer je Super-Admin wachtwoord in om door te gaan.",

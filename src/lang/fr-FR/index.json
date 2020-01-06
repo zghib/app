@@ -120,6 +120,7 @@
   "create_field": "Créer un champ",
   "create_role": "Créer un rôle",
   "created_by": "Créé par",
+  "owner": "Owner",
   "created_on": "Créé le",
   "create_new_project": "Créer un nouveau projet",
   "create_new_project_copy": "Assurez-vous d'avoir vos informations de base de données à portée de main, puis entrez le mot de passe Super-Admin de votre API pour continuer.",

@@ -120,6 +120,7 @@
   "create_field": "Креирајте поље",
   "create_role": "Креирајте улогу",
   "created_by": "Креирао",
+  "owner": "Owner",
   "created_on": "Креирано",
   "create_new_project": "Креирај нови пројекат",
   "create_new_project_copy": "Make sure you have your database information handy, then enter your API's Super-Admin password to continue.",

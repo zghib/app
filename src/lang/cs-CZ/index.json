@@ -120,6 +120,7 @@
   "create_field": "Vytvořit pole",
   "create_role": "Vytvořit roli",
   "created_by": "Vytvořil/-a",
+  "owner": "Owner",
   "created_on": "Vytvořeno",
   "create_new_project": "Vytvořit nový projekt",
   "create_new_project_copy": "Ujistěte se, že máte k dispozici informace o databázi a pro pokračování zadejte heslo super-admina API.",
