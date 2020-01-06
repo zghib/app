@@ -47,15 +47,15 @@
       "allow_other_comment": "Permitir una opción personalizada adicional"
     },
     "checkboxes-relational": {
-      "checkboxes_relational": "Casillas de verificación relacionales",
-      "grid": "Cuadricula",
-      "grid_comment": "Número de elementos a mostrar en una fila",
-      "item_template": "Plantilla de Ítem",
-      "item_template_comment": "Como mostrar valores en plantillas de ítem único",
-      "item_template_placeholder": "{{name}} — {{first_name}}",
-      "listing_template": "Plantilla de Listado",
-      "listing_template_comment": "Como mostrar los valores en las plantillas de listados.<br>Necesitara añadir el nombre de la colección",
-      "listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
+      "checkboxes_relational": "Checkboxes Relational",
+      "grid": "Grid",
+      "grid_comment": "Number of items to show in a row",
+      "item_template": "Item Template",
+      "item_template_comment": "How to display values on the single item layouts",
+      "item_template_placeholder": "{{name}} — {{first_name}}",
+      "listing_template": "Listing Template",
+      "listing_template_comment": "How to display values on the listing layouts.<br>You'll need to prepend the collection name",
+      "listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
     },
     "code": {
       "code": "Código",
