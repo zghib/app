@@ -166,7 +166,9 @@
       "placeholder_default": "Kies een optie...",
       "icon": "Icoon",
       "icon_comment": "Choose an optional icon to display on the left of the input",
-      "options_invalid": "De JSON opties voor de dropdown zijn ongeldig:"
+      "options_invalid": "De JSON opties voor de dropdown zijn ongeldig:",
+      "allow_other": "Andere toestaan",
+      "allow_other_comment": "Allow the user to add their own value"
     },
     "file": {
       "file": "Bestand",
