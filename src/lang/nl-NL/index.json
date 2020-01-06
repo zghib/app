@@ -120,6 +120,7 @@
   "create_field": "Maak veld",
   "create_role": "Maak rol",
   "created_by": "Aangemaakt door",
+  "owner": "Owner",
   "created_on": "Aangemaakt op",
   "create_new_project": "Nieuw project maken",
   "create_new_project_copy": "Zorg dat je je databasegegevens bij de hand hebt en voer je Super-Admin wachtwoord in om door te gaan.",
@@ -266,7 +267,7 @@
     "string": "Tekst, nummers, spaties of symbolen; beperkt door het aantal tekens",
     "time": "Tijd, bijv.: 14:09:22",
     "translation": "Specifiek voor vertaling interfaces, dit o2m veld slaat de vertaalde content op",
-    "user_created": "Gebruiker die het item heeft aangemaakt.",
+    "owner": "Gebruiker die het item heeft aangemaakt.",
     "user_updated": "Gebruiker die het item heeft geüpdatet.",
     "uuid": "Universally Unique Identifier"
   },
