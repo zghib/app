@@ -266,7 +266,7 @@
     "string": "Any text, numbers, spaces, or symbols; limited by its number of characters",
     "time": "Klokkeslett, f.eks: 14:09:22",
     "translation": "Specific to translation interfaces, this o2m stores multi-lingual content",
-    "user_created": "Systemfelt for å holde styr på når brukeren opprettet elementet, brukes til versjonering",
+    "owner": "Systemfelt for å holde styr på når brukeren opprettet elementet, brukes til versjonering",
     "user_updated": "Systemfelt for å holde styr på hvem som har oppdatert elementet, brukes til versjonering",
     "uuid": "A Universally Unique Identifier"
   },

@@ -593,8 +593,8 @@
       "placeholder": "Texto de Ejemplo",
       "placeholder_comment": "Añadir un texto de ejemplo"
     },
-    "user-created": {
-      "user_created": "Creado por el usuario",
+    "owner": {
+      "owner": "Owner",
       "avatar": "Avatar",
       "name": "Nombre",
       "template": "Plantilla",

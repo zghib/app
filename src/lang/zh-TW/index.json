@@ -266,7 +266,7 @@
     "string": "Any text, numbers, spaces, or symbols; limited by its number of characters",
     "time": "時間，例如: 14:09:22",
     "translation": "Specific to translation interfaces, this o2m stores multi-lingual content",
-    "user_created": "記錄新增項目的使用者的系統欄位，用於版本",
+    "owner": "記錄新增項目的使用者的系統欄位，用於版本",
     "user_updated": "記錄更新項目的使用者的系統欄位，用於版本",
     "uuid": "A Universally Unique Identifier"
   },
