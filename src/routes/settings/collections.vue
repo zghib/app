@@ -87,8 +87,8 @@
               {{ $t("sort") }}
             </label>
             <label class="toggle">
-              <v-toggle v-model="createdBy" :value="true" />
-              {{ $t("created_by") }}
+              <v-toggle v-model="owner" :value="true" />
+              {{ $t("owner") }}
             </label>
             <label class="toggle">
               <v-toggle v-model="createdOn" :value="true" />
@@ -140,7 +140,7 @@ export default {
       adding: false,
       status: true,
       sort: false,
-      createdBy: true,
+      owner: true,
       createdOn: true,
       modifiedBy: false,
       modifiedOn: false,
@@ -365,12 +365,12 @@ export default {
           length: "10"
         };
       }
-      if (this.createdBy) {
+      if (this.owner) {
         fieldsToAdd.push({
-          type: "user_created",
+          type: "owner",
           datatype: "INT",
-          field: "created_by",
-          interface: "user-created",
+          field: "owner",
+          interface: "owner",
           options: {
             template: "{{first_name}} {{last_name}}",
             display: "both"
@@ -380,9 +380,9 @@ export default {
           hidden_browse: true,
           width: "full"
         });
-        fieldsToDispatch.created_by = {
+        fieldsToDispatch.owner = {
           collection: this.newName,
-          field: "created_by",
+          field: "owner",
           datatype: "INT",
           unique: false,
           primary_key: false,
@@ -390,9 +390,9 @@ export default {
           default_value: null,
           note: null,
           signed: false,
-          type: "user_created",
+          type: "owner",
           sort: 0,
-          interface: "user-created",
+          interface: "owner",
           hidden_detail: true,
           hidden_browse: true,
           required: false,

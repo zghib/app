@@ -281,8 +281,8 @@ export default {
       default: "INT"
     }
   },
-  user_created: {
-    description: "fieldtypes.user_created",
+  owner: {
+    description: "fieldtypes.owner",
     mysql: {
       datatypes: ["INT"],
       default: "INT"

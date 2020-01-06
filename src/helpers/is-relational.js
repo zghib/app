@@ -12,7 +12,7 @@ export default function isRelational(fieldInfo) {
     case "o2m":
     case "m2o":
     case "user":
-    case "user_created":
+    case "owner":
     case "user_updated":
     case "alias":
     case "translation":

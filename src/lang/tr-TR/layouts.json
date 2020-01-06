@@ -1,41 +1,41 @@
 {
   "layouts": {
     "calendar": {
-      "calendar": "Calendar",
+      "calendar": "Takvim",
       "fields": "Alanlar",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
-      "date": "Date",
-      "datetime": "Datetime",
-      "time": "Time",
+      "today": "bugün",
+      "events": "Etkinlikler",
+      "moreEvents": "ve {amount} daha fazla...",
+      "noEvents": "henüz bir etkinlik yok!",
+      "date": "Tarih",
+      "datetime": "Tarih/Saat",
+      "time": "Zaman",
       "title": "Ünvan",
-      "color": "Color"
+      "color": "Renk"
     },
     "cards": {
-      "cards": "Cards",
+      "cards": "Kartlar",
       "title": "Ünvan",
-      "subtitle": "Subtitle",
-      "src": "Image Source",
-      "content": "Body Content",
-      "fit": "Fit"
+      "subtitle": "Altyazı",
+      "src": "Görsel Kaynağı",
+      "content": "Gövde içeriği",
+      "fit": "Sığdır"
     },
     "tabular": {
-      "tabular": "Table",
+      "tabular": "Tablo",
       "fields": "Alanlar"
     },
     "timeline": {
-      "timeline": "Timeline",
+      "timeline": "Zaman çizelgesi",
       "fields": "Alanlar",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
-      "date": "Date",
-      "content": "Content",
+      "today": "bugün",
+      "events": "Etkinlikler",
+      "moreEvents": "ve {amount} daha fazla...",
+      "noEvents": "henüz bir etkinlik yok!",
+      "date": "Tarih",
+      "content": "İçerik",
       "title": "Ünvan",
-      "color": "Color"
+      "color": "Renk"
     }
   }
 }

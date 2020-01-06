@@ -120,6 +120,7 @@
   "create_field": "Criar Campo",
   "create_role": "Criar Função",
   "created_by": "Criado por",
+  "owner": "Owner",
   "created_on": "Criado em",
   "create_new_project": "Criar novo projeto",
   "create_new_project_copy": "Verifique se você tem as informações do banco de dados à mão e insira a senha de super-administrador da sua API para continuar.",
@@ -266,7 +267,7 @@
     "string": "Qualquer texto, números, espaços ou símbolos; limitado pelo número de caracteres",
     "time": "Hora, ex.: 14:09:22",
     "translation": "Específico de interfaces de tradução, este o2m armazena conteúdo de múltiplas línguas",
-    "user_created": "Campo do sistema para rastrear qual usuário criou um determinado item, usado em revisões",
+    "owner": "Campo do sistema para rastrear qual usuário criou um determinado item, usado em revisões",
     "user_updated": "Campo do sistema para rastrear qual usuário atualizou um determinado item, usado em revisões",
     "uuid": "Um Identificador Universal Único"
   },

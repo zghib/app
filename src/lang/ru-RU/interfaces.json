@@ -577,9 +577,9 @@
     },
     "translation": {
       "translation": "Перевод",
-      "language_field": "Language Field",
-      "language_field_comment": "The field that holds the language code in the related collection",
-      "languages": "Languages",
+      "language_field": "Поле языка",
+      "language_field_comment": "Поле с кодом языка в соответствующей коллекции",
+      "languages": "Языки",
       "template": "Шаблон отображения",
       "template_comment": "Выберите способ отображения значений в макетах элементов",
       "template_placeholder": "{{title}} — {{body}}"
@@ -593,8 +593,8 @@
       "placeholder": "Заполнитель",
       "placeholder_comment": "Добавить плейсхолдер"
     },
-    "user-created": {
-      "user_created": "Пользователь создан",
+    "owner": {
+      "owner": "Пользователь создан",
       "avatar": "Аватар",
       "name": "Имя",
       "template": "Шаблон",

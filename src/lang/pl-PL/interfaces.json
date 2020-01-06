@@ -577,9 +577,9 @@
     },
     "translation": {
       "translation": "Translation",
-      "language_field": "Language Field",
-      "language_field_comment": "The field that holds the language code in the related collection",
-      "languages": "Languages",
+      "language_field": "Pole językowe",
+      "language_field_comment": "Pole zawierające kod języka w powiązanej kolekcji",
+      "languages": "Języki",
       "template": "Display Template",
       "template_comment": "Choose how to display values on the item layouts",
       "template_placeholder": "{{title}} — {{body}}"
@@ -593,8 +593,8 @@
       "placeholder": "Placeholder",
       "placeholder_comment": "Add a placeholder"
     },
-    "user-created": {
-      "user_created": "User Created",
+    "owner": {
+      "owner": "Owner",
       "avatar": "Avatar",
       "name": "Nazwa",
       "template": "Template",

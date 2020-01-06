@@ -681,7 +681,7 @@ export default {
             case "alias":
             case "datetime_created":
             case "datetime_updated":
-            case "user_created":
+            case "owner":
             case "user_updated":
             case "o2m":
               delete values[fieldName];

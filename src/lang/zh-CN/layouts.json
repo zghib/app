@@ -3,7 +3,7 @@
     "calendar": {
       "calendar": "日历",
       "fields": "字段",
-      "today": "today",
+      "today": "今天",
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
@@ -28,7 +28,7 @@
     "timeline": {
       "timeline": "Timeline",
       "fields": "字段",
-      "today": "today",
+      "today": "今天",
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",

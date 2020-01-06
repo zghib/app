@@ -120,6 +120,7 @@
   "create_field": "Feld erstellen",
   "create_role": "Rolle erstellen",
   "created_by": "Erstellt von",
+  "owner": "Owner",
   "created_on": "Erstellt am",
   "create_new_project": "Neues Projekt anlegen",
   "create_new_project_copy": "Stellen Sie sicher, dass Sie Ihre Datenbank-Informationen zur Hand haben, und geben Sie dann das Super-Admin-Passwort Ihrer API ein, um fortzufahren.",
@@ -266,7 +267,7 @@
     "string": "Beliebiger Text, Zahlen, Leerzeichen oder Symbole; Eingeschränkt durch die Anzahl der Zeichen",
     "time": "Uhrzeit, z.B.: 14:09:22",
     "translation": "Spezifisch für Übersetzungen; diese Eins-zu-Viele-Beziehung speichert mehrsprachige Inhalte",
-    "user_created": "Systemfeld, um den Ersteller eines Elements zu verfolgen; wird für Revisionen verwendet",
+    "owner": "Systemfeld, um den Ersteller eines Elements zu verfolgen; wird für Revisionen verwendet",
     "user_updated": "Systemfeld, um den Bearbeiter eines Elements zu verfolgen; wird für Revisionen verwendet",
     "uuid": "Eine universell eindeutige ID"
   },
