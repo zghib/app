@@ -166,7 +166,9 @@
       "placeholder_default": "Выберите опцию...",
       "icon": "Иконка",
       "icon_comment": "Выберите необязательный значок для отображения слева от ввода",
-      "options_invalid": "Указанные для раскрывающегося списка опции JSON являются недопустимыми:"
+      "options_invalid": "Указанные для раскрывающегося списка опции JSON являются недопустимыми:",
+      "allow_other": "Разрешить другие",
+      "allow_other_comment": "Allow the user to add their own value"
     },
     "file": {
       "file": "Файл",

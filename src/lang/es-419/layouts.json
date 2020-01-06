@@ -8,7 +8,7 @@
       "moreEvents": "y {amount} más...",
       "noEvents": "¡aún no hay eventos!",
       "date": "Fecha",
-      "datetime": "Fecha y hora",
+      "datetime": "Fecha/hora",
       "time": "Hora",
       "title": "Título",
       "color": "Color"
@@ -19,7 +19,7 @@
       "subtitle": "Subtítulo",
       "src": "Orígen de la imágen",
       "content": "Contenido del cuerpo",
-      "fit": "Ajuste"
+      "fit": "Ajustar"
     },
     "tabular": {
       "tabular": "Tabla",

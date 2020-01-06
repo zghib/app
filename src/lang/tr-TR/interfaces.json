@@ -166,7 +166,9 @@
       "placeholder_default": "Bir seçenek seçiniz...",
       "icon": "İkon",
       "icon_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
-      "options_invalid": "Açılır menü için sağlanan JSON seçenekleri geçersiz:"
+      "options_invalid": "Açılır menü için sağlanan JSON seçenekleri geçersiz:",
+      "allow_other": "Diğerlerine İzin Ver",
+      "allow_other_comment": "Allow the user to add their own value"
     },
     "file": {
       "file": "Dosya",
