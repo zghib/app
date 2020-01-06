@@ -124,6 +124,7 @@
   "create_field": "Create Field",
   "create_role": "Create Role",
   "created_by": "Created By",
+  "owner": "Owner",
   "created_on": "Created On",
   "create_new_project": "Create New Project",
   "create_new_project_copy": "Make sure you have your database information handy, then enter your API's Super-Admin password to continue.",
