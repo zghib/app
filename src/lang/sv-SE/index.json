@@ -68,7 +68,7 @@
       "comment": "Kommentera"
     },
     "directus_files": {
-      "title": "Title",
+      "title": "Rubrik",
       "tags": "Tags",
       "location": "Location",
       "description": "Beskrivning",
@@ -93,7 +93,7 @@
       "password": "Lösenord",
       "role": "Roll",
       "company": "Företag",
-      "title": "Title",
+      "title": "Rubrik",
       "timezone": "Tidszon",
       "locale": "Språk",
       "avatar": "Avatar",
