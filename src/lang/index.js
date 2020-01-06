@@ -60,6 +60,7 @@ export const availableLanguages = {
   "pt-PT": "Portuguese (Portugal)",
   "ru-RU": "Russian (Russian Federation)",
   "es-ES": "Spanish (Spain)",
+  "es-419": "Spanish (Latin America)",
   "zh-TW": "Taiwanese Mandarin (Taiwan)",
   "tr-TR": "Turkish (Turkey)",
   "uk-UA": "Ukrainian (Ukraine)",
