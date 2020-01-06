@@ -120,6 +120,7 @@
   "create_field": "Alan Ekle",
   "create_role": "Rol Oluştur",
   "created_by": "Oluşturan",
+  "owner": "Owner",
   "created_on": "Oluşturulma tarihi",
   "create_new_project": "Yeni Proje Oluştur",
   "create_new_project_copy": "Veritabanı bilgilerinizin hazır olduğundan emin olun, ardından devam etmek için API'nızın Süper Yönetici şifresini girin.",
@@ -266,7 +267,7 @@
     "string": "Karakter sayısı ile sınırlı herhangi bir metin, sayı, boşluk veya sembol",
     "time": "Zaman, örn: 14:09:22",
     "translation": "Çeviri arayüzlerine özgü olan bu bire-çok, çok dilli içeriği depolar",
-    "user_created": "Revizyonlar tarafından kullanılan, ögeyi yaratan kullanıcı bilgisini tutan alan.",
+    "owner": "Revizyonlar tarafından kullanılan, ögeyi yaratan kullanıcı bilgisini tutan alan.",
     "user_updated": "Revizyonlar tarafından kullanılan, ögeyi son güncelleyen kullanıcı bilgisini tutan alan.",
     "uuid": "Evrensel Benzersiz Tanımlayıcı"
   },
