@@ -500,7 +500,7 @@
   "text": "文字",
   "translation": "翻译",
   "translated_field_name": "已翻译的字段名称...",
-  "not_translated_in_language": "Not Translated in {language}",
+  "not_translated_in_language": "未翻译至{language}",
   "this_item_is_not_available": "此项目不可用。",
   "this_collection": "此集合",
   "to": "到",

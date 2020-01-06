@@ -58,9 +58,9 @@
       "listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
     },
     "code": {
-      "code": "Code",
-      "template": "Template",
-      "template_comment": "Provide a template the user can use to get started with",
+      "code": "代码",
+      "template": "模板",
+      "template_comment": "提供一个可以让用户入门使用的模板",
       "language": "语言",
       "language_comment": "设置使用的程序语言",
       "lineNumber": "行号",
@@ -112,30 +112,30 @@
       "max_comment": "Maximum time that can be chosen by the user",
       "localized": "Localized",
       "localized_comment": "Show the date localized in the output",
-      "relative": "Show relative time",
-      "relative_comment": "Show the time relatively (eg 50 minutes ago)",
+      "relative": "显示相对时间",
+      "relative_comment": "显示相对时间（例如 50 分钟前）",
       "icon_left": "左图标",
       "icon_left_comment": "Choose an optional icon to display on the left of the input",
       "icon_right": "右图标",
       "icon_right_comment": "选择会在输入框右侧显示的可选图标",
-      "utc": "Save as UTC",
-      "utc_comment": "Save to and display from UTC",
-      "default_to_current_datetime": "Default to current datetime",
-      "default_to_current_datetime_comment": "Sets the default value to current datetime",
+      "utc": "以 UTC 保存",
+      "utc_comment": "以 UTC 保存并显示",
+      "default_to_current_datetime": "默认使用当前日期时间",
+      "default_to_current_datetime_comment": "设置默认值为当前日期时间",
       "format": "格式",
       "format_comment": "The DateTime format to use for the input"
     },
     "datetime-created": {
       "datetime_created": "创建日期",
-      "relative": "Show relative time",
-      "relative_comment": "Show the time relatively (eg 50 minutes ago)",
+      "relative": "显示相对时间",
+      "relative_comment": "显示相对时间（例如 50 分钟前）",
       "now": "You are creating this now",
       "unknown": "Unknown"
     },
     "datetime-updated": {
       "datetime_updated": "Datetime Updated",
-      "relative": "Show relative time",
-      "relative_comment": "Show the time relatively (eg 50 minutes ago)",
+      "relative": "显示相对时间",
+      "relative_comment": "显示相对时间（例如 50 分钟前）",
       "now": "You are creating this now",
       "unknown": "Unknown"
     },
@@ -259,8 +259,8 @@
       "include_status": "Include the status interfaces"
     },
     "json": {
-      "template": "Template",
-      "template_comment": "Provide a template the user can use to get started with"
+      "template": "模板",
+      "template_comment": "提供一个可以让用户入门使用的模板"
     },
     "key-value": {
       "key_interface": "Key Interface",
@@ -330,8 +330,8 @@
       "user_location_error_blocked": "You've disabled the location access. Kindly enable it from the browser addressbar to auto detect your location.",
       "user_location_error": "There was an error while trying to get your location. Plese try again.",
       "address_to_code": "Address Input",
-      "address_to_code_comment": "Add an input field to automatically get the geocodes from an address. Uses <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Please check their usage policy.",
-      "address_to_code_error": "No geocode found for this address",
+      "address_to_code_comment": "添加一个地址输入框，自动获取对应的理编码。使用的是 <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>，请检查他们的使用政策。",
+      "address_to_code_error": "未找到此地址的地理编码",
       "clear_location": "Clear Location",
       "my_location": "Set My Location",
       "address_location": "Set Address Location"
@@ -577,9 +577,9 @@
     },
     "translation": {
       "translation": "翻译",
-      "language_field": "Language Field",
-      "language_field_comment": "The field that holds the language code in the related collection",
-      "languages": "Languages",
+      "language_field": "语言字段",
+      "language_field_comment": "保存相关集合语言代码的字段",
+      "languages": "语言",
       "template": "Display Template",
       "template_comment": "Choose how to display values on the item layouts",
       "template_placeholder": "{{title}} — {{body}}"
@@ -588,7 +588,7 @@
       "user": "User",
       "avatar": "Avatar",
       "name": "名称",
-      "template": "Template",
+      "template": "模板",
       "template_comment": "How to format the users in the dropdown",
       "placeholder": "Placeholder",
       "placeholder_comment": "Add a placeholder"
@@ -597,7 +597,7 @@
       "owner": "Owner",
       "avatar": "Avatar",
       "name": "名称",
-      "template": "Template",
+      "template": "模板",
       "template_comment": "How to display the user on the item detail page",
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
@@ -615,7 +615,7 @@
       "user_updated": "User Updated",
       "avatar": "Avatar",
       "name": "名称",
-      "template": "Template",
+      "template": "模板",
       "template_comment": "How to display the user on the item detail page",
       "display": "Display",
       "display_comment": "How to display the user on the item browse page",
