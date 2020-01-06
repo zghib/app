@@ -137,7 +137,7 @@ export default {
       return (
         _.find(
           Object.values(this.fields),
-          field => field.type && field.type.toLowerCase() === "user_created"
+          field => field.type && field.type.toLowerCase() === "owner"
         ) || {}
       ).field;
     },

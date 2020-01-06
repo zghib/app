@@ -416,8 +416,7 @@ export default {
       if (!this.fields) return null;
 
       return (
-        _.find(Object.values(this.fields), field => field.type.toLowerCase() === "user_created") ||
-        {}
+        _.find(Object.values(this.fields), field => field.type.toLowerCase() === "owner") || {}
       ).field;
     },
     primaryKeyField() {

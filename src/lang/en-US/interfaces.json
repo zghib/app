@@ -6,8 +6,7 @@
     "button-group": {
       "button_group": "Button Group",
       "choices": "Choices",
-      "choices_comment":
-        "Enter JSON key value pairs with the saved value and text displayed.",
+      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
       "theme": "Interface Theme",
       "theme_comment": "Set the UI of interface if supported",
       "value": "Value",
@@ -485,8 +484,7 @@
       "status_mapping": "Status Mapping",
       "status_mapping_comment": "Enter JSON status options",
       "simple_badge": "Simple Badge",
-      "simple_badge_comment":
-        "Displays a colored dot on the item listing page.",
+      "simple_badge_comment": "Displays a colored dot on the item listing page.",
       "published": "Published",
       "under_review": "Under Review",
       "draft": "Draft",
@@ -595,8 +593,8 @@
       "placeholder": "Placeholder",
       "placeholder_comment": "Add a placeholder"
     },
-    "user-created": {
-      "user_created": "User Created",
+    "owner": {
+      "owner": "Owner",
       "avatar": "Avatar",
       "name": "Name",
       "template": "Template",

@@ -426,10 +426,7 @@ export default {
       return true;
     },
     userCreatedField() {
-      return _.find(
-        this.fields,
-        field => field.type && field.type.toLowerCase() === "user_created"
-      );
+      return _.find(this.fields, field => field.type && field.type.toLowerCase() === "owner");
     },
     permissionOptions() {
       // To provide all options for core table as well as those collections which contains usercreated field
