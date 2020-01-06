@@ -1,25 +1,25 @@
 {
   "layouts": {
     "calendar": {
-      "calendar": "Calendar",
+      "calendar": "Calendario",
       "fields": "Campos",
       "today": "hoy",
       "events": "Eventos",
       "moreEvents": "y {amount} más...",
       "noEvents": "¡aún no hay eventos!",
-      "date": "Date",
-      "datetime": "Datetime",
-      "time": "Time",
+      "date": "Fecha",
+      "datetime": "Fecha/hora",
+      "time": "Hora",
       "title": "Título",
       "color": "Color"
     },
     "cards": {
-      "cards": "Cards",
+      "cards": "Tarjetas",
       "title": "Título",
       "subtitle": "Subtítulo",
       "src": "Orígen de la imágen",
       "content": "Contenido del cuerpo",
-      "fit": "Fit"
+      "fit": "Ajuste"
     },
     "tabular": {
       "tabular": "Tabla",
@@ -32,7 +32,7 @@
       "events": "Eventos",
       "moreEvents": "y {amount} más...",
       "noEvents": "¡aún no hay eventos!",
-      "date": "Date",
+      "date": "Fecha",
       "content": "Contenido",
       "title": "Título",
       "color": "Color"
