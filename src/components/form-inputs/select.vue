@@ -42,6 +42,7 @@
       v-if="otherActive"
       :id="id"
       ref="input"
+      v-focus
       :type="type"
       :value="customValue"
       :placeholder="placeholder"
@@ -198,13 +199,13 @@ export default {
 
   input {
     position: absolute;
-    left: 0;
+    left: 12px;
     height: 100%;
     top: 0;
     width: calc(100% - 40px);
     border-left: 0;
     border-right: 0;
-    //z-index: +1;
+    z-index: +1;
 
     &::placeholder {
       color: var(--input-placeholder-color);
