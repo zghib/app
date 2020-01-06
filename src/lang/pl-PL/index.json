@@ -120,6 +120,7 @@
   "create_field": "Stwórz pole",
   "create_role": "Stwórz rolę",
   "created_by": "Stworzone przez",
+  "owner": "Owner",
   "created_on": "Stworzony dnia",
   "create_new_project": "Utwórz nowy projekt",
   "create_new_project_copy": "Upewnij się, że masz pod ręką informacje o bazie danych, a następnie wprowadź hasło swojego Super-Admina API, aby kontynuować.",
@@ -266,7 +267,7 @@
     "string": "Jakikolwiek tekst, liczba, spacja, lub symbol - zdefiniowany i ograniczany przez swoją długość (liczbę znaków)",
     "time": "Czas, np.: 14:09:22",
     "translation": "Specific to translation interfaces, this o2m stores multi-lingual content",
-    "user_created": "Pole systemowe do przetrzymywania informacji o autorze elementu, wykorzystywane przez rewizje",
+    "owner": "Pole systemowe do przetrzymywania informacji o autorze elementu, wykorzystywane przez rewizje",
     "user_updated": "Pole systemowe do przetrzymywania informacji o użytkowniku, który aktualizował element, wykorzystywane przez rewizje",
     "uuid": "Universally Unique Identifier"
   },
