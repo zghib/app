@@ -42,6 +42,7 @@
       v-if="otherActive"
       :id="id"
       ref="input"
+      v-focus
       :type="type"
       :value="customValue"
       :placeholder="placeholder"
@@ -51,7 +52,8 @@
     <div class="value">
       <v-icon v-if="icon" :name="icon" />
       <span v-if="placeholder && !value" class="placeholder">{{ placeholder }}</span>
-      <span class="no-wrap">{{ parsedOptions[value] }}</span>
+      <span v-if="parsedOptions[value]" class="no-wrap">{{ parsedOptions[value] }}</span>
+      <span v-else class="no-wrap">{{ value }}</span>
     </div>
     <v-icon class="chevron" name="arrow_drop_down" />
   </div>
@@ -197,7 +199,7 @@ export default {
 
   input {
     position: absolute;
-    left: 0;
+    left: 12px;
     height: 100%;
     top: 0;
     width: calc(100% - 40px);
