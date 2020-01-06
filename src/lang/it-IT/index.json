@@ -120,6 +120,7 @@
   "create_field": "Crea campo",
   "create_role": "Crea ruolo",
   "created_by": "Creato da",
+  "owner": "Owner",
   "created_on": "Creato Su",
   "create_new_project": "Crea nuovo progetto",
   "create_new_project_copy": "Assicurati di avere le informazioni del tuo database, quindi inserisci la password API del Super-Admin per continuare.",
@@ -266,7 +267,7 @@
     "string": "Qualsiasi testo, numeri, spazi o simboli; limitato dal suo numero di caratteri",
     "time": "Tempo, es: 14:09:22",
     "translation": "Specifico per le interfacce di traduzione, questo o2m memorizza contenuti multilingue",
-    "user_created": "Campo di sistema per tracciare l'utente che ha creato un oggetto, utilizzato dalle revisioni",
+    "owner": "Campo di sistema per tracciare l'utente che ha creato un oggetto, utilizzato dalle revisioni",
     "user_updated": "Campo di sistema per tracciare l'utente che ha aggiornato un elemento, utilizzato dalle revisioni",
     "uuid": "Un identificatore univoco universale"
   },
