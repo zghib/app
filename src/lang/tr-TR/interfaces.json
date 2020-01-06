@@ -593,8 +593,8 @@
       "placeholder": "Yertutucu",
       "placeholder_comment": "Yer tutucu ekle"
     },
-    "user-created": {
-      "user_created": "Kullanıcı Oluşturuldu",
+    "owner": {
+      "owner": "Owner",
       "avatar": "Avatar",
       "name": "İsim",
       "template": "Şablon",
