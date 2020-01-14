@@ -1,9 +1,9 @@
 <template>
-  <div class="page-loading">LOADING</div>
+	<div class="page-loading">LOADING</div>
 </template>
 
 <script>
 export default {
-  name: "PageLoading"
+	name: "PageLoading"
 };
 </script>

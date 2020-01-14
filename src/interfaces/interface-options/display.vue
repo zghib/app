@@ -1,3 +1,3 @@
 <template functional>
-  <v-icon name="settings" />
+	<v-icon name="settings" />
 </template>

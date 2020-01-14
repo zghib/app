@@ -24,43 +24,43 @@ Vue.use(Vuex);
 const debug = process.env.NODE_ENV !== "production"; // eslint-disable-line no-undef
 
 const store = new Vuex.Store({
-  state: _.clone(initialState),
-  actions,
-  getters,
-  mutations: {
-    [RESET](state) {
-      // Some parts of the state are system wide and don't have to / shouldn't be reset
-      const protectedKeys = ["latency", "currentProjectKey", "projects"];
+	state: _.clone(initialState),
+	actions,
+	getters,
+	mutations: {
+		[RESET](state) {
+			// Some parts of the state are system wide and don't have to / shouldn't be reset
+			const protectedKeys = ["latency", "currentProjectKey", "projects"];
 
-      Object.keys(initialState).forEach(key => {
-        if (protectedKeys.includes(key)) return;
-        state[key] = initialState[key];
-      });
-    },
-    ...mutations
-  },
-  strict: debug,
-  modules: {
-    collections,
-    extensions,
-    edits,
-    permissions,
-    users,
-    relations,
-    serverInfo,
-    notifications,
-    settings
-  },
-  plugins: [
-    createPersistedState({
-      key: "directus-app",
-      paths: ["currentProjectKey"],
-      storage: window.sessionStorage,
-      rehydrated: store => {
-        api.config.project = store.state.currentProjectKey;
-      }
-    })
-  ]
+			Object.keys(initialState).forEach(key => {
+				if (protectedKeys.includes(key)) return;
+				state[key] = initialState[key];
+			});
+		},
+		...mutations
+	},
+	strict: debug,
+	modules: {
+		collections,
+		extensions,
+		edits,
+		permissions,
+		users,
+		relations,
+		serverInfo,
+		notifications,
+		settings
+	},
+	plugins: [
+		createPersistedState({
+			key: "directus-app",
+			paths: ["currentProjectKey"],
+			storage: window.sessionStorage,
+			rehydrated: store => {
+				api.config.project = store.state.currentProjectKey;
+			}
+		})
+	]
 });
 
 export default store;

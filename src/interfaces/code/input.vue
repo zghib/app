@@ -1,29 +1,29 @@
 <template>
-  <div class="interface-code codemirror-custom-styles">
-    <codemirror
-      ref="codemirrorEl"
-      :options="altOptions ? altOptions : cmOptions"
-      :value="stringValue"
-      @input="onInput"
-    ></codemirror>
+	<div class="interface-code codemirror-custom-styles">
+		<codemirror
+			ref="codemirrorEl"
+			:options="altOptions ? altOptions : cmOptions"
+			:value="stringValue"
+			@input="onInput"
+		></codemirror>
 
-    <button
-      v-if="options.template"
-      v-tooltip="$t('interfaces.code.fill_template')"
-      @click="fillTemplate"
-    >
-      <v-icon name="playlist_add" />
-    </button>
+		<button
+			v-if="options.template"
+			v-tooltip="$t('interfaces.code.fill_template')"
+			@click="fillTemplate"
+		>
+			<v-icon name="playlist_add" />
+		</button>
 
-    <small v-if="language" class="line-count type-note">
-      {{
-        $tc("interfaces.code.loc", lineCount, {
-          count: lineCount,
-          lang: language
-        })
-      }}
-    </small>
-  </div>
+		<small v-if="language" class="line-count type-note">
+			{{
+				$tc("interfaces.code.loc", lineCount, {
+					count: lineCount,
+					lang: language
+				})
+			}}
+		</small>
+	</div>
 </template>
 
 <script>
@@ -60,157 +60,157 @@ import "codemirror/keymap/sublime.js";
 import mixin from "@directus/extension-toolkit/mixins/interface";
 
 export default {
-  name: "InterfaceCode",
-  components: {
-    codemirror
-  },
-  mixins: [mixin],
-  props: {
-    altOptions: {
-      type: Object
-    }
-  },
-  data() {
-    return {
-      lineCount: 0,
+	name: "InterfaceCode",
+	components: {
+		codemirror
+	},
+	mixins: [mixin],
+	props: {
+		altOptions: {
+			type: Object
+		}
+	},
+	data() {
+		return {
+			lineCount: 0,
 
-      cmOptions: {
-        tabSize: 4,
-        autoRefresh: true,
-        indentUnit: 4,
-        styleActiveLine: true,
-        lineNumbers: this.options.lineNumber,
-        readOnly: this.readonly ? "nocursor" : false,
-        styleSelectedText: true,
-        line: true,
-        highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
-        mode: this.mode,
-        hintOptions: {
-          completeSingle: true
-        },
-        matchBrackets: true,
-        showCursorWhenSelecting: true,
-        theme: "default",
-        extraKeys: { Ctrl: "autocomplete" }
-      }
-    };
-  },
-  computed: {
-    availableTypes() {
-      return {
-        "text/plain": "Plain Text",
-        "text/javascript": "JavaScript",
-        "application/json": "JSON",
-        "text/x-vue": "Vue",
-        "application/x-httpd-php": "PHP"
-      };
-    },
-    language() {
-      return this.availableTypes[this.options.language];
-    },
-    stringValue() {
-      if (this.value == null) return null;
+			cmOptions: {
+				tabSize: 4,
+				autoRefresh: true,
+				indentUnit: 4,
+				styleActiveLine: true,
+				lineNumbers: this.options.lineNumber,
+				readOnly: this.readonly ? "nocursor" : false,
+				styleSelectedText: true,
+				line: true,
+				highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
+				mode: this.mode,
+				hintOptions: {
+					completeSingle: true
+				},
+				matchBrackets: true,
+				showCursorWhenSelecting: true,
+				theme: "default",
+				extraKeys: { Ctrl: "autocomplete" }
+			}
+		};
+	},
+	computed: {
+		availableTypes() {
+			return {
+				"text/plain": "Plain Text",
+				"text/javascript": "JavaScript",
+				"application/json": "JSON",
+				"text/x-vue": "Vue",
+				"application/x-httpd-php": "PHP"
+			};
+		},
+		language() {
+			return this.availableTypes[this.options.language];
+		},
+		stringValue() {
+			if (this.value == null) return null;
 
-      if (typeof this.value === "object") {
-        return JSON.stringify(this.value, null, 4);
-      }
+			if (typeof this.value === "object") {
+				return JSON.stringify(this.value, null, 4);
+			}
 
-      return this.value;
-    },
-    mode() {
-      // There is no dedicated mode for JSON in codemirror. Switch to JS mode when JSON is selected
-      return this.options.language === "application/json"
-        ? "text/javascript"
-        : this.options.language;
-    }
-  },
-  watch: {
-    options(newVal, oldVal) {
-      if (newVal.language !== oldVal.language) {
-        this.$set(this.cmOptions, "mode", newVal.language);
-      }
+			return this.value;
+		},
+		mode() {
+			// There is no dedicated mode for JSON in codemirror. Switch to JS mode when JSON is selected
+			return this.options.language === "application/json"
+				? "text/javascript"
+				: this.options.language;
+		}
+	},
+	watch: {
+		options(newVal, oldVal) {
+			if (newVal.language !== oldVal.language) {
+				this.$set(this.cmOptions, "mode", newVal.language);
+			}
 
-      if (newVal.lineNumber !== oldVal.lineNumber) {
-        this.$set(this.cmOptions, "lineNumbers", newVal.lineNumber);
-      }
-    }
-  },
-  mounted() {
-    const { codemirror } = this.$refs.codemirrorEl;
-    this.lineCount = codemirror.lineCount();
-  },
-  methods: {
-    onInput(value) {
-      const { codemirror } = this.$refs.codemirrorEl;
+			if (newVal.lineNumber !== oldVal.lineNumber) {
+				this.$set(this.cmOptions, "lineNumbers", newVal.lineNumber);
+			}
+		}
+	},
+	mounted() {
+		const { codemirror } = this.$refs.codemirrorEl;
+		this.lineCount = codemirror.lineCount();
+	},
+	methods: {
+		onInput(value) {
+			const { codemirror } = this.$refs.codemirrorEl;
 
-      if (this.lineCount !== codemirror.lineCount()) {
-        this.lineCount = codemirror.lineCount();
-      }
+			if (this.lineCount !== codemirror.lineCount()) {
+				this.lineCount = codemirror.lineCount();
+			}
 
-      if (this.options.language === "application/json") {
-        try {
-          this.$emit("input", JSON.parse(value));
-        } catch (e) {
-          // silently ignore saving value if it's not valid json
-        }
-      } else {
-        this.$emit("input", value);
-      }
-    },
-    fillTemplate() {
-      if (_.isObject(this.options.template) || _.isArray(this.options.template)) {
-        return this.$emit("input", JSON.stringify(this.options.template, null, 4));
-      }
+			if (this.options.language === "application/json") {
+				try {
+					this.$emit("input", JSON.parse(value));
+				} catch (e) {
+					// silently ignore saving value if it's not valid json
+				}
+			} else {
+				this.$emit("input", value);
+			}
+		},
+		fillTemplate() {
+			if (_.isObject(this.options.template) || _.isArray(this.options.template)) {
+				return this.$emit("input", JSON.stringify(this.options.template, null, 4));
+			}
 
-      if (this.options.language === "application/json") {
-        try {
-          this.$emit("input", JSON.parse(this.options.template));
-        } catch (e) {
-          // silently ignore saving value if it's not valid json
-        }
-      } else {
-        this.$emit("input", this.options.template);
-      }
-    }
-  }
+			if (this.options.language === "application/json") {
+				try {
+					this.$emit("input", JSON.parse(this.options.template));
+				} catch (e) {
+					// silently ignore saving value if it's not valid json
+				}
+			} else {
+				this.$emit("input", this.options.template);
+			}
+		}
+	}
 };
 </script>
 
 <style lang="scss" scoped>
 .interface-code {
-  position: relative;
-  width: 100%;
-  max-width: var(--width-x-large);
-  // border: var(--input-border-width) solid var(--input-border-color);
-  // border-radius: var(--border-radius);
-  font-size: var(--input-font-size);
+	position: relative;
+	width: 100%;
+	max-width: var(--width-x-large);
+	// border: var(--input-border-width) solid var(--input-border-color);
+	// border-radius: var(--border-radius);
+	font-size: var(--input-font-size);
 
-  &:focus {
-    border-color: var(--blue-grey-800);
-  }
+	&:focus {
+		border-color: var(--blue-grey-800);
+	}
 }
 
 small {
-  position: absolute;
-  right: 0;
-  bottom: -20px;
-  font-style: italic;
-  text-align: right;
+	position: absolute;
+	right: 0;
+	bottom: -20px;
+	font-style: italic;
+	text-align: right;
 }
 
 button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  user-select: none;
-  color: var(--blue-grey-300);
-  cursor: pointer;
-  transition: color var(--fast) var(--transition-out);
-  z-index: 10;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	user-select: none;
+	color: var(--blue-grey-300);
+	cursor: pointer;
+	transition: color var(--fast) var(--transition-out);
+	z-index: 10;
 
-  &:hover {
-    transition: none;
-    color: var(--blue-grey-600);
-  }
+	&:hover {
+		transition: none;
+		color: var(--blue-grey-600);
+	}
 }
 </style>

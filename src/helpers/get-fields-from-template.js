@@ -4,17 +4,17 @@
  * @return {Array}         Field names
  * @example
  *
- * getFieldsFromTemplate("{{ title }} — {{ runtime }}");
+ * getFieldsFromTemplate("{{ title }} {{ runtime }}");
  * // -> ["title", "runtime"]
  */
 export default function getFieldsFromTemplate(string) {
-  const regex = /{{(.*?)}}/g;
-  let fields = string.match(regex);
-  fields = fields.map(field => {
-    return field
-      .replace(/{{/g, "")
-      .replace(/}}/g, "")
-      .trim();
-  });
-  return fields;
+	const regex = /{{(.*?)}}/g;
+	let fields = string.match(regex);
+	fields = fields.map(field => {
+		return field
+			.replace(/{{/g, "")
+			.replace(/}}/g, "")
+			.trim();
+	});
+	return fields;
 }

@@ -19,11 +19,11 @@
  * }
  */
 export default function formatFilters(filters) {
-  const parsedFilters = {};
+	const parsedFilters = {};
 
-  filters.forEach(filter => {
-    parsedFilters[`filter[${filter.field}][${filter.operator}]`] = filter.value;
-  });
+	filters.forEach(filter => {
+		parsedFilters[`filter[${filter.field}][${filter.operator}]`] = filter.value;
+	});
 
-  return parsedFilters;
+	return parsedFilters;
 }

@@ -4,40 +4,40 @@
  * @return {Promise}      Resolves the extension module, rejects loading error
  */
 export default function loadExtension(src) {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement("script");
-    const link = document.createElement("link");
+	return new Promise((resolve, reject) => {
+		const script = document.createElement("script");
+		const link = document.createElement("link");
 
-    function cleanup() {
-      script.remove();
-      window.__DirectusExtension__ = null; // eslint-disable-line no-underscore-dangle
-    }
+		function cleanup() {
+			script.remove();
+			window.__DirectusExtension__ = null; // eslint-disable-line no-underscore-dangle
+		}
 
-    function onload() {
-      const extensionModule = window.__DirectusExtension__; // eslint-disable-line no-underscore-dangle, max-len
-      resolve(extensionModule);
-      cleanup();
-    }
+		function onload() {
+			const extensionModule = window.__DirectusExtension__; // eslint-disable-line no-underscore-dangle, max-len
+			resolve(extensionModule);
+			cleanup();
+		}
 
-    function onerror(err) {
-      reject(err);
-      cleanup();
-    }
+		function onerror(err) {
+			reject(err);
+			cleanup();
+		}
 
-    link.rel = "stylesheet";
+		link.rel = "stylesheet";
 
-    // NOTE:
-    // The src is always a .js file. We can retrieve the extension's CSS by
-    //   by fetching the same path with the css extension
-    link.href = src.slice(0, -2) + "css";
-    link.onerror = function() {
-      this.remove();
-    };
+		// NOTE:
+		// The src is always a .js file. We can retrieve the extension's CSS by
+		//   by fetching the same path with the css extension
+		link.href = src.slice(0, -2) + "css";
+		link.onerror = function() {
+			this.remove();
+		};
 
-    script.onload = onload;
-    script.onerror = onerror;
-    script.src = src;
-    document.body.appendChild(script);
-    document.body.appendChild(link);
-  });
+		script.onload = onload;
+		script.onerror = onerror;
+		script.src = src;
+		document.body.appendChild(script);
+		document.body.appendChild(link);
+	});
 }

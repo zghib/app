@@ -1,49 +1,49 @@
 <template>
-  <div class="interface-wysiwyg">
-    <Editor
-      ref="editorElement"
-      :init="initOptions"
-      :value="value"
-      @onKeyUp="updateValue"
-      @onExecCommand="updateValue"
-      @onBlur="updateValue"
-      @onPaste="updateValue"
-      @onUndo="updateValue"
-      @onRedo="updateValue"
-    />
-    <v-modal
-      v-if="newInlineFile"
-      :title="$t('file_upload')"
-      :buttons="{
-        done: {
-          text: $t('done')
-        }
-      }"
-      @close="newInlineFile = false"
-      @done="selectCallback"
-    >
-      <div class="body">
-        <v-ext-input
-          id="file"
-          name="file"
-          :required="false"
-          :readonly="false"
-          :options="fileInputOptions"
-          type="file"
-          datatype="INT"
-          :value="selectedFile"
-          :relation="relation"
-          :fields="null"
-          collection="directus_files"
-          :values="null"
-          :length="10"
-          :new-item="newItem"
-          width="full"
-          @input="selectedFile = $event"
-        />
-      </div>
-    </v-modal>
-  </div>
+	<div class="interface-wysiwyg">
+		<Editor
+			ref="editorElement"
+			:init="initOptions"
+			:value="value"
+			@onKeyUp="updateValue"
+			@onExecCommand="updateValue"
+			@onBlur="updateValue"
+			@onPaste="updateValue"
+			@onUndo="updateValue"
+			@onRedo="updateValue"
+		/>
+		<v-modal
+			v-if="newInlineFile"
+			:title="$t('file_upload')"
+			:buttons="{
+				done: {
+					text: $t('done')
+				}
+			}"
+			@close="newInlineFile = false"
+			@done="selectCallback"
+		>
+			<div class="body">
+				<v-ext-input
+					id="file"
+					name="file"
+					:required="false"
+					:readonly="false"
+					:options="fileInputOptions"
+					type="file"
+					datatype="INT"
+					:value="selectedFile"
+					:relation="relation"
+					:fields="null"
+					collection="directus_files"
+					:values="null"
+					:length="10"
+					:new-item="newItem"
+					width="full"
+					@input="selectedFile = $event"
+				/>
+			</div>
+		</v-modal>
+	</div>
 </template>
 
 <script>
@@ -68,63 +68,63 @@ import "tinymce/plugins/preview/plugin";
 import Editor from "@tinymce/tinymce-vue";
 
 function cssVar(name) {
-  return getComputedStyle(document.body).getPropertyValue(name);
+	return getComputedStyle(document.body).getPropertyValue(name);
 }
 
 export default {
-  components: {
-    Editor
-  },
-  mixins: [mixin],
-  data() {
-    return {
-      newInlineFile: false,
-      selectedFile: null,
-      selectCallback: () => {}
-    };
-  },
-  computed: {
-    fileInputOptions() {
-      return {
-        viewOptions: {
-          content: "description",
-          src: "data",
-          subtitle: "type",
-          title: "title"
-        },
-        viewType: "cards"
-      };
-    },
-    initOptions() {
-      const styleFormats = this.getStyleFormats();
-      let toolbarString = this.options.toolbar.join(" ");
+	components: {
+		Editor
+	},
+	mixins: [mixin],
+	data() {
+		return {
+			newInlineFile: false,
+			selectedFile: null,
+			selectCallback: () => {}
+		};
+	},
+	computed: {
+		fileInputOptions() {
+			return {
+				viewOptions: {
+					content: "description",
+					src: "data",
+					subtitle: "type",
+					title: "title"
+				},
+				viewType: "cards"
+			};
+		},
+		initOptions() {
+			const styleFormats = this.getStyleFormats();
+			let toolbarString = this.options.toolbar.join(" ");
 
-      if (styleFormats) {
-        toolbarString += " styleselect";
-      }
+			if (styleFormats) {
+				toolbarString += " styleselect";
+			}
 
-      return {
-        skin: false,
-        skin_url: false,
-        content_css: false,
-        content_style: this.contentStyle,
-        plugins:
-          "media table hr lists image link pagebreak code insertdatetime autoresize paste preview",
-        branding: false,
-        max_height: 1000,
-        elementpath: false,
-        statusbar: false,
-        menubar: false,
-        convert_urls: false,
-        readonly: this.readonly,
-        extended_valid_elements: "audio[loop],source",
-        toolbar: toolbarString,
-        style_formats: styleFormats,
-        file_picker_callback: this.selectFile
-      };
-    },
-    contentStyle() {
-      return `
+			return {
+				skin: false,
+				skin_url: false,
+				content_css: false,
+				content_style: this.contentStyle,
+				plugins:
+					"media table hr lists image link pagebreak code insertdatetime autoresize paste preview",
+				branding: false,
+				max_height: 1000,
+				elementpath: false,
+				statusbar: false,
+				menubar: false,
+				convert_urls: false,
+				readonly: this.readonly,
+				extended_valid_elements: "audio[loop],source",
+				toolbar: toolbarString,
+				style_formats: styleFormats,
+				file_picker_callback: this.selectFile
+			};
+		},
+		contentStyle() {
+			return `
         body {
           color: ${cssVar("--input-text-color")};
           background-color: ${cssVar("--input-background-color")};
@@ -266,45 +266,51 @@ export default {
           text-align: center;
         }
       `;
-    }
-  },
-  created() {
-    this.updateValue = _.debounce(this.updateValue, 200);
-  },
-  methods: {
-    updateValue() {
-      const editor = this.$refs.editorElement.editor;
-      const newValue = editor.getContent();
-      this.$emit("input", newValue);
-    },
-    getStyleFormats() {
-      if (Array.isArray(this.options.custom_formats) && this.options.custom_formats.length > 0) {
-        return this.options.custom_formats;
-      }
+		}
+	},
+	created() {
+		this.updateValue = _.debounce(this.updateValue, 200);
+	},
+	methods: {
+		updateValue() {
+			const editor = this.$refs.editorElement.editor;
+			const newValue = editor.getContent();
+			this.$emit("input", newValue);
+		},
+		getStyleFormats() {
+			if (
+				Array.isArray(this.options.custom_formats) &&
+				this.options.custom_formats.length > 0
+			) {
+				return this.options.custom_formats;
+			}
 
-      return null;
-    },
-    selectFile(callback) {
-      this.newInlineFile = true;
-      this.selectCallback = async () => {
-        const { data: file } = await this.$api.getItem("directus_files", this.selectedFile.id);
-        this.newInlineFile = false;
+			return null;
+		},
+		selectFile(callback) {
+			this.newInlineFile = true;
+			this.selectCallback = async () => {
+				const { data: file } = await this.$api.getItem(
+					"directus_files",
+					this.selectedFile.id
+				);
+				this.newInlineFile = false;
 
-        // TODO: Make sure it returns the correct keys for non-image type files. See
-        // https://www.tiny.cloud/docs/configure/file-image-upload/#example for an example
-        callback(file.data.full_url, { alt: file.title });
+				// TODO: Make sure it returns the correct keys for non-image type files. See
+				// https://www.tiny.cloud/docs/configure/file-image-upload/#example for an example
+				callback(file.data.full_url, { alt: file.title });
 
-        // Empty the selectedfile so the file isn't selected again when you add an additional file
-        this.selectedFile = null;
-      };
-    }
-  }
+				// Empty the selectedfile so the file isn't selected again when you add an additional file
+				this.selectedFile = null;
+			};
+		}
+	}
 };
 </script>
 
 <style lang="scss" scoped>
 .body {
-  padding: 20px;
+	padding: 20px;
 }
 
 // The content CSS is not scoped, but is also not needed.

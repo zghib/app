@@ -1,9 +1,9 @@
 <template>
-  <div class="v-listing-options-loading" />
+	<div class="v-listing-options-loading" />
 </template>
 
 <script>
 export default {
-  name: "VListingOptionsLoading"
+	name: "VListingOptionsLoading"
 };
 </script>

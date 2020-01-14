@@ -1,10 +1,10 @@
 import mutations from "./mutations";
 
 export const initialState = {
-  queue: []
+	queue: []
 };
 
 export default {
-  state: _.clone(initialState),
-  mutations
+	state: _.clone(initialState),
+	mutations
 };

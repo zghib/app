@@ -1,10 +1,10 @@
 <template>
-  <div class="interface-json codemirror-custom-styles">
-    <codemirror :value="stringValue" :options="cmOptions" @input="updateValue" />
-    <button v-if="options.template" @click="fillTemplate">
-      <v-icon name="playlist_add" />
-    </button>
-  </div>
+	<div class="interface-json codemirror-custom-styles">
+		<codemirror :value="stringValue" :options="cmOptions" @input="updateValue" />
+		<button v-if="options.template" @click="fillTemplate">
+			<v-icon name="playlist_add" />
+		</button>
+	</div>
 </template>
 
 <script>
@@ -22,113 +22,117 @@ import CodeMirror from "codemirror";
 import { codemirror } from "vue-codemirror";
 
 CodeMirror.registerHelper("lint", "json", text => {
-  const found = [];
+	const found = [];
 
-  const parser = jsonlint.parser;
+	const parser = jsonlint.parser;
 
-  parser.parseError = (str, hash) => {
-    const loc = hash.loc;
-    found.push({
-      from: CodeMirror.Pos(loc.first_line - 1, loc.first_column),
-      to: CodeMirror.Pos(loc.last_line - 1, loc.last_column),
-      message: str
-    });
-  };
+	parser.parseError = (str, hash) => {
+		const loc = hash.loc;
+		found.push({
+			from: CodeMirror.Pos(loc.first_line - 1, loc.first_column),
+			to: CodeMirror.Pos(loc.last_line - 1, loc.last_column),
+			message: str
+		});
+	};
 
-  if (text.length > 0) {
-    try {
-      jsonlint.parse(text);
-    } catch (e) {}
-  }
+	if (text.length > 0) {
+		try {
+			jsonlint.parse(text);
+		} catch (e) {
+			console.error(e);
+		}
+	}
 
-  return found;
+	return found;
 });
 
 export default {
-  components: {
-    codemirror
-  },
-  mixins: [mixin],
-  data() {
-    return {
-      initialValue: ""
-    };
-  },
-  computed: {
-    cmOptions() {
-      return {
-        tabSize: 2,
-        autoRefresh: true,
-        indentUnit: 2,
-        readOnly: this.readonly ? "nocursor" : false,
-        line: true,
-        lineNumbers: true,
-        mode: "application/json",
-        showCursorWhenSelecting: true,
-        theme: "default",
-        lint: true,
-        gutters: ["CodeMirror-lint-markers"]
-      };
-    },
+	components: {
+		codemirror
+	},
+	mixins: [mixin],
+	data() {
+		return {
+			initialValue: ""
+		};
+	},
+	computed: {
+		cmOptions() {
+			return {
+				tabSize: 2,
+				autoRefresh: true,
+				indentUnit: 2,
+				readOnly: this.readonly ? "nocursor" : false,
+				line: true,
+				lineNumbers: true,
+				mode: "application/json",
+				showCursorWhenSelecting: true,
+				theme: "default",
+				lint: true,
+				gutters: ["CodeMirror-lint-markers"]
+			};
+		},
 
-    stringValue() {
-      if (this.value) {
-        if (typeof this.value === "object") {
-          return JSON.stringify(this.value, null, 2);
-        }
+		stringValue() {
+			if (this.value) {
+				if (typeof this.value === "object") {
+					return JSON.stringify(this.value, null, 2);
+				}
 
-        try {
-          return JSON.stringify(JSON.parse(this.value), null, 2);
-        } catch {
-          return this.value;
-        }
-      }
+				try {
+					return JSON.stringify(JSON.parse(this.value), null, 2);
+				} catch {
+					return this.value;
+				}
+			}
 
-      return "";
-    }
-  },
-  methods: {
-    updateValue(value) {
-      if (value.length === 0) return this.$emit("input", null);
+			return "";
+		}
+	},
+	methods: {
+		updateValue(value) {
+			if (value.length === 0) return this.$emit("input", null);
 
-      try {
-        this.$emit("input", JSON.parse(value));
-      } catch (e) {}
-    },
+			try {
+				this.$emit("input", JSON.parse(value));
+			} catch (e) {
+				console.error(e);
+			}
+		},
 
-    fillTemplate() {
-      const template = this.options.template;
-      this.$emit("input", template);
-    }
-  }
+		fillTemplate() {
+			const template = this.options.template;
+			this.$emit("input", template);
+		}
+	}
 };
 </script>
 
 <style lang="scss" scoped>
 .interface-json {
-  position: relative;
+	position: relative;
 
-  ::v-deep {
-    .CodeMirror-scroll {
-      min-height: var(--form-column-width);
-      max-height: var(--form-row-max-height);
-    }
-  }
+	::v-deep {
+		.CodeMirror-scroll {
+			min-height: var(--form-column-width);
+			max-height: var(--form-row-max-height);
+		}
+	}
 }
 
 button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  user-select: none;
-  color: var(--blue-grey-300);
-  cursor: pointer;
-  transition: color var(--fast) var(--transition-out);
-  z-index: 10;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	user-select: none;
+	color: var(--blue-grey-300);
+	cursor: pointer;
+	transition: color var(--fast) var(--transition-out);
+	z-index: 10;
 
-  &:hover {
-    transition: none;
-    color: var(--blue-grey-600);
-  }
+	&:hover {
+		transition: none;
+		color: var(--blue-grey-600);
+	}
 }
 </style>

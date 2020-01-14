@@ -15,28 +15,28 @@ import formatField from "./format-field";
 import formatCollection from "./format-collection";
 
 const helpers = {
-  formatTitle,
-  date,
-  convertRange,
-  micromustache,
-  filesize,
-  shortid,
-  componentExists,
-  formatFilters,
-  enableBodyScroll,
-  disableBodyScroll,
-  snarkdown,
-  mousetrap,
-  dateFns,
-  formatField,
-  formatCollection
+	formatTitle,
+	date,
+	convertRange,
+	micromustache,
+	filesize,
+	shortid,
+	componentExists,
+	formatFilters,
+	enableBodyScroll,
+	disableBodyScroll,
+	snarkdown,
+	mousetrap,
+	dateFns,
+	formatField,
+	formatCollection
 };
 
 const helpersPlugin = {
-  install(Vue) {
-    // eslint-disable-line no-shadow
-    Vue.prototype.$helpers = helpers;
-  }
+	install(Vue) {
+		// eslint-disable-line no-shadow
+		Vue.prototype.$helpers = helpers;
+	}
 };
 
 Vue.use(helpersPlugin);
