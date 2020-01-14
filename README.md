@@ -12,17 +12,17 @@ The Directus Admin Application is a Vue.js powered SPA designed to work with the
 **IMPORTANT:** Unless contributing to the project, you shouldn't build the App from source. Use [`directus/directus`](/directus/directus) instead.
 
 1. Clone the repo
-2. Install the depencencies using `npm` / `yarn`
-3. Run `npm run build` to compile the app to a production bundle.
+2. Install the depencencies using `yarn`
+3. Run `yarn build` to compile the app to a production bundle.
 
 ## Development
 
-You can run the application standalone using the included dev server. Run `npm run dev` in your terminal to fire up the Directus App with Hot Module Reloading and the Vue Devtools integration enabled.
+You can run the application standalone using the included dev server. Run `yarn serve` in your terminal to fire up the Directus App with Hot Module Reloading and the Vue Devtools integration enabled.
 
 By default, the application will connect to the demo API (https://demo.directus.io) when running in development mode. To connect to your own local API, provide the URL in the `API_URL` environment variable:
 
 ```
-API_URL=http://localhost:8888 npm run dev
+API_URL=http://localhost:8888 yarn serve
 ```
 
 ## Core Team
