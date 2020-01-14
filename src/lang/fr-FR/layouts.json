@@ -5,11 +5,11 @@
       "fields": "Champs",
       "today": "aujourd'hui",
       "events": "Évènements",
-      "moreEvents": "and {amount} more...",
+      "moreEvents": "et {amount} de plus...",
       "noEvents": "aucun événement pour le moment !",
       "date": "Date",
-      "datetime": "Datetime",
-      "time": "Time",
+      "datetime": "Date / Heure",
+      "time": "Date et heure",
       "title": "Titre",
       "color": "Couleur"
     },
@@ -19,21 +19,21 @@
       "subtitle": "Sous-titre",
       "src": "Source de l'image",
       "content": "Message",
-      "fit": "Fit"
+      "fit": "Adapté"
     },
     "tabular": {
       "tabular": "Table",
       "fields": "Champs"
     },
     "timeline": {
-      "timeline": "Timeline",
+      "timeline": "Ligne du temps",
       "fields": "Champs",
       "today": "aujourd'hui",
       "events": "Évènements",
-      "moreEvents": "and {amount} more...",
+      "moreEvents": "et {amount} de plus...",
       "noEvents": "aucun événement pour le moment !",
       "date": "Date",
-      "content": "Content",
+      "content": "Contenu",
       "title": "Titre",
       "color": "Couleur"
     }

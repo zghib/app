@@ -8,7 +8,7 @@
       "choices": "Seçenekler",
       "choices_comment": "Kaydedilen değer ve görüntülenen metinden oluşan JSON anahtar - değer çiftlerini giriniz.",
       "theme": "Arayüz Teması",
-      "theme_comment": "Set the theme of the interface if supported",
+      "theme_comment": "Destekleniyorsa arayüzün temasını ayarlayın",
       "value": "Değer",
       "flight": "Uçuş",
       "cruise": "Gemi gezisi",
@@ -168,7 +168,7 @@
       "icon_comment": "Girişin solunda görüntülenecek isteğe bağlı bir ikon seçin",
       "options_invalid": "Açılır menü için sağlanan JSON seçenekleri geçersiz:",
       "allow_other": "Diğerlerine İzin Ver",
-      "allow_other_comment": "Allow the user to add their own value"
+      "allow_other_comment": "Kullanıcıların kendi değerlerini eklemelerine izin ver"
     },
     "file": {
       "file": "Dosya",
@@ -317,7 +317,7 @@
       "choices": "seçenekler",
       "choices_comment": "Kaydedilen değer ve görüntülenen metinden oluşan JSON anahtar - değer çiftlerini giriniz.",
       "theme": "Arayüz Teması",
-      "theme_comment": "Set the theme of the interface if supported",
+      "theme_comment": "Destekleniyorsa arayüzün temasını ayarlayın",
       "value": "Değer",
       "map_lat": "Varsayılan Enlem",
       "map_lat_comment": "Harita bu enleme ortalanacak",
@@ -330,7 +330,7 @@
       "max_zoom_comment": "Haritada izin verilen maksimum yakınlaştırma",
       "no_location": "Konum bulunamadı",
       "user_location_error_blocked": "Konum erişimini devre dışı bıraktınız. Konumunuzu otomatik olarak algılamak için tarayıcı adres çubuğundan etkinleştirin.",
-      "user_location_error": "There was an error while trying to get your location. Please try again.",
+      "user_location_error": "Konumunuz alınmaya çalışılırken bir hata oluştu. Lütfen tekrar deneyin.",
       "address_to_code": "Adres Girişi",
       "address_to_code_comment": "Coğrafi kodları bir adresten otomatik olarak almak için bir giriş alanı ekleyin. <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\"> Nominatim </a> 'i kullanır. Lütfen kullanım politikalarını kontrol edin.",
       "address_to_code_error": "Bu adres için coğrafi kod bulunamadı",
@@ -596,7 +596,7 @@
       "placeholder_comment": "Yer tutucu ekle"
     },
     "owner": {
-      "owner": "Owner",
+      "owner": "Sahip",
       "avatar": "Avatar",
       "name": "İsim",
       "template": "Şablon",

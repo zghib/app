@@ -68,8 +68,8 @@
       "comment": "注释"
     },
     "directus_files": {
-      "title": "Title",
-      "tags": "Tags",
+      "title": "标题",
+      "tags": "标签",
       "location": "地理位置",
       "description": "描述",
       "filename_download": "下载文件名",
@@ -79,7 +79,7 @@
       "uploaded_on": "上传于",
       "uploaded_by": "上传人",
       "width": "宽",
-      "height": "Height",
+      "height": "高度",
       "duration": "持续时间",
       "filesize": "文件大小",
       "metadata": "元数据（Metadata）"
@@ -93,10 +93,10 @@
       "password": "密码",
       "role": "角色",
       "company": "公司",
-      "title": "Title",
+      "title": "标题",
       "timezone": "时区",
       "locale": "区域",
-      "avatar": "Avatar",
+      "avatar": "头像",
       "theme": "主题",
       "2fa_secret": "2FA（双因素身份验证）"
     }
@@ -120,7 +120,7 @@
   "create_field": "创建字段",
   "create_role": "创建角色",
   "created_by": "创建自",
-  "owner": "Owner",
+  "owner": "所有者",
   "created_on": "创建于",
   "create_new_project": "创建新项目",
   "create_new_project_copy": "确保知道你的数据库信息，然后输入你 API 的超级管理密码以继续。",

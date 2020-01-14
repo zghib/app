@@ -1,14 +1,14 @@
 {
   "interfaces": {
     "2fa-secret": {
-      "2fa-secret": "2FA Secret"
+      "2fa-secret": "2FA Geheimnis"
     },
     "button-group": {
-      "button_group": "Button Group",
-      "choices": "Choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-      "theme": "Interface Theme",
-      "theme_comment": "Set the theme of the interface if supported",
+      "button_group": "Buttongruppe",
+      "choices": "Optionen",
+      "choices_comment": "Geben Sie die JSON-Schlüsselwert-Paare mit dem gespeicherten Wert und dem angezeigten Text ein.",
+      "theme": "Oberflächendesign",
+      "theme_comment": "Setze das Design der Schnittstelle, falls unterstützt",
       "value": "Wert",
       "flight": "Flight",
       "cruise": "Cruise",
@@ -20,20 +20,20 @@
       "other": "Andere"
     },
     "calendar": {
-      "calendar": "Calendar",
-      "min": "Minimum Date",
-      "min_comment": "Minimum date that can be chosen by the user",
-      "max": "Maximum Date",
-      "max_comment": "Maximum date that can be chosen by the user",
+      "calendar": "Kalender",
+      "min": "Datum (Untergrenze)",
+      "min_comment": "Minimales Datum das vom Benutzer ausgewählt werden kann",
+      "max": "Datum (Obergrenze)",
+      "max_comment": "Maximales Datum das vom Benutzer ausgewählt werden kann",
       "formatting": "Datumsformat",
-      "formatting_comment": "If left blank, a relative date will be used"
+      "formatting_comment": "Wenn das Feld leer gelassen wird, wird ein relatives Datum verwendet"
     },
     "checkboxes": {
-      "checkboxes": "Checkboxes",
-      "choices": "Choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-      "wrap": "Wrap with Delimiter",
-      "wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",
+      "checkboxes": "Checkboxen",
+      "choices": "Optionen",
+      "choices_comment": "Geben Sie die JSON-Schlüsselwert-Paare mit dem gespeicherten Wert und dem angezeigten Text ein.",
+      "wrap": "Mit Trennzeichen umbrechen",
+      "wrap_comment": "Den gespeicherten Wert in ein Trennzeichen umbrechen(verbessert die Durchsuchbarkeit).",
       "formatting": "Show display text",
       "formatting_comment": "Render the values as the display values",
       "display_text": "Display Text",
@@ -92,9 +92,9 @@
     "date": {
       "date": "Date",
       "min": "Minimum date",
-      "min_comment": "Minimum date that can be chosen by the user",
+      "min_comment": "Minimales Datum das vom Benutzer ausgewählt werden kann",
       "max": "Maximum date",
-      "max_comment": "Maximum date that can be chosen by the user",
+      "max_comment": "Maximales Datum das vom Benutzer ausgewählt werden kann",
       "localized": "Lokalisiert",
       "localized_comment": "Show the date localized in the output",
       "relative": "Show relative date",
@@ -156,8 +156,8 @@
     },
     "dropdown": {
       "dropdown": "Dropdown",
-      "choices": "Choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+      "choices": "Optionen",
+      "choices_comment": "Geben Sie die JSON-Schlüsselwert-Paare mit dem gespeicherten Wert und dem angezeigten Text ein.",
       "placeholder": "Placeholder",
       "placeholder_comment": "Static text that shown before a value is selected",
       "option": "Option",
@@ -315,15 +315,15 @@
     "map": {
       "map": "Map",
       "choices": "choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-      "theme": "Interface Theme",
-      "theme_comment": "Set the theme of the interface if supported",
+      "choices_comment": "Geben Sie die JSON-Schlüsselwert-Paare mit dem gespeicherten Wert und dem angezeigten Text ein.",
+      "theme": "Oberflächendesign",
+      "theme_comment": "Setze das Design der Schnittstelle, falls unterstützt",
       "value": "Wert",
       "map_lat": "Default Latitude",
       "map_lat_comment": "Map will be centered at this latitude",
       "map_lng": "Default Longitude",
       "map_lng_comment": "Map will be centered at this longitude",
-      "height": "Height",
+      "height": "Höhe",
       "default_zoom": "Default Zoom",
       "default_zoom_comment": "Default zoom level of the map",
       "max_zoom": "Max Zoom",
@@ -353,14 +353,14 @@
     },
     "multiselect": {
       "multiselect": "Multi-Select",
-      "choices": "Choices",
+      "choices": "Optionen",
       "choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
       "placeholder": "Placeholder",
       "placeholder_comment": "Enter placeholder text",
       "size": "Size",
       "size_comment": "Number of options visible before scrolling",
       "option": "Option",
-      "wrap": "Wrap with Delimiter",
+      "wrap": "Mit Trennzeichen umbrechen",
       "wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
       "format": "Browse Format",
       "format_comment": "The output format on the Browse Items page"
@@ -424,8 +424,8 @@
     },
     "radio-buttons": {
       "radio": "Radio Buttons",
-      "choices": "Choices",
-      "choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+      "choices": "Optionen",
+      "choices_comment": "Geben Sie die JSON-Schlüsselwert-Paare mit dem gespeicherten Wert und dem angezeigten Text ein.",
       "option": "Option",
       "format": "Browse Format",
       "format_comment": "The output format on the Browse Items page"
@@ -493,7 +493,7 @@
       "deleted": "Deleted"
     },
     "tags": {
-      "tags": "Tags",
+      "tags": "Stichwörter",
       "alphabetize": "Alphabetize tags",
       "alphabetize_comment": "Will rearrange tags to be alphabetical",
       "lowercase": "Force Lowercase",
@@ -596,7 +596,7 @@
       "placeholder_comment": "Add a placeholder"
     },
     "owner": {
-      "owner": "Owner",
+      "owner": "Besitzer",
       "avatar": "Avatar",
       "name": "Name",
       "template": "Template",

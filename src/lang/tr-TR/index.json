@@ -120,7 +120,7 @@
   "create_field": "Alan Ekle",
   "create_role": "Rol Oluştur",
   "created_by": "Oluşturan",
-  "owner": "Owner",
+  "owner": "Sahip",
   "created_on": "Oluşturulma tarihi",
   "create_new_project": "Yeni Proje Oluştur",
   "create_new_project_copy": "Veritabanı bilgilerinizin hazır olduğundan emin olun, ardından devam etmek için API'nızın Süper Yönetici şifresini girin.",
