@@ -168,7 +168,7 @@
       "icon_comment": "Elija un icono opcional para mostrar a la izquierda del control",
       "options_invalid": "Las opciones JSON provistas para el desplegable son inválidas:",
       "allow_other": "Permitir otro",
-      "allow_other_comment": "Allow the user to add their own value"
+      "allow_other_comment": "Permitir que el usuario añada su propio valor"
     },
     "file": {
       "file": "Archivo",
