@@ -1,11 +1,11 @@
 # Interfaces
 
-Interfaces are the way of inputting, editing and viewing data. The most easy way to understand interface is a datepicker. It allows you to represent the date in specified format & you can validate the inputs. It renders the date in better way by providing a diffrent UI than just a normal text.
-In Database terms, interface reprents the column's value.
+Interfaces are the way of inputting, editing and viewing data. The most easy way to understand interface is a datepicker. It allows you to represent the date in specified format & you can validate the inputs. It renders the date in better way by providing a different UI than just a normal text.
+In Database terms, interface represents the column's value.
 
 ## 💡Interfaces allows you to:
 
-- Accept & View the data in diffrent formats i.e. Datepicker, Dropdown, Checkboxes.
+- Accept & View the data in different formats i.e. Datepicker, Dropdown, Checkboxes.
 - Define the possible choices.
 - Do RegEx validation of data.
 - Define the database schema.
@@ -23,8 +23,8 @@ In Database terms, interface reprents the column's value.
 | Default          | The default value of interface.                                                                                                                       |
 | Length           |                                                                                                                                                       |
 | Validation       | Provide the RegEx validation rule to validate against.                                                                                                |
-| Required         | Enable if the value is reqired.                                                                                                                       |
-| Readonly         | If the value is editable when the interface is rendered. This makes the inteface readonly and the value always will be defined in **Default** option. |
+| Required         | Enable if the value is required.                                                                                                                       |
+| Readonly         | If the value is editable when the interface is rendered. This makes the interface readonly and the value always will be defined in **Default** option. |
 | Unique           | Forces the value to be unique in the table for respective column.                                                                                     |
 | Hidden On Detail | Hides the interface from the item page while creating or editing an item.                                                                             |
 | Hidden On Browse | ??                                                                                                                                                    |
@@ -62,5 +62,5 @@ The following props are derived from the Settings configuration.
 
 ## ⚡ Enhancements
 
-- We can provide a prop named `savedValue` or similar which contains a value returned from an API, is immutable & changes only on successful crud. The `value` prop changes on user's interaction. Thus we can diffrentiate between server's state and user's state.
+- We can provide a prop named `savedValue` or similar which contains a value returned from an API, is immutable & changes only on successful crud. The `value` prop changes on user's interaction. Thus we can differentiate between server's state and user's state.
 - The **Default** option interface should render the interface itself. This will enforce the valid default input.
