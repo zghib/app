@@ -509,6 +509,7 @@
   "turn_all_off": "全部关闭",
   "undo_changes": "撤销更改",
   "unique": "唯一",
+  "unsaved_changes": "Unsaved Changes",
   "unsaved_changes_copy": "您确定要离开此页面吗？",
   "update": "更新",
   "update_confirm": "您确定要更新 {count} 个项目吗?",

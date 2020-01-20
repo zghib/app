@@ -8,7 +8,7 @@
       "choices": "Opciones",
       "choices_comment": "Introduzca los pares de valores de la clave JSON con el valor guardado y el texto mostrado.",
       "theme": "Tema de la interfaz",
-      "theme_comment": "Set the theme of the interface if supported",
+      "theme_comment": "Establecer el tema de la interfaz si esta soportada",
       "value": "Valor",
       "flight": "Vuelo",
       "cruise": "Crucero",
@@ -168,7 +168,7 @@
       "icon_comment": "Elija un icono opcional para mostrar a la izquierda del control",
       "options_invalid": "Las opciones JSON provistas para el desplegable son inválidas:",
       "allow_other": "Permitir otro",
-      "allow_other_comment": "Allow the user to add their own value"
+      "allow_other_comment": "Permitir al usuario agregar su propio valor"
     },
     "file": {
       "file": "Archivo",
@@ -317,7 +317,7 @@
       "choices": "opciones",
       "choices_comment": "Introduzca los pares de valores de la clave JSON con el valor guardado y el texto mostrado.",
       "theme": "Tema de la interfaz",
-      "theme_comment": "Set the theme of the interface if supported",
+      "theme_comment": "Establecer el tema de la interfaz si esta soportada",
       "value": "Valor",
       "map_lat": "Latitud predeterminada",
       "map_lat_comment": "El mapa se centrará en esta latitud",
@@ -330,7 +330,7 @@
       "max_zoom_comment": "Zoom máximo permitido en el mapa",
       "no_location": "Ubicación no encontrada",
       "user_location_error_blocked": "Has desactivado el acceso a la ubicación. Actívalo desde la barra de direcciones del navegador para detectar automáticamente tu ubicación.",
-      "user_location_error": "There was an error while trying to get your location. Please try again.",
+      "user_location_error": "Se produjo un error mientras se intentaba acceder a su ubicación. Por favor intente nuevamente.",
       "address_to_code": "Dirección",
       "address_to_code_comment": "Agregue un campo de entrada/texto para obtener automáticamente la latitud y longitud de una dirección. Utiliza <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Por favor, compruebe la política de uso.",
       "address_to_code_error": "No se ha encontrado latitud y longitud para esta dirección",
@@ -596,7 +596,7 @@
       "placeholder_comment": "Añadir un texto de ejemplo"
     },
     "owner": {
-      "owner": "Owner",
+      "owner": "Propietario",
       "avatar": "Avatar",
       "name": "Nombre",
       "template": "Plantilla",

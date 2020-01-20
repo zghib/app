@@ -509,6 +509,7 @@
   "turn_all_off": "すべてオフ",
   "undo_changes": "変更を元に戻す",
   "unique": "単一",
+  "unsaved_changes": "Unsaved Changes",
   "unsaved_changes_copy": "このページを離れてもよろしいですか？",
   "update": "更新",
   "update_confirm": "これら {count}個の項目を更新してもよろしいですか？",

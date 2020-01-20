@@ -509,6 +509,7 @@
   "turn_all_off": "Выключить все",
   "undo_changes": "Отменить изменения",
   "unique": "Уникальный",
+  "unsaved_changes": "Unsaved Changes",
   "unsaved_changes_copy": "Вы уверены, что хотите покинуть эту страницу?",
   "update": "Обновление",
   "update_confirm": "Вы уверены, что хотите обновить {count} элементы?",
