@@ -22,7 +22,7 @@
 						:disabled="option.disabled"
 						@click.stop="optionClicked(option, id)"
 					>
-						<v-icon v-if="option.icon" :name="option.icon" size="24"></v-icon>
+						<v-icon v-if="option.icon" :name="option.icon"></v-icon>
 						{{ option.text }}
 					</button>
 				</li>
@@ -33,15 +33,15 @@
 
 <script>
 export default {
-	name: "VContextualMenu",
+	name: 'VContextualMenu',
 	props: {
 		text: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		icon: {
 			type: String,
-			default: "more_vert"
+			default: 'more_vert'
 		},
 		options: {
 			type: [Array, Object],
@@ -49,11 +49,11 @@ export default {
 		},
 		trigger: {
 			type: String,
-			default: "click"
+			default: 'click'
 		},
 		placement: {
 			type: String,
-			default: "left-start"
+			default: 'left-start'
 		},
 		disabled: {
 			type: Boolean,
@@ -67,7 +67,7 @@ export default {
 	},
 	methods: {
 		optionClicked(option, id) {
-			if (!option.disabled) this.$emit("click", id);
+			if (!option.disabled) this.$emit('click', id);
 		}
 	}
 };

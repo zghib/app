@@ -16,7 +16,7 @@
 				@load="loading = false"
 				@error="onImageLoadingError"
 			/>
-			<v-icon v-else :style="{ fontSize: size / 2 + 2 + 'px' }" name="person" />
+			<v-icon v-else :size="size / 2 + 2" name="person" />
 		</div>
 		<div v-if="indicator" :style="{ backgroundColor: `var(--${color})` }" class="indicator" />
 	</div>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-	name: "VAvatar",
+	name: 'VAvatar',
 	props: {
 		src: {
 			type: String,
@@ -40,7 +40,7 @@ export default {
 		},
 		color: {
 			type: String,
-			default: "success"
+			default: 'success'
 		},
 		hover: {
 			type: Boolean,
@@ -48,7 +48,7 @@ export default {
 		},
 		backgroundColor: {
 			type: String,
-			default: "card-background-color"
+			default: 'card-background-color'
 		},
 		size: {
 			type: Number,

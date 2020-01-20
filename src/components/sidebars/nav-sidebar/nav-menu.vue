@@ -11,12 +11,16 @@
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							<v-icon class="icon" :name="icon || 'box'" color="sidebar-text-color" />
+							<v-icon
+								class="icon"
+								:name="icon || 'box'"
+								color="--sidebar-text-color"
+							/>
 							{{ name }}
 						</a>
 					</template>
 					<router-link v-else-if="link" :to="link" :class="color || null">
-						<v-icon class="icon" :name="icon || 'box'" color="sidebar-text-color" />
+						<v-icon class="icon" :name="icon || 'box'" color="--sidebar-text-color" />
 						{{ name }}
 					</router-link>
 				</li>
@@ -27,7 +31,7 @@
 
 <script>
 export default {
-	name: "NavMenu",
+	name: 'NavMenu',
 	props: {
 		title: {
 			type: String,
@@ -40,7 +44,7 @@ export default {
 	},
 	computed: {
 		titleTranslated() {
-			if (this.title.startsWith("$t:")) {
+			if (this.title.startsWith('$t:')) {
 				return this.$t(this.title.substring(3));
 			}
 
@@ -66,7 +70,6 @@ h3 {
 
 .icon {
 	margin-right: 12px;
-	vertical-align: -7px;
 }
 
 a {

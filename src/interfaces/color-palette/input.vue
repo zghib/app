@@ -10,16 +10,16 @@
 			@click="$emit('input', color)"
 		>
 			<template v-if="value === color">
-				<v-icon name="check" :class="{ dark: useDarkIconColor(color) }" size="18" />
+				<v-icon name="check" :class="{ dark: useDarkIconColor(color) }" small />
 			</template>
 		</button>
 	</div>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import hexRgb from "hex-rgb";
-import colors from "./colors.json";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import hexRgb from 'hex-rgb';
+import colors from './colors.json';
 
 export default {
 	mixins: [mixin],
@@ -34,7 +34,7 @@ export default {
 				.getPropertyValue(`--${value}`)
 				.trim();
 
-			const rgb = hexRgb(hex, { format: "array" });
+			const rgb = hexRgb(hex, { format: 'array' });
 
 			const colors = rgb
 				.map(val => val / 255)
@@ -120,7 +120,7 @@ export default {
 			}
 		}
 	}
-	button[disabled="disabled"] {
+	button[disabled='disabled'] {
 		cursor: not-allowed;
 		filter: grayscale(1);
 

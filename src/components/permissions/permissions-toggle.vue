@@ -1,15 +1,15 @@
 <template>
 	<v-popover placement="left-start" offset="5">
 		<button class="box" :class="[{ none: value === null }, value]">
-			<v-icon v-if="value === 'none'" class="icon" name="close" size="16" />
-			<v-icon v-else-if="value === 'mine'" class="icon" name="person" size="16" />
-			<v-icon v-else-if="value === 'role'" class="icon" name="group" size="16" />
-			<v-icon v-else-if="value === 'full'" class="icon" name="check" size="16" />
-			<v-icon v-else-if="value === 'read'" class="icon" name="remove_red_eye" size="16" />
-			<v-icon v-else-if="value === 'create'" class="icon" name="add" size="18" />
-			<v-icon v-else-if="value === 'update'" class="icon" name="edit" size="16" />
-			<v-icon v-else-if="value === 'always'" class="icon" name="announcement" size="16" />
-			<v-icon v-else-if="value === 'indeterminate'" class="icon" name="remove" size="16" />
+			<v-icon v-if="value === 'none'" class="icon" name="close" :size="16" />
+			<v-icon v-else-if="value === 'mine'" class="icon" name="person" :size="16" />
+			<v-icon v-else-if="value === 'role'" class="icon" name="group" :size="16" />
+			<v-icon v-else-if="value === 'full'" class="icon" name="check" :size="16" />
+			<v-icon v-else-if="value === 'read'" class="icon" name="remove_red_eye" :size="16" />
+			<v-icon v-else-if="value === 'create'" class="icon" name="add" small />
+			<v-icon v-else-if="value === 'update'" class="icon" name="edit" :size="16" />
+			<v-icon v-else-if="value === 'always'" class="icon" name="announcement" :size="16" />
+			<v-icon v-else-if="value === 'indeterminate'" class="icon" name="remove" :size="16" />
 		</button>
 		<template slot="popover">
 			<div class="popover-content">
@@ -20,59 +20,69 @@
 					@click="$emit('input', option)"
 				>
 					<div class="box" :class="option">
-						<v-icon v-if="option === 'none'" class="icon" name="close" size="16" />
+						<v-icon v-if="option === 'none'" class="icon" name="close" :size="16" />
 						<v-icon
 							v-else-if="option === 'mine'"
 							class="icon"
 							name="person"
-							size="16"
+							:size="16"
 						/>
-						<v-icon v-else-if="option === 'role'" class="icon" name="group" size="16" />
-						<v-icon v-else-if="option === 'full'" class="icon" name="check" size="16" />
+						<v-icon
+							v-else-if="option === 'role'"
+							class="icon"
+							name="group"
+							:size="16"
+						/>
+						<v-icon
+							v-else-if="option === 'full'"
+							class="icon"
+							name="check"
+							:size="16"
+						/>
 						<v-icon
 							v-else-if="option === 'read'"
 							class="icon"
 							name="remove_red_eye"
-							size="16"
+							:size="16"
 						/>
-						<v-icon v-else-if="option === 'create'" class="icon" name="add" size="18" />
+						<v-icon v-else-if="option === 'create'" class="icon" name="add" small />
 						<v-icon
 							v-else-if="option === 'update'"
 							class="icon"
 							name="edit"
-							size="16"
+							:size="16"
 						/>
 						<v-icon
 							v-else-if="option === 'always'"
 							class="icon"
 							name="announcement"
-							size="16"
+							:size="16"
 						/>
 					</div>
 
 					<template v-if="option === 'none'">
-						{{ $t("permission_states.none") }}
+						{{ $t('permission_states.none') }}
 					</template>
 					<template v-if="option === 'mine'">
-						{{ $t("permission_states.mine") }}
+						{{ $t('permission_states.mine') }}
 					</template>
 					<template v-if="option === 'role'">
-						{{ $t("permission_states.role") }}
+						{{ $t('permission_states.role') }}
 					</template>
 					<template v-if="option === 'full'">
-						{{ $t("permission_states.full") }}
+						{{ $t('permission_states.full') }}
 					</template>
 					<template v-if="option === 'read'">
-						{{ $t("permission_states.read") }}
+						{{ $t('permission_states.read') }}
 					</template>
 					<template v-if="option === 'create'">
-						{{ $t("permission_states.create") }}
+						{{ $t('permission_states.create') }}
 					</template>
 					<template v-if="option === 'update'">
-						{{ $t("permission_states.update") }}
+						{{ $t('permission_states.update') }}
 					</template>
 					<template v-if="option === 'always'">
-						{{ $t("permission_states.always") }}
+						{{ $t('permission_states.always') }}
 					</template>
 				</button>
 			</div>
@@ -82,7 +92,7 @@
 
 <script>
 export default {
-	name: "PermissionToggle",
+	name: 'PermissionToggle',
 	props: {
 		options: {
 			type: Array,
@@ -90,7 +100,7 @@ export default {
 		},
 		value: {
 			type: String,
-			default: "none"
+			default: 'none'
 		}
 	}
 };

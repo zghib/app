@@ -1,17 +1,10 @@
 const path = require('path');
 
-module.exports = async ({ config, mode }) => {
-  config.module.rules.push({
-    test: /\.md$/,
-    use: [
-      {
-        loader: "html-loader"
-      },
-      {
-        loader: "markdown-loader"
-      }
-    ],
-  });
-  
-  return config;
-};
+module.exports = ({ config }) => {
+	config.resolve.alias = {
+		...config.resolve.alias,
+		'@': path.resolve(__dirname, '../src')
+	};
+
+	return config;
+}

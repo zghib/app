@@ -8,7 +8,7 @@
 			<template v-else>
 				{{ currentProjectKey }}
 			</template>
-			<v-icon class="icon dropdown" color="input-text-color" name="arrow_drop_down" />
+			<v-icon class="icon dropdown" color="--input-text-color" name="arrow_drop_down" />
 		</span>
 		<select v-model="currentProjectKey">
 			<option v-for="project in projects" :key="project.key" :value="project.key">
@@ -27,23 +27,23 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
-import VSignal from "@/components/signal";
+import { mapState, mapGetters } from 'vuex';
+import VSignal from '@/components/signal';
 
 export default {
-	name: "ProjectChooser",
+	name: 'ProjectChooser',
 	components: {
 		VSignal
 	},
 	computed: {
-		...mapGetters(["currentProject"]),
-		...mapState(["projects"]),
+		...mapGetters(['currentProject']),
+		...mapState(['projects']),
 		currentProjectKey: {
 			get() {
 				return this.$store.state.currentProjectKey;
 			},
 			set(value) {
-				this.$store.dispatch("setCurrentProject", value);
+				this.$store.dispatch('setCurrentProject', value);
 			}
 		}
 	}

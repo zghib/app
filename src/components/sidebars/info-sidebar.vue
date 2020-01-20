@@ -10,8 +10,8 @@
 				class="sidebar-button"
 				@click="toggle(!active)"
 			>
-				<v-icon icon-style="outline" name="info" color="sidebar-text-color" />
-				<span v-if="active">{{ $t("info") }}</span>
+				<v-icon icon-style="outline" name="info" color="--sidebar-text-color" />
+				<span class="label" v-if="active">{{ $t('info') }}</span>
 			</button>
 
 			<div v-if="active" class="content">
@@ -30,20 +30,20 @@
 				:to="`/${currentProjectKey}/activity`"
 				class="notifications sidebar-button"
 			>
-				<v-icon name="notifications" color="sidebar-text-color" />
-				<span v-if="active">{{ $t("notifications") }}</span>
+				<v-icon name="notifications" color="--sidebar-text-color" />
+				<span class="label" v-if="active">{{ $t('notifications') }}</span>
 			</router-link>
 		</aside>
 	</div>
 </template>
 
 <script>
-import VBlocker from "../blocker.vue";
-import { TOGGLE_INFO } from "../../store/mutation-types";
-import { mapState, mapMutations } from "vuex";
+import VBlocker from '../blocker.vue';
+import { TOGGLE_INFO } from '../../store/mutation-types';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
-	name: "InfoSidebar",
+	name: 'InfoSidebar',
 	components: {
 		VBlocker
 	},
@@ -60,7 +60,7 @@ export default {
 			permissions: state => state.permissions
 		}),
 		canReadActivity() {
-			return this.permissions.directus_activity.read !== "none";
+			return this.permissions.directus_activity.read !== 'none';
 		}
 	},
 	created() {
@@ -132,7 +132,7 @@ export default {
 	display: flex;
 	align-items: center;
 
-	span {
+	.label {
 		flex-grow: 1;
 		margin-left: 10px;
 		text-align: left;

@@ -2,7 +2,7 @@
 	<transition name="error">
 		<div class="v-error">
 			<div class="circle" :style="{ borderColor: 'var(--' + color + ')' }">
-				<v-icon class="icon" :class="icon" :name="icon" size="48" :color="color" />
+				<v-icon class="icon" :class="icon" :name="icon" x-large :color="`--${color}`" />
 			</div>
 			<h2 class="type-heading-small" :style="{ color: 'var(--' + color + ')' }">
 				{{ title }}
@@ -14,13 +14,13 @@
 
 <script>
 export default {
-	name: "VError",
+	name: 'VError',
 	props: {
 		color: {
 			type: String,
-			default: "page-text-color",
+			default: 'page-text-color',
 			validator(val) {
-				return ["page-text-color", "accent", "success", "warning", "danger"].includes(val);
+				return ['page-text-color', 'accent', 'success', 'warning', 'danger'].includes(val);
 			}
 		},
 		icon: {

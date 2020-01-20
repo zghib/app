@@ -41,20 +41,14 @@
 
 				<img v-if="src && !error" :alt="title" :src="src" @error="onImageError" />
 
-				<v-icon
-					v-if="error"
-					class="error icon"
-					name="broken_image"
-					size="48"
-					color="white"
-				/>
+				<v-icon v-if="error" class="error icon" name="broken_image" x-large color="white" />
 
 				<v-icon
 					v-if="icon"
 					:class="{ 'half-opacity': opacity === 'half' }"
 					class="icon"
 					:name="icon"
-					size="48"
+					x-large
 					color="white"
 				/>
 
@@ -102,15 +96,15 @@
 
 <script>
 export default {
-	name: "VCard",
+	name: 'VCard',
 	props: {
 		element: {
 			type: String,
-			default: "article"
+			default: 'article'
 		},
 		titleElement: {
 			type: String,
-			default: "h2"
+			default: 'h2'
 		},
 		icon: {
 			type: String,
@@ -118,7 +112,7 @@ export default {
 		},
 		color: {
 			type: String,
-			default: "card-background-color"
+			default: 'card-background-color'
 		},
 		textBackground: {
 			type: Boolean,
@@ -150,9 +144,9 @@ export default {
 		},
 		opacity: {
 			type: String,
-			default: "full",
+			default: 'full',
 			validator(val) {
-				return ["full", "half"].includes(val);
+				return ['full', 'half'].includes(val);
 			}
 		},
 		selected: {
@@ -192,14 +186,14 @@ export default {
 	computed: {
 		wrapperTag() {
 			if (this.to) {
-				return "router-link";
+				return 'router-link';
 			}
 
 			if (this.href) {
-				return "a";
+				return 'a';
 			}
 
-			return "div";
+			return 'div';
 		},
 		link() {
 			if (this.to || this.href) {
@@ -212,9 +206,9 @@ export default {
 			return this.selected !== null;
 		},
 		selectionIcon() {
-			if (this.selected) return "check_circle";
-			if (this.selectionMode && !this.selected) return "radio_button_unchecked";
-			return "check_circle";
+			if (this.selected) return 'check_circle';
+			if (this.selectionMode && !this.selected) return 'radio_button_unchecked';
+			return 'check_circle';
 		}
 	},
 	watch: {
@@ -327,7 +321,6 @@ export default {
 		}
 
 		.icon {
-			font-size: 64px;
 			color: var(--card-text-color);
 			text-align: center;
 		}
@@ -411,7 +404,7 @@ export default {
 			transition: opacity var(--fast) var(--transition);
 		}
 		.header::before {
-			content: "";
+			content: '';
 			position: absolute;
 			width: 100%;
 			height: 50px;

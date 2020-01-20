@@ -2,14 +2,14 @@
 	<v-modal-base :title="title" :message="message" @cancel="$emit('cancel')">
 		<div class="buttons" @keydown.esc="$emit('cancel')">
 			<button class="cancel" @click="$emit('cancel')">
-				{{ cancelText || $t("cancel") }}
+				{{ cancelText || $t('cancel') }}
 			</button>
-			<v-button :bg="color" class="confirm" @click="$emit('confirm')">
+			<v-button :background-color="`--${color}`" class="confirm" @click="$emit('confirm')">
 				<template v-if="loading">
 					<v-spinner :size="20" :line-size="2" />
 				</template>
 				<template v-else>
-					{{ confirmText || $t("ok") }}
+					{{ confirmText || $t('ok') }}
 				</template>
 			</v-button>
 		</div>
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import VModalBase from "./modal-base.vue";
+import VModalBase from './modal-base.vue';
 
 export default {
-	name: "VConfirm",
+	name: 'VConfirm',
 	components: {
 		VModalBase
 	},
@@ -47,7 +47,7 @@ export default {
 		},
 		color: {
 			type: String,
-			default: "action"
+			default: 'action'
 		}
 	}
 };

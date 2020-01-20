@@ -10,7 +10,7 @@
 				></button>
 				<chooser slot="popover" :value="value" @input="$emit('input', $event)" />
 			</v-popover>
-			<v-icon name="tune" color="white" />
+			<v-icon name="tune" color="--white" />
 		</div>
 		<v-input
 			class="input"
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import chooser from "./chooser";
+import chooser from './chooser';
 
 export default {
 	components: {
@@ -59,7 +59,7 @@ export default {
 	methods: {
 		emitValue(value) {
 			if (/#[0-9A-Fa-f]{3,6}/.test(value)) {
-				return this.$emit("input", value);
+				return this.$emit('input', value);
 			}
 		}
 	}
@@ -82,7 +82,7 @@ export default {
 	cursor: pointer;
 
 	&:hover {
-		i {
+		.v-icon {
 			opacity: 1;
 		}
 	}
@@ -108,7 +108,7 @@ export default {
 			box-shadow: inset 0 0 0 2px var(--input-border-color) !important;
 			&::before,
 			&::after {
-				content: "";
+				content: '';
 				height: 2px;
 				width: 125%;
 				background-color: var(--input-border-color);
@@ -123,7 +123,7 @@ export default {
 		}
 	}
 
-	i {
+	.v-icon {
 		transition: opacity var(--fast) var(--transition);
 		position: absolute;
 		top: 6px;

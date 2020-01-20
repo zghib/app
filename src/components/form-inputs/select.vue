@@ -14,7 +14,7 @@
 			</optgroup>
 			<optgroup :label="$t('other')">
 				<option :value="customValue || '__other'" :selected="otherActive">
-					{{ customValue.length ? customValue : $t("enter_value") }}
+					{{ customValue.length ? customValue : $t('enter_value') }}
 				</option>
 			</optgroup>
 		</select>
@@ -61,7 +61,7 @@
 
 <script>
 export default {
-	name: "VSelect",
+	name: 'VSelect',
 	props: {
 		disabled: {
 			type: Boolean,
@@ -73,15 +73,15 @@ export default {
 		},
 		name: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		id: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		value: {
 			type: [String, Number],
-			default: ""
+			default: ''
 		},
 
 		other: {
@@ -90,11 +90,11 @@ export default {
 		},
 		icon: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		type: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		options: {
 			type: [Object, String, Array],
@@ -102,7 +102,7 @@ export default {
 		},
 		placeholder: {
 			type: String,
-			default: "Choose one..."
+			default: 'Choose one...'
 		},
 
 		defaultValue: {
@@ -113,12 +113,12 @@ export default {
 	data() {
 		return {
 			otherActive: false,
-			customValue: ""
+			customValue: ''
 		};
 	},
 	computed: {
 		parsedOptions() {
-			if (typeof this.options === "string") {
+			if (typeof this.options === 'string') {
 				return JSON.parse(this.options);
 			}
 
@@ -127,23 +127,23 @@ export default {
 	},
 	methods: {
 		change(value) {
-			if (value === this.customValue || value === "__other") {
-				this.$emit("input", this.customValue);
+			if (value === this.customValue || value === '__other') {
+				this.$emit('input', this.customValue);
 				this.otherActive = true;
 				return;
 			}
 
 			this.otherActive = false;
-			this.$emit("input", value);
+			this.$emit('input', value);
 
 			if (this.defaultValue === true) {
-				this.$refs.default.setAttribute("selected", "selected");
-				this.$refs.select.value = "";
+				this.$refs.default.setAttribute('selected', 'selected');
+				this.$refs.select.value = '';
 			}
 		},
 		changeCustom(event) {
 			this.customValue = event.target.value;
-			this.$emit("input", this.customValue);
+			this.$emit('input', this.customValue);
 		}
 	}
 };
@@ -249,16 +249,15 @@ export default {
 		outline: 0;
 	}
 
-	i {
+	.v-icon {
 		position: absolute;
 		left: 5px;
 		top: 50%;
 		color: var(--input-icon-color);
 		transform: translateY(-50%);
-		font-size: 24px;
 	}
 
-	i.chevron {
+	.v-icon.chevron {
 		left: auto;
 		pointer-events: none;
 		right: 10px;

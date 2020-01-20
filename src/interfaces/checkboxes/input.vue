@@ -12,7 +12,7 @@
 			<template v-if="choice.custom">
 				<button @click="choices[index].checked = !choices[index].checked">
 					<v-icon
-						color="blue-grey-800"
+						color="--blue-grey-800"
 						:name="choice.checked ? 'check_box' : 'check_box_outline_blank'"
 					/>
 				</button>
@@ -31,16 +31,16 @@
 				@change="choices[index].checked = !choices[index].checked"
 			/>
 		</div>
-		<button v-if="options.allow_other" @click="addCustom">{{ $t("add_new") }}...</button>
+		<button v-if="options.allow_other" @click="addCustom">{{ $t('add_new') }}...</button>
 	</draggable>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import shortid from "shortid";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import shortid from 'shortid';
 
 export default {
-	name: "InterfaceCheckboxes",
+	name: 'InterfaceCheckboxes',
 	mixins: [mixin],
 	data() {
 		return {
@@ -59,10 +59,10 @@ export default {
 				}
 
 				if (this.options.wrap) {
-					newValue = ["", ...newValue, ""];
+					newValue = ['', ...newValue, ''];
 				}
 
-				this.$emit("input", newValue);
+				this.$emit('input', newValue);
 			}
 		}
 	},
@@ -116,7 +116,7 @@ export default {
 				...this.choices,
 				{
 					id: shortid.generate(),
-					key: "",
+					key: '',
 					custom: true,
 					checked: true
 				}

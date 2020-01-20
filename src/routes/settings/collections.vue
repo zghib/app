@@ -23,9 +23,9 @@
 			<div class="header">
 				<div class="row">
 					<div class="cell icon type-table-head">
-						<v-icon name="box" size="24" color="input-icon-color" />
+						<v-icon name="box" color="--input-icon-color" />
 					</div>
-					<div class="cell type-table-head">{{ $tc("collection", 2) }}</div>
+					<div class="cell type-table-head">{{ $tc('collection', 2) }}</div>
 				</div>
 			</div>
 			<div class="body">
@@ -37,11 +37,7 @@
 					:to="collection.__link__"
 				>
 					<div class="cell icon">
-						<v-icon
-							:name="collection.icon || 'box'"
-							size="24"
-							color="input-icon-color"
-						/>
+						<v-icon :name="collection.icon || 'box'" color="--input-icon-color" />
 					</div>
 					<div class="cell name">
 						{{ collection.collection }}
@@ -54,7 +50,7 @@
 						:loading="toManage.includes(collection.collection)"
 						@click="toggleManage(collection)"
 					>
-						{{ $t("dont_manage") }}
+						{{ $t('dont_manage') }}
 					</v-button>
 					<v-button
 						v-else
@@ -63,7 +59,7 @@
 						:loading="toManage.includes(collection.collection)"
 						@click="toggleManage(collection)"
 					>
-						{{ $t("manage") }}
+						{{ $t('manage') }}
 					</v-button>
 				</router-link>
 			</div>
@@ -84,27 +80,27 @@
 					<div class="advanced-form">
 						<label class="toggle">
 							<v-toggle v-model="status" />
-							{{ $t("status") }}
+							{{ $t('status') }}
 						</label>
 						<label class="toggle">
 							<v-toggle v-model="sort" />
-							{{ $t("sort") }}
+							{{ $t('sort') }}
 						</label>
 						<label class="toggle">
 							<v-toggle v-model="owner" :value="true" />
-							{{ $t("owner") }}
+							{{ $t('owner') }}
 						</label>
 						<label class="toggle">
 							<v-toggle v-model="createdOn" :value="true" />
-							{{ $t("created_on") }}
+							{{ $t('created_on') }}
 						</label>
 						<label class="toggle">
 							<v-toggle v-model="modifiedBy" />
-							{{ $t("modified_by") }}
+							{{ $t('modified_by') }}
 						</label>
 						<label class="toggle">
 							<v-toggle v-model="modifiedOn" />
-							{{ $t("modified_on") }}
+							{{ $t('modified_on') }}
 						</label>
 					</div>
 				</v-details>
@@ -128,19 +124,19 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
-	name: "SettingsCollections",
+	name: 'SettingsCollections',
 	metaInfo() {
 		return {
-			title: `${this.$t("settings")} | ${this.$t("settings_collections_fields")}`
+			title: `${this.$t('settings')} | ${this.$t('settings_collections_fields')}`
 		};
 	},
 	data() {
 		return {
 			addNew: false,
-			newName: "",
+			newName: '',
 			adding: false,
 			status: true,
 			sort: false,
@@ -154,12 +150,12 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		items() {
 			const collections = this.$store.state.collections || {};
 
 			return Object.values(collections)
-				.filter(collection => collection.collection.startsWith("directus_") === false)
+				.filter(collection => collection.collection.startsWith('directus_') === false)
 				.map(collection => ({
 					...collection,
 					__link__: `/${this.currentProjectKey}/settings/collections/${collection.collection}`
@@ -168,11 +164,11 @@ export default {
 		breadcrumb() {
 			return [
 				{
-					name: this.$t("settings"),
+					name: this.$t('settings'),
 					path: `/${this.currentProjectKey}/settings`
 				},
 				{
-					name: this.$t("collections_and_fields"),
+					name: this.$t('collections_and_fields'),
 					path: `/${this.currentProjectKey}/settings/collections`
 				}
 			];
@@ -183,15 +179,15 @@ export default {
 			this.adding = true;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			let fieldsToAdd = [
 				{
-					type: "integer",
-					datatype: "INT",
+					type: 'integer',
+					datatype: 'INT',
 					length: 15,
-					field: "id",
-					interface: "primary-key",
+					field: 'id',
+					interface: 'primary-key',
 					auto_increment: true,
 					primary_key: true,
 					hidden_detail: true,
@@ -202,16 +198,16 @@ export default {
 				id: {
 					auto_increment: true,
 					collection: this.newName,
-					datatype: "INT",
+					datatype: 'INT',
 					default_value: null,
-					field: "id",
+					field: 'id',
 					group: null,
 					hidden_detail: true,
 					hidden_browse: true,
-					interface: "primary-key",
-					length: "10",
+					interface: 'primary-key',
+					length: '10',
 					locked: 0,
-					note: "",
+					note: '',
 					options: null,
 					primary_key: true,
 					readonly: 0,
@@ -219,30 +215,30 @@ export default {
 					signed: false,
 					sort: 1,
 					translation: null,
-					type: "integer",
+					type: 'integer',
 					unique: false,
 					validation: null,
-					width: "full"
+					width: 'full'
 				}
 			};
 
 			if (this.status) {
 				fieldsToAdd.push({
-					type: "status",
-					datatype: "VARCHAR",
+					type: 'status',
+					datatype: 'VARCHAR',
 					length: 20,
-					field: "status",
-					interface: "status",
-					default_value: "draft",
-					width: "full",
+					field: 'status',
+					interface: 'status',
+					default_value: 'draft',
+					width: 'full',
 					required: true,
 					options: {
 						status_mapping: {
 							published: {
-								name: "Published",
-								value: "published",
-								text_color: "white",
-								background_color: "accent",
+								name: 'Published',
+								value: 'published',
+								text_color: 'white',
+								background_color: 'accent',
 								browse_subdued: false,
 								browse_badge: true,
 								soft_delete: false,
@@ -250,10 +246,10 @@ export default {
 								required_fields: true
 							},
 							draft: {
-								name: "Draft",
-								value: "draft",
-								text_color: "white",
-								background_color: "blue-grey-100",
+								name: 'Draft',
+								value: 'draft',
+								text_color: 'white',
+								background_color: 'blue-grey-100',
 								browse_subdued: true,
 								browse_badge: true,
 								soft_delete: false,
@@ -261,10 +257,10 @@ export default {
 								required_fields: false
 							},
 							deleted: {
-								name: "Deleted",
-								value: "deleted",
-								text_color: "white",
-								background_color: "red",
+								name: 'Deleted',
+								value: 'deleted',
+								text_color: 'white',
+								background_color: 'red',
 								browse_subdued: true,
 								browse_badge: true,
 								soft_delete: true,
@@ -276,47 +272,47 @@ export default {
 				});
 				fieldsToDispatch.status = {
 					collection: this.newName,
-					field: "status",
-					datatype: "VARCHAR",
+					field: 'status',
+					datatype: 'VARCHAR',
 					unique: false,
 					primary_key: false,
 					auto_increment: false,
-					default_value: "draft",
+					default_value: 'draft',
 					note: null,
 					signed: true,
-					type: "status",
+					type: 'status',
 					sort: 0,
-					interface: "status",
+					interface: 'status',
 					hidden_detail: false,
 					hidden_browse: false,
 					required: true,
 					options: {
 						status_mapping: {
 							published: {
-								name: "Published",
-								value: "published",
-								text_color: "white",
-								background_color: "accent",
+								name: 'Published',
+								value: 'published',
+								text_color: 'white',
+								background_color: 'accent',
 								browse_subdued: false,
 								browse_badge: true,
 								soft_delete: false,
 								published: true
 							},
 							draft: {
-								name: "Draft",
-								value: "draft",
-								text_color: "white",
-								background_color: "blue-grey-100",
+								name: 'Draft',
+								value: 'draft',
+								text_color: 'white',
+								background_color: 'blue-grey-100',
 								browse_subdued: true,
 								browse_badge: true,
 								soft_delete: false,
 								published: false
 							},
 							deleted: {
-								name: "Deleted",
-								value: "deleted",
-								text_color: "white",
-								background_color: "red",
+								name: 'Deleted',
+								value: 'deleted',
+								text_color: 'white',
+								background_color: 'red',
 								browse_subdued: true,
 								browse_badge: true,
 								soft_delete: true,
@@ -327,35 +323,35 @@ export default {
 					locked: false,
 					translation: null,
 					readonly: false,
-					width: "full",
+					width: 'full',
 					validation: null,
 					group: null,
-					length: "20"
+					length: '20'
 				};
 			}
 			if (this.sort) {
 				fieldsToAdd.push({
-					type: "sort",
-					datatype: "INT",
-					field: "sort",
-					interface: "sort",
+					type: 'sort',
+					datatype: 'INT',
+					field: 'sort',
+					interface: 'sort',
 					hidden_detail: true,
 					hidden_browse: true,
-					width: "full"
+					width: 'full'
 				});
 				fieldsToDispatch.sort = {
 					collection: this.newName,
-					field: "sort",
-					datatype: "INT",
+					field: 'sort',
+					datatype: 'INT',
 					unique: false,
 					primary_key: false,
 					auto_increment: false,
 					default_value: null,
 					note: null,
 					signed: false,
-					type: "sort",
+					type: 'sort',
 					sort: 0,
-					interface: "sort",
+					interface: 'sort',
 					hidden_detail: true,
 					hidden_browse: true,
 					required: false,
@@ -363,80 +359,80 @@ export default {
 					locked: false,
 					translation: null,
 					readonly: false,
-					width: "full",
+					width: 'full',
 					validation: null,
 					group: null,
-					length: "10"
+					length: '10'
 				};
 			}
 			if (this.owner) {
 				fieldsToAdd.push({
-					type: "owner",
-					datatype: "INT",
-					field: "owner",
-					interface: "owner",
+					type: 'owner',
+					datatype: 'INT',
+					field: 'owner',
+					interface: 'owner',
 					options: {
-						template: "{{first_name}} {{last_name}}",
-						display: "both"
+						template: '{{first_name}} {{last_name}}',
+						display: 'both'
 					},
 					readonly: true,
 					hidden_detail: true,
 					hidden_browse: true,
-					width: "full"
+					width: 'full'
 				});
 				fieldsToDispatch.owner = {
 					collection: this.newName,
-					field: "owner",
-					datatype: "INT",
+					field: 'owner',
+					datatype: 'INT',
 					unique: false,
 					primary_key: false,
 					auto_increment: false,
 					default_value: null,
 					note: null,
 					signed: false,
-					type: "owner",
+					type: 'owner',
 					sort: 0,
-					interface: "owner",
+					interface: 'owner',
 					hidden_detail: true,
 					hidden_browse: true,
 					required: false,
 					options: {
-						template: "{{first_name}} {{last_name}}",
-						display: "both"
+						template: '{{first_name}} {{last_name}}',
+						display: 'both'
 					},
 					locked: false,
 					translation: null,
 					readonly: true,
-					width: "full",
+					width: 'full',
 					validation: null,
 					group: null,
-					length: "10"
+					length: '10'
 				};
 			}
 			if (this.createdOn) {
 				fieldsToAdd.push({
-					type: "datetime_created",
-					datatype: "DATETIME",
-					field: "created_on",
-					interface: "datetime-created",
+					type: 'datetime_created',
+					datatype: 'DATETIME',
+					field: 'created_on',
+					interface: 'datetime-created',
 					readonly: true,
 					hidden_detail: true,
 					hidden_browse: true,
-					width: "full"
+					width: 'full'
 				});
 				fieldsToDispatch.created_on = {
 					collection: this.newName,
-					field: "created_on",
-					datatype: "DATETIME",
+					field: 'created_on',
+					datatype: 'DATETIME',
 					unique: false,
 					primary_key: false,
 					auto_increment: false,
 					default_value: null,
 					note: null,
 					signed: true,
-					type: "datetime_created",
+					type: 'datetime_created',
 					sort: 0,
-					interface: "datetime-created",
+					interface: 'datetime-created',
 					hidden_detail: true,
 					hidden_browse: true,
 					required: false,
@@ -444,7 +440,7 @@ export default {
 					locked: false,
 					translation: null,
 					readonly: true,
-					width: "full",
+					width: 'full',
 					validation: null,
 					group: null,
 					length: null
@@ -452,72 +448,72 @@ export default {
 			}
 			if (this.modifiedBy) {
 				fieldsToAdd.push({
-					type: "user_updated",
-					datatype: "INT",
-					field: "modified_by",
-					interface: "user-updated",
+					type: 'user_updated',
+					datatype: 'INT',
+					field: 'modified_by',
+					interface: 'user-updated',
 					options: {
-						template: "{{first_name}} {{last_name}}",
-						display: "both"
+						template: '{{first_name}} {{last_name}}',
+						display: 'both'
 					},
 					readonly: true,
 					hidden_detail: true,
 					hidden_browse: true,
-					width: "full"
+					width: 'full'
 				});
 				fieldsToDispatch.modified_by = {
 					collection: this.newName,
-					field: "modified_by",
-					datatype: "INT",
+					field: 'modified_by',
+					datatype: 'INT',
 					unique: false,
 					primary_key: false,
 					auto_increment: false,
 					default_value: null,
 					note: null,
 					signed: false,
-					type: "user_updated",
+					type: 'user_updated',
 					sort: 0,
-					interface: "user-updated",
+					interface: 'user-updated',
 					hidden_detail: true,
 					hidden_browse: true,
 					required: false,
 					options: {
-						template: "{{first_name}} {{last_name}}",
-						display: "both"
+						template: '{{first_name}} {{last_name}}',
+						display: 'both'
 					},
 					locked: false,
 					translation: null,
 					readonly: true,
-					width: "full",
+					width: 'full',
 					validation: null,
 					group: null,
-					length: "10"
+					length: '10'
 				};
 			}
 			if (this.modifiedOn) {
 				fieldsToAdd.push({
-					type: "datetime_updated",
-					datatype: "DATETIME",
-					field: "modified_on",
-					interface: "datetime-updated",
+					type: 'datetime_updated',
+					datatype: 'DATETIME',
+					field: 'modified_on',
+					interface: 'datetime-updated',
 					readonly: true,
 					hidden_detail: true,
 					hidden_browse: true,
-					width: "full"
+					width: 'full'
 				});
 				fieldsToDispatch.modified_on = {
 					collection: this.newName,
-					field: "modified_on",
-					datatype: "DATETIME",
+					field: 'modified_on',
+					datatype: 'DATETIME',
 					unique: false,
 					primary_key: false,
 					auto_increment: false,
 					default_value: null,
 					note: null,
 					signed: true,
-					type: "datetime_updated",
+					type: 'datetime_updated',
 					sort: 0,
-					interface: "datetime-updated",
+					interface: 'datetime-updated',
 					hidden_detail: true,
 					hidden_browse: true,
 					required: false,
@@ -525,7 +521,7 @@ export default {
 					locked: false,
 					translation: null,
 					readonly: true,
-					width: "full",
+					width: 'full',
 					validation: null,
 					group: null,
 					length: null
@@ -540,37 +536,37 @@ export default {
 						fields: fieldsToAdd
 					},
 					{
-						fields: "*.*"
+						fields: '*.*'
 					}
 				)
 				.then(res => res.data)
 				.then(collection => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$store.dispatch("addCollection", {
+					this.$store.dispatch('loadingFinished', id);
+					this.$store.dispatch('addCollection', {
 						...collection,
 
 						// This should ideally be returned from the API
 						// https://github.com/directus/api/issues/207
 						fields: fieldsToDispatch
 					});
-					this.$store.dispatch("getPermissions");
+					this.$store.dispatch('getPermissions');
 					this.$router.push(
 						`/${this.currentProjectKey}/settings/collections/${this.newName}`
 					);
 				})
 				.catch(error => {
 					this.adding = false;
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					if (error) {
 						// Use bit more descriptive error if possible
 						const errors = {
-							4: this.$t("collection_invalid_name")
+							4: this.$t('collection_invalid_name')
 						};
-						this.$events.emit("error", {
+						this.$events.emit('error', {
 							notify:
 								error.code in errors
 									? errors[error.code]
-									: this.$t("something_went_wrong_body"),
+									: this.$t('something_went_wrong_body'),
 							error
 						});
 					}
@@ -581,23 +577,23 @@ export default {
 				this.dontManage = collection;
 			} else {
 				return this.$api
-					.updateItem("directus_collections", collection.collection, {
+					.updateItem('directus_collections', collection.collection, {
 						managed: true
 					})
 					.then(() => {
 						this.toManage.push(collection.collection);
-						return this.$store.dispatch("getCollections");
+						return this.$store.dispatch('getCollections');
 					})
 					.then(() => {
 						this.$notify({
-							title: this.$t("manage_started"),
-							color: "green",
-							iconMain: "check"
+							title: this.$t('manage_started'),
+							color: 'green',
+							iconMain: 'check'
 						});
 					})
 					.catch(error => {
-						this.$events.emit("error", {
-							notify: this.$t("something_went_wrong_body"),
+						this.$events.emit('error', {
+							notify: this.$t('something_went_wrong_body'),
 							error
 						});
 					})
@@ -610,22 +606,22 @@ export default {
 			const dontManage = this.dontManage;
 			this.toManage.push(dontManage.collection.collection);
 			return this.$api
-				.updateItem("directus_collections", dontManage.collection, {
+				.updateItem('directus_collections', dontManage.collection, {
 					managed: false
 				})
 				.then(() => {
-					return this.$store.dispatch("getCollections");
+					return this.$store.dispatch('getCollections');
 				})
 				.then(() => {
 					this.$notify({
-						title: this.$t("manage_stopped"),
-						color: "green",
-						iconMain: "check"
+						title: this.$t('manage_stopped'),
+						color: 'green',
+						iconMain: 'check'
 					});
 				})
 				.catch(error => {
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				})
@@ -671,7 +667,7 @@ export default {
 			flex-basis: 40px;
 		}
 		&.name {
-			font-family: "Roboto Mono", monospace;
+			font-family: 'Roboto Mono', monospace;
 			max-width: calc(100% - 140px);
 			padding-bottom: 2px; // Optical vertical alignment
 			white-space: nowrap;

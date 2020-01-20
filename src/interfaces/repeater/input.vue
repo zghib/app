@@ -23,19 +23,19 @@
 			/>
 		</draggable>
 		<div v-if="addButtonVisible" class="add-new" @click="addRow">
-			<v-icon name="add" color="input-icon-color" />
+			<v-icon name="add" color="--input-icon-color" />
 			{{ options.createItemText }}
 		</div>
 	</div>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import RepeaterRow from "./row";
-import shortid from "shortid";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import RepeaterRow from './row';
+import shortid from 'shortid';
 
 export default {
-	name: "Repeater",
+	name: 'Repeater',
 	components: {
 		RepeaterRow
 	},
@@ -62,12 +62,12 @@ export default {
 
 			// Only render inline if there's enough space in the parent
 			// We want to prevent the two interfaces being squashed togt
-			if (["full", "fill"].includes(this.width) === false) {
+			if (['full', 'fill'].includes(this.width) === false) {
 				return false;
 			}
 
 			// Only render inline if every field is configured to be half width
-			return this.repeaterFields.every(field => field.width === "half");
+			return this.repeaterFields.every(field => field.width === 'half');
 		},
 		addButtonVisible() {
 			if (!this.options.limit || this.options.limit === 0) return true;
@@ -127,13 +127,13 @@ export default {
 			});
 
 			if (value.length === 0) {
-				return this.$emit("input", null);
+				return this.$emit('input', null);
 			}
 
-			if (this.options.structure === "object") {
-				this.$emit("input", _.keyBy(value, this.options.structure_key));
+			if (this.options.structure === 'object') {
+				this.$emit('input', _.keyBy(value, this.options.structure_key));
 			} else {
-				this.$emit("input", value);
+				this.$emit('input', value);
 			}
 		},
 		getNewRow() {
@@ -157,11 +157,11 @@ export default {
 
 			if (Array.isArray(this.value)) {
 				this.rows = this.value;
-			} else if (typeof this.value === "string") {
+			} else if (typeof this.value === 'string') {
 				try {
 					this.rows = JSON.parse(this.value);
 				} catch {
-					console.warn("Invalid JSON passed to repeater");
+					console.warn('Invalid JSON passed to repeater');
 				}
 			} else {
 				this.rows = Object.values(this.value);

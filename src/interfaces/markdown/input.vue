@@ -16,21 +16,21 @@
 			v-html="compiledMarkdown"
 		></div>
 		<div v-if="options.tabbed" class="toolbar">
-			<span :class="{ active: !preview }" @click="preview = false">
-				<v-icon name="code" size="24" />
-				{{ $t("interfaces.markdown.edit") }}
+			<span class="tab" :class="{ active: !preview }" @click="preview = false">
+				<v-icon name="code" />
+				{{ $t('interfaces.markdown.edit') }}
 			</span>
-			<span :class="{ active: preview }" @click="preview = true">
-				<v-icon name="visibility" size="24" />
-				{{ $t("interfaces.markdown.preview") }}
+			<span class="tab" :class="{ active: preview }" @click="preview = true">
+				<v-icon name="visibility" />
+				{{ $t('interfaces.markdown.preview') }}
 			</span>
 		</div>
 	</div>
 </template>
 
 <script>
-import marked from "marked";
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import marked from 'marked';
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -81,14 +81,13 @@ export default {
 		background-color: var(--input-background-color-alt);
 		width: 100%;
 		font-size: var(--input-font-size);
-		span {
+
+		.tab {
 			transition: color var(--fast) var(--transition);
 			cursor: pointer;
 			padding: 10px 16px 10px 12px;
 			line-height: 20px;
-			&:hover {
-				//
-			}
+
 			&.active {
 				font-weight: 500;
 				border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -98,7 +97,8 @@ export default {
 				margin: -2px;
 				z-index: 1;
 			}
-			i {
+
+			.v-icon {
 				margin-right: 4px;
 				margin-top: -2px;
 			}
@@ -115,7 +115,7 @@ export default {
 		border-radius: 0 0 var(--border-radius) var(--border-radius);
 	}
 	.textarea {
-		font-family: "Roboto Mono", monospace;
+		font-family: 'Roboto Mono', monospace;
 		&:hover ~ .toolbar span.active {
 			border-color: var(--input-border-color-hover);
 		}
@@ -326,7 +326,7 @@ export default {
 
 		code,
 		tt {
-			font-family: "Roboto Mono", mono;
+			font-family: 'Roboto Mono', mono;
 			margin: 0 2px;
 			padding: 0 5px;
 			white-space: nowrap;
@@ -351,7 +351,7 @@ export default {
 			border-radius: var(--border-radius);
 		}
 		pre {
-			font-family: "Roboto Mono", mono;
+			font-family: 'Roboto Mono', mono;
 			background-color: var(--page-background-color);
 			border: 1px solid var(--blue-grey-50);
 			font-size: 13px;

@@ -59,29 +59,31 @@
 			v-tooltip="iconLeftTooltip"
 			:name="iconLeft"
 			:color="iconLeftColor"
+			class="icon-left"
 		/>
 		<v-icon
 			v-if="iconRight"
 			v-tooltip="iconRightTooltip"
 			:name="iconRight"
 			:color="iconRightColor"
+			class="icon-right"
 		/>
 
-		<span v-if="charactercount">{{ charsRemaining }}</span>
+		<span class="char-count" v-if="charactercount">{{ charsRemaining }}</span>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "VInput",
+	name: 'VInput',
 	props: {
 		type: {
 			type: String,
-			default: "text"
+			default: 'text'
 		},
 		autocomplete: {
 			type: String,
-			default: "on"
+			default: 'on'
 		},
 		autofocus: {
 			type: Boolean,
@@ -105,15 +107,15 @@ export default {
 		},
 		name: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		pattern: {
 			type: String,
-			default: ".*"
+			default: '.*'
 		},
 		placeholder: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		readonly: {
 			type: Boolean,
@@ -133,11 +135,11 @@ export default {
 		},
 		id: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		value: {
 			type: null,
-			default: ""
+			default: ''
 		},
 		step: {
 			type: [String, Number],
@@ -145,27 +147,27 @@ export default {
 		},
 		iconLeft: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		iconLeftColor: {
 			type: String,
-			default: null
+			default: '--blue-grey'
 		},
 		iconLeftTooltip: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		iconRight: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		iconRightColor: {
 			type: String,
-			default: null
+			default: '--blue-grey'
 		},
 		iconRightTooltip: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		valid: {
 			type: Boolean,
@@ -214,10 +216,10 @@ export default {
 			font-family: var(--family-monospace);
 		}
 
-		&[type="date"] {
+		&[type='date'] {
 			-webkit-appearance: none;
 		}
-		&[type="date"]::-webkit-inner-spin-button {
+		&[type='date']::-webkit-inner-spin-button {
 			-webkit-appearance: none;
 			display: none;
 		}
@@ -270,7 +272,7 @@ export default {
 		}
 	}
 
-	span {
+	.char-count {
 		position: absolute;
 		right: 10px;
 		top: 50%;
@@ -298,13 +300,12 @@ export default {
 		padding-right: 38px;
 	}
 
-	&.icon-left i,
-	&.icon-right i {
+	&.icon-left .v-icon,
+	&.icon-right .v-icon {
 		position: absolute;
 		top: 50%;
 		color: var(--input-icon-color);
 		transform: translateY(-50%);
-		font-size: 24px;
 
 		&.accent {
 			color: var(--input-background-color-active);
@@ -323,11 +324,11 @@ export default {
 		}
 	}
 
-	&.icon-left i:first-of-type {
+	&.icon-left .v-icon {
 		left: 10px;
 	}
 
-	&.icon-right i:last-of-type {
+	&.icon-right .v-icon {
 		right: 10px;
 	}
 }

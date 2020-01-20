@@ -19,7 +19,14 @@
 					class="bookmark"
 					@click="bookmarkModal = true"
 				>
-					<v-icon :name="currentBookmark ? 'bookmark' : 'bookmark_border'" />
+					<v-icon
+						:color="
+							currentBookmark
+								? '--input-background-color-active'
+								: '--input-border-color'
+						"
+						:name="currentBookmark ? 'bookmark' : 'bookmark_border'"
+					/>
 				</button>
 			</template>
 			<v-search-filter
@@ -97,9 +104,9 @@
 						</option>
 					</select>
 					<div class="preview">
-						<v-icon :name="layoutIcons[viewType]" color="sidebar-text-color" />
+						<v-icon :name="layoutIcons[viewType]" color="--sidebar-text-color" />
 						<span>{{ layoutNames[viewType] }}</span>
-						<v-icon name="expand_more" color="sidebar-text-color" />
+						<v-icon name="expand_more" color="--sidebar-text-color" />
 					</div>
 				</div>
 			</template>
@@ -146,17 +153,17 @@
 </template>
 
 <script>
-import shortid from "shortid";
-import store from "../store/";
-import VSearchFilter from "../components/search-filter/search-filter.vue";
-import VCreateBookmark from "../components/bookmarks/create-bookmark.vue";
-import VNotFound from "./not-found.vue";
-import { mapState } from "vuex";
+import shortid from 'shortid';
+import store from '../store/';
+import VSearchFilter from '../components/search-filter/search-filter.vue';
+import VCreateBookmark from '../components/bookmarks/create-bookmark.vue';
+import VNotFound from './not-found.vue';
+import { mapState } from 'vuex';
 
-import api from "../api";
+import api from '../api';
 
 export default {
-	name: "Items",
+	name: 'Items',
 	metaInfo() {
 		return {
 			title: this.$helpers.formatTitle(this.collection)
@@ -178,58 +185,58 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		activity() {
-			return this.collection === "directus_activity";
+			return this.collection === 'directus_activity';
 		},
 		breadcrumbIcon() {
-			if (this.collection === "directus_webhooks") return "arrow_back";
-			return this.collectionInfo?.icon || "box";
+			if (this.collection === 'directus_webhooks') return 'arrow_back';
+			return this.collectionInfo?.icon || 'box';
 		},
 		createLink() {
-			if (this.collection === "directus_webhooks") {
+			if (this.collection === 'directus_webhooks') {
 				return `/${this.currentProjectKey}/settings/webhooks/+`;
 			}
 
-			if (this.collection.startsWith("directus_")) {
+			if (this.collection.startsWith('directus_')) {
 				return `/${this.currentProjectKey}/${this.collection.substr(9)}/+`;
 			}
 
 			return `/${this.currentProjectKey}/collections/${this.collection}/+`;
 		},
 		breadcrumb() {
-			if (this.collection === "directus_users") {
+			if (this.collection === 'directus_users') {
 				return [
 					{
-						name: this.$t("user_directory"),
+						name: this.$t('user_directory'),
 						path: `/${this.currentProjectKey}/users`
 					}
 				];
 			}
 
-			if (this.collection === "directus_webhooks") {
+			if (this.collection === 'directus_webhooks') {
 				return [
 					{
-						name: this.$t("settings"),
+						name: this.$t('settings'),
 						path: `/${this.currentProjectKey}/settings`
 					},
 					{
-						name: this.$t("settings_webhooks"),
+						name: this.$t('settings_webhooks'),
 						path: `/${this.currentProjectKey}/settings/webhooks`
 					}
 				];
 			}
 
-			if (this.collection === "directus_files") {
+			if (this.collection === 'directus_files') {
 				return [
 					{
-						name: this.$t("file_library"),
+						name: this.$t('file_library'),
 						path: `/${this.currentProjectKey}/files`
 					}
 				];
 			}
 
-			if (this.collection.startsWith("directus_")) {
+			if (this.collection.startsWith('directus_')) {
 				return [
 					{
 						name: this.$helpers.formatTitle(this.collection.substr(9)),
@@ -239,7 +246,7 @@ export default {
 			} else {
 				return [
 					{
-						name: this.$tc("collection", 2),
+						name: this.$tc('collection', 2),
 						path: `/${this.currentProjectKey}/collections`
 					},
 					{
@@ -264,7 +271,7 @@ export default {
 		batchURL() {
 			return `/${this.currentProjectKey}/collections/${this.collection}/${this.selection
 				.map(item => item[this.primaryKeyField])
-				.join(",")}`;
+				.join(',')}`;
 		},
 		currentBookmark() {
 			if (!this.preferences) return;
@@ -292,7 +299,7 @@ export default {
 			return currentBookmark || null;
 		},
 		collection() {
-			if (this.$route.path.endsWith("webhooks")) return "directus_webhooks";
+			if (this.$route.path.endsWith('webhooks')) return 'directus_webhooks';
 			return this.$route.params.collection;
 		},
 		collectionInfo() {
@@ -306,12 +313,12 @@ export default {
 			return this.preferences.filters || [];
 		},
 		searchQuery() {
-			if (!this.preferences) return "";
-			return this.preferences.search_query || "";
+			if (!this.preferences) return '';
+			return this.preferences.search_query || '';
 		},
 		viewType() {
-			if (!this.preferences) return "tabular";
-			return this.preferences.view_type || "tabular";
+			if (!this.preferences) return 'tabular';
+			return this.preferences.view_type || 'tabular';
 		},
 		viewQuery() {
 			if (!this.preferences) return {};
@@ -334,16 +341,16 @@ export default {
 
 			if (viewQuery.fields) {
 				viewQuery.fields = viewQuery.fields
-					.split(",")
+					.split(',')
 					.filter(fieldName => collectionFieldNames.includes(fieldName))
-					.join(",");
+					.join(',');
 			}
 
 			if (viewQuery.sort) {
 				// If the sort is descending, the fieldname starts with -
 				// The fieldnames in the array of collection field names don't have this
 				// which is why we have to take it out.
-				const sortFieldName = viewQuery.sort.startsWith("-")
+				const sortFieldName = viewQuery.sort.startsWith('-')
 					? viewQuery.sort.substring(1)
 					: viewQuery.sort;
 
@@ -362,7 +369,7 @@ export default {
 			);
 		},
 		resultCopy() {
-			if (!this.meta || !this.preferences) return this.$t("loading");
+			if (!this.meta || !this.preferences) return this.$t('loading');
 
 			const isFiltering =
 				!_.isEmpty(this.preferences.filters) ||
@@ -378,10 +385,10 @@ export default {
 			}
 
 			return isFiltering
-				? this.$tc("item_count_filter", count, {
+				? this.$tc('item_count_filter', count, {
 						count: this.$n(count)
 				  })
-				: this.$tc("item_count", count, {
+				: this.$tc('item_count', count, {
 						count: this.$n(count)
 				  });
 		},
@@ -407,7 +414,7 @@ export default {
 		statusField() {
 			const fields = this.$store.state.collections[this.collection].fields;
 			if (!fields) return null;
-			let fieldsObj = _.find(fields, { type: "status" });
+			let fieldsObj = _.find(fields, { type: 'status' });
 			return fieldsObj && fieldsObj.field ? fieldsObj.field : null;
 		},
 
@@ -428,7 +435,7 @@ export default {
 			if (!this.fields) return null;
 
 			return (
-				_.find(Object.values(this.fields), field => field.type.toLowerCase() === "owner") ||
+				_.find(Object.values(this.fields), field => field.type.toLowerCase() === 'owner') ||
 				{}
 			).field;
 		},
@@ -450,12 +457,12 @@ export default {
 			if (this.statusField) {
 				return (
 					Object.values(this.permission.statuses).some(
-						permission => permission.create === "full"
-					) || this.permission.$create.create === "full"
+						permission => permission.create === 'full'
+					) || this.permission.$create.create === 'full'
 				);
 			}
 
-			return this.permission.create === "full";
+			return this.permission.create === 'full';
 		},
 		deleteButton() {
 			if (!this.selection) return false;
@@ -474,15 +481,15 @@ export default {
 					: this.permission;
 				const userID = item[this.userCreatedField] ? item[this.userCreatedField].id : null;
 
-				if (permission.delete === "none") {
+				if (permission.delete === 'none') {
 					return (enabled = false);
 				}
 
-				if (permission.delete === "mine" && userID !== currentUserID) {
+				if (permission.delete === 'mine' && userID !== currentUserID) {
 					return (enabled = false);
 				}
 
-				if (permission.delete === "role") {
+				if (permission.delete === 'role') {
 					const userRole = this.$store.state.users[userID].role;
 					const currentUserRole = this.$store.state.currentUser.role.id;
 
@@ -513,15 +520,15 @@ export default {
 					: this.permission;
 				const userID = item[this.userCreatedField] ? item[this.userCreatedField].id : null;
 
-				if (permission.update === "none") {
+				if (permission.update === 'none') {
 					return (enabled = false);
 				}
 
-				if (permission.update === "mine" && userID !== currentUserID) {
+				if (permission.update === 'mine' && userID !== currentUserID) {
 					return (enabled = false);
 				}
 
-				if (permission.update === "role") {
+				if (permission.update === 'role') {
 					const userRole = this.$store.state.users[userID].role;
 					const currentUserRole = this.$store.state.currentUser.role.id;
 
@@ -564,7 +571,7 @@ export default {
 					...query
 				}
 			};
-			this.updatePreferences("view_query", newViewQuery);
+			this.updatePreferences('view_query', newViewQuery);
 		},
 		setViewOptions(options) {
 			const newViewOptions = {
@@ -574,7 +581,7 @@ export default {
 					...options
 				}
 			};
-			this.updatePreferences("view_options", newViewOptions);
+			this.updatePreferences('view_options', newViewOptions);
 		},
 		updatePreferences(key, value, combine = false) {
 			if (combine) {
@@ -592,26 +599,26 @@ export default {
 			}
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			return this.$api
 				.updateCollectionPreset(this.preferences.id, {
 					[key]: value
 				})
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
 		},
 		createCollectionPreset() {
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			const preferences = { ...this.preferences };
 			delete preferences.id;
@@ -623,32 +630,32 @@ export default {
 					user: this.$store.state.currentUser.id
 				})
 				.then(({ data }) => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$set(this.preferences, "id", data.id);
-					this.$set(this.preferences, "user", data.user);
+					this.$store.dispatch('loadingFinished', id);
+					this.$set(this.preferences, 'id', data.id);
+					this.$set(this.preferences, 'user', data.user);
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
 		},
 		clearFilters() {
-			this.updatePreferences("filters", null);
-			this.updatePreferences("search_query", null);
+			this.updatePreferences('filters', null);
+			this.updatePreferences('search_query', null);
 		},
 		remove() {
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			let request;
 
 			const itemKeys = this.selection.map(item => item[this.primaryKeyField]);
 
 			if (this.softDeleteStatus) {
-				request = this.$api.updateItem(this.collection, itemKeys.join(","), {
+				request = this.$api.updateItem(this.collection, itemKeys.join(','), {
 					[this.statusField]: this.softDeleteStatus
 				});
 			} else {
@@ -660,15 +667,15 @@ export default {
 
 			request
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.$refs.listing.getItems();
 					this.selection = [];
 					this.confirmRemove = false;
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -677,11 +684,11 @@ export default {
 	beforeRouteEnter(to, from, next) {
 		let { collection } = to.params;
 
-		if (to.path.endsWith("webhooks")) collection = "directus_webhooks";
+		if (to.path.endsWith('webhooks')) collection = 'directus_webhooks';
 
 		const collectionInfo = store.state.collections[collection] || null;
 
-		if (collection.startsWith("directus_") === false && collectionInfo === null) {
+		if (collection.startsWith('directus_') === false && collectionInfo === null) {
 			return next(vm => (vm.notFound = true));
 		}
 
@@ -690,20 +697,20 @@ export default {
 		}
 
 		const id = shortid.generate();
-		store.dispatch("loadingStart", { id });
+		store.dispatch('loadingStart', { id });
 
 		return api
 			.getMyListingPreferences(collection)
 			.then(preferences => {
-				store.dispatch("loadingFinished", id);
+				store.dispatch('loadingFinished', id);
 				next(vm => {
 					vm.$data.preferences = preferences;
 				});
 			})
 			.catch(error => {
-				store.dispatch("loadingFinished", id);
-				this.$events.emit("error", {
-					notify: this.$t("something_went_wrong_body"),
+				store.dispatch('loadingFinished', id);
+				this.$events.emit('error', {
+					notify: this.$t('something_went_wrong_body'),
 					error
 				});
 			});
@@ -718,7 +725,7 @@ export default {
 
 		const collectionInfo = this.$store.state.collections[collection] || null;
 
-		if (collection.startsWith("directus_") === false && collectionInfo === null) {
+		if (collection.startsWith('directus_') === false && collectionInfo === null) {
 			this.notFound = true;
 			return next();
 		}
@@ -728,19 +735,19 @@ export default {
 		}
 
 		const id = this.$helpers.shortid.generate();
-		this.$store.dispatch("loadingStart", { id });
+		this.$store.dispatch('loadingStart', { id });
 
 		return api
 			.getMyListingPreferences(collection)
 			.then(preferences => {
-				this.$store.dispatch("loadingFinished", id);
+				this.$store.dispatch('loadingFinished', id);
 				this.preferences = preferences;
 				next();
 			})
 			.catch(error => {
-				this.$store.dispatch("loadingFinished", id);
-				this.$events.emit("error", {
-					notify: this.$t("something_went_wrong_body"),
+				this.$store.dispatch('loadingFinished', id);
+				this.$events.emit('error', {
+					notify: this.$t('something_went_wrong_body'),
 					error
 				});
 			});
@@ -754,7 +761,7 @@ export default {
 	margin-left: 8px;
 	position: relative;
 
-	i {
+	.v-icon {
 		transition: color var(--fast) var(--transition);
 		color: var(--input-border-color);
 		font-size: 24px;
@@ -766,13 +773,6 @@ export default {
 		i {
 			color: var(--input-border-color-hover);
 		}
-	}
-}
-
-.bookmark.active {
-	opacity: 1;
-	i {
-		color: var(--input-background-color-active);
 	}
 }
 

@@ -10,14 +10,14 @@
 			}"
 			class="step"
 		>
-			<v-icon v-if="currentStep > step" color="white" size="18" name="check" />
+			<v-icon v-if="currentStep > step" color="--white" small name="check" />
 		</span>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "PublicStepper",
+	name: 'PublicStepper',
 	props: {
 		currentStep: {
 			type: Number,
@@ -52,7 +52,7 @@ export default {
 	&::before,
 	.progress-line {
 		// line
-		content: "";
+		content: '';
 		position: absolute;
 		display: block;
 		height: 2px;

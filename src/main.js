@@ -7,6 +7,7 @@ import PortalVue from "portal-vue";
 import axios from "axios";
 import meta from "vue-meta";
 import VueTheMask from "vue-the-mask";
+import VueCompositionAPI from "@vue/composition-api";
 
 import "./design/main.scss";
 import "./globals";
@@ -48,6 +49,7 @@ Vue.directive("focus", {
 	}
 });
 
+Vue.use(VueCompositionAPI);
 Vue.use(events);
 Vue.use(VTooltip, {
 	defaultDelay: {

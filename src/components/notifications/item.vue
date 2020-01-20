@@ -13,10 +13,10 @@
 	</div>
 </template>
 <script>
-import { mapMutations } from "vuex";
-import { REMOVE_NOTIFICATION } from "@/store/mutation-types";
+import { mapMutations } from 'vuex';
+import { REMOVE_NOTIFICATION } from '@/store/mutation-types';
 export default {
-	name: "VItem",
+	name: 'VItem',
 	props: {
 		item: {
 			type: Object,
@@ -27,19 +27,19 @@ export default {
 		detailHtml() {
 			return this.item.details !== undefined
 				? this.$helpers.snarkdown(this.item.details)
-				: "";
+				: '';
 		},
 		iconColor() {
-			return this.item.color !== undefined ? `${this.item.color}-500` : "blue-grey-500";
+			return this.item.color !== undefined ? `--${this.item.color}-500` : '--blue-grey-500';
 		},
 		ringColor() {
 			return this.item.color !== undefined
 				? `var(--${this.item.color}-100)`
-				: "var(--blue-grey-100)";
+				: 'var(--blue-grey-100)';
 		}
 	},
 	methods: {
-		...mapMutations("notifications", [REMOVE_NOTIFICATION]),
+		...mapMutations('notifications', [REMOVE_NOTIFICATION]),
 		startItemTimeout() {
 			if (this.item.delay !== undefined && this.item.delay > 0) {
 				setTimeout(() => this.removeItemFromStore(), this.item.delay);
@@ -50,7 +50,7 @@ export default {
 		},
 		actionClick() {
 			if (!(this.item.onClick instanceof Function)) {
-				throw new Error("Notification callback is not a function");
+				throw new Error('Notification callback is not a function');
 			}
 			this.item.onClick();
 			this.removeItemFromStore();

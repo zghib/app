@@ -20,7 +20,7 @@
 
 <script>
 export default {
-	name: "VButton",
+	name: 'VButton',
 	props: {
 		fullwidth: {
 			type: Boolean,
@@ -32,11 +32,11 @@ export default {
 		},
 		icon: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		type: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		disabled: {
 			type: Boolean,
@@ -48,13 +48,13 @@ export default {
 		},
 		color: {
 			type: String,
-			default: "white",
-			validator: value => ["white", "black"].includes(value)
+			default: 'white',
+			validator: value => ['white', 'black'].includes(value)
 		},
 		bg: {
 			type: String,
-			default: "action",
-			validator: value => ["action", "gray", "warning", "danger"].includes(value)
+			default: 'action',
+			validator: value => ['action', 'gray', 'warning', 'danger'].includes(value)
 		},
 		outline: {
 			type: Boolean,
@@ -150,7 +150,6 @@ button {
 	}
 
 	.icon {
-		vertical-align: -6px;
 		margin-right: 6px;
 	}
 }

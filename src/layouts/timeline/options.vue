@@ -1,8 +1,8 @@
 <template>
 	<form @submit.prevent>
 		<label for="spacing" class="type-label">
-			{{ $t("layouts.timeline.date") }}
-			<v-icon class="required" name="star" color="input-required-color" sup />
+			{{ $t('layouts.timeline.date') }}
+			<v-icon class="required" name="star" color="--input-required-color" sup />
 		</label>
 		<v-select
 			id="spacing"
@@ -13,8 +13,8 @@
 			@input="setOption('date', $event)"
 		></v-select>
 		<label for="spacing" class="type-label">
-			{{ $t("layouts.timeline.title") }}
-			<v-icon class="required" name="star" color="input-required-color" sup />
+			{{ $t('layouts.timeline.title') }}
+			<v-icon class="required" name="star" color="--input-required-color" sup />
 		</label>
 		<v-input
 			id="spacing"
@@ -24,8 +24,8 @@
 			@input="setOption('title', $event)"
 		></v-input>
 		<label for="spacing" class="type-label">
-			{{ $t("layouts.timeline.content") }}
-			<v-icon class="required" name="star" color="input-required-color" sup />
+			{{ $t('layouts.timeline.content') }}
+			<v-icon class="required" name="star" color="--input-required-color" sup />
 		</label>
 		<v-select
 			id="spacing"
@@ -36,7 +36,7 @@
 			@input="setOption('content', $event)"
 		></v-select>
 		<label for="spacing" class="type-label">
-			{{ $t("layouts.timeline.color") }}
+			{{ $t('layouts.timeline.color') }}
 		</label>
 		<v-select
 			id="spacing"
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/layout";
+import mixin from '@directus/extension-toolkit/mixins/layout';
 
 export default {
 	mixins: [mixin],
@@ -63,9 +63,9 @@ export default {
 	computed: {
 		contentOptions() {
 			var options = {
-				__none__: `(${this.$t("dont_show")})`,
+				__none__: `(${this.$t('dont_show')})`,
 				..._.mapValues(this.fields, info =>
-					["integer", "string", "user"].includes(info.type) ? info.name : null
+					['integer', 'string', 'user'].includes(info.type) ? info.name : null
 				)
 			};
 			return _.pickBy(options, _.identity);
@@ -74,25 +74,25 @@ export default {
 			var fields = _.keys(this.fields); //this.getKeys(this.fields)
 			fields = fields
 				.toString()
-				.replace('"', "")
-				.replace(/,/g, "|");
+				.replace('"', '')
+				.replace(/,/g, '|');
 			var regex = new RegExp(
-				"^([^\\{\\}]*?\\{\\{\\s*?(" + fields + ")\\s*?\\}\\})*?[^\\{\\}]*?$"
+				'^([^\\{\\}]*?\\{\\{\\s*?(' + fields + ')\\s*?\\}\\})*?[^\\{\\}]*?$'
 			);
-			return regex.toString().replace(/\//g, "");
+			return regex.toString().replace(/\//g, '');
 		},
 		textOptions() {
 			var options = {
-				__none__: `(${this.$t("dont_show")})`,
+				__none__: `(${this.$t('dont_show')})`,
 				..._.mapValues(this.fields, info =>
-					info.type == "string" || info.type == "integer" ? info.name : null
+					info.type == 'string' || info.type == 'integer' ? info.name : null
 				)
 			};
 			return _.pickBy(options, _.identity);
 		},
 		dateOptions() {
 			var options = _.mapValues(this.fields, info =>
-				["date", "datetime"].includes(info.type) ? info.name : null
+				['date', 'datetime'].includes(info.type) ? info.name : null
 			);
 			return _.pickBy(options, _.identity);
 		}
@@ -102,17 +102,17 @@ export default {
 			var keys = _.keys(obj);
 			var subKeys = [];
 			for (var i = 0; i < keys.length; i++) {
-				if (typeof obj[keys[i]] === "object") {
+				if (typeof obj[keys[i]] === 'object') {
 					var subKeyList = this.getKeys(obj[keys[i]]);
 					for (var k = 0; k < subKeyList.length; k++) {
-						subKeys.push(keys[i] + "." + subKeyList[k]);
+						subKeys.push(keys[i] + '.' + subKeyList[k]);
 					}
 				}
 			}
 			return [...keys, ...subKeys];
 		},
 		setOption(option, value) {
-			this.$emit("options", {
+			this.$emit('options', {
 				...this.viewOptions,
 				[option]: value
 			});

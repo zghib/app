@@ -11,7 +11,7 @@
 		</v-header-button>
 
 		<div class="wrapper">
-			<v-icon name="search" />
+			<v-icon name="search" color="--input-border-color" />
 			<input
 				ref="searchInput"
 				:placeholder="placeholder || $t('search')"
@@ -56,7 +56,7 @@
 						<p class="field-name">{{ fields[filter.field] }}</p>
 						<span class="operator-name">
 							{{ $t(operators[filter.operator]) }}
-							<v-icon name="expand_more" size="18" />
+							<v-icon name="expand_more" small />
 							<select
 								:value="filter.operator"
 								@change="updateFilter(i, 'operator', $event.target.value)"
@@ -85,7 +85,7 @@
 
 				<div class="field">
 					<invisible-label html-for="add">
-						{{ $t("add_field_filter") }}
+						{{ $t('add_field_filter') }}
 					</invisible-label>
 					<v-select
 						id="add"
@@ -104,10 +104,10 @@
 </template>
 
 <script>
-import VBlocker from "../blocker.vue";
+import VBlocker from '../blocker.vue';
 
 export default {
-	name: "SearchFilter",
+	name: 'SearchFilter',
 	components: {
 		VBlocker
 	},
@@ -126,7 +126,7 @@ export default {
 		},
 		searchQuery: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		placeholder: {
 			type: String,
@@ -141,22 +141,22 @@ export default {
 	computed: {
 		operators() {
 			return {
-				eq: "equal_to",
-				neq: "not_equal_to",
-				lt: "less_than",
-				lte: "less_than_equal",
-				gt: "greater_than",
-				gte: "greater_than_equal",
-				in: "in_list",
-				nin: "not_in_list",
-				null: "is_null",
-				nnull: "is_not_null",
-				contains: "contains",
-				ncontains: "not_contains",
-				empty: "is_empty",
-				nempty: "not_empty",
-				has: "related_entries",
-				nhas: "no_related_entries"
+				eq: 'equal_to',
+				neq: 'not_equal_to',
+				lt: 'less_than',
+				lte: 'less_than_equal',
+				gt: 'greater_than',
+				gte: 'greater_than_equal',
+				in: 'in_list',
+				nin: 'not_in_list',
+				null: 'is_null',
+				nnull: 'is_not_null',
+				contains: 'contains',
+				ncontains: 'not_contains',
+				empty: 'is_empty',
+				nempty: 'not_empty',
+				has: 'related_entries',
+				nhas: 'no_related_entries'
 			};
 		},
 		hasFilters() {
@@ -179,22 +179,22 @@ export default {
 		this.updateFilter = _.debounce(this.updateFilter, 300);
 	},
 	mounted() {
-		window.addEventListener("click", this.closeFilter);
+		window.addEventListener('click', this.closeFilter);
 	},
 	beforeDestroy() {
-		window.removeEventListener("click", this.closeFilter);
+		window.removeEventListener('click', this.closeFilter);
 	},
 	methods: {
 		search(value) {
-			this.$emit("search", value);
+			this.$emit('search', value);
 		},
 		addFilter(field) {
-			this.$emit("filter", [
+			this.$emit('filter', [
 				...this.filters,
 				{
 					field,
-					operator: "contains",
-					value: ""
+					operator: 'contains',
+					value: ''
 				}
 			]);
 		},
@@ -202,16 +202,16 @@ export default {
 			const filters = _.cloneDeep(this.filters);
 			filters[index][key] = value;
 
-			this.$emit("filter", filters);
+			this.$emit('filter', filters);
 		},
 		deleteFilter(index) {
 			const filters = _.cloneDeep(this.filters);
 			filters.splice(index, 1);
 
-			this.$emit("filter", filters);
+			this.$emit('filter', filters);
 		},
 		clearFilters() {
-			this.$emit("clear-filters");
+			this.$emit('clear-filters');
 			if (this.open) this.open = false;
 		},
 		closeFilter(event) {
@@ -420,7 +420,7 @@ export default {
 		.wrapper {
 			position: relative;
 
-			> i,
+			> .v-icon,
 			> button {
 				position: absolute;
 				top: 50%;
@@ -428,12 +428,11 @@ export default {
 				user-select: none;
 			}
 
-			> i {
-				color: var(--input-border-color);
+			> .v-icon {
 				left: 10px;
 			}
 
-			button i {
+			button .v-icon {
 				transition: color var(--fast) var(--transition);
 			}
 
@@ -448,7 +447,7 @@ export default {
 				}
 
 				&::after {
-					content: "";
+					content: '';
 					display: block;
 					width: 8px;
 					height: 8px;

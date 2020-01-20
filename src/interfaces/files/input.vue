@@ -1,7 +1,7 @@
 <template>
 	<div class="interface-many-to-many">
 		<v-notice v-if="relationshipSetup === false" color="warning" icon="warning">
-			{{ $t("relationship_not_setup") }}
+			{{ $t('relationship_not_setup') }}
 		</v-notice>
 
 		<template v-else>
@@ -11,8 +11,8 @@
 						<button v-if="sortable" class="sort-column" @click="toggleManualSort">
 							<v-icon
 								name="sort"
-								size="18"
-								:color="manualSortActive ? 'action' : 'blue-grey-300'"
+								small
+								:color="manualSortActive ? '--action' : '--blue-grey-300'"
 							/>
 						</button>
 						<div class="preview-col" />
@@ -27,7 +27,7 @@
 							<v-icon
 								v-if="sort.field === field.field"
 								:name="sort.asc ? 'arrow_downward' : 'arrow_upward'"
-								size="16"
+								:size="16"
 							/>
 						</button>
 					</div>
@@ -85,27 +85,27 @@
 				</draggable>
 			</div>
 
-			<v-notice v-else>{{ $t("no_items_selected") }}</v-notice>
+			<v-notice v-else>{{ $t('no_items_selected') }}</v-notice>
 
 			<div v-if="!readonly" class="buttons">
 				<v-button
 					v-if="options.allow_create"
 					type="button"
 					:disabled="readonly"
-					icon="add"
 					@click="startAddNewItem"
 				>
-					{{ $t("add_new") }}
+					<v-icon name="add" />
+					{{ $t('add_new') }}
 				</v-button>
 
 				<v-button
 					v-if="options.allow_select"
 					type="button"
 					:disabled="readonly"
-					icon="playlist_add"
 					@click="selectExisting = true"
 				>
-					{{ $t("select_existing") }}
+					<v-icon name="playlist_add" />
+					{{ $t('select_existing') }}
 				</v-button>
 			</div>
 		</template>
@@ -165,12 +165,12 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import { diff } from "deep-object-diff";
-import shortid from "shortid";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import { diff } from 'deep-object-diff';
+import shortid from 'shortid';
 
 export default {
-	name: "InterfaceFiles",
+	name: 'InterfaceFiles',
 	mixins: [mixin],
 	data() {
 		return {
@@ -212,11 +212,11 @@ export default {
 				visibleFieldNames = this.options.fields.map(val => val.trim());
 			}
 
-			visibleFieldNames = this.options.fields.split(",").map(val => val.trim());
+			visibleFieldNames = this.options.fields.split(',').map(val => val.trim());
 
 			// Fields in the related collection (not the JT)
 			const relatedFields = this.relation.junction.collection_one.fields;
-			const recursiveKey = _.get(this.relation, "junction.field_one.field", null);
+			const recursiveKey = _.get(this.relation, 'junction.field_one.field', null);
 
 			return visibleFieldNames.map(name => {
 				const fieldInfo = relatedFields[name];
@@ -248,7 +248,7 @@ export default {
 		// Field in the junction table that holds the sort value in the junction table
 		sortField() {
 			const junctionTableFields = this.relation.collection_many.fields;
-			const sortField = _.find(junctionTableFields, { type: "sort" });
+			const sortField = _.find(junctionTableFields, { type: 'sort' });
 			return sortField;
 		},
 
@@ -258,7 +258,7 @@ export default {
 		},
 
 		manualSortActive() {
-			return this.sort.field === "$manual";
+			return this.sort.field === '$manual';
 		},
 
 		// The key in the junction row that holds the data of the related item
@@ -273,18 +273,18 @@ export default {
 
 		itemsSorted: {
 			get() {
-				if (this.sort.field === "$manual") {
+				if (this.sort.field === '$manual') {
 					return _.orderBy(
 						_.cloneDeep(this.items),
 						item => item[this.sortField.field],
-						this.sort.asc ? "asc" : "desc"
+						this.sort.asc ? 'asc' : 'desc'
 					);
 				}
 
 				return _.orderBy(
 					_.cloneDeep(this.items),
 					item => item[this.junctionRelatedKey][this.sort.field],
-					this.sort.asc ? "asc" : "desc"
+					this.sort.asc ? 'asc' : 'desc'
 				);
 			},
 			set(newValue) {
@@ -306,7 +306,7 @@ export default {
 	},
 	created() {
 		if (this.sortable) {
-			this.sort.field = "$manual";
+			this.sort.field = '$manual';
 		} else {
 			// Set the default sort column
 			if (this.visibleFields && this.visibleFields.length > 0) {
@@ -339,7 +339,7 @@ export default {
 		onFileUpload(fileInfo) {
 			const relatedCollectionFields = this.relation.junction.collection_one.fields;
 			const defaults = _.mapValues(relatedCollectionFields, field => field.default_value);
-			const tempKey = "$temp_" + shortid.generate();
+			const tempKey = '$temp_' + shortid.generate();
 
 			if (defaults.hasOwnProperty(this.relatedPrimaryKeyField))
 				delete defaults[this.relatedPrimaryKeyField];
@@ -359,7 +359,7 @@ export default {
 		},
 
 		toggleManualSort() {
-			this.sort.field = "$manual";
+			this.sort.field = '$manual';
 			this.sort.asc = true;
 		},
 
@@ -368,13 +368,13 @@ export default {
 				this.items.find(i => i[this.junctionPrimaryKey] === primaryKey)
 			);
 
-			const isNewItem = typeof primaryKey === "string" && primaryKey.startsWith("$temp_");
+			const isNewItem = typeof primaryKey === 'string' && primaryKey.startsWith('$temp_');
 
 			// Fetch the values from the DB
 			if (isNewItem === false) {
 				const collection = this.relation.collection_many.collection;
 
-				const res = await this.$api.getItem(collection, primaryKey, { fields: "*.*.*" });
+				const res = await this.$api.getItem(collection, primaryKey, { fields: '*.*.*' });
 				const item = res.data;
 
 				values = _.merge({}, item, values);
@@ -422,16 +422,16 @@ export default {
 
 			const res = await this.$api.getItem(
 				this.relation.junction.collection_one.collection,
-				newlyAddedItems.join(","),
+				newlyAddedItems.join(','),
 				{
-					fields: "*.*.*"
+					fields: '*.*.*'
 				}
 			);
 
 			const items = Array.isArray(res.data) ? res.data : [res.data];
 
 			const newJunctionRecords = items.map(nested => {
-				const tempKey = "$temp_" + shortid.generate();
+				const tempKey = '$temp_' + shortid.generate();
 
 				return {
 					[this.junctionPrimaryKey]: tempKey,
@@ -461,7 +461,7 @@ export default {
 			value = _.cloneDeep(value);
 
 			// This is the key in the nested related object that holds the parent item again
-			const recursiveKey = _.get(this.relation, "junction.field_one.field", null);
+			const recursiveKey = _.get(this.relation, 'junction.field_one.field', null);
 
 			const newValue = value
 				.map(after => {
@@ -501,8 +501,8 @@ export default {
 
 					// If the junction item didn't exist before yet:
 					if (
-						typeof after[this.junctionPrimaryKey] === "string" &&
-						after[this.junctionPrimaryKey].startsWith("$temp_")
+						typeof after[this.junctionPrimaryKey] === 'string' &&
+						after[this.junctionPrimaryKey].startsWith('$temp_')
 					) {
 						// Seeing that the file is uploaded and therefore created before the current item is saved
 						// we only have to save the id of the file for the junction row
@@ -529,7 +529,7 @@ export default {
 				};
 			});
 
-			this.$emit("input", [...newValue, ...deletedJunctionRows]);
+			this.$emit('input', [...newValue, ...deletedJunctionRows]);
 		}
 	}
 };

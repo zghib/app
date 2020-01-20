@@ -33,19 +33,14 @@
 				line-fg-color="white"
 				line-bg-color="transparent"
 			/>
-			<v-icon
-				v-else
-				:color="iconColor"
-				:style="{ color: `var(--${iconColor})` }"
-				:name="icon"
-			/>
+			<v-icon v-else :color="`--${iconColor}`" :name="icon" />
 		</component>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "VHeaderButton",
+	name: 'VHeaderButton',
 	props: {
 		icon: {
 			type: String,
@@ -53,7 +48,7 @@ export default {
 		},
 		backgroundColor: {
 			type: String,
-			default: "button-secondary-background-color"
+			default: 'button-secondary-background-color'
 		},
 		hoverColor: {
 			type: String,
@@ -61,7 +56,7 @@ export default {
 		},
 		iconColor: {
 			type: String,
-			default: "button-secondary-text-color"
+			default: 'button-secondary-text-color'
 		},
 		disabled: {
 			type: Boolean,
@@ -100,7 +95,7 @@ export default {
 	},
 	methods: {
 		emitChange(event) {
-			this.$emit("input", event);
+			this.$emit('input', event);
 			this.choice = null;
 		}
 	}
@@ -153,28 +148,12 @@ a {
 		color: var(--white);
 	}
 
-	span {
-		position: absolute;
-		bottom: 2px;
-		opacity: 0;
-		transform: translateY(5px);
-		transition: 100ms var(--transition-out);
-		font-size: 10px;
-	}
-
-	&:hover:not([disabled]) span,
-	.user-is-tabbing &:focus span {
-		opacity: 0.6;
-		transform: translateY(0);
-		transition: 100ms var(--transition-in);
-	}
-
 	&:not([disabled]):active i {
 		transform: scale(0.916);
 	}
 
 	&::after {
-		content: "";
+		content: '';
 		display: block;
 		width: 10px;
 		height: 10px;

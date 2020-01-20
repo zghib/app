@@ -1,7 +1,7 @@
 <template>
 	<div class="interface-one-to-many">
 		<v-notice v-if="relationshipSetup === false" color="warning" icon="warning">
-			{{ $t("relationship_not_setup") }}
+			{{ $t('relationship_not_setup') }}
 		</v-notice>
 
 		<template v-else>
@@ -11,8 +11,8 @@
 						<button v-if="sortable" class="sort-column" @click="toggleManualSort">
 							<v-icon
 								name="sort"
-								size="18"
-								:color="manualSortActive ? 'action' : 'blue-grey-300'"
+								small
+								:color="manualSortActive ? '--action' : '--blue-grey-300'"
 							/>
 						</button>
 						<button
@@ -25,7 +25,7 @@
 							<v-icon
 								v-if="sort.field === field.field"
 								:name="sort.asc ? 'arrow_downward' : 'arrow_upward'"
-								size="16"
+								:size="16"
 							/>
 						</button>
 					</div>
@@ -82,27 +82,27 @@
 					</div>
 				</draggable>
 			</div>
-			<v-notice v-else>{{ $t("no_items_selected") }}</v-notice>
+			<v-notice v-else>{{ $t('no_items_selected') }}</v-notice>
 
 			<div v-if="!readonly" class="buttons">
 				<v-button
 					v-if="options.allow_create"
 					type="button"
 					:disabled="readonly"
-					icon="add"
 					@click="startAddNewItem"
 				>
-					{{ $t("add_new") }}
+					<v-icon name="add" />
+					{{ $t('add_new') }}
 				</v-button>
 
 				<v-button
 					v-if="options.allow_select"
 					type="button"
 					:disabled="readonly"
-					icon="playlist_add"
 					@click="selectExisting = true"
 				>
-					{{ $t("select_existing") }}
+					<v-icon name="playlist_add" />
+					{{ $t('select_existing') }}
 				</v-button>
 			</div>
 		</template>
@@ -145,12 +145,12 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import shortid from "shortid";
-import { diff } from "deep-object-diff";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import shortid from 'shortid';
+import { diff } from 'deep-object-diff';
 
 export default {
-	name: "InterfaceOneToMany",
+	name: 'InterfaceOneToMany',
 	mixins: [mixin],
 	data() {
 		return {
@@ -201,7 +201,7 @@ export default {
 				visibleFieldNames = this.options.fields.map(val => val.trim());
 			}
 
-			visibleFieldNames = this.options.fields.split(",").map(val => val.trim());
+			visibleFieldNames = this.options.fields.split(',').map(val => val.trim());
 
 			return visibleFieldNames.map(name => {
 				const fieldInfo = relatedFields[name];
@@ -212,15 +212,15 @@ export default {
 
 				let relation = null;
 
-				if (fieldInfo.type.toLowerCase() === "m2o") {
+				if (fieldInfo.type.toLowerCase() === 'm2o') {
 					relation = this.$store.getters.m2o(fieldInfo.collection, fieldInfo.field);
 				}
 
-				if (fieldInfo.type.toLowerCase() === "o2m") {
+				if (fieldInfo.type.toLowerCase() === 'o2m') {
 					relation = this.$store.getters.o2m(fieldInfo.collection, fieldInfo.field);
 				}
 
-				if (fieldInfo.type.toLowerCase() === "translation") {
+				if (fieldInfo.type.toLowerCase() === 'translation') {
 					relation = this.$store.getters.o2m(fieldInfo.collection, fieldInfo.field);
 				}
 
@@ -257,7 +257,7 @@ export default {
 		},
 
 		manualSortActive() {
-			return this.sort.field === "$manual";
+			return this.sort.field === '$manual';
 		},
 
 		relatedCollectionFields() {
@@ -279,18 +279,18 @@ export default {
 
 		itemsSorted: {
 			get() {
-				if (this.sort.field === "$manual") {
+				if (this.sort.field === '$manual') {
 					return _.orderBy(
 						_.cloneDeep(this.items),
 						item => item[this.sortField.field],
-						this.sort.asc ? "asc" : "desc"
+						this.sort.asc ? 'asc' : 'desc'
 					);
 				}
 
 				return _.orderBy(
 					_.cloneDeep(this.items),
 					item => item[this.sort.field],
-					this.sort.asc ? "asc" : "desc"
+					this.sort.asc ? 'asc' : 'desc'
 				);
 			},
 			set(newValue) {
@@ -313,7 +313,7 @@ export default {
 
 	created() {
 		if (this.sortable) {
-			this.sort.field = "$manual";
+			this.sort.field = '$manual';
 		} else {
 			if (this.visibleFieldNames && this.visibleFieldNames.length > 0) {
 				this.sort.field = this.visibleFieldNames[0];
@@ -336,7 +336,7 @@ export default {
 		},
 
 		toggleManualSort() {
-			this.sort.field = "$manual";
+			this.sort.field = '$manual';
 			this.sort.asc = true;
 		},
 
@@ -346,7 +346,7 @@ export default {
 			const relatedCollectionFields = this.relation.collection_many.fields;
 			const defaults = _.mapValues(relatedCollectionFields, field => field.default_value);
 			const manyToManyField = this.relation.field_many && this.relation.field_many.field;
-			const tempKey = "$temp_" + shortid.generate();
+			const tempKey = '$temp_' + shortid.generate();
 
 			if (defaults.hasOwnProperty(this.relatedPrimaryKeyField)) {
 				delete defaults[this.relatedPrimaryKeyField];
@@ -376,11 +376,11 @@ export default {
 				this.items.find(i => i[this.relatedPrimaryKeyField] === primaryKey)
 			);
 
-			const isNewItem = typeof primaryKey === "string" && primaryKey.startsWith("$temp_");
+			const isNewItem = typeof primaryKey === 'string' && primaryKey.startsWith('$temp_');
 
 			if (isNewItem === false) {
 				const collection = this.relation.collection_many.collection;
-				const res = await this.$api.getItem(collection, primaryKey, { fields: "*.*.*" });
+				const res = await this.$api.getItem(collection, primaryKey, { fields: '*.*.*' });
 				const item = res.data;
 
 				values = _.merge({}, item, values);
@@ -448,9 +448,9 @@ export default {
 			if (newlyAddedItems.length > 0) {
 				const res = await this.$api.getItem(
 					this.relation.collection_many.collection,
-					newlyAddedItems.join(","),
+					newlyAddedItems.join(','),
 					{
-						fields: "*.*.*"
+						fields: '*.*.*'
 					}
 				);
 
@@ -502,9 +502,9 @@ export default {
 
 							const type = fieldInfo.type.toLowerCase();
 
-							if (type === "json" || type === "translation" || type === "array") {
+							if (type === 'json' || type === 'translation' || type === 'array') {
 								delta[key] = after[key];
-							} else if (type === "translation") {
+							} else if (type === 'translation') {
 								delta[key] = after[key];
 							}
 						});
@@ -532,8 +532,8 @@ export default {
 					}
 
 					if (
-						typeof after[this.relatedPrimaryKeyField] === "string" &&
-						after[this.relatedPrimaryKeyField].startsWith("$temp_")
+						typeof after[this.relatedPrimaryKeyField] === 'string' &&
+						after[this.relatedPrimaryKeyField].startsWith('$temp_')
 					) {
 						delete after[this.relatedPrimaryKeyField];
 					}
@@ -548,7 +548,7 @@ export default {
 			const newPrimaryKeys = value.map(item => item[this.relatedPrimaryKeyField]);
 			const deletedKeys = _.difference(savedPrimaryKeys, newPrimaryKeys);
 			const deletedRows = deletedKeys.map(key => {
-				if (this.options.delete_mode === "relation") {
+				if (this.options.delete_mode === 'relation') {
 					return {
 						[this.relatedPrimaryKeyField]: key,
 						[recursiveKey]: null
@@ -560,7 +560,7 @@ export default {
 					$delete: true
 				};
 			});
-			this.$emit("input", [...newValue, ...deletedRows]);
+			this.$emit('input', [...newValue, ...deletedRows]);
 		}
 	}
 };

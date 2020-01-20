@@ -1,23 +1,19 @@
 <template>
-	<v-icon
-		class="material-icons readonly-password"
-		:style="{ color: `var(--${colorChange})` }"
-		:name="icon"
-	/>
+	<v-icon class="material-icons readonly-password" :color="`--${colorChange}`" :name="icon" />
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "ReadonlyPassword",
+	name: 'ReadonlyPassword',
 	mixins: [mixin],
 	computed: {
 		icon() {
-			return this.value ? "lock_outline" : "lock_open";
+			return this.value ? 'lock_outline' : 'lock_open';
 		},
 		colorChange() {
-			return this.value ? "blue-grey-600" : "warning";
+			return this.value ? 'blue-grey-600' : 'warning';
 		}
 	}
 };

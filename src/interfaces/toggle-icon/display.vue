@@ -1,19 +1,15 @@
 <template>
 	<div>
-		<v-icon
-			class="readonly-toggle-icon"
-			:style="{ color: `var(--${colorChange})` }"
-			:name="icon"
-		/>
+		<v-icon class="readonly-toggle-icon" :color="`--${colorChange}`" :name="icon" />
 		<span :style="{ color: `var(--${colorChange})` }">{{ textChange }}</span>
 	</div>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "ReadonlyToggleIcon",
+	name: 'ReadonlyToggleIcon',
 	mixins: [mixin],
 	computed: {
 		icon() {

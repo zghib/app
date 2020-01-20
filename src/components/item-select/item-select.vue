@@ -25,7 +25,7 @@
 							{{ $helpers.formatField(field, collection) }}
 						</option>
 					</select>
-					<v-icon name="arrow_drop_down" color="input-icon-color" />
+					<v-icon name="arrow_drop_down" color="--input-icon-color" />
 				</div>
 
 				<div class="select">
@@ -33,7 +33,7 @@
 						<option value="asc">↑</option>
 						<option value="desc">↓</option>
 					</select>
-					<v-icon name="arrow_drop_down" color="input-icon-color" />
+					<v-icon name="arrow_drop_down" color="--input-icon-color" />
 				</div>
 			</div>
 
@@ -42,14 +42,14 @@
 			</div>
 
 			<div v-if="items.length === 0 && !hydrating && !loading" class="not-found">
-				{{ $t("no_results") }}
+				{{ $t('no_results') }}
 			</div>
 
 			<div v-if="!hydrating && items.length > 0" class="items">
 				<div class="head">
 					<!-- Checkboxes -->
 					<span />
-					<span v-if="collection === 'directus_files'">{{ $t("file") }}</span>
+					<span v-if="collection === 'directus_files'">{{ $t('file') }}</span>
 					<span v-for="field in fields" :key="field">
 						{{ $helpers.formatField(field, collection) }}
 					</span>
@@ -73,8 +73,8 @@
 							"
 							:color="
 								isChecked(item[primaryKeyField])
-									? 'input-background-color-active'
-									: 'input-border-color'
+									? '--input-background-color-active'
+									: '--input-border-color'
 							"
 						/>
 						<v-icon
@@ -86,8 +86,8 @@
 							"
 							:color="
 								isChecked(item[primaryKeyField])
-									? 'input-background-color-active'
-									: 'input-border-color'
+									? '--input-background-color-active'
+									: '--input-border-color'
 							"
 						/>
 					</div>
@@ -123,18 +123,18 @@
 				:loading="loading"
 				@click="loadMore"
 			>
-				{{ $t("load_more") }}
+				{{ $t('load_more') }}
 			</v-button>
 		</v-modal>
 	</portal>
 </template>
 
 <script>
-import formatFilters from "@/helpers/format-filters";
-import shortid from "shortid";
+import formatFilters from '@/helpers/format-filters';
+import shortid from 'shortid';
 
 export default {
-	name: "ItemSelect",
+	name: 'ItemSelect',
 	props: {
 		// The collection to fetch the items from. Has to be a string, eg `movies`
 		collection: {
@@ -191,9 +191,9 @@ export default {
 			// Populated if something went wrong during the fetching of the items
 			error: false,
 
-			searchQuery: "",
+			searchQuery: '',
 			sortField: null,
-			sortDirection: "asc",
+			sortDirection: 'asc',
 
 			// First load in progress
 			hydrating: true,
@@ -257,7 +257,7 @@ export default {
 		// button
 		this.$api
 			.getItems(this.collection, {
-				meta: "total_count",
+				meta: 'total_count',
 				limit: 1
 			})
 			.then(res => res.meta)
@@ -281,7 +281,7 @@ export default {
 			const params = {
 				limit: 200,
 				offset: options.offset,
-				meta: "*"
+				meta: '*'
 			};
 
 			if (this.searchQuery.length > 0) {
@@ -292,8 +292,8 @@ export default {
 				params.filters = formatFilters(this.filters);
 			}
 
-			if (this.collection === "directus_files") {
-				params.fields = ["*"];
+			if (this.collection === 'directus_files') {
+				params.fields = ['*'];
 			} else if (this.fields.length > 0) {
 				params.fields = _.clone(this.fields);
 			} else {
@@ -302,8 +302,8 @@ export default {
 
 			params.fields = params.fields.map(f => `${f}.*`);
 
-			let sortString = "";
-			if (this.sortDirection === "desc") sortString += "-";
+			let sortString = '';
+			if (this.sortDirection === 'desc') sortString += '-';
 			if (this.sortField) sortString += this.sortField;
 
 			if (sortString) params.sort = sortString;
@@ -331,16 +331,16 @@ export default {
 		// Stage the value to the parent component
 		updateValue(primaryKey) {
 			if (this.single) {
-				return this.$emit("input", primaryKey);
+				return this.$emit('input', primaryKey);
 			}
 
 			if (this.value.includes(primaryKey)) {
 				this.$emit(
-					"input",
+					'input',
 					this.value.filter(pk => pk !== primaryKey)
 				);
 			} else {
-				this.$emit("input", [...this.value, primaryKey]);
+				this.$emit('input', [...this.value, primaryKey]);
 			}
 		},
 
@@ -411,7 +411,7 @@ export default {
 	width: 40px;
 }
 .input input,
-.search-sort input[type="checkbox"] {
+.search-sort input[type='checkbox'] {
 	position: absolute;
 	left: -9999px;
 	opacity: 0;
@@ -431,7 +431,7 @@ export default {
 	padding-right: 32px;
 	align-items: center;
 }
-.search-sort input[type="search"] {
+.search-sort input[type='search'] {
 	flex-grow: 1;
 	font-size: 1rem;
 	border: none;
@@ -440,7 +440,7 @@ export default {
 	appearance: none;
 	background-color: var(--page-background-color);
 }
-.search-sort input[type="search"]::placeholder {
+.search-sort input[type='search']::placeholder {
 	color: var(--input-placeholder-color);
 }
 .search-sort .select {

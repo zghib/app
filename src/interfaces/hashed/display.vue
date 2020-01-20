@@ -1,19 +1,19 @@
 <template>
-	<v-icon :name="icon" class="readonly-hashed" :style="{ color: `var(--${colorChange})` }" />
+	<v-icon :name="icon" class="readonly-hashed" :color="`--${colorChange}`" />
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "ReadonlyHashed",
+	name: 'ReadonlyHashed',
 	mixins: [mixin],
 	computed: {
 		icon() {
-			return this.value ? "lock_outline" : "lock_open";
+			return this.value ? 'lock_outline' : 'lock_open';
 		},
 		colorChange() {
-			return this.value ? "blue-grey-600" : "warning";
+			return this.value ? 'blue-grey-600' : 'warning';
 		}
 	}
 };
