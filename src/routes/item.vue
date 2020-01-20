@@ -118,7 +118,7 @@
 
 		<portal v-if="confirmNavigation" to="modal">
 			<v-confirm
-				title="Unsaved Changes"
+				:title="$t('unsaved_changes')"
 				:message="$t('unsaved_changes_copy')"
 				:confirm-text="$t('keep_editing')"
 				:cancel-text="$t('discard_changes')"
