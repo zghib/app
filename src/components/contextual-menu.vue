@@ -1,11 +1,5 @@
 <template>
-	<v-popover
-		:placement="placement"
-		offset="2"
-		:trigger="trigger"
-		:disabled="disabled"
-		:boundaries-element="body"
-	>
+	<v-popover :placement="placement" offset="2" :trigger="trigger" :disabled="disabled">
 		<div class="menu-toggle" :class="{ disabled }">
 			{{ text }}
 			<v-icon v-if="icon" :name="icon" />
