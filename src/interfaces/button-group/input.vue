@@ -31,31 +31,16 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceButtonGroup",
+	name: 'InterfaceButtonGroup',
 	mixins: [mixin],
 	computed: {
 		choices() {
-			/**
-			 * We'll create an array of choices here.
-			 * If the button-group has subgroups of choices & individual choice both,
-			 * We'll need to create a new subgroup with all individual items.
-			 */
-			const choices = [];
-			const individualChoices = [];
-
-			this.options.choices.forEach(item => {
-				if (Array.isArray(item)) {
-					choices.push(item);
-				} else {
-					individualChoices.push(item);
-				}
+			return this.options.choices.map(group => {
+				return group.groups;
 			});
-
-			choices.push(individualChoices);
-			return choices;
 		}
 	}
 };
@@ -99,7 +84,7 @@ Theme: Outline
 }
 
 .button-group-item {
-	input[type="radio"] {
+	input[type='radio'] {
 		height: 0;
 		position: absolute;
 		opacity: 0;
@@ -215,7 +200,7 @@ Theme: Solid | Default
 	}
 
 	.button-group-item {
-		input[type="radio"] {
+		input[type='radio'] {
 			/**
 				Focused State
 			*/
