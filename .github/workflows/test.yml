@@ -18,3 +18,7 @@ jobs:
       - name: Run tests
         run: |
           yarn test
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
