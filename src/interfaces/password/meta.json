@@ -10,7 +10,7 @@
     "hide": {
       "name": "$t:hide",
       "comment": "$t:hide_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "placeholder": {
@@ -23,7 +23,7 @@
     "showHash": {
       "name": "$t:show_hash",
       "comment": "$t:show_hash_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": false
     },
     "hashingType": {

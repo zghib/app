@@ -1,7 +1,7 @@
-import { Idle } from "idlejs/dist";
-import router from "@/router";
-import api from "@/api";
-import { UPDATE_PROJECT, RESET } from "@/store/mutation-types";
+import { Idle } from 'idlejs/dist';
+import router from '@/router';
+import api from '@/api';
+import { UPDATE_PROJECT, RESET } from '@/store/mutation-types';
 
 let idle = null;
 
@@ -23,8 +23,8 @@ export default function startIdleTracking(store) {
 			});
 
 			store.commit(RESET);
-			await store.dispatch("getProjects");
-			router.push("/login");
+			await store.dispatch('getProjects');
+			router.push('/login');
 			idle.stop();
 		})
 		.start();

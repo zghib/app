@@ -15,12 +15,12 @@
     },
     "relational": {
       "name": "$t:relational",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "status": {
       "name": "$t:include_status",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     }
   }

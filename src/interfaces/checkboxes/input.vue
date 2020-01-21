@@ -27,7 +27,7 @@
 				:value="choice.key"
 				:disabled="readonly"
 				:label="choice.value"
-				:checked="choice.checked"
+				:inputValue="choice.checked"
 				@change="choices[index].checked = !choices[index].checked"
 			/>
 		</div>

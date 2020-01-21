@@ -7,7 +7,7 @@ import markdown from './v-icon.readme.md';
 Vue.component('v-icon', VIcon);
 
 export default {
-	title: 'Icon',
+	title: 'Components / Icon',
 	component: VIcon,
 	decorators: [withKnobs],
 	parameters: {

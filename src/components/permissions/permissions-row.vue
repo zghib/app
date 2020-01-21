@@ -292,7 +292,7 @@
 							v-for="(field, name) in fieldsWithoutPK"
 							:id="`${permissionName}-read-${name}`"
 							:key="`${permissionName}-read-${name}`"
-							:checked="!blacklist.read.includes(name)"
+							:inputValue="!blacklist.read.includes(name)"
 							:label="$helpers.formatTitle(name)"
 							:value="name"
 							@change="toggleField(name)"
@@ -304,7 +304,7 @@
 							v-for="(field, name) in fields"
 							:id="`${permissionName}-write-${name}`"
 							:key="`${permissionName}-write-${name}`"
-							:checked="!blacklist.write.includes(name)"
+							:inputValue="!blacklist.write.includes(name)"
 							:label="$helpers.formatTitle(name)"
 							:value="name"
 							@change="toggleField(name, true)"
@@ -327,7 +327,7 @@
 							v-for="(status, name) in statuses"
 							:id="`status-${name}`"
 							:key="`status-${name}`"
-							:checked="
+							:inputValue="
 								!(permission[statusSelect.status].status_blacklist || []).includes(
 									name
 								)

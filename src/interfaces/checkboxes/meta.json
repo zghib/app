@@ -28,34 +28,34 @@
     "allow_other": {
       "name": "$t:allow_other",
       "comment": "$t:allow_other_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": false
     },
     "draggable": {
       "name": "$t:draggable",
       "comment": "$t:draggable_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": false
     },
     "wrap": {
       "name": "$t:wrap",
       "comment": "$t:wrap_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": false
     },
     "formatting": {
       "name": "$t:formatting",
       "comment": "$t:formatting_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": true
     },
     "single": {
       "name": "$t:single",
       "comment": "$t:single_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": false
     }

@@ -1,12 +1,12 @@
-import store from "./store/";
+import store from './store/';
 
 let fastInterval = null;
 
 export function startPolling() {
-	store.dispatch("latency");
+	store.dispatch('latency');
 
 	fastInterval = setInterval(() => {
-		store.dispatch("latency");
+		store.dispatch('latency');
 	}, 10000);
 }
 

@@ -35,14 +35,14 @@
     "hr": {
       "name": "$t:hr-name",
       "comment": "$t:hr-comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": true
     },
     "margin": {
       "name": "$t:margin-name",
       "comment": "$t:margin-comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": true
     }

@@ -36,7 +36,7 @@
     "paletteOnly": {
       "name": "$t:palette_only",
       "comment": "$t:palette_only_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": false
     }
   }

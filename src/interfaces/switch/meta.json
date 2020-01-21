@@ -1,5 +1,5 @@
 {
-  "name": "$t:toggle",
+  "name": "$t:switch",
   "version": "1.0.0",
   "types": ["boolean"],
   "icon": "toggle_on",
@@ -13,12 +13,12 @@
       "name": "$t:label_off",
       "comment": "$t:label_off_comment",
       "interface": "text-input"
-    },
-    "checkbox": {
-      "name": "$t:checkbox",
-      "comment": "$t:checkbox_comment",
-      "interface": "toggle",
-      "default": false
-    }
+	},
+	"checkbox": {
+		"name": "$t:checkbox",
+		"comment": "$t:checkbox_comment",
+		"interface": "switch",
+		"default": false
+	}
   }
 }

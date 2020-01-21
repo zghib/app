@@ -153,7 +153,7 @@
 			>
 				<div class="revert">
 					<v-notice color="warning">
-						{{ $t("revert_copy", { date: $d(revertActivity.date, "long") }) }}
+						{{ $t('revert_copy', { date: $d(revertActivity.date, 'long') }) }}
 					</v-notice>
 					<v-form
 						readonly
@@ -169,18 +169,18 @@
 </template>
 
 <script>
-import { mapValues } from "lodash";
-import shortid from "shortid";
-import EventBus from "../events/";
-import { i18n } from "../lang/";
-import VLoader from "../components/loader.vue";
-import VError from "../components/error.vue";
-import VActivity from "../components/activity/activity.vue";
-import formatTitle from "@directus/format-title";
-import VNotFound from "./not-found.vue";
-import store from "../store/";
-import api from "../api";
-import { mapState } from "vuex";
+import { mapValues } from 'lodash';
+import shortid from 'shortid';
+import EventBus from '../events/';
+import { i18n } from '../lang/';
+import VLoader from '../components/loader.vue';
+import VError from '../components/error.vue';
+import VActivity from '../components/activity/activity.vue';
+import formatTitle from '@directus/format-title';
+import VNotFound from './not-found.vue';
+import store from '../store/';
+import api from '../api';
+import { mapState } from 'vuex';
 
 function getFieldsQuery(collection) {
 	const fields = store.state.collections[collection].fields;
@@ -191,48 +191,48 @@ function getFieldsQuery(collection) {
 			const fieldInfo = fields[field];
 
 			if (
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === "o2m" &&
+				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'o2m' &&
 				store.getters.o2m(collection, field).junction != null
 			) {
-				return field.endsWith(".*.*.*") ? field : field + ".*.*.*";
+				return field.endsWith('.*.*.*') ? field : field + '.*.*.*';
 			}
 
 			if (
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === "o2m" ||
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === "m2m" ||
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === "translation" ||
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === "file"
+				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'o2m' ||
+				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'm2m' ||
+				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'translation' ||
+				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'file'
 			) {
-				return field.endsWith(".*.*.*") ? field : field + ".*.*.*";
+				return field.endsWith('.*.*.*') ? field : field + '.*.*.*';
 			}
 
 			return field;
 		})
-		.join(",");
+		.join(',');
 }
 
 export default {
-	name: "Edit",
+	name: 'Edit',
 	metaInfo() {
-		const collection = this.collection.startsWith("directus_")
+		const collection = this.collection.startsWith('directus_')
 			? this.$helpers.formatTitle(this.collection.substr(9))
 			: this.$helpers.formatTitle(this.collection);
 
 		if (this.isNew) {
 			return {
-				title: this.$t("creating_item_page_title", {
+				title: this.$t('creating_item_page_title', {
 					collection
 				})
 			};
 		} else if (this.batch) {
 			return {
-				title: this.$t("batch_edit", {
+				title: this.$t('batch_edit', {
 					collection
 				})
 			};
 		} else {
 			return {
-				title: this.$t("editing", {
+				title: this.$t('editing', {
 					collection
 				})
 			};
@@ -262,7 +262,7 @@ export default {
 			confirmBatchSave: false,
 
 			confirmNavigation: false,
-			leavingTo: "",
+			leavingTo: '',
 
 			activityLoading: false,
 			activity: [],
@@ -275,19 +275,19 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		collection() {
-			if (this.$route.path.includes("settings/webhooks")) return "directus_webhooks";
+			if (this.$route.path.includes('settings/webhooks')) return 'directus_webhooks';
 			return this.$route.params.collection;
 		},
 		iconLink() {
 			if (this.singleItem) return null;
 
-			if (this.collection === "directus_webhooks") {
+			if (this.collection === 'directus_webhooks') {
 				return `/${this.currentProjectKey}/settings/webhooks`;
 			}
 
-			if (this.collection.startsWith("directus_")) {
+			if (this.collection.startsWith('directus_')) {
 				return `/${this.currentProjectKey}/${this.collection.substring(9)}`;
 			}
 
@@ -301,39 +301,39 @@ export default {
 			if (this.editing) {
 				return {
 					stay: {
-						text: this.$t("save_and_stay"),
-						icon: "create"
+						text: this.$t('save_and_stay'),
+						icon: 'create'
 					},
 					add: {
-						text: this.$t("save_and_add"),
-						icon: "add"
+						text: this.$t('save_and_add'),
+						icon: 'add'
 					},
 					copy: {
-						text: this.$t("save_as_copy"),
-						icon: "file_copy"
+						text: this.$t('save_as_copy'),
+						icon: 'file_copy'
 					}
 				};
 			}
 
 			return {
 				copy: {
-					text: this.$t("save_as_copy"),
-					icon: "file_copy"
+					text: this.$t('save_as_copy'),
+					icon: 'file_copy'
 				}
 			};
 		},
 		breadcrumb() {
-			if (this.collection === "directus_users") {
-				let crumbName = this.$t("editing_item");
+			if (this.collection === 'directus_users') {
+				let crumbName = this.$t('editing_item');
 				if (this.primaryKey == this.$store.state.currentUser.id) {
-					crumbName = this.$t("editing_my_profile");
+					crumbName = this.$t('editing_my_profile');
 				} else if (this.newItem) {
-					crumbName = this.$t("creating_item");
+					crumbName = this.$t('creating_item');
 				}
 
 				return [
 					{
-						name: this.$t("user_directory"),
+						name: this.$t('user_directory'),
 						path: `/${this.currentProjectKey}/users`
 					},
 					{
@@ -343,31 +343,31 @@ export default {
 				];
 			}
 
-			if (this.collection === "directus_files") {
+			if (this.collection === 'directus_files') {
 				return [
 					{
-						name: this.$t("file_library"),
+						name: this.$t('file_library'),
 						path: `/${this.currentProjectKey}/files`
 					},
 					{
-						name: this.newItem ? this.$t("creating_item") : this.$t("editing_item"),
+						name: this.newItem ? this.$t('creating_item') : this.$t('editing_item'),
 						path: this.$route.path
 					}
 				];
 			}
 
-			if (this.collection === "directus_webhooks") {
+			if (this.collection === 'directus_webhooks') {
 				return [
 					{
-						name: this.$t("settings"),
+						name: this.$t('settings'),
 						path: `/${this.currentProjectKey}/settings`
 					},
 					{
-						name: this.$t("settings_webhooks"),
+						name: this.$t('settings_webhooks'),
 						path: `/${this.currentProjectKey}/settings/webhooks`
 					},
 					{
-						name: this.newItem ? this.$t("creating_item") : this.$t("editing_item"),
+						name: this.newItem ? this.$t('creating_item') : this.$t('editing_item'),
 						path: this.$route.path
 					}
 				];
@@ -376,11 +376,11 @@ export default {
 			if (this.singleItem) {
 				return [
 					{
-						name: this.$tc("collection", 2),
+						name: this.$tc('collection', 2),
 						path: `/${this.currentProjectKey}/collections`
 					},
 					{
-						name: this.$t("editing_single", {
+						name: this.$t('editing_single', {
 							collection: this.$helpers.formatCollection(this.collection)
 						}),
 						path: this.$route.path
@@ -390,7 +390,7 @@ export default {
 
 			const breadcrumb = [];
 
-			if (this.collection.startsWith("directus_")) {
+			if (this.collection.startsWith('directus_')) {
 				breadcrumb.push({
 					name: this.$helpers.formatTitle(this.collection.substr(9)),
 					path: `/${this.currentProjectKey}/${this.collection.substring(9)}`
@@ -398,7 +398,7 @@ export default {
 			} else {
 				breadcrumb.push(
 					{
-						name: this.$tc("collection", 2),
+						name: this.$tc('collection', 2),
 						path: `/${this.currentProjectKey}/collections`
 					},
 					{
@@ -409,14 +409,14 @@ export default {
 			}
 
 			if (this.batch) {
-				const count = this.primaryKey.split(",").length;
+				const count = this.primaryKey.split(',').length;
 				breadcrumb.push({
-					name: this.$t("editing_items", { count }),
+					name: this.$t('editing_items', { count }),
 					path: this.$route.path
 				});
 			} else {
 				breadcrumb.push({
-					name: this.newItem ? this.$t("creating_item") : this.$t("editing_item"),
+					name: this.newItem ? this.$t('creating_item') : this.$t('editing_item'),
 					path: this.$route.path
 				});
 			}
@@ -428,16 +428,20 @@ export default {
 		},
 		defaultValues() {
 			return _.mapValues(this.fields, field => {
-				if (field.type === "array") {
-					if ((field.default_value || "").includes(",")) {
-						return field.default_value.split(",");
+				if (field.type === 'array') {
+					if ((field.default_value || '').includes(',')) {
+						return field.default_value.split(',');
 					} else {
 						return field.default_value ? [field.default_value] : [];
 					}
 				}
 
-				if (field.type === "boolean") {
-					if (field.default_value === "1" || field.default_value === "true") {
+				if (field.type === 'boolean') {
+					if (
+						field.default_value === 1 ||
+						field.default_value === '1' ||
+						field.default_value === 'true'
+					) {
 						return true;
 					}
 					return false;
@@ -456,7 +460,7 @@ export default {
 			};
 		},
 		activityDetail() {
-			return this.collection === "directus_activity";
+			return this.collection === 'directus_activity';
 		},
 		editing() {
 			return this.$store.getters.editing;
@@ -465,7 +469,7 @@ export default {
 			return this.$store.state.edits.savedValues;
 		},
 		newItem() {
-			return this.primaryKey === "+";
+			return this.primaryKey === '+';
 		},
 
 		// Get the status name of the value that's marked as soft delete
@@ -488,14 +492,14 @@ export default {
 			return _.find(this.fields, { primary_key: true }).field;
 		},
 		batch() {
-			return this.primaryKey.includes(",");
+			return this.primaryKey.includes(',');
 		},
 		statusField() {
 			if (!this.fields) return null;
 			return (
 				_.find(
 					Object.values(this.fields),
-					field => field.type && field.type.toLowerCase() === "status"
+					field => field.type && field.type.toLowerCase() === 'status'
 				) || {}
 			).field;
 		},
@@ -543,10 +547,10 @@ export default {
 			return this.$store.state.permissions;
 		},
 		readonly() {
-			return this.permission.update === "none";
+			return this.permission.update === 'none';
 		},
 		isNew() {
-			return this.primaryKey === "+";
+			return this.primaryKey === '+';
 		},
 		fields() {
 			const fields = this.$store.state.collections[this.collection].fields;
@@ -603,31 +607,31 @@ export default {
 	mounted() {
 		const handler = () => {
 			if (this.editing) {
-				this.save("stay");
+				this.save('stay');
 			}
 
 			return false;
 		};
 
-		this.$helpers.mousetrap.bind("mod+s", handler);
-		this.formtrap = this.$helpers.mousetrap(this.$refs.form.$el).bind("mod+s", handler);
+		this.$helpers.mousetrap.bind('mod+s', handler);
+		this.formtrap = this.$helpers.mousetrap(this.$refs.form.$el).bind('mod+s', handler);
 	},
 	beforeDestroy() {
-		this.$helpers.mousetrap.unbind("mod+s");
-		this.formtrap.unbind("mod+s");
+		this.$helpers.mousetrap.unbind('mod+s');
+		this.formtrap.unbind('mod+s');
 	},
 	methods: {
 		stageValue({ field, value }) {
-			this.$store.dispatch("stageValue", { field, value });
+			this.$store.dispatch('stageValue', { field, value });
 		},
 		unstageValue(field) {
-			this.$store.dispatch("unstageValue", field);
+			this.$store.dispatch('unstageValue', field);
 		},
 		remove() {
 			this.confirmRemoveLoading = true;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			let request;
 
@@ -641,28 +645,28 @@ export default {
 
 			request
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$store.dispatch("discardChanges", id);
+					this.$store.dispatch('loadingFinished', id);
+					this.$store.dispatch('discardChanges', id);
 					this.$notify({
-						title: this.$t("item_deleted"),
-						color: "green",
-						iconMain: "check"
+						title: this.$t('item_deleted'),
+						color: 'green',
+						iconMain: 'check'
 					});
 					this.confirmRemoveLoading = false;
 					this.confirmRemove = false;
 
 					let linkTo = `/${this.currentProjectKey}/collections/${this.collection}`;
 
-					if (this.collection.startsWith("directus_") === true) {
+					if (this.collection.startsWith('directus_') === true) {
 						linkTo = `/${this.currentProjectKey}/${this.collection.substring(9)}`;
 					}
 
 					this.$router.push(linkTo);
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -670,7 +674,7 @@ export default {
 		save(method) {
 			this.saving = true;
 
-			if (method === "copy") {
+			if (method === 'copy') {
 				const values = Object.assign({}, this.values);
 
 				// Delete fields that shouldn't / can't be duplicated
@@ -678,44 +682,44 @@ export default {
 					if (info.primary_key === true) delete values[fieldName];
 
 					switch (info.type.toLowerCase()) {
-						case "alias":
-						case "datetime_created":
-						case "datetime_updated":
-						case "owner":
-						case "user_updated":
-						case "o2m":
+						case 'alias':
+						case 'datetime_created':
+						case 'datetime_updated':
+						case 'owner':
+						case 'user_updated':
+						case 'o2m':
 							delete values[fieldName];
 							break;
 					}
 				});
 
 				const id = this.$helpers.shortid.generate();
-				this.$store.dispatch("loadingStart", { id });
+				this.$store.dispatch('loadingStart', { id });
 
 				return this.$store
-					.dispatch("save", {
-						primaryKey: "+",
+					.dispatch('save', {
+						primaryKey: '+',
 						values
 					})
 					.then(res => {
-						this.$store.dispatch("loadingFinished", id);
+						this.$store.dispatch('loadingFinished', id);
 						this.saving = false;
 						return res.data[this.primaryKeyField];
 					})
 					.then(pk => {
 						this.$notify({
-							title: this.$tc("item_saved"),
-							color: "green",
-							iconMain: "check"
+							title: this.$tc('item_saved'),
+							color: 'green',
+							iconMain: 'check'
 						});
 
-						if (this.collection === "directus_webhooks") {
+						if (this.collection === 'directus_webhooks') {
 							return this.$router.push(
 								`/${this.currentProjectKey}/settings/webhooks/${pk}`
 							);
 						}
 
-						if (this.collection.startsWith("directus_")) {
+						if (this.collection.startsWith('directus_')) {
 							return this.$router.push(
 								`/${this.currentProjectKey}/${this.collection.substring(9)}/${pk}`
 							);
@@ -726,9 +730,9 @@ export default {
 						);
 					})
 					.catch(error => {
-						this.$store.dispatch("loadingFinished", id);
-						this.$events.emit("error", {
-							notify: error.message || this.$t("something_went_wrong_body"),
+						this.$store.dispatch('loadingFinished', id);
+						this.$events.emit('error', {
+							notify: error.message || this.$t('something_went_wrong_body'),
 							error
 						});
 					});
@@ -737,34 +741,34 @@ export default {
 			if (this.$store.getters.editing === false) return;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			return this.$store
-				.dispatch("save")
+				.dispatch('save')
 				.then(res => res.data)
 				.then(savedValues => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.saving = false;
 					return savedValues;
 				})
 				.then(savedValues => {
 					const savedValuesLength = this.savedValues.length;
 					this.$notify({
-						title: this.$tc("item_saved", savedValuesLength, {
+						title: this.$tc('item_saved', savedValuesLength, {
 							count: savedValuesLength
 						}),
-						color: "green",
-						iconMain: "check"
+						color: 'green',
+						iconMain: 'check'
 					});
 
-					if (method === "leave") {
-						if (this.collection === "directus_webhooks") {
+					if (method === 'leave') {
+						if (this.collection === 'directus_webhooks') {
 							return this.$router.push(
 								`/${this.currentProjectKey}/settings/webhooks`
 							);
 						}
 
-						if (this.collection.startsWith("directus_")) {
+						if (this.collection.startsWith('directus_')) {
 							return this.$router.push(
 								`/${this.currentProjectKey}/${this.collection.substring(9)}`
 							);
@@ -775,19 +779,19 @@ export default {
 						);
 					}
 
-					if (method === "stay") {
+					if (method === 'stay') {
 						this.fetchActivity();
 
 						if (this.newItem) {
 							const primaryKey = savedValues[this.primaryKeyField];
 
-							if (this.collection === "directus_webhooks") {
+							if (this.collection === 'directus_webhooks') {
 								return this.$router.push(
 									`/${this.currentProjectKey}/settings/webhooks/${primaryKey}`
 								);
 							}
 
-							if (this.collection.startsWith("directus_")) {
+							if (this.collection.startsWith('directus_')) {
 								return this.$router.push(
 									`/${this.currentProjectKey}/${this.collection.substring(
 										9
@@ -800,7 +804,7 @@ export default {
 							);
 						}
 
-						this.$store.dispatch("startEditing", {
+						this.$store.dispatch('startEditing', {
 							collection: this.collection,
 							primaryKey: this.primaryKey,
 							savedValues: savedValues
@@ -809,11 +813,11 @@ export default {
 						this.formKey = shortid.generate();
 					}
 
-					if (method === "add") {
-						if (this.$route.fullPath.endsWith("+")) {
-							this.$store.dispatch("startEditing", {
+					if (method === 'add') {
+						if (this.$route.fullPath.endsWith('+')) {
+							this.$store.dispatch('startEditing', {
 								collection: this.collection,
-								primaryKey: "+",
+								primaryKey: '+',
 								savedValues: {}
 							});
 						} else {
@@ -825,10 +829,10 @@ export default {
 				})
 				.catch(error => {
 					this.saving = false;
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 
-					this.$events.emit("error", {
-						notify: error.message || this.$t("something_went_wrong_body"),
+					this.$events.emit('error', {
+						notify: error.message || this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -839,22 +843,22 @@ export default {
 			this.activityLoading = true;
 
 			const id = shortid.generate();
-			store.dispatch("loadingStart", { id });
+			store.dispatch('loadingStart', { id });
 
 			return Promise.all([
 				this.$api.getActivity({
-					"filter[collection][eq]": this.collection,
-					"filter[item][eq]": this.primaryKey,
+					'filter[collection][eq]': this.collection,
+					'filter[item][eq]': this.primaryKey,
 					fields:
-						"id,action,action_on,comment,action_by.id,action_by.first_name,action_by.last_name",
-					sort: "-action_on"
+						'id,action,action_on,comment,action_by.id,action_by.first_name,action_by.last_name',
+					sort: '-action_on'
 				}),
 				this.activityDetail
 					? Promise.resolve({ data: [] })
 					: this.$api.getItemRevisions(this.collection, this.primaryKey)
 			])
 				.then(([activity, revisions]) => {
-					store.dispatch("loadingFinished", id);
+					store.dispatch('loadingFinished', id);
 					return {
 						activity: activity.data,
 						revisions: revisions.data
@@ -867,9 +871,9 @@ export default {
 							let name;
 
 							if (act.action_by) {
-								name = act.action_by.first_name + " " + act.action_by.last_name;
+								name = act.action_by.first_name + ' ' + act.action_by.last_name;
 							} else {
-								name = "Public";
+								name = 'Public';
 							}
 
 							return {
@@ -881,7 +885,7 @@ export default {
 								comment: act.comment
 							};
 						}),
-						revisions: _.keyBy(revisions, "activity")
+						revisions: _.keyBy(revisions, 'activity')
 					};
 				})
 				.then(({ activity, revisions }) => {
@@ -890,9 +894,9 @@ export default {
 					this.activityLoading = false;
 				})
 				.catch(error => {
-					store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -903,9 +907,9 @@ export default {
 
 			this.$api
 				.getUsers({
-					"filter[last_access_on][gte]": date,
-					"filter[last_page][eq]": path,
-					"filter[id][neq]": this.$store.state.currentUser.id
+					'filter[last_access_on][gte]': date,
+					'filter[last_page][eq]': path,
+					'filter[id][neq]': this.$store.state.currentUser.id
 				})
 				.then(res => res.data)
 				.then(users => {
@@ -913,9 +917,9 @@ export default {
 						users.forEach(user => {
 							const { first_name, last_name } = user;
 							this.$notify({
-								title: this.$t("user_edit_warning", { first_name, last_name }),
-								color: "red",
-								iconMain: "error"
+								title: this.$t('user_edit_warning', { first_name, last_name }),
+								color: 'red',
+								iconMain: 'error'
 							});
 						});
 					}
@@ -926,18 +930,18 @@ export default {
 		},
 		postComment(comment) {
 			const id = shortid.generate();
-			store.dispatch("loadingStart", { id });
+			store.dispatch('loadingStart', { id });
 			const currentUser = this.$store.state.currentUser;
 
 			this.$api.api
-				.post("/activity/comment", {
+				.post('/activity/comment', {
 					collection: this.collection,
 					item: this.primaryKey,
 					comment
 				})
 				.then(res => res.data)
 				.then(comment => {
-					store.dispatch("loadingFinished", id);
+					store.dispatch('loadingFinished', id);
 					this.activity = [
 						{
 							...comment,
@@ -947,9 +951,9 @@ export default {
 					];
 				})
 				.catch(error => {
-					store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -970,15 +974,15 @@ export default {
 					]);
 				})
 				.then(([{ data }]) => {
-					this.$store.dispatch("startEditing", {
+					this.$store.dispatch('startEditing', {
 						collection: this.collection,
 						primaryKey: this.primaryKey,
 						savedValues: data
 					});
 				})
 				.catch(error => {
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -987,18 +991,18 @@ export default {
 	beforeRouteEnter(to, from, next) {
 		let { collection, primaryKey } = to.params;
 
-		if (!collection && to.path.includes("settings/webhooks")) collection = "directus_webhooks";
+		if (!collection && to.path.includes('settings/webhooks')) collection = 'directus_webhooks';
 		const exists =
 			Object.keys(store.state.collections).includes(collection) ||
-			collection.startsWith("directus_");
-		const isNew = primaryKey === "+";
+			collection.startsWith('directus_');
+		const isNew = primaryKey === '+';
 
 		if (exists === false) {
 			return next(vm => (vm.$data.notFound = true));
 		}
 
 		if (isNew) {
-			store.dispatch("startEditing", {
+			store.dispatch('startEditing', {
 				collection: collection,
 				primaryKey: primaryKey,
 				savedValues: {}
@@ -1008,14 +1012,14 @@ export default {
 		}
 
 		const id = shortid.generate();
-		store.dispatch("loadingStart", { id });
+		store.dispatch('loadingStart', { id });
 
 		return api
 			.getItem(collection, primaryKey, { fields: getFieldsQuery(collection) })
 			.then(res => res.data)
 			.then(item => {
-				store.dispatch("loadingFinished", id);
-				store.dispatch("startEditing", {
+				store.dispatch('loadingFinished', id);
+				store.dispatch('startEditing', {
 					collection: collection,
 					primaryKey: primaryKey,
 					savedValues: item
@@ -1023,13 +1027,13 @@ export default {
 				next();
 			})
 			.catch(error => {
-				store.dispatch("loadingFinished", id);
+				store.dispatch('loadingFinished', id);
 				if (error && +error.code === 203) {
 					return next(vm => (vm.$data.notFound = true));
 				}
 
-				EventBus.emit("error", {
-					notify: i18n.t("something_went_wrong_body"),
+				EventBus.emit('error', {
+					notify: i18n.t('something_went_wrong_body'),
 					error
 				});
 				return next(vm => (vm.$data.error = true));
@@ -1039,8 +1043,8 @@ export default {
 		const { collection, primaryKey } = to.params;
 		const exists =
 			Object.keys(this.$store.state.collections).includes(collection) ||
-			collection.startsWith("directus_");
-		const isNew = primaryKey === "+";
+			collection.startsWith('directus_');
+		const isNew = primaryKey === '+';
 
 		this.saving = false;
 
@@ -1052,7 +1056,7 @@ export default {
 		this.confirmBatchSave = false;
 
 		this.confirmNavigation = false;
-		this.leavingTo = "";
+		this.leavingTo = '';
 
 		this.activityLoading = false;
 		this.activity = [];
@@ -1067,7 +1071,7 @@ export default {
 		}
 
 		if (isNew) {
-			this.$store.dispatch("startEditing", {
+			this.$store.dispatch('startEditing', {
 				collection: collection,
 				primaryKey: primaryKey,
 				savedValues: {}
@@ -1077,7 +1081,7 @@ export default {
 		}
 
 		const id = this.$helpers.shortid.generate();
-		this.$store.dispatch("loadingStart", { id });
+		this.$store.dispatch('loadingStart', { id });
 
 		return this.$api
 			.getItem(collection, primaryKey, {
@@ -1085,8 +1089,8 @@ export default {
 			})
 			.then(res => res.data)
 			.then(item => {
-				this.$store.dispatch("loadingFinished", id);
-				this.$store.dispatch("startEditing", {
+				this.$store.dispatch('loadingFinished', id);
+				this.$store.dispatch('startEditing', {
 					collection: collection,
 					primaryKey: primaryKey,
 					savedValues: item
@@ -1094,14 +1098,14 @@ export default {
 				next();
 			})
 			.catch(error => {
-				this.$store.dispatch("loadingFinished", id);
+				this.$store.dispatch('loadingFinished', id);
 				if (error && +error.code === 203) {
 					this.notFound = true;
 					return next();
 				}
 
-				this.$events.emit("error", {
-					notify: i18n.t("something_went_wrong_body"),
+				this.$events.emit('error', {
+					notify: i18n.t('something_went_wrong_body'),
 					error
 				});
 				this.error = error;
@@ -1114,7 +1118,7 @@ export default {
 
 		// If the modal is already open, the second navigation attempt has to be the discard changes button
 		if (this.confirmNavigation === true) {
-			this.$store.dispatch("discardChanges");
+			this.$store.dispatch('discardChanges');
 			return next();
 		}
 

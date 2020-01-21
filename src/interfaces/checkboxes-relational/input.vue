@@ -8,17 +8,17 @@
 			:value="item[relatedPk]"
 			:disabled="readonly"
 			:label="labelRendered(item)"
-			:checked="selection.includes(item[relatedPk])"
+			:inputValue="selection.includes(item[relatedPk])"
 			@change="onSelection(item.id)"
 		></v-checkbox>
 	</div>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceCheckboxesRelational",
+	name: 'InterfaceCheckboxesRelational',
 	mixins: [mixin],
 	data() {
 		return {
@@ -64,7 +64,7 @@ export default {
 
 	methods: {
 		uid(item) {
-			return this.$helpers.shortid.generate() + "_" + item.id;
+			return this.$helpers.shortid.generate() + '_' + item.id;
 		},
 
 		// Get items to render the checkboxes
@@ -133,7 +133,7 @@ export default {
 				newValue.push(this.prepareItem(item));
 			}
 			//newValue.push({ [this.junctionFieldOfRelated]: newItem });
-			this.$emit("input", newValue);
+			this.$emit('input', newValue);
 		},
 
 		removeItem(val) {
@@ -156,7 +156,7 @@ export default {
 				}
 			});
 
-			this.$emit("input", newValue);
+			this.$emit('input', newValue);
 		}
 	}
 };

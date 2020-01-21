@@ -12,7 +12,7 @@
     "simpleBadge": {
       "name": "$t:simple_badge",
       "comment": "$t:simple_badge_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": true
     },
@@ -48,27 +48,27 @@
           },
           {
             "field": "browse_subdued",
-            "interface": "toggle",
+            "interface": "switch",
             "type": "boolean"
           },
           {
             "field": "browse_badge",
-            "interface": "toggle",
+            "interface": "switch",
             "type": "boolean"
           },
           {
             "field": "soft_delete",
-            "interface": "toggle",
+            "interface": "switch",
             "type": "boolean"
           },
           {
             "field": "required_fields",
-            "interface": "toggle",
+            "interface": "switch",
             "type": "boolean"
           },
           {
             "field": "published",
-            "interface": "toggle",
+            "interface": "switch",
             "type": "boolean"
           }
         ]

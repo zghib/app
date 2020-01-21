@@ -17,7 +17,7 @@
     "forceLowercase": {
       "name": "$t:force_lowercase",
       "comment": "$t:force_lowercase_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "mirroredField": {

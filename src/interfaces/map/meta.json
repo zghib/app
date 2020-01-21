@@ -37,7 +37,7 @@
     "address_to_code": {
       "name": "$t:address_to_code",
       "comment": "$t:address_to_code_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": false
     },

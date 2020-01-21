@@ -31,7 +31,7 @@
     "format": {
       "name": "$t:format",
       "comment": "$t:format_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": true
     }

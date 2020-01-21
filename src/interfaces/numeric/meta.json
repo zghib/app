@@ -16,7 +16,7 @@
     "localized": {
       "name": "$t:localized",
       "comment": "$t:localized_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "iconLeft": {
@@ -34,7 +34,7 @@
     "monospace": {
       "name": "$t:monospace",
       "comment": "$t:monospace_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": false
     }
   }

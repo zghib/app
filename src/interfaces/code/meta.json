@@ -33,7 +33,7 @@
      "lineNumber": {
       "name": "$t:lineNumber",
       "comment": "$t:lineNumber_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     }
   }

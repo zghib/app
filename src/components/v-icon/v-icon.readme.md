@@ -1,8 +1,3 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
-import VIcon from './v-icon.vue';
-
-<Meta title='Icon' component={VIcon} />
-
 # Icon
 
 The icon component allows you to render any [Material Design Icons](https://material.io/icons). It also supports rendering of custom SVG based icons.

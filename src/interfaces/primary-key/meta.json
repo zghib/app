@@ -10,7 +10,7 @@
     "monospace": {
       "name": "$t:monospace",
       "comment": "$t:monospace_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     }
   }

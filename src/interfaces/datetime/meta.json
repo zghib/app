@@ -17,12 +17,12 @@
     "localized": {
       "name": "$t:localized",
       "comment": "$t:localized_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "value": true
     },
     "showRelative": {
       "name": "$t:relative",
-      "interface": "toggle",
+      "interface": "switch",
       "comment": "$t:relative_comment",
       "value": false
     },
@@ -41,7 +41,7 @@
     "defaultToCurrentDatetime": {
       "name": "$t:default_to_current_datetime",
       "comment": "$t:default_to_current_datetime_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "advanced": true
     },
     "format": {

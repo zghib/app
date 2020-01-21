@@ -10,7 +10,7 @@
     "tabbed": {
       "name": "$t:tabbed_preview",
       "comment": "$t:tabbed_preview_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "options": {
         "labelOn": "$t:tabbed_preview_on",
         "labelOff": "$t:tabbed_preview_off"

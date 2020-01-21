@@ -8,12 +8,12 @@
     "relational": {
       "name": "$t:relational",
       "comment": "$t:relational_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "showPublic": {
       "name": "$t:show_public",
-      "interface": "toggle",
+      "interface": "switch",
       "default": false
     }
   }

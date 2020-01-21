@@ -17,13 +17,13 @@
     "localized": {
       "name": "$t:localized",
       "comment": "$t:localized_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "showRelative": {
       "name": "$t:relative",
       "comment": "$t:relative_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "iconLeft": {

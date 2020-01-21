@@ -78,30 +78,12 @@
 			>
 				<v-details title="Default fields" :open="true">
 					<div class="advanced-form">
-						<label class="toggle">
-							<v-toggle v-model="status" />
-							{{ $t('status') }}
-						</label>
-						<label class="toggle">
-							<v-toggle v-model="sort" />
-							{{ $t('sort') }}
-						</label>
-						<label class="toggle">
-							<v-toggle v-model="owner" :value="true" />
-							{{ $t('owner') }}
-						</label>
-						<label class="toggle">
-							<v-toggle v-model="createdOn" :value="true" />
-							{{ $t('created_on') }}
-						</label>
-						<label class="toggle">
-							<v-toggle v-model="modifiedBy" />
-							{{ $t('modified_by') }}
-						</label>
-						<label class="toggle">
-							<v-toggle v-model="modifiedOn" />
-							{{ $t('modified_on') }}
-						</label>
+						<v-switch v-model="status" :label="$t('status')" />
+						<v-switch v-model="sort" :label="$t('sort')" />
+						<v-switch v-model="owner" :label="$t('owner')" />
+						<v-switch v-model="createdOn" :label="$t('created_on')" />
+						<v-switch v-model="modifiedBy" :label="$t('modified_by')" />
+						<v-switch v-model="modifiedOn" :label="$t('modified_on')" />
 					</div>
 				</v-details>
 			</v-prompt>
@@ -742,21 +724,8 @@ export default {
 
 	.advanced-form {
 		display: grid;
-		grid-gap: 30px 20px;
+		grid-gap: 8px 20px;
 		grid-template-columns: 1fr 1fr;
-
-		.toggle {
-			display: flex;
-			align-items: center;
-			text-transform: capitalize;
-			font-size: 1rem;
-			cursor: pointer;
-			width: max-content;
-
-			> *:first-child {
-				margin-right: 10px;
-			}
-		}
 	}
 }
 </style>

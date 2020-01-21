@@ -1,6 +1,6 @@
-import store from "./store";
-import { PUSH_NOTIFICATION } from "./store/mutation-types";
-import shortid from "shortid";
+import store from './store';
+import { PUSH_NOTIFICATION } from './store/mutation-types';
+import shortid from 'shortid';
 
 const defaultOptions = {
 	delay: 5000

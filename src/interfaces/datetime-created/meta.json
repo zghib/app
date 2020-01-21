@@ -6,7 +6,7 @@
   "options": {
     "showRelative": {
       "name": "$t:relative",
-      "interface": "toggle",
+      "interface": "switch",
       "comment": "$t:relative_comment",
       "value": false
     }

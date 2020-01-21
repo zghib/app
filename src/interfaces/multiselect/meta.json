@@ -56,7 +56,7 @@
     "wrapWithDelimiter": {
       "name": "$t:wrap",
       "comment": "$t:wrap_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "formatting": {

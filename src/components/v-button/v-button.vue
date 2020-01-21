@@ -149,11 +149,18 @@ export default createComponent({
 	min-width: 78px;
 	height: var(--_v-button-height);
 
+	transition: var(--fast) var(--transition);
+	transition-property: background-color border;
+
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+
 	&:focus {
 		outline: 0;
 	}
 
-	&:not(.loading):hover {
+	&:not(.loading):not(:disabled):hover {
 		color: var(--_v-button-hover-color);
 		background-color: var(--_v-button-hover-background-color);
 		border: var(--input-border-width) solid var(--_v-button-hover-background-color);
@@ -168,17 +175,11 @@ export default createComponent({
 		border-radius: calc(var(--button-height) / 2);
 	}
 
-	&.icon {
-		min-width: 0;
-		padding: 0;
-		width: var(--_v-button-height);
-	}
-
 	&.outlined {
 		background-color: transparent;
 	}
 
-	&:not(.loading):disabled {
+	&:disabled {
 		background-color: var(--button-primary-background-color-disabled);
 		border: var(--input-border-width) solid var(--button-primary-background-color-disabled);
 		color: var(--button-primary-text-color-disabled);
@@ -193,24 +194,30 @@ export default createComponent({
 	}
 
 	&.small {
+		--_v-button-height: 36px;
 		font-size: 14px;
 		padding: 0 16px;
 		min-width: 64px;
-		--_v-button-height: 36px;
 	}
 
 	&.large {
+		--_v-button-height: var(--button-height);
 		font-size: var(--button-font-size);
 		padding: 0 23px;
 		min-width: 92px;
-		--_v-button-height: var(--button-height);
 	}
 
 	&.x-large {
+		--_v-button-height: 58px;
 		font-size: 18px;
 		padding: 0 32px;
 		min-width: 120px;
-		--_v-button-height: 58px;
+	}
+
+	&.icon {
+		min-width: 0;
+		padding: 0;
+		width: var(--_v-button-height);
 	}
 }
 </style>

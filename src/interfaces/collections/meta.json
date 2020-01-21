@@ -17,7 +17,7 @@
     "include_system": {
       "name": "$t:include_system",
       "comment": "$t:include_system_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "type": "BOOLEAN",
       "default": false
     }

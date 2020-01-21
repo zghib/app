@@ -1,6 +1,6 @@
 <template>
 	<form @submit.prevent>
-		<label class="type-label">{{ $t("layouts.tabular.fields") }}</label>
+		<label class="type-label">{{ $t('layouts.tabular.fields') }}</label>
 		<draggable v-model="sortList" direction="vertical" @end="sort">
 			<div
 				v-for="field in sortList"
@@ -13,13 +13,13 @@
 					class="checkbox"
 					:label="field.name"
 					:value="field.field"
-					:checked="fieldsInUse.includes(field.field)"
+					:inputValue="fieldsInUse.includes(field.field)"
 					@change="toggleField(field.field)"
 				></v-checkbox>
 				<v-icon class="handle" name="drag_handle" />
 			</div>
 		</draggable>
-		<label for="spacing" class="type-label">{{ $t("spacing") }}</label>
+		<label for="spacing" class="type-label">{{ $t('spacing') }}</label>
 		<v-select
 			id="spacing"
 			:value="viewOptions.spacing || 'comfortable'"
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/layout";
+import mixin from '@directus/extension-toolkit/mixins/layout';
 
 export default {
 	mixins: [mixin],
@@ -49,14 +49,14 @@ export default {
 		fieldsInUse() {
 			if (!this.viewQuery || !this.viewQuery.fields)
 				return Object.values(this.fields)
-					.filter(field => field.primary_key === false || field.primary_key === "0")
+					.filter(field => field.primary_key === false || field.primary_key === '0')
 					.filter(field => field.hidden_browse !== true)
 					.slice(0, 4)
 					.map(field => field.field);
 
-			if (this.viewQuery.fields === "") return [];
+			if (this.viewQuery.fields === '') return [];
 
-			return this.viewQuery.fields.split(",").filter(field => this.fields[field]);
+			return this.viewQuery.fields.split(',').filter(field => this.fields[field]);
 		}
 	},
 	watch: {
@@ -69,7 +69,7 @@ export default {
 	},
 	methods: {
 		setSpacing(value) {
-			this.$emit("options", {
+			this.$emit('options', {
 				spacing: value
 			});
 		},
@@ -87,12 +87,12 @@ export default {
 				.filter(fieldID => fieldsInUse.includes(fieldID))
 				.join();
 
-			this.$emit("query", {
+			this.$emit('query', {
 				fields
 			});
 		},
 		sort() {
-			this.$emit("query", {
+			this.$emit('query', {
 				...this.viewQuery,
 				fields: this.sortList
 					.map(obj => obj.field)

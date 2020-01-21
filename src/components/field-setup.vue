@@ -113,17 +113,13 @@
 				</label>
 
 				<div class="toggles">
-					<label class="toggle">
-						<v-toggle
-							v-model="required"
-							:disabled="fieldInfo.primary_key || type === 'alias'"
-						/>
-						{{ $t('required') }}
-					</label>
-					<label class="toggle">
-						<v-toggle v-model="readonly" />
-						{{ $t('readonly') }}
-					</label>
+					<v-switch
+						v-model="required"
+						:disabled="fieldInfo.primary_key || type === 'alias'"
+						:label="$t('required')"
+					/>
+
+					<v-switch v-model="readonly" :label="$t('readonly')" />
 				</div>
 
 				<details class="advanced" :open="existing">
@@ -185,30 +181,17 @@
 							<span class="type-label">{{ $t('validation') }}</span>
 							<v-input v-model="validation" type="text" :placeholder="$t('regex')" />
 						</label>
-						<label
-							v-tooltip="primaryKeyTooltip"
-							class="toggle"
-							:class="{ disabled: primaryKeyDisabled }"
-						>
-							<v-toggle v-model="primary_key" :disabled="primaryKeyDisabled" />
-							{{ $t('primary_key') }}
-						</label>
-						<label class="toggle">
-							<v-toggle v-model="unique" />
-							{{ $t('unique') }}
-						</label>
-						<label class="toggle">
-							<v-toggle v-model="hidden_detail" />
-							{{ $t('hidden_detail') }}
-						</label>
-						<label class="toggle">
-							<v-toggle v-model="hidden_browse" />
-							{{ $t('hidden_browse') }}
-						</label>
-						<label v-if="isNumeric" class="toggle">
-							<v-toggle v-model="signed" />
-							{{ $t('signed') }}
-						</label>
+
+						<v-switch
+							v-model="primary_key"
+							:disabled="primaryKeyDisabled"
+							:label="$t('primary_key')"
+						/>
+						<v-switch v-model="unique" :label="$t('unique')" />
+						<v-switch v-model="hidden_detail" :label="$t('hidden_detail')" />
+						<v-switch v-model="hidden_browse" :label="$t('hidden_browse')" />
+						<v-switch v-model="signed" :label="$t('signed')" />
+
 						<label class="translation">
 							<span class="type-label">{{ $t('translation') }}</span>
 							<v-ext-input
@@ -471,8 +454,7 @@
 					id="createM2Mjunction"
 					value="m2mjunction"
 					:label="$t('auto_generate')"
-					:checked="createM2Mjunction"
-					@change="createM2Mjunction = !createM2Mjunction"
+					v-model="createM2Mjunction"
 				/>
 
 				<v-icon name="arrow_backward" />
@@ -734,7 +716,7 @@ export default {
 						'text-input',
 						'textarea',
 						'wysiwyg',
-						'toggle',
+						'switch',
 						'datetime',
 						'calendar',
 						'file',

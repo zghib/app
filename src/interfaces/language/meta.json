@@ -10,7 +10,7 @@
     "limit": {
       "name": "$t:limit",
       "comment": "$t:limit_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": false
     }
   }

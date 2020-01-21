@@ -7,7 +7,7 @@
     "display24HourClock": {
       "name": "$t:24hour",
       "comment": "$t:24hour_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     }
   }

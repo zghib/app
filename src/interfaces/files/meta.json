@@ -30,13 +30,13 @@
     "allow_create": {
       "name": "$t:allow_create",
       "comment": "$t:allow_create_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "allow_select": {
       "name": "$t:allow_select",
       "comment": "$t:allow_select_comment",
-      "interface": "toggle",
+      "interface": "switch",
       "default": true
     },
     "accept": {

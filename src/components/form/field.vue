@@ -33,12 +33,12 @@
 					sup
 				/>
 			</span>
-			<v-toggle
+			<v-switch
 				v-if="batchMode"
 				v-tooltip="$t('batch_edit_field')"
 				class="batch-toggle"
-				:value="!blocked"
-				@input="$emit(blocked ? 'activate' : 'deactivate', field.field)"
+				:inputValue="!blocked"
+				@change="$emit(blocked ? 'activate' : 'deactivate', field.field)"
 			/>
 		</div>
 
@@ -225,6 +225,8 @@ export default {
 
 .type-label {
 	margin-bottom: var(--input-label-margin);
+	display: flex;
+	align-items: center;
 }
 
 .required {
@@ -250,11 +252,5 @@ export default {
 		vertical-align: -2px;
 		opacity: 0;
 	}
-}
-
-.batch-toggle {
-	display: inline-block;
-	vertical-align: -5px;
-	transform: translate(-4px, 2px);
 }
 </style>
