@@ -6,6 +6,7 @@
 		:placeholder="$t('interfaces.user-roles.choose_role')"
 		:options="selectOptions"
 		:value="primaryKey"
+		:disabled="readonly"
 		@input="emitValue"
 	></v-select>
 </template>
