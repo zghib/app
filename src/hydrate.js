@@ -1,13 +1,13 @@
-import axios from "axios";
-import store from "./store/";
-import { loadLanguageAsync } from "./lang/";
-import { STORE_HYDRATED, HYDRATING_FAILED } from "./store/mutation-types";
-import startIdleTracking from "./idle";
-import { version } from "../package.json";
+import axios from 'axios';
+import store from './store/';
+import { loadLanguageAsync } from './lang/';
+import { STORE_HYDRATED, HYDRATING_FAILED } from './store/mutation-types';
+import startIdleTracking from './idle';
+import { version } from '../package.json';
 
 export default async function hydrateStore() {
 	try {
-		await Promise.all([store.dispatch("getProjects"), store.dispatch("getCurrentUser")]);
+		await Promise.all([store.dispatch('getProjects'), store.dispatch('getCurrentUser')]);
 
 		// getAllExtensions action will translate some values. We have to make sure to fetch the locales
 		// before fetching the extensions
@@ -16,22 +16,24 @@ export default async function hydrateStore() {
 
 		if (userLocale) {
 			await loadLanguageAsync(userLocale);
-		} else {
+		} else if (defaultLocale) {
 			await loadLanguageAsync(defaultLocale);
+		} else {
+			await loadLanguageAsync(window.navigator.userLanguage || window.navigator.language);
 		}
 
 		await Promise.all([
-			store.dispatch("getAllExtensions"),
-			store.dispatch("getCollections"),
-			store.dispatch("getSettings"),
-			store.dispatch("getBookmarks"),
-			store.dispatch("getUsers"),
-			store.dispatch("getRelations"),
-			store.dispatch("getServerInfo")
+			store.dispatch('getAllExtensions'),
+			store.dispatch('getCollections'),
+			store.dispatch('getSettings'),
+			store.dispatch('getBookmarks'),
+			store.dispatch('getUsers'),
+			store.dispatch('getRelations'),
+			store.dispatch('getServerInfo')
 		]);
 
 		// getPermissions relies on collection info to exist
-		await store.dispatch("getPermissions");
+		await store.dispatch('getPermissions');
 
 		startIdleTracking(store);
 
@@ -40,8 +42,8 @@ export default async function hydrateStore() {
 
 		if (telemetryAllowed && isAdmin && navigator.onLine) {
 			try {
-				await axios.post("https://telemetry.directus.io/count", {
-					type: "app",
+				await axios.post('https://telemetry.directus.io/count', {
+					type: 'app',
 					url: window.location.origin,
 					version
 				});
