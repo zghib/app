@@ -4,7 +4,7 @@
 		type="text"
 		class="slug"
 		:value="value"
-		:readonly="readonly"
+		:readonly="disabled"
 		:placeholder="options.placeholder"
 		:maxlength="length"
 		@input="updateValue"
@@ -23,6 +23,13 @@ export default {
 			const { mirroredField } = this.options;
 
 			return this.values[mirroredField];
+		},
+		disabled() {
+			if (this.readonly === true) return true;
+
+			if (this.options.onlyOnCreate === true && this.newItem === false) return true;
+
+			return false;
 		}
 	},
 	watch: {
@@ -32,6 +39,8 @@ export default {
 	},
 	methods: {
 		updateValue(value) {
+			if (this.disabled) return;
+
 			this.$emit(
 				'input',
 				slug(value, {
