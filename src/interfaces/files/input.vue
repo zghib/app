@@ -300,7 +300,7 @@ export default {
 
 	watch: {
 		items(value, oldValue) {
-			if (oldValue === null) return;
+			if (oldValue === null || _.isEqual(value, oldValue)) return;
 			this.emitValue(value);
 		}
 	},
