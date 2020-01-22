@@ -21,6 +21,7 @@
 						:type="fields[title].type"
 						:options="fields[title].options"
 						:value="item[title]"
+						:values="item"
 						:relation="fields[title].relation"
 					/>
 				</template>
@@ -33,6 +34,7 @@
 						:type="fields[subtitle].type"
 						:options="fields[subtitle].options"
 						:value="item[subtitle]"
+						:values="item"
 						:relation="fields[subtitle].relation"
 					/>
 				</template>

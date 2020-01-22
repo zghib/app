@@ -62,6 +62,7 @@
 								:datatype="field.datatype"
 								:options="field.options"
 								:value="item[junctionRelatedKey][field.field]"
+								:values="item[junctionRelatedKey]"
 							/>
 						</div>
 						<button

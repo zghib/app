@@ -112,6 +112,7 @@
 							:datatype="fieldInfo.datatype"
 							:options="fieldInfo.options"
 							:value="item[fieldInfo.field]"
+							:values="getItemValueById(item.id)"
 						/>
 					</span>
 				</label>
@@ -132,6 +133,7 @@
 <script>
 import formatFilters from '@/helpers/format-filters';
 import shortid from 'shortid';
+import getFieldsFromTemplate from '@/helpers/get-fields-from-template';
 
 export default {
 	name: 'ItemSelect',
@@ -311,6 +313,28 @@ export default {
 			// No matter what, always fetch the primary key as that's used for the selection
 			params.fields.push(this.primaryKeyField);
 
+			// ISSUE#1993 Preview Field URL Doesn't Contain Variable in List
+			const fieldsData = this.fields.map(fieldName => {
+				return this.$store.state.collections[this.collection].fields[fieldName];
+			});
+			const aliasFields = Object.values(fieldsData).filter(
+				field => field.type.toLowerCase() === 'alias'
+			);
+			if (aliasFields.length > 0) {
+				_.forEach(aliasFields, function(value) {
+					if (value.options.url_template.match(/{{(.*)}}/g)) {
+						const templateFields = getFieldsFromTemplate(value.options.url_template)[0];
+						const field = templateFields.split('.')[0];
+						if (
+							!params.fields.includes(`${field}.*`) &&
+							!params.fields.includes(field)
+						) {
+							params.fields.push(`${field}.*`);
+						}
+					}
+				});
+			}
+
 			this.$api
 				.getItems(this.collection, params)
 				.then(res => res.data)
@@ -367,6 +391,10 @@ export default {
 				offset: offset,
 				replace: false
 			});
+		},
+		getItemValueById(id) {
+			const value = this.items.filter(item => item.id == id)[0];
+			return Object.assign({}, value);
 		}
 	}
 };

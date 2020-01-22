@@ -70,6 +70,7 @@
 										? null
 										: item[field.field]
 								"
+								:values="item"
 							/>
 						</div>
 						<button
