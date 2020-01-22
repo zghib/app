@@ -15,7 +15,7 @@
 			<div v-if="selectable" class="select cell">
 				<v-checkbox
 					id="select-all"
-					:checked="allSelected"
+					:inputValue="allSelected"
 					name="select-all"
 					value="all"
 					@change="selectAll"
@@ -108,8 +108,8 @@
 						<div v-if="selectable" class="cell select" @click.stop>
 							<v-checkbox
 								:id="'check-' + row[primaryKeyField]"
-								:value="row[primaryKeyField]"
-								:checked="selection.includes(row[primaryKeyField])"
+								:value="`${row[primaryKeyField]}`"
+								:inputValue="selection.includes(row[primaryKeyField])"
 								@change="toggleCheckbox(row[primaryKeyField])"
 							/>
 						</div>
@@ -166,8 +166,8 @@
 						<div v-if="selectable" class="select" @click.stop>
 							<v-checkbox
 								:id="'check-' + row[primaryKeyField]"
-								:value="row[primaryKeyField]"
-								:checked="selection.includes(row[primaryKeyField])"
+								:value="`${row[primaryKeyField]}`"
+								:inputValue="selection.includes(row[primaryKeyField])"
 								@change="toggleCheckbox(row[primaryKeyField])"
 							/>
 						</div>
