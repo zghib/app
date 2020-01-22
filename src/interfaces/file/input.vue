@@ -145,7 +145,9 @@ export default {
 			const size = this.width === 'full' ? 'large' : 'medium';
 			const fit = this.options.crop ? 'crop' : 'contain';
 
-			return `/${this.currentProjectKey}/assets/${this.image.private_hash}?key=directus-${size}-${fit}`;
+			const source = this.$store.state.settings.values.asset_url_naming;
+
+			return `/${this.currentProjectKey}/assets/${this.image[source]}?key=directus-${size}-${fit}`;
 		},
 		isImage() {
 			return this.image.type && this.image.type.startsWith('image');
