@@ -43,18 +43,6 @@ describe('Icon', () => {
 		expect((component.vm as any).colorStyle).toBe('papayawhip');
 	});
 
-	it('Converts CSS vars correctly', () => {
-		const component = mount(VIcon, {
-			localVue,
-			propsData: {
-				color: '--blue-grey',
-				name: 'person'
-			}
-		});
-
-		expect((component.vm as any).colorStyle).toBe('var(--blue-grey)');
-	});
-
 	it('Passes custom size as px value', () => {
 		const component = mount(VIcon, {
 			localVue,

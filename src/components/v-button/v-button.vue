@@ -7,8 +7,12 @@
 		:disabled="disabled"
 		@click="!loading ? $emit('click') : null"
 	>
-		<slot v-if="loading" name="loading">Loading...</slot>
-		<slot v-else />
+		<span class="content" :class="{ invisible: loading }"><slot /></span>
+		<div class="spinner">
+			<slot v-if="loading" name="loading">
+				<v-spinner :x-small="xSmall" :small="small" />
+			</slot>
+		</div>
 	</button>
 </template>
 
@@ -84,7 +88,28 @@ export default createComponent({
 		}
 	},
 	setup(props) {
-		const styles = useStyles();
+		interface Styles {
+			'--_v-button-color': string;
+			'--_v-button-background-color': string;
+			'--_v-button-hover-color': string;
+			'--_v-button-hover-background-color': string;
+			width?: string;
+		}
+
+		const styles = computed<Styles>(() => {
+			let styles: Styles = {
+				'--_v-button-color': parseCSSVar(props.color),
+				'--_v-button-background-color': parseCSSVar(props.backgroundColor),
+				'--_v-button-hover-color': parseCSSVar(props.hoverColor),
+				'--_v-button-hover-background-color': parseCSSVar(props.hoverBackgroundColor)
+			};
+
+			if (props.width && +props.width > 0) {
+				styles.width = props.width + 'px';
+			}
+
+			return styles;
+		});
 
 		const sizeClass = computed<string | null>(() => {
 			if (props.xSmall) return 'x-small';
@@ -95,40 +120,6 @@ export default createComponent({
 		});
 
 		return { styles, sizeClass };
-
-		function useStyles() {
-			const _color = computed<string>(() => parseCSSVar(props.color));
-			const _backgroundColor = computed<string>(() => parseCSSVar(props.backgroundColor));
-			const _hoverColor = computed<string>(() => parseCSSVar(props.hoverColor));
-			const _hoverBackgroundColor = computed<string>(() =>
-				parseCSSVar(props.hoverBackgroundColor)
-			);
-
-			interface Styles {
-				'--_v-button-color': string;
-				'--_v-button-background-color': string;
-				'--_v-button-hover-color': string;
-				'--_v-button-hover-background-color': string;
-				width?: string;
-			}
-
-			const styles = computed<Styles>(() => {
-				let styles: Styles = {
-					'--_v-button-color': _color.value,
-					'--_v-button-background-color': _backgroundColor.value,
-					'--_v-button-hover-color': _hoverColor.value,
-					'--_v-button-hover-background-color': _hoverBackgroundColor.value
-				};
-
-				if (props.width && +props.width > 0) {
-					styles.width = props.width + 'px';
-				}
-
-				return styles;
-			});
-
-			return styles;
-		}
 	}
 });
 </script>
@@ -152,9 +143,7 @@ export default createComponent({
 	transition: var(--fast) var(--transition);
 	transition-property: background-color border;
 
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+	position: relative;
 
 	&:focus {
 		outline: 0;
@@ -218,6 +207,30 @@ export default createComponent({
 		min-width: 0;
 		padding: 0;
 		width: var(--_v-button-height);
+	}
+
+	.content,
+	.spinner {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		max-width: 100%;
+	}
+
+	.content {
+		position: relative;
+		top: -1;
+
+		&.invisible {
+			opacity: 0;
+		}
+	}
+
+	.spinner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
 	}
 }
 </style>

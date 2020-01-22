@@ -27,12 +27,7 @@
 			:to="to || null"
 			@click="!to ? $emit('click', $event) : null"
 		>
-			<v-spinner
-				v-if="loading"
-				:size="24"
-				line-fg-color="white"
-				line-bg-color="transparent"
-			/>
+			<v-spinner v-if="loading" :size="24" color="white" background-color="transparent" />
 			<v-icon v-else :color="`--${iconColor}`" :name="icon" />
 		</component>
 	</div>

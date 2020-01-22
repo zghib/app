@@ -1,5 +1,4 @@
 import Vue from 'vue';
-import VSpinner from 'vue-simple-spinner';
 
 import InvisibleLabel from './components/invisible-label.vue';
 import Loader from './components/loader.vue';
@@ -10,37 +9,33 @@ import VNotice from './components/notice.vue';
 import VTable from './components/table/table.vue';
 import VTimeAgo from './components/time-ago.vue';
 
-// Extensions
 import VExtInput from './components/extension/interface/input/input.vue';
 import VExtDisplay from './components/extension/interface/display/display.vue';
 import VExtLayout from './components/extension/layout/layout/layout.vue';
 import VExtLayoutOptions from './components/extension/layout/layout-options/layout-options.vue';
 import VExtModule from './components/extension/module/module.vue';
 
-// Item listing
 import VItems from './components/items.vue';
-
-// Edit form
 import VForm from './components/form/form.vue';
 
-// Form inputs
 import VButton from './components/v-button/';
 import VCheckbox from './components/v-checkbox/';
+import VIcon from './components/v-icon/';
+import VSpinner from './components/v-spinner/';
+import VSwitch from './components/v-switch/';
+
 import VInput from './components/form-inputs/input.vue';
 import VRadio from './components/form-inputs/radio.vue';
 import VSelect from './components/form-inputs/select.vue';
 import VSimpleSelect from './components/form-inputs/simple-select.vue';
 import VSlider from './components/form-inputs/slider.vue';
 import VTextarea from './components/form-inputs/textarea.vue';
-import VSwitch from './components/v-switch/';
 
-// Modals
 import VAlert from './components/modals/alert.vue';
 import VConfirm from './components/modals/confirm.vue';
 import VModal from './components/modals/modal.vue';
 import VPrompt from './components/modals/prompt.vue';
 
-// Page Chrome
 import VHeader from './components/header/header.vue';
 import VHeaderButton from './components/header/header-button.vue';
 import VInfoSidebar from './components/sidebars/info-sidebar.vue';
@@ -50,7 +45,6 @@ import VUpload from './components/upload.vue';
 import VProgressRing from './components/progress-ring.vue';
 import VContextualMenu from './components/contextual-menu.vue';
 
-import VIcon from './components/v-icon/';
 import VTag from './components/tag.vue';
 
 import VItemSelect from './components/item-select/item-select.vue';

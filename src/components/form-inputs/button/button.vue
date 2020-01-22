@@ -9,9 +9,9 @@
 		<v-spinner
 			v-if="loading"
 			:line-size="2"
-			size="13"
-			line-fg-color="var(--blue-grey-300)"
-			line-bg-color="#fff"
+			:size="13"
+			color="--blue-grey-300"
+			background-color="#fff"
 			class="spinner"
 		/>
 		<slot />

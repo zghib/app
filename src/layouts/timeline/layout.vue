@@ -2,14 +2,14 @@
 	<div ref="timeline" class="timeline">
 		<Day v-for="day in days" :key="day.id" :date="day.date" :events="day.events" />
 		<div v-if="lazyLoading" class="lazy-loader">
-			<v-spinner line-fg-color="var(--blue-grey-300)" line-bg-color="var(--blue-grey-200)" />
+			<v-spinner color="--blue-grey-300" background-color="--blue-grey-200" />
 		</div>
 	</div>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/layout";
-import Day from "./Day.vue";
+import mixin from '@directus/extension-toolkit/mixins/layout';
+import Day from './Day.vue';
 
 export default {
 	components: {
@@ -19,34 +19,34 @@ export default {
 	data() {
 		return {
 			actionColor: {
-				create: "success",
-				update: "success",
-				authenticate: "blue-grey-600",
-				delete: "warning",
-				upload: "accent"
+				create: 'success',
+				update: 'success',
+				authenticate: 'blue-grey-600',
+				delete: 'warning',
+				upload: 'accent'
 			},
 			monthNames: [
-				"january",
-				"february",
-				"march",
-				"april",
-				"may",
-				"june",
-				"july",
-				"august",
-				"september",
-				"october",
-				"november",
-				"december"
+				'january',
+				'february',
+				'march',
+				'april',
+				'may',
+				'june',
+				'july',
+				'august',
+				'september',
+				'october',
+				'november',
+				'december'
 			],
 			weekNames: [
-				"monday",
-				"tuesday",
-				"wednesday",
-				"thursday",
-				"friday",
-				"saturday",
-				"sunday"
+				'monday',
+				'tuesday',
+				'wednesday',
+				'thursday',
+				'friday',
+				'saturday',
+				'sunday'
 			]
 		};
 	},
@@ -59,7 +59,7 @@ export default {
 
 				if (!this.viewOptions.date) return;
 
-				var date = new Date(item[this.viewOptions.date].substr(0, 10) + "T00:00:00");
+				var date = new Date(item[this.viewOptions.date].substr(0, 10) + 'T00:00:00');
 				var existingDay = _.find(days, { date: date });
 
 				let color = null;
@@ -68,7 +68,7 @@ export default {
 
 					if (
 						this.fields[this.viewOptions.color] &&
-						this.fields[this.viewOptions.color].field == "action"
+						this.fields[this.viewOptions.color].field == 'action'
 					) {
 						color = this.actionColor[color];
 					}
@@ -100,14 +100,14 @@ export default {
 		}
 	},
 	created() {
-		document.addEventListener("scroll", this.scroll);
+		document.addEventListener('scroll', this.scroll);
 
-		this.$emit("query", {
-			sort: "-" + this.viewOptions.date
+		this.$emit('query', {
+			sort: '-' + this.viewOptions.date
 		});
 	},
 	destroyed() {
-		document.removeEventListener("scroll", this.scroll);
+		document.removeEventListener('scroll', this.scroll);
 	},
 	methods: {
 		scroll(event) {
@@ -116,7 +116,7 @@ export default {
 				timeline.offsetTop + timeline.clientHeight - window.innerHeight - event.pageY;
 
 			if (toBottom < 100 && !this.lazyLoading) {
-				this.$emit("next-page");
+				this.$emit('next-page');
 			}
 		}
 	}

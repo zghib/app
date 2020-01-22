@@ -12,6 +12,7 @@
 <script lang="ts">
 import { createComponent, reactive, computed } from '@vue/composition-api';
 import getSizeClass from '@/utils/get-size-class';
+import parseCSSVar from '@/utils/parse-css-var';
 import CustomIconBox from './custom-icons/box.vue';
 
 const customIcons: string[] = ['box'];
@@ -73,7 +74,7 @@ export default createComponent({
 		});
 
 		const colorStyle = computed<string>(() => {
-			return props.color.startsWith('--') ? `var(${props.color})` : props.color;
+			return parseCSSVar(props.color);
 		});
 
 		const customIconName = computed<string | null>(() => {

@@ -1,15 +1,10 @@
 <template>
-	<v-spinner
-		class="v-ext-display-loading"
-		size="20"
-		line-fg-color="var(--input-border-color-hover)"
-		line-bg-color="var(--input-border-color)"
-	/>
+	<v-spinner class="v-ext-display-loading" size="20" color="--input-border-color-hover" />
 </template>
 
 <script>
 export default {
-	name: "VExtDisplayLoading"
+	name: 'VExtDisplayLoading'
 };
 </script>
 

@@ -43,6 +43,20 @@ The only event that can be added to the button is the `click` event:
 <v-button @click="sayHi">Hello!</v-button>
 ```
 
+## Loading
+
+The button has a loading state that can be enabled with the `loading` prop. By default, the button will render a `v-spinner`. You can override what's being shown during the loading state by using the `#loading` slot:
+
+```html
+<v-button>
+	<template #loading>
+		... Almost done ...
+	</template>
+</v-button>
+```
+
+The loading slot is rendered _on top_ of the content that was there before. Make sure that your loading content doesn't exceed the size of the default state content. This restriction is put in place to prevent jumps when going from and to the loading state.
+
 ## Props
 
 | Prop                     | Description                                                               | Default                                   |

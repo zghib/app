@@ -206,14 +206,6 @@ export const withIcon = () => ({
 				:large="iconSize === 'large'"
 				:x-large="iconSize === 'xLarge'"
 			/>
-			<v-icon
-				slot="loading"
-				name="sync"
-				:x-small="iconSize === 'xSmall'"
-				:small="iconSize === 'small'"
-				:large="iconSize === 'large'"
-				:x-large="iconSize === 'xLarge'"
-			/>
 		</v-button>
 	`
 });
@@ -270,3 +262,18 @@ export const colors = () => `
 	</v-button>
 </div>
 `;
+
+export const customLoading = () => ({
+	props: {
+		loading: {
+			default: boolean('Loading', true)
+		}
+	},
+	template: `
+	<v-button :loading="loading">
+		Hello, World!
+		<template #loading>
+			..Loading..
+		</template>
+	</v-button>`
+});

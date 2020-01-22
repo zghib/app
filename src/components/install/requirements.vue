@@ -1,7 +1,7 @@
 <template>
 	<div class="install-requirements">
 		<template v-if="fetchingRequirements">
-			<v-spinner class="spinner" line-fg-color="#263238" />
+			<v-spinner class="spinner" color="#263238" />
 		</template>
 		<template v-else-if="error">
 			<v-notice color="danger" icon="error">
@@ -22,7 +22,7 @@
 						href="https://docs.directus.io/advanced/requirements.html"
 						target="__blank"
 					>
-						{{ $t("why") }}
+						{{ $t('why') }}
 					</a>
 				</div>
 			</v-notice>
@@ -31,12 +31,12 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import axios from "axios";
-import { satisfies } from "semver";
+import { mapState } from 'vuex';
+import axios from 'axios';
+import { satisfies } from 'semver';
 
 export default {
-	name: "InstallRequirements",
+	name: 'InstallRequirements',
 	props: {
 		superAdminToken: {
 			type: String,
@@ -53,23 +53,23 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["apiRootPath"]),
+		...mapState(['apiRootPath']),
 		server() {
 			if (this.fetchingRequirements || this.serverInfo === null) return;
 
 			return {
-				key: "server",
-				success: this.serverInfo.server.type.toLowerCase().includes("apache"),
+				key: 'server',
+				success: this.serverInfo.server.type.toLowerCase().includes('apache'),
 				value: this.serverInfo.server.type
 			};
 		},
 		phpVersion() {
 			if (this.fetchingRequirements || this.serverInfo === null) return;
-			const version = this.serverInfo.php.version.split("-")[0];
-			const minimumVersion = "7.1.0";
+			const version = this.serverInfo.php.version.split('-')[0];
+			const minimumVersion = '7.1.0';
 
 			return {
-				key: "phpVersion",
+				key: 'phpVersion',
 				success: satisfies(version, `>=${minimumVersion}`),
 				value: `PHP ${version}`
 			};
@@ -83,18 +83,18 @@ export default {
 
 			const allEnabled = extensions.every(e => e.enabled);
 
-			let value = this.$t("php_extensions");
+			let value = this.$t('php_extensions');
 
 			if (allEnabled === false) {
 				value +=
-					": " +
-					this.$t("missing_value", {
+					': ' +
+					this.$t('missing_value', {
 						value: extensions.filter(e => e.enabled === false).map(e => e.key)
 					});
 			}
 
 			return {
-				key: "phpExtensions",
+				key: 'phpExtensions',
 				success: allEnabled,
 				value: value
 			};
@@ -109,18 +109,18 @@ export default {
 			const failedFolders = permissions.filter(p => +p.permission[1] !== 7);
 			const success = failedFolders.length === 0;
 
-			let value = this.$t("write_access");
+			let value = this.$t('write_access');
 
 			if (success === false) {
 				value +=
-					": " +
-					this.$t("value_not_writeable", {
-						value: failedFolders.map(f => `/${f.key}`).join(", ")
+					': ' +
+					this.$t('value_not_writeable', {
+						value: failedFolders.map(f => `/${f.key}`).join(', ')
 					});
 			}
 
 			return {
-				key: "permissions",
+				key: 'permissions',
 				success: failedFolders.length === 0,
 				value: value
 			};
@@ -130,9 +130,9 @@ export default {
 				return;
 
 			return {
-				key: "directusVersion",
-				success: "v" + this.serverInfo.directus === this.lastTag,
-				value: this.$t("directus_version") + ": v" + this.serverInfo.directus
+				key: 'directusVersion',
+				success: 'v' + this.serverInfo.directus === this.lastTag,
+				value: this.$t('directus_version') + ': v' + this.serverInfo.directus
 			};
 		}
 	},
@@ -145,7 +145,7 @@ export default {
 			this.error = null;
 
 			try {
-				const serverInfoResponse = await axios.get(this.apiRootPath + "server/info", {
+				const serverInfoResponse = await axios.get(this.apiRootPath + 'server/info', {
 					params: {
 						super_admin_token: this.superAdminToken
 					}
@@ -155,7 +155,7 @@ export default {
 				const code = error.response?.data?.error?.code;
 
 				if (+code === 3) {
-					this.error = this.$t("wrong_super_admin_password");
+					this.error = this.$t('wrong_super_admin_password');
 				} else {
 					this.error = error.message;
 				}
@@ -163,7 +163,7 @@ export default {
 
 			try {
 				const githubVersionResponse = await axios.get(
-					"https://api.github.com/repos/directus/directus/tags"
+					'https://api.github.com/repos/directus/directus/tags'
 				);
 				this.lastTag = githubVersionResponse.data[0].name;
 			} catch {

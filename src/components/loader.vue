@@ -3,12 +3,7 @@
 		<div v-show="active" :class="area" :style="{ zIndex }" class="loader">
 			<div :class="{ transparent }" class="overlay" />
 			<transition name="fade">
-				<v-spinner
-					v-show="spinnerActive"
-					line-fg-color="var(--loading-background-color-accent)"
-					line-bg-color="var(--loading-background-color)"
-					class="spinner"
-				/>
+				<v-spinner v-show="spinnerActive" class="spinner" />
 			</transition>
 		</div>
 	</transition>
@@ -16,13 +11,13 @@
 
 <script>
 export default {
-	name: "Loader",
+	name: 'Loader',
 	props: {
 		area: {
 			type: String,
 			default: null,
 			validator(val) {
-				const validAreas = ["content", "full-page"];
+				const validAreas = ['content', 'full-page'];
 				return validAreas.includes(val);
 			}
 		},

@@ -191,10 +191,7 @@
 		</div>
 		<transition name="fade">
 			<div v-if="lazyLoading" class="lazy-loader">
-				<v-spinner
-					line-fg-color="var(--blue-grey-300)"
-					line-bg-color="var(--blue-grey-200)"
-				/>
+				<v-spinner color="--blue-grey-300" background-color="--blue-grey-200" />
 			</div>
 		</transition>
 	</div>

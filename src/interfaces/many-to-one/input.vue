@@ -3,7 +3,7 @@
 		<div v-if="relationSetup === false" class="notice">
 			<p>
 				<v-icon name="warning" />
-				{{ $t("interfaces.many-to-many.relation_not_setup") }}
+				{{ $t('interfaces.many-to-many.relation_not_setup') }}
 			</p>
 		</div>
 
@@ -28,8 +28,8 @@
 
 			<v-spinner
 				v-show="loading"
-				line-fg-color="var(--blue-grey-300)"
-				line-bg-color="var(--blue-grey-200)"
+				color="--blue-grey-300"
+				background-color="--blue-grey-200"
 				class="spinner"
 			></v-spinner>
 
@@ -49,11 +49,11 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import getFieldsFromTemplate from "@/helpers/get-fields-from-template";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import getFieldsFromTemplate from '@/helpers/get-fields-from-template';
 
 export default {
-	name: "InterfaceManyToOne",
+	name: 'InterfaceManyToOne',
 	mixins: [mixin],
 	data() {
 		return {
@@ -105,7 +105,7 @@ export default {
 				return getFieldsFromTemplate(this.options.template);
 			}
 
-			return visibleFields.split(",").map(f => f.trim());
+			return visibleFields.split(',').map(f => f.trim());
 		},
 
 		// Returns an object { [primaryKey]: [label] } for the items that can be passed on to a v-select
@@ -152,8 +152,8 @@ export default {
 			this.loading = true;
 
 			const params = {
-				fields: "*.*",
-				meta: "total_count",
+				fields: '*.*',
+				meta: 'total_count',
 				limit: this.options.threshold
 			};
 
@@ -181,14 +181,14 @@ export default {
 		// Happens when the user clicks "done" in the item select modal. This will stage the pre-staged
 		// value and close the modal
 		closeListing() {
-			this.$emit("input", this.stagedValue);
+			this.$emit('input', this.stagedValue);
 
 			// Download a fresh copy of the data of the selected item so we can render the preview value in
 			// the dropdown
 			const collection = this.relation.collection_one.collection;
 
 			const params = {
-				fields: "*.*",
+				fields: '*.*',
 				limit: 1
 			};
 

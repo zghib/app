@@ -1,15 +1,10 @@
 <template>
-	<v-spinner
-		class="v-ext-input-loading"
-		size="20"
-		line-fg-color="var(--blue-grey-200)"
-		line-bg-color="var(--blue-grey-50)"
-	/>
+	<v-spinner class="v-ext-input-loading" size="20" color="--blue-grey-200" />
 </template>
 
 <script>
 export default {
-	name: "VExtInputLoading"
+	name: 'VExtInputLoading'
 };
 </script>
 
