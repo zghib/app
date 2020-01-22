@@ -31,6 +31,7 @@
 				:medium-image="width.startsWith('half')"
 				:big-image="width === 'full'"
 				:only-show-on-hover="isImage"
+				@download="downloadFile"
 				@deselect="$emit('input', null)"
 				@remove="removeFile"
 			></v-card>
