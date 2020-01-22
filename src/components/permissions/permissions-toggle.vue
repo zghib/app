@@ -1,15 +1,69 @@
 <template>
 	<v-popover placement="left-start" offset="5">
 		<button class="box" :class="[{ none: value === null }, value]">
-			<v-icon v-if="value === 'none'" class="icon" name="close" :size="16" />
-			<v-icon v-else-if="value === 'mine'" class="icon" name="person" :size="16" />
-			<v-icon v-else-if="value === 'role'" class="icon" name="group" :size="16" />
-			<v-icon v-else-if="value === 'full'" class="icon" name="check" :size="16" />
-			<v-icon v-else-if="value === 'read'" class="icon" name="remove_red_eye" :size="16" />
-			<v-icon v-else-if="value === 'create'" class="icon" name="add" small />
-			<v-icon v-else-if="value === 'update'" class="icon" name="edit" :size="16" />
-			<v-icon v-else-if="value === 'always'" class="icon" name="announcement" :size="16" />
-			<v-icon v-else-if="value === 'indeterminate'" class="icon" name="remove" :size="16" />
+			<v-icon
+				color="--page-background-color"
+				v-if="value === 'none'"
+				class="icon"
+				name="close"
+				:size="14"
+			/>
+			<v-icon
+				color="--page-background-color"
+				v-else-if="value === 'mine'"
+				class="icon"
+				name="person"
+				:size="14"
+			/>
+			<v-icon
+				color="--page-background-color"
+				v-else-if="value === 'role'"
+				class="icon"
+				name="group"
+				:size="14"
+			/>
+			<v-icon
+				color="--page-background-color"
+				v-else-if="value === 'full'"
+				class="icon"
+				name="check"
+				:size="14"
+			/>
+			<v-icon
+				color="--page-background-color"
+				v-else-if="value === 'read'"
+				class="icon"
+				name="remove_red_eye"
+				:size="14"
+			/>
+			<v-icon
+				color="--page-background-color"
+				v-else-if="value === 'create'"
+				class="icon"
+				name="add"
+				:size="14"
+			/>
+			<v-icon
+				color="--page-background-color"
+				v-else-if="value === 'update'"
+				class="icon"
+				name="edit"
+				:size="14"
+			/>
+			<v-icon
+				color="--page-background-color"
+				v-else-if="value === 'always'"
+				class="icon"
+				name="announcement"
+				:size="14"
+			/>
+			<v-icon
+				color="--page-background-color"
+				v-else-if="value === 'indeterminate'"
+				class="icon"
+				name="remove"
+				:size="14"
+			/>
 		</button>
 		<template slot="popover">
 			<div class="popover-content">
@@ -20,43 +74,61 @@
 					@click="$emit('input', option)"
 				>
 					<div class="box" :class="option">
-						<v-icon v-if="option === 'none'" class="icon" name="close" :size="16" />
 						<v-icon
+							color="--page-background-color"
+							v-if="option === 'none'"
+							class="icon"
+							name="close"
+							:size="14"
+						/>
+						<v-icon
+							color="--page-background-color"
 							v-else-if="option === 'mine'"
 							class="icon"
 							name="person"
-							:size="16"
+							:size="14"
 						/>
 						<v-icon
+							color="--page-background-color"
 							v-else-if="option === 'role'"
 							class="icon"
 							name="group"
-							:size="16"
+							:size="14"
 						/>
 						<v-icon
+							color="--page-background-color"
 							v-else-if="option === 'full'"
 							class="icon"
 							name="check"
-							:size="16"
+							:size="14"
 						/>
 						<v-icon
+							color="--page-background-color"
 							v-else-if="option === 'read'"
 							class="icon"
 							name="remove_red_eye"
-							:size="16"
+							:size="14"
 						/>
-						<v-icon v-else-if="option === 'create'" class="icon" name="add" small />
 						<v-icon
+							color="--page-background-color"
+							v-else-if="option === 'create'"
+							class="icon"
+							name="add"
+							small
+						/>
+						<v-icon
+							color="--page-background-color"
 							v-else-if="option === 'update'"
 							class="icon"
 							name="edit"
-							:size="16"
+							:size="14"
 						/>
 						<v-icon
+							color="--page-background-color"
 							v-else-if="option === 'always'"
 							class="icon"
 							name="announcement"
-							:size="16"
+							:size="14"
 						/>
 					</div>
 
@@ -117,14 +189,6 @@ export default {
 	align-items: center;
 	transition: var(--fast) var(--transition);
 	position: relative;
-}
-
-.icon {
-	position: relative;
-	top: -1px;
-	left: 0;
-	font-size: 16px;
-	color: var(--page-background-color);
 }
 
 .none {

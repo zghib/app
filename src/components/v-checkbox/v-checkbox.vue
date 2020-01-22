@@ -95,11 +95,15 @@ export default createComponent({
 	display: flex;
 	height: var(--input-height);
 	align-items: center;
+	text-align: left;
 
 	.label:not(:empty) {
 		font-size: var(--input-font-size);
 		margin-left: 8px;
 		vertical-align: middle;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 
 	&:disabled {

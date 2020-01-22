@@ -16,7 +16,7 @@
 					:inputValue="fieldsInUse.includes(field.field)"
 					@change="toggleField(field.field)"
 				></v-checkbox>
-				<v-icon class="handle" name="drag_handle" />
+				<v-icon class="handle" name="drag_handle" color="--input-border-color" />
 			</div>
 		</draggable>
 		<label for="spacing" class="type-label">{{ $t('spacing') }}</label>
@@ -136,18 +136,6 @@ fieldset {
 		i {
 			color: var(--input-border-color-hover);
 		}
-	}
-
-	.checkbox {
-		max-width: 125px;
-		label {
-			font-size: 14px;
-		}
-	}
-
-	i {
-		transition: all var(--fast) var(--transition);
-		color: var(--input-border-color);
 	}
 }
 </style>

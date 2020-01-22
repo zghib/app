@@ -1,5 +1,5 @@
 <template>
-	<div class="v-upload" :class="{ uploading: Object.keys(files).length > 0, disabled }">
+	<div class="v-upload" :class="{ uploading, disabled }">
 		<input
 			ref="select"
 			:disabled="disabled"
@@ -12,7 +12,11 @@
 
 		<div class="dropzone" :class="{ smaller: small }">
 			<div class="icon">
-				<v-icon name="cloud_upload" :size="100" color="--input-icon-color" />
+				<v-icon
+					name="cloud_upload"
+					:size="uploading ? 32 : 100"
+					color="--input-icon-color"
+				/>
 			</div>
 			<div class="info">
 				<p class="name type-heading-small">{{ $tc('drop_files', multiple ? 2 : 1) }}</p>
@@ -123,6 +127,9 @@ export default {
 			} else {
 				return [];
 			}
+		},
+		uploading() {
+			return Object.keys(this.files).length > 0;
 		}
 	},
 	methods: {
@@ -421,19 +428,8 @@ input.select {
 			display: flex;
 			justify-content: center;
 			align-items: center;
-
-			i {
-				width: 40px;
-				height: 40px;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				flex-grow: 0;
-				flex-shrink: 0;
-				border-radius: 50%;
-				border: 2px solid var(--heading-text-color);
-				color: var(--heading-text-color);
-			}
+			border: 2px solid var(--input-border-color);
+			border-radius: 50%;
 		}
 
 		.buttons {

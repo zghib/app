@@ -28,13 +28,7 @@
 				:cy="radius"
 			/>
 		</svg>
-		<v-icon
-			v-if="icon"
-			class="material-icons"
-			:size="iconSize"
-			:color="`--${color}`"
-			:name="icon"
-		/>
+		<v-icon v-if="icon" :size="iconSize" :color="`--${color}`" :name="icon" />
 	</div>
 </template>
 
@@ -102,7 +96,7 @@ export default {
 		opacity: 0.2;
 	}
 
-	i {
+	> *:not(svg) {
 		position: absolute;
 		top: 50%;
 		left: 0;
