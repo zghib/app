@@ -349,11 +349,20 @@ export default {
 			// Fetch the values from the DB
 			if (isNewItem === false) {
 				const collection = this.relation.collection_many.collection;
+				const primaryKeyName = this.relation.collection_many.fields.id.field;
 
 				const res = await this.$api.getItem(collection, primaryKey, { fields: '*.*.*' });
 				const item = res.data;
 
 				values = _.merge({}, item, values);
+
+				// Update the initialValue as well since the initialValue is used to get the Diff for POSTing
+				this.initialValue = this.initialValue.map(item => {
+					if (_.get(item, primaryKeyName) === primaryKey) {
+						return _.cloneDeep(values);
+					}
+					return item;
+				});
 			}
 
 			this.editItem = values;
