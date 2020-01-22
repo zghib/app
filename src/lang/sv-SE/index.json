@@ -275,6 +275,7 @@
   "file_library": "File Library",
   "file_type_not_accepted": "{filename} can't be uploaded. It is not a valid file type for this field.",
   "file_upload": "Ladda upp fil(er)",
+  "file_download": "Download",
   "forgot_password": "Glömt lösenord",
   "greater_than": "Större än",
   "greater_than_equal": "Greater than or equal to",

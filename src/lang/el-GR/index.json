@@ -275,6 +275,7 @@
   "file_library": "Βιβλιοθήκη αρχείων",
   "file_type_not_accepted": "{filename} δεν μπορεί να μεταφορτωθεί. Δεν είναι έγκυρος τύπος αρχείου για αυτό το πεδίο.",
   "file_upload": "Μεταφόρτωση Αρχείου/ων",
+  "file_download": "Download",
   "forgot_password": "Ξέχασα τον κωδικό πρόσβασης",
   "greater_than": "Μεγαλύτερο από",
   "greater_than_equal": "Μεγαλύτερο από ή ίσο με",

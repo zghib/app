@@ -275,6 +275,7 @@
   "file_library": "Biblioteca de archivos",
   "file_type_not_accepted": "{filename} no se puede subir. No es un tipo de archivo válido para este campo.",
   "file_upload": "Subir Archivo(s)",
+  "file_download": "Download",
   "forgot_password": "Olvide la contraseña",
   "greater_than": "Mayor que",
   "greater_than_equal": "Mayor o igual a",

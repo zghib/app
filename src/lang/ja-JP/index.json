@@ -275,6 +275,7 @@
   "file_library": "ファイルライブラリー",
   "file_type_not_accepted": "{filename} をアップロードできません。この入力欄に適していないファイル種別です。",
   "file_upload": "アップロード(複数)",
+  "file_download": "Download",
   "forgot_password": "パスワード忘れ",
   "greater_than": "より大きい",
   "greater_than_equal": "より大きいまたは等しい",

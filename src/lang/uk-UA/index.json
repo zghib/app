@@ -275,6 +275,7 @@
   "file_library": "Бібліотека файлів",
   "file_type_not_accepted": "{filename} не можливо завантажити. Це невірний тип файлу для цього поля.",
   "file_upload": "Завантажити файл(и)",
+  "file_download": "Download",
   "forgot_password": "Забули пароль",
   "greater_than": "Більше ніж",
   "greater_than_equal": "Більше ніж або дорівнює",

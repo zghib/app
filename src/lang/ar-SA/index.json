@@ -275,6 +275,7 @@
   "file_library": "مكتبة الملفات",
   "file_type_not_accepted": "{filename} لايمكن رفعه. صيغة الملف غير صحيحة.",
   "file_upload": "ارفع ملف(ات)",
+  "file_download": "Download",
   "forgot_password": "نسيت كلمة المرور",
   "greater_than": "أكبر من",
   "greater_than_equal": "أكبر من أو يساوي",
