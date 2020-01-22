@@ -476,7 +476,9 @@
 			"force_lowercase": "Küçük Harfe Zorla",
 			"force_lowercase_comment": "Slug'ın küçük harfle yazıldığından emin olur",
 			"mirrored_field": "Yansıtılmış Alan",
-			"mirrored_field_comment": "Slug alanını başka bir (metin) alanıyla güncel tutun"
+			"mirrored_field_comment": "Slug alanını başka bir (metin) alanıyla güncel tutun",
+			"only_on_create": "Only on Create",
+			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
 		},
 		"sort": {
 			"sort": "Sırala"

@@ -476,7 +476,9 @@
 			"force_lowercase": "Forcer l'utilisation des minuscules",
 			"force_lowercase_comment": "S'assurer que le slug est en minuscule",
 			"mirrored_field": "Champ miroir",
-			"mirrored_field_comment": "Garder le slug à jour avec un autre champ (texte)"
+			"mirrored_field_comment": "Garder le slug à jour avec un autre champ (texte)",
+			"only_on_create": "Only on Create",
+			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
 		},
 		"sort": {
 			"sort": "Triage"

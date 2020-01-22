@@ -476,7 +476,9 @@
 			"force_lowercase": "Force Lowercase",
 			"force_lowercase_comment": "Makes sure the slug is in lowercase",
 			"mirrored_field": "Mirrored Field",
-			"mirrored_field_comment": "Keep the slug up to date with another (text) field"
+			"mirrored_field_comment": "Keep the slug up to date with another (text) field",
+			"only_on_create": "Only on Create",
+			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
 		},
 		"sort": {
 			"sort": "Sort"

@@ -476,7 +476,9 @@
 			"force_lowercase": "Строчные буквы",
 			"force_lowercase_comment": "Дает уверенность в том, что слаг в нижнем регистре",
 			"mirrored_field": "Зеркальное поле",
-			"mirrored_field_comment": "Сохранять slug в актуальном состоянии с другим (текст) полем"
+			"mirrored_field_comment": "Сохранять slug в актуальном состоянии с другим (текст) полем",
+			"only_on_create": "Only on Create",
+			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
 		},
 		"sort": {
 			"sort": "Сортируемое"

@@ -476,7 +476,9 @@
 			"force_lowercase": "Forza minuscola",
 			"force_lowercase_comment": "Assicurati che lo slug sia in minuscolo",
 			"mirrored_field": "Campo mirror",
-			"mirrored_field_comment": "Mantieni lo slug aggiornato con un altro campo (testo)"
+			"mirrored_field_comment": "Mantieni lo slug aggiornato con un altro campo (testo)",
+			"only_on_create": "Only on Create",
+			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
 		},
 		"sort": {
 			"sort": "Ordina"
