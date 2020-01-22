@@ -33,14 +33,14 @@
 </template>
 
 <script>
-import api from "../../api";
-import { mapState } from "vuex";
+import api from '../../api';
+import { mapState } from 'vuex';
 
 export default {
-	name: "SettingsRoles",
+	name: 'SettingsRoles',
 	metaInfo() {
 		return {
-			title: `${this.$t("settings")} | ${this.$t("roles")}`
+			title: `${this.$t('settings')} | ${this.$t('roles')}`
 		};
 	},
 	data() {
@@ -49,19 +49,19 @@ export default {
 			roles: [],
 			adding: false,
 			addNew: false,
-			newName: ""
+			newName: ''
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		breadcrumb() {
 			return [
 				{
-					name: this.$t("settings"),
+					name: this.$t('settings'),
 					path: `/${this.currentProjectKey}/settings`
 				},
 				{
-					name: this.$t("roles"),
+					name: this.$t('roles'),
 					path: `/${this.currentProjectKey}/settings/roles`
 				}
 			];
@@ -75,12 +75,12 @@ export default {
 		fields() {
 			return [
 				{
-					field: "name",
-					name: this.$t("name")
+					field: 'name',
+					name: this.$t('name')
 				},
 				{
-					field: "description",
-					name: this.$t("description")
+					field: 'description',
+					name: this.$t('description')
 				}
 			];
 		}
@@ -94,8 +94,8 @@ export default {
 				});
 			})
 			.catch(error => {
-				this.$events.emit("error", {
-					notify: this.$t("something_went_wrong_body"),
+				this.$events.emit('error', {
+					notify: this.$t('something_went_wrong_body'),
 					error
 				});
 				next(vm => {
@@ -108,7 +108,7 @@ export default {
 			this.adding = true;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			this.$api
 				.createRole({
@@ -116,14 +116,14 @@ export default {
 				})
 				.then(res => res.data)
 				.then(role => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.$router.push(`/${this.currentProjectKey}/settings/roles/${role.id}`);
 				})
 				.catch(error => {
 					this.adding = false;
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});

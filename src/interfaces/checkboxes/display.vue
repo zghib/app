@@ -3,16 +3,16 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "ReadonlyCheckboxes",
+	name: 'ReadonlyCheckboxes',
 	mixins: [mixin],
 	computed: {
 		selection() {
 			if (this.value == null) return [];
 
-			const selection = this.type === "VARCHAR" ? this.value.split(",") : this.value;
+			const selection = this.type === 'VARCHAR' ? this.value.split(',') : this.value;
 			if (this.options.wrap) {
 				selection.pop();
 				selection.shift();
@@ -21,7 +21,7 @@ export default {
 		},
 		displayValue() {
 			let display = this.selection ? this.selection : [];
-			if (this.options.formatting && this.type === "array") {
+			if (this.options.formatting && this.type === 'array') {
 				return display
 					.map(val => (this.options.choices[val] ? this.options.choices[val] : val))
 					.toString();

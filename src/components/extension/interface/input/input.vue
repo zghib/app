@@ -26,15 +26,15 @@
 </template>
 
 <script>
-import Vue from "vue";
-import loadExtension from "../../../../helpers/load-extension";
-import componentExists from "../../../../helpers/component-exists";
-import InputFallback from "./input-fallback.vue";
-import InputLoading from "./input-loading.vue";
-import { datatypes } from "../../../../type-map";
+import Vue from 'vue';
+import loadExtension from '../../../../helpers/load-extension';
+import componentExists from '../../../../helpers/component-exists';
+import InputFallback from './input-fallback.vue';
+import InputLoading from './input-loading.vue';
+import { datatypes } from '../../../../type-map';
 
 export default {
-	name: "VExtInput",
+	name: 'VExtInput',
 	props: {
 		id: {
 			type: String,
@@ -100,7 +100,7 @@ export default {
 			type: String,
 			default: null,
 			validator(val) {
-				return ["half", "half-left", "half-right", "full", "fill"].includes(val);
+				return ['half', 'half-left', 'half-right', 'full', 'fill'].includes(val);
 			}
 		}
 	},
@@ -146,7 +146,7 @@ export default {
 		// rest of the app to use it as well
 		fieldsFormatted() {
 			if (Array.isArray(this.fields)) {
-				return _.keyBy(this.fields, "field");
+				return _.keyBy(this.fields, 'field');
 			}
 
 			return this.fields;
@@ -156,7 +156,7 @@ export default {
 		},
 		interfaceFallback() {
 			// Default to text-input if all else fails
-			if (this.datatype == null) return this.interfaces["text-input"];
+			if (this.datatype == null) return this.interfaces['text-input'];
 
 			// Lookup the raw db datatype based on the current vendor in the type-map
 			// to extract the fallback interface to use.
@@ -184,11 +184,11 @@ export default {
 			let component;
 
 			if (this.currentInterface.core) {
-				component = import("@/interfaces/" + this.currentInterface.id + "/input.vue");
+				component = import('@/interfaces/' + this.currentInterface.id + '/input.vue');
 			} else {
 				const filePath = `${
 					this.$store.state.apiRootPath
-				}${this.currentInterface.path.replace("meta.json", "input.js")}`;
+				}${this.currentInterface.path.replace('meta.json', 'input.js')}`;
 
 				component = loadExtension(filePath);
 			}

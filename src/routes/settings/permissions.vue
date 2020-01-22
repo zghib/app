@@ -39,9 +39,9 @@
 			</template>
 		</v-header>
 
-		<label class="type-label">{{ $t("permissions") }}</label>
+		<label class="type-label">{{ $t('permissions') }}</label>
 		<v-notice v-if="isAdmin" color="warning" class="admin-note">
-			{{ $t("permissions_admin") }}
+			{{ $t('permissions_admin') }}
 		</v-notice>
 		<v-permissions
 			v-else
@@ -77,21 +77,21 @@
 </template>
 
 <script>
-import { keyBy, mapValues } from "lodash";
-import formatTitle from "@directus/format-title";
-import api from "../../api";
-import VPermissions from "../../components/permissions/permissions.vue";
-import { defaultNone } from "../../store/modules/permissions/defaults";
-import { mapState } from "vuex";
+import { keyBy, mapValues } from 'lodash';
+import formatTitle from '@directus/format-title';
+import api from '../../api';
+import VPermissions from '../../components/permissions/permissions.vue';
+import { defaultNone } from '../../store/modules/permissions/defaults';
+import { mapState } from 'vuex';
 
 export default {
-	name: "SettingsPermissions",
+	name: 'SettingsPermissions',
 	metaInfo() {
 		if (!this.role) return;
 
 		return {
-			title: `${this.$t("settings")} | ${this.$helpers.formatTitle(this.role.name)} ${this.$t(
-				"permissions"
+			title: `${this.$t('settings')} | ${this.$helpers.formatTitle(this.role.name)} ${this.$t(
+				'permissions'
 			)}`
 		};
 	},
@@ -121,9 +121,9 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		isNew() {
-			return this.$route.params.id === "+";
+			return this.$route.params.id === '+';
 		},
 		isSystem() {
 			if (!this.role) return false;
@@ -144,16 +144,16 @@ export default {
 			if (this.isNew) {
 				return [
 					{
-						name: this.$t("settings"),
+						name: this.$t('settings'),
 						path: `/${this.currentProjectKey}/settings`,
-						color: "warning"
+						color: 'warning'
 					},
 					{
-						name: this.$t("roles"),
+						name: this.$t('roles'),
 						path: `/${this.currentProjectKey}/settings/roles`
 					},
 					{
-						name: this.$t("creating_role"),
+						name: this.$t('creating_role'),
 						path: `/${this.currentProjectKey}/settings/roles/+`
 					}
 				];
@@ -161,11 +161,11 @@ export default {
 
 			return [
 				{
-					name: this.$t("settings"),
+					name: this.$t('settings'),
 					path: `/${this.currentProjectKey}/settings`
 				},
 				{
-					name: this.$t("roles"),
+					name: this.$t('roles'),
 					path: `/${this.currentProjectKey}/settings/roles`
 				},
 				{
@@ -212,7 +212,7 @@ export default {
 				}
 
 				const statusNames = Object.keys(this.statuses[collection].mapping);
-				const statusesToUse = [...statusNames, "$create"];
+				const statusesToUse = [...statusNames, '$create'];
 
 				statusesToUse.forEach(status => {
 					if (!permissions[collection]) {
@@ -255,11 +255,11 @@ export default {
 	beforeRouteEnter(to, from, next) {
 		const { id } = to.params;
 
-		const isNew = id === "+";
+		const isNew = id === '+';
 
 		if (isNew) {
 			return api
-				.getFields("directus_roles")
+				.getFields('directus_roles')
 				.then(res => res.data)
 				.then(fieldsArray => {
 					next(vm => {
@@ -268,7 +268,7 @@ export default {
 								...field,
 								name: formatTitle(field.field)
 							})),
-							"field"
+							'field'
 						);
 
 						vm.$data.fields = fields;
@@ -282,10 +282,10 @@ export default {
 				});
 		}
 		const params = {
-			fields: "*.*.*"
+			fields: '*.*.*'
 		};
 
-		return Promise.all([api.getRole(+id, params), api.getFields("directus_roles")])
+		return Promise.all([api.getRole(+id, params), api.getFields('directus_roles')])
 			.then(([roleRes, fieldsRes]) => ({
 				role: roleRes.data,
 				fields: keyBy(
@@ -293,7 +293,7 @@ export default {
 						...field,
 						name: formatTitle(field.field)
 					})),
-					"field"
+					'field'
 				)
 			}))
 			.then(({ role, fields }) => {
@@ -327,20 +327,20 @@ export default {
 			this.saving = true;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			this.saveRole()
 				.then(this.savePermissions)
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.saving = false;
 					this.$router.push(`/${this.currentProjectKey}/settings/roles`);
-					this.$store.dispatch("getCurrentUser");
+					this.$store.dispatch('getCurrentUser');
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -405,13 +405,13 @@ export default {
 						} else {
 							create.push({
 								collection,
-								status: "$create",
+								status: '$create',
 								role: this.role.id,
 								...this.permissionEdits[collection].$create
 							});
 						}
 
-						this.$delete(this.permissionEdits[collection], "$create");
+						this.$delete(this.permissionEdits[collection], '$create');
 
 						if (Object.keys(this.permissionEdits[collection]) === 0) return;
 					}
@@ -447,19 +447,19 @@ export default {
 			this.removing = true;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			return this.$api
 				.deleteRole(this.role.id)
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.removing = false;
 					this.$router.push(`/${this.currentProjectKey}/settings/roles`);
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -470,12 +470,12 @@ export default {
 			this.permissionsLoading = true;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			return Promise.all([
 				this.$api.getAllFields(),
 				this.$api.getPermissions({
-					"filter[role][eq]": this.$route.params.id,
+					'filter[role][eq]': this.$route.params.id,
 					limit: -1
 				})
 			])
@@ -484,7 +484,7 @@ export default {
 					permissions: permissionsRes.data
 				}))
 				.then(({ fields, permissions }) => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					const savedPermissions = {};
 
 					permissions.forEach(permission => {
@@ -506,22 +506,22 @@ export default {
 
 					this.statuses = _.keyBy(
 						fields
-							.filter(field => field.type && field.type.toLowerCase() === "status")
+							.filter(field => field.type && field.type.toLowerCase() === 'status')
 							.map(field => ({
 								mapping: field.options.status_mapping,
 								collection: field.collection
 							})),
-						"collection"
+						'collection'
 					);
 
-					this.permissionFields = _.mapValues(_.groupBy(fields, "collection"), array =>
-						_.keyBy(array, "field")
+					this.permissionFields = _.mapValues(_.groupBy(fields, 'collection'), array =>
+						_.keyBy(array, 'field')
 					);
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});

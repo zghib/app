@@ -4,11 +4,11 @@
 </template>
 
 <script>
-import store from "../store/";
-import VNotFound from "./not-found.vue";
+import store from '../store/';
+import VNotFound from './not-found.vue';
 
 export default {
-	name: "ModuleExtension",
+	name: 'ModuleExtension',
 	metaInfo() {
 		const module = this.$store.state.extensions.modules[this.id];
 

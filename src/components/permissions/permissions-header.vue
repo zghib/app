@@ -1,7 +1,7 @@
 <template>
 	<div class="header">
 		<div class="row">
-			<div class="cell type-table-head">{{ $tc("collection", 2) }}</div>
+			<div class="cell type-table-head">{{ $tc('collection', 2) }}</div>
 			<div class="cell type-table-head">
 				<button
 					v-tooltip="$t('create')"
@@ -53,8 +53,8 @@
 				</button>
 			</div>
 			<!-- <div class="cell">{{ $t("explain") }}</div> -->
-			<div class="cell type-table-head">{{ $tc("field", 2) }}</div>
-			<div class="cell type-table-head">{{ $t("statuses") }}</div>
+			<div class="cell type-table-head">{{ $tc('field', 2) }}</div>
+			<div class="cell type-table-head">{{ $t('statuses') }}</div>
 		</div>
 	</div>
 </template>

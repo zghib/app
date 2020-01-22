@@ -16,8 +16,8 @@
 <script>
 export default {
 	model: {
-		prop: "modelValue",
-		event: "change"
+		prop: 'modelValue',
+		event: 'change'
 	},
 	props: {
 		name: {
@@ -42,7 +42,7 @@ export default {
 		},
 		modelValue: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		label: {
 			type: String,
@@ -56,7 +56,7 @@ export default {
 	},
 	methods: {
 		updateInput() {
-			this.$emit("change", this.value);
+			this.$emit('change', this.value);
 		}
 	}
 };
@@ -78,10 +78,10 @@ label {
 
 label::before {
 	transition: all var(--fast) var(--transition);
-	content: "radio_button_unchecked";
+	content: 'radio_button_unchecked';
 	direction: ltr;
 	display: inline-block;
-	font-family: "Material Icons";
+	font-family: 'Material Icons';
 	font-size: 24px;
 	font-style: normal;
 	font-weight: normal;
@@ -90,7 +90,7 @@ label::before {
 	text-transform: none;
 	white-space: nowrap;
 	word-wrap: normal;
-	-webkit-font-feature-settings: "liga";
+	-webkit-font-feature-settings: 'liga';
 	-webkit-font-smoothing: antialiased;
 	margin-right: 8px;
 	color: var(--input-border-color);
@@ -106,7 +106,7 @@ input:disabled + label {
 }
 
 input:checked + label::before {
-	content: "radio_button_checked";
+	content: 'radio_button_checked';
 	color: var(--input-background-color-active);
 }
 </style>

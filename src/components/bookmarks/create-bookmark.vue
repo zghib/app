@@ -17,7 +17,7 @@
 	</v-prompt>
 </template>
 <script>
-import api from "../../api";
+import api from '../../api';
 
 export default {
 	props: {
@@ -29,11 +29,11 @@ export default {
 	data() {
 		return {
 			bookmarkOptions: {
-				global: this.$t("bookmark_global"),
-				personal: this.$t("bookmark_personal")
+				global: this.$t('bookmark_global'),
+				personal: this.$t('bookmark_personal')
 			},
-			bookmarkTitle: "",
-			bookmarkType: "personal",
+			bookmarkTitle: '',
+			bookmarkType: 'personal',
 			optionsDisabled: true
 		};
 	},
@@ -48,22 +48,22 @@ export default {
 	created() {
 		if (this.isUserAdmin) {
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 			api.getRoles()
 				.then(res => res.data)
 				.then(roles => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					roles.map(role => {
-						this.bookmarkOptions[role.id] = this.$t("bookmark_role", {
+						this.bookmarkOptions[role.id] = this.$t('bookmark_role', {
 							role: role.name
 						});
 					});
 					this.optionsDisabled = false;
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -74,23 +74,23 @@ export default {
 			this.bookmarkType = value;
 		},
 		cancelBookmark() {
-			this.$emit("close");
+			this.$emit('close');
 		},
 		saveBookmark() {
 			const preferences = this.buildPreferences();
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 			this.$store
-				.dispatch("saveBookmark", preferences)
+				.dispatch('saveBookmark', preferences)
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$emit("close");
+					this.$store.dispatch('loadingFinished', id);
+					this.$emit('close');
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -105,9 +105,9 @@ export default {
 			}
 			preferences.title = this.bookmarkTitle;
 
-			if (this.bookmarkType === "personal" || !this.isUserAdmin) {
+			if (this.bookmarkType === 'personal' || !this.isUserAdmin) {
 				preferences.user = this.$store.state.currentUser.id;
-			} else if (this.bookmarkType === "global") {
+			} else if (this.bookmarkType === 'global') {
 				delete preferences.user;
 			} else {
 				delete preferences.user;

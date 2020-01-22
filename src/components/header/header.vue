@@ -28,10 +28,10 @@
 </template>
 
 <script>
-import { TOGGLE_NAV, TOGGLE_INFO } from "../../store/mutation-types";
+import { TOGGLE_NAV, TOGGLE_INFO } from '../../store/mutation-types';
 
 export default {
-	name: "VHeader",
+	name: 'VHeader',
 	props: {
 		title: {
 			type: String,
@@ -51,7 +51,7 @@ export default {
 		},
 		icon: {
 			type: String,
-			default: "arrow_back"
+			default: 'arrow_back'
 		},
 		iconLink: {
 			type: String,
@@ -69,9 +69,9 @@ export default {
 	},
 	computed: {
 		defaultBreadcrumb() {
-			const routeParts = this.$route.path.split("/").filter(name => name);
+			const routeParts = this.$route.path.split('/').filter(name => name);
 			return routeParts.map((part, i) => {
-				let url = "";
+				let url = '';
 				for (let x = 0; x < i; x++) {
 					url += `/${routeParts[x]}`;
 				}
@@ -111,11 +111,11 @@ export default {
 	},
 
 	created() {
-		window.addEventListener("scroll", this.checkIfScrolled);
+		window.addEventListener('scroll', this.checkIfScrolled);
 	},
 
 	beforeDestroy() {
-		window.removeEventListener("scroll", this.checkIfScrolled);
+		window.removeEventListener('scroll', this.checkIfScrolled);
 	},
 	methods: {
 		activateNav() {
@@ -215,9 +215,9 @@ body.info-wide-active .v-header {
 	}
 
 	.breadcrumb-item + .breadcrumb-item::before {
-		content: "chevron_right";
+		content: 'chevron_right';
 		color: var(--breadcrumb-glue-color);
-		font-family: "Material Icons";
+		font-family: 'Material Icons';
 		font-weight: normal;
 		font-style: normal;
 		font-size: 18px;
@@ -228,7 +228,7 @@ body.info-wide-active .v-header {
 		letter-spacing: normal;
 		word-wrap: normal;
 		white-space: nowrap;
-		font-feature-settings: "liga";
+		font-feature-settings: 'liga';
 		vertical-align: bottom;
 	}
 

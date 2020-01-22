@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import allLanguages from "./languages.json";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import allLanguages from './languages.json';
 
 export default {
 	mixins: [mixin],

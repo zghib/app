@@ -1,5 +1,5 @@
-import mutations from "./mutations";
-import * as actions from "./actions";
+import mutations from './mutations';
+import * as actions from './actions';
 
 export const initialState = {
 	values: {},

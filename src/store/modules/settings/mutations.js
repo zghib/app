@@ -1,7 +1,7 @@
-import _ from "lodash";
-import Vue from "vue";
-import { RESET, SET_SETTINGS, SET_SETTING } from "@/store/mutation-types";
-import { initialState } from "./";
+import _ from 'lodash';
+import Vue from 'vue';
+import { RESET, SET_SETTINGS, SET_SETTING } from '@/store/mutation-types';
+import { initialState } from './';
 
 export default {
 	[RESET](state) {
@@ -11,9 +11,9 @@ export default {
 	},
 
 	[SET_SETTINGS](state, settings) {
-		const settingsByKey = _.keyBy(settings, "key");
-		state.values = _.mapValues(settingsByKey, "value");
-		state.primaryKeys = _.mapValues(settingsByKey, "id");
+		const settingsByKey = _.keyBy(settings, 'key');
+		state.values = _.mapValues(settingsByKey, 'value');
+		state.primaryKeys = _.mapValues(settingsByKey, 'id');
 	},
 
 	[SET_SETTING](state, { id, key, value }) {

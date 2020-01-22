@@ -1,5 +1,5 @@
-import Vue from "vue";
-import _ from "lodash";
+import Vue from 'vue';
+import _ from 'lodash';
 
 import {
 	RESET,
@@ -11,7 +11,7 @@ import {
 	UPDATE_FIELD,
 	UPDATE_FIELDS,
 	REMOVE_FIELD
-} from "../../mutation-types";
+} from '../../mutation-types';
 
 const mutations = {
 	[RESET](state) {
@@ -21,12 +21,12 @@ const mutations = {
 		});
 	},
 	[SET_COLLECTIONS](state, data) {
-		const collections = _.mapValues(_.keyBy(data, "collection"), info => {
-			const statusField = _.find(info.fields, { interface: "status" });
+		const collections = _.mapValues(_.keyBy(data, 'collection'), info => {
+			const statusField = _.find(info.fields, { interface: 'status' });
 			let status_mapping =
 				statusField && statusField.options && statusField.options.status_mapping;
 
-			if (status_mapping && typeof status_mapping === "string") {
+			if (status_mapping && typeof status_mapping === 'string') {
 				status_mapping = JSON.parse(status_mapping);
 			}
 
@@ -42,9 +42,9 @@ const mutations = {
 	},
 
 	[ADD_COLLECTION](state, collection) {
-		if (Object.values(collection.fields).some(field => field.type === "status")) {
+		if (Object.values(collection.fields).some(field => field.type === 'status')) {
 			const statusField = Object.values(collection.fields).filter(
-				field => field.type === "status"
+				field => field.type === 'status'
 			)[0];
 			collection.status_mapping = statusField.options.status_mapping;
 		}
@@ -63,18 +63,18 @@ const mutations = {
 	},
 
 	[ADD_FIELD](state, { collection, field }) {
-		Vue.set(state[collection], "fields", {
+		Vue.set(state[collection], 'fields', {
 			...state[collection].fields,
 			[field.field]: field
 		});
 
-		if (field.type === "status") {
-			Vue.set(state[collection], "status_mapping", field.options.status_mapping);
+		if (field.type === 'status') {
+			Vue.set(state[collection], 'status_mapping', field.options.status_mapping);
 		}
 	},
 
 	[UPDATE_FIELD](state, { collection, field }) {
-		Vue.set(state[collection], "fields", {
+		Vue.set(state[collection], 'fields', {
 			...state[collection].fields,
 			[field.field]: field
 		});
@@ -92,7 +92,7 @@ const mutations = {
 	[REMOVE_FIELD](state, { collection, field }) {
 		const clone = Object.assign({}, state[collection].fields);
 		delete clone[field];
-		Vue.set(state[collection], "fields", clone);
+		Vue.set(state[collection], 'fields', clone);
 	}
 };
 

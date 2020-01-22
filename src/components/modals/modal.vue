@@ -18,8 +18,8 @@
 				>
 					<div role="document">
 						<div id="modal-description" class="screen-reader-offscreen">
-							{{ $t("dialog_beginning") }}
-							{{ actionRequired ? null : $t("esc_cancel") }}
+							{{ $t('dialog_beginning') }}
+							{{ actionRequired ? null : $t('esc_cancel') }}
 						</div>
 						<header v-if="title">
 							<h1 id="modal-title" class="type-heading-small">{{ title }}</h1>
@@ -56,7 +56,7 @@
 						</div>
 						<div class="footer" :class="{ 'action-required': actionRequired }">
 							<button v-if="!actionRequired" @click="$emit('close')">
-								{{ $t("cancel") }}
+								{{ $t('cancel') }}
 							</button>
 							<v-button
 								v-for="(button, id) in buttons"
@@ -77,10 +77,10 @@
 </template>
 
 <script>
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
 export default {
-	name: "VModal",
+	name: 'VModal',
 	props: {
 		actionRequired: {
 			type: Boolean,
@@ -273,7 +273,7 @@ export default {
 		}
 
 		&::after {
-			content: "";
+			content: '';
 			display: block;
 			width: 100%;
 			position: absolute;

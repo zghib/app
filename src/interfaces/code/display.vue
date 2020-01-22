@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "ReadonlyCode",
+	name: 'ReadonlyCode',
 	mixins: [mixin],
 	computed: {
 		lineCount() {
@@ -14,7 +14,7 @@ export default {
 
 			let value = this.value;
 
-			if (typeof this.value === "object") {
+			if (typeof this.value === 'object') {
 				value = JSON.stringify(this.value);
 			}
 
@@ -22,17 +22,17 @@ export default {
 		},
 		availableTypes() {
 			return {
-				"text/javascript": "JavaScript",
-				"application/json": "JSON",
-				"text/x-vue": "Vue",
-				"application/x-httpd-php": "PHP"
+				'text/javascript': 'JavaScript',
+				'application/json': 'JSON',
+				'text/x-vue': 'Vue',
+				'application/x-httpd-php': 'PHP'
 			};
 		},
 		language() {
 			return this.availableTypes[this.options.language];
 		},
 		tooltipCopy() {
-			return this.$tc("interfaces.code.loc", this.lineCount, {
+			return this.$tc('interfaces.code.loc', this.lineCount, {
 				count: this.lineCount,
 				lang: this.language
 			});

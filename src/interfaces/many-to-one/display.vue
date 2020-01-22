@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -26,10 +26,10 @@ export default {
 				return this.$helpers.micromustache.render(this.options.template, value);
 			}
 
-			return "--";
+			return '--';
 		},
 		isPrimaryKey() {
-			return typeof this.value !== "object";
+			return typeof this.value !== 'object';
 		}
 	},
 	watch: {

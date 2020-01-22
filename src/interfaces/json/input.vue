@@ -8,20 +8,20 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
-import jsonlint from "jsonlint-mod";
+import jsonlint from 'jsonlint-mod';
 
-import "codemirror/lib/codemirror.css";
-import "codemirror/mode/javascript/javascript.js";
-import "codemirror/addon/scroll/annotatescrollbar.js";
-import "codemirror/addon/edit/matchbrackets.js";
-import "codemirror/addon/display/autorefresh.js";
-import "codemirror/addon/lint/lint.js";
-import CodeMirror from "codemirror";
-import { codemirror } from "vue-codemirror";
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/mode/javascript/javascript.js';
+import 'codemirror/addon/scroll/annotatescrollbar.js';
+import 'codemirror/addon/edit/matchbrackets.js';
+import 'codemirror/addon/display/autorefresh.js';
+import 'codemirror/addon/lint/lint.js';
+import CodeMirror from 'codemirror';
+import { codemirror } from 'vue-codemirror';
 
-CodeMirror.registerHelper("lint", "json", text => {
+CodeMirror.registerHelper('lint', 'json', text => {
 	const found = [];
 
 	const parser = jsonlint.parser;
@@ -53,7 +53,7 @@ export default {
 	mixins: [mixin],
 	data() {
 		return {
-			initialValue: ""
+			initialValue: ''
 		};
 	},
 	computed: {
@@ -62,20 +62,20 @@ export default {
 				tabSize: 2,
 				autoRefresh: true,
 				indentUnit: 2,
-				readOnly: this.readonly ? "nocursor" : false,
+				readOnly: this.readonly ? 'nocursor' : false,
 				line: true,
 				lineNumbers: true,
-				mode: "application/json",
+				mode: 'application/json',
 				showCursorWhenSelecting: true,
-				theme: "default",
+				theme: 'default',
 				lint: true,
-				gutters: ["CodeMirror-lint-markers"]
+				gutters: ['CodeMirror-lint-markers']
 			};
 		},
 
 		stringValue() {
 			if (this.value) {
-				if (typeof this.value === "object") {
+				if (typeof this.value === 'object') {
 					return JSON.stringify(this.value, null, 2);
 				}
 
@@ -86,15 +86,15 @@ export default {
 				}
 			}
 
-			return "";
+			return '';
 		}
 	},
 	methods: {
 		updateValue(value) {
-			if (value.length === 0) return this.$emit("input", null);
+			if (value.length === 0) return this.$emit('input', null);
 
 			try {
-				this.$emit("input", JSON.parse(value));
+				this.$emit('input', JSON.parse(value));
 			} catch (e) {
 				console.error(e);
 			}
@@ -102,7 +102,7 @@ export default {
 
 		fillTemplate() {
 			const template = this.options.template;
-			this.$emit("input", template);
+			this.$emit('input', template);
 		}
 	}
 };

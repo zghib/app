@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -21,9 +21,9 @@ export default {
 		tooLight(color) {
 			if (!color) return null;
 
-			return color.includes("white") ||
-				color.includes("100") ||
-				(color.includes("50") && !color.includes("500"))
+			return color.includes('white') ||
+				color.includes('100') ||
+				(color.includes('50') && !color.includes('500'))
 				? true
 				: false;
 		}

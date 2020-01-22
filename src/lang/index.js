@@ -1,26 +1,26 @@
-import Vue from "vue";
-import VueI18n from "vue-i18n";
+import Vue from 'vue';
+import VueI18n from 'vue-i18n';
 
-import enUSBase from "./en-US/index.json";
-import enUSInterfaces from "./en-US/interfaces.json";
-import enUSLayouts from "./en-US/layouts.json";
-import dateTimeFormats from "./en-US/date-format.json";
+import enUSBase from './en-US/index.json';
+import enUSInterfaces from './en-US/interfaces.json';
+import enUSLayouts from './en-US/layouts.json';
+import dateTimeFormats from './en-US/date-format.json';
 
 Vue.use(VueI18n);
 
 export const i18n = new VueI18n({
-	locale: "en-US",
-	fallbackLocale: "en-US",
+	locale: 'en-US',
+	fallbackLocale: 'en-US',
 	messages: {
-		"en-US": _.merge(enUSBase, enUSInterfaces, enUSLayouts)
+		'en-US': _.merge(enUSBase, enUSInterfaces, enUSLayouts)
 	},
 	dateTimeFormats: {
-		"en-US": dateTimeFormats
+		'en-US': dateTimeFormats
 	},
 	silentTranslationWarn: true
 });
 
-const loadedLanguages = ["en-US"];
+const loadedLanguages = ['en-US'];
 
 /**
  * Change the language in the i18n plugin and set the HTML element's lang attribute
@@ -28,43 +28,43 @@ const loadedLanguages = ["en-US"];
  */
 function setI18nLanguage(lang) {
 	i18n.locale = lang;
-	document.querySelector("html").setAttribute("lang", lang);
+	document.querySelector('html').setAttribute('lang', lang);
 	return lang;
 }
 
 // List of available languages in the system
 export const availableLanguages = {
-	"af-ZA": "Afrikaans (South Africa)",
-	"ar-SA": "Arabic (Saudi Arabia)",
-	"ca-ES": "Catalan (Spain)",
-	"zh-CN": "Chinese (Simplified)",
-	"cs-CZ": "Czech (Czech Republic)",
-	"da-DK": "Danish (Denmark)",
-	"nl-NL": "Dutch (Netherlands)",
-	"en-US": "English (United States)",
-	"fi-FI": "Finnish (Finland)",
-	"fr-FR": "French (France)",
-	"de-DE": "German (Germany)",
-	"el-GR": "Greek (Greece)",
-	"he-IL": "Hebrew (Israel)",
-	"hu-HU": "Hungarian (Hungary)",
-	"is-IS": "Icelandic (Iceland)",
-	"id-ID": "Indonesian (Indonesia)",
-	"it-IT": "Italian (Italy)",
-	"ja-JP": "Japanese (Japan)",
-	"ko-KR": "Korean (Korea)",
-	"ms-MY": "Malay (Malaysia)",
-	"no-NO": "Norwegian (Norway)",
-	"pl-PL": "Polish (Poland)",
-	"pt-BR": "Portuguese (Brazil)",
-	"pt-PT": "Portuguese (Portugal)",
-	"ru-RU": "Russian (Russian Federation)",
-	"es-ES": "Spanish (Spain)",
-	"es-419": "Spanish (Latin America)",
-	"zh-TW": "Taiwanese Mandarin (Taiwan)",
-	"tr-TR": "Turkish (Turkey)",
-	"uk-UA": "Ukrainian (Ukraine)",
-	"vi-VN": "Vietnamese (Vietnam)"
+	'af-ZA': 'Afrikaans (South Africa)',
+	'ar-SA': 'Arabic (Saudi Arabia)',
+	'ca-ES': 'Catalan (Spain)',
+	'zh-CN': 'Chinese (Simplified)',
+	'cs-CZ': 'Czech (Czech Republic)',
+	'da-DK': 'Danish (Denmark)',
+	'nl-NL': 'Dutch (Netherlands)',
+	'en-US': 'English (United States)',
+	'fi-FI': 'Finnish (Finland)',
+	'fr-FR': 'French (France)',
+	'de-DE': 'German (Germany)',
+	'el-GR': 'Greek (Greece)',
+	'he-IL': 'Hebrew (Israel)',
+	'hu-HU': 'Hungarian (Hungary)',
+	'is-IS': 'Icelandic (Iceland)',
+	'id-ID': 'Indonesian (Indonesia)',
+	'it-IT': 'Italian (Italy)',
+	'ja-JP': 'Japanese (Japan)',
+	'ko-KR': 'Korean (Korea)',
+	'ms-MY': 'Malay (Malaysia)',
+	'no-NO': 'Norwegian (Norway)',
+	'pl-PL': 'Polish (Poland)',
+	'pt-BR': 'Portuguese (Brazil)',
+	'pt-PT': 'Portuguese (Portugal)',
+	'ru-RU': 'Russian (Russian Federation)',
+	'es-ES': 'Spanish (Spain)',
+	'es-419': 'Spanish (Latin America)',
+	'zh-TW': 'Taiwanese Mandarin (Taiwan)',
+	'tr-TR': 'Turkish (Turkey)',
+	'uk-UA': 'Ukrainian (Ukraine)',
+	'vi-VN': 'Vietnamese (Vietnam)'
 };
 
 i18n.availableLanguages = availableLanguages;

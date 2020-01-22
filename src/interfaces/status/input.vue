@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceStatus",
+	name: 'InterfaceStatus',
 	mixins: [mixin],
 	data() {
 		return {
@@ -28,7 +28,7 @@ export default {
 	},
 	computed: {
 		statusMapping() {
-			if (typeof this.options.status_mapping === "string") {
+			if (typeof this.options.status_mapping === 'string') {
 				return this.options.status_mapping ? JSON.parse(this.status_mapping) : {};
 			}
 			if (!this.options.status_mapping) return {};
@@ -52,8 +52,8 @@ export default {
 		blacklist() {
 			if (!this.permissions) return;
 
-			if (typeof this.permissions.status_blacklist === "string")
-				return this.permissions.status_blacklist.split(",");
+			if (typeof this.permissions.status_blacklist === 'string')
+				return this.permissions.status_blacklist.split(',');
 
 			return this.permissions.status_blacklist || [];
 		},
@@ -66,12 +66,12 @@ export default {
 		}
 	},
 	created() {
-		if (!this.value || this.value === "") {
+		if (!this.value || this.value === '') {
 			// Set first value selected if no default exists
 			if (this.$store.state.permissions[this.collection].statuses !== null) {
 				let obj = Object.keys(this.$store.state.permissions[this.collection].statuses);
 				if (obj.length > 1) {
-					this.$emit("input", obj[0]);
+					this.$emit('input', obj[0]);
 				}
 			}
 		}

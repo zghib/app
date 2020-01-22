@@ -1,6 +1,6 @@
-import Vue from "vue";
-import { forEach } from "lodash";
-import { RESET, SET_RELATIONS, ADD_RELATION, UPDATE_RELATION } from "../../mutation-types";
+import Vue from 'vue';
+import { forEach } from 'lodash';
+import { RESET, SET_RELATIONS, ADD_RELATION, UPDATE_RELATION } from '../../mutation-types';
 
 export default {
 	[RESET](state) {

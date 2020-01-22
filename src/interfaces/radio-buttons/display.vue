@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		displayValue() {
 			const choices =
-				typeof this.options.choices === "string"
+				typeof this.options.choices === 'string'
 					? JSON.parse(this.options.choices)
 					: this.options.choices;
 

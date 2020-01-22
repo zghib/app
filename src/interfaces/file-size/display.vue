@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import formatSize from "./format-size";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import formatSize from './format-size';
 
 export default {
 	mixins: [mixin],

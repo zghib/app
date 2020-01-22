@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import VError from "../components/error.vue";
+import VError from '../components/error.vue';
 
 export default {
-	name: "NotFound",
+	name: 'NotFound',
 	metaInfo() {
 		return {
-			title: this.$t("page_not_found")
+			title: this.$t('page_not_found')
 		};
 	},
 	components: {

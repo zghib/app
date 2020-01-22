@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		userID() {
 			if (!this.value) return null;
-			if (typeof this.value === "object") return this.value.id;
+			if (typeof this.value === 'object') return this.value.id;
 			return this.value;
 		},
 		choices() {

@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	data() {
 		return {
-			originalValue: this.value || "",
-			newValue: ""
+			originalValue: this.value || '',
+			newValue: ''
 		};
 	},
 	computed: {
@@ -28,25 +28,25 @@ export default {
 			} else if (this.options.showHash) {
 				return this.originalValue;
 			} else {
-				return this.$t("interfaces.hashed.secured");
+				return this.$t('interfaces.hashed.secured');
 			}
 		},
 		valueChanged() {
 			return this.value !== this.originalValue;
 		},
 		inputType() {
-			return this.options.hide ? "password" : "text";
+			return this.options.hide ? 'password' : 'text';
 		},
 		lockIcon() {
-			return this.valueChanged ? "lock_open" : "lock_outline";
+			return this.valueChanged ? 'lock_open' : 'lock_outline';
 		},
 		iconColor() {
-			return this.valueChanged ? "warning" : "accent";
+			return this.valueChanged ? 'warning' : 'accent';
 		}
 	},
 	watch: {
 		newValue(val) {
-			this.$emit("input", val);
+			this.$emit('input', val);
 		}
 	}
 };

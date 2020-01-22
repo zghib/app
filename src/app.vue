@@ -47,17 +47,17 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import VError from "./components/error.vue";
-import { TOGGLE_NAV } from "./store/mutation-types";
-import VNavSidebar from "./components/sidebars/nav-sidebar/nav-sidebar.vue";
-import VNotification from "./components/notifications/notifications.vue";
-import isCloudProject from "@/helpers/is-cloud-project";
+import { mapState } from 'vuex';
+import VError from './components/error.vue';
+import { TOGGLE_NAV } from './store/mutation-types';
+import VNavSidebar from './components/sidebars/nav-sidebar/nav-sidebar.vue';
+import VNotification from './components/notifications/notifications.vue';
+import isCloudProject from '@/helpers/is-cloud-project';
 
 export default {
-	name: "Directus",
+	name: 'Directus',
 	metaInfo: {
-		title: "Directus"
+		title: 'Directus'
 	},
 	components: {
 		VError,
@@ -69,7 +69,7 @@ export default {
 			color: state =>
 				state.settings.values.project_color ||
 				getComputedStyle(document.documentElement)
-					.getPropertyValue("--brand")
+					.getPropertyValue('--brand')
 					.trim(),
 			infoActive: state => state.sidebars.info,
 			projects: state => state.projects,
@@ -112,7 +112,7 @@ export default {
 		},
 		hydratingError(newVal) {
 			if (newVal) {
-				document.body.classList.add("no-padding");
+				document.body.classList.add('no-padding');
 			}
 		}
 	},
@@ -122,16 +122,16 @@ export default {
 	methods: {
 		bodyClass() {
 			if (this.publicRoute) {
-				document.body.classList.add("no-padding");
-				document.body.classList.remove("private");
-				document.body.classList.add("public");
+				document.body.classList.add('no-padding');
+				document.body.classList.remove('private');
+				document.body.classList.add('public');
 			} else {
-				document.body.classList.remove("no-padding");
-				document.body.classList.add("private");
-				document.body.classList.remove("public");
+				document.body.classList.remove('no-padding');
+				document.body.classList.add('private');
+				document.body.classList.remove('public');
 			}
 
-			if (["auto", "light", "dark"].indexOf(this.$store.state.currentUser.theme) !== -1) {
+			if (['auto', 'light', 'dark'].indexOf(this.$store.state.currentUser.theme) !== -1) {
 				document.body.classList.add(this.$store.state.currentUser.theme);
 			}
 
@@ -143,32 +143,32 @@ export default {
 			);
 		},
 		discardChanges() {
-			this.$store.dispatch("discardChanges");
+			this.$store.dispatch('discardChanges');
 		},
 
 		toggleInfoSidebarBodyClass(visible = null) {
 			if (visible === null) visible = this.infoActive;
 
 			const className =
-				this.$route.meta && this.$route.meta.infoSidebarWidth === "wide"
-					? "info-wide-active"
-					: "info-active";
+				this.$route.meta && this.$route.meta.infoSidebarWidth === 'wide'
+					? 'info-wide-active'
+					: 'info-active';
 
 			if (visible) {
 				document.body.classList.add(className);
 			} else {
-				document.body.classList.remove("info-wide-active");
-				document.body.classList.remove("info-active");
+				document.body.classList.remove('info-wide-active');
+				document.body.classList.remove('info-active');
 			}
 		},
 
 		preselectProject() {
 			if (this.$route.query.project) {
-				this.$store.dispatch("setCurrentProject", this.$route.query.project);
+				this.$store.dispatch('setCurrentProject', this.$route.query.project);
 
 				// CLOUD
 				if (isCloudProject(this.$route.query.project)) {
-					this.$store.dispatch("getProjects");
+					this.$store.dispatch('getProjects');
 				}
 
 				const query = _.clone(this.$route.query);

@@ -4,9 +4,9 @@
 			<p>{{ $helpers.formatTitle(field) }}</p>
 			<div class="diff">
 				<div :class="{ empty: !before }" class="before">
-					{{ before || "--" }}
+					{{ before || '--' }}
 				</div>
-				<div :class="{ empty: !after }" class="after">{{ after || "--" }}</div>
+				<div :class="{ empty: !after }" class="after">{{ after || '--' }}</div>
 			</div>
 		</div>
 	</div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-	name: "VDiff",
+	name: 'VDiff',
 	props: {
 		changes: {
 			type: Object,
@@ -54,13 +54,13 @@ export default {
 		max-height: 300px;
 		overflow: auto;
 		&:after {
-			content: "close";
+			content: 'close';
 			position: absolute;
 			right: 0px;
 			top: 50%;
 			transform: translateY(-50%);
-			font-family: "Material Icons";
-			font-feature-settings: "liga";
+			font-family: 'Material Icons';
+			font-feature-settings: 'liga';
 			color: var(--danger);
 			display: inline-block;
 			vertical-align: middle;
@@ -75,13 +75,13 @@ export default {
 		max-height: 300px;
 		overflow: auto;
 		&:after {
-			content: "check";
+			content: 'check';
 			position: absolute;
 			right: 0px;
 			top: 50%;
 			transform: translateY(-50%);
-			font-family: "Material Icons";
-			font-feature-settings: "liga";
+			font-family: 'Material Icons';
+			font-feature-settings: 'liga';
 			color: var(--success);
 			display: inline-block;
 			vertical-align: middle;
@@ -93,13 +93,13 @@ export default {
 		color: var(--note-text-color);
 		background-color: var(--page-background-color);
 		&:after {
-			content: "block";
+			content: 'block';
 			position: absolute;
 			right: 0px;
 			top: 50%;
 			transform: translateY(-50%);
-			font-family: "Material Icons";
-			font-feature-settings: "liga";
+			font-family: 'Material Icons';
+			font-feature-settings: 'liga';
 			color: var(--note-text-color);
 			display: inline-block;
 			vertical-align: middle;

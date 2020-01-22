@@ -6,17 +6,17 @@
 			<template v-if="firstInstall">
 				<div class="field-grid">
 					<div class="field">
-						<h2 class="type-title">{{ $t("welcome_to_directus") }}</h2>
-						<p>{{ $t("welcome_to_directus_copy") }}</p>
+						<h2 class="type-title">{{ $t('welcome_to_directus') }}</h2>
+						<p>{{ $t('welcome_to_directus_copy') }}</p>
 					</div>
 				</div>
-				<button type="button" @click="step = 2">{{ $t("next") }}</button>
+				<button type="button" @click="step = 2">{{ $t('next') }}</button>
 			</template>
 			<template v-else class="field-grid">
 				<div class="field-grid">
 					<div class="field">
-						<h2 class="type-title">{{ $t("create_new_project") }}</h2>
-						<p>{{ $t("create_new_project_copy") }}</p>
+						<h2 class="type-title">{{ $t('create_new_project') }}</h2>
+						<p>{{ $t('create_new_project_copy') }}</p>
 						<input
 							v-model="super_admin_token"
 							v-focus
@@ -25,25 +25,25 @@
 						/>
 					</div>
 				</div>
-				<button type="button" @click="step = 2">{{ $t("next") }}</button>
+				<button type="button" @click="step = 2">{{ $t('next') }}</button>
 			</template>
 		</div>
 
 		<div v-show="step === 2" class="step-2">
 			<install-requirements v-if="step === 2" :super-admin-token="super_admin_token" />
 			<div class="buttons">
-				<span class="secondary" @click="step--">{{ $t("back") }}</span>
-				<button type="button" @click="step = 3">{{ $t("next") }}</button>
+				<span class="secondary" @click="step--">{{ $t('back') }}</span>
+				<button type="button" @click="step = 3">{{ $t('next') }}</button>
 			</div>
 		</div>
 
 		<form v-show="step === 3" class="step-3" @submit.prevent="step = 4">
 			<fieldset>
-				<legend class="type-title">{{ $t("project_info") }}</legend>
+				<legend class="type-title">{{ $t('project_info') }}</legend>
 				<div class="field-grid">
 					<div class="field">
 						<label class="type-label" for="project_name">
-							{{ $t("project_name") }}
+							{{ $t('project_name') }}
 						</label>
 						<input
 							id="project_name"
@@ -56,7 +56,7 @@
 						/>
 					</div>
 					<div class="field">
-						<label class="type-label" for="project">{{ $t("project_key") }}</label>
+						<label class="type-label" for="project">{{ $t('project_key') }}</label>
 						<input
 							id="project"
 							:value="project"
@@ -68,7 +68,7 @@
 						/>
 					</div>
 					<div class="field">
-						<label class="type-label" for="user_email">{{ $t("admin_email") }}</label>
+						<label class="type-label" for="user_email">{{ $t('admin_email') }}</label>
 						<input
 							id="user_email"
 							v-model="user_email"
@@ -79,7 +79,7 @@
 					</div>
 					<div class="field">
 						<label class="type-label" for="user_password">
-							{{ $t("admin_password") }}
+							{{ $t('admin_password') }}
 						</label>
 						<input
 							id="user_password"
@@ -93,18 +93,18 @@
 				</div>
 
 				<div class="buttons">
-					<span class="secondary" @click="step--">{{ $t("back") }}</span>
-					<button type="submit">{{ $t("next") }}</button>
+					<span class="secondary" @click="step--">{{ $t('back') }}</span>
+					<button type="submit">{{ $t('next') }}</button>
 				</div>
 			</fieldset>
 		</form>
 
 		<form v-show="step === 4" class="step-4" @submit.prevent="onSubmit">
 			<fieldset>
-				<legend class="type-title">{{ $t("database_connection") }}</legend>
+				<legend class="type-title">{{ $t('database_connection') }}</legend>
 				<div class="field-grid">
 					<div class="field">
-						<label class="type-label" for="db_host">{{ $t("host") }}</label>
+						<label class="type-label" for="db_host">{{ $t('host') }}</label>
 						<input
 							id="db_host"
 							v-model="db_host"
@@ -115,7 +115,7 @@
 						/>
 					</div>
 					<div class="field">
-						<label class="type-label" for="db_port">{{ $t("port") }}</label>
+						<label class="type-label" for="db_port">{{ $t('port') }}</label>
 						<input
 							id="db_port"
 							v-model="db_port"
@@ -125,11 +125,11 @@
 						/>
 					</div>
 					<div class="field">
-						<label class="type-label" for="db_user">{{ $t("db_user") }}</label>
+						<label class="type-label" for="db_user">{{ $t('db_user') }}</label>
 						<input id="db_user" v-model="db_user" name="db_user" type="text" required />
 					</div>
 					<div class="field">
-						<label class="type-label" for="db_password">{{ $t("db_password") }}</label>
+						<label class="type-label" for="db_password">{{ $t('db_password') }}</label>
 						<input
 							id="db_password"
 							v-model="db_password"
@@ -139,11 +139,11 @@
 						/>
 					</div>
 					<div class="field">
-						<label class="type-label" for="db_name">{{ $t("db_name") }}</label>
+						<label class="type-label" for="db_name">{{ $t('db_name') }}</label>
 						<input id="db_name" v-model="db_name" name="db_name" type="text" required />
 					</div>
 					<div class="field">
-						<label class="type-label" for="db_type">{{ $t("db_type") }}</label>
+						<label class="type-label" for="db_type">{{ $t('db_type') }}</label>
 						<div class="select">
 							<input id="db_type" name="db_type" type="text" value="MySQL" disabled />
 						</div>
@@ -151,38 +151,38 @@
 				</div>
 
 				<div class="buttons">
-					<span class="secondary" @click="step--">{{ $t("back") }}</span>
-					<button type="submit">{{ $t("install") }}</button>
+					<span class="secondary" @click="step--">{{ $t('back') }}</span>
+					<button type="submit">{{ $t('install') }}</button>
 				</div>
 			</fieldset>
 		</form>
 
 		<div v-show="step === 5" class="step-5">
-			<h2 class="type-title">{{ $t("wrapping_up") }}</h2>
+			<h2 class="type-title">{{ $t('wrapping_up') }}</h2>
 			<div class="field-grid">
 				<div class="field">
 					<v-progress class="progress-bar" />
 					<p>
-						{{ $t("install_busy_copy") }}
+						{{ $t('install_busy_copy') }}
 					</p>
 				</div>
 			</div>
 		</div>
 
 		<div v-show="step === 6" class="step-6">
-			<h2 class="type-title">{{ $t("all_set") }}</h2>
+			<h2 class="type-title">{{ $t('all_set') }}</h2>
 			<div class="field-grid">
 				<div class="field">
 					<v-progress class="progress-bar" :value="100" />
 					<p>
-						{{ $t("install_all_set_copy") }}
+						{{ $t('install_all_set_copy') }}
 						<span v-if="firstInstall" class="warning">
-							{{ $t("install_all_set_super_admin_password") }}
+							{{ $t('install_all_set_super_admin_password') }}
 						</span>
 					</p>
 					<input v-if="firstInstall" v-model="super_admin_token" type="text" readonly />
 					<button type="button" class="button" @click="goToLogin">
-						{{ $t("sign_in") }}
+						{{ $t('sign_in') }}
 					</button>
 				</div>
 			</div>
@@ -201,17 +201,17 @@
 </template>
 
 <script>
-import PublicView from "@/components/public-view";
-import PublicNotice from "@/components/public/notice";
-import axios from "axios";
-import { mapState, mapActions } from "vuex";
-import PublicStepper from "@/components/public/stepper";
-import slug from "slug";
-import shortid from "shortid";
-import InstallRequirements from "@/components/install/requirements";
+import PublicView from '@/components/public-view';
+import PublicNotice from '@/components/public/notice';
+import axios from 'axios';
+import { mapState, mapActions } from 'vuex';
+import PublicStepper from '@/components/public/stepper';
+import slug from 'slug';
+import shortid from 'shortid';
+import InstallRequirements from '@/components/install/requirements';
 
 export default {
-	name: "Install",
+	name: 'Install',
 	components: {
 		PublicView,
 		PublicNotice,
@@ -221,39 +221,39 @@ export default {
 	data() {
 		return {
 			step: 1,
-			project_name: "",
-			project: "",
-			user_email: "",
-			user_password: "",
-			db_host: "localhost",
+			project_name: '',
+			project: '',
+			user_email: '',
+			user_password: '',
+			db_host: 'localhost',
 			notice: {
-				text: this.$t("project_not_configured"),
-				color: "blue-grey-100",
-				icon: "outlined_flag"
+				text: this.$t('project_not_configured'),
+				color: 'blue-grey-100',
+				icon: 'outlined_flag'
 			},
 			db_port: 3306,
-			db_user: "",
-			db_password: "",
-			db_name: "",
+			db_user: '',
+			db_password: '',
+			db_name: '',
 			installing: false,
 			error: null,
 			manualKey: false,
-			super_admin_token: "",
+			super_admin_token: '',
 			adminTokenValid: false,
 			fetchingRequirements: false
 		};
 	},
 	computed: {
-		...mapState(["apiRootPath", "projects"]),
+		...mapState(['apiRootPath', 'projects']),
 		firstInstall() {
 			return this.projects === false;
 		}
 	},
 	methods: {
-		...mapActions(["getProjects"]),
+		...mapActions(['getProjects']),
 		generateMasterPassword() {
 			const sections = 2;
-			let password = "";
+			let password = '';
 			for (let i = 0; i <= sections; i++) {
 				password += shortid.generate();
 			}
@@ -274,9 +274,9 @@ export default {
 			// go to the confirmation of done.
 			const next = () => {
 				this.$notify({
-					title: this.$t("api_installed"),
-					color: "green",
-					iconMain: "check"
+					title: this.$t('api_installed'),
+					color: 'green',
+					iconMain: 'check'
 				});
 
 				this.step = 6;
@@ -308,7 +308,7 @@ export default {
 					this.super_admin_token = this.generateMasterPassword();
 				}
 
-				await axios.post(this.apiRootPath + "server/projects", {
+				await axios.post(this.apiRootPath + 'server/projects', {
 					project_name,
 					project,
 					user_email,
@@ -331,7 +331,7 @@ export default {
 
 				console.error(error);
 
-				this.$events.emit("error", {
+				this.$events.emit('error', {
 					notify: error.response?.data?.error?.message,
 					error
 				});
@@ -352,7 +352,7 @@ export default {
 		async goToLogin() {
 			await this.getProjects(true);
 
-			this.$router.push("/login", { query: { project: this.project } });
+			this.$router.push('/login', { query: { project: this.project } });
 		}
 	}
 };
@@ -409,7 +409,7 @@ button {
 .select {
 	position: relative;
 	&:after {
-		content: "arrow_drop_down";
+		content: 'arrow_drop_down';
 		font-family: var(--family-icon);
 		position: absolute;
 		right: 12px;

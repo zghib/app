@@ -1,9 +1,9 @@
-import api from "../api";
-import axios from "axios";
-import router from "@/router";
-import hydrateStore from "@/hydrate";
-import { loadLanguageAsync } from "@/lang/";
-import isCloudProject from "@/helpers/is-cloud-project";
+import api from '../api';
+import axios from 'axios';
+import router from '@/router';
+import hydrateStore from '@/hydrate';
+import { loadLanguageAsync } from '@/lang/';
+import isCloudProject from '@/helpers/is-cloud-project';
 
 import {
 	RESET,
@@ -19,7 +19,7 @@ import {
 	UPDATE_PROJECT,
 	SET_CURRENT_PROJECT,
 	INIT_PROJECTS
-} from "./mutation-types";
+} from './mutation-types';
 
 export function latency({ commit }) {
 	const start = performance.now();
@@ -56,15 +56,15 @@ export function getCurrentUser({ commit }) {
 	return api
 		.getMe({
 			fields: [
-				"id",
-				"avatar.*",
-				"email",
-				"first_name",
-				"last_name",
-				"locale",
-				"role.*",
-				"last_page",
-				"theme"
+				'id',
+				'avatar.*',
+				'email',
+				'first_name',
+				'last_name',
+				'locale',
+				'role.*',
+				'last_page',
+				'theme'
 			]
 		})
 		.then(res => res.data)
@@ -89,7 +89,7 @@ export function track({ commit, state }, { page }) {
 	};
 
 	commit(UPDATE_CURRENT_USER, data);
-	return api.api.request("PATCH", `/users/${currentUserID}/tracking/page`, {}, data);
+	return api.api.request('PATCH', `/users/${currentUserID}/tracking/page`, {}, data);
 }
 
 export function getBookmarks({ commit }) {
@@ -110,8 +110,8 @@ export function saveBookmark({ commit }, bookmark) {
 export function deleteBookmark({ commit }, bookmarkID) {
 	commit(DELETE_BOOKMARK, bookmarkID);
 	return api.deleteCollectionPreset(bookmarkID).catch(error => {
-		this.$events.emit("error", {
-			notify: this.$t("something_went_wrong_body"),
+		this.$events.emit('error', {
+			notify: this.$t('something_went_wrong_body'),
 			error
 		});
 	});
@@ -134,7 +134,7 @@ export async function setCurrentProject({ commit, dispatch, state, getters }, ke
 	// the user will see a "something is wrong with the project" error on the login screen, as the status
 	// of the project will be "failed"
 	if (!newProject) {
-		await dispatch("updateProjectInfo", key);
+		await dispatch('updateProjectInfo', key);
 		newProject = state.projects.find(p => p.key === key);
 	}
 
@@ -151,7 +151,7 @@ export async function setCurrentProject({ commit, dispatch, state, getters }, ke
 
 	if (privateRoute && authenticated) {
 		commit(RESET);
-		await dispatch("getProjects");
+		await dispatch('getProjects');
 
 		if (authenticated) {
 			await hydrateStore();
@@ -167,14 +167,14 @@ export async function setCurrentProject({ commit, dispatch, state, getters }, ke
 			router.push(route);
 		}
 	} else if (privateRoute && authenticated === false) {
-		router.push("/login");
+		router.push('/login');
 	}
 }
 
 export async function updateProjectInfo({ commit, state }, key) {
 	const apiRootPath = state.apiRootPath;
-	const url = apiRootPath + key + "/";
-	commit(SET_PROJECT_STATUS, { key: key, status: "loading" });
+	const url = apiRootPath + key + '/';
+	commit(SET_PROJECT_STATUS, { key: key, status: 'loading' });
 
 	try {
 		const response = await axios.get(url);
@@ -204,10 +204,10 @@ export async function updateProjectInfo({ commit, state }, key) {
 				authenticated
 			}
 		});
-		commit(SET_PROJECT_STATUS, { key: key, status: "successful" });
+		commit(SET_PROJECT_STATUS, { key: key, status: 'successful' });
 	} catch (error) {
 		commit(UPDATE_PROJECT, { key: key, error });
-		commit(SET_PROJECT_STATUS, { key: key, status: "failed" });
+		commit(SET_PROJECT_STATUS, { key: key, status: 'failed' });
 	}
 }
 
@@ -216,7 +216,7 @@ export async function getProjects({ state, dispatch, commit }, force) {
 	const apiRootPath = state.apiRootPath;
 
 	if (force === true || state.projects === null || state.projects === false) {
-		const url = apiRootPath + "server/projects";
+		const url = apiRootPath + 'server/projects';
 
 		try {
 			const response = await axios.get(url);
@@ -253,7 +253,7 @@ export async function getProjects({ state, dispatch, commit }, force) {
 	// CLOUD
 	// If the project is a Directus Cloud project, fetch the project keys from the Cloud API instead
 	if (isCloudProject(currentProjectKey)) {
-		console.log("[Cloud] Using cloud projects");
+		console.log('[Cloud] Using cloud projects');
 		const url = `https://cloud-api.directus.cloud/projects/${currentProjectKey}/related`;
 		try {
 			const response = await axios.get(url);
@@ -275,13 +275,13 @@ export async function getProjects({ state, dispatch, commit }, force) {
 
 	// If there's no pre-selected project, default to the first available one in the projects array
 	if (state.projects?.length > 0 && currentProjectKey === null) {
-		dispatch("setCurrentProject", state.projects[0].key);
+		dispatch('setCurrentProject', state.projects[0].key);
 	}
 
 	if (state.projects !== null && state.projects !== false) {
 		// Fetch the detailed information for each project asynchronously.
 		return Promise.allSettled(
-			state.projects.map(p => p.key).map(key => dispatch("updateProjectInfo", key))
+			state.projects.map(p => p.key).map(key => dispatch('updateProjectInfo', key))
 		);
 	}
 

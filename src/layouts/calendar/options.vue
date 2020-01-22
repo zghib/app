@@ -5,7 +5,7 @@
 			class="type-label"
 			:class="{ required: viewOptions.date === '__none__' }"
 		>
-			{{ $t("layouts.calendar.datetime") }}
+			{{ $t('layouts.calendar.datetime') }}
 		</label>
 		<v-select
 			id="spacing"
@@ -20,7 +20,7 @@
 			class="type-label"
 			:class="{ required: viewOptions.datetime === '__none__' }"
 		>
-			{{ $t("layouts.calendar.date") }}
+			{{ $t('layouts.calendar.date') }}
 		</label>
 		<v-select
 			id="spacing"
@@ -31,7 +31,7 @@
 			@input="setOption('date', $event)"
 		></v-select>
 		<label for="spacing" class="type-label">
-			{{ $t("layouts.calendar.time") }}
+			{{ $t('layouts.calendar.time') }}
 		</label>
 		<v-select
 			id="spacing"
@@ -42,7 +42,7 @@
 			@input="setOption('time', $event)"
 		></v-select>
 		<label for="spacing" class="type-label required">
-			{{ $t("layouts.calendar.title") }}
+			{{ $t('layouts.calendar.title') }}
 		</label>
 		<v-select
 			id="spacing"
@@ -53,7 +53,7 @@
 			@input="setOption('title', $event)"
 		></v-select>
 		<label for="spacing" class="type-label">
-			{{ $t("layouts.calendar.color") }}
+			{{ $t('layouts.calendar.color') }}
 		</label>
 		<v-select
 			id="spacing"
@@ -67,7 +67,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/layout";
+import mixin from '@directus/extension-toolkit/mixins/layout';
 
 export default {
 	mixins: [mixin],
@@ -79,42 +79,42 @@ export default {
 	computed: {
 		textOptions() {
 			var options = _.mapValues(this.fields, info =>
-				info.type == "string" || info.type == "integer" ? info.name : null
+				info.type == 'string' || info.type == 'integer' ? info.name : null
 			);
 			return _.pickBy(options, _.identity);
 		},
 		dateOptions() {
 			var options = {
-				__none__: `(${this.$t("dont_show")})`,
-				..._.mapValues(this.fields, info => (info.type == "date" ? info.name : null))
+				__none__: `(${this.$t('dont_show')})`,
+				..._.mapValues(this.fields, info => (info.type == 'date' ? info.name : null))
 			};
 			return _.pickBy(options, _.identity);
 		},
 		datetimeOptions() {
 			var options = {
-				__none__: `(${this.$t("dont_show")})`,
-				..._.mapValues(this.fields, info => (info.type == "datetime" ? info.name : null))
+				__none__: `(${this.$t('dont_show')})`,
+				..._.mapValues(this.fields, info => (info.type == 'datetime' ? info.name : null))
 			};
 			return _.pickBy(options, _.identity);
 		},
 		timeOptions() {
 			var options = {
-				__none__: `(${this.$t("dont_show")})`,
-				..._.mapValues(this.fields, info => (info.type == "time" ? info.name : null))
+				__none__: `(${this.$t('dont_show')})`,
+				..._.mapValues(this.fields, info => (info.type == 'time' ? info.name : null))
 			};
 			return _.pickBy(options, _.identity);
 		},
 		colorOptions() {
 			var options = {
-				__none__: `(${this.$t("dont_show")})`,
-				..._.mapValues(this.fields, info => (info.type == "string" ? info.name : null))
+				__none__: `(${this.$t('dont_show')})`,
+				..._.mapValues(this.fields, info => (info.type == 'string' ? info.name : null))
 			};
 			return _.pickBy(options, _.identity);
 		}
 	},
 	methods: {
 		setOption(option, value) {
-			this.$emit("options", {
+			this.$emit('options', {
 				...this.viewOptions,
 				[option]: value
 			});
@@ -133,7 +133,7 @@ export default {
 }
 
 .required::after {
-	content: "required";
+	content: 'required';
 	margin: 0 5px;
 	padding: 0px 4px 1px;
 	font-size: 10px;

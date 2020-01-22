@@ -11,7 +11,7 @@
 			<!-- the getProjects action will set the currentProject on load. When currentProject doesn't exist
         it means that the store doesn't have any projects that can be used loaded-->
 			<template v-else-if="!currentProject">
-				<v-notice icon="info" color="warning">{{ $t("no_public_projects") }}</v-notice>
+				<v-notice icon="info" color="warning">{{ $t('no_public_projects') }}</v-notice>
 			</template>
 
 			<template v-else-if="currentProject.status === 'failed'">
@@ -21,7 +21,7 @@
 			</template>
 
 			<template v-else-if="needs2fa === true">
-				<p>{{ $t("enter_otp") }}</p>
+				<p>{{ $t('enter_otp') }}</p>
 				<otp-input @input="onOTPInput" />
 			</template>
 
@@ -36,9 +36,9 @@
 					<p v-else v-html="$t('continue_as', { name: firstName + ' ' + lastName })" />
 					<div class="buttons">
 						<button type="button" class="secondary" @click="logout">
-							{{ $t("sign_out") }}
+							{{ $t('sign_out') }}
 						</button>
-						<button type="submit">{{ $t("continue") }}</button>
+						<button type="submit">{{ $t('continue') }}</button>
 					</div>
 				</div>
 				<template v-else>
@@ -59,9 +59,9 @@
 						required
 					/>
 					<div class="buttons">
-						<button type="submit">{{ $t("sign_in") }}</button>
+						<button type="submit">{{ $t('sign_in') }}</button>
 						<router-link class="secondary" to="/reset-password">
-							{{ $t("forgot_password") }}
+							{{ $t('forgot_password') }}
 						</router-link>
 					</div>
 					<sso :providers="ssoProviders" />
@@ -81,17 +81,17 @@
 </template>
 
 <script>
-import PublicView from "@/components/public-view";
-import PublicNotice from "@/components/public/notice";
-import Sso from "@/components/public/sso";
-import ProjectChooser from "@/components/public/project-chooser";
-import { mapState, mapGetters, mapMutations } from "vuex";
-import { UPDATE_PROJECT } from "@/store/mutation-types";
-import hydrateStore from "@/hydrate";
-import OtpInput from "@/components/public/otp-input";
+import PublicView from '@/components/public-view';
+import PublicNotice from '@/components/public/notice';
+import Sso from '@/components/public/sso';
+import ProjectChooser from '@/components/public/project-chooser';
+import { mapState, mapGetters, mapMutations } from 'vuex';
+import { UPDATE_PROJECT } from '@/store/mutation-types';
+import hydrateStore from '@/hydrate';
+import OtpInput from '@/components/public/otp-input';
 
 export default {
-	name: "Login",
+	name: 'Login',
 	components: {
 		PublicView,
 		PublicNotice,
@@ -101,15 +101,15 @@ export default {
 	},
 	data() {
 		return {
-			email: "",
-			password: "",
-			otp: "",
+			email: '',
+			password: '',
+			otp: '',
 			signingIn: false,
 			fetchingData: false,
 			notice: {
-				text: this.$t("not_authenticated"),
-				color: "blue-grey-100",
-				icon: "lock_outline"
+				text: this.$t('not_authenticated'),
+				color: 'blue-grey-100',
+				icon: 'lock_outline'
 			},
 			firstName: null,
 			lastName: null,
@@ -118,10 +118,10 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters(["currentProject"]),
-		...mapState(["currentProjectKey", "apiRootPath", "projects"]),
+		...mapGetters(['currentProject']),
+		...mapState(['currentProjectKey', 'apiRootPath', 'projects']),
 		readableError() {
-			if (this.currentProject?.status !== "failed") return null;
+			if (this.currentProject?.status !== 'failed') return null;
 			return (
 				this.currentProject.error.response?.data?.error?.message ||
 				this.currentProject.error.message
@@ -154,8 +154,8 @@ export default {
 			this.signingIn = true;
 
 			this.notice = {
-				text: this.$t("signing_in"),
-				color: "blue-grey",
+				text: this.$t('signing_in'),
+				color: 'blue-grey',
 				icon: null
 			};
 
@@ -163,7 +163,7 @@ export default {
 				project: this.currentProjectKey,
 				email,
 				password,
-				mode: "cookie"
+				mode: 'cookie'
 			};
 
 			if (this.otp && this.otp.length === 6) {
@@ -184,7 +184,7 @@ export default {
 						};
 					}
 
-					const { data: projectInfo } = await this.$api.api.get("/");
+					const { data: projectInfo } = await this.$api.api.get('/');
 					const { requires2FA, version, database } = projectInfo.api;
 					const { max_upload_size } = projectInfo.server;
 
@@ -212,16 +212,16 @@ export default {
 
 						this.notice = {
 							text: this.$t(`errors.${code}`),
-							color: "blue-grey-100",
-							icon: "lock_outline"
+							color: 'blue-grey-100',
+							icon: 'lock_outline'
 						};
 					} else if (code === 113) {
-						this.$router.push("/setup-2fa");
+						this.$router.push('/setup-2fa');
 					} else if (code === 100) {
 						this.notice = {
 							text: this.$t(`errors.${code}`),
-							color: "warning",
-							icon: "warning"
+							color: 'warning',
+							icon: 'warning'
 						};
 
 						this.$nextTick(() => {
@@ -230,14 +230,14 @@ export default {
 					} else if (code) {
 						this.notice = {
 							text: this.$t(`errors.${code}`),
-							color: "warning",
-							icon: "warning"
+							color: 'warning',
+							icon: 'warning'
 						};
 					} else {
 						this.notice = {
 							text: this.$t(`errors.-1`),
-							color: "danger",
-							icon: "error_outline"
+							color: 'danger',
+							icon: 'error_outline'
 						};
 					}
 				});
@@ -253,7 +253,7 @@ export default {
 		},
 		async enterApp() {
 			this.notice = {
-				text: this.$t("fetching_data")
+				text: this.$t('fetching_data')
 			};
 
 			this.fetchingData = true;
@@ -284,7 +284,7 @@ export default {
 			if (!this.currentProject) return;
 			this.firstName = null;
 			this.lastName = null;
-			const { data } = await this.$api.getMe({ fields: ["first_name", "last_name"] });
+			const { data } = await this.$api.getMe({ fields: ['first_name', 'last_name'] });
 			this.firstName = data.first_name;
 			this.lastName = data.last_name;
 		},
@@ -302,8 +302,8 @@ export default {
 			if (this.$route.query.error) {
 				this.notice = {
 					text: this.$t(`errors.${this.$route.query.code}`),
-					color: "danger",
-					icon: "error"
+					color: 'danger',
+					icon: 'error'
 				};
 
 				// Remove query params
@@ -314,7 +314,7 @@ export default {
 			}
 		},
 		handleLoad() {
-			if (this.currentProject?.status === "successful") {
+			if (this.currentProject?.status === 'successful') {
 				if (this.currentProject?.data?.authenticated === true) {
 					this.fetchAuthenticatedUser();
 				} else {

@@ -1,12 +1,12 @@
 <template>
 	<v-button class="launch" :disabled="required && disabled" @click="preview">
-		{{ $t("interfaces.preview.preview_item") }}
+		{{ $t('interfaces.preview.preview_item') }}
 		<v-icon name="launch" />
 	</v-button>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -17,7 +17,7 @@ export default {
 				this.values // { text: "World" }
 			);
 
-			window.open(url, "_blank");
+			window.open(url, '_blank');
 		}
 	}
 };

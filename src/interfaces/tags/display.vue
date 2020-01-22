@@ -7,15 +7,15 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		displayValue() {
-			if (!this.value) return "";
+			if (!this.value) return '';
 
-			let value = this.type === "array" ? this.value : this.value.split(",");
+			let value = this.type === 'array' ? this.value : this.value.split(',');
 
 			if (this.options.wrap) {
 				value.pop();

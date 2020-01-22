@@ -13,17 +13,17 @@
 
 <script>
 export default {
-	name: "OTPInput",
+	name: 'OTPInput',
 	props: {
 		value: {
 			type: String,
-			default: ""
+			default: ''
 		}
 	},
 	methods: {
 		onInput(value) {
 			if (value.length === 0 || value.length === 6) {
-				this.$emit("input", value);
+				this.$emit('input', value);
 			}
 		}
 	}

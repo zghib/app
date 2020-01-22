@@ -23,14 +23,14 @@
 </template>
 
 <script>
-import Vue from "vue";
-import loadExtension from "../../../../helpers/load-extension";
-import componentExists from "../../../../helpers/component-exists";
-import VExtLayoutFallback from "./layout-fallback.vue";
-import VExtLayoutLoading from "./layout-loading.vue";
+import Vue from 'vue';
+import loadExtension from '../../../../helpers/load-extension';
+import componentExists from '../../../../helpers/component-exists';
+import VExtLayoutFallback from './layout-fallback.vue';
+import VExtLayoutLoading from './layout-loading.vue';
 
 export default {
-	name: "VLayout",
+	name: 'VLayout',
 	props: {
 		fields: {
 			type: Object,
@@ -119,11 +119,11 @@ export default {
 			let component;
 
 			if (this.layout.core) {
-				component = import("@/layouts/" + this.layout.id + "/layout.vue");
+				component = import('@/layouts/' + this.layout.id + '/layout.vue');
 			} else {
 				const filePath = `${this.$store.state.apiRootPath}${this.layout.path.replace(
-					"meta.json",
-					"layout.js"
+					'meta.json',
+					'layout.js'
 				)}`;
 
 				component = loadExtension(filePath);

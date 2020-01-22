@@ -133,15 +133,15 @@
 </template>
 
 <script>
-import { version } from "../../../package.json";
-import VSignal from "../../components/signal.vue";
-import { mapGetters, mapState } from "vuex";
+import { version } from '../../../package.json';
+import VSignal from '../../components/signal.vue';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
-	name: "Settings",
+	name: 'Settings',
 	metaInfo() {
 		return {
-			title: `${this.$t("settings")}`
+			title: `${this.$t('settings')}`
 		};
 	},
 	components: {
@@ -149,20 +149,20 @@ export default {
 	},
 	data() {
 		return {
-			roleCount: this.$t("loading"),
-			activityCount: this.$t("loading"),
-			webhookCount: this.$t("loading")
+			roleCount: this.$t('loading'),
+			activityCount: this.$t('loading'),
+			webhookCount: this.$t('loading')
 		};
 	},
 	computed: {
-		...mapGetters(["currentProject"]),
-		...mapState(["currentProjectKey"]),
+		...mapGetters(['currentProject']),
+		...mapState(['currentProjectKey']),
 		globalNum() {
 			return Object.keys(this.$store.state.collections.directus_settings.fields).length;
 		},
 		collectionsNum() {
 			return Object.keys(this.$store.state.collections).filter(
-				name => name.startsWith("directus_") === false
+				name => name.startsWith('directus_') === false
 			).length;
 		},
 		projectName() {
@@ -177,7 +177,7 @@ export default {
 		links() {
 			return [
 				{
-					name: this.$t("settings"),
+					name: this.$t('settings'),
 					path: `/${this.currentProjectKey}/settings`
 				}
 			];
@@ -191,52 +191,52 @@ export default {
 	methods: {
 		getRoleCount() {
 			this.$api
-				.getItems("directus_roles", {
-					fields: "-",
+				.getItems('directus_roles', {
+					fields: '-',
 					limit: 0,
-					meta: "total_count"
+					meta: 'total_count'
 				})
 				.then(res => res.meta)
 				.then(({ total_count }) => {
-					this.roleCount = this.$tc("role_count", total_count, {
+					this.roleCount = this.$tc('role_count', total_count, {
 						count: this.$n(total_count)
 					});
 				})
 				.catch(() => {
-					this.roleCount = "--";
+					this.roleCount = '--';
 				});
 		},
 		getActivityCount() {
 			this.$api
-				.getItems("directus_activity", {
-					fields: "-",
+				.getItems('directus_activity', {
+					fields: '-',
 					limit: 0,
-					meta: "total_count"
+					meta: 'total_count'
 				})
 				.then(res => res.meta)
 				.then(({ total_count }) => {
-					this.activityCount = this.$tc("event_count", total_count, {
+					this.activityCount = this.$tc('event_count', total_count, {
 						count: this.$n(total_count)
 					});
 				})
 				.catch(() => {
-					this.activityCount = "--";
+					this.activityCount = '--';
 				});
 		},
 		getWebhookCount() {
 			this.$api
-				.getItems("directus_webhooks", {
+				.getItems('directus_webhooks', {
 					limit: 0,
-					meta: "total_count"
+					meta: 'total_count'
 				})
 				.then(res => res.meta)
 				.then(({ total_count }) => {
-					this.webhookCount = this.$tc("webhook_count", total_count, {
+					this.webhookCount = this.$tc('webhook_count', total_count, {
 						count: this.$n(total_count)
 					});
 				})
 				.catch(() => {
-					this.webhookCount = "--";
+					this.webhookCount = '--';
 				});
 		}
 	}

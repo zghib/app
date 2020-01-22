@@ -10,21 +10,21 @@
 </template>
 
 <script>
-import dateFormat from "dateformat";
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import dateFormat from 'dateformat';
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		showRelative() {
-			if (this.options.formatting == "" || this.options.formatting == null) {
+			if (this.options.formatting == '' || this.options.formatting == null) {
 				return true;
 			}
 			return false;
 		},
 		date() {
 			if (this.value) {
-				return new Date(this.value.replace(/-/g, "/"));
+				return new Date(this.value.replace(/-/g, '/'));
 			}
 			return null;
 		},

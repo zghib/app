@@ -2,7 +2,7 @@
 	<small v-if="parseError" class="notice">
 		<v-icon name="warning" />
 		<span>
-			{{ $t("interfaces.dropdown.options_invalid") }}
+			{{ $t('interfaces.dropdown.options_invalid') }}
 			<br />
 			{{ parseError }}
 		</span>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -33,7 +33,7 @@ export default {
 		choices() {
 			let choices = this.options.choices;
 			if (!choices) return {};
-			if (typeof this.options.choices === "string") {
+			if (typeof this.options.choices === 'string') {
 				try {
 					choices = JSON.parse(this.options.choices);
 				} catch (error) {

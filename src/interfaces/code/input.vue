@@ -17,7 +17,7 @@
 
 		<small v-if="language" class="line-count type-note">
 			{{
-				$tc("interfaces.code.loc", lineCount, {
+				$tc('interfaces.code.loc', lineCount, {
 					count: lineCount,
 					lang: language
 				})
@@ -27,40 +27,40 @@
 </template>
 
 <script>
-import { codemirror } from "vue-codemirror";
+import { codemirror } from 'vue-codemirror';
 
-import "codemirror/lib/codemirror.css";
+import 'codemirror/lib/codemirror.css';
 
-import "codemirror/mode/vue/vue.js";
-import "codemirror/mode/javascript/javascript.js";
-import "codemirror/mode/php/php.js";
+import 'codemirror/mode/vue/vue.js';
+import 'codemirror/mode/javascript/javascript.js';
+import 'codemirror/mode/php/php.js';
 
-import "codemirror/addon/selection/active-line.js";
-import "codemirror/addon/selection/mark-selection.js";
-import "codemirror/addon/search/searchcursor.js";
-import "codemirror/addon/hint/show-hint.js";
-import "codemirror/addon/hint/show-hint.css";
-import "codemirror/addon/hint/javascript-hint.js";
-import "codemirror/addon/selection/active-line.js";
-import "codemirror/addon/scroll/annotatescrollbar.js";
-import "codemirror/addon/search/matchesonscrollbar.js";
-import "codemirror/addon/search/searchcursor.js";
-import "codemirror/addon/search/match-highlighter.js";
-import "codemirror/addon/edit/matchbrackets.js";
-import "codemirror/addon/comment/comment.js";
-import "codemirror/addon/dialog/dialog.js";
-import "codemirror/addon/dialog/dialog.css";
-import "codemirror/addon/search/searchcursor.js";
-import "codemirror/addon/search/search.js";
+import 'codemirror/addon/selection/active-line.js';
+import 'codemirror/addon/selection/mark-selection.js';
+import 'codemirror/addon/search/searchcursor.js';
+import 'codemirror/addon/hint/show-hint.js';
+import 'codemirror/addon/hint/show-hint.css';
+import 'codemirror/addon/hint/javascript-hint.js';
+import 'codemirror/addon/selection/active-line.js';
+import 'codemirror/addon/scroll/annotatescrollbar.js';
+import 'codemirror/addon/search/matchesonscrollbar.js';
+import 'codemirror/addon/search/searchcursor.js';
+import 'codemirror/addon/search/match-highlighter.js';
+import 'codemirror/addon/edit/matchbrackets.js';
+import 'codemirror/addon/comment/comment.js';
+import 'codemirror/addon/dialog/dialog.js';
+import 'codemirror/addon/dialog/dialog.css';
+import 'codemirror/addon/search/searchcursor.js';
+import 'codemirror/addon/search/search.js';
 
-import "codemirror/addon/display/autorefresh.js";
+import 'codemirror/addon/display/autorefresh.js';
 
-import "codemirror/keymap/sublime.js";
+import 'codemirror/keymap/sublime.js';
 
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceCode",
+	name: 'InterfaceCode',
 	components: {
 		codemirror
 	},
@@ -80,7 +80,7 @@ export default {
 				indentUnit: 4,
 				styleActiveLine: true,
 				lineNumbers: this.options.lineNumber,
-				readOnly: this.readonly ? "nocursor" : false,
+				readOnly: this.readonly ? 'nocursor' : false,
 				styleSelectedText: true,
 				line: true,
 				highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
@@ -90,19 +90,19 @@ export default {
 				},
 				matchBrackets: true,
 				showCursorWhenSelecting: true,
-				theme: "default",
-				extraKeys: { Ctrl: "autocomplete" }
+				theme: 'default',
+				extraKeys: { Ctrl: 'autocomplete' }
 			}
 		};
 	},
 	computed: {
 		availableTypes() {
 			return {
-				"text/plain": "Plain Text",
-				"text/javascript": "JavaScript",
-				"application/json": "JSON",
-				"text/x-vue": "Vue",
-				"application/x-httpd-php": "PHP"
+				'text/plain': 'Plain Text',
+				'text/javascript': 'JavaScript',
+				'application/json': 'JSON',
+				'text/x-vue': 'Vue',
+				'application/x-httpd-php': 'PHP'
 			};
 		},
 		language() {
@@ -111,7 +111,7 @@ export default {
 		stringValue() {
 			if (this.value == null) return null;
 
-			if (typeof this.value === "object") {
+			if (typeof this.value === 'object') {
 				return JSON.stringify(this.value, null, 4);
 			}
 
@@ -119,19 +119,19 @@ export default {
 		},
 		mode() {
 			// There is no dedicated mode for JSON in codemirror. Switch to JS mode when JSON is selected
-			return this.options.language === "application/json"
-				? "text/javascript"
+			return this.options.language === 'application/json'
+				? 'text/javascript'
 				: this.options.language;
 		}
 	},
 	watch: {
 		options(newVal, oldVal) {
 			if (newVal.language !== oldVal.language) {
-				this.$set(this.cmOptions, "mode", newVal.language);
+				this.$set(this.cmOptions, 'mode', newVal.language);
 			}
 
 			if (newVal.lineNumber !== oldVal.lineNumber) {
-				this.$set(this.cmOptions, "lineNumbers", newVal.lineNumber);
+				this.$set(this.cmOptions, 'lineNumbers', newVal.lineNumber);
 			}
 		}
 	},
@@ -147,29 +147,29 @@ export default {
 				this.lineCount = codemirror.lineCount();
 			}
 
-			if (this.options.language === "application/json") {
+			if (this.options.language === 'application/json') {
 				try {
-					this.$emit("input", JSON.parse(value));
+					this.$emit('input', JSON.parse(value));
 				} catch (e) {
 					// silently ignore saving value if it's not valid json
 				}
 			} else {
-				this.$emit("input", value);
+				this.$emit('input', value);
 			}
 		},
 		fillTemplate() {
 			if (_.isObject(this.options.template) || _.isArray(this.options.template)) {
-				return this.$emit("input", JSON.stringify(this.options.template, null, 4));
+				return this.$emit('input', JSON.stringify(this.options.template, null, 4));
 			}
 
-			if (this.options.language === "application/json") {
+			if (this.options.language === 'application/json') {
 				try {
-					this.$emit("input", JSON.parse(this.options.template));
+					this.$emit('input', JSON.parse(this.options.template));
 				} catch (e) {
 					// silently ignore saving value if it's not valid json
 				}
 			} else {
-				this.$emit("input", this.options.template);
+				this.$emit('input', this.options.template);
 			}
 		}
 	}

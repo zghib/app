@@ -1,19 +1,19 @@
 <template>
 	<form @submit.prevent>
-		<label class="type-label">{{ $t("sort_by") }}</label>
+		<label class="type-label">{{ $t('sort_by') }}</label>
 		<v-simple-select :value="sortedOn" @input="setSort($event)">
 			<option v-for="(fieldInfo, name) in sortableFields" :key="name" :value="name">
 				{{ $helpers.formatTitle(name) }}
 			</option>
 		</v-simple-select>
 
-		<label for="src" class="type-label">{{ $t("sort_direction") }}</label>
+		<label for="src" class="type-label">{{ $t('sort_direction') }}</label>
 		<v-simple-select :value="sortDirection" @input="setSortDirection($event)">
-			<option value="asc">{{ $t("ASC") }}</option>
-			<option value="desc">{{ $t("DESC") }}</option>
+			<option value="asc">{{ $t('ASC') }}</option>
+			<option value="desc">{{ $t('DESC') }}</option>
 		</v-simple-select>
 
-		<label for="src" class="type-label">{{ $t("layouts.cards.src") }}</label>
+		<label for="src" class="type-label">{{ $t('layouts.cards.src') }}</label>
 		<v-select
 			id="src"
 			:value="viewOptions.src || '__none__'"
@@ -22,7 +22,7 @@
 			@input="setOption('src', $event === '__none__' ? null : $event)"
 		></v-select>
 
-		<label for="fit" class="type-label">{{ $t("layouts.cards.fit") }}</label>
+		<label for="fit" class="type-label">{{ $t('layouts.cards.fit') }}</label>
 		<v-select
 			id="fit"
 			:value="viewOptions.fit || 'crop'"
@@ -34,7 +34,7 @@
 			@input="setOption('fit', $event)"
 		></v-select>
 
-		<label for="title" class="type-label">{{ $t("layouts.cards.title") }}</label>
+		<label for="title" class="type-label">{{ $t('layouts.cards.title') }}</label>
 		<v-select
 			id="title"
 			:value="viewOptions.title || primaryKeyField"
@@ -44,7 +44,7 @@
 		></v-select>
 
 		<label for="subtitle" class="type-label">
-			{{ $t("layouts.cards.subtitle") }}
+			{{ $t('layouts.cards.subtitle') }}
 		</label>
 		<v-select
 			id="subtitle"
@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/layout";
+import mixin from '@directus/extension-toolkit/mixins/layout';
 
 export default {
 	mixins: [mixin],
@@ -76,7 +76,7 @@ export default {
 		},
 		fieldOptions() {
 			return {
-				__none__: `(${this.$t("dont_show")})`,
+				__none__: `(${this.$t('dont_show')})`,
 				..._.mapValues(this.fields, info => info.name)
 			};
 		},
@@ -102,25 +102,25 @@ export default {
 
 			// If the sort viewQuery was already descending, remove the - so we don't
 			// run into server errors with double direction characters
-			if (fieldName.startsWith("-")) fieldName = fieldName.substring(1);
+			if (fieldName.startsWith('-')) fieldName = fieldName.substring(1);
 
 			return fieldName;
 		},
 		sortDirection() {
-			if (!this.viewQuery.sort) return "asc";
+			if (!this.viewQuery.sort) return 'asc';
 
-			if (this.viewQuery.sort.substring(0, 1) === "-") return "desc";
+			if (this.viewQuery.sort.substring(0, 1) === '-') return 'desc';
 
-			return "asc";
+			return 'asc';
 		},
 		fileOptions() {
 			const fileTypeFields = _.filter(
 				this.fields,
-				info => info.type.toLowerCase() === "file"
+				info => info.type.toLowerCase() === 'file'
 			);
-			const fields = _.keyBy(fileTypeFields, "field");
+			const fields = _.keyBy(fileTypeFields, 'field');
 			const options = {
-				__none__: `(${this.$t("dont_show")})`,
+				__none__: `(${this.$t('dont_show')})`,
 				..._.mapValues(fields, info => info.name)
 			};
 
@@ -128,11 +128,11 @@ export default {
 			//   field is for the directus_files collection and it's an ALIAS type
 			//
 			// This is a hardcoded addition to make sure that directus_files can be used in the cards view preview
-			if ("data" in this.fields) {
+			if ('data' in this.fields) {
 				const field = this.fields.data;
 
-				if (field.type.toLowerCase() === "alias" && field.collection === "directus_files") {
-					options.data = this.$t("file");
+				if (field.type.toLowerCase() === 'alias' && field.collection === 'directus_files') {
+					options.data = this.$t('file');
 				}
 			}
 
@@ -141,19 +141,19 @@ export default {
 	},
 	methods: {
 		setOption(field, value) {
-			this.$emit("options", {
+			this.$emit('options', {
 				...this.viewOptions,
 				[field]: value
 			});
 		},
 		setSort(fieldName) {
-			this.$emit("query", {
+			this.$emit('query', {
 				sort: fieldName
 			});
 		},
 		setSortDirection(direction) {
-			this.$emit("query", {
-				sort: (direction === "desc" ? "-" : "") + this.sortedOn
+			this.$emit('query', {
+				sort: (direction === 'desc' ? '-' : '') + this.sortedOn
 			});
 		}
 	}

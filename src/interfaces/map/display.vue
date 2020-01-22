@@ -5,14 +5,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "ReadonlyMap",
+	name: 'ReadonlyMap',
 	mixins: [mixin],
 	computed: {
 		location() {
-			let _tooltip = "";
+			let _tooltip = '';
 			if (this.value) {
 				let _value = JSON.parse(JSON.stringify(this.value));
 				_tooltip = `
@@ -27,7 +27,7 @@ export default {
           </tr>
         </table>`;
 			} else {
-				_tooltip = this.$t("interfaces.map.no_location");
+				_tooltip = this.$t('interfaces.map.no_location');
 			}
 			return _tooltip;
 		}

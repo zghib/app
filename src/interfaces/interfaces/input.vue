@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import { mapState } from "vuex";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import { mapState } from 'vuex';
 
 export default {
 	mixins: [mixin],
@@ -32,7 +32,7 @@ export default {
 
 			if (this.options.status === false) {
 				interfaceNames = interfaceNames.filter(key => {
-					return this.interfaces[key].types[0] !== "status";
+					return this.interfaces[key].types[0] !== 'status';
 				});
 			}
 

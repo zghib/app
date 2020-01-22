@@ -11,18 +11,18 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		date() {
 			if (!this.value) return null;
-			return new Date(this.value.replace(" ", "T") + "Z");
+			return new Date(this.value.replace(' ', 'T') + 'Z');
 		},
 		displayValue() {
 			if (!this.date) return;
-			return this.$d(this.date, "long") + " GMT";
+			return this.$d(this.date, 'long') + ' GMT';
 		}
 	}
 };

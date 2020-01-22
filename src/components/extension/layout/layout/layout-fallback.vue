@@ -12,7 +12,7 @@
 
 <script>
 export default {
-	name: "VExtLayoutFallback",
+	name: 'VExtLayoutFallback',
 	props: {
 		fields: {
 			type: Object,
@@ -28,7 +28,7 @@ export default {
 		},
 		layoutName: {
 			type: String,
-			default: ""
+			default: ''
 		}
 	},
 	computed: {
@@ -44,9 +44,9 @@ export default {
 	},
 	created() {
 		this.$notify({
-			title: this.$t("extension_error", { ext: this.layoutName }),
-			color: "red",
-			iconMain: "error"
+			title: this.$t('extension_error', { ext: this.layoutName }),
+			color: 'red',
+			iconMain: 'error'
 		});
 	}
 };

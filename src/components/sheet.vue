@@ -6,7 +6,7 @@
 
 <script>
 export default {
-	name: "VSheet",
+	name: 'VSheet',
 	inheritAttrs: false
 };
 </script>

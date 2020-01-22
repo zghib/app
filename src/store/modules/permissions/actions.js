@@ -1,7 +1,7 @@
-import api from "../../../api";
-import { defaultFull, defaultNone } from "./defaults";
-import { mapValues, omit, forEach } from "lodash";
-import { SET_PERMISSIONS, UPDATE_COLLECTION, ADD_PERMISSION } from "../../mutation-types";
+import api from '../../../api';
+import { defaultFull, defaultNone } from './defaults';
+import { mapValues, omit, forEach } from 'lodash';
+import { SET_PERMISSIONS, UPDATE_COLLECTION, ADD_PERMISSION } from '../../mutation-types';
 
 export function addPermission({ commit }, { collection, permission }) {
 	commit(ADD_PERMISSION, { collection, permission });
@@ -39,7 +39,7 @@ export function getPermissions({ commit, rootState }) {
 				const { collection, status } = permission;
 
 				if (status) {
-					if (status === "$create") {
+					if (status === '$create') {
 						return (permissions[collection].$create = permission);
 					}
 

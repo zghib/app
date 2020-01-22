@@ -3,15 +3,15 @@
 </template>
 
 <script>
-import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/locale/en";
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en';
 
 // require('javascript-time-ago/load-all-locales')
 
 TimeAgo.addLocale(en);
 
 export default {
-	name: "VTimeAgo",
+	name: 'VTimeAgo',
 	props: {
 		datetime: {
 			type: Date,
@@ -27,7 +27,7 @@ export default {
 		},
 		locale: {
 			type: String,
-			default: "en-US"
+			default: 'en-US'
 		}
 	},
 	data() {

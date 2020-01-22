@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceSlider",
+	name: 'InterfaceSlider',
 	mixins: [mixin],
 	computed: {
 		safeValue() {

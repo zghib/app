@@ -1,6 +1,6 @@
-import Vue from "vue";
-import { forEach } from "lodash";
-import { RESET, SET_PERMISSIONS, ADD_PERMISSION } from "../../mutation-types";
+import Vue from 'vue';
+import { forEach } from 'lodash';
+import { RESET, SET_PERMISSIONS, ADD_PERMISSION } from '../../mutation-types';
 
 const mutations = {
 	[RESET](state) {

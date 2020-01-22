@@ -12,10 +12,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceUserRole",
+	name: 'InterfaceUserRole',
 	mixins: [mixin],
 	data() {
 		return {
@@ -28,7 +28,7 @@ export default {
 		primaryKey() {
 			if (this.value === null) {
 				return null;
-			} else if (typeof this.value === "object") {
+			} else if (typeof this.value === 'object') {
 				return this.value.id;
 			} else {
 				return this.value;
@@ -71,7 +71,7 @@ export default {
 				});
 		},
 		emitValue(value) {
-			this.$emit("input", value);
+			this.$emit('input', value);
 		}
 	}
 };

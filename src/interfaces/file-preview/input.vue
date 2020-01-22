@@ -118,10 +118,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import Cropper from "cropperjs";
-import "cropperjs/dist/cropper.min.css";
-import shortid from "shortid";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import Cropper from 'cropperjs';
+import 'cropperjs/dist/cropper.min.css';
+import shortid from 'shortid';
 
 export default {
 	mixins: [mixin],
@@ -132,14 +132,14 @@ export default {
 			image: {
 				hash: shortid.generate(), //To prevent the cacheing issue of image
 				cropper: null, //cropper instance
-				cropRatio: "free", // Aspect ratio set by cropper
+				cropRatio: 'free', // Aspect ratio set by cropper
 				cropRatioOptions: {
-					free: "Free",
-					original: "Original",
-					"1:1": "Square",
-					"16:9": "16:9",
-					"4:3": "4:3",
-					"3:2": "3:2"
+					free: 'Free',
+					original: 'Original',
+					'1:1': 'Square',
+					'16:9': '16:9',
+					'4:3': '4:3',
+					'3:2': '3:2'
 				},
 				initOptions: {
 					background: false,
@@ -152,7 +152,7 @@ export default {
 	},
 	computed: {
 		hasAllRequiredFields() {
-			const requiredFields = ["type", "filesize", "data", "id"];
+			const requiredFields = ['type', 'filesize', 'data', 'id'];
 			let valid = true;
 			requiredFields.forEach(field => {
 				if (_.has(this.values, field) === false) {
@@ -166,90 +166,90 @@ export default {
 		},
 		isImage() {
 			switch (this.values?.type) {
-				case "image/jpeg":
-				case "image/gif":
-				case "image/png":
-				case "image/svg+xml":
-				case "image/webp":
-				case "image/bmp":
+				case 'image/jpeg':
+				case 'image/gif':
+				case 'image/png':
+				case 'image/svg+xml':
+				case 'image/webp':
+				case 'image/bmp':
 					return true;
 			}
 			return false;
 		},
 		isVideo() {
 			switch (this.values?.type) {
-				case "video/mp4":
-				case "video/webm":
-				case "video/ogg":
+				case 'video/mp4':
+				case 'video/webm':
+				case 'video/ogg':
 					return true;
 			}
 			return false;
 		},
 		isAudio() {
 			switch (this.values?.type) {
-				case "audio/mpeg":
-				case "audio/ogg":
-				case "audio/wav":
+				case 'audio/mpeg':
+				case 'audio/ogg':
+				case 'audio/wav':
 					return true;
 			}
 			return false;
 		},
 		isYouTube() {
-			return this.values?.type === "embed/youtube";
+			return this.values?.type === 'embed/youtube';
 		},
 		isVimeo() {
-			return this.values?.type === "embed/vimeo";
+			return this.values?.type === 'embed/vimeo';
 		},
 		fileType() {
-			return this.values?.type.split("/")[1];
+			return this.values?.type.split('/')[1];
 		},
 		url() {
 			return this.values?.data.full_url;
 		}
 	},
 	watch: {
-		"image.cropRatio"(newValue) {
+		'image.cropRatio'(newValue) {
 			this.setAspectRatio(newValue);
 		}
 	},
 	methods: {
 		initImageEdit() {
-			this.editMode = "image";
+			this.editMode = 'image';
 			this.image.show = false;
-			const image = document.getElementById("image");
+			const image = document.getElementById('image');
 			this.image.cropper = new Cropper(image, {
 				...this.image.initOptions
 			});
 
-			window.addEventListener("keydown", this.escapeEditImage);
+			window.addEventListener('keydown', this.escapeEditImage);
 		},
 
 		escapeEditImage(event) {
-			if (this.editMode == "image" && event.key == "Escape") {
+			if (this.editMode == 'image' && event.key == 'Escape') {
 				this.cancelImageEdit();
-				window.removeEventListener("keydown", this.escapeEditImage);
+				window.removeEventListener('keydown', this.escapeEditImage);
 			}
 		},
 
 		cancelImageEdit() {
 			this.editMode = null;
-			this.image.cropRatio = "free";
+			this.image.cropRatio = 'free';
 			this.image.cropper.destroy();
 		},
 
 		setAspectRatio(value) {
 			let aspectRatio;
 			switch (value) {
-				case "free": {
-					aspectRatio = "free";
+				case 'free': {
+					aspectRatio = 'free';
 					break;
 				}
-				case "original": {
+				case 'original': {
 					aspectRatio = this.image.cropper.getImageData().aspectRatio;
 					break;
 				}
 				default: {
-					const values = value.split(":");
+					const values = value.split(':');
 					aspectRatio = values[0] / values[1];
 					break;
 				}
@@ -268,14 +268,14 @@ export default {
 		async saveImage() {
 			//Running the rabbit
 			const isSaving = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", {
+			this.$store.dispatch('loadingStart', {
 				id: isSaving
 			});
 
 			//Converting an image to base64
 			const imageBase64 = this.image.cropper
 				.getCroppedCanvas({
-					imageSmoothingQuality: "high"
+					imageSmoothingQuality: 'high'
 				})
 				.toDataURL(this.values?.type);
 
@@ -284,21 +284,21 @@ export default {
 					data: imageBase64
 				});
 
-				this.$events.emit("success", {
-					notify: "Image updated."
+				this.$events.emit('success', {
+					notify: 'Image updated.'
 				});
 
 				this.image.hash = shortid.generate();
 				this.editMode = null;
-				this.image.cropRatio = "free";
+				this.image.cropRatio = 'free';
 				this.image.cropper.destroy();
 			} catch (err) {
-				this.$events.emit("error", {
-					notify: "There was an error while saving the image",
+				this.$events.emit('error', {
+					notify: 'There was an error while saving the image',
 					error: err
 				});
 			} finally {
-				this.$store.dispatch("loadingFinished", isSaving);
+				this.$store.dispatch('loadingFinished', isSaving);
 			}
 		}
 	}

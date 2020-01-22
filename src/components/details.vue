@@ -7,7 +7,7 @@
 
 <script>
 export default {
-	name: "VDetails",
+	name: 'VDetails',
 	props: {
 		title: {
 			type: String,
@@ -19,9 +19,9 @@ export default {
 		},
 		type: {
 			type: String,
-			default: "group",
+			default: 'group',
 			validator(val) {
-				return ["group", "break"].includes(val);
+				return ['group', 'break'].includes(val);
 			}
 		}
 	}
@@ -50,10 +50,10 @@ export default {
 		cursor: pointer;
 
 		&::after {
-			content: "unfold_more";
+			content: 'unfold_more';
 			direction: ltr;
 			display: inline-block;
-			font-family: "Material Icons";
+			font-family: 'Material Icons';
 			font-size: 18px;
 			color: var(--input-icon-color);
 			font-style: normal;
@@ -63,7 +63,7 @@ export default {
 			text-transform: none;
 			white-space: nowrap;
 			word-wrap: normal;
-			-webkit-font-feature-settings: "liga";
+			-webkit-font-feature-settings: 'liga';
 			-webkit-font-smoothing: antialiased;
 			transition: var(--fast) var(--transition);
 			width: 28px;
@@ -107,7 +107,7 @@ export default {
 
 	&[open] {
 		summary::after {
-			content: "unfold_less";
+			content: 'unfold_less';
 		}
 	}
 }

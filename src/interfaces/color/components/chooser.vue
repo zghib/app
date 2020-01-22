@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Sliders from "./sliders";
+import Sliders from './sliders';
 
 export default {
 	components: {
@@ -24,7 +24,7 @@ export default {
 	},
 	data() {
 		return {
-			format: "rgb"
+			format: 'rgb'
 		};
 	}
 };

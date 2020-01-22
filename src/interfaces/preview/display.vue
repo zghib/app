@@ -1,11 +1,11 @@
 <template>
 	<a :href="url" class="no-wrap" target="_blank">
-		{{ $t("interfaces.preview.preview_item") }}
+		{{ $t('interfaces.preview.preview_item') }}
 	</a>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],

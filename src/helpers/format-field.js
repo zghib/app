@@ -1,13 +1,13 @@
-import Vue from "../main";
+import Vue from '../main';
 
 export default function formatField(field, collection) {
 	const fallback = Vue.$helpers.formatTitle(field);
 
-	if (!field || typeof field !== "string") {
+	if (!field || typeof field !== 'string') {
 		return fallback;
 	}
 
-	if (!collection || typeof collection !== "string") {
+	if (!collection || typeof collection !== 'string') {
 		return fallback;
 	}
 

@@ -14,11 +14,11 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import shortid from "shortid";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import shortid from 'shortid';
 
 export default {
-	name: "InterfaceToggleIcon",
+	name: 'InterfaceToggleIcon',
 	mixins: [mixin],
 	computed: {
 		icon() {
@@ -36,7 +36,7 @@ export default {
 	},
 	methods: {
 		updateValue(value) {
-			this.$emit("input", value);
+			this.$emit('input', value);
 		}
 	}
 };

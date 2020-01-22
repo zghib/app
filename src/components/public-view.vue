@@ -31,20 +31,20 @@
 </template>
 
 <script>
-import { version } from "../../package.json";
-import { mapGetters } from "vuex";
-import marked from "marked";
+import { version } from '../../package.json';
+import { mapGetters } from 'vuex';
+import marked from 'marked';
 
 const defaults = {
-	project_color: "project-background-color",
+	project_color: 'project-background-color',
 	project_background: { full_url: null },
 	project_foreground: { full_url: null },
-	project_name: "Directus",
+	project_name: 'Directus',
 	project_public_note: null
 };
 
 export default {
-	name: "PublicView",
+	name: 'PublicView',
 	props: {
 		heading: {
 			type: String,
@@ -56,14 +56,14 @@ export default {
 		}
 	},
 	computed: {
-		...mapGetters(["currentProject"]),
+		...mapGetters(['currentProject']),
 		artStyles() {
 			if (this.project_background?.full_url) {
 				return { backgroundImage: `url(${this.project_background?.full_url})` };
 			}
 
 			return {
-				backgroundColor: this.project_color.startsWith("#")
+				backgroundColor: this.project_color.startsWith('#')
 					? this.project_color
 					: `var(--${this.project_color})`
 			};

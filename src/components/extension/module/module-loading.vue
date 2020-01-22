@@ -4,6 +4,6 @@
 
 <script>
 export default {
-	name: "PageLoading"
+	name: 'PageLoading'
 };
 </script>

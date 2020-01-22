@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -30,7 +30,7 @@ export default {
 				}
 			}
 
-			this.$emit("input", value);
+			this.$emit('input', value);
 		}
 	}
 };

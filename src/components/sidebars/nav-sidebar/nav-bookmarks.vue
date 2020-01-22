@@ -36,10 +36,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
-	name: "NavBookmarks",
+	name: 'NavBookmarks',
 	props: {
 		bookmarks: {
 			type: Array,
@@ -53,7 +53,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		isUserAdmin() {
 			return this.$store.state.currentUser.admin;
 		},
@@ -63,7 +63,7 @@ export default {
 	},
 	methods: {
 		deleteBookmark() {
-			this.$store.dispatch("deleteBookmark", this.toBeDeletedBookmark);
+			this.$store.dispatch('deleteBookmark', this.toBeDeletedBookmark);
 			this.confirmRemove = false;
 			this.toBeDeletedBookmark = null;
 		}

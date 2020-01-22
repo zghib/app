@@ -10,20 +10,20 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		date() {
 			if (this.value) {
-				return new Date(this.value.replace(/-/g, "/"));
+				return new Date(this.value.replace(/-/g, '/'));
 			}
 			return null;
 		},
 		displayValue() {
 			if (this.value && this.options.localized) {
-				return this.$d(this.date, "short");
+				return this.$d(this.date, 'short');
 			}
 
 			return this.value;

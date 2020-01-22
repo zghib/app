@@ -12,7 +12,7 @@
 		<form class="options" @submit.prevent>
 			<div class="options">
 				<label>
-					{{ $tc("collection", 1) }}
+					{{ $tc('collection', 1) }}
 					<v-simple-select v-model="selectedCollection" required>
 						<option
 							v-for="collection in Object.keys(this.collections)"
@@ -27,7 +27,7 @@
 			</div>
 			<div class="options">
 				<label>
-					{{ $tc("field", 1) + " " + $t("name") }}
+					{{ $tc('field', 1) + ' ' + $t('name') }}
 					<v-input
 						v-model="field"
 						required
@@ -39,8 +39,8 @@
 					/>
 				</label>
 				<p class="small-text">
-					{{ $t("display_name") }}:
-					<b>{{ $helpers.formatTitle(field || "...") }}</b>
+					{{ $t('display_name') }}:
+					<b>{{ $helpers.formatTitle(field || '...') }}</b>
 				</p>
 			</div>
 		</form>
@@ -48,9 +48,9 @@
 </template>
 
 <script>
-import { datatypes } from "../type-map";
+import { datatypes } from '../type-map';
 export default {
-	name: "VFieldDuplicate",
+	name: 'VFieldDuplicate',
 	props: {
 		collectionInformation: {
 			type: Object,
@@ -98,12 +98,12 @@ export default {
 				return { icon: null, color: null };
 			}
 			if (this.isFieldValid) {
-				return { icon: "done", color: "success" };
+				return { icon: 'done', color: 'success' };
 			}
 			return {
-				icon: "error",
-				color: "danger",
-				tooltip: this.$t("field_already_exists", { field: "'" + this.field + "'" })
+				icon: 'error',
+				color: 'danger',
+				tooltip: this.$t('field_already_exists', { field: "'" + this.field + "'" })
 			};
 		},
 		isFieldValid() {
@@ -124,7 +124,7 @@ export default {
 		collections() {
 			const collections = Object.assign({}, this.$store.state.collections);
 			return Object.keys(collections)
-				.filter(collection => collection.startsWith("directus_") === false)
+				.filter(collection => collection.startsWith('directus_') === false)
 				.reduce((obj, collection) => {
 					obj[collection] = collections[collection];
 					return obj;
@@ -134,7 +134,7 @@ export default {
 			return {
 				save: {
 					disabled: !this.canDuplicate,
-					text: this.$t("create"),
+					text: this.$t('create'),
 					loading: this.saving
 				}
 			};
@@ -146,9 +146,9 @@ export default {
 			this.field = val
 				.toString()
 				.toLowerCase()
-				.replace(/\s+/g, "_") // Replace spaces with _
-				.replace(/[^\w_]+/g, "") // Remove all non-word chars
-				.replace(/__+/g, "_"); // Replace multiple _ with single _
+				.replace(/\s+/g, '_') // Replace spaces with _
+				.replace(/[^\w_]+/g, '') // Remove all non-word chars
+				.replace(/__+/g, '_'); // Replace multiple _ with single _
 		}
 	},
 	methods: {
@@ -170,7 +170,7 @@ export default {
 				collection: this.selectedCollection
 			};
 
-			this.$emit("save", result);
+			this.$emit('save', result);
 		}
 	}
 };

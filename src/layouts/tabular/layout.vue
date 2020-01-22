@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/layout";
+import mixin from '@directus/extension-toolkit/mixins/layout';
 
 export default {
 	mixins: [mixin],
@@ -40,11 +40,11 @@ export default {
 				if (Array.isArray(this.viewQuery.fields)) {
 					queryFields = this.viewQuery.fields;
 				} else {
-					queryFields = this.viewQuery.fields.split(",");
+					queryFields = this.viewQuery.fields.split(',');
 				}
 			} else {
 				queryFields = fieldValues
-					.filter(field => field.primary_key === false || field.primary_key === "0")
+					.filter(field => field.primary_key === false || field.primary_key === '0')
 					.filter(field => field.hidden_browse !== true)
 					.slice(0, 4)
 					.map(field => field.field);
@@ -59,26 +59,26 @@ export default {
 				});
 		},
 		rowHeight() {
-			if (this.viewOptions.spacing === "comfortable") {
+			if (this.viewOptions.spacing === 'comfortable') {
 				return 48;
 			}
 
-			if (this.viewOptions.spacing === "cozy") {
+			if (this.viewOptions.spacing === 'cozy') {
 				return 40;
 			}
 
-			if (this.viewOptions.spacing === "compact") {
+			if (this.viewOptions.spacing === 'compact') {
 				return 32;
 			}
 
 			return 48;
 		},
 		sortVal() {
-			let sortQuery = (this.viewQuery && this.viewQuery["sort"]) || this.primaryKeyField;
+			let sortQuery = (this.viewQuery && this.viewQuery['sort']) || this.primaryKeyField;
 
 			return {
-				asc: !sortQuery.startsWith("-"),
-				field: sortQuery.replace("-", "")
+				asc: !sortQuery.startsWith('-'),
+				field: sortQuery.replace('-', '')
 			};
 		}
 	},
@@ -91,14 +91,14 @@ export default {
 	},
 	methods: {
 		sort(sortVal) {
-			const sortValString = (sortVal.asc ? "" : "-") + sortVal.field;
+			const sortValString = (sortVal.asc ? '' : '-') + sortVal.field;
 
-			this.$emit("query", {
+			this.$emit('query', {
 				sort: sortValString
 			});
 		},
 		setWidths(widths) {
-			this.$emit("options", {
+			this.$emit('options', {
 				widths
 			});
 		}

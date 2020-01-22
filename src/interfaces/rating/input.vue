@@ -19,18 +19,18 @@
 				@input="updateValue"
 			></v-input>
 			<span>
-				{{ (!!value ? String(value) : "0") + "/" + options.max_stars }}
+				{{ (!!value ? String(value) : '0') + '/' + options.max_stars }}
 			</span>
 		</div>
 	</div>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import Stars from "./stars.vue";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import Stars from './stars.vue';
 
 export default {
-	name: "InterfaceRating",
+	name: 'InterfaceRating',
 	components: {
 		Stars
 	},
@@ -44,10 +44,10 @@ export default {
 		updateValue(value) {
 			if (value > this.options.max_stars) {
 				event.target.value = String(this.options.max_stars);
-				return this.$emit("input", this.options.max_stars);
+				return this.$emit('input', this.options.max_stars);
 			}
 
-			this.$emit("input", +value);
+			this.$emit('input', +value);
 		}
 	}
 };

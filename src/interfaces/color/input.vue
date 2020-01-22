@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import Color from "color";
-import Hex from "./components/hex";
-import Palette from "./components/palette";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import Color from 'color';
+import Hex from './components/hex';
+import Palette from './components/palette';
 
 export default {
-	name: "InterfaceColor",
+	name: 'InterfaceColor',
 	components: {
 		Hex,
 		Palette
@@ -31,8 +31,8 @@ export default {
 		formattedValue() {
 			if (!this.value) return null;
 
-			if (this.options.format !== "hex") {
-				return Color[this.options.format](this.value.split(",").map(n => +n))
+			if (this.options.format !== 'hex') {
+				return Color[this.options.format](this.value.split(',').map(n => +n))
 					.hex()
 					.toUpperCase();
 			} else {
@@ -42,17 +42,17 @@ export default {
 	},
 	methods: {
 		emitValue(value) {
-			if (this.options.format !== "hex") {
+			if (this.options.format !== 'hex') {
 				this.$emit(
-					"input",
+					'input',
 					new Color(value)
 						[this.options.format]()
 						.round()
 						.array()
-						.join(",")
+						.join(',')
 				);
 			} else if (value) {
-				this.$emit("input", value.toUpperCase());
+				this.$emit('input', value.toUpperCase());
 			}
 		}
 	}

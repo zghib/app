@@ -78,7 +78,7 @@
 
 		<v-info-sidebar v-if="preferences">
 			<template slot="system">
-				<label for="listing" class="type-label">{{ $t("view_type") }}</label>
+				<label for="listing" class="type-label">{{ $t('view_type') }}</label>
 				<v-select
 					id="listing"
 					:options="layoutNames"
@@ -145,19 +145,19 @@
 </template>
 
 <script>
-import shortid from "shortid";
-import store from "@/store/";
-import VSearchFilter from "../components/search-filter/search-filter.vue";
-import VNotFound from "./not-found.vue";
-import { mapState } from "vuex";
+import shortid from 'shortid';
+import store from '@/store/';
+import VSearchFilter from '../components/search-filter/search-filter.vue';
+import VNotFound from './not-found.vue';
+import { mapState } from 'vuex';
 
-import api from "../api";
+import api from '../api';
 
 export default {
-	name: "RouteFileLibrary",
+	name: 'RouteFileLibrary',
 	metaInfo() {
 		return {
-			title: this.$t("file_library")
+			title: this.$t('file_library')
 		};
 	},
 	components: {
@@ -172,22 +172,22 @@ export default {
 			confirmRemove: false,
 
 			bookmarkModal: false,
-			bookmarkTitle: "",
+			bookmarkTitle: '',
 
 			notFound: false,
 
 			newModal: false,
 
 			// Changing the key makes the items refresh & reload
-			key: "init"
+			key: 'init'
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		breadcrumb() {
 			return [
 				{
-					name: this.$t("file_library"),
+					name: this.$t('file_library'),
 					path: `/${this.currentProjectKey}/files`
 				}
 			];
@@ -195,7 +195,7 @@ export default {
 		batchURL() {
 			return `/${this.currentProjectKey}/files/${this.selection
 				.map(item => item.id)
-				.join(",")}`;
+				.join(',')}`;
 		},
 		fields() {
 			const fields = this.$store.state.collections[this.collection].fields;
@@ -230,7 +230,7 @@ export default {
 			return currentBookmark || null;
 		},
 		collection() {
-			return "directus_files";
+			return 'directus_files';
 		},
 		emptyCollection() {
 			return (this.meta && this.meta.total_count === 0) || false;
@@ -240,12 +240,12 @@ export default {
 			return this.preferences.filters || [];
 		},
 		searchQuery() {
-			if (!this.preferences) return "";
-			return this.preferences.search_query || "";
+			if (!this.preferences) return '';
+			return this.preferences.search_query || '';
 		},
 		viewType() {
-			if (!this.preferences) return "tabular";
-			return this.preferences.view_type || "tabular";
+			if (!this.preferences) return 'tabular';
+			return this.preferences.view_type || 'tabular';
 		},
 		viewQuery() {
 			if (!this.preferences) return {};
@@ -261,7 +261,7 @@ export default {
 			);
 		},
 		resultCopy() {
-			if (!this.meta || !this.preferences) return this.$t("loading");
+			if (!this.meta || !this.preferences) return this.$t('loading');
 
 			const isFiltering =
 				!_.isEmpty(this.preferences.filters) ||
@@ -269,10 +269,10 @@ export default {
 					this.preferences.search_query.length > 0);
 
 			return isFiltering
-				? this.$tc("item_count_filter", this.meta.result_count, {
+				? this.$tc('item_count_filter', this.meta.result_count, {
 						count: this.$n(this.meta.result_count)
 				  })
-				: this.$tc("item_count", this.meta.total_count, {
+				: this.$tc('item_count', this.meta.total_count, {
 						count: this.$n(this.meta.total_count)
 				  });
 		},
@@ -300,7 +300,7 @@ export default {
 	methods: {
 		keyBy: _.keyBy,
 		cancelBookmark() {
-			this.bookmarkTitle = "";
+			this.bookmarkTitle = '';
 			this.bookmarkModal = false;
 		},
 		setViewQuery(query) {
@@ -311,7 +311,7 @@ export default {
 					...query
 				}
 			};
-			this.updatePreferences("view_query", newViewQuery);
+			this.updatePreferences('view_query', newViewQuery);
 		},
 		setViewOptions(options) {
 			const newViewOptions = {
@@ -321,7 +321,7 @@ export default {
 					...options
 				}
 			};
-			this.updatePreferences("view_options", newViewOptions);
+			this.updatePreferences('view_options', newViewOptions);
 		},
 		updatePreferences(key, value, combine = false) {
 			if (combine) {
@@ -339,26 +339,26 @@ export default {
 			}
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			return this.$api
 				.updateCollectionPreset(this.preferences.id, {
 					[key]: value
 				})
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
 		},
 		createCollectionPreset() {
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			const preferences = { ...this.preferences };
 			delete preferences.id;
@@ -370,25 +370,25 @@ export default {
 					user: this.$store.state.currentUser.id
 				})
 				.then(({ data }) => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$set(this.preferences, "id", data.id);
-					this.$set(this.preferences, "user", data.user);
+					this.$store.dispatch('loadingFinished', id);
+					this.$set(this.preferences, 'id', data.id);
+					this.$set(this.preferences, 'user', data.user);
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
 		},
 		clearFilters() {
-			this.updatePreferences("filters", null);
-			this.updatePreferences("search_query", null);
+			this.updatePreferences('filters', null);
+			this.updatePreferences('search_query', null);
 		},
 		remove() {
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			this.$api
 				.deleteItems(
@@ -396,14 +396,14 @@ export default {
 					this.selection.map(item => item.id)
 				)
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.$refs.listing.getItems();
 					this.selection = [];
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -419,30 +419,30 @@ export default {
 				preferences.collection = this.collection;
 			}
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			this.$store
-				.dispatch("saveBookmark", preferences)
+				.dispatch('saveBookmark', preferences)
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.bookmarkModal = false;
-					this.bookmarkTitle = "";
+					this.bookmarkTitle = '';
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
 		}
 	},
 	beforeRouteEnter(to, from, next) {
-		const collection = "directus_files";
+		const collection = 'directus_files';
 
 		const collectionInfo = store.state.collections[collection] || null;
 
-		if (collection.startsWith("directus_") === false && collectionInfo === null) {
+		if (collection.startsWith('directus_') === false && collectionInfo === null) {
 			return next(vm => (vm.notFound = true));
 		}
 
@@ -451,28 +451,28 @@ export default {
 		}
 
 		const id = shortid.generate();
-		store.dispatch("loadingStart", { id });
+		store.dispatch('loadingStart', { id });
 
 		return Promise.all([api.getMyListingPreferences(collection)])
 			.then(([preferences]) => ({
 				preferences
 			}))
 			.then(({ preferences }) => {
-				store.dispatch("loadingFinished", id);
+				store.dispatch('loadingFinished', id);
 				next(vm => {
 					vm.$data.preferences = preferences;
 				});
 			})
 			.catch(error => {
-				store.dispatch("loadingFinished", id);
-				this.$events.emit("error", {
-					notify: this.$t("something_went_wrong_body"),
+				store.dispatch('loadingFinished', id);
+				this.$events.emit('error', {
+					notify: this.$t('something_went_wrong_body'),
 					error
 				});
 			});
 	},
 	beforeRouteUpdate(to, from, next) {
-		const collection = "directus_files";
+		const collection = 'directus_files';
 
 		this.preferences = null;
 		this.selection = [];
@@ -481,7 +481,7 @@ export default {
 
 		const collectionInfo = this.$store.state.collections[collection] || null;
 
-		if (collection.startsWith("directus_") === false && collectionInfo === null) {
+		if (collection.startsWith('directus_') === false && collectionInfo === null) {
 			this.notFound = true;
 			return next();
 		}
@@ -491,21 +491,21 @@ export default {
 		}
 
 		const id = this.$helpers.shortid.generate();
-		this.$store.dispatch("loadingStart", { id });
+		this.$store.dispatch('loadingStart', { id });
 
 		return Promise.all([api.getMyListingPreferences(collection)])
 			.then(([preferences]) => ({
 				preferences
 			}))
 			.then(({ preferences }) => {
-				this.$store.dispatch("loadingFinished", id);
+				this.$store.dispatch('loadingFinished', id);
 				this.preferences = preferences;
 				next();
 			})
 			.catch(error => {
-				this.$store.dispatch("loadingFinished", id);
-				this.$events.emit("error", {
-					notify: this.$t("something_went_wrong_body"),
+				this.$store.dispatch('loadingFinished', id);
+				this.$events.emit('error', {
+					notify: this.$t('something_went_wrong_body'),
 					error
 				});
 			});

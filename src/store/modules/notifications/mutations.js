@@ -1,4 +1,4 @@
-import { RESET, PUSH_NOTIFICATION, REMOVE_NOTIFICATION } from "../../mutation-types";
+import { RESET, PUSH_NOTIFICATION, REMOVE_NOTIFICATION } from '../../mutation-types';
 
 const mutations = {
 	[RESET](state) {

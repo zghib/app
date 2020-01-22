@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters } from 'vuex';
 
 export default {
-	name: "VLogo",
+	name: 'VLogo',
 	data() {
 		return {
 			running: false
 		};
 	},
 	computed: {
-		...mapGetters(["currentProject"]),
+		...mapGetters(['currentProject']),
 		customLogoPath() {
 			if (this.currentProject?.data?.project_logo) {
 				return this.currentProject.data.project_logo.full_url;
@@ -67,7 +67,7 @@ export default {
 	}
 
 	.logo {
-		background-image: url("../../../assets/sprite.svg");
+		background-image: url('../../../assets/sprite.svg');
 		background-size: 600px 32px;
 		background-position: 0% 0%;
 		width: 40px;

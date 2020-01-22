@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -29,18 +29,18 @@ export default {
 			return {
 				fields: [
 					{
-						field: "key",
+						field: 'key',
 						interface: this.options.keyInterface,
 						options: this.options.keyOptions,
 						type: this.options.keyType,
-						width: "half"
+						width: 'half'
 					},
 					{
-						field: "value",
+						field: 'value',
 						interface: this.options.valueInterface,
 						options: this.options.valueOptions,
 						type: this.options.valueType,
-						width: "half"
+						width: 'half'
 					}
 				]
 			};
@@ -57,11 +57,11 @@ export default {
 	methods: {
 		emitValue(value) {
 			if (value === null) {
-				this.$emit("input", null);
+				this.$emit('input', null);
 			} else {
 				const formattedValue = {};
 				value.forEach(({ key, value }) => (formattedValue[key] = value));
-				this.$emit("input", formattedValue);
+				this.$emit('input', formattedValue);
 			}
 		}
 	}

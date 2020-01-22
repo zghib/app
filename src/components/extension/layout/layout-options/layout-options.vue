@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import Vue from "vue";
-import loadExtension from "../../../../helpers/load-extension";
-import componentExists from "../../../../helpers/component-exists";
-import VExtLayoutOptionsFallback from "./layout-options-fallback.vue";
-import VExtLayoutOptionsLoading from "./layout-options-loading.vue";
+import Vue from 'vue';
+import loadExtension from '../../../../helpers/load-extension';
+import componentExists from '../../../../helpers/component-exists';
+import VExtLayoutOptionsFallback from './layout-options-fallback.vue';
+import VExtLayoutOptionsLoading from './layout-options-loading.vue';
 
 export default {
-	name: "VExtLayoutOptions",
+	name: 'VExtLayoutOptions',
 	props: {
 		type: {
 			type: String,
@@ -91,11 +91,11 @@ export default {
 			let component;
 
 			if (this.layout.core) {
-				component = import("@/layouts/" + this.layout.id + "/options.vue");
+				component = import('@/layouts/' + this.layout.id + '/options.vue');
 			} else {
 				const filePath = `${this.$store.state.apiRootPath}${this.layout.path.replace(
-					"meta.json",
-					"options.js"
+					'meta.json',
+					'options.js'
 				)}`;
 
 				component = loadExtension(filePath);

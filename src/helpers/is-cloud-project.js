@@ -5,8 +5,8 @@
  */
 export default function isCloudProject(projectKey) {
 	return (
-		typeof projectKey === "string" &&
-		projectKey.startsWith("dc") &&
+		typeof projectKey === 'string' &&
+		projectKey.startsWith('dc') &&
 		projectKey.length === 16 &&
 		/dc[A-Za-z0-9]{14}/.test(projectKey)
 	);

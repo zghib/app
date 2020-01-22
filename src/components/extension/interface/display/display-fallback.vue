@@ -4,11 +4,11 @@
 
 <script>
 export default {
-	name: "VExtDisplayFallback",
+	name: 'VExtDisplayFallback',
 	props: {
 		value: {
 			type: null,
-			default: ""
+			default: ''
 		}
 	}
 };

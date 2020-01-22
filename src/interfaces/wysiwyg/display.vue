@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "DisplayWysiwyg",
+	name: 'DisplayWysiwyg',
 	mixins: [mixin],
 	computed: {
 		cleanValue() {
-			return this.value ? this.value.replace(/<\/?[^>]+(>|$)/g, "").substring(0, 200) : "";
+			return this.value ? this.value.replace(/<\/?[^>]+(>|$)/g, '').substring(0, 200) : '';
 		}
 	}
 };

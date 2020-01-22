@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 export default {
 	mixins: [mixin],
 	computed: {
@@ -14,7 +14,7 @@ export default {
 				.map(key => {
 					return `${key}: ${this.value[key]}`;
 				})
-				.join("\n");
+				.join('\n');
 
 			return `<pre>${displayValue}</pre>`;
 		}

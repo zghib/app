@@ -3,7 +3,7 @@
 		<div id="header">
 			<div id="header-start">
 				<div id="date" ref="dropdown">
-					{{ $t("months." + monthNames[date.getMonth()]) }}
+					{{ $t('months.' + monthNames[date.getMonth()]) }}
 					{{ date.getFullYear() }}
 					<transition name="months">
 						<div v-show="showMonthSelect" id="date-select">
@@ -45,7 +45,7 @@
 					:class="{ hidden: monthDistance == 0 }"
 					@click="resetMonth()"
 				>
-					{{ $t("layouts.calendar.today") }}
+					{{ $t('layouts.calendar.today') }}
 				</div>
 			</div>
 		</div>
@@ -70,9 +70,9 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/layout";
-import Calendar from "./Calendar.vue";
-import Popup from "./Popup.vue";
+import mixin from '@directus/extension-toolkit/mixins/layout';
+import Calendar from './Calendar.vue';
+import Popup from './Popup.vue';
 
 export default {
 	components: {
@@ -80,14 +80,14 @@ export default {
 		Popup
 	},
 	mixins: [mixin],
-	props: ["items"],
+	props: ['items'],
 	data() {
 		return {
 			//the distance (in months) of the current month
 			monthDistance: 0,
 
 			//animates the calendar swipe animation in the right direction
-			swipeTo: "left",
+			swipeTo: 'left',
 
 			showPopup: false,
 
@@ -98,27 +98,27 @@ export default {
 			showMonthSelect: false,
 
 			monthNames: [
-				"january",
-				"february",
-				"march",
-				"april",
-				"may",
-				"june",
-				"july",
-				"august",
-				"september",
-				"october",
-				"november",
-				"december"
+				'january',
+				'february',
+				'march',
+				'april',
+				'may',
+				'june',
+				'july',
+				'august',
+				'september',
+				'october',
+				'november',
+				'december'
 			],
 			weekNames: [
-				"monday",
-				"tuesday",
-				"wednesday",
-				"thursday",
-				"friday",
-				"saturday",
-				"sunday"
+				'monday',
+				'tuesday',
+				'wednesday',
+				'thursday',
+				'friday',
+				'saturday',
+				'sunday'
 			]
 		};
 	},
@@ -142,63 +142,63 @@ export default {
 	created() {
 		this.getData(this.date);
 		this.scroll = _.throttle(this.scroll, 200);
-		document.addEventListener("click", this.documentClick);
-		document.addEventListener("keypress", this.keyPress);
+		document.addEventListener('click', this.documentClick);
+		document.addEventListener('keypress', this.keyPress);
 	},
 	destroyed() {
-		document.removeEventListener("click", this.documentClick);
-		document.removeEventListener("keypress", this.keyPress);
+		document.removeEventListener('click', this.documentClick);
+		document.removeEventListener('keypress', this.keyPress);
 	},
 	methods: {
 		getData(date) {
 			var dateId = this.viewOptions.date;
 			var datetimeId = this.viewOptions.datetime;
-			var columnName = "";
-			if (datetimeId && datetimeId !== "__none__") {
+			var columnName = '';
+			if (datetimeId && datetimeId !== '__none__') {
 				columnName = datetimeId;
 			} else {
 				columnName = dateId;
 			}
-			if (!columnName || columnName === "__none__") return;
+			if (!columnName || columnName === '__none__') return;
 
 			var endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
 			var from =
 				date.getFullYear() +
-				"-" +
+				'-' +
 				(date.getMonth() + 1) +
-				"-" +
+				'-' +
 				date.getDate() +
-				" " +
+				' ' +
 				date.getHours() +
-				":" +
+				':' +
 				date.getMinutes() +
-				":" +
+				':' +
 				date.getSeconds();
 			var to =
 				endOfMonth.getFullYear() +
-				"-" +
+				'-' +
 				(endOfMonth.getMonth() + 1) +
-				"-" +
+				'-' +
 				endOfMonth.getDate() +
-				" " +
+				' ' +
 				endOfMonth.getHours() +
-				":" +
+				':' +
 				endOfMonth.getMinutes() +
-				":" +
+				':' +
 				endOfMonth.getSeconds();
 			let filter = {
 				[columnName]: {
-					between: from + "," + to
+					between: from + ',' + to
 				}
 			};
 			this.$api
 				.getItems(this.$parent.collection, {
-					fields: "*.*.*",
+					fields: '*.*.*',
 					filter: filter
 				})
 				.then(res => {
 					res.data.forEach(item => {
-						item.to = "test";
+						item.to = 'test';
 					});
 					this.events = res.data;
 				})
@@ -207,32 +207,32 @@ export default {
 				});
 		},
 		increaseYear() {
-			this.swipeTo = "right";
+			this.swipeTo = 'right';
 			this.monthDistance += 12;
 		},
 
 		decreaseYear() {
-			this.swipeTo = "left";
+			this.swipeTo = 'left';
 			this.monthDistance -= 12;
 		},
 
 		increaseMonth() {
-			this.swipeTo = "right";
+			this.swipeTo = 'right';
 			this.monthDistance++;
 		},
 
 		decreaseMonth() {
-			this.swipeTo = "left";
+			this.swipeTo = 'left';
 			this.monthDistance--;
 		},
 
 		resetMonth() {
-			this.swipeTo = this.monthDistance > 0 ? "left" : "right";
+			this.swipeTo = this.monthDistance > 0 ? 'left' : 'right';
 			this.monthDistance = 0;
 		},
 
 		setMonth(index) {
-			this.swipeTo = this.monthDistance - index > 0 ? "left" : "right";
+			this.swipeTo = this.monthDistance - index > 0 ? 'left' : 'right';
 			this.monthDistance = index;
 		},
 
@@ -253,25 +253,25 @@ export default {
 
 			for (var i = 0; i < this.events.length; i++) {
 				var item = this.events[i];
-				var eventDate = "",
-					time = "";
+				var eventDate = '',
+					time = '';
 
 				// datetime first
-				if (datetimeId && datetimeId !== "__none__") {
+				if (datetimeId && datetimeId !== '__none__') {
 					eventDate = new Date(item[datetimeId]);
 					// allow to overridetime of datetime if time field is set
-					if (timeId === "__none__") time = item[datetimeId].slice(-8);
-					else time = item[timeId] && timeId != 0 ? item[timeId] : "";
+					if (timeId === '__none__') time = item[datetimeId].slice(-8);
+					else time = item[timeId] && timeId != 0 ? item[timeId] : '';
 				} else {
-					eventDate = new Date(item[dateId] + "T00:00:00");
-					time = item[timeId] && timeId != 0 ? item[timeId] : "";
+					eventDate = new Date(item[dateId] + 'T00:00:00');
+					time = item[timeId] && timeId != 0 ? item[timeId] : '';
 				}
 
 				var color = item[colorId];
 
 				if (!eventDate) continue;
 
-				if (!color) color = "accent";
+				if (!color) color = 'accent';
 				color = `background-color: var(--${color})`;
 
 				if (this.isSameDay(date, eventDate)) {
@@ -296,12 +296,12 @@ export default {
 		compareTime(time1, time2) {
 			var timeId = this.viewOptions.time;
 
-			if (time1[timeId] == "" && time2[timeId] == "") return 0;
-			if (time1[timeId] != "" && time2[timeId] == "") return -1;
-			if (time1[timeId] == "" && time2[timeId] != "") return 1;
+			if (time1[timeId] == '' && time2[timeId] == '') return 0;
+			if (time1[timeId] != '' && time2[timeId] == '') return -1;
+			if (time1[timeId] == '' && time2[timeId] != '') return 1;
 
-			var timeA = new Date("1970-01-01T" + time1[timeId]);
-			var timeB = new Date("1970-01-01T" + time2[timeId]);
+			var timeA = new Date('1970-01-01T' + time1[timeId]);
+			var timeB = new Date('1970-01-01T' + time2[timeId]);
 
 			if (timeA > timeB) return 1;
 			if (timeA < timeB) return -1;
@@ -327,13 +327,13 @@ export default {
 
 		keyPress(event) {
 			switch (event.key) {
-				case "Escape":
+				case 'Escape':
 					this.showPopup = false;
 					break;
-				case "ArrowRight":
+				case 'ArrowRight':
 					this.increaseMonth();
 					break;
-				case "ArrowLeft":
+				case 'ArrowLeft':
 					this.decreaseMonth();
 					break;
 				default:

@@ -15,8 +15,8 @@ import {
 	UPDATE_PROJECT,
 	SET_PROJECT_STATUS,
 	INIT_PROJECTS
-} from "./mutation-types";
-import Vue from "vue";
+} from './mutation-types';
+import Vue from 'vue';
 
 const mutations = {
 	[STORE_HYDRATED](state, date) {

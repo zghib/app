@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		choices() {
-			return typeof this.options.choices === "string"
+			return typeof this.options.choices === 'string'
 				? JSON.parse(this.options.choices)
 				: this.options.choices;
 		},

@@ -2,17 +2,17 @@
 	<v-modal-base :message="message" @cancel="$emit('confirm')">
 		<div class="buttons" @keydown.esc="$emit('confirm')">
 			<v-button class="confirm" @click="$emit('confirm')">
-				{{ confirmText || $t("ok") }}
+				{{ confirmText || $t('ok') }}
 			</v-button>
 		</div>
 	</v-modal-base>
 </template>
 
 <script>
-import VModalBase from "./modal-base.vue";
+import VModalBase from './modal-base.vue';
 
 export default {
-	name: "VAlert",
+	name: 'VAlert',
 	components: {
 		VModalBase
 	},

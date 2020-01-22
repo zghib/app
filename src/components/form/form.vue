@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import VField from "./field.vue";
-import { defaultFull } from "../../store/modules/permissions/defaults";
+import VField from './field.vue';
+import { defaultFull } from '../../store/modules/permissions/defaults';
 
 export default {
-	name: "VForm",
+	name: 'VForm',
 	components: {
 		VField
 	},
@@ -82,7 +82,7 @@ export default {
 		// rest of the app to use it as well
 		fieldsFormatted() {
 			if (Array.isArray(this.fields)) {
-				return _.keyBy(this.fields, "field");
+				return _.keyBy(this.fields, 'field');
 			}
 
 			return this.fields;
@@ -108,7 +108,7 @@ export default {
 				if (hiddenDetail === undefined) return true;
 
 				// NOTE: non strict equal on the 0 cause it might be a number or a string
-				return hiddenDetail == "0" || hiddenDetail === false;
+				return hiddenDetail == '0' || hiddenDetail === false;
 			});
 
 			// Sort the fields on the sort column value
@@ -127,7 +127,7 @@ export default {
 				if (
 					this.readonly ||
 					fieldInfo.readonly === true ||
-					fieldInfo.readonly === "1" ||
+					fieldInfo.readonly === '1' ||
 					fieldInfo.readonly === 1 ||
 					writeFieldBlacklist.includes(fieldName)
 				) {
@@ -144,11 +144,11 @@ export default {
 			fields = fields.map((fieldInfo, index) => {
 				if (index === 0) return fieldInfo;
 
-				if (fieldInfo.width === "half") {
+				if (fieldInfo.width === 'half') {
 					const prevField = fields[index - 1];
 
-					if (prevField.width === "half") {
-						fieldInfo.width = "half-right";
+					if (prevField.width === 'half') {
+						fieldInfo.width = 'half-right';
 					}
 				}
 				return fieldInfo;
@@ -167,7 +167,7 @@ export default {
 			this.activeFields = this.activeFields.filter(activeField => activeField !== fieldName);
 			// If a field is being un-selected during batch mode, we shouldn't save the edits that made in
 			// this field
-			this.$emit("unstage-value", fieldName);
+			this.$emit('unstage-value', fieldName);
 		}
 	}
 };

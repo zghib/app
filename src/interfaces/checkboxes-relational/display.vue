@@ -15,14 +15,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "ReadonlyCheckboxesRelational",
+	name: 'ReadonlyCheckboxesRelational',
 	mixins: [mixin],
 	computed: {
 		itemCount() {
-			return this.$tc("item_count", (this.value || []).length, {
+			return this.$tc('item_count', (this.value || []).length, {
 				count: (this.value || []).length
 			});
 		}

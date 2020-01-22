@@ -42,14 +42,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import icons from "./icons.json";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import icons from './icons.json';
 
 export default {
 	mixins: [mixin],
 	data() {
 		return {
-			searchText: ""
+			searchText: ''
 		};
 	},
 	computed: {
@@ -111,7 +111,7 @@ export default {
 			color: var(--input-text-color);
 		}
 	}
-	button[disabled="disabled"] {
+	button[disabled='disabled'] {
 		&:hover {
 			cursor: not-allowed;
 			color: var(--input-icon-color);

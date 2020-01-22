@@ -4,7 +4,7 @@
 			<div id="background" @click="close()"></div>
 			<div id="popup">
 				<div id="sidebar-header">
-					{{ $t("months." + $parent.monthNames[date.getMonth()]) }}
+					{{ $t('months.' + $parent.monthNames[date.getMonth()]) }}
 					{{ date.getFullYear() }}
 				</div>
 				<div id="sidebar" @wheel="scroll">
@@ -32,7 +32,7 @@
 					</transition>
 				</div>
 				<div id="header">
-					<span>{{ $t("layouts.calendar.events") }}</span>
+					<span>{{ $t('layouts.calendar.events') }}</span>
 					<button @click="close">
 						<v-icon name="close" />
 					</button>
@@ -52,7 +52,7 @@
 						<span>{{ randomEmoji() }}</span>
 						<br />
 						<br />
-						<span>{{ $t("layouts.calendar.noEvents") }}</span>
+						<span>{{ $t('layouts.calendar.noEvents') }}</span>
 					</div>
 				</div>
 				<a id="add" :href="addItemURL"><v-icon name="add" /></a>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
 	components: {},
@@ -83,12 +83,12 @@ export default {
 	data() {
 		return {
 			// The differend animations for the sidebar.
-			moveSidebar: "move-0",
-			date: ""
+			moveSidebar: 'move-0',
+			date: ''
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		/*
 		 *   Array of days to display in the sidebar.
 		 */
@@ -117,7 +117,7 @@ export default {
 		},
 		addItemURL() {
 			var url = this.$root._router.currentRoute.path;
-			return "#" + url + "/+";
+			return '#' + url + '/+';
 		}
 	},
 	watch: {
@@ -134,7 +134,7 @@ export default {
 		 *   Gets the name of the week for a specific position in the sidebar.
 		 */
 		weekname(day) {
-			return this.$t("weeks." + this.$parent.weekNames[day == 0 ? 6 : day - 1]).substr(0, 3);
+			return this.$t('weeks.' + this.$parent.weekNames[day == 0 ? 6 : day - 1]).substr(0, 3);
 		},
 
 		goToItem(id) {
@@ -144,7 +144,7 @@ export default {
 		},
 
 		changeDay(distance) {
-			this.moveSidebar = "move-" + distance;
+			this.moveSidebar = 'move-' + distance;
 			var newDate = new Date(
 				this.date.getFullYear(),
 				this.date.getMonth(),
@@ -155,8 +155,8 @@ export default {
 		},
 
 		close() {
-			this.$emit("close");
-			this.moveSidebar = "move-0";
+			this.$emit('close');
+			this.moveSidebar = 'move-0';
 		},
 
 		getEventCount(date) {
@@ -168,13 +168,13 @@ export default {
 
 			for (var i = 0; i < this.parentevents.length; i++) {
 				var item = this.parentevents[i];
-				var eventDate = "";
+				var eventDate = '';
 
 				// datetime first
-				if (datetimeId && datetimeId !== "__none__") {
+				if (datetimeId && datetimeId !== '__none__') {
 					eventDate = new Date(item[datetimeId]);
 				} else {
-					eventDate = new Date(item[dateId] + "T00:00:00");
+					eventDate = new Date(item[dateId] + 'T00:00:00');
 				}
 
 				if (this.$parent.isSameDay(date, eventDate)) {
@@ -186,13 +186,13 @@ export default {
 
 		randomEmoji() {
 			const emoticons = [
-				"(≧︿≦)",
-				"¯\\(°_o)/¯",
-				"(⌐⊙_⊙)",
-				"( º﹃º )",
-				"¯\\_(ツ)_/¯",
-				"(·.·)",
-				"\\(°Ω°)/"
+				'(≧︿≦)',
+				'¯\\(°_o)/¯',
+				'(⌐⊙_⊙)',
+				'( º﹃º )',
+				'¯\\_(ツ)_/¯',
+				'(·.·)',
+				'\\(°Ω°)/'
 			];
 			const index = Math.floor(Math.random() * emoticons.length);
 			return emoticons[index];
@@ -357,7 +357,7 @@ export default {
 }
 
 .dates::after {
-	content: "";
+	content: '';
 	position: absolute;
 	width: 60%;
 	height: 2px;

@@ -27,14 +27,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	data() {
 		return {
-			originalValue: this.value || "",
-			confirmValue: this.value || "",
+			originalValue: this.value || '',
+			confirmValue: this.value || '',
 			matches: true
 		};
 	},
@@ -43,19 +43,19 @@ export default {
 			return this.value !== this.originalValue;
 		},
 		inputType() {
-			return this.options.hide ? "password" : "text";
+			return this.options.hide ? 'password' : 'text';
 		},
 		lockIcon() {
-			return this.valueChanged ? "lock_open" : "lock_outline";
+			return this.valueChanged ? 'lock_open' : 'lock_outline';
 		},
 		iconColor() {
-			return this.valueChanged ? "warning" : "accent";
+			return this.valueChanged ? 'warning' : 'accent';
 		},
 		confirmIcon() {
-			return this.matches ? "check" : "close";
+			return this.matches ? 'check' : 'close';
 		},
 		confirmColor() {
-			return this.matches ? "accent" : "danger";
+			return this.matches ? 'accent' : 'danger';
 		}
 	},
 	watch: {

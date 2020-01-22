@@ -31,7 +31,7 @@
 
 <script>
 export default {
-	name: "VSlider",
+	name: 'VSlider',
 	props: {
 		id: {
 			type: String,
@@ -208,7 +208,7 @@ export default {
 		user-select: none;
 		z-index: 4;
 		&:before {
-			content: "";
+			content: '';
 			position: absolute;
 			top: -4px;
 			left: calc(50%);

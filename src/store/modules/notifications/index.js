@@ -1,4 +1,4 @@
-import mutations from "./mutations";
+import mutations from './mutations';
 
 export const initialState = {
 	queue: []

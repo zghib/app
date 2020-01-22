@@ -23,12 +23,12 @@
 	</v-sheet>
 
 	<v-notice v-else color="warning" icon="warning">
-		{{ $t("relationship_not_setup") }}
+		{{ $t('relationship_not_setup') }}
 	</v-notice>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -85,7 +85,7 @@ export default {
 			deep: true,
 			handler(value) {
 				if (value) {
-					this.$emit("input", value);
+					this.$emit('input', value);
 				}
 			}
 		}

@@ -23,7 +23,7 @@
 
 <script>
 export default {
-	name: "VTextarea",
+	name: 'VTextarea',
 	props: {
 		cols: {
 			type: Number,

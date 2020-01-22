@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -24,7 +24,7 @@ export default {
 			Object.keys(collections)
 				.filter(key => {
 					if (includeSystem) return key;
-					return key.startsWith("directus_") === false;
+					return key.startsWith('directus_') === false;
 				})
 				.forEach(key => {
 					choices[key] = this.$helpers.formatTitle(key);

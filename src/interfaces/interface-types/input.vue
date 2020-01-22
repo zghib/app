@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import { mapState } from "vuex";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import { mapState } from 'vuex';
 
 export default {
-	name: "InterfaceTypes",
+	name: 'InterfaceTypes',
 	mixins: [mixin],
 	watch: {
 		interfaceName() {
@@ -38,7 +38,7 @@ export default {
 		selectFirst() {
 			if (this.availableTypes === undefined || this.availableTypes.length === 0) return;
 
-			this.$emit("input", this.availableTypes[0]);
+			this.$emit('input', this.availableTypes[0]);
 		}
 	}
 };

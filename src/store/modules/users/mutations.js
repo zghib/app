@@ -1,5 +1,5 @@
-import Vue from "vue";
-import { RESET, SET_USERS } from "../../mutation-types";
+import Vue from 'vue';
+import { RESET, SET_USERS } from '../../mutation-types';
 
 export default {
 	[RESET](state) {

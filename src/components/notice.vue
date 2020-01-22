@@ -24,13 +24,13 @@
 
 <script>
 export default {
-	name: "VNotice",
+	name: 'VNotice',
 	props: {
 		color: {
 			type: String,
-			default: "gray",
+			default: 'gray',
 			validator(val) {
-				return ["gray", "gray-subdued", "accent", "warning", "danger", "success"].includes(
+				return ['gray', 'gray-subdued', 'accent', 'warning', 'danger', 'success'].includes(
 					val
 				);
 			}

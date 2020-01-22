@@ -16,10 +16,10 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
-	name: "Sso",
+	name: 'Sso',
 	props: {
 		providers: {
 			type: Array,
@@ -27,13 +27,13 @@ export default {
 		}
 	},
 	computed: {
-		...mapState(["currentProjectKey", "apiRootPath"]),
+		...mapState(['currentProjectKey', 'apiRootPath']),
 		ssoPath() {
-			return this.apiRootPath + this.currentProjectKey + "/auth/sso/";
+			return this.apiRootPath + this.currentProjectKey + '/auth/sso/';
 		},
 		params() {
 			// %23 == # url encoded
-			return "?mode=cookie&redirect_url=" + this.apiRootPath + "admin/%23/";
+			return '?mode=cookie&redirect_url=' + this.apiRootPath + 'admin/%23/';
 		}
 	}
 };

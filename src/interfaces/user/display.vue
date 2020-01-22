@@ -9,17 +9,17 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import { mapState } from "vuex";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import { mapState } from 'vuex';
 
 export default {
 	mixins: [mixin],
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		userInfo() {
 			if (!this.value) return null;
 
-			if (typeof this.value === "object") return this.value;
+			if (typeof this.value === 'object') return this.value;
 			return this.$store.state.users[this.value];
 		},
 		displayValue() {

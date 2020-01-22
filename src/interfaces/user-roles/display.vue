@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "DisplayUserRole",
+	name: 'DisplayUserRole',
 	mixins: [mixin],
 	computed: {
 		displayValue() {

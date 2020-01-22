@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue';
 import {
 	RESET,
 	DISCARD_CHANGES,
@@ -6,8 +6,8 @@ import {
 	START_EDITING,
 	UNSTAGE_VALUE,
 	STAGE_VALUE
-} from "../../mutation-types";
-import { initialState } from "./";
+} from '../../mutation-types';
+import { initialState } from './';
 
 const mutations = {
 	[RESET](state) {

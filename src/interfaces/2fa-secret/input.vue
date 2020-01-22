@@ -1,7 +1,7 @@
 <template>
 	<div class="interface-2fa-value">
 		<v-notice v-if="tfa_secret" icon="info" class="qr-info">
-			{{ $t("scan_in_authenticator") }}
+			{{ $t('scan_in_authenticator') }}
 		</v-notice>
 		<qr-code v-if="tfa_secret" class="qr" :value="totpUrl" :options="{ width: 200 }" />
 
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import QrCode from "@chenfengyuan/vue-qrcode";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import QrCode from '@chenfengyuan/vue-qrcode';
 
 export default {
-	name: "Interface2faValue",
+	name: 'Interface2faValue',
 	components: {
 		QrCode
 	},
@@ -37,10 +37,10 @@ export default {
 			this.loading = true;
 
 			this.$api.api
-				.get("/utils/2fa_secret")
-				.then(res => res.data["2fa_secret"])
+				.get('/utils/2fa_secret')
+				.then(res => res.data['2fa_secret'])
 				.then(token => {
-					this.$emit("input", token);
+					this.$emit('input', token);
 					this.tfa_secret = token;
 				})
 				.catch(error => {
@@ -49,7 +49,7 @@ export default {
 				.finally(() => (this.loading = false));
 		},
 		removeValue() {
-			this.$emit("input", null);
+			this.$emit('input', null);
 			this.tfa_secret = null;
 		}
 	}

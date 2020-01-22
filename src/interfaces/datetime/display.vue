@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -22,16 +22,16 @@ export default {
 			let date = this.value;
 
 			if (this.options.utc) {
-				date = this.value.includes("T")
+				date = this.value.includes('T')
 					? this.value.substring(0, 16)
-					: this.toDatetimeLocal(new Date(this.value.replace(" ", "T") + "Z"));
+					: this.toDatetimeLocal(new Date(this.value.replace(' ', 'T') + 'Z'));
 			}
 
 			return new Date(date);
 		},
 		displayValue() {
 			if (!this.date) return;
-			return this.$d(this.date, "long");
+			return this.$d(this.date, 'long');
 		}
 	},
 

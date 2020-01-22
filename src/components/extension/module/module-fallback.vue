@@ -4,12 +4,12 @@
 
 <script>
 export default {
-	name: "VExtPageFallback",
+	name: 'VExtPageFallback',
 	created() {
 		this.$notify({
-			title: this.$t("extension_error", { ext: this.interfaceName }),
-			color: "red",
-			iconMain: "error"
+			title: this.$t('extension_error', { ext: this.interfaceName }),
+			color: 'red',
+			iconMain: 'error'
 		});
 	}
 };

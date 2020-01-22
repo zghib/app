@@ -53,7 +53,7 @@
 
 <script>
 export default {
-	name: "VSignal",
+	name: 'VSignal',
 	computed: {
 		strength() {
 			return this.$store.getters.signalStrength;

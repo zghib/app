@@ -4,35 +4,35 @@
 
 <script>
 export default {
-	name: "VExtInputFallback",
+	name: 'VExtInputFallback',
 	props: {
 		value: {
 			type: null,
-			default: ""
+			default: ''
 		},
 		inputName: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		name: {
 			type: String,
-			default: ""
+			default: ''
 		}
 	},
 	created() {
 		if (this.inputName == null) {
 			this.$notify({
-				title: this.$t("no_interface_error", {
+				title: this.$t('no_interface_error', {
 					field: this.$helpers.formatTitle(this.name)
 				}),
-				color: "red",
-				iconMain: "error"
+				color: 'red',
+				iconMain: 'error'
 			});
 		} else {
 			this.$notify({
-				title: this.$t("extension_error", { ext: this.inputName }),
-				color: "red",
-				iconMain: "error"
+				title: this.$t('extension_error', { ext: this.inputName }),
+				color: 'red',
+				iconMain: 'error'
 			});
 		}
 	}

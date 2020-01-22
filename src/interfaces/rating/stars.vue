@@ -53,27 +53,27 @@ export default {
 	methods: {
 		set(n) {
 			this.hovered = false;
-			this.$emit("update:rating", n);
+			this.$emit('update:rating', n);
 		},
 		starType(n) {
 			if (n <= this.int) {
-				return "full";
+				return 'full';
 			} else if (n == this.int + 1) {
 				if (this.frac >= 0.75) {
-					return "full";
+					return 'full';
 				} else if (0.75 > this.frac && this.frac >= 0.25) {
-					return "half";
+					return 'half';
 				} else {
-					return "empty";
+					return 'empty';
 				}
 			} else {
-				return "empty";
+				return 'empty';
 			}
 		},
 		ratingStyle(n) {
 			let _style = {};
 			let _starType = this.starType(n);
-			if (_starType != "empty") {
+			if (_starType != 'empty') {
 				if (this.hovered) {
 					_style.color = `var(--input-text-color)`;
 				} else {
@@ -83,11 +83,11 @@ export default {
 			return _style;
 		},
 		ratingClass(n) {
-			let _class = ["rating-button"];
+			let _class = ['rating-button'];
 			let _starType = this.starType(n);
 			_class.push(`rating-${_starType}`);
 			if (this.hovered) {
-				_class.push("rating-hover");
+				_class.push('rating-hover');
 			}
 			return _class;
 		}
@@ -120,11 +120,11 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	-moz-font-feature-settings: "liga";
+	-moz-font-feature-settings: 'liga';
 	-moz-osx-font-smoothing: grayscale;
 	&:after {
-		font-family: "Material Icons";
-		font-feature-settings: "liga";
+		font-family: 'Material Icons';
+		font-feature-settings: 'liga';
 		font-size: 36px;
 		line-height: 1;
 	}
@@ -132,19 +132,19 @@ export default {
 .rating-empty {
 	color: var(--input-background-color-alt);
 	&:after {
-		content: "star";
+		content: 'star';
 	}
 }
 .rating-half {
 	color: var(--amber);
 	&:after {
-		content: "star_half";
+		content: 'star_half';
 	}
 }
 .rating-full {
 	color: var(--amber);
 	&:after {
-		content: "star";
+		content: 'star';
 	}
 }
 </style>

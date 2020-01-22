@@ -26,14 +26,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		userInfo() {
 			if (!this.value) return null;
-			if (typeof this.value === "object") {
+			if (typeof this.value === 'object') {
 				if (this.value.first_name) {
 					return this.value;
 				} else {

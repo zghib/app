@@ -21,7 +21,7 @@
 			<slot />
 			<div class="buttons">
 				<button class="cancel" @click="$emit('cancel')">
-					{{ cancelText || $t("cancel") }}
+					{{ cancelText || $t('cancel') }}
 				</button>
 				<v-button
 					class="confirm"
@@ -29,7 +29,7 @@
 					:disabled="required && disabled"
 					@click="$emit('confirm')"
 				>
-					{{ confirmText || $t("ok") }}
+					{{ confirmText || $t('ok') }}
 				</v-button>
 			</div>
 		</div>
@@ -37,10 +37,10 @@
 </template>
 
 <script>
-import VModalBase from "./modal-base.vue";
+import VModalBase from './modal-base.vue';
 
 export default {
-	name: "VPrompt",
+	name: 'VPrompt',
 	components: {
 		VModalBase
 	},
@@ -75,7 +75,7 @@ export default {
 		},
 		placeholder: {
 			type: String,
-			default: ""
+			default: ''
 		},
 		loading: {
 			type: Boolean,
@@ -96,15 +96,15 @@ export default {
 			if (this.safe) {
 				val = val
 					.toString()
-					.replace(/\s+/g, "_") // Replace spaces with _
-					.replace(/[^\w_]+/g, "") // Remove all non-word chars
-					.replace(/__+/g, "_") // Replace multiple _ with single _
-					.replace(/^_+/, "") // Trim _ from start of text
-					.replace(/_+$/, "") // Trim _ from end of text
+					.replace(/\s+/g, '_') // Replace spaces with _
+					.replace(/[^\w_]+/g, '') // Remove all non-word chars
+					.replace(/__+/g, '_') // Replace multiple _ with single _
+					.replace(/^_+/, '') // Trim _ from start of text
+					.replace(/_+$/, '') // Trim _ from end of text
 					.toLowerCase();
 			}
 
-			this.$emit("input", val);
+			this.$emit('input', val);
 		}
 	}
 };

@@ -45,23 +45,23 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
-import VSignal from "../../signal.vue";
+import { mapState, mapGetters } from 'vuex';
+import VSignal from '../../signal.vue';
 
 export default {
-	name: "ProjectSwitcher",
+	name: 'ProjectSwitcher',
 	components: {
 		VSignal
 	},
 	computed: {
-		...mapState(["projects", "apiRootPath", "latency"]),
-		...mapGetters(["currentProject", "signalStrength"]),
+		...mapState(['projects', 'apiRootPath', 'latency']),
+		...mapGetters(['currentProject', 'signalStrength']),
 		currentProjectKey: {
 			get() {
 				return this.$store.state.currentProjectKey;
 			},
 			set(value) {
-				this.$store.dispatch("setCurrentProject", value);
+				this.$store.dispatch('setCurrentProject', value);
 			}
 		},
 		apiURL() {
@@ -77,8 +77,8 @@ export default {
 			}
 
 			let content = this.apiURL;
-			content += "<br>";
-			content += this.$t("latency") + ":";
+			content += '<br>';
+			content += this.$t('latency') + ':';
 			content += ` ${latency}ms`;
 
 			return content;

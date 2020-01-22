@@ -1,5 +1,5 @@
-import mutations from "./mutations";
-import * as actions from "./actions";
+import mutations from './mutations';
+import * as actions from './actions';
 
 export const initialState = {
 	apiVersion: null,
@@ -7,7 +7,7 @@ export const initialState = {
 	maxUploadSize: null,
 
 	// This should be dynamic as soon as the API supports multiple database vendors
-	databaseVendor: "mysql"
+	databaseVendor: 'mysql'
 };
 
 export default {

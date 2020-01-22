@@ -12,13 +12,13 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	methods: {
 		updateValue(value) {
-			this.$emit("input", Number(value));
+			this.$emit('input', Number(value));
 		}
 	}
 };

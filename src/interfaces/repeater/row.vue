@@ -53,10 +53,10 @@
 </template>
 
 <script>
-import getFieldsFromTemplate from "@/helpers/get-fields-from-template";
+import getFieldsFromTemplate from '@/helpers/get-fields-from-template';
 
 export default {
-	name: "RepeaterRow",
+	name: 'RepeaterRow',
 	props: {
 		row: {
 			type: Object,

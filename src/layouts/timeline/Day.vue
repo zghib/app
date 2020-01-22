@@ -1,7 +1,7 @@
 <template>
 	<div class="day">
 		<div class="date type-heading-small">
-			Activity on {{ $t("months." + $parent.monthNames[date.getMonth()]) }}
+			Activity on {{ $t('months.' + $parent.monthNames[date.getMonth()]) }}
 			{{ date.getDate() }},
 			{{ date.getFullYear() }}
 		</div>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import Event from "./Event.vue";
+import Event from './Event.vue';
 
 export default {
 	components: {

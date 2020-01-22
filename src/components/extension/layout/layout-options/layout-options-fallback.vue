@@ -4,18 +4,18 @@
 
 <script>
 export default {
-	name: "VExtLayoutOptionsFallback",
+	name: 'VExtLayoutOptionsFallback',
 	props: {
 		layoutName: {
 			type: String,
-			default: ""
+			default: ''
 		}
 	},
 	created() {
 		this.$notify({
-			title: this.$t("extension_error", { ext: this.layoutName }),
-			color: "red",
-			iconMain: "error"
+			title: this.$t('extension_error', { ext: this.layoutName }),
+			color: 'red',
+			iconMain: 'error'
 		});
 	}
 };

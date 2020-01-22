@@ -10,9 +10,9 @@
 	</div>
 </template>
 <script>
-import VItem from "./item.vue";
+import VItem from './item.vue';
 export default {
-	name: "VNotifications",
+	name: 'VNotifications',
 	components: {
 		VItem
 	},

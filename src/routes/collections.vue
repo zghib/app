@@ -31,21 +31,21 @@
 </template>
 
 <script>
-import VError from "../components/error.vue";
-import { mapState } from "vuex";
+import VError from '../components/error.vue';
+import { mapState } from 'vuex';
 
 export default {
-	name: "Collections",
+	name: 'Collections',
 	metaInfo() {
 		return {
-			title: this.$tc("collection", 2)
+			title: this.$tc('collection', 2)
 		};
 	},
 	components: {
 		VError
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		items() {
 			if (this.collections == null) return [];
 
@@ -54,17 +54,17 @@ export default {
 					collection =>
 						collection.hidden == false &&
 						collection.managed == true &&
-						collection.collection.startsWith("directus_") === false
+						collection.collection.startsWith('directus_') === false
 				)
 				.filter(collection => {
 					if (collection.status_mapping) {
 						return _.some(
 							this.permissions[collection.collection].statuses,
-							permission => permission.read !== "none"
+							permission => permission.read !== 'none'
 						);
 					}
 
-					return this.permissions[collection.collection].read !== "none";
+					return this.permissions[collection.collection].read !== 'none';
 				})
 				.map(collection => ({
 					...collection,
@@ -75,12 +75,12 @@ export default {
 		fields() {
 			return [
 				{
-					field: "collection",
-					name: this.$tc("collection", 1)
+					field: 'collection',
+					name: this.$tc('collection', 1)
 				},
 				{
-					field: "note",
-					name: this.$t("note")
+					field: 'note',
+					name: this.$t('note')
 				}
 			];
 		},

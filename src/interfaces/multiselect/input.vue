@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -32,7 +32,7 @@ export default {
 
 			if (!choices) return {};
 
-			if (typeof this.options.choices === "string") {
+			if (typeof this.options.choices === 'string') {
 				choices = JSON.parse(this.options.choices);
 			}
 
@@ -50,8 +50,8 @@ export default {
 				value = `,${value},`;
 			}
 
-			value = value.split(",");
-			this.$emit("input", value);
+			value = value.split(',');
+			this.$emit('input', value);
 		}
 	}
 };
@@ -98,14 +98,14 @@ export default {
 			-webkit-text-fill-color: var(--input-text-color-active);
 
 			&::after {
-				content: "check";
-				font-family: "Material Icons";
+				content: 'check';
+				font-family: 'Material Icons';
 				font-size: 24px;
 				position: absolute;
 				right: 10px;
 				top: 50%;
 				transform: translateY(-54%);
-				font-feature-settings: "liga";
+				font-feature-settings: 'liga';
 			}
 		}
 	}

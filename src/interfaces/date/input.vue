@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceDate",
+	name: 'InterfaceDate',
 	mixins: [mixin]
 };
 </script>

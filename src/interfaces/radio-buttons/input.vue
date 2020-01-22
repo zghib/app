@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceRadioButtons",
+	name: 'InterfaceRadioButtons',
 	mixins: [mixin],
 	computed: {
 		choices() {
@@ -26,7 +26,7 @@ export default {
 
 			if (!choices) return {};
 
-			if (typeof this.options.choices === "string") {
+			if (typeof this.options.choices === 'string') {
 				choices = JSON.parse(this.options.choices);
 			}
 

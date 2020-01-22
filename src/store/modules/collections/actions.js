@@ -7,10 +7,10 @@ import {
 	UPDATE_FIELD,
 	UPDATE_FIELDS,
 	REMOVE_FIELD
-} from "../../mutation-types";
-import { i18n } from "../../../lang/";
-import _ from "lodash";
-import api from "../../../api";
+} from '../../mutation-types';
+import { i18n } from '../../../lang/';
+import _ from 'lodash';
+import api from '../../../api';
 
 function updateTranslations(collection) {
 	if (_.isEmpty(collection.translation) === false) {
@@ -73,8 +73,8 @@ export async function getCollections({ commit }) {
 
 	const { data: settingsFields } = await api.getSettingsFields();
 
-	collections = _.keyBy(collections, "collection");
-	collections.directus_settings.fields = _.keyBy(settingsFields, "field");
+	collections = _.keyBy(collections, 'collection');
+	collections.directus_settings.fields = _.keyBy(settingsFields, 'field');
 
 	commit(SET_COLLECTIONS, collections);
 }

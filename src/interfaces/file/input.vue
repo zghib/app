@@ -1,7 +1,7 @@
 <template>
 	<div class="input-single-file">
 		<v-notice v-if="noFileAccess">
-			{{ $t("this_item_is_not_available") }}
+			{{ $t('this_item_is_not_available') }}
 		</v-notice>
 
 		<template v-else>
@@ -43,7 +43,7 @@
 			<div v-if="!value" class="buttons">
 				<v-button type="button" :disabled="readonly" @click="existing = true">
 					<v-icon name="playlist_add" />
-					{{ $t("existing") }}
+					{{ $t('existing') }}
 				</v-button>
 			</div>
 
@@ -88,10 +88,10 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import formatSize from "../file-size/format-size";
-import getIcon from "./get-icon";
-import { mapState } from "vuex";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import formatSize from '../file-size/format-size';
+import getIcon from './get-icon';
+import { mapState } from 'vuex';
 
 export default {
 	mixins: [mixin],
@@ -106,47 +106,47 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		noFileAccess() {
-			return this.value && typeof this.value !== "object";
+			return this.value && typeof this.value !== 'object';
 		},
 		subtitle() {
-			if (!this.image) return "";
+			if (!this.image) return '';
 
 			return (
 				this.image.filename_disk
-					.split(".")
+					.split('.')
 					.pop()
 					.toUpperCase() +
-				" • " +
-				this.$d(new Date(this.image.uploaded_on), "short")
+				' • ' +
+				this.$d(new Date(this.image.uploaded_on), 'short')
 			);
 		},
 		subtitleExtra() {
 			// Image ? -> display dimensions and formatted filesize
-			return this.image.type && this.image.type.startsWith("image")
-				? " • " + formatSize(this.image.filesize)
-				: "";
+			return this.image.type && this.image.type.startsWith('image')
+				? ' • ' + formatSize(this.image.filesize)
+				: '';
 		},
 		src() {
-			if (!this.image.type || !this.image.type.startsWith("image")) {
+			if (!this.image.type || !this.image.type.startsWith('image')) {
 				return null;
 			}
 
-			if (this.image.type === "image/svg+xml") {
+			if (this.image.type === 'image/svg+xml') {
 				return this.image.data.url;
 			}
 
-			const size = this.width === "full" ? "large" : "medium";
-			const fit = this.options.crop ? "crop" : "contain";
+			const size = this.width === 'full' ? 'large' : 'medium';
+			const fit = this.options.crop ? 'crop' : 'contain';
 
 			return `/${this.currentProjectKey}/assets/${this.image.private_hash}?key=directus-${size}-${fit}`;
 		},
 		isImage() {
-			return this.image.type && this.image.type.startsWith("image");
+			return this.image.type && this.image.type.startsWith('image');
 		},
 		icon() {
-			return this.image.type && !this.image.type.startsWith("image")
+			return this.image.type && !this.image.type.startsWith('image')
 				? getIcon(this.image.type)
 				: null;
 		},
@@ -165,7 +165,7 @@ export default {
 			const viewQuery = this.options.viewQuery;
 
 			return {
-				sort: "-id",
+				sort: '-id',
 				...viewQuery,
 				...this.viewQueryOverride
 			};
@@ -181,16 +181,16 @@ export default {
 			if (
 				!this.options.accept ||
 				this.filtersOverride.length > 0 ||
-				(this.options.filters || []).some(filter => filter.field === "type")
+				(this.options.filters || []).some(filter => filter.field === 'type')
 			) {
 				return [];
 			}
 
 			return [
 				{
-					field: "type",
-					operator: "in",
-					value: (this.options.accept || "").trim().split(/,\s*/)
+					field: 'type',
+					operator: 'in',
+					value: (this.options.accept || '').trim().split(/,\s*/)
 				}
 			];
 		}
@@ -198,7 +198,7 @@ export default {
 	async created() {
 		if (this.value && this.value.id) {
 			try {
-				let fileData = await this.$api.getItem("directus_files", this.value.id);
+				let fileData = await this.$api.getItem('directus_files', this.value.id);
 				this.image = fileData.data;
 			} catch (e) {
 				console.error(e);
@@ -210,7 +210,7 @@ export default {
 		saveUpload(response) {
 			this.image = response.data.data;
 			// We know that the primary key of directus_files is called `id`
-			this.$emit("input", { id: this.image.id });
+			this.$emit('input', { id: this.image.id });
 		},
 		setViewOptions(updates) {
 			this.viewOptionsOverride = {
@@ -234,22 +234,22 @@ export default {
 
 			if (file) {
 				this.image = file;
-				this.$emit("input", { id: file.id });
+				this.$emit('input', { id: file.id });
 			} else {
 				this.image = null;
-				this.$emit("input", null);
+				this.$emit('input', null);
 			}
 		},
 		async removeFile() {
 			const file = this.value;
-			await this.$api.deleteItem("directus_files", file.id);
+			await this.$api.deleteItem('directus_files', file.id);
 			this.$notify({
-				title: this.$t("item_deleted"),
-				color: "green",
-				iconMain: "check"
+				title: this.$t('item_deleted'),
+				color: 'green',
+				iconMain: 'check'
 			});
 			this.image = null;
-			this.$emit("input", null);
+			this.$emit('input', null);
 		}
 	}
 };

@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "Display2faSecret",
+	name: 'Display2faSecret',
 	mixins: [mixin],
 	computed: {
 		icon() {
-			return this.value ? "lock" : "lock_open";
+			return this.value ? 'lock' : 'lock_open';
 		}
 	}
 };

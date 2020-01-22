@@ -5,13 +5,13 @@
 
 			<input v-model="email" v-focus type="email" :placeholder="$t('email')" required />
 			<div class="buttons">
-				<button type="submit">{{ $t("reset") }}</button>
-				<router-link to="/login" class="secondary">{{ $t("sign_in") }}</router-link>
+				<button type="submit">{{ $t('reset') }}</button>
+				<router-link to="/login" class="secondary">{{ $t('sign_in') }}</router-link>
 			</div>
 		</form>
 
 		<template v-else-if="requestSent === true">
-			<p>{{ $t("password_reset_sent") }}</p>
+			<p>{{ $t('password_reset_sent') }}</p>
 		</template>
 
 		<form v-if="resetMode === true && resetDone === false" @submit.prevent="onReset">
@@ -20,13 +20,13 @@
 			<input v-model="password" type="password" :placeholder="$t('password')" required />
 
 			<div class="buttons">
-				<button type="submit">{{ $t("reset") }}</button>
+				<button type="submit">{{ $t('reset') }}</button>
 			</div>
 		</form>
 
 		<template v-else-if="resetDone === true">
-			<p>{{ $t("password_reset_successful") }}</p>
-			<router-link to="/login">{{ $t("sign_in") }}</router-link>
+			<p>{{ $t('password_reset_successful') }}</p>
+			<router-link to="/login">{{ $t('sign_in') }}</router-link>
 		</template>
 
 		<public-notice
@@ -42,14 +42,14 @@
 </template>
 
 <script>
-import PublicView from "@/components/public-view";
-import ProjectChooser from "@/components/public/project-chooser";
-import PublicNotice from "@/components/public/notice";
-import { mapState } from "vuex";
-import axios from "axios";
+import PublicView from '@/components/public-view';
+import ProjectChooser from '@/components/public/project-chooser';
+import PublicNotice from '@/components/public/notice';
+import { mapState } from 'vuex';
+import axios from 'axios';
 
 export default {
-	name: "ResetPassword",
+	name: 'ResetPassword',
 	components: {
 		PublicView,
 		ProjectChooser,
@@ -57,21 +57,21 @@ export default {
 	},
 	data() {
 		return {
-			email: "",
-			password: "",
+			email: '',
+			password: '',
 			requesting: false,
 			requestSent: false,
 			resetting: false,
 			resetDone: false,
 			notice: {
-				text: this.$t("not_authenticated"),
-				color: "blue-grey-100",
-				icon: "lock_outline"
+				text: this.$t('not_authenticated'),
+				color: 'blue-grey-100',
+				icon: 'lock_outline'
 			}
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey", "apiRootPath"]),
+		...mapState(['currentProjectKey', 'apiRootPath']),
 		resetMode() {
 			return this.$route.query.token !== undefined;
 		}
@@ -81,22 +81,22 @@ export default {
 			this.requesting = true;
 			const apiUrl = `${this.apiRootPath}${this.currentProjectKey}`;
 
-			this.notice.text = this.$t("password_reset_sending");
+			this.notice.text = this.$t('password_reset_sending');
 
 			try {
-				await axios.post(apiUrl + "/auth/password/request", {
+				await axios.post(apiUrl + '/auth/password/request', {
 					email: this.email
 				});
 
 				this.requestSent = true;
 			} catch (error) {
-				this.$events.emit("error", {
+				this.$events.emit('error', {
 					notify: error.response?.data?.error?.message,
 					error
 				});
 			} finally {
 				this.requesting = false;
-				this.notice.text = this.$t("not_authenticated");
+				this.notice.text = this.$t('not_authenticated');
 			}
 		},
 		async onReset() {
@@ -109,17 +109,17 @@ export default {
 			const apiUrl = `${this.apiRootPath}${this.currentProjectKey}`;
 
 			try {
-				await axios.post(apiUrl + "/auth/password/reset", body);
+				await axios.post(apiUrl + '/auth/password/reset', body);
 
 				this.resetDone = true;
 			} catch (error) {
-				this.$events.emit("error", {
+				this.$events.emit('error', {
 					notify: error.response?.data?.error?.message,
 					error
 				});
 			} finally {
 				this.resetting = false;
-				this.notice.text = this.$t("not_authenticated");
+				this.notice.text = this.$t('not_authenticated');
 			}
 		}
 	}

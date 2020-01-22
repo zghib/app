@@ -9,14 +9,14 @@ export default function isRelational(fieldInfo) {
 	const type = fieldInfo.type?.toLowerCase();
 
 	switch (type) {
-		case "o2m":
-		case "m2o":
-		case "user":
-		case "owner":
-		case "user_updated":
-		case "alias":
-		case "translation":
-		case "file":
+		case 'o2m':
+		case 'm2o':
+		case 'user':
+		case 'owner':
+		case 'user_updated':
+		case 'alias':
+		case 'translation':
+		case 'file':
 			return true;
 		default:
 			return false;

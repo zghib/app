@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue from 'vue';
 
 /**
  * Check if component is registered before. Can be used to prevent registering components that have

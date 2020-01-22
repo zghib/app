@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import slug from "slug";
+import slug from 'slug';
 
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
@@ -33,7 +33,7 @@ export default {
 	methods: {
 		updateValue(value) {
 			this.$emit(
-				"input",
+				'input',
 				slug(value, {
 					lower: this.options.forceLowercase
 				})

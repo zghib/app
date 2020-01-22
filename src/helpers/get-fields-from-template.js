@@ -12,8 +12,8 @@ export default function getFieldsFromTemplate(string) {
 	let fields = string.match(regex);
 	fields = fields.map(field => {
 		return field
-			.replace(/{{/g, "")
-			.replace(/}}/g, "")
+			.replace(/{{/g, '')
+			.replace(/}}/g, '')
 			.trim();
 	});
 	return fields;

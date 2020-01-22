@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import flatPickr from "vue-flatpickr-component";
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import flatPickr from 'vue-flatpickr-component';
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
-import "./calendar.css";
+import './calendar.css';
 
 export default {
-	name: "InterfaceCalendar",
+	name: 'InterfaceCalendar',
 	components: {
 		flatPickr
 	},
@@ -27,7 +27,7 @@ export default {
 				inline: true,
 				minDate: this.options.min,
 				maxDate: this.options.max,
-				dateFormat: "Y-m-d"
+				dateFormat: 'Y-m-d'
 			};
 		}
 	}

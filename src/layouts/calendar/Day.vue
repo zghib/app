@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
 	props: {
@@ -46,12 +46,12 @@ export default {
 		return {};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		hidden() {
-			return this.display == "hidden";
+			return this.display == 'hidden';
 		},
 		today() {
-			return this.display == "today";
+			return this.display == 'today';
 		},
 		isWeek() {
 			return this.week != null;
@@ -75,10 +75,10 @@ export default {
 				events = events.slice(0, space - 1);
 				events.push({
 					id: -1,
-					title: this.$t("layouts.calendar.moreEvents", {
+					title: this.$t('layouts.calendar.moreEvents', {
 						amount: this.events.length - space + 1
 					}),
-					time: ""
+					time: ''
 				});
 			}
 			return events;

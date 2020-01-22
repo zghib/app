@@ -24,17 +24,17 @@
 </template>
 
 <script>
-import PublicView from "@/components/public-view";
-import PublicNotice from "@/components/public/notice";
-import QrCode from "@chenfengyuan/vue-qrcode";
-import { mapState } from "vuex";
-import OtpInput from "@/components/public/otp-input";
-import hydrateStore from "@/hydrate";
+import PublicView from '@/components/public-view';
+import PublicNotice from '@/components/public/notice';
+import QrCode from '@chenfengyuan/vue-qrcode';
+import { mapState } from 'vuex';
+import OtpInput from '@/components/public/otp-input';
+import hydrateStore from '@/hydrate';
 
 // NOTE: We'll have to use tfa instead of 2fa in JavaScript. Variables can't start with a number
 
 export default {
-	name: "Setup2FA",
+	name: 'Setup2FA',
 	components: {
 		PublicView,
 		PublicNotice,
@@ -51,7 +51,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["apiRootPath", "currentProjectKey"]),
+		...mapState(['apiRootPath', 'currentProjectKey']),
 		totpUrl() {
 			return `otpauth://totp/Directus:${this.$store.state.currentUser.email}?secret=${this.tfa_secret}&issuer=Directus`;
 		}
@@ -61,18 +61,18 @@ export default {
 	},
 	methods: {
 		async fetch2faSecret() {
-			const response = await this.$api.api.get("/utils/2fa_secret");
-			this.tfa_secret = response.data["2fa_secret"];
+			const response = await this.$api.api.get('/utils/2fa_secret');
+			this.tfa_secret = response.data['2fa_secret'];
 		},
 		async save2faSecret(otp) {
 			this.saving = true;
 			const body = {
-				["2fa_secret"]: this.tfa_secret,
+				['2fa_secret']: this.tfa_secret,
 				otp: otp
 			};
 
 			try {
-				await this.$api.api.post("/users/me/activate_2fa", body);
+				await this.$api.api.post('/users/me/activate_2fa', body);
 				this.finished = true;
 			} catch (error) {
 				this.error = error;

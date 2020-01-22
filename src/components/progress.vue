@@ -11,7 +11,7 @@
 
 <script>
 export default {
-	name: "VProgress",
+	name: 'VProgress',
 	props: {
 		max: {
 			type: Number,

@@ -1,6 +1,6 @@
 <template>
 	<v-notice v-if="Object.keys(interfaceOptions).length === 0">
-		{{ $t("interface_has_no_options") }}
+		{{ $t('interface_has_no_options') }}
 	</v-notice>
 	<v-sheet v-else-if="interfaceOptions">
 		<form @submit.prevent>
@@ -25,15 +25,15 @@
 		</form>
 	</v-sheet>
 	<v-notice v-else>
-		{{ $t("select_interface") }}
+		{{ $t('select_interface') }}
 	</v-notice>
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
-	name: "InterfaceOptions",
+	name: 'InterfaceOptions',
 	mixins: [mixin],
 	computed: {
 		interfaceName() {
@@ -53,7 +53,7 @@ export default {
 		stageValue(field, value) {
 			const oldValue = _.clone(this.value || {});
 			const newValue = _.merge(oldValue, { [field]: value });
-			this.$emit("input", newValue);
+			this.$emit('input', newValue);
 		}
 	}
 };

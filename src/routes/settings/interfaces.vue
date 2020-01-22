@@ -9,24 +9,24 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
 	metaInfo() {
 		return {
-			title: "Interfaces"
+			title: 'Interfaces'
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		links() {
 			return [
 				{
-					name: this.$t("settings"),
+					name: this.$t('settings'),
 					path: `/${this.currentProjectKey}/settings`
 				},
 				{
-					name: this.$tc("interface", 2),
+					name: this.$tc('interface', 2),
 					path: `/${this.currentProjectKey}/settings/interfaces`
 				}
 			];
@@ -40,16 +40,16 @@ export default {
 		columns() {
 			return [
 				{
-					field: "name",
-					name: "Name"
+					field: 'name',
+					name: 'Name'
 				},
 				{
-					field: "id",
-					name: "ID"
+					field: 'id',
+					name: 'ID'
 				},
 				{
-					field: "version",
-					name: "Version"
+					field: 'version',
+					name: 'Version'
 				}
 			];
 		}

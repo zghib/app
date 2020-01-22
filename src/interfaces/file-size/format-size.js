@@ -13,7 +13,7 @@ export default function formatSize(bytes = 0, decimal = true) {
 	const threshold = decimal ? 1000 : 1024;
 
 	if (Boolean(bytes) === false) {
-		return "--";
+		return '--';
 	}
 
 	if (Math.abs(bytes) < threshold) {
@@ -21,8 +21,8 @@ export default function formatSize(bytes = 0, decimal = true) {
 	}
 
 	const units = decimal
-		? ["kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
-		: ["KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
+		? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+		: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
 
 	let unitIndex = -1;
 	let remainingBytes = bytes;

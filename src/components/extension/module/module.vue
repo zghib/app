@@ -3,14 +3,14 @@
 </template>
 
 <script>
-import Vue from "vue";
-import loadExtension from "../../../helpers/load-extension";
-import componentExists from "../../../helpers/component-exists";
-import moduleFallback from "./module-fallback.vue";
-import moduleLoading from "./module-loading.vue";
+import Vue from 'vue';
+import loadExtension from '../../../helpers/load-extension';
+import componentExists from '../../../helpers/component-exists';
+import moduleFallback from './module-fallback.vue';
+import moduleLoading from './module-loading.vue';
 
 export default {
-	name: "VExtmodule",
+	name: 'VExtmodule',
 	props: {
 		id: {
 			type: String,
@@ -54,11 +54,11 @@ export default {
 			let component;
 
 			if (this.module.core) {
-				component = import("@/interfaces/" + this.module.id + "input.vue");
+				component = import('@/interfaces/' + this.module.id + 'input.vue');
 			} else {
 				const filePath = `${this.$store.state.apiRootPath}${this.module.path.replace(
-					"meta.json",
-					"module.js"
+					'meta.json',
+					'module.js'
 				)}`;
 
 				component = loadExtension(filePath);

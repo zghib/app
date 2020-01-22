@@ -53,14 +53,14 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/layout";
-import { mapState } from "vuex";
+import mixin from '@directus/extension-toolkit/mixins/layout';
+import { mapState } from 'vuex';
 
 export default {
-	name: "LayoutCards",
+	name: 'LayoutCards',
 	mixins: [mixin],
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		title() {
 			return this.viewOptions.title || this.primaryKeyField;
 		},
@@ -78,14 +78,14 @@ export default {
 			if (srcField) {
 				let privateHash = null;
 
-				if (this.fields[srcField] && this.fields[srcField].type.toLowerCase() === "file") {
+				if (this.fields[srcField] && this.fields[srcField].type.toLowerCase() === 'file') {
 					privateHash = item[srcField]?.private_hash;
 				}
 
-				if (srcField === "data" && this.fields[srcField].collection === "directus_files") {
-					if (item.type.startsWith("image") === false) return null;
+				if (srcField === 'data' && this.fields[srcField].collection === 'directus_files') {
+					if (item.type.startsWith('image') === false) return null;
 
-					if (item.type === "image/svg+xml") {
+					if (item.type === 'image/svg+xml') {
 						return item.data.url;
 					}
 					privateHash = item?.private_hash;
@@ -93,7 +93,7 @@ export default {
 
 				if (!privateHash) return null;
 
-				const fit = this.viewOptions.fit || "crop";
+				const fit = this.viewOptions.fit || 'crop';
 
 				return `/${this.currentProjectKey}/assets/${privateHash}?key=directus-medium-${fit}`;
 			}
@@ -107,7 +107,7 @@ export default {
 			const { scrollHeight, clientHeight, scrollTop } = event.srcElement;
 			const totalScroll = scrollHeight - clientHeight;
 			const delta = totalScroll - scrollTop;
-			if (delta <= 500) this.$emit("next-page");
+			if (delta <= 500) this.$emit('next-page');
 			this.scrolled = scrollTop > 0;
 		},
 		select(id) {
@@ -119,7 +119,7 @@ export default {
 				newSelection = [...this.selection, id];
 			}
 
-			this.$emit("select", newSelection);
+			this.$emit('select', newSelection);
 		}
 	}
 };

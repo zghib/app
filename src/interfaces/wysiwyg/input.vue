@@ -47,25 +47,25 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
-import "tinymce/tinymce";
-import "tinymce/themes/silver";
-import "tinymce/plugins/media/plugin";
-import "tinymce/plugins/table/plugin";
-import "tinymce/plugins/hr/plugin";
-import "tinymce/plugins/lists/plugin";
-import "tinymce/plugins/image/plugin";
-import "tinymce/plugins/imagetools/plugin";
-import "tinymce/plugins/link/plugin";
-import "tinymce/plugins/pagebreak/plugin";
-import "tinymce/plugins/code/plugin";
-import "tinymce/plugins/insertdatetime/plugin";
-import "tinymce/plugins/autoresize/plugin";
-import "tinymce/plugins/paste/plugin";
-import "tinymce/plugins/preview/plugin";
+import 'tinymce/tinymce';
+import 'tinymce/themes/silver';
+import 'tinymce/plugins/media/plugin';
+import 'tinymce/plugins/table/plugin';
+import 'tinymce/plugins/hr/plugin';
+import 'tinymce/plugins/lists/plugin';
+import 'tinymce/plugins/image/plugin';
+import 'tinymce/plugins/imagetools/plugin';
+import 'tinymce/plugins/link/plugin';
+import 'tinymce/plugins/pagebreak/plugin';
+import 'tinymce/plugins/code/plugin';
+import 'tinymce/plugins/insertdatetime/plugin';
+import 'tinymce/plugins/autoresize/plugin';
+import 'tinymce/plugins/paste/plugin';
+import 'tinymce/plugins/preview/plugin';
 
-import Editor from "@tinymce/tinymce-vue";
+import Editor from '@tinymce/tinymce-vue';
 
 function cssVar(name) {
 	return getComputedStyle(document.body).getPropertyValue(name);
@@ -87,20 +87,20 @@ export default {
 		fileInputOptions() {
 			return {
 				viewOptions: {
-					content: "description",
-					src: "data",
-					subtitle: "type",
-					title: "title"
+					content: 'description',
+					src: 'data',
+					subtitle: 'type',
+					title: 'title'
 				},
-				viewType: "cards"
+				viewType: 'cards'
 			};
 		},
 		initOptions() {
 			const styleFormats = this.getStyleFormats();
-			let toolbarString = this.options.toolbar.join(" ");
+			let toolbarString = this.options.toolbar.join(' ');
 
 			if (styleFormats) {
-				toolbarString += " styleselect";
+				toolbarString += ' styleselect';
 			}
 
 			return {
@@ -109,7 +109,7 @@ export default {
 				content_css: false,
 				content_style: this.contentStyle,
 				plugins:
-					"media table hr lists image link pagebreak code insertdatetime autoresize paste preview",
+					'media table hr lists image link pagebreak code insertdatetime autoresize paste preview',
 				branding: false,
 				max_height: 1000,
 				elementpath: false,
@@ -117,7 +117,7 @@ export default {
 				menubar: false,
 				convert_urls: false,
 				readonly: this.readonly,
-				extended_valid_elements: "audio[loop],source",
+				extended_valid_elements: 'audio[loop],source',
 				toolbar: toolbarString,
 				style_formats: styleFormats,
 				file_picker_callback: this.selectFile
@@ -126,8 +126,8 @@ export default {
 		contentStyle() {
 			return `
         body {
-          color: ${cssVar("--input-text-color")};
-          background-color: ${cssVar("--input-background-color")};
+          color: ${cssVar('--input-text-color')};
+          background-color: ${cssVar('--input-background-color')};
           margin: 20px;
           font-family: 'Roboto', sans-serif;
           -webkit-font-smoothing: antialiased;
@@ -275,7 +275,7 @@ export default {
 		updateValue() {
 			const editor = this.$refs.editorElement.editor;
 			const newValue = editor.getContent();
-			this.$emit("input", newValue);
+			this.$emit('input', newValue);
 		},
 		getStyleFormats() {
 			if (
@@ -291,7 +291,7 @@ export default {
 			this.newInlineFile = true;
 			this.selectCallback = async () => {
 				const { data: file } = await this.$api.getItem(
-					"directus_files",
+					'directus_files',
 					this.selectedFile.id
 				);
 				this.newInlineFile = false;
@@ -320,6 +320,6 @@ export default {
 // @import "~tinymce/skins/ui/oxide/content.css";
 // @import "~tinymce/skins/content/default/content.css";
 
-@import "~tinymce/skins/ui/oxide/skin.css";
-@import "./tinymce-overrides.css";
+@import '~tinymce/skins/ui/oxide/skin.css';
+@import './tinymce-overrides.css';
 </style>

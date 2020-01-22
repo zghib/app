@@ -1,10 +1,10 @@
 /* global require */
 
-import { forEach, isObject, mapValues } from "lodash";
-import api from "../../../api";
-import { i18n } from "../../../lang/";
+import { forEach, isObject, mapValues } from 'lodash';
+import api from '../../../api';
+import { i18n } from '../../../lang/';
 
-import * as mutationTypes from "../../mutation-types";
+import * as mutationTypes from '../../mutation-types';
 
 /**
  * Recursively loop over object values and replace each string value that starts with $t: with it's
@@ -18,15 +18,15 @@ function translateFields(meta, type, id) {
 	const format = value => {
 		if (value == null) return value;
 
-		if (typeof value === "string") {
+		if (typeof value === 'string') {
 			// split up the sentence into separate words to allow multiple translations in one value
 			//   like $t:option $t:or $t:value
 			return value
-				.split(" ")
+				.split(' ')
 				.map(word =>
-					word.startsWith("$t:") ? i18n.t(`${type}.${id}.${word.substring(3)}`) : word
+					word.startsWith('$t:') ? i18n.t(`${type}.${id}.${word.substring(3)}`) : word
 				)
-				.join(" ");
+				.join(' ');
 		}
 
 		if (
@@ -52,14 +52,14 @@ function readCoreExtensions(type) {
 	let requireContext;
 
 	switch (type) {
-		case "interfaces":
-			requireContext = require.context("@/interfaces/", true, /meta.json$/);
+		case 'interfaces':
+			requireContext = require.context('@/interfaces/', true, /meta.json$/);
 			break;
-		case "layouts":
-			requireContext = require.context("@/layouts/", true, /meta.json$/);
+		case 'layouts':
+			requireContext = require.context('@/layouts/', true, /meta.json$/);
 			break;
-		case "modules":
-			requireContext = require.context("@/modules/", true, /meta.json$/);
+		case 'modules':
+			requireContext = require.context('@/modules/', true, /meta.json$/);
 			break;
 	}
 
@@ -69,8 +69,8 @@ function readCoreExtensions(type) {
 		const metaDefinition = requireContext(fileName);
 
 		const extensionId = fileName
-			.replace(/^\.\//, "") // remove the ./ from the beginning
-			.replace(/\.\w+$/, "") // remove the extension from the end
+			.replace(/^\.\//, '') // remove the ./ from the beginning
+			.replace(/\.\w+$/, '') // remove the extension from the end
 			.split(/\//)[0];
 
 		return {
@@ -95,13 +95,13 @@ export function getExtensions({ commit }, type) {
 	let request = null;
 
 	switch (type) {
-		case "interfaces":
+		case 'interfaces':
 			request = api.getInterfaces();
 			break;
-		case "layouts":
+		case 'layouts':
 			request = api.getLayouts();
 			break;
-		case "modules":
+		case 'modules':
 			request = api.getModules();
 			break;
 		default:
@@ -176,8 +176,8 @@ export function getExtensions({ commit }, type) {
  */
 export function getAllExtensions({ dispatch }) {
 	return Promise.all([
-		dispatch("getExtensions", "interfaces"),
-		dispatch("getExtensions", "layouts"),
-		dispatch("getExtensions", "modules")
+		dispatch('getExtensions', 'interfaces'),
+		dispatch('getExtensions', 'layouts'),
+		dispatch('getExtensions', 'modules')
 	]);
 }

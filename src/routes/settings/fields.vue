@@ -29,14 +29,14 @@
 			</template>
 		</v-header>
 
-		<label class="type-label">{{ $tc("field", 2) }}</label>
-		<v-notice color="warning" icon="warning">{{ $t("fields_are_saved_instantly") }}</v-notice>
+		<label class="type-label">{{ $tc('field', 2) }}</label>
+		<v-notice color="warning" icon="warning">{{ $t('fields_are_saved_instantly') }}</v-notice>
 		<div class="table">
 			<div class="header">
 				<div class="row">
 					<div class="drag"><v-icon name="swap_vert" /></div>
-					<div>{{ $tc("field", 1) }}</div>
-					<div>{{ $tc("interface", 1) }}</div>
+					<div>{{ $tc('field', 1) }}</div>
+					<div>{{ $tc('interface', 1) }}</div>
 				</div>
 			</div>
 			<div class="body" :class="{ dragging }">
@@ -62,7 +62,7 @@
 									:loading="toManage.includes(field.field)"
 									@click="manageField(field)"
 								>
-									{{ $t("manage") }}
+									{{ $t('manage') }}
 								</v-button>
 							</div>
 						</div>
@@ -79,7 +79,7 @@
 		</div>
 
 		<v-button class="new-field" @click="startEditingField({})">
-			{{ $t("new_field") }}
+			{{ $t('new_field') }}
 		</v-button>
 
 		<v-form
@@ -133,22 +133,22 @@
 </template>
 
 <script>
-import { datatypes } from "../../type-map";
-import { keyBy } from "lodash";
-import formatTitle from "@directus/format-title";
-import shortid from "shortid";
-import store from "../../store/";
-import api from "../../api.js";
-import NotFound from "../not-found.vue";
-import VFieldSetup from "../../components/field-setup.vue";
-import VFieldDuplicate from "../../components/field-duplicate.vue";
-import { mapState } from "vuex";
+import { datatypes } from '../../type-map';
+import { keyBy } from 'lodash';
+import formatTitle from '@directus/format-title';
+import shortid from 'shortid';
+import store from '../../store/';
+import api from '../../api.js';
+import NotFound from '../not-found.vue';
+import VFieldSetup from '../../components/field-setup.vue';
+import VFieldDuplicate from '../../components/field-duplicate.vue';
+import { mapState } from 'vuex';
 
 export default {
-	name: "SettingsFields",
+	name: 'SettingsFields',
 	metaInfo() {
 		return {
-			title: `${this.$t("settings")} | ${this.$t("editing", {
+			title: `${this.$t('settings')} | ${this.$t('editing', {
 				collection: this.$helpers.formatTitle(this.collection)
 			})}`
 		};
@@ -168,11 +168,11 @@ export default {
 		return {
 			toManage: [],
 			duplicateInterfaceBlacklist: [
-				"primary-key",
-				"many-to-many",
-				"one-to-many",
-				"many-to-one",
-				"sort"
+				'primary-key',
+				'many-to-many',
+				'one-to-many',
+				'many-to-one',
+				'sort'
 			],
 			fieldSaving: false,
 			saving: false,
@@ -188,7 +188,7 @@ export default {
 			confirmRemoveLoading: false,
 
 			confirmNavigation: false,
-			leavingTo: "",
+			leavingTo: '',
 
 			edits: {},
 
@@ -203,15 +203,15 @@ export default {
 		};
 	},
 	computed: {
-		...mapState(["currentProjectKey"]),
+		...mapState(['currentProjectKey']),
 		breadcrumb() {
 			return [
 				{
-					name: this.$t("settings"),
+					name: this.$t('settings'),
 					path: `/${this.currentProjectKey}/settings`
 				},
 				{
-					name: this.$t("collections_and_fields"),
+					name: this.$t('collections_and_fields'),
 					path: `/${this.currentProjectKey}/settings/collections`
 				},
 				{
@@ -251,31 +251,31 @@ export default {
 				relation: null
 			};
 			this.setFieldSettings(result).then(async () => {
-				await this.$store.dispatch("getCollections");
+				await this.$store.dispatch('getCollections');
 				field.interface = suggestedInterface;
 				this.toManage.splice(this.toManage.indexOf(field.field), 1);
 			});
 		},
 		remove() {
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			this.$api
 				.deleteCollection(this.collection)
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$store.dispatch("removeCollection", this.collection);
+					this.$store.dispatch('loadingFinished', id);
+					this.$store.dispatch('removeCollection', this.collection);
 					this.$notify({
-						title: this.$t("collection_removed"),
-						color: "green",
-						iconMain: "check"
+						title: this.$t('collection_removed'),
+						color: 'green',
+						iconMain: 'check'
 					});
 					this.$router.push(`/${this.currentProjectKey}/settings/collections`);
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -284,19 +284,19 @@ export default {
 			this.saving = true;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			this.$api
 				.updateCollection(this.collection, this.edits)
 				.then(() => {
 					this.$notify({
-						title: this.$t("collection_updated"),
-						color: "green",
-						iconMain: "check"
+						title: this.$t('collection_updated'),
+						color: 'green',
+						iconMain: 'check'
 					});
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.saving = false;
-					this.$store.dispatch("updateCollection", {
+					this.$store.dispatch('updateCollection', {
 						collection: this.collection,
 						edits: this.edits
 					});
@@ -304,9 +304,9 @@ export default {
 				})
 				.catch(error => {
 					this.saving = false;
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -329,7 +329,7 @@ export default {
 			const requests = [];
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			fieldInfo.collection = collection;
 			requests.push(this.$api.createField(collection, fieldInfo));
@@ -339,21 +339,21 @@ export default {
 					savedFieldInfo: fieldRes.data
 				}))
 				.then(({ savedFieldInfo }) => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 
 					if (this.collection === collection) {
 						this.fields = [...this.fields, savedFieldInfo];
 					}
-					this.$store.dispatch("addField", {
+					this.$store.dispatch('addField', {
 						collection: collection,
 						field: savedFieldInfo
 					});
 					this.$notify({
-						title: this.$t("field_created", {
+						title: this.$t('field_created', {
 							field: this.$helpers.formatField(fieldInfo.field, fieldInfo.collection)
 						}),
-						color: "green",
-						iconMain: "check"
+						color: 'green',
+						iconMain: 'check'
 					});
 				})
 				.then(() => {
@@ -361,9 +361,9 @@ export default {
 					this.fieldBeingDuplicated = null;
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -377,7 +377,7 @@ export default {
 			].fields.hasOwnProperty(fieldInfo.field);
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			try {
 				if (existingField) {
@@ -393,9 +393,9 @@ export default {
 					});
 
 					this.$notify({
-						title: this.$t("field_updated"),
-						color: "green",
-						iconMain: "check"
+						title: this.$t('field_updated'),
+						color: 'green',
+						iconMain: 'check'
 					});
 				} else {
 					const { data: savedFieldInfo } = await this.$api.createField(
@@ -406,13 +406,13 @@ export default {
 					this.fields = [...this.fields, savedFieldInfo];
 
 					this.$notify({
-						title: this.$t("field_created"),
-						color: "green",
-						iconMain: "check"
+						title: this.$t('field_created'),
+						color: 'green',
+						iconMain: 'check'
 					});
 				}
 
-				this.$store.dispatch("getCollections");
+				this.$store.dispatch('getCollections');
 
 				if (relation) {
 					const saveRelation = async relation => {
@@ -423,10 +423,10 @@ export default {
 								relation.id,
 								relation
 							);
-							this.$store.dispatch("updateRelation", updatedRelation);
+							this.$store.dispatch('updateRelation', updatedRelation);
 						} else {
 							const { data: newRelation } = await this.$api.createRelation(relation);
-							this.$store.dispatch("addRelation", newRelation);
+							this.$store.dispatch('addRelation', newRelation);
 						}
 					};
 
@@ -442,12 +442,12 @@ export default {
 				this.editingField = false;
 				this.fieldBeingEdited = null;
 				this.fieldSaving = false;
-				this.$store.dispatch("loadingFinished", id);
+				this.$store.dispatch('loadingFinished', id);
 			} catch (error) {
 				this.fieldSaving = false;
-				this.$store.dispatch("loadingFinished", id);
-				this.$events.emit("error", {
-					notify: this.$t("something_went_wrong_body"),
+				this.$store.dispatch('loadingFinished', id);
+				this.$events.emit('error', {
+					notify: this.$t('something_went_wrong_body'),
 					error
 				});
 			}
@@ -455,13 +455,13 @@ export default {
 		fieldOptions(field) {
 			return [
 				{
-					text: this.$t("duplicate"),
-					icon: "control_point_duplicate",
+					text: this.$t('duplicate'),
+					icon: 'control_point_duplicate',
 					disabled: this.duplicateInterfaceBlacklist.includes(field.interface)
 				},
 				{
-					text: this.$t("delete"),
-					icon: "delete_outline"
+					text: this.$t('delete'),
+					icon: 'delete_outline'
 				}
 			];
 		},
@@ -492,30 +492,30 @@ export default {
 			this.removingField = true;
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			this.$api
 				.deleteField(this.collection, fieldName)
 				.then(() => {
-					this.$store.dispatch("loadingFinished", id);
+					this.$store.dispatch('loadingFinished', id);
 					this.fields = this.fields.filter(({ field }) => field !== fieldName);
 					this.removingField = false;
 					this.fieldToBeRemoved = null;
 					this.confirmFieldRemove = false;
 					this.$notify({
-						title: this.$t("field_removed"),
-						color: "green",
-						iconMain: "check"
+						title: this.$t('field_removed'),
+						color: 'green',
+						iconMain: 'check'
 					});
-					this.$store.dispatch("removeField", {
+					this.$store.dispatch('removeField', {
 						collection: this.collection,
 						field: fieldName
 					});
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -532,7 +532,7 @@ export default {
 			}));
 
 			const id = this.$helpers.shortid.generate();
-			this.$store.dispatch("loadingStart", { id });
+			this.$store.dispatch('loadingStart', { id });
 
 			this.$api.api
 				.patch(`/fields/${this.collection}`, fieldUpdates, {
@@ -540,17 +540,17 @@ export default {
 				})
 				.then(res => res.data)
 				.then(fields => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$store.dispatch("updateFields", {
+					this.$store.dispatch('loadingFinished', id);
+					this.$store.dispatch('updateFields', {
 						collection: this.collection,
 						updates: fieldUpdates
 					});
 					this.fields = fields;
 				})
 				.catch(error => {
-					this.$store.dispatch("loadingFinished", id);
-					this.$events.emit("error", {
-						notify: this.$t("something_went_wrong_body"),
+					this.$store.dispatch('loadingFinished', id);
+					this.$events.emit('error', {
+						notify: this.$t('something_went_wrong_body'),
 						error
 					});
 				});
@@ -560,12 +560,12 @@ export default {
 		const { collection } = to.params;
 
 		const id = shortid.generate();
-		store.dispatch("loadingStart", { id });
+		store.dispatch('loadingStart', { id });
 
 		return Promise.all([
-			api.getFields("directus_collections"),
+			api.getFields('directus_collections'),
 			api.getFields(collection, {
-				sort: "sort"
+				sort: 'sort'
 			})
 		])
 			.then(([directusRes, fieldsRes]) => ({
@@ -573,7 +573,7 @@ export default {
 				fields: fieldsRes.data
 			}))
 			.then(({ directusFields, fields }) => {
-				store.dispatch("loadingFinished", id);
+				store.dispatch('loadingFinished', id);
 				next(vm => {
 					vm.$data.directusFields = keyBy(
 						directusFields.map(field => ({
@@ -581,11 +581,11 @@ export default {
 							name: formatTitle(field.field),
 							note: field.note
 						})),
-						"field"
+						'field'
 					);
 					delete vm.$data.directusFields.note.note;
 					vm.$data.directusFields.note.options = {
-						placeholder: vm.$t("note_note")
+						placeholder: vm.$t('note_note')
 					};
 
 					vm.$data.fields = fields
@@ -602,7 +602,7 @@ export default {
 				});
 			})
 			.catch(error => {
-				store.dispatch("loadingFinished", id);
+				store.dispatch('loadingFinished', id);
 				next(vm => {
 					vm.$data.error = error;
 				});
@@ -703,7 +703,7 @@ h2 {
 		}
 
 		.monospace {
-			font-family: "Roboto Mono", monospace;
+			font-family: 'Roboto Mono', monospace;
 		}
 	}
 }

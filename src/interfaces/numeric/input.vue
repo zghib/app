@@ -13,15 +13,15 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
+import mixin from '@directus/extension-toolkit/mixins/interface';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		step() {
-			if (this.type === "decimal") {
-				const decimalPlaces = this.length && this.length.split(",")[1];
-				return `0.${"1".padStart(decimalPlaces, 0)}`;
+			if (this.type === 'decimal') {
+				const decimalPlaces = this.length && this.length.split(',')[1];
+				return `0.${'1'.padStart(decimalPlaces, 0)}`;
 			}
 
 			return 1;

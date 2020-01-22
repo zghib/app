@@ -15,7 +15,7 @@
 
 <script>
 export default {
-	name: "VModalBase",
+	name: 'VModalBase',
 	props: {
 		title: {
 			type: String,

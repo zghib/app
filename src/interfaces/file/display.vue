@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import getIcon from "./get-icon";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import getIcon from './get-icon';
 
 export default {
 	mixins: [mixin],
@@ -24,7 +24,7 @@ export default {
 			return this.value.type;
 		},
 		isImage() {
-			return this.filetype && this.filetype.startsWith("image");
+			return this.filetype && this.filetype.startsWith('image');
 		},
 		icon() {
 			return getIcon(this.filetype);

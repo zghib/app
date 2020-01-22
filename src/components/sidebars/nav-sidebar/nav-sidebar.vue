@@ -37,16 +37,16 @@
 	</div>
 </template>
 <script>
-import ProjectSwitcher from "./project-switcher.vue";
-import NavMenu from "./nav-menu.vue";
-import NavBookmarks from "./nav-bookmarks.vue";
-import VBlocker from "../../blocker.vue";
-import { TOGGLE_NAV } from "@/store/mutation-types";
-import { mapState } from "vuex";
-import ModuleBar from "./module-bar";
+import ProjectSwitcher from './project-switcher.vue';
+import NavMenu from './nav-menu.vue';
+import NavBookmarks from './nav-bookmarks.vue';
+import VBlocker from '../../blocker.vue';
+import { TOGGLE_NAV } from '@/store/mutation-types';
+import { mapState } from 'vuex';
+import ModuleBar from './module-bar';
 
 export default {
-	name: "NavSidebar",
+	name: 'NavSidebar',
 	components: {
 		ProjectSwitcher,
 		NavMenu,
@@ -55,7 +55,7 @@ export default {
 		ModuleBar
 	},
 	computed: {
-		...mapState(["currentProjectKey", "currentUser"]),
+		...mapState(['currentProjectKey', 'currentUser']),
 		permissions() {
 			return this.$store.state.permissions;
 		},
@@ -69,7 +69,7 @@ export default {
 					collection =>
 						collection.hidden == false &&
 						collection.managed == true &&
-						collection.collection.startsWith("directus_") === false
+						collection.collection.startsWith('directus_') === false
 				)
 				.filter(collection => {
 					if (
@@ -78,11 +78,11 @@ export default {
 					) {
 						return _.some(
 							this.permissions[collection.collection].statuses,
-							permission => permission.read !== "none"
+							permission => permission.read !== 'none'
 						);
 					}
 
-					return this.permissions[collection.collection].read !== "none";
+					return this.permissions[collection.collection].read !== 'none';
 				});
 		},
 		projectName() {
@@ -129,10 +129,10 @@ export default {
 	},
 	methods: {
 		logout() {
-			this.$store.dispatch("logout");
+			this.$store.dispatch('logout');
 		},
 		deleteBookmark(id) {
-			this.$store.dispatch("deleteBookmark", id);
+			this.$store.dispatch('deleteBookmark', id);
 		},
 		toBookmark(bookmark) {
 			/* eslint-disable camelcase */
@@ -146,7 +146,7 @@ export default {
 			} = bookmark;
 
 			this.$store
-				.dispatch("setListingPreferences", {
+				.dispatch('setListingPreferences', {
 					collection,
 					updates: {
 						search_query,

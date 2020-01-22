@@ -1,5 +1,5 @@
-import notify from "../notifications";
-import { isEmpty, isUndefined } from "lodash";
+import notify from '../notifications';
+import { isEmpty, isUndefined } from 'lodash';
 
 const handleError = error => {
 	if (!isEmpty(error.message)) {
@@ -11,8 +11,8 @@ const handleError = error => {
 	if (!isEmpty(error.notify)) {
 		notify({
 			title: error.notify,
-			color: "red",
-			iconMain: "error"
+			color: 'red',
+			iconMain: 'error'
 		});
 	}
 };

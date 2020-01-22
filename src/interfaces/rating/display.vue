@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import mixin from "@directus/extension-toolkit/mixins/interface";
-import Stars from "./stars.vue";
+import mixin from '@directus/extension-toolkit/mixins/interface';
+import Stars from './stars.vue';
 
 export default {
 	components: {
