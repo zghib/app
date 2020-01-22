@@ -133,6 +133,9 @@ export default {
 
 <style lang="scss">
 .interface-markdown {
+	.textarea {
+		resize: vertical;
+	}
 	.preview {
 		font-size: 14px;
 		line-height: 1.6;
