@@ -88,7 +88,7 @@ export default createComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-spinner {
 	--_v-spinner-size: 28px;
 	--_v-spinner-line-size: 3px;

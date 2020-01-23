@@ -11,12 +11,10 @@
 		<router-link slot="popover" class="popover" :to="`/${currentProjectKey}/users/${id}`">
 			<v-spinner v-if="loading" />
 			<template v-else-if="data">
-				<v-avatar
-					:src="data.avatar"
-					:alt="`${data.first_name} ${data.last_name}`"
-					class="avatar"
-					:size="64"
-				/>
+				<v-avatar x-large>
+					<img v-if="data.avatar" :src="data.avatar" />
+					<v-icon name="person" v-else />
+				</v-avatar>
 				<div class="info">
 					<div class="primary type-label">{{ data.first_name }} {{ data.last_name }}</div>
 					<div class="secondary">
@@ -140,8 +138,6 @@ export default {
 	}
 	.avatar {
 		margin-right: 12px;
-		border-radius: var(--border-radius);
-		overflow: hidden;
 	}
 	.info {
 		line-height: 1.4;

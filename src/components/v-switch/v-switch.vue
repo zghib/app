@@ -82,7 +82,7 @@ export default createComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-switch {
 	font-size: 0;
 	appearance: none;

@@ -8,7 +8,7 @@ localVue.component('v-spinner', VSpinner);
 import VButton from './v-button.vue';
 import VSpinner from '../v-spinner/';
 
-describe('Icon', () => {
+describe('Button', () => {
 	it('Renders the provided markup in the default slow', () => {
 		const component = mount(VButton, {
 			localVue,

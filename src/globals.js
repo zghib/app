@@ -2,7 +2,6 @@ import Vue from 'vue';
 
 import InvisibleLabel from './components/invisible-label.vue';
 import Loader from './components/loader.vue';
-import VAvatar from './components/avatar.vue';
 import VCard from './components/card/card.vue';
 import VDetails from './components/details.vue';
 import VNotice from './components/notice.vue';
@@ -18,6 +17,7 @@ import VExtModule from './components/extension/module/module.vue';
 import VItems from './components/items.vue';
 import VForm from './components/form/form.vue';
 
+import VAvatar from './components/v-avatar/';
 import VButton from './components/v-button/';
 import VCheckbox from './components/v-checkbox/';
 import VIcon from './components/v-icon/';

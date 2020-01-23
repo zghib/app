@@ -92,7 +92,7 @@ export default createComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-icon {
 	position: relative;
 	display: inline-block;

@@ -50,18 +50,10 @@
 			:class="{ smoke: avatarURL }"
 			:to="`/${currentProjectKey}/users/${currentUser.id}`"
 		>
-			<v-avatar
-				v-if="avatarURL"
-				:src="avatarURL"
-				:alt="fullName"
-				:size="64"
-				class="avatar"
-				background-color="module-background-color-active"
-				hover
-			/>
-			<div class="no-avatar">
-				<v-icon name="person" color="--blue-grey-400" />
-			</div>
+			<v-avatar x-large tile color="--module-background-color-active">
+				<img v-if="avatarURL" :src="avatarURL" />
+				<v-icon v-else name="person" color="--blue-grey-400" />
+			</v-avatar>
 		</router-link>
 
 		<button
@@ -262,15 +254,6 @@ export default {
 
 .spacer {
 	flex-grow: 1;
-}
-
-.no-avatar {
-	width: 64px;
-	height: 64px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: var(--module-background-color-active);
 }
 
 .edit-user {

@@ -44,7 +44,7 @@ export default createComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-overlay {
 	position: fixed;
 	top: 0;

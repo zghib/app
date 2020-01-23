@@ -124,7 +124,7 @@ export default createComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .v-button {
 	--_v-button-height: 44px;
 
