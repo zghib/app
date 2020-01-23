@@ -16,7 +16,7 @@ export default {
 		info: false
 	},
 	queue: [],
-	currentProjectKey: null,
-	projects: null,
+	// currentProjectKey: null,
+	// projects: null,
 	apiRootPath
 };

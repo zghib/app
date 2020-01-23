@@ -138,7 +138,7 @@ import { keyBy } from 'lodash';
 import formatTitle from '@directus/format-title';
 import shortid from 'shortid';
 import store from '../../store/';
-import api from '../../api.js';
+import api from '../../api';
 import NotFound from '../not-found.vue';
 import VFieldSetup from '../../components/field-setup.vue';
 import VFieldDuplicate from '../../components/field-duplicate.vue';

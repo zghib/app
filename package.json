@@ -38,6 +38,7 @@
     "marked": "^0.8.0",
     "micromustache": "5",
     "mousetrap": "^1.6.3",
+    "pinia": "^0.0.5",
     "portal-vue": "^2.1.7",
     "promise.allsettled": "^1.0.2",
     "shortid": "^2.2.15",

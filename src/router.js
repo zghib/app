@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import api from './api';
 import store from './store';
+import { useProjectsStore } from '@/stores/projects';
 import { TOGGLE_NAV, TOGGLE_INFO } from './store/mutation-types';
 import { i18n } from './lang/';
 import EventBus from './events/';
@@ -196,15 +197,22 @@ const router = new Router({
 			component: Item
 		},
 		{
-			path: '/login',
+			path: '/:project/login',
 			component: Login,
 			meta: {
 				publicRoute: true
 			}
 		},
 		{
-			path: '/reset-password',
+			path: '/:project/reset-password',
 			component: ResetPassword,
+			meta: {
+				publicRoute: true
+			}
+		},
+		{
+			path: '/:project/setup-2fa',
+			component: Setup2FA,
 			meta: {
 				publicRoute: true
 			}
@@ -217,68 +225,65 @@ const router = new Router({
 			}
 		},
 		{
-			path: '/setup-2fa',
-			component: Setup2FA,
-			meta: {
-				publicRoute: true
-			}
-		},
-		{
 			path: '*',
 			component: NotFound
 		}
 	]
 });
 
+let firstLoad = true;
+
 router.beforeEach(async (to, from, next) => {
-	const publicRoute = to.meta.publicRoute;
-
-	if (store.state.sidebars.nav === true) {
-		store.commit(TOGGLE_NAV, false);
+	if (firstLoad === true) {
+		const projectsStore = useProjectsStore();
+		await projectsStore.init();
+		firstLoad = false;
 	}
 
-	if (store.state.sidebars.info === true) {
-		store.commit(TOGGLE_INFO, false);
-	}
+	const isPublicRoute = to.meta.publicRoute;
+	if (isPublicRoute === true) return next();
 
-	// This runs on first load
-	if (store.state.projects === null) {
-		await store.dispatch('getProjects');
-	}
+	// if (store.state.sidebars.nav === true) {
+	// 	store.commit(TOGGLE_NAV, false);
+	// }
 
-	// It's false when there aren't any projects installed (no private ones either)
-	if (store.state.projects === false && to.path !== '/install') {
-		return next('/install');
-	}
+	// if (store.state.sidebars.info === true) {
+	// 	store.commit(TOGGLE_INFO, false);
+	// }
 
-	if (publicRoute) {
-		return next();
-	}
+	// // It's false when there aren't any projects installed (no private ones either)
+	// if (store.state.projects === false && to.path !== '/install') {
+	// 	return next('/install');
+	// }
 
-	const loggedIn = store.getters.currentProject?.data?.authenticated || false;
+	// if (publicRoute) {
+	// 	return next();
+	// }
 
-	// Make sure the project reloads when the user manually changes the project in the URL
-	// This will also happen when a user clicks a link from an external source
-	if (from.params.project && from.params.project !== to.params.project) {
-		if (to.params.project !== store.state.currentProjectKey) {
-			await store.dispatch('setCurrentProject', to.params.project);
-		}
-	} else if (loggedIn && store.state.hydrated === false) {
-		await hydrateStore();
-	}
+	// const loggedIn = store.getters.currentProject?.data?.authenticated || false;
 
-	if (loggedIn) {
-		return next();
-	}
+	// // Make sure the project reloads when the user manually changes the project in the URL
+	// // This will also happen when a user clicks a link from an external source
+	// if (from.params.project && from.params.project !== to.params.project) {
+	// 	if (to.params.project !== store.state.currentProjectKey) {
+	// 		await store.dispatch('setCurrentProject', to.params.project);
+	// 	}
+	// } else if (loggedIn && store.state.hydrated === false) {
+	// 	await hydrateStore();
+	// }
 
-	if (to.path === '/') {
-		return next({ path: '/login', query: to.query });
-	}
+	// if (loggedIn) {
+	// 	return next();
+	// }
 
-	return next({
-		path: '/login',
-		query: { redirect: to.fullPath }
-	});
+	// if (to.path === '/') {
+	// 	return next({ path: '/login', query: to.query });
+	// }
+
+	// return next({
+	// 	path: '/login',
+	// 	query: { redirect: to.fullPath }
+	// });
 });
 
 router.afterEach(to => {

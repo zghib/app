@@ -18,7 +18,7 @@ import { startPolling } from './latency';
 import App from './app.vue';
 import router from './router';
 import { i18n, loadLanguageAsync } from './lang';
-import store from './store';
+import store from './store/';
 import api from './api';
 import helpers from './helpers';
 import notify from './notifications';

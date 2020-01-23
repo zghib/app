@@ -80,7 +80,7 @@
 	</PublicView>
 </template>
 
-<script>
+<script lang="ts">
 import PublicView from '@/components/public-view';
 import PublicNotice from '@/components/public/notice';
 import Sso from '@/components/public/sso';
@@ -89,8 +89,10 @@ import { mapState, mapGetters, mapMutations } from 'vuex';
 import { UPDATE_PROJECT } from '@/store/mutation-types';
 import hydrateStore from '@/hydrate';
 import OtpInput from '@/components/public/otp-input';
+import { createComponent, reactive, computed } from '@vue/composition-api';
+import { useProjectsStore } from '@/stores/projects';
 
-export default {
+export default createComponent({
 	name: 'Login',
 	components: {
 		PublicView,
@@ -99,8 +101,8 @@ export default {
 		Sso,
 		OtpInput
 	},
-	data() {
-		return {
+	setup() {
+		const state = reactive({
 			email: '',
 			password: '',
 			otp: '',
@@ -115,16 +117,28 @@ export default {
 			lastName: null,
 			ssoProviders: [],
 			needs2fa: false
+		});
+
+		const { currentProject } = useProjectsStore();
+
+		const readableError = computed<string>(() => {
+			if (currentProject?.status !== 'failed') return null;
+			return (
+				currentProject.error.response?.data?.error?.message || currentProject.error.message
+			);
+		});
+
+		return {
+			...state
 		};
 	},
 	computed: {
 		...mapGetters(['currentProject']),
-		...mapState(['currentProjectKey', 'apiRootPath', 'projects']),
+		...mapState(['currentProjectKey', 'projects']),
 		readableError() {
-			if (this.currentProject?.status !== 'failed') return null;
+			if (currentProject?.status !== 'failed') return null;
 			return (
-				this.currentProject.error.response?.data?.error?.message ||
-				this.currentProject.error.message
+				currentProject.error.response?.data?.error?.message || currentProject.error.message
 			);
 		}
 	},
@@ -141,9 +155,8 @@ export default {
 		this.checkForErrorQueryParam();
 	},
 	methods: {
-		...mapMutations([UPDATE_PROJECT]),
 		onSubmit() {
-			if (this.currentProject?.data?.authenticated) {
+			if (currentProject?.data?.authenticated) {
 				return this.enterApp();
 			} else {
 				return this.login();
@@ -160,7 +173,7 @@ export default {
 			};
 
 			const credentials = {
-				project: this.currentProjectKey,
+				project: currentProjectKey,
 				email,
 				password,
 				mode: 'cookie'
@@ -189,7 +202,7 @@ export default {
 					const { max_upload_size } = projectInfo.server;
 
 					this[UPDATE_PROJECT]({
-						key: this.currentProjectKey,
+						key: currentProjectKey,
 						data: {
 							authenticated: true,
 							requires2FA,
@@ -262,7 +275,7 @@ export default {
 			await hydrateStore();
 
 			// Default to /collections as homepage
-			let route = `/${this.currentProjectKey}/collections`;
+			let route = `/${currentProjectKey}/collections`;
 
 			// If the last visited page is saved in the current user record, use that
 			if (this.$store.state.currentUser.last_page) {
@@ -281,7 +294,7 @@ export default {
 			});
 		},
 		async fetchAuthenticatedUser() {
-			if (!this.currentProject) return;
+			if (!currentProject) return;
 			this.firstName = null;
 			this.lastName = null;
 			const { data } = await this.$api.getMe({ fields: ['first_name', 'last_name'] });
@@ -289,7 +302,7 @@ export default {
 			this.lastName = data.last_name;
 		},
 		async fetchSSOProviders() {
-			if (!this.currentProject) return;
+			if (!currentProject) return;
 			this.ssoProviders = [];
 			const { data } = await this.$api.getThirdPartyAuthProviders();
 			this.ssoProviders = data;
@@ -314,8 +327,8 @@ export default {
 			}
 		},
 		handleLoad() {
-			if (this.currentProject?.status === 'successful') {
-				if (this.currentProject?.data?.authenticated === true) {
+			if (currentProject?.status === 'successful') {
+				if (currentProject?.data?.authenticated === true) {
 					this.fetchAuthenticatedUser();
 				} else {
 					this.fetchSSOProviders();
@@ -323,7 +336,7 @@ export default {
 			}
 		}
 	}
-};
+});
 </script>
 
 <style lang="scss" scoped>
