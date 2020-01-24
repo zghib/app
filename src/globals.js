@@ -21,6 +21,7 @@ import VAvatar from './components/v-avatar/';
 import VButton from './components/v-button/';
 import VCheckbox from './components/v-checkbox/';
 import VIcon from './components/v-icon/';
+import VSheet from './components/v-sheet/';
 import VSpinner from './components/v-spinner/';
 import VSwitch from './components/v-switch/';
 
@@ -50,7 +51,6 @@ import VTag from './components/tag.vue';
 import VItemSelect from './components/item-select/item-select.vue';
 import VProgress from './components/progress.vue';
 import VUserPopover from './components/user-popover.vue';
-import VSheet from './components/sheet.vue';
 
 // Extensions
 Vue.component('v-ext-module', VExtModule);
