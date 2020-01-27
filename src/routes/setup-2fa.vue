@@ -16,7 +16,7 @@
 			</p>
 			<button type="button" @click="enterApp">Continue</button>
 		</template>
-		<v-progress v-if="saving || fetchingData" class="loading" />
+		<v-progress-linear v-if="saving || fetchingData" class="loading" indeterminate rounded />
 		<public-notice v-if="error" slot="notice" color="danger">
 			{{ $t(`errors.${error.code}`) }}
 		</public-notice>

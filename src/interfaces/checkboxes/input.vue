@@ -170,9 +170,4 @@ export default {
 		color: var(--blue-grey-300);
 	}
 }
-
-button {
-	text-align: left;
-	color: var(--accent);
-}
 </style>

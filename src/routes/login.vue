@@ -4,7 +4,7 @@
 			<project-chooser v-if="(signingIn || fetchingData) === false" />
 
 			<template v-if="signingIn || fetchingData">
-				<v-progress />
+				<v-progress-linear rounded indeterminate />
 				<p>{{ currentProject.project_name }}</p>
 			</template>
 

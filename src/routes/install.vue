@@ -161,7 +161,7 @@
 			<h2 class="type-title">{{ $t('wrapping_up') }}</h2>
 			<div class="field-grid">
 				<div class="field">
-					<v-progress class="progress-bar" />
+					<v-progress-linear class="progress-bar" rounded indeterminate />
 					<p>
 						{{ $t('install_busy_copy') }}
 					</p>
@@ -173,7 +173,7 @@
 			<h2 class="type-title">{{ $t('all_set') }}</h2>
 			<div class="field-grid">
 				<div class="field">
-					<v-progress class="progress-bar" :value="100" />
+					<v-progress-linear class="progress-bar" :value="100" rounded />
 					<p>
 						{{ $t('install_all_set_copy') }}
 						<span v-if="firstInstall" class="warning">
