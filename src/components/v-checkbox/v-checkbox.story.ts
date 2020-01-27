@@ -61,6 +61,22 @@ export const arrayState = () => ({
 export const disabled = () =>
 	`<div><v-checkbox label="Disabled" disabled /><v-checkbox :inputValue="true" label="Disabled" disabled /></div>`;
 
+export const indeterminate = () => ({
+	data() {
+		return {
+			indeterminate: true,
+			value: null
+		};
+	},
+	template: `<div>
+	<v-checkbox label="Indeterminate" v-model="value" :indeterminate.sync="indeterminate" />
+	<pre style="max-width: max-content; margin-top: 20px; background-color: #eee; font-family: monospace; padding: 0.5rem; border-radius: 8px;">
+indeterminate: {{indeterminate}}
+value: {{value}}
+</pre>
+	</div>`
+});
+
 export const colors = () => ({
 	methods: {
 		onChange: action('change')

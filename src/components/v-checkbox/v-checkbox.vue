@@ -43,6 +43,10 @@ export default createComponent({
 		disabled: {
 			type: Boolean,
 			default: false
+		},
+		indeterminate: {
+			type: Boolean,
+			default: false
 		}
 	},
 	setup(props, { emit }) {
@@ -54,9 +58,10 @@ export default createComponent({
 			return props.inputValue === true;
 		});
 
-		const icon = computed<string>(() =>
-			isChecked.value ? 'check_box' : 'check_box_outline_blank'
-		);
+		const icon = computed<string>(() => {
+			if (props.indeterminate) return 'indeterminate_check_box';
+			return isChecked.value ? 'check_box' : 'check_box_outline_blank';
+		});
 
 		const iconColor = computed<string>(() => {
 			if (props.disabled) return '--input-background-color-disabled';
@@ -67,6 +72,10 @@ export default createComponent({
 		return { isChecked, toggleInput, icon, iconColor };
 
 		function toggleInput(): void {
+			if (props.indeterminate) {
+				emit('update:indeterminate', false);
+			}
+
 			if (props.inputValue instanceof Array) {
 				let newValue = [...props.inputValue];
 
