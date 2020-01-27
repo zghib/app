@@ -1,7 +1,7 @@
 {
 	"interfaces": {
 		"2fa-secret": {
-			"2fa-secret": "2FA Secret"
+			"2fa-secret": "Пароль 2FA"
 		},
 		"button-group": {
 			"button_group": "Button Group",
@@ -25,7 +25,7 @@
 			"min_comment": "Minimum date that can be chosen by the user",
 			"max": "Maximum Date",
 			"max_comment": "Maximum date that can be chosen by the user",
-			"formatting": "Date Format",
+			"formatting": "Формат дати",
 			"formatting_comment": "If left blank, a relative date will be used"
 		},
 		"checkboxes": {
@@ -58,19 +58,19 @@
 			"listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
 		},
 		"code": {
-			"code": "Code",
-			"template": "Template",
-			"template_comment": "Provide a template the user can use to get started with",
-			"language": "Language",
-			"language_comment": "Set the programming language to use",
-			"lineNumber": "Line Number",
+			"code": "Код",
+			"template": "Шаблон",
+			"template_comment": "Зробіть шаблон, з якого користувач зміг би почати",
+			"language": "Мова",
+			"language_comment": "Встановити мову програмування",
+			"lineNumber": "Номер рядка",
 			"lineNumber_comment": "Show line numbers",
 			"loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
 			"fill_template": "Fill with Template"
 		},
 		"collections": {
 			"collections": "Колекції",
-			"placeholder": "Placeholder",
+			"placeholder": "Заповнювач",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"placeholder_default": "Choose a collection...",
 			"option": "Опція",
@@ -91,9 +91,9 @@
 		},
 		"date": {
 			"date": "Date",
-			"min": "Minimum date",
+			"min": "Мінімальна дата",
 			"min_comment": "Minimum date that can be chosen by the user",
-			"max": "Maximum date",
+			"max": "Максимальна дата",
 			"max_comment": "Maximum date that can be chosen by the user",
 			"localized": "Localized",
 			"localized_comment": "Show the date localized in the output",
@@ -155,15 +155,15 @@
 			"margin-comment": "Add extra margin above interface"
 		},
 		"dropdown": {
-			"dropdown": "Dropdown",
+			"dropdown": "Випадаюче меню",
 			"choices": "Choices",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-			"placeholder": "Placeholder",
+			"placeholder": "Заповнювач",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"option": "Опція",
 			"formatting": "Show display text",
 			"formatting_comment": "Render the values as the display values",
-			"placeholder_default": "Choose an option...",
+			"placeholder_default": "Оберіть варіант...",
 			"icon": "Іконка",
 			"icon_comment": "Choose an optional icon to display on the left of the input",
 			"options_invalid": "The JSON options provided for the dropdown are invalid:",
@@ -184,14 +184,14 @@
 			"accept_comment": "Set a list of MIME types that can be picked"
 		},
 		"file-preview": {
-			"file_preview": "File Preview",
-			"edit": "Editing Options"
+			"file_preview": "Перегляд файлу",
+			"edit": "Параметри редагування"
 		},
 		"file-size": {
-			"file_size": "File Size",
-			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
-			"format": "Format value",
+			"file_size": "Розмір файлу",
+			"placeholder": "Заповнювач",
+			"placeholder_comment": "Введіть текст заповнювача",
+			"format": "Формат значення",
 			"format_comment": "Show the value in a human readable way (e.g. 10MB)",
 			"format_input": "Format input",
 			"format_input_comment": "Enter the value using a dropdown for units",
@@ -221,13 +221,13 @@
 			"hashed": "Hashed",
 			"hide": "Hide Value",
 			"hide_comment": "Display dots instead of the characters you enter",
-			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder": "Заповнювач",
+			"placeholder_comment": "Введіть текст заповнювача",
 			"show_hash": "Show the hashed output",
 			"show_hash_comment": "Display the saved hash",
 			"hashing_type": "Hashing Type",
 			"hashing_type_comment": "What method of hashing to use",
-			"width": "Size",
+			"width": "Розмір",
 			"width_comment": "Set what width to use for the input",
 			"auto": "Automatic",
 			"small": "Small",
@@ -253,7 +253,7 @@
 		},
 		"interfaces": {
 			"interfaces": "Інтерфейси",
-			"placeholder": "Placeholder",
+			"placeholder": "Заповнювач",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"placeholder_default": "Choose an interface",
 			"option": "Опція",
@@ -261,8 +261,8 @@
 			"include_status": "Include the status interfaces"
 		},
 		"json": {
-			"template": "Template",
-			"template_comment": "Provide a template the user can use to get started with"
+			"template": "Шаблон",
+			"template_comment": "Зробіть шаблон, з якого користувач зміг би почати"
 		},
 		"key-value": {
 			"key_interface": "Key Interface",
@@ -273,7 +273,7 @@
 			"value_options": "Key Interface Options"
 		},
 		"language": {
-			"input": "Language",
+			"input": "Мова",
 			"select_language": "Select a language...",
 			"limit": "Limit to Directus Availability",
 			"limit_comment": "Only show languages that are available as translations in Directus"
@@ -301,8 +301,8 @@
 			"visible_fields_placeholder": "title,author",
 			"visible_fields_note": "CSV of fields visible when selecting an item in the modal",
 			"template_placeholder": "{{title}} — {{author}}",
-			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder": "Заповнювач",
+			"placeholder_comment": "Введіть текст заповнювача",
 			"preferences": "Listing View Preferences",
 			"preferences_comment": "Set what options to use for the modal",
 			"relationship_not_setup": "The relationship hasn't been configured correctly",
@@ -313,7 +313,7 @@
 			"threshold_comment": "The number of items after which a modal will be used instead of a dropdown"
 		},
 		"map": {
-			"map": "Map",
+			"map": "Карта",
 			"choices": "choices",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
 			"theme": "Interface Theme",
@@ -348,16 +348,16 @@
 			"tabbed_preview_off": "Side-by-side Preview",
 			"rows": "Rows",
 			"rows_comment": "The starting number of text rows available",
-			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text"
+			"placeholder": "Заповнювач",
+			"placeholder_comment": "Введіть текст заповнювача"
 		},
 		"multiselect": {
 			"multiselect": "Multi-Select",
 			"choices": "Choices",
 			"choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
-			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
-			"size": "Size",
+			"placeholder": "Заповнювач",
+			"placeholder_comment": "Введіть текст заповнювача",
+			"size": "Розмір",
 			"size_comment": "Number of options visible before scrolling",
 			"option": "Опція",
 			"wrap": "Wrap with Delimiter",
@@ -367,8 +367,8 @@
 		},
 		"numeric": {
 			"numeric": "Цифровий",
-			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder": "Заповнювач",
+			"placeholder_comment": "Введіть текст заповнювача",
 			"localized": "Localized",
 			"localized_comment": "Localize the output to the user's locale",
 			"icon_left": "Icon Left",
@@ -402,8 +402,8 @@
 			"password": "Пароль",
 			"hide": "Hide Value",
 			"hide_comment": "Display dots instead of the characters you enter",
-			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder": "Заповнювач",
+			"placeholder_comment": "Введіть текст заповнювача",
 			"confirm_placeholder": "Confirm password...",
 			"show_hash": "Show the hashed output",
 			"show_hash_comment": "Display the saved hash",
@@ -453,7 +453,7 @@
 			"structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
 			"structure_key": "Structure Key Field",
 			"structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values",
-			"placeholder": "Placeholder",
+			"placeholder": "Заповнювач",
 			"placeholder_comment": "The value that shows up instead of the template if there's no value entered yet",
 			"create_item_text": "Create Item Text",
 			"create_item_text_comment": "Text that's displayed in the button that adds a new row to the repeater"
@@ -471,7 +471,7 @@
 		},
 		"slug": {
 			"slug": "Slug",
-			"placeholder_name": "Placeholder",
+			"placeholder_name": "Заповнювач",
 			"placeholder_comment": "The placeholder text to show",
 			"force_lowercase": "Force Lowercase",
 			"force_lowercase_comment": "Makes sure the slug is in lowercase",
@@ -519,7 +519,7 @@
 		},
 		"text-input": {
 			"input": "Text Input",
-			"placeholder": "Placeholder",
+			"placeholder": "Заповнювач",
 			"trim": "Trim",
 			"trim_comment": "Trim surrounding whitespace from the value before saving",
 			"char_count": "Show Character Count",
@@ -541,8 +541,8 @@
 			"textarea": "Text-Area",
 			"rows": "Rows",
 			"rows_comment": "The number of text rows available for the input before scrolling",
-			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder": "Заповнювач",
+			"placeholder_comment": "Введіть текст заповнювача",
 			"serif": "Serif Font",
 			"serif_comment": "Use a larger, serif typeface"
 		},
@@ -592,16 +592,16 @@
 			"user": "User",
 			"avatar": "Avatar",
 			"name": "Ім’я",
-			"template": "Template",
+			"template": "Шаблон",
 			"template_comment": "How to format the users in the dropdown",
-			"placeholder": "Placeholder",
+			"placeholder": "Заповнювач",
 			"placeholder_comment": "Add a placeholder"
 		},
 		"owner": {
 			"owner": "Owner",
 			"avatar": "Avatar",
 			"name": "Ім’я",
-			"template": "Template",
+			"template": "Шаблон",
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
@@ -619,7 +619,7 @@
 			"user_updated": "User Updated",
 			"avatar": "Avatar",
 			"name": "Ім’я",
-			"template": "Template",
+			"template": "Шаблон",
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",

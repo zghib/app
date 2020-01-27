@@ -525,7 +525,7 @@
   "version_and_updates": "Версія та оновлення",
   "view_type": "Переглянути як...",
   "visible_all_users": "Видимі для всіх користувачів",
-  "webhook_count": "No Webhooks | 1 Webhook | {count} Webhooks",
+  "webhook_count": "Немає Вебхуків | Один Вебхук | {count} вебхуків",
   "weeks": {
     "monday": "Понеділок",
     "tuesday": "Вівторок",

@@ -7,7 +7,7 @@
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
-      "date": "Date",
+      "date": "Datum",
       "datetime": "Datetime",
       "time": "Time",
       "title": "Titel",
@@ -32,7 +32,7 @@
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
-      "date": "Date",
+      "date": "Datum",
       "content": "Content",
       "title": "Titel",
       "color": "Color"
