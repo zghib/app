@@ -51,6 +51,7 @@ export const availableLanguages = {
 	'is-IS': 'Icelandic (Iceland)',
 	'id-ID': 'Indonesian (Indonesia)',
 	'it-IT': 'Italian (Italy)',
+	'lt-LT': 'Lithuanian (Lithuania)',
 	'ja-JP': 'Japanese (Japan)',
 	'ko-KR': 'Korean (Korea)',
 	'ms-MY': 'Malay (Malaysia)',
