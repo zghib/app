@@ -1,6 +1,6 @@
 {
   "name": "WYSIWYG",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "types": ["string"],
   "icon": "format_quote",
   "recommended": {
@@ -26,7 +26,8 @@
         "image",
         "media",
         "hr",
-        "code"
+        "code",
+        "fullscreen"
       ],
       "options": {
         "choices": {
@@ -71,7 +72,9 @@
           "selectall": "Select All",
           "table": "Table",
           "visualaid": "View invisible elements",
-          "code": "View Source"
+          "code": "View Source",
+          "fullscreen": "Full Screen",
+          "ltr rtl": "Directionality"
         }
       }
     },
