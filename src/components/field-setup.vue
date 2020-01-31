@@ -1817,7 +1817,7 @@ details {
 		}
 	}
 
-	i {
+	.v-icon {
 		grid-area: f;
 		color: var(--input-border-color);
 		transform: translateX(-2px);
@@ -1880,7 +1880,7 @@ details {
 		}
 	}
 
-	i {
+	.v-icon {
 		grid-area: l;
 		color: var(--input-border-color);
 		transform: translateX(-2px);
@@ -1890,7 +1890,7 @@ details {
 		}
 	}
 
-	.form-checkbox {
+	.v-checkbox {
 		&:first-of-type {
 			grid-area: v;
 		}
