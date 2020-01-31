@@ -182,8 +182,8 @@
 			"filters_comment": "Qué filtros usar",
 			"accept": "Aceptar los Tipos de Archivo",
 			"accept_comment": "Estableces una lista de tipos MIME que puedan ser elegidos",
-			"allow_delete": "Allow Delete",
-			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface"
+			"allow_delete": "Permitir Eliminar",
+			"allow_delete_comment": "Permite al usuario eliminar permanentemente el archivo relacionado a través de la interfaz de archivos"
 		},
 		"file-preview": {
 			"file_preview": "Vista previa del archivo",
@@ -479,8 +479,8 @@
 			"force_lowercase_comment": "Asegúrese de que el slug está en minúsculas",
 			"mirrored_field": "Campo Espejado",
 			"mirrored_field_comment": "Mantener el slug actualizado con otro campo (de texto)",
-			"only_on_create": "Only on Create",
-			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
+			"only_on_create": "Sólo en Crear",
+			"only_on_create_comment": "Permitir que la slug se edite sólo cuando se crea un nuevo elemento"
 		},
 		"sort": {
 			"sort": "Ordenar"
