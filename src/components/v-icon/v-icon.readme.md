@@ -25,6 +25,9 @@ across the platform.
 ## Outline
 You can render the outline variant of the Material Icon by setting the `outline` property.
 
+## Click events
+When you add a click event to the icon, the icon will automatically add a pointer cursor.
+
 ## Props
 | Name      | Description                                                       | Default        |
 |-----------|-------------------------------------------------------------------|----------------|
@@ -37,3 +40,7 @@ You can render the outline variant of the Material Icon by setting the `outline`
 | `large`   | Render the icon large                                             | `false`        |
 | `x-large` | Render the icon extra large                                       | `false`        |
 
+## Events
+| Event   | Description          | Data         |
+|---------|----------------------|--------------|
+| `click` | Standard click event | `MouseEvent` |

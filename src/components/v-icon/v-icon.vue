@@ -1,8 +1,10 @@
 <template>
 	<span
 		class="v-icon"
-		:class="[sizeClass]"
+		:class="[sizeClass, { 'has-click': hasClick }]"
 		:style="{ color: colorStyle, width: customSize, height: customSize }"
+		:role="hasClick ? 'button' : null"
+		@click="emitClick"
 	>
 		<component v-if="customIconName" :is="customIconName" />
 		<i v-else :style="{ fontSize: customSize }" :class="{ outline }">{{ name }}</i>
@@ -58,7 +60,7 @@ export default createComponent({
 		}
 	},
 
-	setup(props) {
+	setup(props, { emit, listeners }) {
 		const sizeClass = computed<string | null>(() => {
 			if (props.sup) return 'sup';
 			if (props.xSmall) return 'x-small';
@@ -82,12 +84,20 @@ export default createComponent({
 			return null;
 		});
 
+		const hasClick = computed<boolean>(() => listeners.hasOwnProperty('click'));
+
 		return {
 			sizeClass,
 			colorStyle,
 			customIconName,
-			customSize
+			customSize,
+			hasClick,
+			emitClick
 		};
+
+		function emitClick(event: MouseEvent) {
+			emit('click', event);
+		}
 	}
 });
 </script>
@@ -177,6 +187,10 @@ export default createComponent({
 		height: calc(100% - 4px);
 		color: inherit;
 		fill: currentColor;
+	}
+
+	&.has-click {
+		cursor: pointer;
 	}
 }
 </style>

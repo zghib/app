@@ -76,3 +76,12 @@ export const sizesAndColors = () => `
 	<v-icon name="person" color="--orange" x-large />
 </div>
 `;
+
+export const withClickEvent = () => ({
+	methods: {
+		click: action('click')
+	},
+	template: `
+<v-icon name="star" @click="click" />
+`
+});
