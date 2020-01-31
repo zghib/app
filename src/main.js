@@ -13,7 +13,6 @@ import './design/main.scss';
 import './globals';
 import './helpers/handle-focus';
 import './helpers/handle-drag';
-import { startPolling } from './latency';
 
 import App from './app.vue';
 import router from './router';
@@ -86,7 +85,5 @@ store.watch(
 	state => state.currentProjectKey,
 	key => (api.config.project = key)
 );
-
-startPolling();
 
 export default app;

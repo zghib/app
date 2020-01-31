@@ -23,6 +23,7 @@ export default async function hydrateStore() {
 		}
 
 		await Promise.all([
+			store.dispatch('latency'),
 			store.dispatch('getAllExtensions'),
 			store.dispatch('getCollections'),
 			store.dispatch('getSettings'),
