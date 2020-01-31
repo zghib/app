@@ -15,6 +15,7 @@
 		:relation="relation"
 		:fields="fieldsFormatted"
 		:collection="collection"
+		:primary-key="primaryKey"
 		:values="values"
 		:width="width"
 		class="v-ext-input selectable"
@@ -54,6 +55,10 @@ export default {
 		},
 		collection: {
 			type: String,
+			default: null
+		},
+		primaryKey: {
+			type: [Number, String],
 			default: null
 		},
 		datatype: {

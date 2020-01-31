@@ -17,7 +17,6 @@ You can add any custom (text) prefix/suffix to the value in the input using the 
 |-------------|------------------------------------------------|---------|
 | `autofocus` | Autofocusses the input on render               | `false` |
 | `disabled`  | Set the disabled state for the input           | `false` |
-| `mask`      | Mask configuration to mask the input with      | --      |
 | `monospace` | Render the entered value in the monospace font | `false` |
 | `prefix`    | Prefix the users value with a value            | --      |
 | `suffix`    | Show a value at the end of the input           | --      |

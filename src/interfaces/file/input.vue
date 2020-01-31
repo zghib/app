@@ -1,8 +1,13 @@
 <template>
 	<div class="input-single-file">
-		<v-notice v-if="noFileAccess">
+		<v-notice v-if="noFileAccess" class="notice">
 			{{ $t('this_item_is_not_available') }}
+			<button @click="$emit('input', null)">
+				<v-icon v-tooltip="$t('deselect')" name="clear" />
+			</button>
 		</v-notice>
+
+		<v-spinner v-else-if="image === null && value !== null" />
 
 		<template v-else>
 			<v-card
@@ -14,20 +19,7 @@
 				:icon="icon"
 				text-background
 				color="black"
-				:options="{
-					download: {
-						text: $t('file_download'),
-						icon: 'file_download'
-					},
-					deselect: {
-						text: $t('deselect'),
-						icon: 'clear'
-					},
-					remove: {
-						text: $t('delete'),
-						icon: 'delete'
-					}
-				}"
+				:options="cardOptions"
 				:medium-image="width.startsWith('half')"
 				:big-image="width === 'full'"
 				:only-show-on-hover="isImage"
@@ -107,13 +99,32 @@ export default {
 			viewTypeOverride: null,
 			viewQueryOverride: {},
 			filtersOverride: [],
-			image: _.cloneDeep(this.value)
+			image: null,
+			noFileAccess: false
 		};
 	},
 	computed: {
 		...mapState(['currentProjectKey']),
-		noFileAccess() {
-			return this.value && typeof this.value !== 'object';
+		cardOptions() {
+			const options = {
+				download: {
+					text: this.$t('file_download'),
+					icon: 'file_download'
+				},
+				deselect: {
+					text: this.$t('deselect'),
+					icon: 'clear'
+				}
+			};
+
+			if (this.options.allowDelete === true) {
+				options.remove = {
+					text: this.$t('delete'),
+					icon: 'delete'
+				};
+			}
+
+			return options;
 		},
 		subtitle() {
 			if (!this.image) return '';
@@ -203,24 +214,38 @@ export default {
 		}
 	},
 	async created() {
-		if (this.value && this.value.id) {
-			try {
-				let fileData = await this.$api.getItem('directus_files', this.value.id);
-				this.image = fileData.data;
-			} catch (e) {
-				console.error(e);
-			}
+		if (this.value) {
+			await this.fetchImage();
 		}
 		this.onSearchInput = _.debounce(this.onSearchInput, 200);
 	},
+	watch: {
+		value() {
+			this.fetchImage();
+		}
+	},
 	methods: {
+		async fetchImage() {
+			this.noFileAccess = false;
+			this.image = null;
+
+			if (!this.value) return;
+			const id = this.value;
+
+			try {
+				const response = await this.$api.getFile(String(id));
+				this.image = response.data;
+			} catch {
+				this.noFileAccess = true;
+			}
+		},
 		downloadFile() {
 			window.open(this.image.data.full_url);
 		},
 		saveUpload(response) {
 			this.image = response.data.data;
 			// We know that the primary key of directus_files is called `id`
-			this.$emit('input', { id: this.image.id });
+			this.$emit('input', this.image.id);
 		},
 		setViewOptions(updates) {
 			this.viewOptionsOverride = {
@@ -244,14 +269,14 @@ export default {
 
 			if (file) {
 				this.image = file;
-				this.$emit('input', { id: file.id });
+				this.$emit('input', file.id);
 			} else {
 				this.image = null;
 				this.$emit('input', null);
 			}
 		},
 		async removeFile() {
-			const file = this.value;
+			const file = this.image;
 			await this.$api.deleteItem('directus_files', file.id);
 			this.$notify({
 				title: this.$t('item_deleted'),
@@ -312,5 +337,10 @@ button {
 		max-height: none;
 		overflow: hidden;
 	}
+}
+
+.notice {
+	display: flex;
+	justify-content: space-between;
 }
 </style>

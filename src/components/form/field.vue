@@ -55,6 +55,7 @@
 				:relation="relation"
 				:fields="fields"
 				:collection="collection"
+				:primary-key="primaryKey"
 				:values="values"
 				:length="field.length"
 				:new-item="newItem"
@@ -99,6 +100,10 @@ export default {
 		},
 		collection: {
 			type: String,
+			default: null
+		},
+		primaryKey: {
+			type: [String, Number],
 			default: null
 		},
 		blocked: {

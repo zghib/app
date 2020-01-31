@@ -4,8 +4,10 @@
 			{{ $t('relationship_not_setup') }}
 		</v-notice>
 
+		<v-spinner v-else-if="initialValue === null" />
+
 		<template v-else>
-			<div v-if="items.length" class="table">
+			<div v-if="items && items.length" class="table">
 				<div class="header">
 					<div class="row">
 						<button v-if="sortable" class="sort-column" @click="toggleManualSort">
@@ -170,7 +172,7 @@ export default {
 			loading: false,
 			error: null,
 			stagedSelection: null,
-			initialValue: _.cloneDeep(this.value) || []
+			initialValue: null
 		};
 	},
 
@@ -312,7 +314,7 @@ export default {
 		}
 	},
 
-	created() {
+	async created() {
 		if (this.sortable) {
 			this.sort.field = '$manual';
 		} else {
@@ -321,10 +323,21 @@ export default {
 			}
 		}
 
-		this.items = _.cloneDeep(this.value) || [];
+		await this.getInitialValue();
+
+		this.items = _.cloneDeep(this.initialValue) || [];
 	},
 
 	methods: {
+		async getInitialValue() {
+			const response = await this.$api.getItems(this.relation.collection_many.collection, {
+				filter: {
+					[this.relation.field_many.field]: this.primaryKey
+				}
+			});
+
+			this.initialValue = response.data;
+		},
 		changeSort(fieldName) {
 			if (this.sort.field === fieldName) {
 				this.sort.asc = !this.sort.asc;

@@ -97,6 +97,7 @@
 			:batch-mode="batch"
 			:permissions="permission"
 			:new-item="newItem"
+			:primary-key="primaryKey"
 			@unstage-value="unstageValue"
 			@stage-value="stageValue"
 		/>
@@ -181,35 +182,6 @@ import VNotFound from './not-found.vue';
 import store from '../store/';
 import api from '../api';
 import { mapState } from 'vuex';
-
-function getFieldsQuery(collection) {
-	const fields = store.state.collections[collection].fields;
-
-	return Object.values(fields)
-		.map(field => field.field)
-		.map(field => {
-			const fieldInfo = fields[field];
-
-			if (
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'o2m' &&
-				store.getters.o2m(collection, field).junction != null
-			) {
-				return field.endsWith('.*.*.*') ? field : field + '.*.*.*';
-			}
-
-			if (
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'o2m' ||
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'm2m' ||
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'translation' ||
-				(fieldInfo.type && fieldInfo.type.toLowerCase()) === 'file'
-			) {
-				return field.endsWith('.*.*.*') ? field : field + '.*.*.*';
-			}
-
-			return field;
-		})
-		.join(',');
-}
 
 export default {
 	name: 'Edit',
@@ -967,9 +939,7 @@ export default {
 					this.revertActivity = null;
 
 					return Promise.all([
-						this.$api.getItem(this.collection, this.primaryKey, {
-							fields: getFieldsQuery(this.collection)
-						}),
+						this.$api.getItem(this.collection, this.primaryKey),
 						this.fetchActivity()
 					]);
 				})
@@ -1015,7 +985,7 @@ export default {
 		store.dispatch('loadingStart', { id });
 
 		return api
-			.getItem(collection, primaryKey, { fields: getFieldsQuery(collection) })
+			.getItem(collection, primaryKey)
 			.then(res => res.data)
 			.then(item => {
 				store.dispatch('loadingFinished', id);
@@ -1084,9 +1054,7 @@ export default {
 		this.$store.dispatch('loadingStart', { id });
 
 		return this.$api
-			.getItem(collection, primaryKey, {
-				fields: getFieldsQuery(collection)
-			})
+			.getItem(collection, primaryKey)
 			.then(res => res.data)
 			.then(item => {
 				this.$store.dispatch('loadingFinished', id);

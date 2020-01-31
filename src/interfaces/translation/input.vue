@@ -11,10 +11,12 @@
 
 		<div v-if="loading === false && initialValues !== null" class="body">
 			<v-form
-				:key="currentLanguage"
 				full-width
+				:key="currentLanguage"
+				:collection="relation.collection_many.collection"
 				:fields="translatedFields"
 				:values="currentLanguageValues"
+				:primary-key="existing && existing[translationsCollectionPrimaryKeyField]"
 				@stage-value="saveLanguage"
 			/>
 		</div>
@@ -64,6 +66,11 @@ export default {
 			return _.find(this.initialValues, {
 				[this.options.languageField]: this.currentLanguage
 			});
+		},
+		translationsCollectionPrimaryKeyField() {
+			return Object.values(this.relation.collection_many.fields).find(
+				field => field.primary_key === true
+			).field;
 		},
 		currentLanguageValues() {
 			const existingChanges = _.find(this.relationalChanges, {

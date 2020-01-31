@@ -9,6 +9,7 @@
 			:fields="fieldsFormatted"
 			:values="values"
 			:collection="collection"
+			:primary-key="primaryKey"
 			:blocked="batchMode && !activeFields.includes(field.field)"
 			:batch-mode="batchMode"
 			:new-item="newItem"
@@ -39,6 +40,10 @@ export default {
 		},
 		collection: {
 			type: String,
+			default: null
+		},
+		primaryKey: {
+			type: [Number, String],
 			default: null
 		},
 		readonly: {

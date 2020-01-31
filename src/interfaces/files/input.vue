@@ -4,8 +4,10 @@
 			{{ $t('relationship_not_setup') }}
 		</v-notice>
 
+		<v-spinner v-if="initialValue === null" />
+
 		<template v-else>
-			<div v-if="items.length" class="table">
+			<div v-if="items && items.length" class="table">
 				<div class="header">
 					<div class="row">
 						<button v-if="sortable" class="sort-column" @click="toggleManualSort">
@@ -185,12 +187,12 @@ export default {
 
 			dragging: false,
 
-			items: [],
+			items: null,
 			loading: false,
 			error: null,
 			stagedSelection: null,
 
-			initialValue: _.cloneDeep(this.value) || []
+			initialValue: null
 		};
 	},
 
@@ -240,7 +242,7 @@ export default {
 		},
 
 		selectionPrimaryKeys() {
-			return this.items.map(
+			return this.items?.map(
 				item => item[this.junctionRelatedKey][this.relatedPrimaryKeyField]
 			);
 		},
@@ -304,7 +306,7 @@ export default {
 			this.emitValue(value);
 		}
 	},
-	created() {
+	async created() {
 		if (this.sortable) {
 			this.sort.field = '$manual';
 		} else {
@@ -314,11 +316,26 @@ export default {
 			}
 		}
 
+		await this.getInitialValue();
+
 		// Set the initial set of items. Filter out any broken junction records
-		this.items = (_.cloneDeep(this.value) || []).filter(item => item[this.junctionRelatedKey]);
+		this.items = (_.cloneDeep(this.initialValue) || []).filter(
+			item => item[this.junctionRelatedKey]
+		);
 	},
 
 	methods: {
+		async getInitialValue() {
+			const fields = [this.junctionPrimaryKey, this.relation.junction_field + '.*'];
+			const response = await this.$api.getItems(this.relation.collection_many.collection, {
+				fields,
+				filter: {
+					[this.relation.field_many.field]: this.primaryKey
+				}
+			});
+
+			this.initialValue = response.data;
+		},
 		// Change the sort position to the provided field. If the same field is
 		// changed, flip the sort order
 		changeSort(fieldName) {
@@ -365,7 +382,7 @@ export default {
 
 		async startEdit(primaryKey) {
 			let values = _.cloneDeep(
-				this.items.find(i => i[this.junctionPrimaryKey] === primaryKey)
+				this.items?.find(i => i[this.junctionPrimaryKey] === primaryKey)
 			);
 
 			const isNewItem = typeof primaryKey === 'string' && primaryKey.startsWith('$temp_');
@@ -386,7 +403,7 @@ export default {
 		saveEditItem() {
 			const primaryKey = this.editItem[this.junctionPrimaryKey];
 
-			this.items = this.items.map(item => {
+			this.items = this.items?.map(item => {
 				if (item[this.junctionPrimaryKey] === primaryKey) {
 					return this.editItem;
 				}
@@ -409,13 +426,13 @@ export default {
 			const primaryKeys = this.stagedSelection || [];
 
 			// Remove all the items from this.items that aren't selected anymore
-			this.items = this.items.filter(item => {
+			this.items = this.items?.filter(item => {
 				const primaryKey = item[this.junctionRelatedKey][this.relatedPrimaryKeyField];
 				return primaryKeys.includes(primaryKey);
 			});
 
 			// Fetch all the newly selected items so we can render it in the table
-			const itemPrimaryKeys = this.items.map(
+			const itemPrimaryKeys = this.items?.map(
 				item => item[this.junctionRelatedKey][this.relatedPrimaryKeyField]
 			);
 			const newlyAddedItems = _.difference(primaryKeys, itemPrimaryKeys);
@@ -430,7 +447,7 @@ export default {
 
 			const items = Array.isArray(res.data) ? res.data : [res.data];
 
-			const newJunctionRecords = items.map(nested => {
+			const newJunctionRecords = items?.map(nested => {
 				const tempKey = '$temp_' + shortid.generate();
 
 				return {
@@ -451,7 +468,7 @@ export default {
 		},
 
 		deleteItem(primaryKey) {
-			this.items = this.items.filter(jr => {
+			this.items = this.items?.filter(jr => {
 				const jrPrimaryKey = jr[this.junctionPrimaryKey];
 				return jrPrimaryKey !== primaryKey;
 			});

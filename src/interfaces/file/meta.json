@@ -55,6 +55,12 @@
       "name": "$t:accept",
       "comment": "$t:accept_comment",
       "interface": "text-input"
-    }
+	},
+	"allowDelete": {
+		"name": "$t:allow_delete",
+		"comment": "$t:allow_delete_comment",
+		"interface": "switch",
+		"default": false
+	}
   }
 }
