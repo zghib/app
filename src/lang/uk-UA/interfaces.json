@@ -181,7 +181,9 @@
 			"filters": "Filters",
 			"filters_comment": "What filters to use",
 			"accept": "Accept File Types",
-			"accept_comment": "Set a list of MIME types that can be picked"
+			"accept_comment": "Set a list of MIME types that can be picked",
+			"allow_delete": "Allow Delete",
+			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface"
 		},
 		"file-preview": {
 			"file_preview": "Перегляд файлу",

@@ -272,7 +272,6 @@
     "uuid": "Un identificador universalmente único"
   },
   "file": "Archivo",
-  "file_download": "Descarga",
   "file_library": "Biblioteca de archivos",
   "file_type_not_accepted": "{filename} no se puede subir. No es un tipo de archivo válido para este campo.",
   "file_upload": "Subir Archivo(s)",
@@ -429,7 +428,7 @@
   "project_name": "Nombre del Proyecto",
   "project_not_configured": "Proyecto no configurado",
   "read": "Leer",
-  "readable_fields": "Campos lectura",
+  "readable_fields": "Campos editables",
   "readable_fields_copy": "Seleccione los campos que el usuario puede ver",
   "readonly": "Sólo lectura",
   "regex": "RegEx",

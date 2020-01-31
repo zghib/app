@@ -181,7 +181,9 @@
 			"filters": "Filtreler",
 			"filters_comment": "Hangi filtreler kullanılacak",
 			"accept": "Dosya Türlerini Kabul Et",
-			"accept_comment": "Seçilebilecek MIME türlerinin bir listesini ayarlayın"
+			"accept_comment": "Seçilebilecek MIME türlerinin bir listesini ayarlayın",
+			"allow_delete": "Allow Delete",
+			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface"
 		},
 		"file-preview": {
 			"file_preview": "Dosya Önizleme",

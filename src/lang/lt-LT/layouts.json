@@ -1,8 +1,8 @@
 {
   "layouts": {
     "calendar": {
-      "calendar": "Kalender",
-      "fields": "Bidang",
+      "calendar": "Calendar",
+      "fields": "Fields",
       "today": "today",
       "events": "Events",
       "moreEvents": "and {amount} more...",
@@ -23,11 +23,11 @@
     },
     "tabular": {
       "tabular": "Table",
-      "fields": "Bidang"
+      "fields": "Fields"
     },
     "timeline": {
       "timeline": "Timeline",
-      "fields": "Bidang",
+      "fields": "Fields",
       "today": "today",
       "events": "Events",
       "moreEvents": "and {amount} more...",
