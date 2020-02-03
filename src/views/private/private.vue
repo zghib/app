@@ -1,18 +1,28 @@
 <template>
 	<div class="private-view">
-		<aside class="module"></aside>
+		<aside class="modules"></aside>
 		<aside class="navigation"></aside>
 		<header class="header"></header>
 		<main class="content"></main>
-		<aside class="detail"></aside>
+		<aside class="drawer"></aside>
 	</div>
 </template>
 
 <script lang="ts">
-import { createComponent } from '@vue/composition-api';
+import { createComponent, ref } from '@vue/composition-api';
+import useWindowSize from '@/compositions/window-size';
 
 export default createComponent({
-	setup() {}
+	setup() {
+		const navOpen = ref<boolean>(false);
+		const drawerOpen = ref<boolean>(false);
+
+		const { width, height } = useWindowSize();
+
+		console.log(width, height);
+
+		return { navOpen, drawerOpen };
+	}
 });
 </script>
 
