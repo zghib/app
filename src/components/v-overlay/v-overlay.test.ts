@@ -44,4 +44,19 @@ describe('Overlay', () => {
 		expect((component.vm as any).styles['--_v-overlay-z-index']).toEqual(50);
 		expect((component.vm as any).styles['--_v-overlay-opacity']).toEqual(0.2);
 	});
+
+	it('Adds the has-click class when click event is passed', async () => {
+		const component = mount(VOverlay, {
+			localVue,
+			listeners: {
+				click: () => {}
+			}
+		});
+		expect(component.classes()).toContain('has-click');
+	});
+
+	it('Emits click event', async () => {
+		component.find('.v-overlay').trigger('click');
+		expect(component.emitted('click')[0]).toBeTruthy();
+	});
 });

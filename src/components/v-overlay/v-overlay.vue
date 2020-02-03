@@ -1,5 +1,11 @@
 <template>
-	<div class="v-overlay" v-show="active" :class="{ active, absolute }" :style="styles">
+	<div
+		class="v-overlay"
+		v-show="active"
+		:class="{ active, absolute, 'has-click': hasClick }"
+		:style="styles"
+		@click="onClick"
+	>
 		<div class="overlay" />
 		<div v-if="active" class="content"><slot /></div>
 	</div>
@@ -32,14 +38,20 @@ export default createComponent({
 			default: 0.75
 		}
 	},
-	setup(props) {
+	setup(props, { emit, listeners }) {
 		const styles = computed(() => ({
 			'--_v-overlay-color': parseCSSVar(props.color),
 			'--_v-overlay-z-index': props.zIndex,
 			'--_v-overlay-opacity': props.opacity
 		}));
 
-		return { styles };
+		const hasClick = computed<boolean>(() => listeners.hasOwnProperty('click'));
+
+		return { styles, hasClick, onClick };
+
+		function onClick(event: MouseEvent) {
+			emit('click', event);
+		}
 	}
 });
 </script>
@@ -56,6 +68,10 @@ export default createComponent({
 	justify-content: center;
 	align-items: center;
 	z-index: var(--_v-overlay-z-index);
+
+	&.has-click {
+		cursor: pointer;
+	}
 
 	&.active {
 		pointer-events: auto;
