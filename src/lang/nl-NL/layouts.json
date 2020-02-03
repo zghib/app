@@ -7,11 +7,11 @@
       "events": "Activiteiten",
       "moreEvents": "en {amount} meer...",
       "noEvents": "nog geen activiteiten!",
-      "date": "Date",
+      "date": "Datum",
       "datetime": "Datetime",
       "time": "Time",
       "title": "Titel",
-      "color": "Color"
+      "color": "Kleur"
     },
     "cards": {
       "cards": "Kaarten",
@@ -32,10 +32,10 @@
       "events": "Activiteiten",
       "moreEvents": "en {amount} meer...",
       "noEvents": "nog geen activiteiten!",
-      "date": "Date",
+      "date": "Datum",
       "content": "Inhoud",
       "title": "Titel",
-      "color": "Color"
+      "color": "Kleur"
     }
   }
 }

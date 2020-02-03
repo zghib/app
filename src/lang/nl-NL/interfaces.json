@@ -78,7 +78,7 @@
 			"include_system_comment": "Include system collections in the options"
 		},
 		"color": {
-			"color": "Color",
+			"color": "Kleur",
 			"format": "Output Format",
 			"format_comment": "In what data format to save the value",
 			"palette": "Palette",
@@ -90,12 +90,12 @@
 			"color-picker": "Color Picker"
 		},
 		"date": {
-			"date": "Date",
-			"min": "Minimum date",
+			"date": "Datum",
+			"min": "Minimale datum",
 			"min_comment": "Minimale datum die gekozen kan worden door de gebruiker",
-			"max": "Maximum date",
+			"max": "Maximum datum",
 			"max_comment": "Maximale datum die gekozen kan worden door de gebruiker",
-			"localized": "Localized",
+			"localized": "Gelokaliseerd",
 			"localized_comment": "Show the date localized in the output",
 			"relative": "Show relative date",
 			"relative_comment": "Show the date relatively (eg 2 days ago)",
@@ -110,7 +110,7 @@
 			"min_comment": "Minimum time that can be chosen by the user",
 			"max": "Maximum time",
 			"max_comment": "Maximum time that can be chosen by the user",
-			"localized": "Localized",
+			"localized": "Gelokaliseerd",
 			"localized_comment": "Show the date localized in the output",
 			"relative": "Show relative time",
 			"relative_comment": "Show the time relatively (eg 50 minutes ago)",
@@ -371,7 +371,7 @@
 			"numeric": "Nummer",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Voer placeholder tekst in",
-			"localized": "Localized",
+			"localized": "Gelokaliseerd",
 			"localized_comment": "Localize the output to the user's locale",
 			"icon_left": "Icon Left",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
