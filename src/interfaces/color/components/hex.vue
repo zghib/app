@@ -1,7 +1,7 @@
 <template>
 	<div class="hex">
 		<div class="color">
-			<v-popover trigger="click" placement="bottom-start" :boundaries-element="body">
+			<v-popover trigger="click" placement="bottom-start">
 				<button
 					class="trigger"
 					:style="previewStyles"
