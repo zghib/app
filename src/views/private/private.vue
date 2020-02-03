@@ -4,29 +4,42 @@
 			<div class="modules"></div>
 			<div class="module-nav"></div>
 		</aside>
-		<header class="header">
-			<button @click="navOpen = true">Toggle nav</button>
-			<button @click="drawerOpen = true">Toggle drawer</button>
-		</header>
-		<main class="content"></main>
+		<div class="content">
+			<header>
+				<button @click="navOpen = true">Toggle nav</button>
+				<button @click="drawerOpen = !drawerOpen">Toggle drawer</button>
+			</header>
+			<main></main>
+		</div>
 		<aside class="drawer" :class="{ 'is-open': drawerOpen }"></aside>
-		<v-overlay :active="navOpen" :z-index="49" @click="navOpen = false" />
-		<v-overlay :active="drawerOpen" :z-index="24" @click="drawerOpen = false" />
+
+		<v-overlay v-if="width <= 800" :active="navOpen" :z-index="49" @click="navOpen = false" />
+		<v-overlay
+			v-if="width <= 1240"
+			:active="drawerOpen"
+			:z-index="24"
+			@click="drawerOpen = false"
+		/>
 	</div>
 </template>
 
 <script lang="ts">
-import { createComponent, ref } from '@vue/composition-api';
+import { createComponent, ref, computed } from '@vue/composition-api';
 import useWindowSize from '@/compositions/window-size';
+
+// Breakpoints:
+// < 800 (.navigation and .drawer as overlay)
+// 800-1240 (.navigation on page, .drawer as overlay)
+// 1240+ (both on page, .drawer collapsed)
 
 export default createComponent({
 	setup() {
 		const navOpen = ref<boolean>(false);
 		const drawerOpen = ref<boolean>(false);
 
-		const { width, height } = useWindowSize();
+		const { width } = useWindowSize();
 
-		return { navOpen, drawerOpen };
+		return { navOpen, drawerOpen, width };
 	}
 });
 </script>
@@ -35,6 +48,7 @@ export default createComponent({
 .private-view {
 	width: 100%;
 	height: 100%;
+	display: flex;
 
 	.navigation {
 		height: 100%;
@@ -65,6 +79,15 @@ export default createComponent({
 			display: inline-block;
 			font-size: 1rem;
 		}
+
+		@media (min-width: 800px) {
+			position: relative;
+			transform: none;
+		}
+	}
+
+	.content {
+		flex-grow: 1;
 	}
 
 	.drawer {
@@ -80,6 +103,22 @@ export default createComponent({
 
 		&.is-open {
 			transform: translateX(0);
+		}
+
+		@media (min-width: 800px) {
+			transform: translateX(calc(100% - 64px));
+		}
+
+		@media (min-width: 1240px) {
+			transform: none;
+			position: relative;
+			flex-basis: 64px;
+			transition: flex-basis var(--slow) var(--transition);
+
+			&.is-open {
+				transform: none;
+				flex-basis: 284px;
+			}
 		}
 	}
 }
