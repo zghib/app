@@ -24,7 +24,7 @@
       "name": "$t:palette",
       "comment": "$t:palette_comment",
       "interface": "tags",
-      "type": "ARRAY",
+      "type": "array",
       "options": {
         "wrapWithDelimiter": false
       },
