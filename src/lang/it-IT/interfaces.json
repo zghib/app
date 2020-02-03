@@ -632,7 +632,9 @@
 			"toolbar": "Toolbar Options",
 			"toolbar_comment": "Show, hide, and reorder toolbar options",
 			"custom_formats": "Formati personalizzati",
-			"custom_formats_comment": "Personalizza wrapper HTML per i contenuti"
+			"custom_formats_comment": "Personalizza wrapper HTML per i contenuti",
+			"tinymce_options": "TinyMCE Options",
+			"tinymce_options_comment": "Override any of [the TinyMCE init options](https://www.tiny.cloud/docs/configure/)."
 		}
 	}
 }
