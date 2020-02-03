@@ -1,10 +1,15 @@
 <template>
 	<div class="private-view">
-		<aside class="modules"></aside>
-		<aside class="navigation"></aside>
-		<header class="header"></header>
+		<aside class="navigation" :class="{ 'is-open': navOpen }">
+			<div class="modules"></div>
+			<div class="module-nav"></div>
+		</aside>
+		<header class="header">
+			<button @click="navOpen = true">Toggle nav</button>
+		</header>
 		<main class="content"></main>
-		<aside class="drawer"></aside>
+		<aside class="drawer" :class="{ 'is-open': drawerOpen }"></aside>
+		<v-overlay :active="navOpen" :z-index="5" @click="navOpen = false" />
 	</div>
 </template>
 
@@ -19,8 +24,6 @@ export default createComponent({
 
 		const { width, height } = useWindowSize();
 
-		console.log(width, height);
-
 		return { navOpen, drawerOpen };
 	}
 });
@@ -30,6 +33,35 @@ export default createComponent({
 .private-view {
 	width: 100%;
 	height: 100%;
-	background-color: black;
+
+	.navigation {
+		height: 100%;
+		font-size: 0;
+		transform: translateX(-100%);
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 10;
+
+		&.is-open {
+			transform: translateX(0);
+		}
+
+		.modules {
+			background-color: #263238;
+			width: 64px;
+			height: 100%;
+			display: inline-block;
+			font-size: 1rem;
+		}
+
+		.module-nav {
+			background-color: #eceff1;
+			width: 220px;
+			height: 100%;
+			display: inline-block;
+			font-size: 1rem;
+		}
+	}
 }
 </style>
