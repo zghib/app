@@ -122,7 +122,8 @@ export default {
 				extended_valid_elements: 'audio[loop],source',
 				toolbar: toolbarString,
 				style_formats: styleFormats,
-				file_picker_callback: this.selectFile
+				file_picker_callback: this.selectFile,
+				...this.options.tinymce_options
 			};
 		},
 		contentStyle() {
