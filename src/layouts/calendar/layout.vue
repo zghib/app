@@ -266,13 +266,19 @@ export default {
 					eventDate = new Date(item[dateId] + 'T00:00:00');
 					time = item[timeId] && timeId != 0 ? item[timeId] : '';
 				}
-
-				var color = item[colorId];
-
 				if (!eventDate) continue;
+				
+				var color = item[colorId] || "accent";
+				var colorOutput = "background-color: ";
 
-				if (!color) color = 'accent';
-				color = `background-color: var(--${color})`;
+				if(color.match(/^\d{1,3},\d{1,3},\d{1,3}$/)) {
+				  colorOutput += `rgb(${color})`
+				} else if(color.match(/^#[0-9a-f]{3,6}$/i)) {
+				  colorOutput += color
+				} else {
+				  colorOutput += `var(--${color})`;
+				}
+				color = colorOutput
 
 				if (this.isSameDay(date, eventDate)) {
 					var event = {
