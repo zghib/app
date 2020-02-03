@@ -65,7 +65,6 @@ Vue.use(VueTimeago, {
 });
 Vue.use(VueTheMask);
 Vue.use(meta);
-Vue.component('draggable', VueDraggable);
 
 /* eslint-disable no-new */
 const app = new Vue({
