@@ -31,7 +31,6 @@
     "dateformat": "^3.0.3",
     "deep-object-diff": "^1.1.0",
     "hex-rgb": "^4.1.0",
-    "idlejs": "^2.0.1",
     "javascript-time-ago": "^2.0.6",
     "jsonlint-mod": "^1.7.5",
     "leaflet": "^1.6.0",

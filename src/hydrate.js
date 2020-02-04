@@ -2,7 +2,6 @@ import axios from 'axios';
 import store from './store/';
 import { loadLanguageAsync } from './lang/';
 import { STORE_HYDRATED, HYDRATING_FAILED } from './store/mutation-types';
-import startIdleTracking from './idle';
 import { version } from '../package.json';
 
 export default async function hydrateStore() {
@@ -35,8 +34,6 @@ export default async function hydrateStore() {
 
 		// getPermissions relies on collection info to exist
 		await store.dispatch('getPermissions');
-
-		startIdleTracking(store);
 
 		const isAdmin = store.state.currentUser.admin;
 		const telemetryAllowed = store.getters.currentProject?.data?.telemetry !== false;
