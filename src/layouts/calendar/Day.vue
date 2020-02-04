@@ -96,19 +96,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.today .header {
-	padding: 5px 5px;
-}
-
-.today .header-day {
-	width: 32px;
-	height: 32px;
-	border-radius: 50%;
-	border: 2px solid var(--blue-grey-900);
-	color: var(--blue-grey-900);
-	line-height: 0;
-}
-
 .day {
 	overflow: hidden;
 	background-color: var(--white);
@@ -123,7 +110,7 @@ export default {
 	width: 100%;
 	font-size: 1.3em;
 	font-weight: 400;
-	padding: 5px 5px 0px 5px;
+	padding: 10px 5px;
 }
 
 .header-week {
@@ -142,6 +129,12 @@ export default {
 	justify-content: center;
 	padding-right: 1px;
 }
+.today .header-day {
+	border-radius: 50%;
+	border: 2px solid var(--blue-grey-900);
+	color: var(--blue-grey-900);
+}
+
 .events {
 	.event {
 		display: flex;
