@@ -1,7 +1,7 @@
 <template>
 	<div class="private-view">
 		<aside class="navigation" :class="{ 'is-open': navOpen }">
-			<div class="modules"></div>
+			<module-bar />
 			<div class="module-nav"></div>
 		</aside>
 		<div class="content">
@@ -26,6 +26,7 @@
 <script lang="ts">
 import { createComponent, ref, computed } from '@vue/composition-api';
 import useWindowSize from '@/compositions/window-size';
+import ModuleBar from './_module-bar';
 
 // Breakpoints:
 // < 800 (.navigation and .drawer as overlay)
@@ -33,6 +34,9 @@ import useWindowSize from '@/compositions/window-size';
 // 1240+ (both on page, .drawer collapsed)
 
 export default createComponent({
+	components: {
+		ModuleBar
+	},
 	setup() {
 		const navOpen = ref<boolean>(false);
 		const drawerOpen = ref<boolean>(false);
@@ -62,14 +66,6 @@ export default createComponent({
 
 		&.is-open {
 			transform: translateX(0);
-		}
-
-		.modules {
-			background-color: #263238;
-			width: 64px;
-			height: 100%;
-			display: inline-block;
-			font-size: 1rem;
 		}
 
 		.module-nav {
