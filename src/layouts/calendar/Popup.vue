@@ -63,6 +63,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { throttle } from 'lodash';
 
 export default {
 	components: {},
@@ -127,7 +128,7 @@ export default {
 	},
 	created() {
 		this.date = this.parentdate;
-		this.scroll = _.throttle(this.scroll, 150);
+		this.scroll = throttle(this.scroll, 150);
 	},
 	methods: {
 		/*

@@ -44,6 +44,7 @@ import VBlocker from '../../blocker.vue';
 import { TOGGLE_NAV } from '@/store/mutation-types';
 import { mapState } from 'vuex';
 import ModuleBar from './module-bar';
+import { some } from 'lodash';
 
 export default {
 	name: 'NavSidebar',
@@ -76,7 +77,7 @@ export default {
 						collection.status_mapping &&
 						this.permissions[collection.collection].statuses
 					) {
-						return _.some(
+						return some(
 							this.permissions[collection.collection].statuses,
 							permission => permission.read !== 'none'
 						);

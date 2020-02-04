@@ -24,6 +24,7 @@ import componentExists from '../../../../helpers/component-exists';
 import VExtDisplayFallback from './display-fallback.vue';
 import VExtDisplayLoading from './display-loading.vue';
 import { datatypes } from '../../../../type-map';
+import { mapValues } from 'lodash';
 
 export default {
 	name: 'VExtDisplay',
@@ -115,7 +116,7 @@ export default {
 		optionsWithDefaults() {
 			if (!this.interfaceInfo) return {};
 
-			const defaults = _.mapValues(
+			const defaults = mapValues(
 				this.interfaceInfo.options,
 				settings => settings.default || null
 			);

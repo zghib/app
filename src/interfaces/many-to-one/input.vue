@@ -51,6 +51,7 @@
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import getFieldsFromTemplate from '@/helpers/get-fields-from-template';
+import { find, isObject, mapValues } from 'lodash';
 
 export default {
 	name: 'InterfaceManyToOne',
@@ -79,7 +80,7 @@ export default {
 
 		// The name of the field that holds the primary key in the related collection
 		relatedPrimaryKeyField() {
-			return _.find(this.relation.collection_one.fields, {
+			return find(this.relation.collection_one.fields, {
 				primary_key: true
 			}).field;
 		},
@@ -89,7 +90,7 @@ export default {
 		// expects a primary key. This will extract that. If the value is already a primary key, we return
 		// that.
 		valuePK() {
-			if (_.isObject(this.value)) return this.value[this.relatedPrimaryKeyField];
+			if (isObject(this.value)) return this.value[this.relatedPrimaryKeyField];
 
 			return this.value;
 		},
@@ -114,7 +115,7 @@ export default {
 			if (this.items.length === 0) return {};
 			const render = this.$helpers.micromustache.compile(this.options.template);
 
-			return _.mapValues(_.keyBy(this.items, this.relatedPrimaryKeyField), item => {
+			return mapValues(keyBy(this.items, this.relatedPrimaryKeyField), item => {
 				return render(item);
 			});
 		}

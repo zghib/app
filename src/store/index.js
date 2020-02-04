@@ -19,12 +19,14 @@ import * as getters from './getters';
 import mutations from './mutations';
 import { RESET } from './mutation-types';
 
+import { clone } from 'lodash';
+
 Vue.use(Vuex);
 
 const debug = process.env.NODE_ENV !== 'production'; // eslint-disable-line no-undef
 
 const store = new Vuex.Store({
-	state: _.clone(initialState),
+	state: clone(initialState),
 	actions,
 	getters,
 	mutations: {

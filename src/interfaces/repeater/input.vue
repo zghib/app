@@ -33,6 +33,7 @@
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import RepeaterRow from './row';
 import shortid from 'shortid';
+import { clone, keyBy } from 'lodash';
 
 export default {
 	name: 'Repeater',
@@ -101,7 +102,7 @@ export default {
 			this.emitValue();
 		},
 		updateRow(index, { field, value }) {
-			const rows = _.clone(this.rows);
+			const rows = clone(this.rows);
 			const currentRow = rows[index];
 			const newRow = {
 				...currentRow,
@@ -114,14 +115,14 @@ export default {
 			this.emitValue();
 		},
 		removeRow(index) {
-			const newRows = _.clone(this.rows);
+			const newRows = clone(this.rows);
 			newRows.splice(index, 1);
 			this.rows = newRows;
 			this.emitValue();
 		},
 
 		emitValue() {
-			let value = _.clone(this.rows).map(row => {
+			let value = clone(this.rows).map(row => {
 				delete row.__key;
 				return row;
 			});
@@ -131,7 +132,7 @@ export default {
 			}
 
 			if (this.options.structure === 'object') {
-				this.$emit('input', _.keyBy(value, this.options.structure_key));
+				this.$emit('input', keyBy(value, this.options.structure_key));
 			} else {
 				this.$emit('input', value);
 			}

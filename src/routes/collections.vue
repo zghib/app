@@ -33,6 +33,7 @@
 <script>
 import VError from '../components/error.vue';
 import { mapState } from 'vuex';
+import { some } from 'lodash';
 
 export default {
 	name: 'Collections',
@@ -58,7 +59,7 @@ export default {
 				)
 				.filter(collection => {
 					if (collection.status_mapping) {
-						return _.some(
+						return some(
 							this.permissions[collection.collection].statuses,
 							permission => permission.read !== 'none'
 						);

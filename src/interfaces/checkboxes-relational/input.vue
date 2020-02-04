@@ -18,6 +18,7 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
+import { find } from 'lodash';
 
 export default {
 	name: 'InterfaceCheckboxesRelational',
@@ -35,7 +36,7 @@ export default {
 		//The primary key of related table
 		relatedPk() {
 			let fields = this.relation.junction.collection_one.fields;
-			return _.find(fields, {
+			return find(fields, {
 				primary_key: true
 			}).field;
 		},
@@ -47,14 +48,13 @@ export default {
 
 		//Junction Table Primary Key
 		junctionPk() {
-			return _.find(this.relation.collection_many.fields, {
+			return find(this.relation.collection_many.fields, {
 				primary_key: true
 			}).field;
 		},
 
 		junctionPrimaryKey() {
-			return _.find(this.relation.junction.collection_many.fields, { primary_key: true })
-				.field;
+			return find(this.relation.junction.collection_many.fields, { primary_key: true }).field;
 		}
 	},
 	async created() {

@@ -146,6 +146,7 @@
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import { diff } from 'deep-object-diff';
 import shortid from 'shortid';
+import { get, find, orderBy, cloneDeep, mapValues, merge, difference } from 'lodash';
 
 export default {
 	name: 'InterfaceManyToMany',
@@ -194,7 +195,7 @@ export default {
 
 			// Fields in the related collection (not the JT)
 			const relatedFields = this.relation.junction.collection_one.fields;
-			const recursiveKey = _.get(this.relation, 'junction.field_one.field', null);
+			const recursiveKey = get(this.relation, 'junction.field_one.field', null);
 
 			return visibleFieldNames.map(name => {
 				const fieldInfo = relatedFields[name];
@@ -213,8 +214,7 @@ export default {
 
 		// The name of the field that holds the primary key in the related (not JT) collection
 		relatedPrimaryKeyField() {
-			return _.find(this.relation.junction.collection_one.fields, { primary_key: true })
-				.field;
+			return find(this.relation.junction.collection_one.fields, { primary_key: true }).field;
 		},
 
 		selectionPrimaryKeys() {
@@ -226,7 +226,7 @@ export default {
 		// Field in the junction table that holds the sort value in the junction table
 		sortField() {
 			const junctionTableFields = this.relation.collection_many.fields;
-			const sortField = _.find(junctionTableFields, { type: 'sort' });
+			const sortField = find(junctionTableFields, { type: 'sort' });
 			return sortField;
 		},
 
@@ -245,22 +245,21 @@ export default {
 		},
 
 		junctionPrimaryKey() {
-			return _.find(this.relation.junction.collection_many.fields, { primary_key: true })
-				.field;
+			return find(this.relation.junction.collection_many.fields, { primary_key: true }).field;
 		},
 
 		itemsSorted: {
 			get() {
 				if (this.sort.field === '$manual') {
-					return _.orderBy(
-						_.cloneDeep(this.items),
+					return orderBy(
+						cloneDeep(this.items),
 						item => item[this.sortField.field],
 						this.sort.asc ? 'asc' : 'desc'
 					);
 				}
 
-				return _.orderBy(
-					_.cloneDeep(this.items),
+				return orderBy(
+					cloneDeep(this.items),
 					item => item[this.junctionRelatedKey][this.sort.field],
 					this.sort.asc ? 'asc' : 'desc'
 				);
@@ -295,7 +294,7 @@ export default {
 		await this.getInitialValue();
 
 		// Set the initial set of items. Filter out any broken junction records
-		this.items = (_.cloneDeep(this.initialValue) || []).filter(
+		this.items = (cloneDeep(this.initialValue) || []).filter(
 			item => item[this.junctionRelatedKey]
 		);
 	},
@@ -330,7 +329,7 @@ export default {
 			this.addNew = true;
 
 			const relatedCollectionFields = this.relation.junction.collection_one.fields;
-			const defaults = _.mapValues(relatedCollectionFields, field => field.default_value);
+			const defaults = mapValues(relatedCollectionFields, field => field.default_value);
 			const tempKey = '$temp_' + shortid.generate();
 
 			if (defaults.hasOwnProperty(this.relatedPrimaryKeyField))
@@ -358,9 +357,7 @@ export default {
 		},
 
 		async startEdit(primaryKey) {
-			let values = _.cloneDeep(
-				this.items.find(i => i[this.junctionPrimaryKey] === primaryKey)
-			);
+			let values = cloneDeep(this.items.find(i => i[this.junctionPrimaryKey] === primaryKey));
 
 			const isNewItem = typeof primaryKey === 'string' && primaryKey.startsWith('$temp_');
 
@@ -372,12 +369,12 @@ export default {
 				const res = await this.$api.getItem(collection, primaryKey, { fields: '*.*.*' });
 				const item = res.data;
 
-				values = _.merge({}, item, values);
+				values = merge({}, item, values);
 
 				// Update the initialValue as well since the initialValue is used to get the Diff for POSTing
 				this.initialValue = this.initialValue.map(item => {
-					if (_.get(item, primaryKeyName) === primaryKey) {
-						return _.cloneDeep(values);
+					if (get(item, primaryKeyName) === primaryKey) {
+						return cloneDeep(values);
 					}
 					return item;
 				});
@@ -432,7 +429,7 @@ export default {
 			const itemPrimaryKeys = this.items.map(
 				item => item[this.junctionRelatedKey][this.relatedPrimaryKeyField]
 			);
-			const newlyAddedItems = _.difference(primaryKeys, itemPrimaryKeys);
+			const newlyAddedItems = difference(primaryKeys, itemPrimaryKeys);
 
 			if (newlyAddedItems.length > 0) {
 				const res = await this.$api.getItem(
@@ -474,10 +471,10 @@ export default {
 		},
 
 		emitValue(value) {
-			value = _.cloneDeep(value);
+			value = cloneDeep(value);
 
 			// This is the key in the nested related object that holds the parent item again
-			const recursiveKey = _.get(this.relation, 'junction.field_one.field', null);
+			const recursiveKey = get(this.relation, 'junction.field_one.field', null);
 
 			const newValue = value
 				.map(after => {
@@ -509,7 +506,7 @@ export default {
 								delete newVal[this.junctionRelatedKey][recursiveKey];
 							}
 
-							return _.merge({}, newVal, delta);
+							return merge({}, newVal, delta);
 						} else {
 							return null;
 						}
@@ -529,7 +526,7 @@ export default {
 
 			const savedPrimaryKeys = this.initialValue.map(jr => jr[this.junctionPrimaryKey]);
 			const newPrimaryKeys = value.map(jr => jr[this.junctionPrimaryKey]);
-			const deletedKeys = _.difference(savedPrimaryKeys, newPrimaryKeys);
+			const deletedKeys = difference(savedPrimaryKeys, newPrimaryKeys);
 			const deletedJunctionRows = deletedKeys.map(key => {
 				return {
 					[this.junctionPrimaryKey]: key,

@@ -134,6 +134,7 @@
 import formatFilters from '@/helpers/format-filters';
 import shortid from 'shortid';
 import getFieldsFromTemplate from '@/helpers/get-fields-from-template';
+import { find, isEqual, debounce, merge, clone, forEach } from 'lodash';
 
 export default {
 	name: 'ItemSelect',
@@ -210,7 +211,7 @@ export default {
 		primaryKeyField() {
 			const collection = this.$store.state.collections[this.collection];
 			if (!collection) return null;
-			return _.find(collection.fields, { primary_key: true }).field;
+			return find(collection.fields, { primary_key: true }).field;
 		},
 
 		// Unique ID for this interface. Will be used in the name field of the inputs
@@ -236,7 +237,7 @@ export default {
 		filters: {
 			deep: true,
 			handler(before, after) {
-				if (!_.isEqual(before, after)) this.fetchItems();
+				if (!isEqual(before, after)) this.fetchItems();
 			}
 		},
 		sortField() {
@@ -253,7 +254,7 @@ export default {
 
 		this.fetchItems();
 
-		this.setSearchQuery = _.debounce(this.setSearchQuery, 550);
+		this.setSearchQuery = debounce(this.setSearchQuery, 550);
 
 		// Fetch the total number of items in this collection, so we can accurately render the load more
 		// button
@@ -275,7 +276,7 @@ export default {
 				offset: 0
 			};
 
-			options = _.merge(defaultOptions, options);
+			options = merge(defaultOptions, options);
 
 			this.loading = true;
 			this.error = null;
@@ -297,7 +298,7 @@ export default {
 			if (this.collection === 'directus_files') {
 				params.fields = ['*'];
 			} else if (this.fields.length > 0) {
-				params.fields = _.clone(this.fields);
+				params.fields = clone(this.fields);
 			} else {
 				params.fields = []; // ISSUE#1865 Fixed Define the blank fields array to push the data.
 			}
@@ -321,7 +322,7 @@ export default {
 				field => field.type.toLowerCase() === 'alias'
 			);
 			if (aliasFields.length > 0) {
-				_.forEach(aliasFields, function(value) {
+				forEach(aliasFields, function(value) {
 					if (value.options.url_template.match(/{{(.*)}}/g)) {
 						const templateFields = getFieldsFromTemplate(value.options.url_template)[0];
 						const field = templateFields.split('.')[0];

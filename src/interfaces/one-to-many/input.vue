@@ -151,6 +151,7 @@
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import shortid from 'shortid';
 import { diff } from 'deep-object-diff';
+import { find, mapValues, clone, orderby, cloneDeep, merge, forEach, difference } from 'lodash';
 
 export default {
 	name: 'InterfaceOneToMany',
@@ -238,7 +239,7 @@ export default {
 		},
 
 		relatedPrimaryKeyField() {
-			return _.find(this.relation.collection_many.fields, { primary_key: true }).field;
+			return find(this.relation.collection_many.fields, { primary_key: true }).field;
 		},
 
 		selectionPrimaryKeys() {
@@ -252,7 +253,7 @@ export default {
 				return null;
 			}
 
-			return _.find(this.relation.collection_many.fields, { field: sortField });
+			return find(this.relation.collection_many.fields, { field: sortField });
 		},
 
 		sortable() {
@@ -269,8 +270,8 @@ export default {
 			// Disable editing the many to one that points to this one to many
 			const manyToManyField = this.relation.field_many && this.relation.field_many.field;
 
-			return _.mapValues(relatedCollectionFields, field => {
-				const clone = _.clone(field);
+			return mapValues(relatedCollectionFields, field => {
+				const clone = clone(field);
 
 				if (clone.field === manyToManyField) {
 					clone.readonly = true;
@@ -283,15 +284,15 @@ export default {
 		itemsSorted: {
 			get() {
 				if (this.sort.field === '$manual') {
-					return _.orderBy(
-						_.cloneDeep(this.items),
+					return orderBy(
+						cloneDeep(this.items),
 						item => item[this.sortField.field],
 						this.sort.asc ? 'asc' : 'desc'
 					);
 				}
 
-				return _.orderBy(
-					_.cloneDeep(this.items),
+				return orderBy(
+					cloneDeep(this.items),
 					item => item[this.sort.field],
 					this.sort.asc ? 'asc' : 'desc'
 				);
@@ -325,7 +326,7 @@ export default {
 
 		await this.getInitialValue();
 
-		this.items = _.cloneDeep(this.initialValue) || [];
+		this.items = cloneDeep(this.initialValue) || [];
 	},
 
 	methods: {
@@ -358,7 +359,7 @@ export default {
 			this.addNew = true;
 
 			const relatedCollectionFields = this.relation.collection_many.fields;
-			const defaults = _.mapValues(relatedCollectionFields, field => field.default_value);
+			const defaults = mapValues(relatedCollectionFields, field => field.default_value);
 			const manyToManyField = this.relation.field_many && this.relation.field_many.field;
 			const tempKey = '$temp_' + shortid.generate();
 
@@ -386,7 +387,7 @@ export default {
 		},
 
 		async startEdit(primaryKey) {
-			let values = _.cloneDeep(
+			let values = cloneDeep(
 				this.items.find(i => i[this.relatedPrimaryKeyField] === primaryKey)
 			);
 
@@ -397,7 +398,7 @@ export default {
 				const res = await this.$api.getItem(collection, primaryKey, { fields: '*.*.*' });
 				const item = res.data;
 
-				values = _.merge({}, item, values);
+				values = merge({}, item, values);
 			}
 
 			this.editItem = values;
@@ -410,7 +411,7 @@ export default {
 
 			this.items = this.items.map(item => {
 				if (item[this.relatedPrimaryKeyField] === primaryKey) {
-					const edits = _.clone(this.editItem);
+					const edits = clone(this.editItem);
 
 					// Make sure we remove the many to one field that points to this o2m to prevent this nested item
 					// to be accidentally assigned to another parent
@@ -457,7 +458,7 @@ export default {
 
 			// Fetch all newly selected items so we can render them in the table
 			const itemPrimaryKeys = this.items.map(item => item[this.relatedPrimaryKeyField]);
-			const newlyAddedItems = _.difference(primaryKeys, itemPrimaryKeys);
+			const newlyAddedItems = difference(primaryKeys, itemPrimaryKeys);
 
 			if (newlyAddedItems.length > 0) {
 				const res = await this.$api.getItem(
@@ -488,7 +489,7 @@ export default {
 		},
 
 		emitValue(value) {
-			value = _.cloneDeep(value);
+			value = cloneDeep(value);
 
 			const recursiveKey = this.relation.field_many.field;
 
@@ -510,7 +511,7 @@ export default {
 						// only containing the changes.
 						// In order to achieve that, we'll loop over every key in the delta, and use the "full"
 						// after value in case the delta field is a JSON type
-						_.forEach(delta, (value, key) => {
+						forEach(delta, (value, key) => {
 							const fieldInfo = this.relatedCollectionFields[key];
 							if (!fieldInfo) return;
 
@@ -539,7 +540,7 @@ export default {
 								delete newVal[recursiveKey];
 							}
 
-							return _.merge({}, newVal, delta);
+							return merge({}, newVal, delta);
 						} else {
 							return null;
 						}
@@ -564,7 +565,7 @@ export default {
 				item => item[this.relatedPrimaryKeyField]
 			);
 			const newPrimaryKeys = value.map(item => item[this.relatedPrimaryKeyField]);
-			const deletedKeys = _.difference(savedPrimaryKeys, newPrimaryKeys);
+			const deletedKeys = difference(savedPrimaryKeys, newPrimaryKeys);
 			const deletedRows = deletedKeys.map(key => {
 				if (this.options.delete_mode === 'relation') {
 					return {

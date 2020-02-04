@@ -46,6 +46,7 @@
 <script>
 import VPermissionsHeader from './permissions-header.vue';
 import VPermissionsRow from './permissions-row.vue';
+import { pickBy, forEach } from 'lodash';
 
 export default {
 	name: 'VPermissions',
@@ -78,7 +79,7 @@ export default {
 	},
 	computed: {
 		directusRows() {
-			const permissions = _.pickBy(this.permissions, (permission, collection) =>
+			const permissions = pickBy(this.permissions, (permission, collection) =>
 				collection.startsWith('directus_')
 			);
 
@@ -89,7 +90,7 @@ export default {
 				.value();
 		},
 		rows() {
-			const permissions = _.pickBy(
+			const permissions = pickBy(
 				this.permissions,
 				(permission, collection) => collection.startsWith('directus_') === false
 			);
@@ -106,10 +107,10 @@ export default {
 			const changes = [];
 			let full = true;
 
-			_.forEach(this.permissions, (column, collection) => {
+			forEach(this.permissions, (column, collection) => {
 				if (collection.startsWith('directus_')) return;
 				if (this.statuses[collection]) {
-					_.forEach(column, statusColumn => {
+					forEach(column, statusColumn => {
 						if (statusColumn[permission] === 'full') {
 							full = false;
 						}

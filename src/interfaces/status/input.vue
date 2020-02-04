@@ -17,6 +17,7 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
+import { mapValues, includes, forEach } from 'lodash';
 
 export default {
 	name: 'InterfaceStatus',
@@ -32,7 +33,7 @@ export default {
 				return this.options.status_mapping ? JSON.parse(this.status_mapping) : {};
 			}
 			if (!this.options.status_mapping) return {};
-			return _.mapValues(this.options.status_mapping, mapping => ({
+			return mapValues(this.options.status_mapping, mapping => ({
 				...mapping,
 				label: this.$helpers.formatTitle(this.$t(mapping.name))
 			}));
@@ -41,8 +42,8 @@ export default {
 			const allStatuses = this.statusMapping;
 			const blacklist = this.blacklist;
 
-			_.forEach(allStatuses, function(value) {
-				if (_.includes(blacklist, value.value)) {
+			forEach(allStatuses, function(value) {
+				if (includes(blacklist, value.value)) {
 					value.readonly = true;
 				}
 			});

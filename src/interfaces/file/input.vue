@@ -89,6 +89,7 @@ import mixin from '@directus/extension-toolkit/mixins/interface';
 import formatSize from '../file-size/format-size';
 import getIcon from './get-icon';
 import { mapState } from 'vuex';
+import { debounce } from 'lodash';
 
 export default {
 	mixins: [mixin],
@@ -217,7 +218,7 @@ export default {
 		if (this.value) {
 			await this.fetchImage();
 		}
-		this.onSearchInput = _.debounce(this.onSearchInput, 200);
+		this.onSearchInput = debounce(this.onSearchInput, 200);
 	},
 	watch: {
 		value() {

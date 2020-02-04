@@ -28,6 +28,7 @@ import loadExtension from '../../../../helpers/load-extension';
 import componentExists from '../../../../helpers/component-exists';
 import VExtLayoutFallback from './layout-fallback.vue';
 import VExtLayoutLoading from './layout-loading.vue';
+import { filter } from 'lodash';
 
 export default {
 	name: 'VLayout',
@@ -88,7 +89,7 @@ export default {
 			return `layout-${this.viewType}`;
 		},
 		primaryKeyField() {
-			const fieldInfo = _.filter(this.fields, info => info.primary_key === true)[0];
+			const fieldInfo = filter(this.fields, info => info.primary_key === true)[0];
 
 			return fieldInfo && fieldInfo.field;
 		}

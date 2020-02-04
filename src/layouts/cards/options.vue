@@ -65,23 +65,24 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/layout';
+import { mapValues, pickBy, filter, keyBy } from 'lodash';
 
 export default {
 	mixins: [mixin],
 	computed: {
 		titleFieldOptions() {
 			return {
-				..._.mapValues(this.fields, info => info.name)
+				...mapValues(this.fields, info => info.name)
 			};
 		},
 		fieldOptions() {
 			return {
 				__none__: `(${this.$t('dont_show')})`,
-				..._.mapValues(this.fields, info => info.name)
+				...mapValues(this.fields, info => info.name)
 			};
 		},
 		sortableFields() {
-			return _.pickBy(this.fields, field => field.datatype);
+			return pickBy(this.fields, field => field.datatype);
 		},
 		sortedOn() {
 			let fieldName;
@@ -114,14 +115,11 @@ export default {
 			return 'asc';
 		},
 		fileOptions() {
-			const fileTypeFields = _.filter(
-				this.fields,
-				info => info.type.toLowerCase() === 'file'
-			);
-			const fields = _.keyBy(fileTypeFields, 'field');
+			const fileTypeFields = filter(this.fields, info => info.type.toLowerCase() === 'file');
+			const fields = keyBy(fileTypeFields, 'field');
 			const options = {
 				__none__: `(${this.$t('dont_show')})`,
-				..._.mapValues(fields, info => info.name)
+				...mapValues(fields, info => info.name)
 			};
 
 			// Check if one of the fields is `data`. If that's the case, make sure that this

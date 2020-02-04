@@ -31,6 +31,7 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
+import { clone, merge } from 'lodash';
 
 export default {
 	name: 'InterfaceOptions',
@@ -51,8 +52,8 @@ export default {
 	},
 	methods: {
 		stageValue(field, value) {
-			const oldValue = _.clone(this.value || {});
-			const newValue = _.merge(oldValue, { [field]: value });
+			const oldValue = clone(this.value || {});
+			const newValue = merge(oldValue, { [field]: value });
 			this.$emit('input', newValue);
 		}
 	}

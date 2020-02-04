@@ -62,6 +62,7 @@
 import formatFilters from '../helpers/format-filters';
 import { mapState } from 'vuex';
 import getFieldsFromTemplate from '@/helpers/get-fields-from-template';
+import { isEqual, find, mapValues, uniq } from 'lodash';
 
 export default {
 	name: 'VItems',
@@ -118,27 +119,27 @@ export default {
 			const primaryKeys = this.items.data.map(item => item[this.primaryKeyField]).sort();
 			const selection = [...this.selection];
 			selection.sort();
-			return this.selection.length > 0 && _.isEqual(primaryKeys, selection);
+			return this.selection.length > 0 && isEqual(primaryKeys, selection);
 		},
 		primaryKeyField() {
 			if (!this.fields) return;
-			return _.find(Object.values(this.fields), {
+			return find(Object.values(this.fields), {
 				primary_key: true
 			}).field;
 		},
 		sortField() {
-			const field = _.find(this.fields, { type: 'sort' });
+			const field = find(this.fields, { type: 'sort' });
 			return (field && field.field) || null;
 		},
 		statusField() {
-			const field = _.find(this.fields, { type: 'status' });
+			const field = find(this.fields, { type: 'status' });
 			return (field && field.field) || null;
 		},
 		userCreatedField() {
 			if (!this.fields) return null;
 
 			return (
-				_.find(
+				find(
 					Object.values(this.fields),
 					field => field.type && field.type.toLowerCase() === 'owner'
 				) || {}
@@ -147,7 +148,7 @@ export default {
 		fields() {
 			const fields = this.$store.state.collections[this.collection].fields;
 			return (
-				_.mapValues(fields, field => ({
+				mapValues(fields, field => ({
 					...field,
 					name: this.$helpers.formatField(field.field, field.collection)
 				})) || {}
@@ -155,30 +156,30 @@ export default {
 		},
 		selectionKeys() {
 			if (!this.selection) return null;
-			return _.uniq(this.selection.map(item => item[this.primaryKeyField]));
+			return uniq(this.selection.map(item => item[this.primaryKeyField]));
 		}
 	},
 	watch: {
 		collection(newVal, oldVal) {
-			if (_.isEqual(newVal, oldVal)) return;
+			if (isEqual(newVal, oldVal)) return;
 			this.hydrate();
 		},
 		viewQuery: {
 			deep: true,
 			handler(newVal, oldVal) {
-				if (_.isEqual(newVal, oldVal)) return;
+				if (isEqual(newVal, oldVal)) return;
 				this.getItems();
 			}
 		},
 		filters: {
 			deep: true,
 			handler(newVal, oldVal) {
-				if (_.isEqual(newVal, oldVal)) return;
+				if (isEqual(newVal, oldVal)) return;
 				this.getItems();
 			}
 		},
 		searchQuery(newVal, oldVal) {
-			if (_.isEqual(newVal, oldVal)) return;
+			if (isEqual(newVal, oldVal)) return;
 			this.getItems();
 		}
 	},
@@ -273,9 +274,9 @@ export default {
 				'select',
 				primaryKeys.map(key => {
 					return (
-						_.find(this.items.data, {
+						find(this.items.data, {
 							[this.primaryKeyField]: key
-						}) || _.find(this.selection, { [this.primaryKeyField]: key })
+						}) || find(this.selection, { [this.primaryKeyField]: key })
 					);
 				})
 			);

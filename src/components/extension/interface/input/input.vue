@@ -33,6 +33,7 @@ import componentExists from '../../../../helpers/component-exists';
 import InputFallback from './input-fallback.vue';
 import InputLoading from './input-loading.vue';
 import { datatypes } from '../../../../type-map';
+import { mapValues, keyBy } from 'lodash';
 
 export default {
 	name: 'VExtInput',
@@ -135,7 +136,7 @@ export default {
 			// The API sometimes defaults to an empty array instead of a value
 			if (Array.isArray(this.options)) return {};
 
-			const defaults = _.mapValues(
+			const defaults = mapValues(
 				this.currentInterface.options,
 				settings => settings.default || null
 			);
@@ -151,7 +152,7 @@ export default {
 		// rest of the app to use it as well
 		fieldsFormatted() {
 			if (Array.isArray(this.fields)) {
-				return _.keyBy(this.fields, 'field');
+				return keyBy(this.fields, 'field');
 			}
 
 			return this.fields;

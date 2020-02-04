@@ -9,6 +9,7 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
+import { find } from 'lodash';
 
 export default {
 	mixins: [mixin],
@@ -21,8 +22,8 @@ export default {
 		},
 		systemLanguageValues() {
 			const { languageField } = this.options;
-			const fullMatch = _.find(this.value, { [languageField]: this.systemLanguage });
-			const partialMatch = _.find(this.value, {
+			const fullMatch = find(this.value, { [languageField]: this.systemLanguage });
+			const partialMatch = find(this.value, {
 				[languageField]: this.systemLanguage.split('-')[0]
 			});
 

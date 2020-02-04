@@ -97,6 +97,7 @@
 import VDiff from './diff.vue';
 import { diff } from 'deep-object-diff';
 import Mousetrap from 'mousetrap';
+import { mapValues, clone } from 'lodash';
 
 export default {
 	name: 'VActivity',
@@ -204,7 +205,7 @@ export default {
 				if (this.activity[index].action === 'create') {
 					const data = revision.data;
 
-					return _.mapValues(data, (value, field) => ({
+					return mapValues(data, (value, field) => ({
 						before: null,
 						after: value,
 						field: field
@@ -220,13 +221,13 @@ export default {
 			const currentDelta = revision.delta;
 
 			// The API will save the delta no matter if it actually changed or not
-			const localDelta = diff(_.clone(previousData), _.clone(currentData));
+			const localDelta = diff(clone(previousData), clone(currentData));
 
 			const hasChanged = Object.keys(localDelta).length > 0;
 
 			if (hasChanged === false) return null;
 
-			return _.mapValues(currentDelta, (value, field) => ({
+			return mapValues(currentDelta, (value, field) => ({
 				before: previousData[field],
 				after: value,
 				field

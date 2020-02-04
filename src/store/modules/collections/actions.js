@@ -11,9 +11,10 @@ import {
 import { i18n } from '../../../lang/';
 import _ from 'lodash';
 import api from '../../../api';
+import { isEmpty, forEach, keyBy, clone, merge } from 'lodash';
 
 function updateTranslations(collection) {
-	if (_.isEmpty(collection.translation) === false) {
+	if (isEmpty(collection.translation) === false) {
 		collection.translation.forEach(({ translation, locale }) => {
 			i18n.mergeLocaleMessage(locale, {
 				collections: {
@@ -23,8 +24,8 @@ function updateTranslations(collection) {
 		});
 	}
 
-	_.forEach(collection.fields, (fieldInfo, fieldKey) => {
-		if (_.isEmpty(fieldInfo.translation) === false) {
+	forEach(collection.fields, (fieldInfo, fieldKey) => {
+		if (isEmpty(fieldInfo.translation) === false) {
 			fieldInfo.translation.forEach(({ translation, locale }) => {
 				i18n.mergeLocaleMessage(locale, {
 					fields: {
@@ -58,7 +59,7 @@ export async function getCollections({ commit }) {
 	let { data: collections } = await api.getCollections();
 
 	// Add the custom translations for user collections and fields to the i18n messages pool
-	_.forEach(collections, updateTranslations);
+	forEach(collections, updateTranslations);
 
 	/*
 	 * directus_settings uses a different format for the values. Instead of
@@ -73,8 +74,8 @@ export async function getCollections({ commit }) {
 
 	const { data: settingsFields } = await api.getSettingsFields();
 
-	collections = _.keyBy(collections, 'collection');
-	collections.directus_settings.fields = _.keyBy(settingsFields, 'field');
+	collections = keyBy(collections, 'collection');
+	collections.directus_settings.fields = keyBy(settingsFields, 'field');
 
 	commit(SET_COLLECTIONS, collections);
 }
@@ -89,7 +90,7 @@ export function removeCollection({ commit }, collection) {
 }
 
 export function updateCollection({ state, commit }, { collection, edits }) {
-	const collectionInfo = _.clone(state[collection]);
-	updateTranslations(_.merge({}, collectionInfo, edits));
+	const collectionInfo = clone(state[collection]);
+	updateTranslations(merge({}, collectionInfo, edits));
 	commit(UPDATE_COLLECTION, { collection, edits });
 }

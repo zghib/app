@@ -210,6 +210,7 @@
 
 <script>
 import isRelational from '@/helpers/is-relational';
+import { isObject, isEqual, isNil } from 'lodash';
 
 export default {
 	name: 'VTable',
@@ -288,16 +289,16 @@ export default {
 			const primaryKeyFields = this.items.map(item => item[this.primaryKeyField]).sort();
 			const selection = [...this.selection];
 			selection.sort();
-			return this.selection.length > 0 && _.isEqual(primaryKeyFields, selection);
+			return this.selection.length > 0 && isEqual(primaryKeyFields, selection);
 		},
 		selectable() {
 			return Array.isArray(this.selection);
 		},
 		sortable() {
-			return _.isObject(this.sortVal);
+			return isObject(this.sortVal);
 		},
 		resizeable() {
-			return _.isObject(this.columnWidths);
+			return isObject(this.columnWidths);
 		},
 		totalWidth() {
 			return (
@@ -341,7 +342,7 @@ export default {
 	methods: {
 		isRelational: isRelational,
 		isNil(val) {
-			return _.isNil(val);
+			return isNil(val);
 		},
 		selectAll() {
 			if (this.allSelected) {

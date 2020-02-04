@@ -77,12 +77,12 @@
 </template>
 
 <script>
-import { keyBy, mapValues } from 'lodash';
 import formatTitle from '@directus/format-title';
 import api from '../../api';
 import VPermissions from '../../components/permissions/permissions.vue';
 import { defaultNone } from '../../store/modules/permissions/defaults';
 import { mapState } from 'vuex';
+import { keyBy, mapValues, groupBy } from 'lodash';
 
 export default {
 	name: 'SettingsPermissions',
@@ -504,7 +504,7 @@ export default {
 					this.permissionsLoading = false;
 					this.savedPermissions = savedPermissions;
 
-					this.statuses = _.keyBy(
+					this.statuses = keyBy(
 						fields
 							.filter(field => field.type && field.type.toLowerCase() === 'status')
 							.map(field => ({
@@ -514,8 +514,8 @@ export default {
 						'collection'
 					);
 
-					this.permissionFields = _.mapValues(_.groupBy(fields, 'collection'), array =>
-						_.keyBy(array, 'field')
+					this.permissionFields = mapValues(groupBy(fields, 'collection'), array =>
+						keyBy(array, 'field')
 					);
 				})
 				.catch(error => {

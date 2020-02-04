@@ -170,7 +170,6 @@
 </template>
 
 <script>
-import { mapValues } from 'lodash';
 import shortid from 'shortid';
 import EventBus from '../events/';
 import { i18n } from '../lang/';
@@ -182,6 +181,7 @@ import VNotFound from './not-found.vue';
 import store from '../store/';
 import api from '../api';
 import { mapState } from 'vuex';
+import { mapValues, findIndex, find, merge, forEach, keyBy } from 'lodash';
 
 export default {
 	name: 'Edit',
@@ -399,7 +399,7 @@ export default {
 			return this.$store.state.collections[this.collection];
 		},
 		defaultValues() {
-			return _.mapValues(this.fields, field => {
+			return mapValues(this.fields, field => {
 				if (field.type === 'array') {
 					if ((field.default_value || '').includes(',')) {
 						return field.default_value.split(',');
@@ -451,7 +451,7 @@ export default {
 			if (!this.collectionInfo.status_mapping || !this.statusField) return null;
 
 			const statusKeys = Object.keys(this.collectionInfo.status_mapping);
-			const index = _.findIndex(Object.values(this.collectionInfo.status_mapping), {
+			const index = findIndex(Object.values(this.collectionInfo.status_mapping), {
 				soft_delete: true
 			});
 			return statusKeys[index];
@@ -461,7 +461,7 @@ export default {
 			return this.collectionInfo && this.collectionInfo.single === true;
 		},
 		primaryKeyField() {
-			return _.find(this.fields, { primary_key: true }).field;
+			return find(this.fields, { primary_key: true }).field;
 		},
 		batch() {
 			return this.primaryKey.includes(',');
@@ -469,7 +469,7 @@ export default {
 		statusField() {
 			if (!this.fields) return null;
 			return (
-				_.find(
+				find(
 					Object.values(this.fields),
 					field => field.type && field.type.toLowerCase() === 'status'
 				) || {}
@@ -485,7 +485,7 @@ export default {
 			if (this.batch) {
 				if (this.statusField) {
 					const statuses = this.savedValues.map(item => item[this.statusField]);
-					return _.merge({}, ...statuses.map(status => permission.statuses[status]));
+					return merge({}, ...statuses.map(status => permission.statuses[status]));
 				}
 
 				return permission;
@@ -650,7 +650,7 @@ export default {
 				const values = Object.assign({}, this.values);
 
 				// Delete fields that shouldn't / can't be duplicated
-				_.forEach(this.fields, (info, fieldName) => {
+				forEach(this.fields, (info, fieldName) => {
 					if (info.primary_key === true) delete values[fieldName];
 
 					switch (info.type.toLowerCase()) {
@@ -857,7 +857,7 @@ export default {
 								comment: act.comment
 							};
 						}),
-						revisions: _.keyBy(revisions, 'activity')
+						revisions: keyBy(revisions, 'activity')
 					};
 				})
 				.then(({ activity, revisions }) => {

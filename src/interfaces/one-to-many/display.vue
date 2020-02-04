@@ -10,6 +10,7 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
+import { forEach } from 'lodash';
 
 export default {
 	name: 'ReadonlyOneToMany',
@@ -22,7 +23,7 @@ export default {
 		},
 		menuOptions() {
 			var options = [];
-			_.forEach(this.value, value => {
+			forEach(this.value, value => {
 				options.push({
 					text: this.$helpers.micromustache.render(this.options.template, value)
 				});

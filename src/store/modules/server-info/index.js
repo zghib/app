@@ -1,5 +1,6 @@
 import mutations from './mutations';
 import * as actions from './actions';
+import { clone } from 'lodash';
 
 export const initialState = {
 	apiVersion: null,
@@ -11,7 +12,7 @@ export const initialState = {
 };
 
 export default {
-	state: _.clone(initialState),
+	state: clone(initialState),
 	mutations,
 	actions
 };

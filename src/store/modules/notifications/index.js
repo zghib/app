@@ -1,10 +1,11 @@
 import mutations from './mutations';
+import { clone } from 'lodash';
 
 export const initialState = {
 	queue: []
 };
 
 export default {
-	state: _.clone(initialState),
+	state: clone(initialState),
 	mutations
 };

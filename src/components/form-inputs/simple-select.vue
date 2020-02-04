@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { isEqual } from 'lodash';
+
 export default {
 	name: 'VSimpleSelect',
 	props: {
@@ -67,7 +69,7 @@ export default {
 				valueNames[element.value.trim()] = element.innerText.trim();
 			});
 
-			if (!_.isEqual(valueNames, this.valueNames)) {
+			if (!isEqual(valueNames, this.valueNames)) {
 				this.valueNames = valueNames;
 			}
 		}

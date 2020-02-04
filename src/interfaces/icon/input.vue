@@ -44,6 +44,7 @@
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import icons from './icons.json';
+import { flatten } from 'lodash';
 
 export default {
 	mixins: [mixin],
@@ -57,7 +58,7 @@ export default {
 			return icons;
 		},
 		iconsArray() {
-			return _.flatten(Object.values(this.icons));
+			return flatten(Object.values(this.icons));
 		},
 		filteredArray() {
 			return this.iconsArray.filter(icon => icon.includes(this.searchText.toLowerCase()));

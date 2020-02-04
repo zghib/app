@@ -53,6 +53,7 @@ import { TOGGLE_NAV } from './store/mutation-types';
 import VNavSidebar from './components/sidebars/nav-sidebar/nav-sidebar.vue';
 import VNotification from './components/notifications/notifications.vue';
 import isCloudProject from '@/helpers/is-cloud-project';
+import { clone } from 'lodash';
 
 export default {
 	name: 'Directus',
@@ -171,7 +172,7 @@ export default {
 					this.$store.dispatch('getProjects');
 				}
 
-				const query = _.clone(this.$route.query);
+				const query = clone(this.$route.query);
 				delete query.project;
 				this.$router.replace({ query });
 			}

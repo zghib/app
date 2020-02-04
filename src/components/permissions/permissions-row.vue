@@ -345,6 +345,7 @@
 
 <script>
 import VPermissionsToggle from './permissions-toggle.vue';
+import { find, forEach } from 'lodash';
 
 export default {
 	name: 'VPermissionsRow',
@@ -382,7 +383,7 @@ export default {
 	},
 	computed: {
 		primaryKeyFieldName() {
-			return _.find(this.fields, { primary_key: true }).field;
+			return find(this.fields, { primary_key: true }).field;
 		},
 		fieldsWithoutPK() {
 			const fieldsCopy = Object.assign({}, this.fields);
@@ -416,7 +417,7 @@ export default {
 			if (this.statuses) {
 				let all = true;
 
-				_.forEach(this.permission, permission => {
+				forEach(this.permission, permission => {
 					if (
 						permission.read_field_blacklist.length > 0 ||
 						permission.write_field_blacklist.length > 0
@@ -438,7 +439,7 @@ export default {
 			return true;
 		},
 		userCreatedField() {
-			return _.find(this.fields, field => field.type && field.type.toLowerCase() === 'owner');
+			return find(this.fields, field => field.type && field.type.toLowerCase() === 'owner');
 		},
 		permissionOptions() {
 			// To provide all options for core table as well as those collections which contains usercreated field
@@ -512,7 +513,7 @@ export default {
 
 			let value = this.permission[Object.keys(this.statuses)[0]][field];
 
-			_.forEach(this.permission, (status, name) => {
+			forEach(this.permission, (status, name) => {
 				if (name !== '$create' && status[field] !== value) value = 'indeterminate';
 			});
 

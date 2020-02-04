@@ -73,6 +73,7 @@
 import mixin from '@directus/extension-toolkit/mixins/layout';
 import Calendar from './Calendar.vue';
 import Popup from './Popup.vue';
+import { throtle } from 'lodash';
 
 export default {
 	components: {
@@ -141,7 +142,7 @@ export default {
 	},
 	created() {
 		this.getData(this.date);
-		this.scroll = _.throttle(this.scroll, 200);
+		this.scroll = throttle(this.scroll, 200);
 		document.addEventListener('click', this.documentClick);
 		document.addEventListener('keypress', this.keyPress);
 	},
@@ -267,18 +268,18 @@ export default {
 					time = item[timeId] && timeId != 0 ? item[timeId] : '';
 				}
 				if (!eventDate) continue;
-				
-				var color = item[colorId] || "accent";
-				var colorOutput = "background-color: ";
 
-				if(color.match(/^\d{1,3},\d{1,3},\d{1,3}$/)) {
-				  colorOutput += `rgb(${color})`
-				} else if(color.match(/^#[0-9a-f]{3,6}$/i)) {
-				  colorOutput += color
+				var color = item[colorId] || 'accent';
+				var colorOutput = 'background-color: ';
+
+				if (color.match(/^\d{1,3},\d{1,3},\d{1,3}$/)) {
+					colorOutput += `rgb(${color})`;
+				} else if (color.match(/^#[0-9a-f]{3,6}$/i)) {
+					colorOutput += color;
 				} else {
-				  colorOutput += `var(--${color})`;
+					colorOutput += `var(--${color})`;
 				}
-				color = colorOutput
+				color = colorOutput;
 
 				if (this.isSameDay(date, eventDate)) {
 					var event = {

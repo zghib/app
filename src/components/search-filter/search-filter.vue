@@ -105,6 +105,7 @@
 
 <script>
 import VBlocker from '../blocker.vue';
+import { debounce, cloneDeep } from 'lodash';
 
 export default {
 	name: 'SearchFilter',
@@ -175,8 +176,8 @@ export default {
 		}
 	},
 	created() {
-		this.search = _.debounce(this.search, 300);
-		this.updateFilter = _.debounce(this.updateFilter, 300);
+		this.search = debounce(this.search, 300);
+		this.updateFilter = debounce(this.updateFilter, 300);
 	},
 	mounted() {
 		window.addEventListener('click', this.closeFilter);
@@ -199,13 +200,13 @@ export default {
 			]);
 		},
 		updateFilter(index, key, value) {
-			const filters = _.cloneDeep(this.filters);
+			const filters = cloneDeep(this.filters);
 			filters[index][key] = value;
 
 			this.$emit('filter', filters);
 		},
 		deleteFilter(index) {
-			const filters = _.cloneDeep(this.filters);
+			const filters = cloneDeep(this.filters);
 			filters.splice(index, 1);
 
 			this.$emit('filter', filters);

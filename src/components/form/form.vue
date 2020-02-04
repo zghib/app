@@ -23,6 +23,7 @@
 <script>
 import VField from './field.vue';
 import { defaultFull } from '../../store/modules/permissions/defaults';
+import { keyBy, cloneDeep } from 'lodash';
 
 export default {
 	name: 'VForm',
@@ -87,7 +88,7 @@ export default {
 		// rest of the app to use it as well
 		fieldsFormatted() {
 			if (Array.isArray(this.fields)) {
-				return _.keyBy(this.fields, 'field');
+				return keyBy(this.fields, 'field');
 			}
 
 			return this.fields;
@@ -98,7 +99,7 @@ export default {
 		filteredFields() {
 			const readFieldBlacklist = this.permissions.read_field_blacklist || [];
 			const writeFieldBlacklist = this.permissions.write_field_blacklist || [];
-			let fields = Object.values(_.cloneDeep(this.fieldsFormatted));
+			let fields = Object.values(cloneDeep(this.fieldsFormatted));
 
 			// Filter out all the fields that are listed in the field read blacklist
 			fields = fields.filter(fieldInfo => {

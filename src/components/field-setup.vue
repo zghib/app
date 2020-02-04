@@ -593,6 +593,7 @@ import formatTitle from '@directus/format-title';
 import mapping, { datatypes } from '../type-map';
 import { defaultFull } from '../store/modules/permissions/defaults';
 import slug from 'slug';
+import { cloneDeep, pickBy, find, findIndex, forEach } from 'lodash';
 
 export default {
 	name: 'VFieldSetup',
@@ -689,7 +690,7 @@ export default {
 			};
 		},
 		collections() {
-			return _.cloneDeep(this.$store.state.collections);
+			return cloneDeep(this.$store.state.collections);
 		},
 		collectionsGrouped() {
 			let restrictedCollection = [
@@ -706,7 +707,7 @@ export default {
 			return { system, user };
 		},
 		interfaces() {
-			return _.cloneDeep(this.$store.state.extensions.interfaces);
+			return cloneDeep(this.$store.state.extensions.interfaces);
 		},
 		interfacesPopular() {
 			const groups = [
@@ -741,7 +742,7 @@ export default {
 				.map(interfaceName => ({ ...this.interfaces[interfaceName] }));
 		},
 		databaseVendor() {
-			return _.cloneDeep(this.$store.state.serverInfo.databaseVendor);
+			return cloneDeep(this.$store.state.serverInfo.databaseVendor);
 		},
 		primaryKeyDisabled() {
 			if (!this.primaryKeyField) return false;
@@ -765,8 +766,8 @@ export default {
 		interfaceOptions() {
 			if (!this.selectedInterfaceInfo) return null;
 			const options = Object.assign({}, this.selectedInterfaceInfo.options);
-			const regular = _.pickBy(options, opt => !opt.advanced);
-			const advanced = _.pickBy(options, opt => opt.advanced === true);
+			const regular = pickBy(options, opt => !opt.advanced);
+			const advanced = pickBy(options, opt => opt.advanced === true);
 
 			return { regular, advanced };
 		},
@@ -905,12 +906,12 @@ export default {
 			return false;
 		},
 		primaryKeyField() {
-			return _.find(this.collectionInfo.fields, {
+			return find(this.collectionInfo.fields, {
 				primary_key: true
 			});
 		},
 		currentM2MIndex() {
-			const index = _.findIndex(this.relationInfoM2M, info => {
+			const index = findIndex(this.relationInfoM2M, info => {
 				return info.collection_one === this.collectionInfo.collection;
 			});
 
@@ -934,7 +935,7 @@ export default {
 					...this.interfaceOptions.regular
 				};
 
-				_.forEach(options, (info, key) => {
+				forEach(options, (info, key) => {
 					this.$set(this.options, key, info.default);
 				});
 			}
@@ -1214,7 +1215,7 @@ export default {
 			// that way). +1 for future optimizations!
 			const fieldName = this.fieldInfo.field;
 			const collectionName = this.collectionInfo.collection;
-			const storeFieldCopy = _.cloneDeep(
+			const storeFieldCopy = cloneDeep(
 				this.$store.state.collections[collectionName].fields[fieldName]
 			);
 
@@ -1236,10 +1237,10 @@ export default {
 			const field = this.field;
 
 			if (this.relation === 'm2o') {
-				const existingRelation = _.cloneDeep(this.$store.getters.m2o(collection, field));
+				const existingRelation = cloneDeep(this.$store.getters.m2o(collection, field));
 
 				if (existingRelation) {
-					_.forEach(existingRelation, (val, key) => {
+					forEach(existingRelation, (val, key) => {
 						if (key && val && key.startsWith('collection')) {
 							return this.$set(this.relationInfo, key, val.collection);
 						}
@@ -1256,18 +1257,18 @@ export default {
 					this.relationInfo.collection_many = this.collectionInfo.collection;
 					this.relationInfo.field_many = this.field;
 					this.relationInfo.collection_one = Object.values(
-						_.cloneDeep(this.$store.state.collections)
+						cloneDeep(this.$store.state.collections)
 					)[0].collection;
-					this.relationInfo.field_one = _.find(
-						Object.values(_.cloneDeep(this.$store.state.collections))[0].fields,
+					this.relationInfo.field_one = find(
+						Object.values(cloneDeep(this.$store.state.collections))[0].fields,
 						{ primary_key: true }
 					).field;
 				}
 			} else if (this.relation === 'o2m') {
-				const existingRelation = _.cloneDeep(this.$store.getters.o2m(collection, field));
+				const existingRelation = cloneDeep(this.$store.getters.o2m(collection, field));
 
 				if (existingRelation) {
-					_.forEach(existingRelation, (val, key) => {
+					forEach(existingRelation, (val, key) => {
 						if (key && val && key.startsWith('collection')) {
 							return this.$set(this.relationInfo, key, val.collection);
 						}
@@ -1285,18 +1286,18 @@ export default {
 					this.relationInfo.field_one = this.field;
 
 					this.relationInfo.collection_many = Object.values(
-						_.cloneDeep(this.$store.state.collections)
+						cloneDeep(this.$store.state.collections)
 					)[0].collection;
 
-					this.relationInfo.field_many = _.find(
-						Object.values(_.cloneDeep(this.$store.state.collections))[0].fields,
+					this.relationInfo.field_many = find(
+						Object.values(cloneDeep(this.$store.state.collections))[0].fields,
 						{ primary_key: false }
 					).field;
 
 					this.getM2OID();
 				}
 			} else if (this.relation === 'm2m') {
-				const existingRelation = _.cloneDeep(this.$store.getters.o2m(collection, field));
+				const existingRelation = cloneDeep(this.$store.getters.o2m(collection, field));
 
 				if (field && existingRelation) {
 					this.relationInfoM2M[0].id = existingRelation.id;
@@ -1372,7 +1373,7 @@ export default {
 			const collection = this.relationInfo.collection_many;
 			const field = this.relationInfo.field_many;
 
-			const m2o = _.cloneDeep(this.$store.getters.m2o(collection, field));
+			const m2o = cloneDeep(this.$store.getters.m2o(collection, field));
 
 			if (m2o) {
 				this.relationInfo.id = m2o.id;
@@ -1396,7 +1397,7 @@ export default {
 		},
 		primaryKeyFieldByCollection(collection) {
 			const fields = this.fields(collection);
-			return _.find(fields, { primary_key: true });
+			return find(fields, { primary_key: true });
 		},
 		validateFieldName(string) {
 			// Based on https://gist.github.com/mathewbyrne/1280286

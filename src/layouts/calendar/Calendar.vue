@@ -16,6 +16,7 @@
 
 <script>
 import Day from './Day.vue';
+import { throttle } from 'lodash';
 
 export default {
 	components: {
@@ -47,7 +48,7 @@ export default {
 		}
 	},
 	created() {
-		this.updateHeight = _.throttle(this.updateHeight, 100);
+		this.updateHeight = throttle(this.updateHeight, 100);
 		window.addEventListener('resize', () => {
 			this.updateHeight();
 		});

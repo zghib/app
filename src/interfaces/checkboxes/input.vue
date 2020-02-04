@@ -38,6 +38,7 @@
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import shortid from 'shortid';
+import { isEqual, clone } from 'lodash';
 
 export default {
 	name: 'InterfaceCheckboxes',
@@ -54,7 +55,7 @@ export default {
 				if (this.initialized !== true) return;
 				let newValue = val.filter(choice => choice.checked).map(choice => choice.key);
 
-				if (_.isEqual(this.value, newValue)) {
+				if (isEqual(this.value, newValue)) {
 					return;
 				}
 
@@ -71,7 +72,7 @@ export default {
 	},
 	methods: {
 		initChoices() {
-			const optionChoices = _.clone(this.options.choices || []);
+			const optionChoices = clone(this.options.choices || []);
 			const initialValues = this.value ? this.value : [];
 			let choices = initialValues
 				.filter(key => key) // filter out empty strings

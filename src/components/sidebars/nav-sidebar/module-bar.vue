@@ -84,6 +84,7 @@
 import VLogo from './logo';
 import { mapState, mapGetters } from 'vuex';
 import { UPDATE_PROJECT, RESET } from '@/store/mutation-types';
+import { clone, forEach } from 'lodash';
 
 export default {
 	name: 'ModuleBar',
@@ -106,7 +107,7 @@ export default {
 				Array.isArray(this.currentUser.role?.module_listing) &&
 				this.currentUser.role?.module_listing.length > 0
 			) {
-				modules = _.clone(this.currentUser.role.module_listing);
+				modules = clone(this.currentUser.role.module_listing);
 			} else {
 				modules = this.getDefaultModules();
 			}
@@ -183,7 +184,7 @@ export default {
 
 			const moduleExtensions = this.$store.state.extensions.modules;
 
-			_.forEach(moduleExtensions, (info, key) => {
+			forEach(moduleExtensions, (info, key) => {
 				modules.push({
 					link: `/${this.currentProjectKey}/ext/${key}`,
 					name: info.name,

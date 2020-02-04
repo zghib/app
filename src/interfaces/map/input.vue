@@ -55,6 +55,7 @@
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import leaflet from 'leaflet';
 import './leaflet.css';
+import { debounce } from 'lodash';
 
 export default {
 	name: 'InterfaceMap',
@@ -219,7 +220,7 @@ export default {
 			// Handle drag event of marker.
 			this.marker.on(
 				'drag',
-				_.debounce(e => {
+				debounce(e => {
 					this.setValue(e.latlng);
 				}, 100)
 			);

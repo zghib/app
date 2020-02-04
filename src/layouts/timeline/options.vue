@@ -51,6 +51,7 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/layout';
+import { mapValues, pickBy, keys } from 'lodash';
 
 export default {
 	mixins: [mixin],
@@ -64,14 +65,14 @@ export default {
 		contentOptions() {
 			var options = {
 				__none__: `(${this.$t('dont_show')})`,
-				..._.mapValues(this.fields, info =>
+				...mapValues(this.fields, info =>
 					['integer', 'string', 'user'].includes(info.type) ? info.name : null
 				)
 			};
-			return _.pickBy(options, _.identity);
+			return pickBy(options, identity);
 		},
 		titleValidator() {
-			var fields = _.keys(this.fields); //this.getKeys(this.fields)
+			var fields = keys(this.fields); //this.getKeys(this.fields)
 			fields = fields
 				.toString()
 				.replace('"', '')
@@ -84,22 +85,22 @@ export default {
 		textOptions() {
 			var options = {
 				__none__: `(${this.$t('dont_show')})`,
-				..._.mapValues(this.fields, info =>
+				...mapValues(this.fields, info =>
 					info.type == 'string' || info.type == 'integer' ? info.name : null
 				)
 			};
-			return _.pickBy(options, _.identity);
+			return pickBy(options, identity);
 		},
 		dateOptions() {
-			var options = _.mapValues(this.fields, info =>
+			var options = mapValues(this.fields, info =>
 				['date', 'datetime'].includes(info.type) ? info.name : null
 			);
-			return _.pickBy(options, _.identity);
+			return pickBy(options, identity);
 		}
 	},
 	methods: {
 		getKeys(obj) {
-			var keys = _.keys(obj);
+			var keys = keys(obj);
 			var subKeys = [];
 			for (var i = 0; i < keys.length; i++) {
 				if (typeof obj[keys[i]] === 'object') {

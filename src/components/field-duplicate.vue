@@ -49,6 +49,8 @@
 
 <script>
 import { datatypes } from '../type-map';
+import { cloneDeep } from 'lodash';
+
 export default {
 	name: 'VFieldDuplicate',
 	props: {
@@ -71,7 +73,7 @@ export default {
 	},
 	computed: {
 		databaseVendor() {
-			return _.cloneDeep(this.$store.state.serverInfo.databaseVendor);
+			return cloneDeep(this.$store.state.serverInfo.databaseVendor);
 		},
 		selectedDatatypeInfo() {
 			return datatypes[this.databaseVendor][this.fieldInfo.datatype];

@@ -159,6 +159,7 @@ import VSearchFilter from '../components/search-filter/search-filter.vue';
 import VCreateBookmark from '../components/bookmarks/create-bookmark.vue';
 import VNotFound from './not-found.vue';
 import { mapState } from 'vuex';
+import { isEqual, isEmpty, isNil, find, findIndex, keyBy } from 'lodash';
 
 import api from '../api';
 
@@ -294,7 +295,7 @@ export default {
 					view_type: bookmark.view_type,
 					view_query: bookmark.view_query
 				};
-				return _.isEqual(bookmarkPreferences, preferences);
+				return isEqual(bookmarkPreferences, preferences);
 			})[0];
 			return currentBookmark || null;
 		},
@@ -372,9 +373,8 @@ export default {
 			if (!this.meta || !this.preferences) return this.$t('loading');
 
 			const isFiltering =
-				!_.isEmpty(this.preferences.filters) ||
-				(!_.isNil(this.preferences.search_query) &&
-					this.preferences.search_query.length > 0);
+				!isEmpty(this.preferences.filters) ||
+				(!isNil(this.preferences.search_query) && this.preferences.search_query.length > 0);
 
 			// We're showing the collection total count, until we hit the last page of infinite scrolling.
 			// At that point, we'll rely on the local count that's being set by the items.vue child component
@@ -414,7 +414,7 @@ export default {
 		statusField() {
 			const fields = this.$store.state.collections[this.collection].fields;
 			if (!fields) return null;
-			let fieldsObj = _.find(fields, { type: 'status' });
+			let fieldsObj = find(fields, { type: 'status' });
 			return fieldsObj && fieldsObj.field ? fieldsObj.field : null;
 		},
 
@@ -425,7 +425,7 @@ export default {
 			if (!this.collectionInfo.status_mapping || !this.statusField) return null;
 
 			const statusKeys = Object.keys(this.collectionInfo.status_mapping);
-			const index = _.findIndex(Object.values(this.collectionInfo.status_mapping), {
+			const index = findIndex(Object.values(this.collectionInfo.status_mapping), {
 				soft_delete: true
 			});
 			return statusKeys[index];
@@ -435,14 +435,14 @@ export default {
 			if (!this.fields) return null;
 
 			return (
-				_.find(Object.values(this.fields), field => field.type.toLowerCase() === 'owner') ||
+				find(Object.values(this.fields), field => field.type.toLowerCase() === 'owner') ||
 				{}
 			).field;
 		},
 		primaryKeyField() {
 			const fields = this.$store.state.collections[this.collection].fields;
 			if (!fields) return null;
-			let fieldsObj = _.find(fields, { primary_key: true });
+			let fieldsObj = find(fields, { primary_key: true });
 			return fieldsObj && fieldsObj.field ? fieldsObj.field : null;
 		},
 		permissions() {
@@ -552,7 +552,7 @@ export default {
 		}
 	},
 	methods: {
-		keyBy: _.keyBy,
+		keyBy: keyBy,
 		setMeta(meta) {
 			this.meta = meta;
 		},

@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import _ from 'lodash';
+import { mapValues, find, forEach } from 'lodash';
 
 import {
 	RESET,
@@ -21,8 +21,8 @@ const mutations = {
 		});
 	},
 	[SET_COLLECTIONS](state, data) {
-		const collections = _.mapValues(_.keyBy(data, 'collection'), info => {
-			const statusField = _.find(info.fields, { interface: 'status' });
+		const collections = mapValues(keyBy(data, 'collection'), info => {
+			const statusField = find(info.fields, { interface: 'status' });
 			let status_mapping =
 				statusField && statusField.options && statusField.options.status_mapping;
 
@@ -36,7 +36,7 @@ const mutations = {
 			};
 		});
 
-		_.forEach(collections, (value, key) => {
+		forEach(collections, (value, key) => {
 			Vue.set(state, key, value);
 		});
 	},
@@ -57,7 +57,7 @@ const mutations = {
 	},
 
 	[UPDATE_COLLECTION](state, { collection, edits }) {
-		_.forEach(edits, (value, key) => {
+		forEach(edits, (value, key) => {
 			Vue.set(state[collection], key, value);
 		});
 	},

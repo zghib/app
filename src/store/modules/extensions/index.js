@@ -1,5 +1,6 @@
 import * as actions from './actions';
 import mutations from './mutations';
+import { clone } from 'lodash';
 
 export const initialState = {
 	layouts: {},
@@ -8,7 +9,7 @@ export const initialState = {
 };
 
 export default {
-	state: _.clone(initialState),
+	state: clone(initialState),
 	actions,
 	mutations
 };

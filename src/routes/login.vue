@@ -89,6 +89,7 @@ import { mapState, mapGetters, mapMutations } from 'vuex';
 import { UPDATE_PROJECT } from '@/store/mutation-types';
 import hydrateStore from '@/hydrate';
 import OtpInput from '@/components/public/otp-input';
+import { clone } from 'lodash';
 
 export default {
 	name: 'Login',
@@ -307,7 +308,7 @@ export default {
 				};
 
 				// Remove query params
-				const query = _.clone(this.$route.query);
+				const query = clone(this.$route.query);
 				delete query.error;
 				delete query.code;
 				this.$router.replace({ query });

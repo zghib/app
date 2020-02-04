@@ -31,6 +31,7 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
+import { mapValues, clone, find, merge } from 'lodash';
 
 export default {
 	mixins: [mixin],
@@ -48,8 +49,8 @@ export default {
 				return;
 			}
 
-			return _.mapValues(this.relation.collection_many.fields, field => {
-				field = _.clone(field); // remove vue reactivity
+			return mapValues(this.relation.collection_many.fields, field => {
+				field = clone(field); // remove vue reactivity
 
 				// Prevent updating the recursive relational key
 				if (field.field === this.relation.field_many.field) {
@@ -60,10 +61,10 @@ export default {
 			});
 		},
 		defaults() {
-			return _.mapValues(_.clone(this.translatedFields), f => f.default_value);
+			return mapValues(clone(this.translatedFields), f => f.default_value);
 		},
 		existing() {
-			return _.find(this.initialValues, {
+			return find(this.initialValues, {
 				[this.options.languageField]: this.currentLanguage
 			});
 		},
@@ -73,17 +74,17 @@ export default {
 			).field;
 		},
 		currentLanguageValues() {
-			const existingChanges = _.find(this.relationalChanges, {
+			const existingChanges = find(this.relationalChanges, {
 				[this.options.languageField]: this.currentLanguage
 			});
 
-			return _.merge({}, this.existing || this.defaults, existingChanges);
+			return merge({}, this.existing || this.defaults, existingChanges);
 		},
 		relationshipSetup() {
 			return !!this.relation?.collection_many;
 		},
 		currentPrimaryKey() {
-			const { field } = _.find(this.fields, { primary_key: true });
+			const { field } = find(this.fields, { primary_key: true });
 			return this.values[field];
 		}
 	},
@@ -102,14 +103,14 @@ export default {
 	},
 	methods: {
 		saveLanguage({ field, value }) {
-			const existingChanges = _.find(this.relationalChanges, {
+			const existingChanges = find(this.relationalChanges, {
 				[this.options.languageField]: this.currentLanguage
 			});
 
 			if (existingChanges) {
 				this.relationalChanges = this.relationalChanges.map(update => {
 					if (update[this.options.languageField] === this.currentLanguage) {
-						return _.merge({}, update, { [field]: value });
+						return merge({}, update, { [field]: value });
 					}
 
 					return update;
@@ -121,7 +122,7 @@ export default {
 				};
 
 				if (this.existing) {
-					const primaryKeyField = _.find(this.translatedFields, { primary_key: true })
+					const primaryKeyField = find(this.translatedFields, { primary_key: true })
 						.field;
 					const relatedPrimaryKey = this.existing[primaryKeyField];
 					update[primaryKeyField] = relatedPrimaryKey;

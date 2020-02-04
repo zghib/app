@@ -68,6 +68,7 @@ import 'tinymce/plugins/fullscreen/plugin';
 import 'tinymce/plugins/directionality/plugin';
 
 import Editor from '@tinymce/tinymce-vue';
+import { debounce } from 'lodash';
 
 function cssVar(name) {
 	return getComputedStyle(document.body).getPropertyValue(name);
@@ -272,7 +273,7 @@ export default {
 		}
 	},
 	created() {
-		this.updateValue = _.debounce(this.updateValue, 200);
+		this.updateValue = debounce(this.updateValue, 200);
 	},
 	methods: {
 		updateValue() {

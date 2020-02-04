@@ -122,6 +122,7 @@ import mixin from '@directus/extension-toolkit/mixins/interface';
 import Cropper from 'cropperjs';
 import 'cropperjs/dist/cropper.min.css';
 import shortid from 'shortid';
+import { has } from 'lodash';
 
 export default {
 	mixins: [mixin],
@@ -155,7 +156,7 @@ export default {
 			const requiredFields = ['type', 'filesize', 'data', 'id'];
 			let valid = true;
 			requiredFields.forEach(field => {
-				if (_.has(this.values, field) === false) {
+				if (has(this.values, field) === false) {
 					valid = false;
 				}
 			});

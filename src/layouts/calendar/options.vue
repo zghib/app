@@ -68,6 +68,7 @@
 
 <script>
 import mixin from '@directus/extension-toolkit/mixins/layout';
+import { mapValues, pickBy, identity } from 'lodash';
 
 export default {
 	mixins: [mixin],
@@ -78,38 +79,38 @@ export default {
 	},
 	computed: {
 		textOptions() {
-			var options = _.mapValues(this.fields, info =>
+			var options = mapValues(this.fields, info =>
 				info.type == 'string' || info.type == 'integer' ? info.name : null
 			);
-			return _.pickBy(options, _.identity);
+			return pickBy(options, identity);
 		},
 		dateOptions() {
 			var options = {
 				__none__: `(${this.$t('dont_show')})`,
-				..._.mapValues(this.fields, info => (info.type == 'date' ? info.name : null))
+				...mapValues(this.fields, info => (info.type == 'date' ? info.name : null))
 			};
-			return _.pickBy(options, _.identity);
+			return pickBy(options, identity);
 		},
 		datetimeOptions() {
 			var options = {
 				__none__: `(${this.$t('dont_show')})`,
-				..._.mapValues(this.fields, info => (info.type == 'datetime' ? info.name : null))
+				...mapValues(this.fields, info => (info.type == 'datetime' ? info.name : null))
 			};
-			return _.pickBy(options, _.identity);
+			return pickBy(options, identity);
 		},
 		timeOptions() {
 			var options = {
 				__none__: `(${this.$t('dont_show')})`,
-				..._.mapValues(this.fields, info => (info.type == 'time' ? info.name : null))
+				...mapValues(this.fields, info => (info.type == 'time' ? info.name : null))
 			};
-			return _.pickBy(options, _.identity);
+			return pickBy(options, identity);
 		},
 		colorOptions() {
 			var options = {
 				__none__: `(${this.$t('dont_show')})`,
-				..._.mapValues(this.fields, info => (info.type == 'string' ? info.name : null))
+				...mapValues(this.fields, info => (info.type == 'string' ? info.name : null))
 			};
-			return _.pickBy(options, _.identity);
+			return pickBy(options, identity);
 		}
 	},
 	methods: {

@@ -59,6 +59,8 @@ import 'codemirror/keymap/sublime.js';
 
 import mixin from '@directus/extension-toolkit/mixins/interface';
 
+import { isObject, isArray } from 'lodash';
+
 export default {
 	name: 'InterfaceCode',
 	components: {
@@ -158,7 +160,7 @@ export default {
 			}
 		},
 		fillTemplate() {
-			if (_.isObject(this.options.template) || _.isArray(this.options.template)) {
+			if (isObject(this.options.template) || isArray(this.options.template)) {
 				return this.$emit('input', JSON.stringify(this.options.template, null, 4));
 			}
 

@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import api from '../../../api';
 import { SET_SETTINGS, SET_SETTING } from '@/store/mutation-types';
+import { isNil } from 'lodash';
 
 export async function getSettings({ commit }) {
 	const { data: settings } = await api.getSettings();
@@ -16,7 +17,7 @@ export function setSettings({ dispatch }, settings) {
 export async function setSetting({ commit, state }, { key, value }) {
 	const settingPrimaryKey = state.primaryKeys[key];
 
-	if (_.isNil(settingPrimaryKey)) {
+	if (isNil(settingPrimaryKey)) {
 		const { data: setting } = await api.createItem('directus_settings', {
 			key,
 			value

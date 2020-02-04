@@ -150,6 +150,7 @@ import store from '@/store/';
 import VSearchFilter from '../components/search-filter/search-filter.vue';
 import VNotFound from './not-found.vue';
 import { mapState } from 'vuex';
+import { isEqual, isEmpty, isNil, keyBy } from 'lodash';
 
 import api from '../api';
 
@@ -225,7 +226,7 @@ export default {
 					view_type: bookmark.view_type,
 					view_query: bookmark.view_query
 				};
-				return _.isEqual(bookmarkPreferences, preferences);
+				return isEqual(bookmarkPreferences, preferences);
 			})[0];
 			return currentBookmark || null;
 		},
@@ -264,9 +265,8 @@ export default {
 			if (!this.meta || !this.preferences) return this.$t('loading');
 
 			const isFiltering =
-				!_.isEmpty(this.preferences.filters) ||
-				(!_.isNil(this.preferences.search_query) &&
-					this.preferences.search_query.length > 0);
+				!isEmpty(this.preferences.filters) ||
+				(!isNil(this.preferences.search_query) && this.preferences.search_query.length > 0);
 
 			return isFiltering
 				? this.$tc('item_count_filter', this.meta.result_count, {
@@ -298,7 +298,7 @@ export default {
 		}
 	},
 	methods: {
-		keyBy: _.keyBy,
+		keyBy: keyBy,
 		cancelBookmark() {
 			this.bookmarkTitle = '';
 			this.bookmarkModal = false;
