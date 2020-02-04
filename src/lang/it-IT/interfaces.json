@@ -8,7 +8,7 @@
 			"choices": "Scelta multipla",
 			"choices_comment": "Inserisci le coppie di valori delle chiavi JSON con il valore salvato e il testo visualizzato.",
 			"theme": "Tema dell'interfaccia",
-			"theme_comment": "Set the theme of the interface if supported",
+			"theme_comment": "Imposta il tema dell'interfaccia se supportato",
 			"value": "Valore",
 			"flight": "Volo",
 			"cruise": "Crociera",
@@ -150,12 +150,12 @@
 			"desc-name": "Descrizione separatore",
 			"desc-comment": "Aggiungi qui una descrizione",
 			"hr-name": "HR",
-			"hr-comment": "Display a horizontal rule?",
-			"margin-name": "Extra Margin",
-			"margin-comment": "Add extra margin above interface"
+			"hr-comment": "Visualizza una riga orizzontale?",
+			"margin-name": "Margine Extra",
+			"margin-comment": "Aggiungi margine extra sopra l'interfaccia"
 		},
 		"dropdown": {
-			"dropdown": "Dropdown",
+			"dropdown": "Menu a tendina",
 			"choices": "Scelta multipla",
 			"choices_comment": "Inserisci le coppie di valori delle chiavi JSON con il valore salvato e il testo visualizzato.",
 			"placeholder": "Placeholder",
@@ -163,12 +163,12 @@
 			"option": "Opzione",
 			"formatting": "Mostra testo visualizzato",
 			"formatting_comment": "Rendering dei valori come i valori di visualizzazione",
-			"placeholder_default": "Choose an option...",
+			"placeholder_default": "Scegli un'opzione...",
 			"icon": "Icon",
 			"icon_comment": "Scegli un'icona facoltativa da visualizzare sulla sinistra dell'input",
-			"options_invalid": "The JSON options provided for the dropdown are invalid:",
+			"options_invalid": "Le opzioni JSON fornite per il dropdown non sono valide:",
 			"allow_other": "Permetti Altro",
-			"allow_other_comment": "Allow the user to add their own value"
+			"allow_other_comment": "Consenti all'utente di aggiungere il proprio valore"
 		},
 		"file": {
 			"file": "File",
@@ -319,7 +319,7 @@
 			"choices": "scelte",
 			"choices_comment": "Inserisci le coppie di valori delle chiavi JSON con il valore salvato e il testo visualizzato.",
 			"theme": "Tema dell'interfaccia",
-			"theme_comment": "Set the theme of the interface if supported",
+			"theme_comment": "Imposta il tema dell'interfaccia se supportato",
 			"value": "Valore",
 			"map_lat": "Latitudine predefinita",
 			"map_lat_comment": "La mappa sarà centrata in base a questa latitudine",
