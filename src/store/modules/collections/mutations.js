@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { mapValues, find, forEach } from 'lodash';
+import { keyBy, mapValues, find, forEach } from 'lodash';
 
 import {
 	RESET,
