@@ -51,7 +51,7 @@
 <script>
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import getFieldsFromTemplate from '@/helpers/get-fields-from-template';
-import { find, isObject, mapValues } from 'lodash';
+import { find, isObject, mapValues, keyBy } from 'lodash';
 
 export default {
 	name: 'InterfaceManyToOne',
