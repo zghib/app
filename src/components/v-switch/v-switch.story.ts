@@ -50,16 +50,16 @@ export const arrayState = () => ({
 	},
 	template: `
 	<div>
-		<v-switch v-model="options" value="html" @change="onChange" label="HTML" />
-		<v-switch v-model="options" value="css" @change="onChange" label="CSS" />
-		<v-switch v-model="options" value="js" @change="onChange" label="JS" />
+		<v-switch style="margin-bottom: 20px" v-model="options" value="html" @change="onChange" label="HTML" />
+		<v-switch style="margin-bottom: 20px" v-model="options" value="css" @change="onChange" label="CSS" />
+		<v-switch style="margin-bottom: 20px" v-model="options" value="js" @change="onChange" label="JS" />
 		<pre style="max-width: max-content; margin-top: 20px; background-color: #eee; font-family: monospace; padding: 0.5rem; border-radius: 8px;">{{options}}</pre>
 	</div>
 	`
 });
 
 export const disabled = () =>
-	`<div><v-switch label="Disabled" disabled /><v-switch :inputValue="true" label="Disabled" disabled /></div>`;
+	`<div><v-switch style="margin-bottom: 20px" label="Disabled" disabled /><v-switch style="margin-bottom: 20px" :inputValue="true" label="Disabled" disabled /></div>`;
 
 export const colors = () => ({
 	methods: {
@@ -77,10 +77,10 @@ export const colors = () => ({
 	},
 	template: `
 	<div>
-		<v-switch v-model="options" value="red" @change="onChange" color="--red" label="Red" />
-		<v-switch v-model="options" value="blue" @change="onChange" color="--blue" label="Blue" />
-		<v-switch v-model="options" value="yellow" @change="onChange" color="--amber" label="Yellow" />
-		<v-switch v-model="options" value="custom" @change="onChange" :color="customColor" label="Custom..." />
+		<v-switch style="margin-bottom: 20px" v-model="options" value="red" @change="onChange" color="--red" label="Red" />
+		<v-switch style="margin-bottom: 20px" v-model="options" value="blue" @change="onChange" color="--blue" label="Blue" />
+		<v-switch style="margin-bottom: 20px" v-model="options" value="yellow" @change="onChange" color="--amber" label="Yellow" />
+		<v-switch style="margin-bottom: 20px" v-model="options" value="custom" @change="onChange" :color="customColor" label="Custom..." />
 	</div>
 	`
 });

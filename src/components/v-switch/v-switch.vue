@@ -90,7 +90,6 @@ export default createComponent({
 	border-radius: 0;
 	border: none;
 	display: flex;
-	height: var(--input-height);
 	align-items: center;
 
 	.switch {

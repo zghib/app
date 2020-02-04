@@ -1,12 +1,20 @@
 <template>
-	<v-checkbox
-		v-if="options.checkbox"
-		:inputValue="value"
-		@change="emitValue"
-		:label="label"
-		:disabled="readonly"
-	/>
-	<v-switch v-else :inputValue="value" @change="emitValue" :label="label" :disabled="readonly" />
+	<div class="interface-switch">
+		<v-checkbox
+			v-if="options.checkbox"
+			:inputValue="value"
+			@change="emitValue"
+			:label="label"
+			:disabled="readonly"
+		/>
+		<v-switch
+			v-else
+			:inputValue="value"
+			@change="emitValue"
+			:label="label"
+			:disabled="readonly"
+		/>
+	</div>
 </template>
 
 <script lang="ts">
@@ -38,3 +46,11 @@ export default createComponent({
 	}
 });
 </script>
+
+<style lang="scss" scoped>
+.interface-switch {
+	height: var(--input-height);
+	display: flex;
+	align-items: center;
+}
+</style>

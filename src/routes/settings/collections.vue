@@ -724,7 +724,7 @@ export default {
 
 	.advanced-form {
 		display: grid;
-		grid-gap: 8px 20px;
+		grid-gap: 20px;
 		grid-template-columns: 1fr 1fr;
 	}
 }
