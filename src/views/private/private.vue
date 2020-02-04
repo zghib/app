@@ -26,7 +26,7 @@
 <script lang="ts">
 import { createComponent, ref, computed } from '@vue/composition-api';
 import useWindowSize from '@/compositions/window-size';
-import ModuleBar from './_module-bar';
+import ModuleBar from './_module-bar.vue';
 
 // Breakpoints:
 // < 800 (.navigation and .drawer as overlay)
@@ -37,6 +37,7 @@ export default createComponent({
 	components: {
 		ModuleBar
 	},
+	props: {},
 	setup() {
 		const navOpen = ref<boolean>(false);
 		const drawerOpen = ref<boolean>(false);
