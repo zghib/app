@@ -76,6 +76,7 @@ export default {
 }
 .avatar {
 	width: max-content;
+	height: auto;
 	display: inline-block;
 	margin-right: 12px;
 }
