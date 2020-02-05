@@ -199,5 +199,10 @@ export default {
 
 .layout-loading {
 	padding: 24px 0;
+	text-align: center;
+
+	.v-spinner {
+		display: inline-block;
+	}
 }
 </style>
