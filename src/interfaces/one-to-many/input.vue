@@ -151,7 +151,7 @@
 import mixin from '@directus/extension-toolkit/mixins/interface';
 import shortid from 'shortid';
 import { diff } from 'deep-object-diff';
-import { find, mapValues, clone, orderby, cloneDeep, merge, forEach, difference } from 'lodash';
+import { find, mapValues, clone, orderBy, cloneDeep, merge, forEach, difference } from 'lodash';
 
 export default {
 	name: 'InterfaceOneToMany',
