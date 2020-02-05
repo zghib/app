@@ -158,6 +158,8 @@ export default {
 	border-radius: var(--border-radius);
 	border: var(--input-border-width) solid var(--input-border-color);
 	max-width: 632px;
+	margin-bottom: 16px;
+
 	.no-collections-message {
 		margin-top: 20px;
 		margin-bottom: 40px;
@@ -205,8 +207,14 @@ export default {
 			flex-basis: 100px;
 		}
 	}
+
 	&.loading {
 		padding: 300px 0;
+		text-align: center;
+
+		.v-spinner {
+			display: inline-block;
+		}
 	}
 }
 </style>
