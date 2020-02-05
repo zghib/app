@@ -138,6 +138,7 @@
 						new-item
 						:fields="relatedCollectionFields"
 						:collection="relation.collection_many.collection"
+						:primary-key="editItem[relatedPrimaryKeyField] || '+'"
 						:values="editItem"
 						@stage-value="stageValue"
 					/>
@@ -271,13 +272,13 @@ export default {
 			const manyToManyField = this.relation.field_many && this.relation.field_many.field;
 
 			return mapValues(relatedCollectionFields, field => {
-				const clone = clone(field);
+				const fieldClone = clone(field);
 
-				if (clone.field === manyToManyField) {
-					clone.readonly = true;
+				if (fieldClone.field === manyToManyField) {
+					fieldClone.readonly = true;
 				}
 
-				return clone;
+				return fieldClone;
 			});
 		},
 
@@ -332,6 +333,7 @@ export default {
 	methods: {
 		async getInitialValue() {
 			const response = await this.$api.getItems(this.relation.collection_many.collection, {
+				fields: '*.*',
 				filter: {
 					[this.relation.field_many.field]: this.primaryKey
 				}
