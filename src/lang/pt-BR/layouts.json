@@ -3,7 +3,7 @@
     "calendar": {
       "calendar": "Calendário",
       "fields": "Campos",
-      "today": "today",
+      "today": "hoje",
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
@@ -14,26 +14,26 @@
       "color": "Cor"
     },
     "cards": {
-      "cards": "Cards",
+      "cards": "Cartões",
       "title": "Título",
-      "subtitle": "Subtitle",
-      "src": "Image Source",
+      "subtitle": "Subtítulo",
+      "src": "Fonte da Imagem",
       "content": "Body Content",
-      "fit": "Fit"
+      "fit": "Ajustar"
     },
     "tabular": {
-      "tabular": "Table",
+      "tabular": "Tabela",
       "fields": "Campos"
     },
     "timeline": {
-      "timeline": "Timeline",
+      "timeline": "Linha do tempo",
       "fields": "Campos",
-      "today": "today",
+      "today": "hoje",
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
       "date": "Data",
-      "content": "Content",
+      "content": "Conteúdo",
       "title": "Título",
       "color": "Cor"
     }

@@ -4,38 +4,38 @@
       "calendar": "日历",
       "fields": "字段",
       "today": "今天",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
-      "date": "Date",
+      "events": "事件",
+      "moreEvents": "还有 {amount} 个…",
+      "noEvents": "还没有事件！",
+      "date": "日期",
       "datetime": "日期时间",
       "time": "Time",
       "title": "标题",
-      "color": "Color"
+      "color": "颜色"
     },
     "cards": {
-      "cards": "Cards",
+      "cards": "卡片",
       "title": "标题",
-      "subtitle": "Subtitle",
-      "src": "Image Source",
+      "subtitle": "副标题",
+      "src": "图像来源",
       "content": "Body Content",
       "fit": "Fit"
     },
     "tabular": {
-      "tabular": "Table",
+      "tabular": "表",
       "fields": "字段"
     },
     "timeline": {
-      "timeline": "Timeline",
+      "timeline": "时间线",
       "fields": "字段",
       "today": "今天",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
-      "date": "Date",
-      "content": "Content",
+      "events": "事件",
+      "moreEvents": "还有 {amount} 个…",
+      "noEvents": "还没有事件！",
+      "date": "日期",
+      "content": "内容",
       "title": "标题",
-      "color": "Color"
+      "color": "颜色"
     }
   }
 }

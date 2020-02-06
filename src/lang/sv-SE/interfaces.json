@@ -12,11 +12,11 @@
 			"value": "Värde",
 			"flight": "Flight",
 			"cruise": "Cruise",
-			"run": "Run",
-			"bus": "Bus",
-			"bike": "Bike",
-			"train": "Train",
-			"car": "Car",
+			"run": "Kör",
+			"bus": "Buss",
+			"bike": "Cykel",
+			"train": "Tåg",
+			"car": "Bil",
 			"other": "Övrigt"
 		},
 		"calendar": {
@@ -325,7 +325,7 @@
 			"map_lat_comment": "Map will be centered at this latitude",
 			"map_lng": "Default Longitude",
 			"map_lng_comment": "Map will be centered at this longitude",
-			"height": "Height",
+			"height": "Höjd",
 			"default_zoom": "Default Zoom",
 			"default_zoom_comment": "Default zoom level of the map",
 			"max_zoom": "Max Zoom",
@@ -497,7 +497,7 @@
 			"deleted": "Deleted"
 		},
 		"tags": {
-			"tags": "Tags",
+			"tags": "Etiketter",
 			"alphabetize": "Alphabetize tags",
 			"alphabetize_comment": "Will rearrange tags to be alphabetical",
 			"lowercase": "Force Lowercase",
@@ -592,7 +592,7 @@
 		},
 		"user": {
 			"user": "User",
-			"avatar": "Avatar",
+			"avatar": "Profilbild",
 			"name": "Namn",
 			"template": "Mall",
 			"template_comment": "How to format the users in the dropdown",
@@ -600,8 +600,8 @@
 			"placeholder_comment": "Add a placeholder"
 		},
 		"owner": {
-			"owner": "Owner",
-			"avatar": "Avatar",
+			"owner": "Ägare",
+			"avatar": "Profilbild",
 			"name": "Namn",
 			"template": "Mall",
 			"template_comment": "How to display the user on the item detail page",
@@ -619,7 +619,7 @@
 		},
 		"user-updated": {
 			"user_updated": "User Updated",
-			"avatar": "Avatar",
+			"avatar": "Profilbild",
 			"name": "Namn",
 			"template": "Mall",
 			"template_comment": "How to display the user on the item detail page",
