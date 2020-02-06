@@ -231,7 +231,14 @@ export default {
 			this.image = null;
 
 			if (!this.value) return;
-			const id = this.value;
+
+			let id;
+
+			if (typeof this.value === 'object') {
+				id = this.value.id;
+			} else {
+				id = this.value;
+			}
 
 			try {
 				const response = await this.$api.getFile(String(id));
