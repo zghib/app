@@ -884,16 +884,10 @@ export default {
 				};
 			}
 
-			const interfaceOptions =
-				(this.selectedInterfaceInfo && this.selectedInterfaceInfo.options) || {};
-
-			if (this.interfaceName && Object.keys(interfaceOptions).length > 0) {
-				let disabled = this.schemaDisabled === true || !this.field;
-				tabs.options = {
-					text: this.$t('options'),
-					disabled
-				};
-			}
+			tabs.options = {
+				text: this.$t('options'),
+				disabled: this.schemaDisabled === true || !this.field
+			};
 
 			return tabs;
 		},
