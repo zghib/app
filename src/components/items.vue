@@ -387,16 +387,28 @@ export default {
 					if (this.links) {
 						this.items.data = [
 							...this.items.data,
-							...res.data.map(item => ({
-								...item,
-								__link__: this.collection.startsWith('directus_')
-									? `/${this.currentProjectKey}/${this.collection.substr(9)}/${
-											item[this.primaryKeyField]
-									  }`
-									: `/${this.currentProjectKey}/collections/${this.collection}/${
-											item[this.primaryKeyField]
-									  }`
-							}))
+							...res.data.map(item => {
+								let link = `/${this.currentProjectKey}/collections/${
+									this.collection
+								}/${item[this.primaryKeyField]}`;
+
+								if (this.collection.startsWith('directus_')) {
+									link = `/${this.currentProjectKey}/${this.collection.substr(
+										9
+									)}/${item[this.primaryKeyField]}`;
+								}
+
+								if (this.collection === 'directus_webhooks') {
+									link = `/${this.currentProjectKey}/settings/webhooks/${
+										item[this.primaryKeyField]
+									}`;
+								}
+
+								return {
+									...item,
+									__link__: link
+								};
+							})
 						];
 					} else {
 						this.items.data = [...this.items.data, ...res.data];
