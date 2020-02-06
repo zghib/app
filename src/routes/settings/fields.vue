@@ -48,7 +48,10 @@
 							:style="{ cursor: field.interface ? 'inherit' : 'default' }"
 							@click.stop="field.interface ? startEditingField(field) : false"
 						>
-							<div class="monospace">
+							<div
+								class="monospace"
+								v-tooltip="field.field.length > 25 ? field.field : null"
+							>
 								{{ field.field }}
 							</div>
 							<div>
@@ -656,6 +659,7 @@ h2 {
 
 	.inner.row {
 		flex-grow: 1;
+		overflow: hidden;
 
 		> div {
 			padding: 0;
@@ -704,6 +708,9 @@ h2 {
 
 		.monospace {
 			font-family: 'Roboto Mono', monospace;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-right: 8px;
 		}
 	}
 }
