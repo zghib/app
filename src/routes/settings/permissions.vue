@@ -56,6 +56,7 @@
 			v-if="fields && role"
 			:fields="fields"
 			:values="{ ...role, ...roleEdits }"
+			:primary-key="role.id"
 			collection="directus_roles"
 			@stage-value="stageValue"
 		/>
