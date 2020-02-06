@@ -157,6 +157,11 @@
 						new-item
 						:fields="relation.junction.collection_one.fields"
 						:collection="relation.junction.collection_one.collection"
+						:primary-key="
+							(editItem[junctionRelatedKey] &&
+								editItem[junctionRelatedKey][relatedPrimaryKeyField]) ||
+								'+'
+						"
 						:values="editItem[junctionRelatedKey]"
 						@stage-value="stageValue"
 					/>
