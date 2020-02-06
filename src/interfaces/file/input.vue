@@ -277,11 +277,13 @@ export default {
 
 			if (file) {
 				this.image = file;
-				this.$emit('input', file.id);
+				this.$emit('input', file);
 			} else {
 				this.image = null;
 				this.$emit('input', null);
 			}
+
+			this.existing = false;
 		},
 		async removeFile() {
 			const file = this.image;

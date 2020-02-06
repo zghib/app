@@ -294,10 +294,15 @@ export default {
 		selectFile(callback) {
 			this.newInlineFile = true;
 			this.selectCallback = async () => {
-				const { data: file } = await this.$api.getItem(
-					'directus_files',
-					this.selectedFile.id
-				);
+				let id;
+
+				if (typeof this.selectedFile === 'object') {
+					id = this.selectedFile.id;
+				} else {
+					id = this.selectedFile;
+				}
+
+				const { data: file } = await this.$api.getItem('directus_files', id);
 				this.newInlineFile = false;
 
 				// TODO: Make sure it returns the correct keys for non-image type files. See
