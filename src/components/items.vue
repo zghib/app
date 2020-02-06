@@ -390,8 +390,10 @@ export default {
 							...res.data.map(item => ({
 								...item,
 								__link__: this.collection.startsWith('directus_')
-									? `/${this.collection.substr(9)}/${item[this.primaryKeyField]}`
-									: `/collections/${this.collection}/${
+									? `/${this.currentProjectKey}/${this.collection.substr(9)}/${
+											item[this.primaryKeyField]
+									  }`
+									: `/${this.currentProjectKey}/collections/${this.collection}/${
 											item[this.primaryKeyField]
 									  }`
 							}))
