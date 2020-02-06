@@ -19,7 +19,7 @@
 					{{ cat.value }}
 					<a
 						v-if="cat.success === false"
-						href="https://docs.directus.io/advanced/requirements.html"
+						href="https://docs.directus.io/installation/git.html#step-1-make-sure-requirements-are-met"
 						target="__blank"
 					>
 						{{ $t('why') }}
