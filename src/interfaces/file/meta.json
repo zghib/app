@@ -8,11 +8,12 @@
     "length": 10
   },
   "options": {
-    "crop": {
-      "name": "$t:crop_preview",
-      "default": true,
-      "interface": "toggle"
-    },
+	"crop": {
+		"name": "$t:crop_preview",
+		"comment": "$t:crop_preview_comment",
+		"default": true,
+		"interface": "switch"
+	},
     "viewType": {
       "name": "$t:view_type",
       "comment": "$t:view_type_comment",
