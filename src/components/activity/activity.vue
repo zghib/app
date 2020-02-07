@@ -33,19 +33,23 @@
 			<div class="content">
 				<details v-if="activity.action !== 'external' && activity.changes && activity.name">
 					<summary class="title">
-						<v-user-popover :id="activity.action_by" placement="top">
+						<v-user-popover
+							v-if="activity.action_by"
+							:id="activity.action_by"
+							placement="top"
+						>
 							<span class="name">{{ activity.name }}</span>
 						</v-user-popover>
-						<v-time-ago
+						<div
 							v-if="activity.date"
 							v-tooltip="{
 								content: $d(activity.date, 'long'),
 								delay: { show: 1500, hide: 100 }
 							}"
-							:datetime="activity.date"
-							:locale="$i18n.locale"
 							class="date"
-						/>
+						>
+							{{ getRelativeTimeFromNow(activity.date) }}
+						</div>
 						<v-icon
 							v-tooltip="'Revision Details'"
 							class="chevron"
@@ -66,7 +70,11 @@
 					</div>
 				</details>
 				<div v-else-if="activity.name" class="title">
-					<v-user-popover :id="activity.action_by" placement="top">
+					<v-user-popover
+						v-if="activity.action_by"
+						:id="activity.action_by"
+						placement="top"
+					>
 						<span class="name">{{ activity.name }}</span>
 					</v-user-popover>
 					<v-time-ago
@@ -98,6 +106,7 @@ import VDiff from './diff.vue';
 import { diff } from 'deep-object-diff';
 import Mousetrap from 'mousetrap';
 import { mapValues, clone } from 'lodash';
+import formatDistance from 'date-fns/formatDistance';
 
 export default {
 	name: 'VActivity',
@@ -239,6 +248,9 @@ export default {
 
 			this.$emit('input', this.comment);
 			this.comment = '';
+		},
+		getRelativeTimeFromNow(date) {
+			return formatDistance(new Date(), date, { addSuffix: true });
 		}
 	}
 };

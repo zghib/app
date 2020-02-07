@@ -1,36 +1,45 @@
 <template>
-	<v-timeago
-		v-if="value && showRelative"
-		:datetime="date"
-		:auto-update="86400"
-		:locale="$i18n.locale"
-		class="no-wrap"
-	></v-timeago>
-	<div v-else>{{ displayValue }}</div>
+	<div>{{ displayValue }}</div>
 </template>
 
-<script>
-import dateFormat from 'dateformat';
-import mixin from '@directus/extension-toolkit/mixins/interface';
+<script lang="ts">
+import { createComponent, computed, PropType, Ref } from '@vue/composition-api';
+import { CalendarOptions } from './types';
+import useTimeFromNow from '@/compositions/time-from-now';
+import format from 'date-fns/format';
 
-export default {
-	mixins: [mixin],
-	computed: {
-		showRelative() {
-			if (this.options.formatting == '' || this.options.formatting == null) {
-				return true;
-			}
-			return false;
+export default createComponent({
+	props: {
+		options: {
+			type: Object as PropType<CalendarOptions>,
+			required: true
 		},
-		date() {
-			if (this.value) {
-				return new Date(this.value.replace(/-/g, '/'));
-			}
-			return null;
-		},
-		displayValue() {
-			return dateFormat(this.date, this.options.formatting);
+		value: {
+			type: String,
+			default: null
 		}
+	},
+	setup(props) {
+		let valueAsDate: Date;
+		let timeAgo: Ref<string>;
+
+		if (props.value) {
+			valueAsDate = new Date(props.value.replace(/-/g, '/'));
+			timeAgo = useTimeFromNow(valueAsDate, 0);
+			const now = new Date();
+		}
+
+		const displayValue = computed<string>(() => {
+			if (!props.value) return '--';
+
+			if (!props.options.formatting) {
+				return timeAgo.value;
+			}
+
+			return format(valueAsDate, props.options.formatting);
+		});
+
+		return { displayValue };
 	}
-};
+});
 </script>

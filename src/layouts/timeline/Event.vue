@@ -22,18 +22,15 @@
 					:options="data.contentType.options"
 					@click.native.stop=""
 				/>
-				<v-timeago
-					class="time"
-					:datetime="data.time"
-					:auto-update="86400"
-					:locate="$i18n.locale"
-				/>
+				<div class="time">{{ time }}</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+import formatDistance from 'date-fns/formatDistance';
+
 export default {
 	components: {},
 	props: {
@@ -46,14 +43,11 @@ export default {
 			default: true
 		}
 	},
-	data() {
-		return {};
-	},
-	computed: {},
-	created() {},
-	mounted() {},
-	destroyed() {},
-	methods: {}
+	computed: {
+		time() {
+			return formatDistance(new Date(), this.data.time);
+		}
+	}
 };
 </script>
 

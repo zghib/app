@@ -2,7 +2,6 @@ import Vue from 'vue';
 import lodash from 'lodash';
 import VueDraggable from 'vuedraggable';
 import VTooltip from 'v-tooltip';
-import VueTimeago from 'vue-timeago';
 import PortalVue from 'portal-vue';
 import axios from 'axios';
 import meta from 'vue-meta';
@@ -59,10 +58,6 @@ Vue.use(VTooltip, {
 	autoHide: false
 });
 Vue.use(PortalVue);
-Vue.use(VueTimeago, {
-	name: 'v-timeago',
-	locale: 'en-US'
-});
 Vue.use(VueTheMask);
 Vue.use(meta);
 Vue.component('draggable', VueDraggable);

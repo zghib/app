@@ -1,46 +1,56 @@
 <template>
 	<div v-if="value" class="datetime-created">
-		<v-timeago
-			v-if="options.showRelative"
-			v-tooltip="displayValue"
-			:datetime="date"
-			:auto-update="60"
-			:locale="$i18n.locale"
-			class="no-wrap"
-		></v-timeago>
-		<div v-else>{{ displayValue }}</div>
-		<v-icon name="today" />
+		<v-icon name="today" color="--input-icon-color" />
+		{{ displayValue }}
 	</div>
 	<v-input
-		v-else-if="newItem"
-		:readonly="true"
-		:placeholder="$t('interfaces.datetime.created-now')"
-		icon-right="today"
-	/>
-	<v-input
 		v-else
-		:readonly="true"
-		:placeholder="$t('interfaces.datetime.created-unknown')"
+		:placeholder="
+			$t(newItem ? 'interfaces.datetime-created.now' : 'interfaces.datetime-created.unknown')
+		"
 		icon-right="today"
+		readonly
 	/>
 </template>
 
-<script>
-import mixin from '@directus/extension-toolkit/mixins/interface';
+<script lang="ts">
+import { createComponent, computed, PropType } from '@vue/composition-api';
+import { DateTimeCreatedOptions } from './types';
+import useTimeFromNow from '@/compositions/time-from-now';
 
-export default {
-	mixins: [mixin],
-	computed: {
-		date() {
-			if (!this.value) return null;
-			return new Date(this.value.replace(' ', 'T') + 'Z');
+const { i18n } = require('@/lang/');
+
+export default createComponent({
+	props: {
+		value: {
+			type: String,
+			default: null
 		},
-		displayValue() {
-			if (!this.date) return;
-			return this.$d(this.date, 'long') + ' GMT';
+		newItem: {
+			type: Boolean,
+			required: true
+		},
+		options: {
+			type: Object as PropType<DateTimeCreatedOptions>,
+			required: true
 		}
+	},
+	setup(props) {
+		const displayValue = computed<string | null>(() => {
+			if (!props.value) return null;
+
+			const date = new Date(props.value.replace(' ', 'T') + 'Z');
+
+			if (props.options.showRelative) {
+				return useTimeFromNow(date).value;
+			}
+
+			return i18n.d(date, 'long') + ' GMT';
+		});
+
+		return { displayValue };
 	}
-};
+});
 </script>
 
 <style lang="scss" scoped>
@@ -54,12 +64,11 @@ export default {
 	display: flex;
 	align-items: center;
 	background-color: var(--input-background-color-disabled);
-	i {
+
+	.v-icon {
 		position: absolute;
 		top: 50%;
-		color: var(--input-icon-color);
 		transform: translateY(-50%);
-		font-size: 24px;
 		right: 10px;
 	}
 }

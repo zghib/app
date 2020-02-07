@@ -1,12 +1,5 @@
 <template>
-	<v-timeago
-		v-if="options.showRelative"
-		class="no-wrap"
-		:datetime="date"
-		:auto-update="options.includeSeconds ? 1 : 60"
-		:locale="$i18n.locale"
-	></v-timeago>
-	<span v-else class="no-wrap">{{ displayValue }}</span>
+	<span class="no-wrap">{{ displayValue }}</span>
 </template>
 
 <script>

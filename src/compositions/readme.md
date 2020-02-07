@@ -5,6 +5,7 @@ Compositions are reusable pieces of logic that can be used inside Vue components
 ## Table of Contents
 
 * [Event Listener](#event-listener)
+* [Time from Now](#time-from-now)
 * [Window Size](#window-size)
 
 ## Event Listener
@@ -32,13 +33,34 @@ export default createComponent({
 });
 ```
 
+
+## Time from Now
+
+Returns ref string time from current datetime based on date-fns formatDistance.
+
+### Usage
+
+```vue
+import { createComponent } from '@vue/composition-api';
+import useTimeFromNow from '@/compositions/time-from-now';
+
+export default createComponent({
+	setup() {
+		const date = new Date('2020-01-01T13:55');
+		const timeFromNow = useTimeFromNow(date);
+	}
+});
+```
+
+The composition accepts an optional second parameter that controls how often the value is update. You can set this to `0` if you don't want the value to update at all.
+
 ## Window Size
 
 Returns a `ref` of `width` and `height` of the current window size. Updates the value on window resizes.
 
 ### Usage
 
-```vue
+```js
 import { createComponent } from '@vue/composition-api';
 import useWindowSize from '@/compositions/window-size';
 

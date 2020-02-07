@@ -1,29 +1,39 @@
 <template>
-	<v-timeago
-		v-if="value && options.showRelative"
-		v-tooltip="displayValue"
-		:datetime="date"
-		:auto-update="60"
-		:locale="$i18n.locale"
-		class="no-wrap"
-	></v-timeago>
-	<div v-else>{{ displayValue }}</div>
+	<div>{{ displayValue }}</div>
 </template>
 
-<script>
-import mixin from '@directus/extension-toolkit/mixins/interface';
+<script lang="ts">
+import { createComponent, PropType, computed } from '@vue/composition-api';
+import useTimeFromNow from '@/compositions/time-from-now';
+import { DateTimeUpdatedOptions } from './types';
 
-export default {
-	mixins: [mixin],
-	computed: {
-		date() {
-			if (!this.value) return null;
-			return new Date(this.value.replace(' ', 'T') + 'Z');
+const { i18n } = require('@/lang/');
+
+export default createComponent({
+	props: {
+		value: {
+			type: String,
+			default: null
 		},
-		displayValue() {
-			if (!this.date) return;
-			return this.$d(this.date, 'long') + ' GMT';
+		options: {
+			type: Object as PropType<DateTimeUpdatedOptions>,
+			required: true
 		}
+	},
+	setup(props) {
+		const displayValue = computed<string>(() => {
+			if (!props.value) return '--';
+
+			const date = new Date(props.value.replace(' ', 'T') + 'Z');
+
+			if (props.options.showRelative) {
+				return useTimeFromNow(date).value;
+			}
+
+			return i18n.d(date, 'long') + ' GMT';
+		});
+
+		return { displayValue };
 	}
-};
+});
 </script>
