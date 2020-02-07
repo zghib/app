@@ -26,7 +26,7 @@
 			"max": "最大日",
 			"max_comment": "ユーザーが選択可能な最大日",
 			"formatting": "日付形式",
-			"formatting_comment": "空欄にしておく場合、関連する日付が使用されます"
+			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
 		},
 		"checkboxes": {
 			"checkboxes": "チェックボックス",

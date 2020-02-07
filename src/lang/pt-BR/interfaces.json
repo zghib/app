@@ -26,7 +26,7 @@
 			"max": "Data Máxima",
 			"max_comment": "Data máxima que pode ser escolhida pelo usuário",
 			"formatting": "Formato da Data",
-			"formatting_comment": "Se deixado em branco, uma data relativa será usada"
+			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
 		},
 		"checkboxes": {
 			"checkboxes": "Caixas de Seleção",

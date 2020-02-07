@@ -26,7 +26,7 @@
 			"max": "Tanggal Maksimal",
 			"max_comment": "Tanggal maksimal yang bisa dipilih user",
 			"formatting": "Format Tanggal",
-			"formatting_comment": "Jika dibiarkan kosong, tanggal relatif akan digunakan"
+			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
 		},
 		"checkboxes": {
 			"checkboxes": "Kotak Centang",

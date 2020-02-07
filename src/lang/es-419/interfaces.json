@@ -26,7 +26,7 @@
 			"max": "Fecha máxima",
 			"max_comment": "Fecha máxima que puede ser elegida por el usuario",
 			"formatting": "Formato de fecha",
-			"formatting_comment": "Si se deja en blanco, se utilizará una fecha relativa"
+			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
 		},
 		"checkboxes": {
 			"checkboxes": "Casillas De Selección",
@@ -44,9 +44,7 @@
 			"draggable": "Casillas de verificación arrastrables",
 			"draggable_comment": "Permitir ordenar por casillas de verificación arrastrables",
 			"allow_other": "Permitir otro",
-			"allow_other_comment": "Permitir una opción personalizada adicional",
-			"crop_preview": "Recorta la vista previa del archivo",
-			"crop_preview_comment": "Recorta la vista previa del archivo para llenar el espacio disponible."
+			"allow_other_comment": "Permitir una opción personalizada adicional"
 		},
 		"checkboxes-relational": {
 			"checkboxes_relational": "Casillas de verificación relacionales",

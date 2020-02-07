@@ -26,7 +26,7 @@
 			"max": "Максимальная дата",
 			"max_comment": "Максимальная дата, которая может быть установлена пользователем",
 			"formatting": "Формат даты",
-			"formatting_comment": "Если оставить пустым, будет использоваться относительная дата"
+			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
 		},
 		"checkboxes": {
 			"checkboxes": "Флажки",

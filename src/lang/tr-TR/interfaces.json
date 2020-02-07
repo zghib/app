@@ -26,7 +26,7 @@
 			"max": "Maksimum Tarih",
 			"max_comment": "Kullanıcı tarafından seçilebilecek maksimum tarih",
 			"formatting": "Tarih Biçimi",
-			"formatting_comment": "Boş bırakılırsa, göreli bir tarih kullanılacak"
+			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
 		},
 		"checkboxes": {
 			"checkboxes": "Onay Kutuları",

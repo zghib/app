@@ -26,7 +26,7 @@
 			"max": "Μέγιστη ημερομηνία",
 			"max_comment": "Μέγιστη ημερομηνία που μπορεί να επιλεγεί από το χρήστη",
 			"formatting": "Μορφή ημερομηνίας",
-			"formatting_comment": "Εάν αφεθεί κενό, θα χρησιμοποιηθεί σχετική ημερομηνία"
+			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
 		},
 		"checkboxes": {
 			"checkboxes": "Checkboxes",
