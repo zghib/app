@@ -3,38 +3,38 @@
     "calendar": {
       "calendar": "Calendar",
       "fields": "Fields",
-      "today": "today",
-      "events": "Events",
+      "today": "ma",
+      "events": "Események",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
       "date": "Date",
       "datetime": "Datetime",
       "time": "Time",
-      "title": "Title",
+      "title": "Cím",
       "color": "Color"
     },
     "cards": {
-      "cards": "Cards",
-      "title": "Title",
-      "subtitle": "Subtitle",
-      "src": "Image Source",
+      "cards": "Kártya",
+      "title": "Cím",
+      "subtitle": "Alcím",
+      "src": "Kép forrása",
       "content": "Body Content",
-      "fit": "Fit"
+      "fit": "Illesztés"
     },
     "tabular": {
-      "tabular": "Table",
+      "tabular": "Táblázat",
       "fields": "Fields"
     },
     "timeline": {
-      "timeline": "Timeline",
+      "timeline": "Idővonal",
       "fields": "Fields",
-      "today": "today",
-      "events": "Events",
+      "today": "ma",
+      "events": "Események",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
       "date": "Date",
-      "content": "Content",
-      "title": "Title",
+      "content": "Tartalom",
+      "title": "Cím",
       "color": "Color"
     }
   }

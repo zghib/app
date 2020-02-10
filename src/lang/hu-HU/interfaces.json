@@ -1,13 +1,13 @@
 {
 	"interfaces": {
 		"2fa-secret": {
-			"2fa-secret": "2FA Secret"
+			"2fa-secret": "Kétlépcsős hitelesítő kulcs"
 		},
 		"button-group": {
-			"button_group": "Button Group",
-			"choices": "Choices",
+			"button_group": "Gomb csoport",
+			"choices": "Lehetőségek",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-			"theme": "Interface Theme",
+			"theme": "Felület sablon",
 			"theme_comment": "Set the theme of the interface if supported",
 			"value": "Value",
 			"flight": "Flight",
@@ -30,16 +30,16 @@
 		},
 		"checkboxes": {
 			"checkboxes": "Checkboxes",
-			"choices": "Choices",
+			"choices": "Lehetőségek",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
 			"wrap": "Wrap with Delimiter",
 			"wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",
 			"formatting": "Show display text",
 			"formatting_comment": "Render the values as the display values",
-			"display_text": "Display Text",
+			"display_text": "Szöveg megjelenítése",
 			"value": "Value",
-			"option": "Option",
-			"single": "Single Column",
+			"option": "Opció",
+			"single": "1 oszlop",
 			"single_comment": "Display Checkboxes in single column",
 			"draggable": "Draggable Checkboxes",
 			"draggable_comment": "Enable sorting by draggable checkboxes",
@@ -48,7 +48,7 @@
 		},
 		"checkboxes-relational": {
 			"checkboxes_relational": "Checkboxes Relational",
-			"grid": "Grid",
+			"grid": "Rács",
 			"grid_comment": "Number of items to show in a row",
 			"item_template": "Item Template",
 			"item_template_comment": "How to display values on the single item layouts",
@@ -58,13 +58,13 @@
 			"listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
 		},
 		"code": {
-			"code": "Code",
-			"template": "Template",
+			"code": "Kód",
+			"template": "Sablon",
 			"template_comment": "Provide a template the user can use to get started with",
-			"language": "Language",
+			"language": "Nyelv",
 			"language_comment": "Set the programming language to use",
-			"lineNumber": "Line Number",
-			"lineNumber_comment": "Show line numbers",
+			"lineNumber": "Sor szám",
+			"lineNumber_comment": "Sorszámok mutatása",
 			"loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
 			"fill_template": "Fill with Template"
 		},
@@ -73,7 +73,7 @@
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"placeholder_default": "Choose a collection...",
-			"option": "Option",
+			"option": "Opció",
 			"include_system": "Include System",
 			"include_system_comment": "Include system collections in the options"
 		},
@@ -156,11 +156,11 @@
 		},
 		"dropdown": {
 			"dropdown": "Dropdown",
-			"choices": "Choices",
+			"choices": "Lehetőségek",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Static text that shown before a value is selected",
-			"option": "Option",
+			"option": "Opció",
 			"formatting": "Show display text",
 			"formatting_comment": "Render the values as the display values",
 			"placeholder_default": "Choose an option...",
@@ -260,12 +260,12 @@
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"placeholder_default": "Choose an interface",
-			"option": "Option",
+			"option": "Opció",
 			"relational": "Include relational interfaces",
 			"include_status": "Include the status interfaces"
 		},
 		"json": {
-			"template": "Template",
+			"template": "Sablon",
 			"template_comment": "Provide a template the user can use to get started with"
 		},
 		"key-value": {
@@ -277,7 +277,7 @@
 			"value_options": "Key Interface Options"
 		},
 		"language": {
-			"input": "Language",
+			"input": "Nyelv",
 			"select_language": "Select a language...",
 			"limit": "Limit to Directus Availability",
 			"limit_comment": "Only show languages that are available as translations in Directus"
@@ -320,14 +320,14 @@
 			"map": "Map",
 			"choices": "choices",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-			"theme": "Interface Theme",
+			"theme": "Felület sablon",
 			"theme_comment": "Set the theme of the interface if supported",
 			"value": "Value",
 			"map_lat": "Default Latitude",
 			"map_lat_comment": "Map will be centered at this latitude",
 			"map_lng": "Default Longitude",
 			"map_lng_comment": "Map will be centered at this longitude",
-			"height": "Height",
+			"height": "Magasság",
 			"default_zoom": "Default Zoom",
 			"default_zoom_comment": "Default zoom level of the map",
 			"max_zoom": "Max Zoom",
@@ -357,13 +357,13 @@
 		},
 		"multiselect": {
 			"multiselect": "Multi-Select",
-			"choices": "Choices",
+			"choices": "Lehetőségek",
 			"choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Enter placeholder text",
 			"size": "Size",
 			"size_comment": "Number of options visible before scrolling",
-			"option": "Option",
+			"option": "Opció",
 			"wrap": "Wrap with Delimiter",
 			"wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
 			"format": "Browse Format",
@@ -403,7 +403,7 @@
 			"sort_field_comment": "The field to store the sort value in"
 		},
 		"password": {
-			"password": "Password",
+			"password": "Jelszó",
 			"hide": "Hide Value",
 			"hide_comment": "Display dots instead of the characters you enter",
 			"placeholder": "Placeholder",
@@ -428,9 +428,9 @@
 		},
 		"radio-buttons": {
 			"radio": "Radio Buttons",
-			"choices": "Choices",
+			"choices": "Lehetőségek",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
-			"option": "Option",
+			"option": "Opció",
 			"format": "Browse Format",
 			"format_comment": "The output format on the Browse Items page"
 		},
@@ -488,7 +488,7 @@
 			"sort": "Sort"
 		},
 		"status": {
-			"status": "Status",
+			"status": "Állapot",
 			"status_mapping": "Status Mapping",
 			"status_mapping_comment": "Enter JSON status options",
 			"simple_badge": "Simple Badge",
@@ -499,7 +499,7 @@
 			"deleted": "Deleted"
 		},
 		"tags": {
-			"tags": "Tags",
+			"tags": "Cimkék",
 			"alphabetize": "Alphabetize tags",
 			"alphabetize_comment": "Will rearrange tags to be alphabetical",
 			"lowercase": "Force Lowercase",
@@ -594,18 +594,18 @@
 		},
 		"user": {
 			"user": "User",
-			"avatar": "Avatar",
+			"avatar": "Profilkép",
 			"name": "Name",
-			"template": "Template",
+			"template": "Sablon",
 			"template_comment": "How to format the users in the dropdown",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Add a placeholder"
 		},
 		"owner": {
-			"owner": "Owner",
-			"avatar": "Avatar",
+			"owner": "Tulajdonos",
+			"avatar": "Profilkép",
 			"name": "Name",
-			"template": "Template",
+			"template": "Sablon",
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
@@ -621,9 +621,9 @@
 		},
 		"user-updated": {
 			"user_updated": "User Updated",
-			"avatar": "Avatar",
+			"avatar": "Profilkép",
 			"name": "Name",
-			"template": "Template",
+			"template": "Sablon",
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",

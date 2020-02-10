@@ -133,7 +133,7 @@
 			"unknown": "Unknown"
 		},
 		"datetime-updated": {
-			"datetime_updated": "时间已更新",
+			"datetime_updated": "更新日期",
 			"relative": "显示相对时间",
 			"relative_comment": "显示相对时间（例如 50 分钟前）",
 			"now": "You are creating this now",
@@ -620,7 +620,7 @@
 			"show_public": "Show public role"
 		},
 		"user-updated": {
-			"user_updated": "User Updated",
+			"user_updated": "更新人",
 			"avatar": "头像",
 			"name": "名称",
 			"template": "模板",
