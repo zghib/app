@@ -151,7 +151,7 @@ export default {
 		},
 		iconLeftColor: {
 			type: String,
-			default: '--blue-grey'
+			default: '--input-icon-color'
 		},
 		iconLeftTooltip: {
 			type: String,
@@ -163,7 +163,7 @@ export default {
 		},
 		iconRightColor: {
 			type: String,
-			default: '--blue-grey'
+			default: '--input-icon-color'
 		},
 		iconRightTooltip: {
 			type: String,

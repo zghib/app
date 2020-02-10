@@ -12,7 +12,7 @@
 		<span v-if="options.display !== 'avatar'" class="name">
 			{{ displayValue }}
 		</span>
-		<v-icon name="account_box" />
+		<v-icon name="account_box" color="--input-icon-color" />
 	</div>
 	<v-input
 		v-else-if="newItem"
@@ -23,7 +23,7 @@
 	<v-input
 		v-else
 		:readonly="true"
-		:placeholder="$t('interfaces.user.updated-unknown')"
+		:placeholder="$t('interfaces.user-updated.unknown')"
 		icon-right="account_box"
 	/>
 </template>
@@ -67,14 +67,6 @@ export default {
 	display: flex;
 	align-items: center;
 	background-color: var(--input-background-color-disabled);
-	i {
-		position: absolute;
-		top: 50%;
-		color: var(--input-icon-color);
-		transform: translateY(-50%);
-		font-size: 24px;
-		right: 10px;
-	}
 }
 .avatar {
 	width: max-content;

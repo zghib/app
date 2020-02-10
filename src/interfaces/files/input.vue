@@ -96,7 +96,7 @@
 					:disabled="readonly"
 					@click="startAddNewItem"
 				>
-					<v-icon name="add" />
+					<v-icon name="add" left />
 					{{ $t('add_new') }}
 				</v-button>
 
@@ -106,7 +106,7 @@
 					:disabled="readonly"
 					@click="selectExisting = true"
 				>
-					<v-icon name="playlist_add" />
+					<v-icon name="playlist_add" left />
 					{{ $t('select_existing') }}
 				</v-button>
 			</div>

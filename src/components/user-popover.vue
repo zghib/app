@@ -136,7 +136,7 @@ export default {
 	&:hover .arrow {
 		color: var(--blue) !important;
 	}
-	.avatar {
+	.v-avatar {
 		margin-right: 12px;
 	}
 	.info {

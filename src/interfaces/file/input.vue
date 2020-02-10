@@ -39,7 +39,7 @@
 
 			<div v-if="!value" class="buttons">
 				<v-button type="button" :disabled="readonly" @click="existing = true">
-					<v-icon name="playlist_add" />
+					<v-icon name="playlist_add" left />
 					{{ $t('existing') }}
 				</v-button>
 			</div>

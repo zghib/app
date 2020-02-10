@@ -46,7 +46,11 @@
 					<v-button
 						v-if="collection.managed"
 						class="managed"
-						small
+						x-small
+						background-color="--button-tertiary-background-color"
+						color="--button-tertiary-text-color"
+						hover-background-color="--danger"
+						hover-color="--white"
 						:loading="toManage.includes(collection.collection)"
 						@click="toggleManage(collection)"
 					>
@@ -55,7 +59,7 @@
 					<v-button
 						v-else
 						class="not-managed"
-						small
+						x-small
 						:loading="toManage.includes(collection.collection)"
 						@click="toggleManage(collection)"
 					>
@@ -687,34 +691,9 @@ export default {
 		}
 	}
 
-	button {
-		border-radius: var(--border-radius);
-		padding: 4px 8px 3px;
+	.v-button {
 		position: absolute;
 		right: 12px;
-		min-width: auto;
-		height: auto;
-		border: 0;
-
-		&.managed {
-			background-color: var(--button-tertiary-background-color);
-			color: var(--button-tertiary-text-color);
-
-			&:hover {
-				background-color: var(--danger);
-				color: var(--white);
-			}
-		}
-
-		&.not-managed {
-			background-color: var(--button-primary-background-color);
-			color: var(--button-primary-text-color);
-
-			&:hover {
-				background-color: var(--button-primary-background-color-hover);
-				color: var(--button-primary-text-color);
-			}
-		}
 	}
 }
 
