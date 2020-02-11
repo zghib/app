@@ -7,7 +7,7 @@
 			x-small
 		>
 			<img v-if="src" :src="src" />
-			<v-icon name="person" v-else />
+			<v-icon name="person" small v-else />
 		</v-avatar>
 		<span v-if="options.display !== 'avatar'" class="name">{{ displayValue }}</span>
 		<v-icon name="account_box" color="--input-icon-color" />
@@ -66,7 +66,7 @@ export default {
 	align-items: center;
 	background-color: var(--input-background-color-disabled);
 
-	.v-icon {
+	> .v-icon {
 		position: absolute;
 		top: 50%;
 		transform: translateY(-50%);
@@ -74,7 +74,7 @@ export default {
 	}
 }
 .avatar {
-	display: inline-block;
+	display: inline-flex;
 	margin-right: 12px;
 }
 .name {
