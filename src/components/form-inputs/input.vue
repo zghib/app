@@ -324,11 +324,11 @@ export default {
 		}
 	}
 
-	&.icon-left .v-icon {
+	&.icon-left .v-icon.icon-left {
 		left: 10px;
 	}
 
-	&.icon-right .v-icon {
+	&.icon-right .v-icon.icon-right {
 		right: 10px;
 	}
 }

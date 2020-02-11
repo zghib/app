@@ -135,7 +135,7 @@ export default createComponent({
 	cursor: pointer;
 	border: var(--input-border-width) solid var(--_v-button-background-color);
 
-	font-size: 15px;
+	font-size: 16px;
 	padding: 0 19px;
 	min-width: 78px;
 	height: var(--_v-button-height);
@@ -218,8 +218,6 @@ export default createComponent({
 	}
 
 	.content {
-		position: relative;
-		top: -1px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
