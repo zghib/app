@@ -12,7 +12,12 @@
 			>
 				{{ cancelText || $t('cancel') }}
 			</v-button>
-			<v-button :background-color="`--${color}`" class="confirm" @click="$emit('confirm')">
+			<v-button
+				:background-color="`--${color}`"
+				:hover-background-color="`--${color}`"
+				class="confirm"
+				@click="$emit('confirm')"
+			>
 				<template v-if="loading">
 					<v-spinner :size="20" :line-size="2" />
 				</template>
@@ -71,5 +76,9 @@ export default {
 
 .cancel {
 	margin-right: 12px;
+}
+
+.v-button:hover {
+	opacity: 0.9;
 }
 </style>

@@ -52,7 +52,7 @@
 						hover-background-color="--danger"
 						hover-color="--white"
 						:loading="toManage.includes(collection.collection)"
-						@click="toggleManage(collection)"
+						@click.native.stop.prevent="toggleManage(collection)"
 					>
 						{{ $t('dont_manage') }}
 					</v-button>
@@ -61,7 +61,7 @@
 						class="not-managed"
 						x-small
 						:loading="toManage.includes(collection.collection)"
-						@click="toggleManage(collection)"
+						@click.native.stop.prevent="toggleManage(collection)"
 					>
 						{{ $t('manage') }}
 					</v-button>
