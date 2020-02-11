@@ -2,7 +2,7 @@
 	<div :data-collection="collection" :data-field="field.field" :class="width">
 		<div v-if="showLabel" class="type-label">
 			<v-contextual-menu
-				v-if="field.readonly === false"
+				v-if="field.readonly === false && batchMode === false"
 				class="field-action"
 				placement="bottom-start"
 				:options="options"
@@ -257,5 +257,9 @@ export default {
 		vertical-align: -2px;
 		opacity: 0;
 	}
+}
+
+.batch-toggle {
+	margin-left: 8px;
 }
 </style>

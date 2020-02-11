@@ -15,13 +15,13 @@
 	<v-input
 		v-else-if="newItem"
 		:readonly="true"
-		:placeholder="$t('interfaces.user.created-you')"
+		:placeholder="$t('interfaces.owner.you')"
 		icon-right="account_box"
 	/>
 	<v-input
 		v-else
 		:readonly="true"
-		:placeholder="$t('interfaces.user.created-unknown')"
+		:placeholder="$t('interfaces.owner.unknown')"
 		icon-right="account_box"
 	/>
 </template>
