@@ -316,8 +316,8 @@ export default {
 		}
 
 		.date {
+			display: block;
 			color: var(--note-text-color);
-			margin-left: 8px;
 		}
 
 		.title {
