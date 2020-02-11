@@ -12,7 +12,7 @@ export default createComponent({
 	props: {
 		color: {
 			type: String,
-			default: '--teal'
+			default: '--avatar-background-color'
 		},
 		size: {
 			type: Number,
