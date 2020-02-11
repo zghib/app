@@ -80,11 +80,11 @@ export default {
 
 		.signal {
 			position: absolute;
-			left: 0;
-			top: calc(50% - 13px);
+			left: 2px;
+			top: calc(50% - 12px);
 			user-select: none;
 			pointer-events: none;
-			width: 21px;
+			width: 24px;
 			height: 24px;
 			color: var(--input-text-color);
 			fill: var(--input-text-color);

@@ -283,16 +283,15 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach(to => {
 	// Prevent tracking if not logged in
+	// Ping the api for server latency after a couple seconds of navigation. We're waiting here
+	// for a little bit to give the app the chance to fetch and do other things before checking te latency
+	// this ensures an accurate representation of the server latency
+	setTimeout(() => store.dispatch('latency'), 1000);
 	if (store.state.hydrated) {
 		const pathsToIgnore = ['/setup-2fa', '/logout', '/login'];
 		if (!pathsToIgnore.includes(to.path)) {
 			store.dispatch('track', { page: to.path });
 		}
-
-		// Ping the api for server latency after a couple seconds of navigation. We're waiting here
-		// for a little bit to give the app the chance to fetch and do other things before checking te latency
-		// this ensures an accurate representation of the server latency
-		setTimeout(() => store.dispatch('latency'), 2500);
 	}
 });
 
