@@ -764,9 +764,6 @@ export default {
 	.v-icon {
 		transition: color var(--fast) var(--transition);
 		color: var(--input-border-color);
-		font-size: 24px;
-		height: 20px;
-		transform: translateY(-2px); // Vertical alignment of icon
 	}
 
 	&:hover {
