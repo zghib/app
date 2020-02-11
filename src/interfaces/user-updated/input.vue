@@ -4,7 +4,7 @@
 			v-if="options.display !== 'name'"
 			v-tooltip="options.display === 'avatar' ? displayValue : null"
 			class="avatar"
-			small
+			x-small
 		>
 			<img v-if="src" :src="src" />
 			<v-icon name="person" v-else />
@@ -67,10 +67,15 @@ export default {
 	display: flex;
 	align-items: center;
 	background-color: var(--input-background-color-disabled);
+
+	.v-icon {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 10px;
+	}
 }
 .avatar {
-	width: max-content;
-	height: auto;
 	display: inline-block;
 	margin-right: 12px;
 }
