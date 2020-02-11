@@ -495,6 +495,7 @@ export default {
 	pointer-events: none;
 }
 .more {
+	display: block;
 	margin: 32px auto;
 }
 .not-found {
