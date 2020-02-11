@@ -222,6 +222,7 @@ export default createComponent({
 		top: -1px;
 		display: flex;
 		align-items: center;
+		justify-content: center;
 
 		&.invisible {
 			opacity: 0;
