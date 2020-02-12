@@ -525,6 +525,19 @@ export default {
 						delete after[this.junctionPrimaryKey];
 					}
 
+					// If the new (before case was handled above) item's primary key field is set, then this is only the reference and
+					// we should only send the primary key field to the API.
+					// Otherwise the update is triggered by the API on the whole hierarchy
+					if (
+						after[this.junctionRelatedKey] &&
+						after[this.junctionRelatedKey][this.relatedPrimaryKeyField]
+					) {
+						after[this.junctionRelatedKey] = {
+							[this.relatedPrimaryKeyField]:
+								after[this.junctionRelatedKey][this.relatedPrimaryKeyField]
+						};
+					}
+
 					return after;
 				})
 				.filter(i => i);
