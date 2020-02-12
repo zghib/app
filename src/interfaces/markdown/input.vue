@@ -1,5 +1,5 @@
 <template>
-	<div class="interface-markdown" :class="{ float: !options.tabbed }">
+	<div class="interface-markdown" :class="{ float: !options.tabbed, readonly }">
 		<v-textarea
 			v-if="!preview || !options.tabbed"
 			:id="name"
@@ -7,6 +7,8 @@
 			:value="value"
 			:placeholder="options.placeholder"
 			:rows="+options.rows"
+			:disabled="readonly"
+			:readonly="readonly"
 			@input="$emit('input', $event)"
 		></v-textarea>
 		<div
@@ -111,22 +113,23 @@ export default {
 		max-width: var(--width-large);
 		min-height: 200px;
 		max-height: 800px;
-		overflow: scroll;
+		overflow: auto;
 		border-radius: 0 0 var(--border-radius) var(--border-radius);
 	}
 	.textarea {
 		font-family: 'Roboto Mono', monospace;
-		&:hover ~ .toolbar span.active {
-			border-color: var(--input-border-color-hover);
-		}
-		&:focus ~ .toolbar span.active {
-			border-color: var(--input-border-color-focus);
-		}
 	}
 	.preview {
 		background-color: var(--input-background-color);
 		padding: 10px;
 		border: var(--input-border-width) solid var(--input-border-color);
+	}
+
+	&:not(.readonly).textarea:hover ~ .toolbar span.active {
+		border-color: var(--input-border-color-hover);
+	}
+	&:not(.readonly).textarea:focus ~ .toolbar span.active {
+		border-color: var(--input-border-color-focus);
 	}
 }
 </style>
