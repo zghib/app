@@ -484,6 +484,7 @@
   "settings_webhooks": "روابط الويب (Webhooks)",
   "setup_2fa": "إعداد خاصية التوثيق الثنائي",
   "show_directus_collections": "اعرض مجموعات نظام Directus",
+  "signed": "Signed",
   "sign_in": "تسجيل الدخول",
   "sign_out": "تسجيل الخروج",
   "sign_out_confirm": "هل أنت متأكد من رغبتك في تسجيل الخروج?",

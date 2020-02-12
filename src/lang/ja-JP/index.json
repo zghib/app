@@ -484,6 +484,7 @@
   "settings_webhooks": "Webhook",
   "setup_2fa": "2段階認証の設定",
   "show_directus_collections": "Directusシステムのコレクションを表示",
+  "signed": "Signed",
   "sign_in": "サインイン",
   "sign_out": "サインアウト",
   "sign_out_confirm": "サインアウトしてもよろしいですか？",

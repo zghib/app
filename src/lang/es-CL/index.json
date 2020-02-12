@@ -484,6 +484,7 @@
   "settings_webhooks": "Webhooks",
   "setup_2fa": "Configurar 2FA",
   "show_directus_collections": "Mostrar colecciones del sistema Directus",
+  "signed": "Signed",
   "sign_in": "Ingresar",
   "sign_out": "Desconectar",
   "sign_out_confirm": "¿Seguro que quieres cerrar sesión?",
