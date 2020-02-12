@@ -190,7 +190,7 @@
 						<v-switch v-model="unique" :label="$t('unique')" />
 						<v-switch v-model="hidden_detail" :label="$t('hidden_detail')" />
 						<v-switch v-model="hidden_browse" :label="$t('hidden_browse')" />
-						<v-switch v-model="signed" :label="$t('signed')" />
+						<v-switch v-if="isNumeric" v-model="signed" :label="$t('signed')" />
 
 						<label class="translation">
 							<span class="type-label">{{ $t('translation') }}</span>
