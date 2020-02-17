@@ -5,13 +5,13 @@
       "fields": "Fields",
       "today": "ma",
       "events": "Események",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
+      "moreEvents": "és még {amount}...",
+      "noEvents": "jelenleg nincs esemény!",
       "date": "Date",
       "datetime": "Datetime",
       "time": "Time",
       "title": "Cím",
-      "color": "Color"
+      "color": "Szín"
     },
     "cards": {
       "cards": "Kártya",
@@ -30,12 +30,12 @@
       "fields": "Fields",
       "today": "ma",
       "events": "Események",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
+      "moreEvents": "és még {amount}...",
+      "noEvents": "jelenleg nincs esemény!",
       "date": "Date",
       "content": "Tartalom",
       "title": "Cím",
-      "color": "Color"
+      "color": "Szín"
     }
   }
 }

@@ -78,13 +78,13 @@
 			"include_system_comment": "Include system collections in the options"
 		},
 		"color": {
-			"color": "Color",
+			"color": "Szín",
 			"format": "Output Format",
 			"format_comment": "In what data format to save the value",
-			"palette": "Palette",
+			"palette": "Színpaletta",
 			"palette_comment": "Add color options as hex values",
 			"palette_only": "Palette Only",
-			"palette_only_comment": "Only allow the user to pick from the palette"
+			"palette_only_comment": "A felhasználó csak a színpalettáról választhat"
 		},
 		"color-palette": {
 			"color-picker": "Color Picker"
@@ -99,9 +99,9 @@
 			"localized_comment": "Show the date localized in the output",
 			"relative": "Show relative date",
 			"relative_comment": "Show the date relatively (eg 2 days ago)",
-			"icon_left": "Icon Left",
+			"icon_left": "Ikon Balra",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Ikon Jobbra",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input"
 		},
 		"datetime": {
@@ -114,9 +114,9 @@
 			"localized_comment": "Show the date localized in the output",
 			"relative": "Show relative time",
 			"relative_comment": "Show the time relatively (eg 50 minutes ago)",
-			"icon_left": "Icon Left",
+			"icon_left": "Ikon Balra",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Ikon Jobbra",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input",
 			"utc": "Save as UTC",
 			"utc_comment": "Save to and display from UTC",
@@ -375,9 +375,9 @@
 			"placeholder_comment": "Enter placeholder text",
 			"localized": "Localized",
 			"localized_comment": "Localize the output to the user's locale",
-			"icon_left": "Icon Left",
+			"icon_left": "Ikon Balra",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Ikon Jobbra",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input",
 			"monospace": "Monospace",
 			"monospace_comment": "Use a monospace font"
@@ -511,9 +511,9 @@
 			"sanitize": "Sanitize",
 			"sanitize_comment": "Removes any non-alphanumeric characters and converts spaces to hyphens",
 			"placeholder_text": "Type a tag and then hit enter or comma...",
-			"icon_left": "Icon Left",
+			"icon_left": "Ikon Balra",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Ikon Jobbra",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input",
 			"validation": "Validation",
 			"validation_comment": "A RegEx to check each individual value against",
@@ -528,9 +528,9 @@
 			"trim_comment": "Trim surrounding whitespace from the value before saving",
 			"char_count": "Show Character Count",
 			"char_count_comment": "Show the remaining characters available",
-			"icon_left": "Icon Left",
+			"icon_left": "Ikon Balra",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Ikon Jobbra",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input",
 			"format": "Pretty Output",
 			"format_comment": "Convert the value to title case",

@@ -327,7 +327,7 @@
 			"map_lat_comment": "Map will be centered at this latitude",
 			"map_lng": "Default Longitude",
 			"map_lng_comment": "Map will be centered at this longitude",
-			"height": "Height",
+			"height": "Висина",
 			"default_zoom": "Default Zoom",
 			"default_zoom_comment": "Default zoom level of the map",
 			"max_zoom": "Max Zoom",
@@ -403,7 +403,7 @@
 			"sort_field_comment": "The field to store the sort value in"
 		},
 		"password": {
-			"password": "Password",
+			"password": "Лозинка",
 			"hide": "Hide Value",
 			"hide_comment": "Display dots instead of the characters you enter",
 			"placeholder": "Placeholder",
@@ -488,7 +488,7 @@
 			"sort": "Сортирај"
 		},
 		"status": {
-			"status": "Status",
+			"status": "Стање",
 			"status_mapping": "Status Mapping",
 			"status_mapping_comment": "Enter JSON status options",
 			"simple_badge": "Simple Badge",
