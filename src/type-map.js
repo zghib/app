@@ -46,7 +46,7 @@ export const datatypes = {
 		// -------------------------------------------------------------------------
 		TINYINT: {
 			description: 'datatypes.mysql.TINYINT',
-			fallbackInterface: 'toggle'
+			fallbackInterface: 'switch'
 		},
 
 		SMALLINT: {
