@@ -47,28 +47,28 @@
   "collection_invalid_name": "Nome da coleção inválida",
   "collection_names_cannot_be_changed": "Os nomes da coleção não podem ser editados no momento.",
   "collection_removed": "Coleção Removida",
-  "collection_updated": "Collection Updated",
-  "collections_and_fields": "Collection & Fields",
+  "collection_updated": "Coleção Atualizada",
+  "collections_and_fields": "Coleção & Campos",
   "collections": {
     "directus_activity": "Atividade",
     "directus_files": "Ficheiros",
-    "directus_users": "Users"
+    "directus_users": "Utilizadores"
   },
   "fields": {
     "directus_activity": {
-      "action": "Action",
-      "collection": "Collection",
-      "item": "Item Primary Key",
+      "action": "Ação",
+      "collection": "Coleção",
+      "item": "Chave primária",
       "action_by": "Action By",
       "action_on": "Action On",
-      "edited_on": "Edited On",
-      "comment_deleted_on": "Comment Deleted On",
-      "ip": "IP Address",
+      "edited_on": "Editado em",
+      "comment_deleted_on": "Comentário eliminado em",
+      "ip": "Endereço IP",
       "user_agent": "User Agent",
-      "comment": "Comment"
+      "comment": "Comentário"
     },
     "directus_files": {
-      "title": "Title",
+      "title": "Título",
       "tags": "Tags",
       "location": "Location",
       "description": "Description",
@@ -93,7 +93,7 @@
       "password": "Password",
       "role": "Role",
       "company": "Company",
-      "title": "Title",
+      "title": "Título",
       "timezone": "Timezone",
       "locale": "Locale",
       "avatar": "Avatar",
@@ -104,7 +104,7 @@
   "modules": {},
   "comfortable": "Comfortable",
   "coming_soon": "Coming Soon",
-  "comment": "Comment",
+  "comment": "Comentário",
   "comments": "Comentários",
   "compact": "Compact",
   "config_error": "Missing Config",

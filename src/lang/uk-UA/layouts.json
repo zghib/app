@@ -1,41 +1,41 @@
 {
   "layouts": {
     "calendar": {
-      "calendar": "Calendar",
+      "calendar": "Календар",
       "fields": "Поля",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
-      "date": "Date",
-      "datetime": "Datetime",
-      "time": "Time",
-      "title": "Title",
-      "color": "Color"
+      "today": "сьогодні",
+      "events": "Події",
+      "moreEvents": "і ще {amount}...",
+      "noEvents": "поки немає подій!",
+      "date": "Дата",
+      "datetime": "Дата й час",
+      "time": "Час",
+      "title": "Заголовок",
+      "color": "Колір"
     },
     "cards": {
-      "cards": "Cards",
-      "title": "Title",
-      "subtitle": "Subtitle",
-      "src": "Image Source",
+      "cards": "Картки",
+      "title": "Заголовок",
+      "subtitle": "Підзаголовок",
+      "src": "Джерело зображення",
       "content": "Body Content",
-      "fit": "Fit"
+      "fit": "Найкраще заповнення"
     },
     "tabular": {
-      "tabular": "Table",
+      "tabular": "Таблиця",
       "fields": "Поля"
     },
     "timeline": {
-      "timeline": "Timeline",
+      "timeline": "Часова шкала",
       "fields": "Поля",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
-      "date": "Date",
-      "content": "Content",
-      "title": "Title",
-      "color": "Color"
+      "today": "сьогодні",
+      "events": "Події",
+      "moreEvents": "і ще {amount}...",
+      "noEvents": "поки немає подій!",
+      "date": "Дата",
+      "content": "Контент",
+      "title": "Заголовок",
+      "color": "Колір"
     }
   }
 }

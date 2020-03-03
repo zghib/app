@@ -182,9 +182,9 @@
 			"filters_comment": "Какие фильтры использовать",
 			"accept": "Принимать типы файлов",
 			"accept_comment": "Задать список MIME типов, которые можно выбрать",
-			"allow_delete": "Allow Delete",
+			"allow_delete": "Разрешить удаление",
 			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface",
-			"crop_preview": "Crop File Preview",
+			"crop_preview": "Обрезать предпросмотр файла",
 			"crop_preview_comment": "Crops the file preview to fill the available space."
 		},
 		"file-preview": {
@@ -283,7 +283,7 @@
 			"limit_comment": "Показывать только языки, которые доступны в качестве переводов в Directus"
 		},
 		"many-to-many": {
-			"m2m": "Многие для многих",
+			"m2m": "Многие ко многим",
 			"visible_columns": "Видимые столбцы",
 			"visible_columns_comment": "Добавить CSV столбцов, которые вы хотите отобразить как предварительный просмотр",
 			"preferences": "Список предпочтений просмотра",
@@ -481,7 +481,7 @@
 			"force_lowercase_comment": "Дает уверенность в том, что слаг в нижнем регистре",
 			"mirrored_field": "Зеркальное поле",
 			"mirrored_field_comment": "Сохранять slug в актуальном состоянии с другим (текст) полем",
-			"only_on_create": "Only on Create",
+			"only_on_create": "Только при создании",
 			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
 		},
 		"sort": {
@@ -558,13 +558,13 @@
 			"24hour_comment": "Показывать время в 24-часовом формате (например: 15:30)"
 		},
 		"switch": {
-			"switch": "Switch",
-			"label_on": "Label (On)",
+			"switch": "Переключатель",
+			"label_on": "Текст в положении \"вкл.\"",
 			"label_on_comment": "Label to show next to the toggle when the toggle is on",
-			"label_off": "Label (Off)",
+			"label_off": "Выкл.",
 			"label_off_comment": "Label to show next to the toggle when the toggle is off",
-			"checkbox": "Show as Checkbox",
-			"checkbox_comment": "Display a checkbox instead of the default switch"
+			"checkbox": "Отображать как флажок",
+			"checkbox_comment": "Показывать флажок вместо переключателя"
 		},
 		"toggle-icon": {
 			"toggle-icon": "Иконка",
@@ -635,7 +635,7 @@
 			"toolbar_comment": "Показать, скрыть и изменить порядок панели инструментов",
 			"custom_formats": "Пользовательские форматы",
 			"custom_formats_comment": "Пользовательские HTML упаковщики для контента",
-			"tinymce_options": "TinyMCE Options",
+			"tinymce_options": "Параметры TinyMCE",
 			"tinymce_options_comment": "Override any of [the TinyMCE init options](https://www.tiny.cloud/docs/configure/)."
 		}
 	}
