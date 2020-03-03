@@ -76,17 +76,14 @@ export default {
 		return {
 			lineCount: 0,
 
-			cmOptions: {
+			defaultOptions: {
 				tabSize: 4,
 				autoRefresh: true,
 				indentUnit: 4,
 				styleActiveLine: true,
-				lineNumbers: this.options.lineNumber,
-				readOnly: this.readonly ? 'nocursor' : false,
 				styleSelectedText: true,
 				line: true,
 				highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true },
-				mode: this.mode,
 				hintOptions: {
 					completeSingle: true
 				},
@@ -124,17 +121,13 @@ export default {
 			return this.options.language === 'application/json'
 				? 'text/javascript'
 				: this.options.language;
-		}
-	},
-	watch: {
-		options(newVal, oldVal) {
-			if (newVal.language !== oldVal.language) {
-				this.$set(this.cmOptions, 'mode', newVal.language);
-			}
-
-			if (newVal.lineNumber !== oldVal.lineNumber) {
-				this.$set(this.cmOptions, 'lineNumbers', newVal.lineNumber);
-			}
+		},
+		cmOptions() {
+			return Object.assign({}, this.defaultOptions, {
+				lineNumbers: this.options.lineNumber,
+				readOnly: this.readonly ? 'nocursor' : false,
+				mode: this.mode
+			});
 		}
 	},
 	mounted() {
