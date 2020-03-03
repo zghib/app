@@ -37,7 +37,15 @@
 					{{ showPlaceholder ? placeholder : displayValue }}
 				</button>
 			</div>
-			<button type="button" @click="$emit('remove')">
+
+			<v-contextual-menu
+				v-if="duplicable"
+				class="more-options"
+				placement="bottom-end"
+				:options="rowOptions"
+				@click="rowOptionsClicked"
+			></v-contextual-menu>
+			<button v-else type="button" @click="$emit('remove')">
 				<v-icon name="delete_outline" class="remove" />
 			</button>
 		</div>
@@ -74,6 +82,10 @@ export default {
 			type: String,
 			default: null
 		},
+		duplicable: {
+			type: Boolean,
+			default: false
+		},
 		open: {
 			type: Boolean,
 			default: false
@@ -105,6 +117,31 @@ export default {
 			});
 
 			return fieldsHaveValue === false;
+		},
+		rowOptions() {
+			return [
+				{
+					text: this.$t('delete'),
+					icon: 'delete_outline'
+				},
+				{
+					text: this.$t('duplicate'),
+					icon: 'control_point_duplicate'
+				}
+			];
+		}
+	},
+	methods: {
+		rowOptionsClicked(option) {
+			switch (option) {
+				case 0:
+					this.$emit('remove');
+					break;
+				case 1:
+					this.$emit('duplicate');
+					break;
+				default:
+			}
 		}
 	}
 };

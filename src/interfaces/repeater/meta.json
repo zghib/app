@@ -120,6 +120,12 @@
       "default": null,
       "advanced": true
     },
+    "duplicable": {
+      "name": "$t:duplicable",
+      "comment": "$t:duplicable_comment",
+      "interface": "switch",
+      "advanced": true
+    },
     "structure": {
       "name": "$t:structure",
       "comment": "$t:structure_comment",
