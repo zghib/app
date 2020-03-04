@@ -149,7 +149,8 @@ export default {
 		},
 		getNewRow() {
 			const row = {
-				__key: shortid.generate()
+				__key: shortid.generate(),
+				newItem: true
 			};
 
 			this.repeaterFields.forEach(field => {
