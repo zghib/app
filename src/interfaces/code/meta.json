@@ -25,7 +25,7 @@
     "template": {
       "name": "$t:template",
       "comment": "$t:template_comment",
-      "interface": "json",
+      "interface": "code",
       "options": {
         "language": "text/plain"
       }
