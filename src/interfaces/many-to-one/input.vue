@@ -21,7 +21,7 @@
 			/>
 
 			<button
-				v-if="count > options.threshold"
+				v-if="!readonly && count > options.threshold"
 				type="button"
 				@click="listingActive = true"
 			></button>
