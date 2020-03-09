@@ -10,6 +10,11 @@
 export default function getFieldsFromTemplate(string) {
 	const regex = /{{(.*?)}}/g;
 	let fields = string.match(regex);
+
+	if (!Array.isArray(fields)) {
+		return [];
+	}
+
 	fields = fields.map(field => {
 		return field
 			.replace(/{{/g, '')
