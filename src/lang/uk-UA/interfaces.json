@@ -453,6 +453,8 @@
 			"fields_comment": "What fields to show in each repeated row",
 			"limit": "Limit",
 			"limit_comment": "Максимальна кількість рядків, які може додавати користувач",
+			"duplicable": "Duplicable rows",
+			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Structure",
 			"structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
 			"structure_key": "Structure Key Field",

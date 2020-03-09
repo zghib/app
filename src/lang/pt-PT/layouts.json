@@ -3,10 +3,10 @@
     "calendar": {
       "calendar": "Calendar",
       "fields": "Fields",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
+      "today": "hoje",
+      "events": "Eventos",
+      "moreEvents": "e mais {amount}...",
+      "noEvents": "sem eventos!",
       "date": "Date",
       "datetime": "Datetime",
       "time": "Time",
@@ -14,9 +14,9 @@
       "color": "Color"
     },
     "cards": {
-      "cards": "Cards",
+      "cards": "Cartões",
       "title": "Título",
-      "subtitle": "Subtitle",
+      "subtitle": "Subtítulo",
       "src": "Image Source",
       "content": "Body Content",
       "fit": "Fit"
@@ -28,10 +28,10 @@
     "timeline": {
       "timeline": "Timeline",
       "fields": "Fields",
-      "today": "today",
-      "events": "Events",
-      "moreEvents": "and {amount} more...",
-      "noEvents": "no events yet!",
+      "today": "hoje",
+      "events": "Eventos",
+      "moreEvents": "e mais {amount}...",
+      "noEvents": "sem eventos!",
       "date": "Date",
       "content": "Content",
       "title": "Título",

@@ -453,6 +453,8 @@
 			"fields_comment": "Какие поля показывать в каждой повторной строке",
 			"limit": "Лимит",
 			"limit_comment": "Максимальное количество строк, которое пользователь может добавить",
+			"duplicable": "Duplicable rows",
+			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Структура",
 			"structure_comment": "Сохранять JSON как массив объектов или один объект с уникальными ключами",
 			"structure_key": "Поле ключа структуры",

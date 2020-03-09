@@ -453,6 +453,8 @@
 			"fields_comment": "Tekrarlanan her satırda hangi alanlar gösterilecek",
 			"limit": "Limit",
 			"limit_comment": "Kullanıcının ekleyebileceği maksimum satır sayısı",
+			"duplicable": "Duplicable rows",
+			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Yapı",
 			"structure_comment": "JSON'u benzersiz anahtarlarla bir nesne dizisi veya tek bir nesne olarak kaydetme",
 			"structure_key": "Yapı Anahtar Alanı",

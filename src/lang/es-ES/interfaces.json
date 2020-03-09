@@ -453,6 +453,8 @@
 			"fields_comment": "Qué campos mostrar en cada fila repetida",
 			"limit": "Límite",
 			"limit_comment": "Cantidad máxima de filas que el usuario puede añadir",
+			"duplicable": "Duplicable rows",
+			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Estructura",
 			"structure_comment": "Si guardar el objecto JSON como un arreglo de objetos o un solo objeto con claves únicas",
 			"structure_key": "Campo Clave de la Estructura",

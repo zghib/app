@@ -1,7 +1,7 @@
 {
 	"interfaces": {
 		"2fa-secret": {
-			"2fa-secret": "2FA Secret"
+			"2fa-secret": "Segredo para autenticação de 2 passos"
 		},
 		"button-group": {
 			"button_group": "Grupos de Botões",
@@ -453,6 +453,8 @@
 			"fields_comment": "What fields to show in each repeated row",
 			"limit": "Limit",
 			"limit_comment": "Maximum amount of rows the user can add",
+			"duplicable": "Duplicable rows",
+			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Structure",
 			"structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
 			"structure_key": "Structure Key Field",

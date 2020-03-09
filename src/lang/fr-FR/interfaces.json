@@ -453,6 +453,8 @@
 			"fields_comment": "Les champs à afficher dans chaque ligne répétée",
 			"limit": "Limiter",
 			"limit_comment": "Nombre maximum de lignes que l'utilisateur peut ajouter",
+			"duplicable": "Duplicable rows",
+			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Structure",
 			"structure_comment": "Enregistrer le JSON en tant que tableau d'objets ou d'objet unique avec des clés uniques",
 			"structure_key": "Structurer le champ clé",

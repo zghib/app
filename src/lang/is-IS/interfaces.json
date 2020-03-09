@@ -4,11 +4,11 @@
 			"2fa-secret": "2FA Secret"
 		},
 		"button-group": {
-			"button_group": "Button Group",
-			"choices": "Choices",
+			"button_group": "Hnappahópur",
+			"choices": "Val",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
 			"theme": "Interface Theme",
-			"theme_comment": "Set the theme of the interface if supported",
+			"theme_comment": "Stilltu þema viðmótsins ef það er stutt",
 			"value": "Value",
 			"flight": "Flight",
 			"cruise": "Cruise",
@@ -30,7 +30,7 @@
 		},
 		"checkboxes": {
 			"checkboxes": "Checkboxes",
-			"choices": "Choices",
+			"choices": "Val",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
 			"wrap": "Wrap with Delimiter",
 			"wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",
@@ -156,7 +156,7 @@
 		},
 		"dropdown": {
 			"dropdown": "Dropdown",
-			"choices": "Choices",
+			"choices": "Val",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Static text that shown before a value is selected",
@@ -321,7 +321,7 @@
 			"choices": "choices",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
 			"theme": "Interface Theme",
-			"theme_comment": "Set the theme of the interface if supported",
+			"theme_comment": "Stilltu þema viðmótsins ef það er stutt",
 			"value": "Value",
 			"map_lat": "Default Latitude",
 			"map_lat_comment": "Map will be centered at this latitude",
@@ -357,7 +357,7 @@
 		},
 		"multiselect": {
 			"multiselect": "Multi-Select",
-			"choices": "Choices",
+			"choices": "Val",
 			"choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Enter placeholder text",
@@ -428,7 +428,7 @@
 		},
 		"radio-buttons": {
 			"radio": "Radio Buttons",
-			"choices": "Choices",
+			"choices": "Val",
 			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
 			"option": "Option",
 			"format": "Browse Format",
@@ -453,6 +453,8 @@
 			"fields_comment": "What fields to show in each repeated row",
 			"limit": "Limit",
 			"limit_comment": "Maximum amount of rows the user can add",
+			"duplicable": "Duplicable rows",
+			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Structure",
 			"structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
 			"structure_key": "Structure Key Field",
