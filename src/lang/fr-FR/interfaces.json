@@ -26,7 +26,7 @@
 			"max": "Date maximum",
 			"max_comment": "Date maximum qui peut être choisie par l'utilisateur",
 			"formatting": "Format de la date",
-			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
+			"formatting_comment": "Suit [un standard technique Unicode](https://date-fns.org/v2.8.1/docs/format). Si laissé vide, une date relative sera utilisée."
 		},
 		"checkboxes": {
 			"checkboxes": "Cases à cocher",
@@ -182,7 +182,7 @@
 			"filters_comment": "Quels filtres utiliser",
 			"accept": "Accepter les types de fichier",
 			"accept_comment": "Définir une liste de types MIME qui peuvent être choisis",
-			"allow_delete": "Allow Delete",
+			"allow_delete": "Autoriser la suppression",
 			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface",
 			"crop_preview": "Crop File Preview",
 			"crop_preview_comment": "Crops the file preview to fill the available space."
@@ -453,7 +453,7 @@
 			"fields_comment": "Les champs à afficher dans chaque ligne répétée",
 			"limit": "Limiter",
 			"limit_comment": "Nombre maximum de lignes que l'utilisateur peut ajouter",
-			"duplicable": "Duplicable rows",
+			"duplicable": "Lignes dupliquées",
 			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Structure",
 			"structure_comment": "Enregistrer le JSON en tant que tableau d'objets ou d'objet unique avec des clés uniques",
@@ -483,8 +483,8 @@
 			"force_lowercase_comment": "S'assurer que le slug est en minuscule",
 			"mirrored_field": "Champ miroir",
 			"mirrored_field_comment": "Garder le slug à jour avec un autre champ (texte)",
-			"only_on_create": "Only on Create",
-			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
+			"only_on_create": "Seulement à la création",
+			"only_on_create_comment": "Autoriser l'édition du slug uniquement lors de la création d'un nouvel élément"
 		},
 		"sort": {
 			"sort": "Triage"
@@ -561,11 +561,11 @@
 		},
 		"switch": {
 			"switch": "Switch",
-			"label_on": "Label (On)",
+			"label_on": "Étiquette (activée)",
 			"label_on_comment": "Label to show next to the toggle when the toggle is on",
-			"label_off": "Label (Off)",
+			"label_off": "Étiquette (Désactivée)",
 			"label_off_comment": "Label to show next to the toggle when the toggle is off",
-			"checkbox": "Show as Checkbox",
+			"checkbox": "Afficher en tant que case à cocher",
 			"checkbox_comment": "Display a checkbox instead of the default switch"
 		},
 		"toggle-icon": {
