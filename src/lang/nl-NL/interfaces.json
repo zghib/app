@@ -8,7 +8,7 @@
 			"choices": "Keuzes",
 			"choices_comment": "Voer key-value waardes in.",
 			"theme": "Interface Thema",
-			"theme_comment": "Set the theme of the interface if supported",
+			"theme_comment": "Stel het thema van de interface in indien ondersteund",
 			"value": "Waarde",
 			"flight": "Vlucht",
 			"cruise": "Cruise",
@@ -26,7 +26,7 @@
 			"max": "Maximum datum",
 			"max_comment": "Maximale datum die gekozen kan worden door de gebruiker",
 			"formatting": "Datumnotatie",
-			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
+			"formatting_comment": "Volgens [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). Indien er niets is ingevuld wordt een relatieve datum gebruikt."
 		},
 		"checkboxes": {
 			"checkboxes": "Vinkjes",
@@ -66,11 +66,11 @@
 			"lineNumber": "Regelnummer",
 			"lineNumber_comment": "Regelnummers weergeven",
 			"loc": "Geen regels van {lang} | Één regel van {lang} | {count} regels van {lang}",
-			"fill_template": "Fill with Template"
+			"fill_template": "Met template vullen"
 		},
 		"collections": {
 			"collections": "Collecties",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"placeholder_default": "Choose a collection...",
 			"option": "Optie",
@@ -158,7 +158,7 @@
 			"dropdown": "Keuzemenu",
 			"choices": "Keuzes",
 			"choices_comment": "Voer key-value waardes in.",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"option": "Optie",
 			"formatting": "Toon tekst",
@@ -193,7 +193,7 @@
 		},
 		"file-size": {
 			"file_size": "Bestandsgrootte",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
 			"format": "Formaat waarde",
 			"format_comment": "Toon de waarde op een menselijke leesbare manier (bijv. 10MB)",
@@ -225,7 +225,7 @@
 			"hashed": "Hashed",
 			"hide": "Waarde verbergen",
 			"hide_comment": "Toon puntjes in plaats van de tekens die u invoert",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
 			"show_hash": "Toon de gehashte uitvoer",
 			"show_hash_comment": "De opgeslagen hash weergeven",
@@ -257,7 +257,7 @@
 		},
 		"interfaces": {
 			"interfaces": "Interfaces",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"placeholder_default": "Choose an interface",
 			"option": "Optie",
@@ -305,7 +305,7 @@
 			"visible_fields_placeholder": "title,author",
 			"visible_fields_note": "CSV of fields visible when selecting an item in the modal",
 			"template_placeholder": "{{title}} — {{author}}",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
 			"preferences": "Weergave voorkeuren",
 			"preferences_comment": "Kies de opties om te gebruiken voor het selecteren van bestanden",
@@ -321,7 +321,7 @@
 			"choices": "choices",
 			"choices_comment": "Voer key-value waardes in.",
 			"theme": "Interface Thema",
-			"theme_comment": "Set the theme of the interface if supported",
+			"theme_comment": "Stel het thema van de interface in indien ondersteund",
 			"value": "Waarde",
 			"map_lat": "Default Latitude",
 			"map_lat_comment": "Map will be centered at this latitude",
@@ -352,14 +352,14 @@
 			"tabbed_preview_off": "Voorbeeld aan de zijkant",
 			"rows": "Rijen",
 			"rows_comment": "Het beginaantal tekst rijen dat beschikbaar is",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in"
 		},
 		"multiselect": {
 			"multiselect": "Multi-select",
 			"choices": "Keuzes",
 			"choices_comment": "Voer JSON sleutelwaarden in met de opgeslagen waarde en weergegeven tekst",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
 			"size": "Grootte",
 			"size_comment": "Aantal zichtbare opties voordat de gebruiker moet scrollen",
@@ -371,7 +371,7 @@
 		},
 		"numeric": {
 			"numeric": "Nummer",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
 			"localized": "Gelokaliseerd",
 			"localized_comment": "Localize the output to the user's locale",
@@ -406,7 +406,7 @@
 			"password": "Wachtwoord",
 			"hide": "Waarde verbergen",
 			"hide_comment": "Toon puntjes in plaats van de tekens die u invoert",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
 			"confirm_placeholder": "Confirm password...",
 			"show_hash": "Toon de gehashte uitvoer",
@@ -459,7 +459,7 @@
 			"structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
 			"structure_key": "Structure Key Field",
 			"structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "The value that shows up instead of the template if there's no value entered yet",
 			"create_item_text": "Create Item Text",
 			"create_item_text_comment": "Text that's displayed in the button that adds a new row to the repeater"
@@ -477,7 +477,7 @@
 		},
 		"slug": {
 			"slug": "Slug",
-			"placeholder_name": "Placeholder",
+			"placeholder_name": "Tijdelijke plaatshouder",
 			"placeholder_comment": "The placeholder text to show",
 			"force_lowercase": "Force Lowercase",
 			"force_lowercase_comment": "Makes sure the slug is in lowercase",
@@ -525,7 +525,7 @@
 		},
 		"text-input": {
 			"input": "Text Input",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"trim": "Trim",
 			"trim_comment": "Trim surrounding whitespace from the value before saving",
 			"char_count": "Show Character Count",
@@ -547,7 +547,7 @@
 			"textarea": "Text-Area",
 			"rows": "Rijen",
 			"rows_comment": "The number of text rows available for the input before scrolling",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
 			"serif": "Serif Font",
 			"serif_comment": "Use a larger, serif typeface"
@@ -600,7 +600,7 @@
 			"name": "Naam",
 			"template": "Sjabloon",
 			"template_comment": "How to format the users in the dropdown",
-			"placeholder": "Placeholder",
+			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Add a placeholder"
 		},
 		"owner": {
