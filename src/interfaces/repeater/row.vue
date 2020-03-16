@@ -20,6 +20,7 @@
 						:fields="fields"
 						:values="row"
 						:length="field.length"
+						:width="field.width"
 						@input="
 							$emit('input', {
 								field: field.field,
