@@ -327,7 +327,7 @@
 			"map_lat_comment": "Map will be centered at this latitude",
 			"map_lng": "Default Longitude",
 			"map_lng_comment": "Map will be centered at this longitude",
-			"height": "Height",
+			"height": "Wysokość",
 			"default_zoom": "Default Zoom",
 			"default_zoom_comment": "Default zoom level of the map",
 			"max_zoom": "Max Zoom",
@@ -501,7 +501,7 @@
 			"deleted": "Deleted"
 		},
 		"tags": {
-			"tags": "Tags",
+			"tags": "Etykiety",
 			"alphabetize": "Alphabetize tags",
 			"alphabetize_comment": "Will rearrange tags to be alphabetical",
 			"lowercase": "Force Lowercase",
@@ -604,7 +604,7 @@
 			"placeholder_comment": "Add a placeholder"
 		},
 		"owner": {
-			"owner": "Owner",
+			"owner": "Właściciel",
 			"avatar": "Avatar",
 			"name": "Nazwa",
 			"template": "Template",
