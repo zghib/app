@@ -4,7 +4,7 @@
       "calendar": "Calendar",
       "fields": "Pola",
       "today": "dziś",
-      "events": "Zdarzenia",
+      "events": "Wydarzenia",
       "moreEvents": "i {amount} więcej...",
       "noEvents": "brak wydarzeń!",
       "date": "Date",
@@ -17,8 +17,8 @@
       "cards": "Karty",
       "title": "Tytuł",
       "subtitle": "Subtytuł",
-      "src": "Image Source",
-      "content": "Body Content",
+      "src": "Źródło obrazu",
+      "content": "Treść",
       "fit": "Dopasuj"
     },
     "tabular": {
@@ -29,7 +29,7 @@
       "timeline": "Oś czasu",
       "fields": "Pola",
       "today": "dziś",
-      "events": "Zdarzenia",
+      "events": "Wydarzenia",
       "moreEvents": "i {amount} więcej...",
       "noEvents": "brak wydarzeń!",
       "date": "Date",
