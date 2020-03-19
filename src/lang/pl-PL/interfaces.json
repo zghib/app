@@ -586,7 +586,7 @@
 			"color-active-comment": "Choose the active color"
 		},
 		"translation": {
-			"translation": "Translation",
+			"translation": "Tłumaczenia",
 			"language_field": "Pole językowe",
 			"language_field_comment": "Pole zawierające kod języka w powiązanej kolekcji",
 			"languages": "Języki",
@@ -596,7 +596,7 @@
 		},
 		"user": {
 			"user": "User",
-			"avatar": "Avatar",
+			"avatar": "Awatar",
 			"name": "Nazwa",
 			"template": "Template",
 			"template_comment": "How to format the users in the dropdown",
@@ -605,7 +605,7 @@
 		},
 		"owner": {
 			"owner": "Właściciel",
-			"avatar": "Avatar",
+			"avatar": "Awatar",
 			"name": "Nazwa",
 			"template": "Template",
 			"template_comment": "How to display the user on the item detail page",
@@ -623,7 +623,7 @@
 		},
 		"user-updated": {
 			"user_updated": "User Updated",
-			"avatar": "Avatar",
+			"avatar": "Awatar",
 			"name": "Nazwa",
 			"template": "Template",
 			"template_comment": "How to display the user on the item detail page",
