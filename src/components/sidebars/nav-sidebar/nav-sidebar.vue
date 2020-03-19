@@ -112,7 +112,7 @@ export default {
 						return {
 							link: `/${this.currentProjectKey}/collections/${collection}`,
 							name: this.$helpers.formatCollection(collection),
-							icon: collectionInfo.icon
+							icon: collectionInfo ? collectionInfo.icon : null
 						};
 					})
 				};
