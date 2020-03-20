@@ -484,7 +484,7 @@
 			"mirrored_field": "Зеркальное поле",
 			"mirrored_field_comment": "Сохранять slug в актуальном состоянии с другим (текст) полем",
 			"only_on_create": "Только при создании",
-			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
+			"only_on_create_comment": "Разрешить изменение урла только при создании нового элемента"
 		},
 		"sort": {
 			"sort": "Сортируемое"
