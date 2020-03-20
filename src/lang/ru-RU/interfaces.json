@@ -185,7 +185,7 @@
 			"allow_delete": "Разрешить удаление",
 			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface",
 			"crop_preview": "Обрезать предпросмотр файла",
-			"crop_preview_comment": "Crops the file preview to fill the available space."
+			"crop_preview_comment": "Обрезает файл предварительного просмотра, чтобы заполнить доступное место."
 		},
 		"file-preview": {
 			"file_preview": "Предпросмотр файла",
@@ -453,8 +453,8 @@
 			"fields_comment": "Какие поля показывать в каждой повторной строке",
 			"limit": "Лимит",
 			"limit_comment": "Максимальное количество строк, которое пользователь может добавить",
-			"duplicable": "Duplicable rows",
-			"duplicable_comment": "Whether to make rows duplicable or not",
+			"duplicable": "Дублирующиеся строки",
+			"duplicable_comment": "Можно ли сделать строки дублируемыми или нет",
 			"structure": "Структура",
 			"structure_comment": "Сохранять JSON как массив объектов или один объект с уникальными ключами",
 			"structure_key": "Поле ключа структуры",
