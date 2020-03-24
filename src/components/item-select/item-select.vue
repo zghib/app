@@ -319,7 +319,7 @@ export default {
 				return this.$store.state.collections[this.collection].fields[fieldName];
 			});
 			const aliasFields = Object.values(fieldsData).filter(
-				field => field.type.toLowerCase() === 'alias'
+				field => typeof field != 'undefined' && field.type.toLowerCase() === 'alias'
 			);
 			if (aliasFields.length > 0) {
 				forEach(aliasFields, function(value) {
