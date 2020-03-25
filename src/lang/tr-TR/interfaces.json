@@ -182,7 +182,7 @@
 			"filters_comment": "Hangi filtreler kullanılacak",
 			"accept": "Dosya Türlerini Kabul Et",
 			"accept_comment": "Seçilebilecek MIME türlerinin bir listesini ayarlayın",
-			"allow_delete": "Allow Delete",
+			"allow_delete": "Silmeye izin ver",
 			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface",
 			"crop_preview": "Crop File Preview",
 			"crop_preview_comment": "Crops the file preview to fill the available space."
@@ -565,7 +565,7 @@
 			"label_on_comment": "Label to show next to the toggle when the toggle is on",
 			"label_off": "Label (Off)",
 			"label_off_comment": "Label to show next to the toggle when the toggle is off",
-			"checkbox": "Show as Checkbox",
+			"checkbox": "Onay Kutusu Olarak Göster",
 			"checkbox_comment": "Display a checkbox instead of the default switch"
 		},
 		"toggle-icon": {
