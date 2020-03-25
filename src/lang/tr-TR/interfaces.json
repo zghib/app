@@ -483,7 +483,7 @@
 			"force_lowercase_comment": "Slug'ın küçük harfle yazıldığından emin olur",
 			"mirrored_field": "Yansıtılmış Alan",
 			"mirrored_field_comment": "Slug alanını başka bir (metin) alanıyla güncel tutun",
-			"only_on_create": "Only on Create",
+			"only_on_create": "Yalnızca oluştururken",
 			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
 		},
 		"sort": {
@@ -561,12 +561,12 @@
 		},
 		"switch": {
 			"switch": "Switch",
-			"label_on": "Label (On)",
+			"label_on": "Etiket (Açık)",
 			"label_on_comment": "Label to show next to the toggle when the toggle is on",
-			"label_off": "Label (Off)",
+			"label_off": "Etiket (Kapalı)",
 			"label_off_comment": "Label to show next to the toggle when the toggle is off",
 			"checkbox": "Onay Kutusu Olarak Göster",
-			"checkbox_comment": "Display a checkbox instead of the default switch"
+			"checkbox_comment": "Varsayılan anahtar yerine bir onay kutusu göster"
 		},
 		"toggle-icon": {
 			"toggle-icon": "Anahtar İkonu",
