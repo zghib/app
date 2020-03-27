@@ -236,7 +236,7 @@
 			"auto": "Automatisch",
 			"small": "Klein",
 			"medium": "Medium",
-			"large": "Large",
+			"large": "Groot",
 			"secured": "Value Secured"
 		},
 		"icon": {
@@ -278,7 +278,7 @@
 		},
 		"language": {
 			"input": "Taal",
-			"select_language": "Select a language...",
+			"select_language": "Selecteer een taal...",
 			"limit": "Limit to Directus Availability",
 			"limit_comment": "Only show languages that are available as translations in Directus"
 		},
@@ -541,7 +541,7 @@
 			"auto": "Automatisch",
 			"small": "Klein",
 			"medium": "Medium",
-			"large": "Large"
+			"large": "Groot"
 		},
 		"textarea": {
 			"textarea": "Text-Area",
