@@ -71,8 +71,8 @@
 		"collections": {
 			"collections": "Collecties",
 			"placeholder": "Tijdelijke plaatshouder",
-			"placeholder_comment": "Static text that shown before a value is selected",
-			"placeholder_default": "Choose a collection...",
+			"placeholder_comment": "Statische tekst die wordt weergegeven voordat een waarde wordt geselecteerd",
+			"placeholder_default": "Kies een verzameling...",
 			"option": "Optie",
 			"include_system": "Include System",
 			"include_system_comment": "Include system collections in the options"
@@ -82,7 +82,7 @@
 			"format": "Output Format",
 			"format_comment": "In what data format to save the value",
 			"palette": "Palette",
-			"palette_comment": "Add color options as hex values",
+			"palette_comment": "Kleuropties als hex waarden toevoegen",
 			"palette_only": "Palette Only",
 			"palette_only_comment": "Only allow the user to pick from the palette"
 		},
@@ -99,52 +99,52 @@
 			"localized_comment": "Show the date localized in the output",
 			"relative": "Show relative date",
 			"relative_comment": "Show the date relatively (eg 2 days ago)",
-			"icon_left": "Icon Left",
+			"icon_left": "Icoon links",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Icoon rechts",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input"
 		},
 		"datetime": {
-			"datetime": "Datetime",
+			"datetime": "Datum/tijd",
 			"min": "Minimum time",
 			"min_comment": "Minimum time that can be chosen by the user",
 			"max": "Maximum time",
 			"max_comment": "Maximum time that can be chosen by the user",
 			"localized": "Gelokaliseerd",
 			"localized_comment": "Show the date localized in the output",
-			"relative": "Show relative time",
+			"relative": "Relatieve tijd weergeven",
 			"relative_comment": "Show the time relatively (eg 50 minutes ago)",
-			"icon_left": "Icon Left",
+			"icon_left": "Icoon links",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Icoon rechts",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input",
 			"utc": "Save as UTC",
 			"utc_comment": "Save to and display from UTC",
 			"default_to_current_datetime": "Default to current datetime",
-			"default_to_current_datetime_comment": "Sets the default value to current datetime",
+			"default_to_current_datetime_comment": "Stelt de standaard waarde in op de huidige datum/tijd",
 			"format": "Format",
 			"format_comment": "The DateTime format to use for the input"
 		},
 		"datetime-created": {
 			"datetime_created": "Datetime Created",
-			"relative": "Show relative time",
+			"relative": "Relatieve tijd weergeven",
 			"relative_comment": "Show the time relatively (eg 50 minutes ago)",
-			"now": "You are creating this now",
-			"unknown": "Unknown"
+			"now": "U maakt dit nu",
+			"unknown": "Onbekend"
 		},
 		"datetime-updated": {
 			"datetime_updated": "Datetime Updated",
-			"relative": "Show relative time",
+			"relative": "Relatieve tijd weergeven",
 			"relative_comment": "Show the time relatively (eg 50 minutes ago)",
-			"now": "You are creating this now",
-			"unknown": "Unknown"
+			"now": "U maakt dit nu",
+			"unknown": "Onbekend"
 		},
 		"divider": {
 			"divider": "Divider",
 			"style-name": "Divider style",
 			"style-comment": "Change the style of the Divider",
 			"weight-name": "Thickness of the line",
-			"weight-comment": "Change the thickness of the line",
+			"weight-comment": "Dikte van de lijn wijzigen",
 			"input-name": "Divider text",
 			"input-comment": "Type your text here",
 			"desc-name": "Divider description",
@@ -159,7 +159,7 @@
 			"choices": "Keuzes",
 			"choices_comment": "Voer key-value waardes in.",
 			"placeholder": "Tijdelijke plaatshouder",
-			"placeholder_comment": "Static text that shown before a value is selected",
+			"placeholder_comment": "Statische tekst die wordt weergegeven voordat een waarde wordt geselecteerd",
 			"option": "Optie",
 			"formatting": "Toon tekst",
 			"formatting_comment": "Gebruik de waarde als label voor vinkje",
@@ -184,7 +184,7 @@
 			"accept_comment": "Stel een lijst van MIME-types in die geselecteerd kunnen worden",
 			"allow_delete": "Allow Delete",
 			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface",
-			"crop_preview": "Crop File Preview",
+			"crop_preview": "Voorbeeld uitsnede bestand",
 			"crop_preview_comment": "Crops the file preview to fill the available space."
 		},
 		"file-preview": {
@@ -233,8 +233,8 @@
 			"hashing_type_comment": "Welke manier van hashen te gebruiken",
 			"width": "Grootte",
 			"width_comment": "Welke breedte te gebruiken voor de invoer",
-			"auto": "Automatic",
-			"small": "Small",
+			"auto": "Automatisch",
+			"small": "Klein",
 			"medium": "Medium",
 			"large": "Large",
 			"secured": "Value Secured"
@@ -258,7 +258,7 @@
 		"interfaces": {
 			"interfaces": "Interfaces",
 			"placeholder": "Tijdelijke plaatshouder",
-			"placeholder_comment": "Static text that shown before a value is selected",
+			"placeholder_comment": "Statische tekst die wordt weergegeven voordat een waarde wordt geselecteerd",
 			"placeholder_default": "Choose an interface",
 			"option": "Optie",
 			"relational": "Include relational interfaces",
@@ -375,9 +375,9 @@
 			"placeholder_comment": "Voer placeholder tekst in",
 			"localized": "Gelokaliseerd",
 			"localized_comment": "Localize the output to the user's locale",
-			"icon_left": "Icon Left",
+			"icon_left": "Icoon links",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Icoon rechts",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input",
 			"monospace": "Monospace",
 			"monospace_comment": "Use a monospace font"
@@ -513,9 +513,9 @@
 			"sanitize": "Sanitize",
 			"sanitize_comment": "Removes any non-alphanumeric characters and converts spaces to hyphens",
 			"placeholder_text": "Type a tag and then hit enter or comma...",
-			"icon_left": "Icon Left",
+			"icon_left": "Icoon links",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Icoon rechts",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input",
 			"validation": "Validatie",
 			"validation_comment": "A RegEx to check each individual value against",
@@ -530,16 +530,16 @@
 			"trim_comment": "Trim surrounding whitespace from the value before saving",
 			"char_count": "Show Character Count",
 			"char_count_comment": "Show the remaining characters available",
-			"icon_left": "Icon Left",
+			"icon_left": "Icoon links",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
-			"icon_right": "Icon Right",
+			"icon_right": "Icoon rechts",
 			"icon_right_comment": "Choose an optional icon to display on the right of the input",
 			"format": "Pretty Output",
 			"format_comment": "Convert the value to title case",
 			"monospace": "Monospace",
 			"monospace_comment": "Use a monospace font",
-			"auto": "Automatic",
-			"small": "Small",
+			"auto": "Automatisch",
+			"small": "Klein",
 			"medium": "Medium",
 			"large": "Large"
 		},
@@ -612,7 +612,7 @@
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
 			"you": "You will be the creator",
-			"unknown": "Unknown"
+			"unknown": "Onbekend"
 		},
 		"user-roles": {
 			"user-roles": "User Role",
@@ -630,7 +630,7 @@
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
 			"you": "You will be the updater",
-			"unknown": "Unknown"
+			"unknown": "Onbekend"
 		},
 		"wysiwyg": {
 			"toolbar": "Toolbar Options",
