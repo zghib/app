@@ -26,7 +26,7 @@
 			"max": "Data massima",
 			"max_comment": "Data massima che l'utente può scegliere",
 			"formatting": "Formato della data",
-			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
+			"formatting_comment": "Segue [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). Se lasciato vuoto, verrà utilizzata una data relativa."
 		},
 		"checkboxes": {
 			"checkboxes": "Checkbox",
@@ -175,17 +175,17 @@
 			"view_type": "View Type",
 			"view_type_comment": "Select in what way you want to view the files",
 			"view_options": "Visualizza opzioni",
-			"view_options_comment": "Set the view options to use for the files",
+			"view_options_comment": "Imposta le opzioni di visualizzazione da utilizzare per i file",
 			"view_query": "Visualizza Query",
-			"view_query_comment": "Set the view query to use for the files",
+			"view_query_comment": "Imposta la query di visualizzazione da utilizzare per i file",
 			"filters": "Filtri",
 			"filters_comment": "Quali filtri utilizzare",
-			"accept": "Accept File Types",
-			"accept_comment": "Set a list of MIME types that can be picked",
+			"accept": "Accetta tipi di file",
+			"accept_comment": "Imposta una lista di MIME types che possono essere selezionati",
 			"allow_delete": "Consentire l'eliminazione",
 			"allow_delete_comment": "Consente all'utente di eliminare definitivamente il file correlato tramite l'interfaccia del file",
 			"crop_preview": "Crop File Preview",
-			"crop_preview_comment": "Crops the file preview to fill the available space."
+			"crop_preview_comment": "Ritaglia l'anteprima del file per riempire lo spazio disponibile."
 		},
 		"file-preview": {
 			"file_preview": "Anteprima del file",
@@ -194,13 +194,13 @@
 		"file-size": {
 			"file_size": "Dimensione File",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder_comment": "Inserisci testo segnaposto",
 			"format": "Formatta Valore",
-			"format_comment": "Show the value in a human readable way (e.g. 10MB)",
+			"format_comment": "Mostra il valore in modo leggibile (es. 10 MB)",
 			"format_input": "Formatta input",
-			"format_input_comment": "Enter the value using a dropdown for units",
+			"format_input_comment": "Immettere il valore utilizzando un menu a tendina per le unità",
 			"decimal": "Decimale",
-			"decimal_comment": "Show the value in decimal counting (10MB vs 10MiB)",
+			"decimal_comment": "Mostra il valore con calcolo decimale (10MB vs 10MiB)",
 			"crop_preview": "Crop Preview Images"
 		},
 		"files": {
@@ -217,8 +217,8 @@
 			"allow_create_comment": "Consenti all'utente di creare un nuovo elemento da questa interfaccia",
 			"allow_select": "Consenti selezione",
 			"allow_select_comment": "Consenti all'utente di selezionare un elemento esistente",
-			"accept": "Accept File Types",
-			"accept_comment": "Set a list of MIME types that can be picked",
+			"accept": "Accetta tipi di file",
+			"accept_comment": "Imposta una lista di MIME types che possono essere selezionati",
 			"edit_item": "Modifica"
 		},
 		"hashed": {
@@ -226,7 +226,7 @@
 			"hide": "Nascondi valore",
 			"hide_comment": "Mostra i puntini invece dei caratteri inseriti",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder_comment": "Inserisci testo segnaposto",
 			"show_hash": "Show the hashed output",
 			"show_hash_comment": "Visualizza l'hash salvato",
 			"hashing_type": "Tipo di hashing",
@@ -306,7 +306,7 @@
 			"visible_fields_note": "CSV di campi visibili quando si seleziona un elemento nel modale",
 			"template_placeholder": "{{title}} — {{author}}",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder_comment": "Inserisci testo segnaposto",
 			"preferences": "Listing View Preferences",
 			"preferences_comment": "Set what options to use for the modal",
 			"relationship_not_setup": "The relationship hasn't been configured correctly",
@@ -353,14 +353,14 @@
 			"rows": "Righe",
 			"rows_comment": "The starting number of text rows available",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text"
+			"placeholder_comment": "Inserisci testo segnaposto"
 		},
 		"multiselect": {
 			"multiselect": "Selezione multipla",
 			"choices": "Scelta multipla",
 			"choices_comment": "Enter JSON key value pairs with the saved value and displayed text",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder_comment": "Inserisci testo segnaposto",
 			"size": "Size",
 			"size_comment": "Number of options visible before scrolling",
 			"option": "Opzione",
@@ -372,9 +372,9 @@
 		"numeric": {
 			"numeric": "Numerico",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder_comment": "Inserisci testo segnaposto",
 			"localized": "Localizzato",
-			"localized_comment": "Localize the output to the user's locale",
+			"localized_comment": "Localizza l'output usando le impostazioni locali dell'utente",
 			"icon_left": "Icona a sinistra",
 			"icon_left_comment": "Scegli un'icona facoltativa da visualizzare sulla sinistra dell'input",
 			"icon_right": "Icona a destra",
@@ -399,15 +399,15 @@
 			"allow_select_comment": "Consenti all'utente di selezionare un elemento esistente",
 			"delete_mode": "Modalità eliminazione",
 			"delete_mode_comment": "Cosa fare quando l'utente deseleziona un elemento",
-			"sort_field": "Sort Field",
-			"sort_field_comment": "The field to store the sort value in"
+			"sort_field": "Ordina per",
+			"sort_field_comment": "Il campo in cui memorizzare la preferenza di ordinamento"
 		},
 		"password": {
 			"password": "Parola d'ordine",
 			"hide": "Nascondi valore",
 			"hide_comment": "Mostra i puntini invece dei caratteri inseriti",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder_comment": "Inserisci testo segnaposto",
 			"confirm_placeholder": "Conferma password...",
 			"show_hash": "Show the hashed output",
 			"show_hash_comment": "Visualizza l'hash salvato",
@@ -427,7 +427,7 @@
 			"monospace_comment": "Usa un carattere monospace"
 		},
 		"radio-buttons": {
-			"radio": "Radio Buttons",
+			"radio": "Pulsanti di scelta",
 			"choices": "Scelta multipla",
 			"choices_comment": "Inserisci le coppie di valori delle chiavi JSON con il valore salvato e il testo visualizzato.",
 			"option": "Opzione",
@@ -450,13 +450,13 @@
 			"template_comment": "How to format value on the item browse display and inline preview",
 			"template_placeholder": "{{title}} — ({{author}})",
 			"fields": "campi",
-			"fields_comment": "What fields to show in each repeated row",
+			"fields_comment": "Quali campi mostrare in ogni riga ripetuta",
 			"limit": "Limit",
 			"limit_comment": "Maximum amount of rows the user can add",
-			"duplicable": "Duplicable rows",
-			"duplicable_comment": "Whether to make rows duplicable or not",
-			"structure": "Structure",
-			"structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
+			"duplicable": "Righe duplicabili",
+			"duplicable_comment": "Se rendere le righe duplicabili o meno",
+			"structure": "Struttura",
+			"structure_comment": "Se salvare JSON come un array di oggetti o un singolo oggetto con chiavi univoche",
 			"structure_key": "Structure Key Field",
 			"structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values",
 			"placeholder": "Placeholder",
@@ -548,7 +548,7 @@
 			"rows": "Righe",
 			"rows_comment": "Il numero di righe di testo disponibili per l'input prima dello scorrimento",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Enter placeholder text",
+			"placeholder_comment": "Inserisci testo segnaposto",
 			"serif": "Font Serif",
 			"serif_comment": "Usa serif typeface più grande"
 		},
@@ -608,7 +608,7 @@
 			"avatar": "Avatar",
 			"name": "Nome",
 			"template": "Template",
-			"template_comment": "How to display the user on the item detail page",
+			"template_comment": "Come visualizzare l'utente nella pagina dei dettagli dell'elemento",
 			"display": "Mostra",
 			"display_comment": "How to display the user on the item browse page",
 			"you": "Sarai il creatore",
@@ -626,19 +626,19 @@
 			"avatar": "Avatar",
 			"name": "Nome",
 			"template": "Template",
-			"template_comment": "How to display the user on the item detail page",
+			"template_comment": "Come visualizzare l'utente nella pagina dei dettagli dell'elemento",
 			"display": "Mostra",
 			"display_comment": "How to display the user on the item browse page",
 			"you": "You will be the updater",
 			"unknown": "Sconosciuto"
 		},
 		"wysiwyg": {
-			"toolbar": "Toolbar Options",
+			"toolbar": "Opzioni barra degli strumenti",
 			"toolbar_comment": "Show, hide, and reorder toolbar options",
 			"custom_formats": "Formati personalizzati",
 			"custom_formats_comment": "Personalizza wrapper HTML per i contenuti",
-			"tinymce_options": "TinyMCE Options",
-			"tinymce_options_comment": "Override any of [the TinyMCE init options](https://www.tiny.cloud/docs/configure/)."
+			"tinymce_options": "Opzioni di TinyMCE",
+			"tinymce_options_comment": "Sovrascrivi una qualsiasi delle [opzioni init di TinyMCE](https://www.tiny.cloud/docs/configure/)."
 		}
 	}
 }
