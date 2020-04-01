@@ -84,7 +84,7 @@
 			"palette": "Palet",
 			"palette_comment": "Kleuropties als hex waarden toevoegen",
 			"palette_only": "Alleen palet",
-			"palette_only_comment": "Only allow the user to pick from the palette"
+			"palette_only_comment": "Laat de gebruiker alleen kiezen uit het palet"
 		},
 		"color-palette": {
 			"color-picker": "Kleurenkiezer"
@@ -96,7 +96,7 @@
 			"max": "Maximum datum",
 			"max_comment": "Maximale datum die gekozen kan worden door de gebruiker",
 			"localized": "Gelokaliseerd",
-			"localized_comment": "Show the date localized in the output",
+			"localized_comment": "Toon de gelokaliseerde datum in de output",
 			"relative": "Relatieve datum weergeven",
 			"relative_comment": "Toon de datum relatief (bijvoorbeeld 2 dagen geleden)",
 			"icon_left": "Icoon links",
@@ -106,12 +106,12 @@
 		},
 		"datetime": {
 			"datetime": "Datum/tijd",
-			"min": "Minimum time",
-			"min_comment": "Minimum time that can be chosen by the user",
-			"max": "Maximum time",
+			"min": "Minimum tijdstip",
+			"min_comment": "Minimaal tijdstip die gekozen kan worden door de gebruiker",
+			"max": "Maximaal tijdstip",
 			"max_comment": "Maximum time that can be chosen by the user",
 			"localized": "Gelokaliseerd",
-			"localized_comment": "Show the date localized in the output",
+			"localized_comment": "Toon de gelokaliseerde datum in de output",
 			"relative": "Relatieve tijd weergeven",
 			"relative_comment": "Show the time relatively (eg 50 minutes ago)",
 			"icon_left": "Icoon links",
@@ -312,9 +312,9 @@
 			"relationship_not_setup": "De relatie is niet correct geconfigureerd",
 			"icon": "Icoon",
 			"icon_comment": "Kies een optioneel icoon om weer te geven aan de linkerkant van de invoer",
-			"select_one": "Select one",
-			"threshold": "Threshold",
-			"threshold_comment": "The number of items after which a modal will be used instead of a dropdown"
+			"select_one": "Selecteer een",
+			"threshold": "Drempelwaarde",
+			"threshold_comment": "Het aantal items waarna een modus wordt gebruikt in plaats van een uitklapbare modus"
 		},
 		"map": {
 			"map": "Kaart",
@@ -333,11 +333,11 @@
 			"max_zoom": "Maximale Zoom",
 			"max_zoom_comment": "Maximum zoom toegestaan op de kaart",
 			"no_location": "Geen locatie gevonden",
-			"user_location_error_blocked": "You've disabled the location access. Kindly enable it from the browser addressbar to auto detect your location.",
-			"user_location_error": "There was an error while trying to get your location. Please try again.",
-			"address_to_code": "Address Input",
-			"address_to_code_comment": "Add an input field to automatically get the geocodes from an address. Uses <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Please check their usage policy.",
-			"address_to_code_error": "No geocode found for this address",
+			"user_location_error_blocked": "Je hebt de locatietoegang uitgeschakeld. Schakel deze in vanuit de browser adresbalk om je locatie automatisch te detecteren.",
+			"user_location_error": "Bij het uploaden van uw bestand is een fout opgetreden. Probeer het nogmaals.",
+			"address_to_code": "Adres invoer",
+			"address_to_code_comment": "Voeg een invoerveld toe om automatisch de geocodes van een adres te krijgen. Gebruikt <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Controleer het gebruiksbeleid.",
+			"address_to_code_error": "Geen geocode gevonden voor dit adres",
 			"clear_location": "Locatie wissen",
 			"my_location": "Mijn locatie instellen",
 			"address_location": "Adreslocatie instellen"
@@ -365,25 +365,25 @@
 			"size_comment": "Aantal zichtbare opties voordat de gebruiker moet scrollen",
 			"option": "Optie",
 			"wrap": "Omring met komma",
-			"wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
-			"format": "Browse Format",
-			"format_comment": "The output format on the Browse Items page"
+			"wrap_comment": "Waarden ombouwen met een scheidingsteken om strikt te zoeken naar een enkele waarde",
+			"format": "Bladeren in format",
+			"format_comment": "Het uitvoerformat op de Blader Items pagina"
 		},
 		"numeric": {
 			"numeric": "Nummer",
 			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
 			"localized": "Gelokaliseerd",
-			"localized_comment": "Localize the output to the user's locale",
+			"localized_comment": "Lokaliseer de output naar de landinstelling van de gebruiker",
 			"icon_left": "Icoon links",
 			"icon_left_comment": "Kies een optioneel icoon om weer te geven aan de linkerkant van de invoer",
 			"icon_right": "Icoon rechts",
 			"icon_right_comment": "Kies een optioneel pictogram om weer te geven aan de rechterkant van de invoer",
 			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font"
+			"monospace_comment": "Gebruik een monospace lettertype"
 		},
 		"one-to-many": {
-			"o2m": "One to Many",
+			"o2m": "Één op veel",
 			"select_items": "Selecteer de items",
 			"relation_not_setup": "De relatie is niet correct geconfigureerd",
 			"visible_columns": "Zichtbare kolommen",
@@ -424,15 +424,15 @@
 			"primary_key": "Primary Key",
 			"immutable": "Kan niet worden gewijzigd",
 			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font"
+			"monospace_comment": "Gebruik een monospace lettertype"
 		},
 		"radio-buttons": {
 			"radio": "Radio Buttons",
 			"choices": "Keuzes",
 			"choices_comment": "Voer key-value waardes in.",
 			"option": "Optie",
-			"format": "Browse Format",
-			"format_comment": "The output format on the Browse Items page"
+			"format": "Bladeren in format",
+			"format_comment": "Het uitvoerformat op de Blader Items pagina"
 		},
 		"rating": {
 			"rating": "Beoordeling",
@@ -472,11 +472,11 @@
 			"max_comment": "The maximum valid value",
 			"step": "Step",
 			"step_comment": "Increments at which the value can be set",
-			"unit": "Unit",
-			"unit_comment": "Show an unit next to the slider value, e.g. 15 Pounds"
+			"unit": "Eenheid",
+			"unit_comment": "Toon een eenheid naast de schuifregelaar, bijvoorbeeld 15 ponden"
 		},
 		"slug": {
-			"slug": "Slug",
+			"slug": "Url",
 			"placeholder_name": "Tijdelijke plaatshouder",
 			"placeholder_comment": "The placeholder text to show",
 			"force_lowercase": "Force Lowercase",
@@ -507,7 +507,7 @@
 			"lowercase": "Force Lowercase",
 			"lowercase_comment": "Convert all tags to lowercase",
 			"wrap": "Wrap with delimiter",
-			"wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
+			"wrap_comment": "Waarden ombouwen met een scheidingsteken om strikt te zoeken naar een enkele waarde",
 			"format": "Format Value",
 			"format_comment": "Convert the tags to Title Case when displaying the value",
 			"sanitize": "Sanitize",
@@ -537,7 +537,7 @@
 			"format": "Pretty Output",
 			"format_comment": "Convert the value to title case",
 			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font",
+			"monospace_comment": "Gebruik een monospace lettertype",
 			"auto": "Automatisch",
 			"small": "Klein",
 			"medium": "Medium",
