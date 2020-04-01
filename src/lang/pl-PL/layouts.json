@@ -1,7 +1,7 @@
 {
   "layouts": {
     "calendar": {
-      "calendar": "Calendar",
+      "calendar": "Kalendarz",
       "fields": "Pola",
       "today": "dziś",
       "events": "Wydarzenia",
