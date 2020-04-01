@@ -74,20 +74,20 @@
 			"placeholder_comment": "Statische tekst die wordt weergegeven voordat een waarde wordt geselecteerd",
 			"placeholder_default": "Kies een verzameling...",
 			"option": "Optie",
-			"include_system": "Include System",
-			"include_system_comment": "Include system collections in the options"
+			"include_system": "Systeem opnemen",
+			"include_system_comment": "Systeemcollecties opnemen in de opties"
 		},
 		"color": {
 			"color": "Kleur",
-			"format": "Output Format",
-			"format_comment": "In what data format to save the value",
-			"palette": "Palette",
+			"format": "Uitvoer format",
+			"format_comment": "In welk gegevensformaat moet de waarde worden opgeslagen",
+			"palette": "Palet",
 			"palette_comment": "Kleuropties als hex waarden toevoegen",
-			"palette_only": "Palette Only",
+			"palette_only": "Alleen palet",
 			"palette_only_comment": "Only allow the user to pick from the palette"
 		},
 		"color-palette": {
-			"color-picker": "Color Picker"
+			"color-picker": "Kleurenkiezer"
 		},
 		"date": {
 			"date": "Datum",
