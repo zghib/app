@@ -327,7 +327,7 @@
 			"map_lat_comment": "El mapa se centrará en esta latitud",
 			"map_lng": "Longitud predeterminada",
 			"map_lng_comment": "El mapa se centrará en esta longitud",
-			"height": "Altura",
+			"height": "Alto",
 			"default_zoom": "Zoom predeterminado",
 			"default_zoom_comment": "Nivel de zoom predeterminado del mapa",
 			"max_zoom": "Zoom Máximo",
