@@ -127,8 +127,8 @@
   "creating_item": "Creare Element",
   "creating_item_page_title": "Creare Element: {collection}",
   "creating_role": "Creare Rol",
-  "currently_selected": "Currently selected: {thing}",
-  "database_connection": "Database Connection",
+  "currently_selected": "Selectat:  {thing}",
+  "database_connection": "Conexiune Bază de Date",
   "database_connection_copy": "Next, we need to know how to connect to the database where this project will be managed.",
   "datatype": "Datatype",
   "datatypes": {
