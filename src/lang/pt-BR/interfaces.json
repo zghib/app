@@ -26,7 +26,7 @@
 			"max": "Data Máxima",
 			"max_comment": "Data máxima que pode ser escolhida pelo usuário",
 			"formatting": "Formato da Data",
-			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
+			"formatting_comment": "Segue o [Padrão Técnico Unicode](https://date-fns.org/v2.8.1/docs/formato). Se deixado em branco, será usada uma data relativa."
 		},
 		"checkboxes": {
 			"checkboxes": "Caixas de Seleção",
@@ -120,31 +120,31 @@
 			"icon_right_comment": "Escolha um ícone opcional para exibir à esquerda da entrada",
 			"utc": "Salvar como UTC",
 			"utc_comment": "Salvar como e exibir em UTC",
-			"default_to_current_datetime": "Default to current datetime",
-			"default_to_current_datetime_comment": "Sets the default value to current datetime",
-			"format": "Format",
-			"format_comment": "The DateTime format to use for the input"
+			"default_to_current_datetime": "Padrão para a data e hora atual",
+			"default_to_current_datetime_comment": "Define o valor padrão para a data atual",
+			"format": "Formato",
+			"format_comment": "O formato DateTime a ser usado para a entrada"
 		},
 		"datetime-created": {
-			"datetime_created": "Datetime Created",
+			"datetime_created": "Data de Criação",
 			"relative": "Mostrar data relativa",
 			"relative_comment": "Mostrar a data relativamente (por exemplo, 50 minutos atrás)",
-			"now": "You are creating this now",
-			"unknown": "Unknown"
+			"now": "Você está criando isso agora",
+			"unknown": "Desconhecido"
 		},
 		"datetime-updated": {
-			"datetime_updated": "Datetime Updated",
+			"datetime_updated": "Data/Hora Atualizada",
 			"relative": "Mostrar data relativa",
 			"relative_comment": "Mostrar a data relativamente (por exemplo, 50 minutos atrás)",
-			"now": "You are creating this now",
-			"unknown": "Unknown"
+			"now": "Você está criando isso agora",
+			"unknown": "Desconhecido"
 		},
 		"divider": {
-			"divider": "Divider",
-			"style-name": "Divider style",
-			"style-comment": "Change the style of the Divider",
-			"weight-name": "Thickness of the line",
-			"weight-comment": "Change the thickness of the line",
+			"divider": "Divisor",
+			"style-name": "Estilo do divisor",
+			"style-comment": "Alterar o estilo do Divisor",
+			"weight-name": "Espessura da linha",
+			"weight-comment": "Alterar a espessura da linha",
 			"input-name": "Divider text",
 			"input-comment": "Type your text here",
 			"desc-name": "Divider description",
@@ -612,7 +612,7 @@
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
 			"you": "You will be the creator",
-			"unknown": "Unknown"
+			"unknown": "Desconhecido"
 		},
 		"user-roles": {
 			"user-roles": "User Role",
@@ -630,7 +630,7 @@
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
 			"you": "You will be the updater",
-			"unknown": "Unknown"
+			"unknown": "Desconhecido"
 		},
 		"wysiwyg": {
 			"toolbar": "Toolbar Options",
