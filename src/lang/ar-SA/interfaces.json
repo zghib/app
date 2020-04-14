@@ -58,15 +58,15 @@
 			"listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
 		},
 		"code": {
-			"code": "Code",
-			"template": "Template",
-			"template_comment": "Provide a template the user can use to get started with",
-			"language": "Language",
-			"language_comment": "Set the programming language to use",
-			"lineNumber": "Line Number",
-			"lineNumber_comment": "Show line numbers",
-			"loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
-			"fill_template": "Fill with Template"
+			"code": "نص برمجي",
+			"template": "قالب",
+			"template_comment": "توفير قالب يمكن للمستخدم استخدامه للبدء به",
+			"language": "لغة",
+			"language_comment": "تعيين لغة البرمجة لاستخدامها",
+			"lineNumber": "أرقام الأسطر",
+			"lineNumber_comment": "إظهار أرقام الأسطر",
+			"loc": "لا يوجد سطر من {lang} | سطر واحد من {lang} | {count} سطر من {lang}",
+			"fill_template": "ملء بقالب"
 		},
 		"collections": {
 			"collections": "مجموعات",
@@ -265,8 +265,8 @@
 			"include_status": "Include the status interfaces"
 		},
 		"json": {
-			"template": "Template",
-			"template_comment": "Provide a template the user can use to get started with"
+			"template": "قالب",
+			"template_comment": "توفير قالب يمكن للمستخدم استخدامه للبدء به"
 		},
 		"key-value": {
 			"key_interface": "Key Interface",
@@ -277,7 +277,7 @@
 			"value_options": "Key Interface Options"
 		},
 		"language": {
-			"input": "Language",
+			"input": "لغة",
 			"select_language": "Select a language...",
 			"limit": "Limit to Directus Availability",
 			"limit_comment": "Only show languages that are available as translations in Directus"
@@ -598,7 +598,7 @@
 			"user": "User",
 			"avatar": "الصورةالرمزية",
 			"name": "الاسم",
-			"template": "Template",
+			"template": "قالب",
 			"template_comment": "How to format the users in the dropdown",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Add a placeholder"
@@ -607,7 +607,7 @@
 			"owner": "المالك",
 			"avatar": "الصورةالرمزية",
 			"name": "الاسم",
-			"template": "Template",
+			"template": "قالب",
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
@@ -625,7 +625,7 @@
 			"user_updated": "User Updated",
 			"avatar": "الصورةالرمزية",
 			"name": "الاسم",
-			"template": "Template",
+			"template": "قالب",
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
