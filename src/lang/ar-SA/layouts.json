@@ -7,11 +7,11 @@
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
-      "date": "Date",
+      "date": "التاريخ",
       "datetime": "Datetime",
       "time": "Time",
       "title": "العنوان",
-      "color": "Color"
+      "color": "لون"
     },
     "cards": {
       "cards": "Cards",
@@ -32,10 +32,10 @@
       "events": "Events",
       "moreEvents": "and {amount} more...",
       "noEvents": "no events yet!",
-      "date": "Date",
+      "date": "التاريخ",
       "content": "Content",
       "title": "العنوان",
-      "color": "Color"
+      "color": "لون"
     }
   }
 }
