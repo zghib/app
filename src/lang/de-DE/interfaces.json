@@ -108,7 +108,7 @@
 			"datetime": "Datum & Uhrzeit",
 			"min": "Anfangsdatum",
 			"min_comment": "Kleinstes Datum, dass vom Benutzer ausgewählt werden kann",
-			"max": "Maximum time",
+			"max": "Maximale Dauer",
 			"max_comment": "Größtes Datum, dass vom Benutzer ausgewählt werden kann",
 			"localized": "Lokalisiert",
 			"localized_comment": "Lokalisiertes Datum in Anzeige",
