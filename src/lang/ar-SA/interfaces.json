@@ -1,12 +1,12 @@
 {
 	"interfaces": {
 		"2fa-secret": {
-			"2fa-secret": "2FA Secret"
+			"2fa-secret": "سر 2FA"
 		},
 		"button-group": {
-			"button_group": "Button Group",
+			"button_group": "مجموعة أزرار",
 			"choices": "الخيارات",
-			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+			"choices_comment": "أدخل أزواج قيم مفتاح JSON مع القيمة المحفوظة والنص المعروض.",
 			"theme": "سمة واجهة المستخدم",
 			"theme_comment": "ضبط واجهة المستخدم إذا كانت مدعومة",
 			"value": "قيمة",
@@ -31,7 +31,7 @@
 		"checkboxes": {
 			"checkboxes": "مربع الاختيار",
 			"choices": "الخيارات",
-			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+			"choices_comment": "أدخل أزواج قيم مفتاح JSON مع القيمة المحفوظة والنص المعروض.",
 			"wrap": "Wrap with Delimiter",
 			"wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",
 			"formatting": "Show display text",
@@ -157,7 +157,7 @@
 		"dropdown": {
 			"dropdown": "Dropdown",
 			"choices": "الخيارات",
-			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+			"choices_comment": "أدخل أزواج قيم مفتاح JSON مع القيمة المحفوظة والنص المعروض.",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"option": "Option",
@@ -319,7 +319,7 @@
 		"map": {
 			"map": "Map",
 			"choices": "choices",
-			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+			"choices_comment": "أدخل أزواج قيم مفتاح JSON مع القيمة المحفوظة والنص المعروض.",
 			"theme": "سمة واجهة المستخدم",
 			"theme_comment": "ضبط واجهة المستخدم إذا كانت مدعومة",
 			"value": "قيمة",
@@ -429,7 +429,7 @@
 		"radio-buttons": {
 			"radio": "Radio Buttons",
 			"choices": "الخيارات",
-			"choices_comment": "Enter JSON key value pairs with the saved value and text displayed.",
+			"choices_comment": "أدخل أزواج قيم مفتاح JSON مع القيمة المحفوظة والنص المعروض.",
 			"option": "Option",
 			"format": "Browse Format",
 			"format_comment": "The output format on the Browse Items page"
