@@ -184,20 +184,20 @@
 			"accept_comment": "تعيين قائمة بأنواع MIME التي يمكن اختيارها",
 			"allow_delete": "السماح بالحذف",
 			"allow_delete_comment": "يسمح للمستخدم بحذف الملف ذي الصلة نهائيا من خلال واجهة الملف",
-			"crop_preview": "Crop File Preview",
-			"crop_preview_comment": "Crops the file preview to fill the available space."
+			"crop_preview": "معاينة حاصل ملف",
+			"crop_preview_comment": "يقسم معاينة الملف لملء المساحة المتاحة."
 		},
 		"file-preview": {
-			"file_preview": "File Preview",
-			"edit": "Editing Options"
+			"file_preview": "معاينة ملف",
+			"edit": "خيارات التعديل"
 		},
 		"file-size": {
-			"file_size": "File Size",
+			"file_size": "حجم الملف",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Enter placeholder text",
-			"format": "Format value",
-			"format_comment": "Show the value in a human readable way (e.g. 10MB)",
-			"format_input": "Format input",
+			"format": "صيغة القيمة",
+			"format_comment": "إظهار القيمة بطريقة مقروءة للبشر (كـ 10 ميغابايت)",
+			"format_input": "صيغة إدخال",
 			"format_input_comment": "Enter the value using a dropdown for units",
 			"decimal": "Decimal",
 			"decimal_comment": "Show the value in decimal counting (10MB vs 10MiB)",
