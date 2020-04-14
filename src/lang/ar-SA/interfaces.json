@@ -71,29 +71,29 @@
 		"collections": {
 			"collections": "مجموعات",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Static text that shown before a value is selected",
-			"placeholder_default": "Choose a collection...",
+			"placeholder_comment": "النص الثابت الذي يظهر قبل تحديد القيمة",
+			"placeholder_default": "اختيار مجموعة...",
 			"option": "خيار",
-			"include_system": "Include System",
-			"include_system_comment": "Include system collections in the options"
+			"include_system": "تضمين النظام",
+			"include_system_comment": "تضمين مجموعات النظام في الخيارات"
 		},
 		"color": {
-			"color": "Color",
-			"format": "Output Format",
-			"format_comment": "In what data format to save the value",
-			"palette": "Palette",
-			"palette_comment": "Add color options as hex values",
-			"palette_only": "Palette Only",
-			"palette_only_comment": "Only allow the user to pick from the palette"
+			"color": "لون",
+			"format": "صيغة المخرجات",
+			"format_comment": "في أي صيغة بيانات تحفظ القيمة",
+			"palette": "لوحة الألوان",
+			"palette_comment": "إضافة خيارات اللون كقيم hex",
+			"palette_only": "اللوحة فقط",
+			"palette_only_comment": "السماح للمستخدم بالاختيار فقط من اللوحة"
 		},
 		"color-palette": {
-			"color-picker": "Color Picker"
+			"color-picker": "إنتقاء اللون"
 		},
 		"date": {
-			"date": "Date",
-			"min": "Minimum date",
+			"date": "التاريخ",
+			"min": "أدنى تاريخ",
 			"min_comment": "أقل تاريخ يمكن للمستخدم إختياره",
-			"max": "Maximum date",
+			"max": "أقصى تاريخ",
 			"max_comment": "أقصى تاريخ يمكن للمستخدم إختياره",
 			"localized": "Localized",
 			"localized_comment": "Show the date localized in the output",
@@ -159,7 +159,7 @@
 			"choices": "الخيارات",
 			"choices_comment": "أدخل أزواج قيم مفتاح JSON مع القيمة المحفوظة والنص المعروض.",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Static text that shown before a value is selected",
+			"placeholder_comment": "النص الثابت الذي يظهر قبل تحديد القيمة",
 			"option": "خيار",
 			"formatting": "إظهار عرض نص",
 			"formatting_comment": "اجعل القيم كقيم عرض",
@@ -179,11 +179,11 @@
 			"view_query": "View Query",
 			"view_query_comment": "Set the view query to use for the files",
 			"filters": "Filters",
-			"filters_comment": "What filters to use",
-			"accept": "Accept File Types",
-			"accept_comment": "Set a list of MIME types that can be picked",
-			"allow_delete": "Allow Delete",
-			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface",
+			"filters_comment": "ما التصفيات التي ستستخدم",
+			"accept": "تقبل أنواع الملفات",
+			"accept_comment": "تعيين قائمة بأنواع MIME التي يمكن اختيارها",
+			"allow_delete": "السماح بالحذف",
+			"allow_delete_comment": "يسمح للمستخدم بحذف الملف ذي الصلة نهائيا من خلال واجهة الملف",
 			"crop_preview": "Crop File Preview",
 			"crop_preview_comment": "Crops the file preview to fill the available space."
 		},
@@ -217,8 +217,8 @@
 			"allow_create_comment": "Allow the user to create a new item from this interface",
 			"allow_select": "Allow Select",
 			"allow_select_comment": "Allow the user to select an existing item",
-			"accept": "Accept File Types",
-			"accept_comment": "Set a list of MIME types that can be picked",
+			"accept": "تقبل أنواع الملفات",
+			"accept_comment": "تعيين قائمة بأنواع MIME التي يمكن اختيارها",
 			"edit_item": "Edit"
 		},
 		"hashed": {
@@ -258,7 +258,7 @@
 		"interfaces": {
 			"interfaces": "واجهات",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Static text that shown before a value is selected",
+			"placeholder_comment": "النص الثابت الذي يظهر قبل تحديد القيمة",
 			"placeholder_default": "Choose an interface",
 			"option": "خيار",
 			"relational": "Include relational interfaces",
