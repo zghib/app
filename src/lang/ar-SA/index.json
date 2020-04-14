@@ -1,6 +1,6 @@
 {
-  "about_directus": "حول directus",
-  "activity": "نشاط",
+  "about_directus": "حول Directus",
+  "activity": "الأنشطة",
   "activity_log": "سجل الأنشطة",
   "activity_outside_directus": "عنصر تم إنشاؤه خارج Directus",
   "add_field_filter": "أضف فرز أو فلتر للحقل",
@@ -50,7 +50,7 @@
   "collection_updated": "تم تحديث المجموعة",
   "collections_and_fields": "المجموعات والحقول",
   "collections": {
-    "directus_activity": "نشاط",
+    "directus_activity": "الأنشطة",
     "directus_files": "الملفات",
     "directus_users": "المستخدمين"
   },
@@ -72,8 +72,8 @@
       "tags": "الوسوم",
       "location": "الموقع",
       "description": "التفاصيل",
-      "filename_download": "Filename Download",
-      "filename_disk": "Filename Disk",
+      "filename_download": "تحميل اسم الملف",
+      "filename_disk": "قرص اسم الملف",
       "private_hash": "التشفير الخاص",
       "checksum": "بصمة الملف",
       "uploaded_on": "تم التحميل بتاريخ",
