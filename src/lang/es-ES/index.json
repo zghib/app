@@ -86,7 +86,7 @@
     },
     "directus_users": {
       "status": "Estado",
-      "first_name": "Primer Nombre",
+      "first_name": "Nombre",
       "last_name": "Apellido",
       "email": "Correo electrónico",
       "email_notifications": "Notificaciones por email",
