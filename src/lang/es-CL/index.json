@@ -215,10 +215,10 @@
     "103": "Usuario inactivo",
     "106": "Nombre de usuario y / o contraseña incorrectos",
     "107": "Usuario no encontrado",
-    "111": "Escriba la contraseña de un solo uso",
+    "111": "Introduzca la contraseña de un solo uso",
     "112": "Contraseña de un solo uso incorrecta",
     "114": "Nombre de usuario y / o contraseña incorrectos",
-    "115": "SSO no está permitido cuando 2FA está habilitado",
+    "115": "El SSO no está permitido cuando 2FA está habilitado",
     "-1": "No se pudo alcanzar el API"
   },
   "esc_cancel": "Escape cancelará y cerrará la ventana.",
