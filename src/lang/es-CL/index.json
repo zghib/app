@@ -13,7 +13,7 @@
   "advanced_options": "Configuraciones Avanzadas",
   "all": "Todo",
   "allowed_status_options": "Opciones de estado permitidas",
-  "all_set": "¡Todo Listo!",
+  "all_set": "¡Todo listo!",
   "api_installed": "API instalada correctamente",
   "api_url": "API URL",
   "asc": "asc",
@@ -58,13 +58,13 @@
     "directus_activity": {
       "action": "Acción",
       "collection": "Colección",
-      "item": "Clave Primaria del Item",
+      "item": "Clave primaria del ítem",
       "action_by": "Realizado por",
       "action_on": "Realizado el",
       "edited_on": "Editado el",
       "comment_deleted_on": "Comentario eliminado el",
       "ip": "Dirección IP",
-      "user_agent": "Navegador",
+      "user_agent": "Agente de usuario",
       "comment": "Comentar"
     },
     "directus_files": {
@@ -72,7 +72,7 @@
       "tags": "Etiquetas",
       "location": "Ubicación",
       "description": "Descripción",
-      "filename_download": "Nombre del archivo a descargar",
+      "filename_download": "Descarga del nombre de archivo",
       "filename_disk": "Nombre del archivo en el disco",
       "private_hash": "Hash privado",
       "checksum": "Cadena de verificación",
