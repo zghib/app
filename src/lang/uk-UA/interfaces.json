@@ -16,7 +16,7 @@
 			"bus": "Автобус",
 			"bike": "Велосипед",
 			"train": "Поїзд",
-			"car": "Car",
+			"car": "Автомобіль",
 			"other": "Інше"
 		},
 		"calendar": {
@@ -34,7 +34,7 @@
 			"choices_comment": "Введіть JSON. Ключі будуть використовуватися як значення для збереження.",
 			"wrap": "Перенос по роздільнику",
 			"wrap_comment": "Wrap the saved value in a delimiter (improves searchability).",
-			"formatting": "Show display text",
+			"formatting": "Показати текст відображення",
 			"formatting_comment": "Render the values as the display values",
 			"display_text": "Display Text",
 			"value": "Значення",
@@ -161,7 +161,7 @@
 			"placeholder": "Заповнювач",
 			"placeholder_comment": "Static text that shown before a value is selected",
 			"option": "Опція",
-			"formatting": "Show display text",
+			"formatting": "Показати текст відображення",
 			"formatting_comment": "Render the values as the display values",
 			"placeholder_default": "Оберіть варіант...",
 			"icon": "Іконка",
