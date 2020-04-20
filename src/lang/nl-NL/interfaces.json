@@ -571,15 +571,15 @@
 		"toggle-icon": {
 			"toggle-icon": "Schakel icoon",
 			"text-inactive-name": "Tekst inactief",
-			"text-inactive-comment": "Text next to the inactive icon",
-			"text-inactive-placeholder": "Enter your text here",
-			"icon-inactive-name": "Inactive Icon",
-			"icon-inactive-comment": "Choose an inactive icon",
-			"color-inactive-name": "Inactive Color",
+			"text-inactive-comment": "Tekst naast het inactief icoon",
+			"text-inactive-placeholder": "Voer uw tekst hier in",
+			"icon-inactive-name": "Inactief icoon",
+			"icon-inactive-comment": "Kies een inactief icoon",
+			"color-inactive-name": "Inactief kleur",
 			"color-inactive-comment": "Choose the inactive color",
 			"text-active-name": "Active Text",
 			"text-active-comment": "Text next to the active icon",
-			"text-active-placeholder": "Enter your text here",
+			"text-active-placeholder": "Voer uw tekst hier in",
 			"icon-active-name": "Active Icon",
 			"icon-active-comment": "Choose an active icon",
 			"color-active-name": "Actieve kleur",
@@ -615,14 +615,14 @@
 			"unknown": "Onbekend"
 		},
 		"user-roles": {
-			"user-roles": "User Role",
+			"user-roles": "Gebruikersrol",
 			"choose_role": "Choose a role...",
 			"relational": "Relationeel",
-			"relational_comment": "Save as a relational record",
+			"relational_comment": "Opslaan als relationeel record",
 			"show_public": "Show public role"
 		},
 		"user-updated": {
-			"user_updated": "User Updated",
+			"user_updated": "Gebruiker bijgewerkt",
 			"avatar": "Profielafbeelding",
 			"name": "Naam",
 			"template": "Sjabloon",
@@ -633,8 +633,8 @@
 			"unknown": "Onbekend"
 		},
 		"wysiwyg": {
-			"toolbar": "Toolbar Options",
-			"toolbar_comment": "Show, hide, and reorder toolbar options",
+			"toolbar": "Werkbalk opties",
+			"toolbar_comment": "Toon, verberg en herschik werkbalkopties",
 			"custom_formats": "Custom Formats",
 			"custom_formats_comment": "Custom HTML wrappers for content",
 			"tinymce_options": "TinyMCE Options",
