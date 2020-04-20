@@ -126,14 +126,14 @@
 			"format_comment": "DateTime format te gebruiken voor de invoer"
 		},
 		"datetime-created": {
-			"datetime_created": "Datetime Created",
+			"datetime_created": "Datum en tijd Aangemaakt",
 			"relative": "Relatieve tijd weergeven",
 			"relative_comment": "Toon de datum relatief (bijvoorbeeld 50 dagen geleden)",
 			"now": "U maakt dit nu",
 			"unknown": "Onbekend"
 		},
 		"datetime-updated": {
-			"datetime_updated": "Datetime Updated",
+			"datetime_updated": "Datum en tijd Bijgewerkt",
 			"relative": "Relatieve tijd weergeven",
 			"relative_comment": "Toon de datum relatief (bijvoorbeeld 50 dagen geleden)",
 			"now": "U maakt dit nu",
