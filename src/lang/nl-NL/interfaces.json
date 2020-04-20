@@ -140,14 +140,14 @@
 			"unknown": "Onbekend"
 		},
 		"divider": {
-			"divider": "Divider",
-			"style-name": "Divider style",
-			"style-comment": "Change the style of the Divider",
+			"divider": "Scheidingslijn",
+			"style-name": "Scheidingslijn stijl",
+			"style-comment": "Pas de stijl van de scheidingslijn aan",
 			"weight-name": "Dikte van de lijn",
 			"weight-comment": "Dikte van de lijn wijzigen",
-			"input-name": "Divider text",
+			"input-name": "Scheidingslijn tekst",
 			"input-comment": "Voer hier je tekst in",
-			"desc-name": "Divider description",
+			"desc-name": "Scheidingslijn omschrijving",
 			"desc-comment": "Een beschrijving toevoegen",
 			"hr-name": "HR",
 			"hr-comment": "Horizontale lijn invoegen",
@@ -168,7 +168,7 @@
 			"icon_comment": "Kies een optioneel icoon om weer te geven aan de linkerkant van de invoer",
 			"options_invalid": "De JSON opties voor de dropdown zijn ongeldig:",
 			"allow_other": "Andere toestaan",
-			"allow_other_comment": "Allow the user to add their own value"
+			"allow_other_comment": "Deze gebruiker kan zijn eigen waarde toevoegen"
 		},
 		"file": {
 			"file": "Bestand",
@@ -183,9 +183,9 @@
 			"accept": "Accepteer bestandstypes",
 			"accept_comment": "Stel een lijst van MIME-types in die geselecteerd kunnen worden",
 			"allow_delete": "Verwijderen toestaan",
-			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface",
+			"allow_delete_comment": "Hiermee kan de gebruiker het gerelateerde bestand permanent verwijderen via de bestandsinterface",
 			"crop_preview": "Voorbeeld uitsnede bestand",
-			"crop_preview_comment": "Crops the file preview to fill the available space."
+			"crop_preview_comment": "Knipt de voorvertoning bij om de beschikbare ruimte te vullen."
 		},
 		"file-preview": {
 			"file_preview": "Bestandsvoorvertoning",
@@ -237,7 +237,7 @@
 			"small": "Klein",
 			"medium": "Medium",
 			"large": "Groot",
-			"secured": "Value Secured"
+			"secured": "Waarde Beveiligd"
 		},
 		"icon": {
 			"icon": "Icoon",
@@ -262,7 +262,7 @@
 			"placeholder_default": "Kies een interface",
 			"option": "Optie",
 			"relational": "Inclusief relationele interfaces",
-			"include_status": "Include the status interfaces"
+			"include_status": "Voeg de status interfaces toe"
 		},
 		"json": {
 			"template": "Sjabloon",
@@ -427,7 +427,7 @@
 			"monospace_comment": "Gebruik een monospace lettertype"
 		},
 		"radio-buttons": {
-			"radio": "Radio Buttons",
+			"radio": "Keuzerondjes",
 			"choices": "Keuzes",
 			"choices_comment": "Voer key-value waardes in.",
 			"option": "Optie",
@@ -440,12 +440,12 @@
 			"active_color": "Actieve kleur",
 			"active_color_comment": "Actieve kleur van geselecteerde sterren",
 			"max_stars": "Maximaal aantal sterren",
-			"max_stars_comment": "Number of maximum rating allowed",
-			"display": "Display",
-			"display_comment": "How to display rating values"
+			"max_stars_comment": "Aantal maximale beoordeling toegestaan",
+			"display": "Toon",
+			"display_comment": "Hoe de beoordelingswaarden te tonen"
 		},
 		"repeater": {
-			"repeater": "Repeater",
+			"repeater": "Herhaler",
 			"template": "Weergavesjabloon",
 			"template_comment": "How to format value on the item browse display and inline preview",
 			"template_placeholder": "{{title}} — ({{author}})",
@@ -453,9 +453,9 @@
 			"fields_comment": "What fields to show in each repeated row",
 			"limit": "Limiet",
 			"limit_comment": "Maximum amount of rows the user can add",
-			"duplicable": "Duplicable rows",
+			"duplicable": "Dubbele rijen",
 			"duplicable_comment": "Whether to make rows duplicable or not",
-			"structure": "Structure",
+			"structure": "Structuur",
 			"structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
 			"structure_key": "Structure Key Field",
 			"structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values",
@@ -465,12 +465,12 @@
 			"create_item_text_comment": "Text that's displayed in the button that adds a new row to the repeater"
 		},
 		"slider": {
-			"slider": "Slider",
+			"slider": "Schuifregelaar",
 			"min": "Minimum",
 			"min_comment": "The minimum valid value",
 			"max": "Maximum",
-			"max_comment": "The maximum valid value",
-			"step": "Step",
+			"max_comment": "De maximale geldige waarde",
+			"step": "Stap",
 			"step_comment": "Increments at which the value can be set",
 			"unit": "Eenheid",
 			"unit_comment": "Toon een eenheid naast de schuifregelaar, bijvoorbeeld 15 ponden"
@@ -479,9 +479,9 @@
 			"slug": "Url",
 			"placeholder_name": "Tijdelijke plaatshouder",
 			"placeholder_comment": "The placeholder text to show",
-			"force_lowercase": "Force Lowercase",
+			"force_lowercase": "Forceer kleine letters",
 			"force_lowercase_comment": "Makes sure the slug is in lowercase",
-			"mirrored_field": "Mirrored Field",
+			"mirrored_field": "Gespiegeld veld",
 			"mirrored_field_comment": "Keep the slug up to date with another (text) field",
 			"only_on_create": "Only on Create",
 			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
@@ -504,7 +504,7 @@
 			"tags": "Tags",
 			"alphabetize": "Alphabetize tags",
 			"alphabetize_comment": "Will rearrange tags to be alphabetical",
-			"lowercase": "Force Lowercase",
+			"lowercase": "Forceer kleine letters",
 			"lowercase_comment": "Convert all tags to lowercase",
 			"wrap": "Wrap with delimiter",
 			"wrap_comment": "Waarden ombouwen met een scheidingsteken om strikt te zoeken naar een enkele waarde",
@@ -553,24 +553,24 @@
 			"serif_comment": "Use a larger, serif typeface"
 		},
 		"time": {
-			"time": "Time",
-			"include_seconds": "Include seconds",
-			"include_seconds_comment": "Include seconds in the interface",
-			"24hour": "Display 24 hour clock",
-			"24hour_comment": "Show the time in 24-hour format (eg.: 15:30)"
+			"time": "Tijd",
+			"include_seconds": "Seconden opnemen",
+			"include_seconds_comment": "Seconden opnemen in de interface",
+			"24hour": "24-uurs klok weergeven",
+			"24hour_comment": "Toon de tijd in 24-uurs formaat (bijv: 15:30)"
 		},
 		"switch": {
-			"switch": "Switch",
-			"label_on": "Label (On)",
-			"label_on_comment": "Label to show next to the toggle when the toggle is on",
-			"label_off": "Label (Off)",
-			"label_off_comment": "Label to show next to the toggle when the toggle is off",
-			"checkbox": "Show as Checkbox",
-			"checkbox_comment": "Display a checkbox instead of the default switch"
+			"switch": "Schakelaar",
+			"label_on": "Label (Aan)",
+			"label_on_comment": "Label om naast de schakelaar te tonen als de schakelaar aan staat",
+			"label_off": "Label (Uit)",
+			"label_off_comment": "Label om naast de schakelaar te tonen als de schakelaar uit staat",
+			"checkbox": "Toon als vinkje",
+			"checkbox_comment": "Toon een vinkje in plaats van de standaard schakelaar"
 		},
 		"toggle-icon": {
-			"toggle-icon": "Toggle Icon",
-			"text-inactive-name": "Inactive Text",
+			"toggle-icon": "Schakel icoon",
+			"text-inactive-name": "Tekst inactief",
 			"text-inactive-comment": "Text next to the inactive icon",
 			"text-inactive-placeholder": "Enter your text here",
 			"icon-inactive-name": "Inactive Icon",
@@ -609,7 +609,7 @@
 			"name": "Naam",
 			"template": "Sjabloon",
 			"template_comment": "How to display the user on the item detail page",
-			"display": "Display",
+			"display": "Toon",
 			"display_comment": "How to display the user on the item browse page",
 			"you": "You will be the creator",
 			"unknown": "Onbekend"
@@ -627,7 +627,7 @@
 			"name": "Naam",
 			"template": "Sjabloon",
 			"template_comment": "How to display the user on the item detail page",
-			"display": "Display",
+			"display": "Toon",
 			"display_comment": "How to display the user on the item browse page",
 			"you": "You will be the updater",
 			"unknown": "Onbekend"
