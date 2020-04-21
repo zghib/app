@@ -247,13 +247,13 @@
 			"interface-options": "Interface Options",
 			"interface-field": "Interface Field",
 			"placeholder-comment": "The field that holds the name of the interface",
-			"placeholder-default": "Enter a field name..."
+			"placeholder-default": "Digite um nome para o campo..."
 		},
 		"interface-types": {
 			"interface-types": "Interface types",
 			"interface-field": "Interface Field",
 			"placeholder-comment": "The field that holds the name of the interface",
-			"placeholder-default": "Enter a field name..."
+			"placeholder-default": "Digite um nome para o campo..."
 		},
 		"interfaces": {
 			"interfaces": "Interfaces",
@@ -283,7 +283,7 @@
 			"limit_comment": "Only show languages that are available as translations in Directus"
 		},
 		"many-to-many": {
-			"m2m": "Many to Many",
+			"m2m": "Muitos-para-muitos (N para N)",
 			"visible_columns": "Colunas Visíveis",
 			"visible_columns_comment": "Add a CSV of columns you want to display as preview",
 			"preferences": "Listing View Preferences",
@@ -298,11 +298,11 @@
 			"allow_select_comment": "Allow the user to select an existing item"
 		},
 		"many-to-one": {
-			"m2o": "Many to One",
+			"m2o": "Muitos-para-um (N para 1)",
 			"template": "Dropdown Template",
 			"template_comment": "How to format the dropdown options",
-			"visible_fields": "Visible Fields",
-			"visible_fields_placeholder": "title,author",
+			"visible_fields": "Campos Visíveis",
+			"visible_fields_placeholder": "titulo,autor",
 			"visible_fields_note": "CSV of fields visible when selecting an item in the modal",
 			"template_placeholder": "{{title}} — {{author}}",
 			"placeholder": "Placeholder",
@@ -312,33 +312,33 @@
 			"relationship_not_setup": "The relationship hasn't been configured correctly",
 			"icon": "Ícone",
 			"icon_comment": "Escolha um ícone opcional para exibir à esquerda da entrada",
-			"select_one": "Select one",
-			"threshold": "Threshold",
+			"select_one": "Selecione um",
+			"threshold": "Limite",
 			"threshold_comment": "The number of items after which a modal will be used instead of a dropdown"
 		},
 		"map": {
-			"map": "Map",
+			"map": "Mapa",
 			"choices": "choices",
 			"choices_comment": "Digite os pares de valor da chave JSON com o valor salvo e o texto exibido.",
 			"theme": "Tema da Interface",
 			"theme_comment": "Definir o tema da interface se suportado",
 			"value": "Valor",
-			"map_lat": "Default Latitude",
+			"map_lat": "Latitude Padrão",
 			"map_lat_comment": "Map will be centered at this latitude",
-			"map_lng": "Default Longitude",
+			"map_lng": "Longitude Padrão",
 			"map_lng_comment": "Map will be centered at this longitude",
 			"height": "Altura",
-			"default_zoom": "Default Zoom",
-			"default_zoom_comment": "Default zoom level of the map",
+			"default_zoom": "Zoom Padrão",
+			"default_zoom_comment": "Nível de zoom padrão do mapa",
 			"max_zoom": "Max Zoom",
 			"max_zoom_comment": "Maximum zoom allowed in the map",
-			"no_location": "No location found",
+			"no_location": "Nenhum local encontrado",
 			"user_location_error_blocked": "You've disabled the location access. Kindly enable it from the browser addressbar to auto detect your location.",
 			"user_location_error": "There was an error while trying to get your location. Please try again.",
 			"address_to_code": "Address Input",
 			"address_to_code_comment": "Add an input field to automatically get the geocodes from an address. Uses <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Please check their usage policy.",
 			"address_to_code_error": "No geocode found for this address",
-			"clear_location": "Clear Location",
+			"clear_location": "Limpar Localização",
 			"my_location": "Set My Location",
 			"address_location": "Set Address Location"
 		},
@@ -350,7 +350,7 @@
 			"tabbed_preview_comment": "How to display the editor and preview",
 			"tabbed_preview_on": "Tabbed Preview",
 			"tabbed_preview_off": "Side-by-side Preview",
-			"rows": "Rows",
+			"rows": "Linhas",
 			"rows_comment": "The starting number of text rows available",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Digite o texto de placeholder"
@@ -383,7 +383,7 @@
 			"monospace_comment": "Use a monospace font"
 		},
 		"one-to-many": {
-			"o2m": "One to Many",
+			"o2m": "Um-para-muitos (1 para N)",
 			"select_items": "Select the items",
 			"relation_not_setup": "The relationship hasn't been configured correctly",
 			"visible_columns": "Colunas Visíveis",
@@ -397,8 +397,8 @@
 			"allow_create_comment": "Allow the user to create a new item from this interface",
 			"allow_select": "Permitir Seleção",
 			"allow_select_comment": "Allow the user to select an existing item",
-			"delete_mode": "Delete mode",
-			"delete_mode_comment": "What to do when the user deselects an item",
+			"delete_mode": "Modo de Deleção",
+			"delete_mode_comment": "O que fazer quando o usuário desmarcar um item",
 			"sort_field": "Sort Field",
 			"sort_field_comment": "The field to store the sort value in"
 		},
@@ -466,20 +466,20 @@
 		},
 		"slider": {
 			"slider": "Slider",
-			"min": "Minimum",
-			"min_comment": "The minimum valid value",
-			"max": "Maximum",
-			"max_comment": "The maximum valid value",
+			"min": "Mínimo",
+			"min_comment": "O valor mínimo válido",
+			"max": "Máximo",
+			"max_comment": "O valor máximo válido",
 			"step": "Step",
 			"step_comment": "Increments at which the value can be set",
-			"unit": "Unit",
+			"unit": "Unidade",
 			"unit_comment": "Show an unit next to the slider value, e.g. 15 Pounds"
 		},
 		"slug": {
 			"slug": "Slug",
 			"placeholder_name": "Placeholder",
 			"placeholder_comment": "The placeholder text to show",
-			"force_lowercase": "Force Lowercase",
+			"force_lowercase": "Forçar Minúsculas",
 			"force_lowercase_comment": "Makes sure the slug is in lowercase",
 			"mirrored_field": "Mirrored Field",
 			"mirrored_field_comment": "Keep the slug up to date with another (text) field",
@@ -504,7 +504,7 @@
 			"tags": "Tags",
 			"alphabetize": "Alphabetize tags",
 			"alphabetize_comment": "Will rearrange tags to be alphabetical",
-			"lowercase": "Force Lowercase",
+			"lowercase": "Forçar Minúsculas",
 			"lowercase_comment": "Convert all tags to lowercase",
 			"wrap": "Wrap with delimiter",
 			"wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
@@ -519,7 +519,7 @@
 			"icon_right_comment": "Escolha um ícone opcional para exibir à esquerda da entrada",
 			"validation": "Validação",
 			"validation_comment": "A RegEx to check each individual value against",
-			"validation_message": "Validation Message",
+			"validation_message": "Mensagem de Validação",
 			"validation_message_comment": "A short message to show users if tag validation fails",
 			"validation_message_default": "Please enter a valid tag"
 		},
@@ -544,8 +544,8 @@
 			"large": "Grande"
 		},
 		"textarea": {
-			"textarea": "Text-Area",
-			"rows": "Rows",
+			"textarea": "Área de Texto",
+			"rows": "Linhas",
 			"rows_comment": "The number of text rows available for the input before scrolling",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Digite o texto de placeholder",
@@ -554,10 +554,10 @@
 		},
 		"time": {
 			"time": "Time",
-			"include_seconds": "Include seconds",
+			"include_seconds": "Incluir segundos",
 			"include_seconds_comment": "Include seconds in the interface",
-			"24hour": "Display 24 hour clock",
-			"24hour_comment": "Show the time in 24-hour format (eg.: 15:30)"
+			"24hour": "Exibir relógio de 24 horas",
+			"24hour_comment": "Mostrar a hora no formato de 24 horas (por exemplo: 15:30)"
 		},
 		"switch": {
 			"switch": "Switch",
@@ -569,33 +569,33 @@
 			"checkbox_comment": "Display a checkbox instead of the default switch"
 		},
 		"toggle-icon": {
-			"toggle-icon": "Toggle Icon",
-			"text-inactive-name": "Inactive Text",
+			"toggle-icon": "Alternar Ícone",
+			"text-inactive-name": "Texto Inativo",
 			"text-inactive-comment": "Text next to the inactive icon",
 			"text-inactive-placeholder": "Enter your text here",
-			"icon-inactive-name": "Inactive Icon",
-			"icon-inactive-comment": "Choose an inactive icon",
-			"color-inactive-name": "Inactive Color",
-			"color-inactive-comment": "Choose the inactive color",
-			"text-active-name": "Active Text",
-			"text-active-comment": "Text next to the active icon",
+			"icon-inactive-name": "Ícone Inativo",
+			"icon-inactive-comment": "Escolha um ícone inativo",
+			"color-inactive-name": "Cor Inativa",
+			"color-inactive-comment": "Escolha a cor inativa",
+			"text-active-name": "Texto Ativo",
+			"text-active-comment": "Texto ao lado do ícone ativo",
 			"text-active-placeholder": "Enter your text here",
-			"icon-active-name": "Active Icon",
-			"icon-active-comment": "Choose an active icon",
+			"icon-active-name": "Ícone ativo",
+			"icon-active-comment": "Escolha um ícone ativo",
 			"color-active-name": "Active Color",
-			"color-active-comment": "Choose the active color"
+			"color-active-comment": "Escolha a cor ativa"
 		},
 		"translation": {
 			"translation": "Tradução",
-			"language_field": "Language Field",
+			"language_field": "Campo de idioma",
 			"language_field_comment": "The field that holds the language code in the related collection",
-			"languages": "Languages",
+			"languages": "Idiomas",
 			"template": "Display Template",
 			"template_comment": "Choose how to display values on the item layouts",
 			"template_placeholder": "{{title}} — {{body}}"
 		},
 		"user": {
-			"user": "User",
+			"user": "Usuário",
 			"avatar": "Imagem de Perfil",
 			"name": "Nome",
 			"template": "Template",
@@ -615,14 +615,14 @@
 			"unknown": "Desconhecido"
 		},
 		"user-roles": {
-			"user-roles": "User Role",
-			"choose_role": "Choose a role...",
+			"user-roles": "Função de Usuário",
+			"choose_role": "Escolha uma função...",
 			"relational": "Relacionável",
-			"relational_comment": "Save as a relational record",
+			"relational_comment": "Salvar como um registro relacional",
 			"show_public": "Show public role"
 		},
 		"user-updated": {
-			"user_updated": "User Updated",
+			"user_updated": "Usuário Atualizado",
 			"avatar": "Imagem de Perfil",
 			"name": "Nome",
 			"template": "Template",
@@ -635,7 +635,7 @@
 		"wysiwyg": {
 			"toolbar": "Toolbar Options",
 			"toolbar_comment": "Show, hide, and reorder toolbar options",
-			"custom_formats": "Custom Formats",
+			"custom_formats": "Formatos Personalizados",
 			"custom_formats_comment": "Custom HTML wrappers for content",
 			"tinymce_options": "TinyMCE Options",
 			"tinymce_options_comment": "Override any of [the TinyMCE init options](https://www.tiny.cloud/docs/configure/)."
