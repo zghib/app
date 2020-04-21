@@ -189,7 +189,7 @@
 		},
 		"file-preview": {
 			"file_preview": "File Preview",
-			"edit": "Editing Options"
+			"edit": "Opções de Edição"
 		},
 		"file-size": {
 			"file_size": "Tamanho de Arquivo",
@@ -200,16 +200,16 @@
 			"format_input": "Format input",
 			"format_input_comment": "Enter the value using a dropdown for units",
 			"decimal": "Decimal",
-			"decimal_comment": "Show the value in decimal counting (10MB vs 10MiB)",
+			"decimal_comment": "Mostrar valor na escala decimal (10MB vs 10MiB)",
 			"crop_preview": "Crop Preview Images"
 		},
 		"files": {
 			"files": "Arquivos",
 			"visible_columns": "Colunas Visíveis",
-			"visible_columns_comment": "Add a CSV of columns you want to display as preview",
+			"visible_columns_comment": "Adicione um CSV com as colunas que você deseja pré-visualizar",
 			"preferences": "Listing View Preferences",
-			"preferences_comment": "Set what options to use for the modal",
-			"relation_not_setup": "The relationship hasn't been configured correctly",
+			"preferences_comment": "Defina quais opções usar para o modal",
+			"relation_not_setup": "O relacionamento não foi configurado corretamente",
 			"template": "Display Template",
 			"template_comment": "Choose how to display values on the item layouts",
 			"template_placeholder": "{{movie.name}} — {{member.first_name}}",
@@ -233,7 +233,7 @@
 			"hashing_type_comment": "What method of hashing to use",
 			"width": "Tamanho",
 			"width_comment": "Set what width to use for the input",
-			"auto": "Automatic",
+			"auto": "Automático",
 			"small": "Pequeno",
 			"medium": "Médio",
 			"large": "Grande",
@@ -241,17 +241,17 @@
 		},
 		"icon": {
 			"icon": "Ícone",
-			"search_placeholder": "Search for an icon..."
+			"search_placeholder": "Procurar por um ícone..."
 		},
 		"interface-options": {
-			"interface-options": "Interface Options",
-			"interface-field": "Interface Field",
+			"interface-options": "Opções de Interface",
+			"interface-field": "Campo de Interface",
 			"placeholder-comment": "The field that holds the name of the interface",
 			"placeholder-default": "Digite um nome para o campo..."
 		},
 		"interface-types": {
 			"interface-types": "Interface types",
-			"interface-field": "Interface Field",
+			"interface-field": "Campo de Interface",
 			"placeholder-comment": "The field that holds the name of the interface",
 			"placeholder-default": "Digite um nome para o campo..."
 		},
@@ -259,7 +259,7 @@
 			"interfaces": "Interfaces",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Texto estático que é mostrado antes de um valor ser selecionado",
-			"placeholder_default": "Choose an interface",
+			"placeholder_default": "Escolha uma interface",
 			"option": "Opção",
 			"relational": "Include relational interfaces",
 			"include_status": "Include the status interfaces"
@@ -278,17 +278,17 @@
 		},
 		"language": {
 			"input": "Idioma",
-			"select_language": "Select a language...",
-			"limit": "Limit to Directus Availability",
-			"limit_comment": "Only show languages that are available as translations in Directus"
+			"select_language": "Selecione um idioma...",
+			"limit": "Limitar à Disponibilidade do Directus",
+			"limit_comment": "Mostrar apenas idiomas que estão disponíveis como traduções no Directus"
 		},
 		"many-to-many": {
 			"m2m": "Muitos-para-muitos (N para N)",
 			"visible_columns": "Colunas Visíveis",
-			"visible_columns_comment": "Add a CSV of columns you want to display as preview",
+			"visible_columns_comment": "Adicione um CSV com as colunas que você deseja pré-visualizar",
 			"preferences": "Listing View Preferences",
-			"preferences_comment": "Set what options to use for the modal",
-			"relation_not_setup": "The relationship hasn't been configured correctly",
+			"preferences_comment": "Defina quais opções usar para o modal",
+			"relation_not_setup": "O relacionamento não foi configurado corretamente",
 			"template": "Display Template",
 			"template_comment": "Choose how to display values on the item layouts",
 			"template_placeholder": "{{movie.name}} — {{member.first_name}}",
@@ -308,8 +308,8 @@
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Digite o texto de placeholder",
 			"preferences": "Listing View Preferences",
-			"preferences_comment": "Set what options to use for the modal",
-			"relationship_not_setup": "The relationship hasn't been configured correctly",
+			"preferences_comment": "Defina quais opções usar para o modal",
+			"relationship_not_setup": "O relacionamento não foi configurado corretamente",
 			"icon": "Ícone",
 			"icon_comment": "Escolha um ícone opcional para exibir à esquerda da entrada",
 			"select_one": "Selecione um",
@@ -379,17 +379,17 @@
 			"icon_left_comment": "Escolha um ícone opcional para exibir à esquerda da entrada",
 			"icon_right": "Ícone à Direita",
 			"icon_right_comment": "Escolha um ícone opcional para exibir à esquerda da entrada",
-			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font"
+			"monospace": "Monoespaçada",
+			"monospace_comment": "Usar uma fonte monoespaçada"
 		},
 		"one-to-many": {
 			"o2m": "Um-para-muitos (1 para N)",
-			"select_items": "Select the items",
-			"relation_not_setup": "The relationship hasn't been configured correctly",
+			"select_items": "Selecione os itens",
+			"relation_not_setup": "O relacionamento não foi configurado corretamente",
 			"visible_columns": "Colunas Visíveis",
-			"visible_columns_comment": "Add a CSV of columns you want to display as preview",
+			"visible_columns_comment": "Adicione um CSV com as colunas que você deseja pré-visualizar",
 			"preferences": "Listing View Preferences",
-			"preferences_comment": "Set what options to use for the modal",
+			"preferences_comment": "Defina quais opções usar para o modal",
 			"template": "Display Template",
 			"template_comment": "How to format value on the item browse display",
 			"template_placeholder": "{{title}} — {{author}}",
@@ -399,8 +399,8 @@
 			"allow_select_comment": "Allow the user to select an existing item",
 			"delete_mode": "Modo de Deleção",
 			"delete_mode_comment": "O que fazer quando o usuário desmarcar um item",
-			"sort_field": "Sort Field",
-			"sort_field_comment": "The field to store the sort value in"
+			"sort_field": "Campo de ordenação",
+			"sort_field_comment": "O campo para armazenar o valor de ordenação"
 		},
 		"password": {
 			"password": "Senha",
@@ -408,7 +408,7 @@
 			"hide_comment": "Mostrar pontos em vez dos caracteres inseridos",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Digite o texto de placeholder",
-			"confirm_placeholder": "Confirm password...",
+			"confirm_placeholder": "Confirmar senha...",
 			"show_hash": "Exibir o hash de saída",
 			"show_hash_comment": "Exibir o hash salvo",
 			"hashing_type": "Tipo de Hashing",
@@ -422,9 +422,9 @@
 		},
 		"primary-key": {
 			"primary_key": "Chave primária",
-			"immutable": "Can not be changed",
-			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font"
+			"immutable": "Não pode ser alterado",
+			"monospace": "Monoespaçada",
+			"monospace_comment": "Usar uma fonte monoespaçada"
 		},
 		"radio-buttons": {
 			"radio": "Radio Buttons",
@@ -437,7 +437,7 @@
 		"rating": {
 			"rating": "Rating",
 			"value": "Valor",
-			"active_color": "Active Color",
+			"active_color": "Cor Ativa",
 			"active_color_comment": "Active color of selected stars",
 			"max_stars": "Max Stars",
 			"max_stars_comment": "Number of maximum rating allowed",
@@ -445,17 +445,17 @@
 			"display_comment": "How to display rating values"
 		},
 		"repeater": {
-			"repeater": "Repeater",
+			"repeater": "Repetidor",
 			"template": "Display Template",
 			"template_comment": "How to format value on the item browse display and inline preview",
 			"template_placeholder": "{{title}} — ({{author}})",
 			"fields": "Campos",
-			"fields_comment": "What fields to show in each repeated row",
-			"limit": "Limit",
-			"limit_comment": "Maximum amount of rows the user can add",
-			"duplicable": "Duplicable rows",
-			"duplicable_comment": "Whether to make rows duplicable or not",
-			"structure": "Structure",
+			"fields_comment": "Quais campos mostrar em cada linha repetida",
+			"limit": "Limite",
+			"limit_comment": "Quantidade máxima de linhas que o usuário pode adicionar",
+			"duplicable": "Linhas duplicáveis",
+			"duplicable_comment": "Se é possível duplicar as linhas ou não",
+			"structure": "Estrutura",
 			"structure_comment": "Whether to save the JSON as an array of objects or single object with unique keys",
 			"structure_key": "Structure Key Field",
 			"structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values",
@@ -496,16 +496,16 @@
 			"simple_badge": "Simple Badge",
 			"simple_badge_comment": "Displays a colored dot on the item listing page.",
 			"published": "Published",
-			"under_review": "Under Review",
-			"draft": "Draft",
-			"deleted": "Deleted"
+			"under_review": "Sob Revisão",
+			"draft": "Rascunho",
+			"deleted": "Excluído"
 		},
 		"tags": {
 			"tags": "Tags",
-			"alphabetize": "Alphabetize tags",
-			"alphabetize_comment": "Will rearrange tags to be alphabetical",
+			"alphabetize": "Alfabetizar tags",
+			"alphabetize_comment": "Reordenará as tags alfabeticamente",
 			"lowercase": "Forçar Minúsculas",
-			"lowercase_comment": "Convert all tags to lowercase",
+			"lowercase_comment": "Converter todas as tags para minúsculas",
 			"wrap": "Wrap with delimiter",
 			"wrap_comment": "Wrap the values with a pair of delimiters to allow strict searching for a single value",
 			"format": "Format Value",
@@ -528,17 +528,17 @@
 			"placeholder": "Placeholder",
 			"trim": "Trim",
 			"trim_comment": "Trim surrounding whitespace from the value before saving",
-			"char_count": "Show Character Count",
-			"char_count_comment": "Show the remaining characters available",
+			"char_count": "Mostrar Contagem de Caracteres",
+			"char_count_comment": "Mostrar os caracteres restantes disponíveis",
 			"icon_left": "Ícone à Esquerda",
 			"icon_left_comment": "Escolha um ícone opcional para exibir à esquerda da entrada",
 			"icon_right": "Ícone à Direita",
 			"icon_right_comment": "Escolha um ícone opcional para exibir à esquerda da entrada",
 			"format": "Pretty Output",
 			"format_comment": "Convert the value to title case",
-			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font",
-			"auto": "Automatic",
+			"monospace": "Monoespaçada",
+			"monospace_comment": "Usar uma fonte monoespaçada",
+			"auto": "Automático",
 			"small": "Pequeno",
 			"medium": "Médio",
 			"large": "Grande"
@@ -546,16 +546,16 @@
 		"textarea": {
 			"textarea": "Área de Texto",
 			"rows": "Linhas",
-			"rows_comment": "The number of text rows available for the input before scrolling",
+			"rows_comment": "Número de linhas de texto disponíveis para entrada antes da rolagem",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Digite o texto de placeholder",
-			"serif": "Serif Font",
-			"serif_comment": "Use a larger, serif typeface"
+			"serif": "Fonte Serifada",
+			"serif_comment": "Usar um fonte maior, serifada"
 		},
 		"time": {
-			"time": "Time",
+			"time": "Hora",
 			"include_seconds": "Incluir segundos",
-			"include_seconds_comment": "Include seconds in the interface",
+			"include_seconds_comment": "Incluir segundos na interface",
 			"24hour": "Exibir relógio de 24 horas",
 			"24hour_comment": "Mostrar a hora no formato de 24 horas (por exemplo: 15:30)"
 		},
@@ -571,18 +571,18 @@
 		"toggle-icon": {
 			"toggle-icon": "Alternar Ícone",
 			"text-inactive-name": "Texto Inativo",
-			"text-inactive-comment": "Text next to the inactive icon",
-			"text-inactive-placeholder": "Enter your text here",
+			"text-inactive-comment": "Texto ao lado do ícone inativo",
+			"text-inactive-placeholder": "Digite seu texto aqui",
 			"icon-inactive-name": "Ícone Inativo",
 			"icon-inactive-comment": "Escolha um ícone inativo",
 			"color-inactive-name": "Cor Inativa",
 			"color-inactive-comment": "Escolha a cor inativa",
 			"text-active-name": "Texto Ativo",
 			"text-active-comment": "Texto ao lado do ícone ativo",
-			"text-active-placeholder": "Enter your text here",
+			"text-active-placeholder": "Digite seu texto aqui",
 			"icon-active-name": "Ícone ativo",
 			"icon-active-comment": "Escolha um ícone ativo",
-			"color-active-name": "Active Color",
+			"color-active-name": "Cor Ativa",
 			"color-active-comment": "Escolha a cor ativa"
 		},
 		"translation": {
@@ -601,7 +601,7 @@
 			"template": "Template",
 			"template_comment": "How to format the users in the dropdown",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Add a placeholder"
+			"placeholder_comment": "Adicionar um placeholder"
 		},
 		"owner": {
 			"owner": "Proprietário",
@@ -633,7 +633,7 @@
 			"unknown": "Desconhecido"
 		},
 		"wysiwyg": {
-			"toolbar": "Toolbar Options",
+			"toolbar": "Opções da Barra de Ferramentas",
 			"toolbar_comment": "Show, hide, and reorder toolbar options",
 			"custom_formats": "Formatos Personalizados",
 			"custom_formats_comment": "Custom HTML wrappers for content",
