@@ -338,7 +338,7 @@
 			"address_to_code": "Adresseingabe",
 			"address_to_code_comment": "Add an input field to automatically get the geocodes from an address. Uses <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Please check their usage policy.",
 			"address_to_code_error": "No geocode found for this address",
-			"clear_location": "Clear Location",
+			"clear_location": "Standort entfernen",
 			"my_location": "Meinen Standort festlegen",
 			"address_location": "Set Address Location"
 		},
@@ -367,7 +367,7 @@
 			"wrap": "Mit Trennzeichen umbrechen",
 			"wrap_comment": "Verpacken Sie die Werte mit einem Begrenzungspaar, um eine genaue Suche nach einem einzelnen Wert zu ermöglichen",
 			"format": "Format durchsuchen",
-			"format_comment": "The output format on the Browse Items page"
+			"format_comment": "Das Ausgabeformat auf der Übersichtseite"
 		},
 		"numeric": {
 			"numeric": "Numerisch",
@@ -380,7 +380,7 @@
 			"icon_right": "Icon rechts",
 			"icon_right_comment": "Optionales Icon, für Anzeige links neben der Eingabe",
 			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font"
+			"monospace_comment": "Monospace-Schrift verwenden"
 		},
 		"one-to-many": {
 			"o2m": "1 zu n",
@@ -398,7 +398,7 @@
 			"allow_select": "Auswahl erlauben",
 			"allow_select_comment": "Dem Benutzer erlauben, ein vorhandenes Element auszuwählen",
 			"delete_mode": "Löschmodus",
-			"delete_mode_comment": "What to do when the user deselects an item",
+			"delete_mode_comment": "Was ist zu tun ist, wenn der Benutzer ein Element abwählt",
 			"sort_field": "Sortierfeld",
 			"sort_field_comment": "The field to store the sort value in"
 		},
@@ -424,7 +424,7 @@
 			"primary_key": "Primärschlüssel",
 			"immutable": "Kann nicht geändert werden",
 			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font"
+			"monospace_comment": "Monospace-Schrift verwenden"
 		},
 		"radio-buttons": {
 			"radio": "Radio Buttons",
@@ -432,7 +432,7 @@
 			"choices_comment": "Geben Sie die JSON-Schlüsselwert-Paare mit dem gespeicherten Wert und dem angezeigten Text ein.",
 			"option": "Option",
 			"format": "Format durchsuchen",
-			"format_comment": "The output format on the Browse Items page"
+			"format_comment": "Das Ausgabeformat auf der Übersichtseite"
 		},
 		"rating": {
 			"rating": "Bewertung",
@@ -537,7 +537,7 @@
 			"format": "Pretty Output",
 			"format_comment": "Convert the value to title case",
 			"monospace": "Monospace",
-			"monospace_comment": "Use a monospace font",
+			"monospace_comment": "Monospace-Schrift verwenden",
 			"auto": "Automatisch",
 			"small": "Klein",
 			"medium": "Mittel",
