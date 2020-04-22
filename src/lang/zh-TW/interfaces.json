@@ -327,7 +327,7 @@
 			"map_lat_comment": "Map will be centered at this latitude",
 			"map_lng": "Default Longitude",
 			"map_lng_comment": "Map will be centered at this longitude",
-			"height": "Height",
+			"height": "高度",
 			"default_zoom": "Default Zoom",
 			"default_zoom_comment": "Default zoom level of the map",
 			"max_zoom": "Max Zoom",
@@ -501,7 +501,7 @@
 			"deleted": "Deleted"
 		},
 		"tags": {
-			"tags": "Tags",
+			"tags": "標籤",
 			"alphabetize": "Alphabetize tags",
 			"alphabetize_comment": "Will rearrange tags to be alphabetical",
 			"lowercase": "Force Lowercase",
@@ -596,7 +596,7 @@
 		},
 		"user": {
 			"user": "User",
-			"avatar": "Avatar",
+			"avatar": "頭像",
 			"name": "名稱",
 			"template": "Template",
 			"template_comment": "How to format the users in the dropdown",
@@ -605,7 +605,7 @@
 		},
 		"owner": {
 			"owner": "Owner",
-			"avatar": "Avatar",
+			"avatar": "頭像",
 			"name": "名稱",
 			"template": "Template",
 			"template_comment": "How to display the user on the item detail page",
@@ -623,7 +623,7 @@
 		},
 		"user-updated": {
 			"user_updated": "User Updated",
-			"avatar": "Avatar",
+			"avatar": "頭像",
 			"name": "名稱",
 			"template": "Template",
 			"template_comment": "How to display the user on the item detail page",
