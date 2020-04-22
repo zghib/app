@@ -370,7 +370,7 @@
 			"format_comment": "The output format on the Browse Items page"
 		},
 		"numeric": {
-			"numeric": "Numeric",
+			"numeric": "數字",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Enter placeholder text",
 			"localized": "Localized",
