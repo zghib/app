@@ -290,7 +290,7 @@
   "initial_schema": "選擇初始架構",
   "initial_schema_copy": "從現有的資料庫架構中選擇或重新開始。您隨時可以進行擴充和調整。",
   "install": "安裝",
-  "install_copy": "This project has not been setup yet. If you are an administrator you can create it now by clicking on the button below.",
+  "install_copy": "這個項目尚未完成設置。如果您是管理者，您可以透過點擊下面的按鈕來建立它。",
   "install_busy_copy": "Thank you. One moment while we create your database, import your schema, and add a new config file for this API.",
   "install_all_set_copy": "The project has successfully been created. You can now sign in to the App with the admin credentials you entered.",
   "install_all_set_super_admin_password": "Make sure to copy the generated Super-Admin password below. You won't be able to see it again!",
