@@ -22,9 +22,9 @@
 		"calendar": {
 			"calendar": "Calendar",
 			"min": "Minimum Date",
-			"min_comment": "Minimum date that can be chosen by the user",
+			"min_comment": "用戶可以選擇的最小日期",
 			"max": "Maximum Date",
-			"max_comment": "Maximum date that can be chosen by the user",
+			"max_comment": "用戶可以選擇的最大日期",
 			"formatting": "Date Format",
 			"formatting_comment": "Follows [Unicode Technical Standard](https://date-fns.org/v2.8.1/docs/format). If left blank, a relative date will be used."
 		},
@@ -60,7 +60,7 @@
 		"code": {
 			"code": "Code",
 			"template": "Template",
-			"template_comment": "Provide a template the user can use to get started with",
+			"template_comment": "提供用戶可以用來入門的模板",
 			"language": "Language",
 			"language_comment": "Set the programming language to use",
 			"lineNumber": "Line Number",
@@ -84,7 +84,7 @@
 			"palette": "Palette",
 			"palette_comment": "Add color options as hex values",
 			"palette_only": "Palette Only",
-			"palette_only_comment": "Only allow the user to pick from the palette"
+			"palette_only_comment": "只允許用戶從調色盤中選擇"
 		},
 		"color-palette": {
 			"color-picker": "Color Picker"
@@ -92,9 +92,9 @@
 		"date": {
 			"date": "Date",
 			"min": "Minimum date",
-			"min_comment": "Minimum date that can be chosen by the user",
+			"min_comment": "用戶可以選擇的最小日期",
 			"max": "Maximum date",
-			"max_comment": "Maximum date that can be chosen by the user",
+			"max_comment": "用戶可以選擇的最大日期",
 			"localized": "Localized",
 			"localized_comment": "Show the date localized in the output",
 			"relative": "Show relative date",
@@ -107,9 +107,9 @@
 		"datetime": {
 			"datetime": "Datetime",
 			"min": "Minimum time",
-			"min_comment": "Minimum time that can be chosen by the user",
+			"min_comment": "用戶可以選擇的最小時間",
 			"max": "Maximum time",
-			"max_comment": "Maximum time that can be chosen by the user",
+			"max_comment": "用戶可以選擇的最大時間",
 			"localized": "Localized",
 			"localized_comment": "Show the date localized in the output",
 			"relative": "Show relative time",
@@ -168,7 +168,7 @@
 			"icon_comment": "Choose an optional icon to display on the left of the input",
 			"options_invalid": "The JSON options provided for the dropdown are invalid:",
 			"allow_other": "Allow Other",
-			"allow_other_comment": "Allow the user to add their own value"
+			"allow_other_comment": "允許用戶添加自定義選項"
 		},
 		"file": {
 			"file": "檔案",
@@ -183,7 +183,7 @@
 			"accept": "Accept File Types",
 			"accept_comment": "Set a list of MIME types that can be picked",
 			"allow_delete": "Allow Delete",
-			"allow_delete_comment": "Allows the user to permanently delete the related file through the file interface",
+			"allow_delete_comment": "允許用戶透過文件介面永久刪除相關文件",
 			"crop_preview": "Crop File Preview",
 			"crop_preview_comment": "Crops the file preview to fill the available space."
 		},
@@ -214,9 +214,9 @@
 			"template_comment": "Choose how to display values on the item layouts",
 			"template_placeholder": "{{movie.name}} — {{member.first_name}}",
 			"allow_create": "Allow Create",
-			"allow_create_comment": "Allow the user to create a new item from this interface",
+			"allow_create_comment": "允許用戶從此介面建立新項目",
 			"allow_select": "Allow Select",
-			"allow_select_comment": "Allow the user to select an existing item",
+			"allow_select_comment": "允許用戶選擇一個現有項目",
 			"accept": "Accept File Types",
 			"accept_comment": "Set a list of MIME types that can be picked",
 			"edit_item": "Edit"
@@ -266,7 +266,7 @@
 		},
 		"json": {
 			"template": "Template",
-			"template_comment": "Provide a template the user can use to get started with"
+			"template_comment": "提供用戶可以用來入門的模板"
 		},
 		"key-value": {
 			"key_interface": "Key Interface",
@@ -293,9 +293,9 @@
 			"template_comment": "Choose how to display values on the item layouts",
 			"template_placeholder": "{{movie.name}} — {{member.first_name}}",
 			"allow_create": "Allow Create",
-			"allow_create_comment": "Allow the user to create a new item from this interface",
+			"allow_create_comment": "允許用戶從此介面建立新項目",
 			"allow_select": "Allow Select",
-			"allow_select_comment": "Allow the user to select an existing item"
+			"allow_select_comment": "允許用戶選擇一個現有項目"
 		},
 		"many-to-one": {
 			"m2o": "Many to One",
@@ -333,8 +333,8 @@
 			"max_zoom": "Max Zoom",
 			"max_zoom_comment": "Maximum zoom allowed in the map",
 			"no_location": "No location found",
-			"user_location_error_blocked": "You've disabled the location access. Kindly enable it from the browser addressbar to auto detect your location.",
-			"user_location_error": "There was an error while trying to get your location. Please try again.",
+			"user_location_error_blocked": "您已禁用位置訊息訪問權限。請從瀏覽器網址列中啟用它以自動檢測您的位置。",
+			"user_location_error": "嘗試獲取您的位置時出錯。請再嘗試一次。",
 			"address_to_code": "Address Input",
 			"address_to_code_comment": "Add an input field to automatically get the geocodes from an address. Uses <a href=\"https://wiki.openstreetmap.org/wiki/Nominatim\">Nominatim</a>. Please check their usage policy.",
 			"address_to_code_error": "No geocode found for this address",
@@ -374,7 +374,7 @@
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Enter placeholder text",
 			"localized": "Localized",
-			"localized_comment": "Localize the output to the user's locale",
+			"localized_comment": "將輸出定位到用戶的語言環境",
 			"icon_left": "Icon Left",
 			"icon_left_comment": "Choose an optional icon to display on the left of the input",
 			"icon_right": "Icon Right",
@@ -394,11 +394,11 @@
 			"template_comment": "How to format value on the item browse display",
 			"template_placeholder": "{{title}} — {{author}}",
 			"allow_create": "Allow Create",
-			"allow_create_comment": "Allow the user to create a new item from this interface",
+			"allow_create_comment": "允許用戶從此介面建立新項目",
 			"allow_select": "Allow Select",
-			"allow_select_comment": "Allow the user to select an existing item",
+			"allow_select_comment": "允許用戶選擇一個現有項目",
 			"delete_mode": "Delete mode",
-			"delete_mode_comment": "What to do when the user deselects an item",
+			"delete_mode_comment": "當用戶取消選擇一個項目時該怎麼辦",
 			"sort_field": "Sort Field",
 			"sort_field_comment": "The field to store the sort value in"
 		},
@@ -452,7 +452,7 @@
 			"fields": "欄位",
 			"fields_comment": "What fields to show in each repeated row",
 			"limit": "Limit",
-			"limit_comment": "Maximum amount of rows the user can add",
+			"limit_comment": "用戶可以添加的最大行數",
 			"duplicable": "Duplicable rows",
 			"duplicable_comment": "Whether to make rows duplicable or not",
 			"structure": "Structure",
@@ -520,7 +520,7 @@
 			"validation": "驗證",
 			"validation_comment": "A RegEx to check each individual value against",
 			"validation_message": "Validation Message",
-			"validation_message_comment": "A short message to show users if tag validation fails",
+			"validation_message_comment": "如果標籤驗證失敗，則向用戶顯示一條短訊息",
 			"validation_message_default": "Please enter a valid tag"
 		},
 		"text-input": {
@@ -595,41 +595,41 @@
 			"template_placeholder": "{{title}} — {{body}}"
 		},
 		"user": {
-			"user": "User",
+			"user": "用戶",
 			"avatar": "頭像",
 			"name": "名稱",
 			"template": "Template",
-			"template_comment": "How to format the users in the dropdown",
+			"template_comment": "如何在下拉選單中格式化用戶",
 			"placeholder": "Placeholder",
-			"placeholder_comment": "Add a placeholder"
+			"placeholder_comment": "添加一個佔位符"
 		},
 		"owner": {
 			"owner": "擁有者",
 			"avatar": "頭像",
 			"name": "名稱",
 			"template": "Template",
-			"template_comment": "How to display the user on the item detail page",
+			"template_comment": "如何在項目詳細訊息頁面上顯示用戶",
 			"display": "Display",
-			"display_comment": "How to display the user on the item browse page",
+			"display_comment": "如何在項目瀏覽頁面上顯示用戶",
 			"you": "You will be the creator",
 			"unknown": "Unknown"
 		},
 		"user-roles": {
-			"user-roles": "User Role",
-			"choose_role": "Choose a role...",
-			"relational": "Relational",
-			"relational_comment": "Save as a relational record",
-			"show_public": "Show public role"
+			"user-roles": "用戶角色",
+			"choose_role": "選擇一個角色...",
+			"relational": "相關的",
+			"relational_comment": "另存為相關的紀錄",
+			"show_public": "顯示公開的角色"
 		},
 		"user-updated": {
-			"user_updated": "User Updated",
+			"user_updated": "用戶更新",
 			"avatar": "頭像",
 			"name": "名稱",
 			"template": "Template",
-			"template_comment": "How to display the user on the item detail page",
+			"template_comment": "如何在項目詳細訊息頁面上顯示用戶",
 			"display": "Display",
-			"display_comment": "How to display the user on the item browse page",
-			"you": "You will be the updater",
+			"display_comment": "如何在項目瀏覽頁面上顯示用戶",
+			"you": "您將成為更新者",
 			"unknown": "Unknown"
 		},
 		"wysiwyg": {
