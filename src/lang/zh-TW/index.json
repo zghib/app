@@ -133,10 +133,10 @@
   "datatype": "資料型態",
   "datatypes": {
     "mysql": {
-      "BIGINT": "An integer. When signed (allows negative) length is -9e18 to 9e18, otherwise the max is 18e18.",
-      "BOOLEAN": "True or false. Is saved as either 1 or 0 respectively.",
-      "CHAR": "A fixed-length non-binary string right-padded with spaces. Length can be 0 to 255 characters.",
-      "DATE": "A date. Allows `1000-01-01` to `9999-12-31`.",
+      "BIGINT": "一個整數。有符號時（允許負值）長度為 -9e18 到 9e18，否則最大值為 18e18。",
+      "BOOLEAN": "是或否。分別保存為１或０。",
+      "CHAR": "一個固定長度的非二進制字串，右側使用空格填充。長度可以介於０到２５５個字符。",
+      "DATE": "一個日期。介於 `1000-01-01` 到 `9999-12-31` 之間。",
       "DATETIME": "A date and time. Allows `1000-01-01 00:00:00` to `9999-12-31 23:59:59`.",
       "DECIMAL": "An accurate number (eg: for currency), with 1 to 65 digits length (L) and 0 to 30 digits decimal (D). Length format: `L,D`",
       "DOUBLE": "An approximate binary number, 8 bytes with a floating decimal point.",
