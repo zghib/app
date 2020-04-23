@@ -271,10 +271,10 @@
 		"key-value": {
 			"key_interface": "Key Interface",
 			"key_data_type": "Key Data Type",
-			"key_options": "Key Interface Options",
+			"key_options": "Key Interface Opties",
 			"value_interface": "Key Interface",
 			"value_data_type": "Key Data Type",
-			"value_options": "Key Interface Options"
+			"value_options": "Key Interface Opties"
 		},
 		"language": {
 			"input": "Taal",
@@ -526,9 +526,9 @@
 		"text-input": {
 			"input": "Text Input",
 			"placeholder": "Tijdelijke plaatshouder",
-			"trim": "Trim",
-			"trim_comment": "Trim surrounding whitespace from the value before saving",
-			"char_count": "Show Character Count",
+			"trim": "Bijsnijden",
+			"trim_comment": "Knip omliggende witruimte van de waarde bij voor het opslaan",
+			"char_count": "Toon aantal tekens",
 			"char_count_comment": "Show the remaining characters available",
 			"icon_left": "Icoon links",
 			"icon_left_comment": "Kies een optioneel icoon om weer te geven aan de linkerkant van de invoer",
@@ -578,9 +578,9 @@
 			"color-inactive-name": "Inactief kleur",
 			"color-inactive-comment": "Choose the inactive color",
 			"text-active-name": "Active Text",
-			"text-active-comment": "Text next to the active icon",
+			"text-active-comment": "Tekst naast het actieve icoon",
 			"text-active-placeholder": "Voer uw tekst hier in",
-			"icon-active-name": "Active Icon",
+			"icon-active-name": "Actief Icoon",
 			"icon-active-comment": "Choose an active icon",
 			"color-active-name": "Actieve kleur",
 			"color-active-comment": "Choose the active color"
