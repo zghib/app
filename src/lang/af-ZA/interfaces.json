@@ -50,21 +50,21 @@
 			"checkboxes_relational": "Checkboxes Relational",
 			"grid": "Grid",
 			"grid_comment": "Number of items to show in a row",
-			"item_template": "Item Template",
+			"item_template": "Item Modelvorm",
 			"item_template_comment": "How to display values on the single item layouts",
 			"item_template_placeholder": "{{name}} — {{first_name}}",
-			"listing_template": "Listing Template",
+			"listing_template": "Lys Modelvorm",
 			"listing_template_comment": "How to display values on the listing layouts.<br>You'll need to prepend the collection name",
 			"listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
 		},
 		"code": {
-			"code": "Code",
-			"template": "Template",
+			"code": "Kode",
+			"template": "Modelvorm",
 			"template_comment": "Provide a template the user can use to get started with",
-			"language": "Language",
-			"language_comment": "Set the programming language to use",
-			"lineNumber": "Line Number",
-			"lineNumber_comment": "Show line numbers",
+			"language": "Taal",
+			"language_comment": "Stel die programmeertaal om te gebruik",
+			"lineNumber": "Lyn Nommer",
+			"lineNumber_comment": "Wys lyn nommers",
 			"loc": "No lines of {lang} | One line of {lang} | {count} lines of {lang}",
 			"fill_template": "Fill with Template"
 		},
@@ -265,7 +265,7 @@
 			"include_status": "Include the status interfaces"
 		},
 		"json": {
-			"template": "Template",
+			"template": "Modelvorm",
 			"template_comment": "Provide a template the user can use to get started with"
 		},
 		"key-value": {
@@ -277,7 +277,7 @@
 			"value_options": "Key Interface Options"
 		},
 		"language": {
-			"input": "Language",
+			"input": "Taal",
 			"select_language": "Select a language...",
 			"limit": "Limit to Directus Availability",
 			"limit_comment": "Only show languages that are available as translations in Directus"
@@ -598,7 +598,7 @@
 			"user": "User",
 			"avatar": "Avatar",
 			"name": "Name",
-			"template": "Template",
+			"template": "Modelvorm",
 			"template_comment": "How to format the users in the dropdown",
 			"placeholder": "Placeholder",
 			"placeholder_comment": "Add a placeholder"
@@ -607,7 +607,7 @@
 			"owner": "Eienaar",
 			"avatar": "Avatar",
 			"name": "Name",
-			"template": "Template",
+			"template": "Modelvorm",
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
@@ -625,7 +625,7 @@
 			"user_updated": "User Updated",
 			"avatar": "Avatar",
 			"name": "Name",
-			"template": "Template",
+			"template": "Modelvorm",
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Display",
 			"display_comment": "How to display the user on the item browse page",
