@@ -1,7 +1,7 @@
 {
 	"interfaces": {
 		"2fa-secret": {
-			"2fa-secret": "2FA Secret"
+			"2fa-secret": "2FA Geheim"
 		},
 		"button-group": {
 			"button_group": "Knoppie Groep",
@@ -43,8 +43,8 @@
 			"single_comment": "Display Checkboxes in single column",
 			"draggable": "Draggable Checkboxes",
 			"draggable_comment": "Enable sorting by draggable checkboxes",
-			"allow_other": "Allow Other",
-			"allow_other_comment": "Allow an additional custom option"
+			"allow_other": "Laat Ander Toe",
+			"allow_other_comment": "Laat 'n addisionele unieke opsie toe"
 		},
 		"checkboxes-relational": {
 			"checkboxes_relational": "Checkboxes Relational",
@@ -167,7 +167,7 @@
 			"icon": "Icon",
 			"icon_comment": "Choose an optional icon to display on the left of the input",
 			"options_invalid": "The JSON options provided for the dropdown are invalid:",
-			"allow_other": "Allow Other",
+			"allow_other": "Laat Ander Toe",
 			"allow_other_comment": "Allow the user to add their own value"
 		},
 		"file": {
