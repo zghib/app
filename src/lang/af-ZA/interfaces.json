@@ -204,7 +204,7 @@
 			"crop_preview": "Crop Preview Images"
 		},
 		"files": {
-			"files": "Files",
+			"files": "Lêers",
 			"visible_columns": "Visible Columns",
 			"visible_columns_comment": "Add a CSV of columns you want to display as preview",
 			"preferences": "Listing View Preferences",
@@ -327,7 +327,7 @@
 			"map_lat_comment": "Map will be centered at this latitude",
 			"map_lng": "Default Longitude",
 			"map_lng_comment": "Map will be centered at this longitude",
-			"height": "Height",
+			"height": "Hoogte",
 			"default_zoom": "Default Zoom",
 			"default_zoom_comment": "Default zoom level of the map",
 			"max_zoom": "Max Zoom",
@@ -403,7 +403,7 @@
 			"sort_field_comment": "The field to store the sort value in"
 		},
 		"password": {
-			"password": "Password",
+			"password": "Wagwoord",
 			"hide": "Hide Value",
 			"hide_comment": "Display dots instead of the characters you enter",
 			"placeholder": "Placeholder",
@@ -501,7 +501,7 @@
 			"deleted": "Deleted"
 		},
 		"tags": {
-			"tags": "Tags",
+			"tags": "Sleutelwoorde",
 			"alphabetize": "Alphabetize tags",
 			"alphabetize_comment": "Will rearrange tags to be alphabetical",
 			"lowercase": "Force Lowercase",
@@ -596,7 +596,7 @@
 		},
 		"user": {
 			"user": "User",
-			"avatar": "Avatar",
+			"avatar": "Profiel prentjie",
 			"name": "Name",
 			"template": "Modelvorm",
 			"template_comment": "How to format the users in the dropdown",
@@ -605,7 +605,7 @@
 		},
 		"owner": {
 			"owner": "Eienaar",
-			"avatar": "Avatar",
+			"avatar": "Profiel prentjie",
 			"name": "Name",
 			"template": "Modelvorm",
 			"template_comment": "How to display the user on the item detail page",
@@ -623,7 +623,7 @@
 		},
 		"user-updated": {
 			"user_updated": "User Updated",
-			"avatar": "Avatar",
+			"avatar": "Profiel prentjie",
 			"name": "Name",
 			"template": "Modelvorm",
 			"template_comment": "How to display the user on the item detail page",
