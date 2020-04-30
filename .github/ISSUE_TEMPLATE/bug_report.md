@@ -2,7 +2,7 @@
 name: Report Bug (App)
 about: Report a bug and track its resolution
 title: ''
-labels: 'bug'
+labels: ''
 assignees: ''
 
 ---
