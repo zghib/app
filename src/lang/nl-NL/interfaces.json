@@ -197,7 +197,7 @@
 			"placeholder_comment": "Voer placeholder tekst in",
 			"format": "Formaat waarde",
 			"format_comment": "Toon de waarde op een menselijke leesbare manier (bijv. 10MB)",
-			"format_input": "Invoer formatteren",
+			"format_input": "Invoer opmaken",
 			"format_input_comment": "Voer de waarde in door een dropdown voor eenheden te gebruiken",
 			"decimal": "Decimaal",
 			"decimal_comment": "Toon de waarde als MiB in plaats van MB",
@@ -460,14 +460,14 @@
 			"structure_key": "Structure Key Field",
 			"structure_key_comment": "When using an object for the JSON structure, this value controls what field to use for the key values",
 			"placeholder": "Tijdelijke plaatshouder",
-			"placeholder_comment": "The value that shows up instead of the template if there's no value entered yet",
+			"placeholder_comment": "De waarde die wordt weergegeven in plaats van de sjabloon als er nog geen waarde is ingevoerd",
 			"create_item_text": "Create Item Text",
 			"create_item_text_comment": "Text that's displayed in the button that adds a new row to the repeater"
 		},
 		"slider": {
 			"slider": "Schuifregelaar",
 			"min": "Minimum",
-			"min_comment": "The minimum valid value",
+			"min_comment": "De minimale geldige waarde",
 			"max": "Maximum",
 			"max_comment": "De maximale geldige waarde",
 			"step": "Stap",
@@ -478,13 +478,13 @@
 		"slug": {
 			"slug": "Url",
 			"placeholder_name": "Tijdelijke plaatshouder",
-			"placeholder_comment": "The placeholder text to show",
+			"placeholder_comment": "De te tonen placeholder tekst",
 			"force_lowercase": "Forceer kleine letters",
-			"force_lowercase_comment": "Makes sure the slug is in lowercase",
+			"force_lowercase_comment": "Zorgt ervoor dat de slug in kleine letters is",
 			"mirrored_field": "Gespiegeld veld",
 			"mirrored_field_comment": "Keep the slug up to date with another (text) field",
-			"only_on_create": "Only on Create",
-			"only_on_create_comment": "Allow the slug to be edited only when creating a new item"
+			"only_on_create": "Alleen bij aanmaken",
+			"only_on_create_comment": "Alleen toestaan dat de slug wordt bewerkt bij het aanmaken van een niew item"
 		},
 		"sort": {
 			"sort": "Sorteer"
@@ -492,50 +492,50 @@
 		"status": {
 			"status": "Status",
 			"status_mapping": "Status Mapping",
-			"status_mapping_comment": "Enter JSON status options",
+			"status_mapping_comment": "Geef JSON statusopties op",
 			"simple_badge": "Simple Badge",
-			"simple_badge_comment": "Displays a colored dot on the item listing page.",
-			"published": "Published",
-			"under_review": "Under Review",
-			"draft": "Draft",
-			"deleted": "Deleted"
+			"simple_badge_comment": "Toont een gekleurde stip op de item lijst pagina.",
+			"published": "Gepubliceerd",
+			"under_review": "Wordt beoordeeld",
+			"draft": "Concept",
+			"deleted": "Verwijderd"
 		},
 		"tags": {
 			"tags": "Tags",
-			"alphabetize": "Alphabetize tags",
-			"alphabetize_comment": "Will rearrange tags to be alphabetical",
+			"alphabetize": "Labels alfabetiseren",
+			"alphabetize_comment": "Tags herschikken naar alfabetische volgorde",
 			"lowercase": "Forceer kleine letters",
-			"lowercase_comment": "Convert all tags to lowercase",
-			"wrap": "Wrap with delimiter",
+			"lowercase_comment": "Alle labels omzetten naar kleine letters",
+			"wrap": "Omring met scheidingsteken",
 			"wrap_comment": "Waarden ombouwen met een scheidingsteken om strikt te zoeken naar een enkele waarde",
-			"format": "Format Value",
-			"format_comment": "Convert the tags to Title Case when displaying the value",
-			"sanitize": "Sanitize",
-			"sanitize_comment": "Removes any non-alphanumeric characters and converts spaces to hyphens",
-			"placeholder_text": "Type a tag and then hit enter or comma...",
+			"format": "Formatteer waarde",
+			"format_comment": "Zet de tags om in Titel Case bij het weergeven van de waarde",
+			"sanitize": "Opschonen",
+			"sanitize_comment": "Verwijdert alle niet-alfanumerieke tekens en zet spaties om naar koppeltekens",
+			"placeholder_text": "Typ een label en druk vervolgens op enter of komma...",
 			"icon_left": "Icoon links",
 			"icon_left_comment": "Kies een optioneel icoon om weer te geven aan de linkerkant van de invoer",
 			"icon_right": "Icoon rechts",
 			"icon_right_comment": "Kies een optioneel pictogram om weer te geven aan de rechterkant van de invoer",
 			"validation": "Validatie",
 			"validation_comment": "A RegEx to check each individual value against",
-			"validation_message": "Validation Message",
-			"validation_message_comment": "A short message to show users if tag validation fails",
-			"validation_message_default": "Please enter a valid tag"
+			"validation_message": "Validatiemelding",
+			"validation_message_comment": "Een kort bericht om gebruikers te laten zien als de labelvalidatie mislukt",
+			"validation_message_default": "Voer een geldig label in alsjeblieft"
 		},
 		"text-input": {
-			"input": "Text Input",
+			"input": "Tekstinvoer",
 			"placeholder": "Tijdelijke plaatshouder",
 			"trim": "Bijsnijden",
 			"trim_comment": "Knip omliggende witruimte van de waarde bij voor het opslaan",
 			"char_count": "Toon aantal tekens",
-			"char_count_comment": "Show the remaining characters available",
+			"char_count_comment": "Toon de resterende beschikbare karakters",
 			"icon_left": "Icoon links",
 			"icon_left_comment": "Kies een optioneel icoon om weer te geven aan de linkerkant van de invoer",
 			"icon_right": "Icoon rechts",
 			"icon_right_comment": "Kies een optioneel pictogram om weer te geven aan de rechterkant van de invoer",
 			"format": "Pretty Output",
-			"format_comment": "Convert the value to title case",
+			"format_comment": "Converteer de waarde naar title case",
 			"monospace": "Monospace",
 			"monospace_comment": "Gebruik een monospace lettertype",
 			"auto": "Automatisch",
@@ -544,13 +544,13 @@
 			"large": "Groot"
 		},
 		"textarea": {
-			"textarea": "Text-Area",
+			"textarea": "Tekstblok",
 			"rows": "Rijen",
 			"rows_comment": "The number of text rows available for the input before scrolling",
 			"placeholder": "Tijdelijke plaatshouder",
 			"placeholder_comment": "Voer placeholder tekst in",
-			"serif": "Serif Font",
-			"serif_comment": "Use a larger, serif typeface"
+			"serif": "Schreeflettertype",
+			"serif_comment": "Gebruik een groter schreeflettertype"
 		},
 		"time": {
 			"time": "Tijd",
@@ -576,32 +576,32 @@
 			"icon-inactive-name": "Inactief icoon",
 			"icon-inactive-comment": "Kies een inactief icoon",
 			"color-inactive-name": "Inactief kleur",
-			"color-inactive-comment": "Choose the inactive color",
-			"text-active-name": "Active Text",
+			"color-inactive-comment": "Kies de inactieve kleur",
+			"text-active-name": "Actieve tekst",
 			"text-active-comment": "Tekst naast het actieve icoon",
 			"text-active-placeholder": "Voer uw tekst hier in",
 			"icon-active-name": "Actief Icoon",
-			"icon-active-comment": "Choose an active icon",
+			"icon-active-comment": "Kies een actief icoon",
 			"color-active-name": "Actieve kleur",
-			"color-active-comment": "Choose the active color"
+			"color-active-comment": "Kies de actieve kleur"
 		},
 		"translation": {
 			"translation": "Vertaling",
-			"language_field": "Language Field",
-			"language_field_comment": "The field that holds the language code in the related collection",
-			"languages": "Languages",
+			"language_field": "Taalveld",
+			"language_field_comment": "Het veld dat de taalcode bevat in de gerelateerde collectie",
+			"languages": "Talen",
 			"template": "Weergavesjabloon",
 			"template_comment": "Kies hoe waarden weergegeven moeten worden op de item lay-outs",
 			"template_placeholder": "{{title}} — {{body}}"
 		},
 		"user": {
-			"user": "User",
+			"user": "Gebruiker",
 			"avatar": "Profielafbeelding",
 			"name": "Naam",
 			"template": "Sjabloon",
 			"template_comment": "How to format the users in the dropdown",
 			"placeholder": "Tijdelijke plaatshouder",
-			"placeholder_comment": "Add a placeholder"
+			"placeholder_comment": "Voeg een placeholder toe"
 		},
 		"owner": {
 			"owner": "Eigenaar",
@@ -616,7 +616,7 @@
 		},
 		"user-roles": {
 			"user-roles": "Gebruikersrol",
-			"choose_role": "Choose a role...",
+			"choose_role": "Kies een rol...",
 			"relational": "Relationeel",
 			"relational_comment": "Opslaan als relationeel record",
 			"show_public": "Show public role"
@@ -629,16 +629,16 @@
 			"template_comment": "How to display the user on the item detail page",
 			"display": "Toon",
 			"display_comment": "How to display the user on the item browse page",
-			"you": "You will be the updater",
+			"you": "Jij wordt de bewerker",
 			"unknown": "Onbekend"
 		},
 		"wysiwyg": {
 			"toolbar": "Werkbalk opties",
 			"toolbar_comment": "Toon, verberg en herschik werkbalkopties",
 			"custom_formats": "Custom Formats",
-			"custom_formats_comment": "Custom HTML wrappers for content",
-			"tinymce_options": "TinyMCE Options",
-			"tinymce_options_comment": "Override any of [the TinyMCE init options](https://www.tiny.cloud/docs/configure/)."
+			"custom_formats_comment": "Aangepaste HTML wrappers voor content",
+			"tinymce_options": "TinyMCE opties",
+			"tinymce_options_comment": "Overschrijf een van de [TinyMCE init opties](https://www.tiny.cloud/docs/configure/)."
 		}
 	}
 }
