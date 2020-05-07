@@ -54,7 +54,7 @@
 			"item_template_comment": "如何在單個項目佈局上顯示值",
 			"item_template_placeholder": "{{name}} - {{first_name}}",
 			"listing_template": "清單模板",
-			"listing_template_comment": "如何在清單布局上顯示值。<br>您需要在集合名稱前添加前綴",
+			"listing_template_comment": "如何在清單布局上顯示值。<br>您需要在資料集名稱前添加前綴",
 			"listing_template_placeholder": "{{movie.name}} — {{member.first_name}}"
 		},
 		"code": {
@@ -69,13 +69,13 @@
 			"fill_template": "填寫模板"
 		},
 		"collections": {
-			"collections": "集合",
+			"collections": "資料集",
 			"placeholder": "佔位符",
 			"placeholder_comment": "選擇的值之前顯示的靜態文字",
-			"placeholder_default": "選擇一個收藏夾...",
+			"placeholder_default": "選擇一個資料集...",
 			"option": "選項",
 			"include_system": "包含系統",
-			"include_system_comment": "在選項中包括系統集合"
+			"include_system_comment": "在選項中包括系統資料集"
 		},
 		"color": {
 			"color": "顏色",
@@ -588,7 +588,7 @@
 		"translation": {
 			"translation": "翻譯",
 			"language_field": "語言欄位",
-			"language_field_comment": "在相關集合中保存語言編碼的欄位",
+			"language_field_comment": "在相關資料集中保存語言編碼的欄位",
 			"languages": "語言",
 			"template": "顯示模板",
 			"template_comment": "選擇如何顯示在項目佈局上的值",
