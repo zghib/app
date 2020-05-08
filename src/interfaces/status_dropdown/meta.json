@@ -1,0 +1,46 @@
+{
+	"name": "Status Dropdown",
+	"version": "1.0.0",
+	"types": ["status"],
+	"recommended": {
+		"defaultValue": "draft",
+		"length": 20
+	},
+	"icon": "outlined_flag",
+	"options": {
+		"status_mapping": {
+			"name": "$t:status_mapping",
+			"comment": "$t:status_mapping_comment",
+			"interface": "repeater",
+			"type": "JSON",
+			"options": {
+				"structure": "object",
+				"structure_key": "value",
+				"template": "{{name}} ({{value}})",
+				"fields": [
+					{
+						"field": "name",
+						"interface": "text-input",
+						"type": "String"
+					},
+					{
+						"field": "value",
+						"interface": "text-input",
+						"type": "String"
+					}
+				]
+			},
+			"default": {
+				"published": {
+					"name": "$t:published",
+					"value": "published"
+				},
+				"draft": {
+					"name": "$t:draft",
+					"value": "draft"
+				}
+			}
+		}
+	}
+}
+
