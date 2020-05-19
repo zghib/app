@@ -27,6 +27,21 @@
 						"field": "value",
 						"interface": "text-input",
 						"type": "String"
+					},
+					{
+						"field": "soft_delete",
+						"interface": "switch",
+						"type": "boolean"
+					},
+					{
+						"field": "required_fields",
+						"interface": "switch",
+						"type": "boolean"
+					},
+					{
+						"field": "published",
+						"interface": "switch",
+						"type": "boolean"
 					}
 				]
 			},
